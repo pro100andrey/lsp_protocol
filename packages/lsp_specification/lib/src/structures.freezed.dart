@@ -2907,7 +2907,7 @@ mixin _$FoldingRange {
 /// The kind is used to categorize folding ranges and used by commands like
 /// 'Fold all comments'. See [FoldingRangeKind] for an enumeration of
 /// standardized kinds.
- String? get kind;/// The text that the client should show when the specified range is
+ FoldingRangeKind? get kind;/// The text that the client should show when the specified range is
 /// collapsed. If not defined or not supported by the client, a default will
 /// be chosen by the client.
  String? get collapsedText;
@@ -2943,7 +2943,7 @@ abstract mixin class $FoldingRangeCopyWith<$Res>  {
   factory $FoldingRangeCopyWith(FoldingRange value, $Res Function(FoldingRange) _then) = _$FoldingRangeCopyWithImpl;
 @useResult
 $Res call({
- int startLine, int? startCharacter, int endLine, int? endCharacter, String? kind, String? collapsedText
+ int startLine, int? startCharacter, int endLine, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
 });
 
 
@@ -2967,7 +2967,7 @@ as int,startCharacter: freezed == startCharacter ? _self.startCharacter : startC
 as int?,endLine: null == endLine ? _self.endLine : endLine // ignore: cast_nullable_to_non_nullable
 as int,endCharacter: freezed == endCharacter ? _self.endCharacter : endCharacter // ignore: cast_nullable_to_non_nullable
 as int?,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String?,collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
+as FoldingRangeKind?,collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -2979,8 +2979,8 @@ as String?,
 /// @nodoc
 @JsonSerializable()
 
-class _FoldingRange extends FoldingRange {
-  const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, this.kind, this.collapsedText}): super._();
+class _FoldingRange implements FoldingRange {
+  const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, this.kind, this.collapsedText});
   factory _FoldingRange.fromJson(Map<String, dynamic> json) => _$FoldingRangeFromJson(json);
 
 /// The zero-based start line of the range to fold. The folded area starts
@@ -3001,7 +3001,7 @@ class _FoldingRange extends FoldingRange {
 /// The kind is used to categorize folding ranges and used by commands like
 /// 'Fold all comments'. See [FoldingRangeKind] for an enumeration of
 /// standardized kinds.
-@override final  String? kind;
+@override final  FoldingRangeKind? kind;
 /// The text that the client should show when the specified range is
 /// collapsed. If not defined or not supported by the client, a default will
 /// be chosen by the client.
@@ -3040,7 +3040,7 @@ abstract mixin class _$FoldingRangeCopyWith<$Res> implements $FoldingRangeCopyWi
   factory _$FoldingRangeCopyWith(_FoldingRange value, $Res Function(_FoldingRange) _then) = __$FoldingRangeCopyWithImpl;
 @override @useResult
 $Res call({
- int startLine, int? startCharacter, int endLine, int? endCharacter, String? kind, String? collapsedText
+ int startLine, int? startCharacter, int endLine, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
 });
 
 
@@ -3064,7 +3064,7 @@ as int,startCharacter: freezed == startCharacter ? _self.startCharacter : startC
 as int?,endLine: null == endLine ? _self.endLine : endLine // ignore: cast_nullable_to_non_nullable
 as int,endCharacter: freezed == endCharacter ? _self.endCharacter : endCharacter // ignore: cast_nullable_to_non_nullable
 as int?,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String?,collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
+as FoldingRangeKind?,collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -22453,7 +22453,7 @@ mixin _$CodeAction {
  String get title;/// The kind of the code action.
 ///
 /// Used to filter code actions.
- String? get kind;/// The diagnostics that this code action resolves.
+ CodeActionKind? get kind;/// The diagnostics that this code action resolves.
  List<Diagnostic>? get diagnostics;/// Marks this as a preferred action. Preferred actions are used by the
 /// `auto fix` command and can be targeted by keybindings.
 ///
@@ -22516,7 +22516,7 @@ abstract mixin class $CodeActionCopyWith<$Res>  {
   factory $CodeActionCopyWith(CodeAction value, $Res Function(CodeAction) _then) = _$CodeActionCopyWithImpl;
 @useResult
 $Res call({
- String title, String? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
+ String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
 });
 
 
@@ -22537,7 +22537,7 @@ class _$CodeActionCopyWithImpl<$Res>
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String?,diagnostics: freezed == diagnostics ? _self.diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
+as CodeActionKind?,diagnostics: freezed == diagnostics ? _self.diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>?,isPreferred: freezed == isPreferred ? _self.isPreferred : isPreferred // ignore: cast_nullable_to_non_nullable
 as bool?,disabled: freezed == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
 as ({String reason})?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
@@ -22577,8 +22577,8 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 @JsonSerializable()
 
-class _CodeAction extends CodeAction {
-  const _CodeAction({required this.title, this.kind, final  List<Diagnostic>? diagnostics, this.isPreferred, this.disabled, this.edit, this.command, this.data}): _diagnostics = diagnostics,super._();
+class _CodeAction implements CodeAction {
+  const _CodeAction({required this.title, this.kind, final  List<Diagnostic>? diagnostics, this.isPreferred, this.disabled, this.edit, this.command, this.data}): _diagnostics = diagnostics;
   factory _CodeAction.fromJson(Map<String, dynamic> json) => _$CodeActionFromJson(json);
 
 /// A short, human-readable, title for this code action.
@@ -22586,7 +22586,7 @@ class _CodeAction extends CodeAction {
 /// The kind of the code action.
 ///
 /// Used to filter code actions.
-@override final  String? kind;
+@override final  CodeActionKind? kind;
 /// The diagnostics that this code action resolves.
  final  List<Diagnostic>? _diagnostics;
 /// The diagnostics that this code action resolves.
@@ -22666,7 +22666,7 @@ abstract mixin class _$CodeActionCopyWith<$Res> implements $CodeActionCopyWith<$
   factory _$CodeActionCopyWith(_CodeAction value, $Res Function(_CodeAction) _then) = __$CodeActionCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
+ String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
 });
 
 
@@ -22687,7 +22687,7 @@ class __$CodeActionCopyWithImpl<$Res>
   return _then(_CodeAction(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String?,diagnostics: freezed == diagnostics ? _self._diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
+as CodeActionKind?,diagnostics: freezed == diagnostics ? _self._diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>?,isPreferred: freezed == isPreferred ? _self.isPreferred : isPreferred // ignore: cast_nullable_to_non_nullable
 as bool?,disabled: freezed == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
 as ({String reason})?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
@@ -36956,7 +36956,7 @@ mixin _$ServerCapabilities {
 /// that a server can return is 'utf-16'.
 ///
 /// If omitted it defaults to 'utf-16'.
- String? get positionEncoding;/// Defines how text documents are synced. Is either a detailed structure
+ PositionEncodingKind? get positionEncoding;/// Defines how text documents are synced. Is either a detailed structure
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
 ///
@@ -37084,7 +37084,7 @@ abstract mixin class $ServerCapabilitiesCopyWith<$Res>  {
   factory $ServerCapabilitiesCopyWith(ServerCapabilities value, $Res Function(ServerCapabilities) _then) = _$ServerCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- String? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
+ PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
 });
 
 
@@ -37104,7 +37104,7 @@ class _$ServerCapabilitiesCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? positionEncoding = freezed,Object? textDocumentSync = freezed,Object? notebookDocumentSync = freezed,Object? completionProvider = freezed,Object? hoverProvider = freezed,Object? signatureHelpProvider = freezed,Object? declarationProvider = freezed,Object? definitionProvider = freezed,Object? typeDefinitionProvider = freezed,Object? implementationProvider = freezed,Object? referencesProvider = freezed,Object? documentHighlightProvider = freezed,Object? documentSymbolProvider = freezed,Object? codeActionProvider = freezed,Object? codeLensProvider = freezed,Object? documentLinkProvider = freezed,Object? colorProvider = freezed,Object? workspaceSymbolProvider = freezed,Object? documentFormattingProvider = freezed,Object? documentRangeFormattingProvider = freezed,Object? documentOnTypeFormattingProvider = freezed,Object? renameProvider = freezed,Object? foldingRangeProvider = freezed,Object? selectionRangeProvider = freezed,Object? executeCommandProvider = freezed,Object? callHierarchyProvider = freezed,Object? linkedEditingRangeProvider = freezed,Object? semanticTokensProvider = freezed,Object? monikerProvider = freezed,Object? typeHierarchyProvider = freezed,Object? inlineValueProvider = freezed,Object? inlayHintProvider = freezed,Object? diagnosticProvider = freezed,Object? inlineCompletionProvider = freezed,Object? workspace = freezed,Object? experimental = freezed,}) {
   return _then(_self.copyWith(
 positionEncoding: freezed == positionEncoding ? _self.positionEncoding : positionEncoding // ignore: cast_nullable_to_non_nullable
-as String?,textDocumentSync: freezed == textDocumentSync ? _self.textDocumentSync : textDocumentSync ,notebookDocumentSync: freezed == notebookDocumentSync ? _self.notebookDocumentSync : notebookDocumentSync ,completionProvider: freezed == completionProvider ? _self.completionProvider : completionProvider // ignore: cast_nullable_to_non_nullable
+as PositionEncodingKind?,textDocumentSync: freezed == textDocumentSync ? _self.textDocumentSync : textDocumentSync ,notebookDocumentSync: freezed == notebookDocumentSync ? _self.notebookDocumentSync : notebookDocumentSync ,completionProvider: freezed == completionProvider ? _self.completionProvider : completionProvider // ignore: cast_nullable_to_non_nullable
 as CompletionOptions?,hoverProvider: freezed == hoverProvider ? _self.hoverProvider : hoverProvider ,signatureHelpProvider: freezed == signatureHelpProvider ? _self.signatureHelpProvider : signatureHelpProvider // ignore: cast_nullable_to_non_nullable
 as SignatureHelpOptions?,declarationProvider: freezed == declarationProvider ? _self.declarationProvider : declarationProvider ,definitionProvider: freezed == definitionProvider ? _self.definitionProvider : definitionProvider ,typeDefinitionProvider: freezed == typeDefinitionProvider ? _self.typeDefinitionProvider : typeDefinitionProvider ,implementationProvider: freezed == implementationProvider ? _self.implementationProvider : implementationProvider ,referencesProvider: freezed == referencesProvider ? _self.referencesProvider : referencesProvider ,documentHighlightProvider: freezed == documentHighlightProvider ? _self.documentHighlightProvider : documentHighlightProvider ,documentSymbolProvider: freezed == documentSymbolProvider ? _self.documentSymbolProvider : documentSymbolProvider ,codeActionProvider: freezed == codeActionProvider ? _self.codeActionProvider : codeActionProvider ,codeLensProvider: freezed == codeLensProvider ? _self.codeLensProvider : codeLensProvider // ignore: cast_nullable_to_non_nullable
 as CodeLensOptions?,documentLinkProvider: freezed == documentLinkProvider ? _self.documentLinkProvider : documentLinkProvider // ignore: cast_nullable_to_non_nullable
@@ -37194,8 +37194,8 @@ $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider {
 /// @nodoc
 @JsonSerializable()
 
-class _ServerCapabilities extends ServerCapabilities {
-  const _ServerCapabilities({this.positionEncoding, this.textDocumentSync, this.notebookDocumentSync, this.completionProvider, this.hoverProvider, this.signatureHelpProvider, this.declarationProvider, this.definitionProvider, this.typeDefinitionProvider, this.implementationProvider, this.referencesProvider, this.documentHighlightProvider, this.documentSymbolProvider, this.codeActionProvider, this.codeLensProvider, this.documentLinkProvider, this.colorProvider, this.workspaceSymbolProvider, this.documentFormattingProvider, this.documentRangeFormattingProvider, this.documentOnTypeFormattingProvider, this.renameProvider, this.foldingRangeProvider, this.selectionRangeProvider, this.executeCommandProvider, this.callHierarchyProvider, this.linkedEditingRangeProvider, this.semanticTokensProvider, this.monikerProvider, this.typeHierarchyProvider, this.inlineValueProvider, this.inlayHintProvider, this.diagnosticProvider, this.inlineCompletionProvider, this.workspace, this.experimental}): super._();
+class _ServerCapabilities implements ServerCapabilities {
+  const _ServerCapabilities({this.positionEncoding, this.textDocumentSync, this.notebookDocumentSync, this.completionProvider, this.hoverProvider, this.signatureHelpProvider, this.declarationProvider, this.definitionProvider, this.typeDefinitionProvider, this.implementationProvider, this.referencesProvider, this.documentHighlightProvider, this.documentSymbolProvider, this.codeActionProvider, this.codeLensProvider, this.documentLinkProvider, this.colorProvider, this.workspaceSymbolProvider, this.documentFormattingProvider, this.documentRangeFormattingProvider, this.documentOnTypeFormattingProvider, this.renameProvider, this.foldingRangeProvider, this.selectionRangeProvider, this.executeCommandProvider, this.callHierarchyProvider, this.linkedEditingRangeProvider, this.semanticTokensProvider, this.monikerProvider, this.typeHierarchyProvider, this.inlineValueProvider, this.inlayHintProvider, this.diagnosticProvider, this.inlineCompletionProvider, this.workspace, this.experimental});
   factory _ServerCapabilities.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFromJson(json);
 
 /// The position encoding the server picked from the encodings offered by
@@ -37205,7 +37205,7 @@ class _ServerCapabilities extends ServerCapabilities {
 /// that a server can return is 'utf-16'.
 ///
 /// If omitted it defaults to 'utf-16'.
-@override final  String? positionEncoding;
+@override final  PositionEncodingKind? positionEncoding;
 /// Defines how text documents are synced. Is either a detailed structure
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
@@ -37370,7 +37370,7 @@ abstract mixin class _$ServerCapabilitiesCopyWith<$Res> implements $ServerCapabi
   factory _$ServerCapabilitiesCopyWith(_ServerCapabilities value, $Res Function(_ServerCapabilities) _then) = __$ServerCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- String? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
+ PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
 });
 
 
@@ -37390,7 +37390,7 @@ class __$ServerCapabilitiesCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? positionEncoding = freezed,Object? textDocumentSync = freezed,Object? notebookDocumentSync = freezed,Object? completionProvider = freezed,Object? hoverProvider = freezed,Object? signatureHelpProvider = freezed,Object? declarationProvider = freezed,Object? definitionProvider = freezed,Object? typeDefinitionProvider = freezed,Object? implementationProvider = freezed,Object? referencesProvider = freezed,Object? documentHighlightProvider = freezed,Object? documentSymbolProvider = freezed,Object? codeActionProvider = freezed,Object? codeLensProvider = freezed,Object? documentLinkProvider = freezed,Object? colorProvider = freezed,Object? workspaceSymbolProvider = freezed,Object? documentFormattingProvider = freezed,Object? documentRangeFormattingProvider = freezed,Object? documentOnTypeFormattingProvider = freezed,Object? renameProvider = freezed,Object? foldingRangeProvider = freezed,Object? selectionRangeProvider = freezed,Object? executeCommandProvider = freezed,Object? callHierarchyProvider = freezed,Object? linkedEditingRangeProvider = freezed,Object? semanticTokensProvider = freezed,Object? monikerProvider = freezed,Object? typeHierarchyProvider = freezed,Object? inlineValueProvider = freezed,Object? inlayHintProvider = freezed,Object? diagnosticProvider = freezed,Object? inlineCompletionProvider = freezed,Object? workspace = freezed,Object? experimental = freezed,}) {
   return _then(_ServerCapabilities(
 positionEncoding: freezed == positionEncoding ? _self.positionEncoding : positionEncoding // ignore: cast_nullable_to_non_nullable
-as String?,textDocumentSync: freezed == textDocumentSync ? _self.textDocumentSync : textDocumentSync ,notebookDocumentSync: freezed == notebookDocumentSync ? _self.notebookDocumentSync : notebookDocumentSync ,completionProvider: freezed == completionProvider ? _self.completionProvider : completionProvider // ignore: cast_nullable_to_non_nullable
+as PositionEncodingKind?,textDocumentSync: freezed == textDocumentSync ? _self.textDocumentSync : textDocumentSync ,notebookDocumentSync: freezed == notebookDocumentSync ? _self.notebookDocumentSync : notebookDocumentSync ,completionProvider: freezed == completionProvider ? _self.completionProvider : completionProvider // ignore: cast_nullable_to_non_nullable
 as CompletionOptions?,hoverProvider: freezed == hoverProvider ? _self.hoverProvider : hoverProvider ,signatureHelpProvider: freezed == signatureHelpProvider ? _self.signatureHelpProvider : signatureHelpProvider // ignore: cast_nullable_to_non_nullable
 as SignatureHelpOptions?,declarationProvider: freezed == declarationProvider ? _self.declarationProvider : declarationProvider ,definitionProvider: freezed == definitionProvider ? _self.definitionProvider : definitionProvider ,typeDefinitionProvider: freezed == typeDefinitionProvider ? _self.typeDefinitionProvider : typeDefinitionProvider ,implementationProvider: freezed == implementationProvider ? _self.implementationProvider : implementationProvider ,referencesProvider: freezed == referencesProvider ? _self.referencesProvider : referencesProvider ,documentHighlightProvider: freezed == documentHighlightProvider ? _self.documentHighlightProvider : documentHighlightProvider ,documentSymbolProvider: freezed == documentSymbolProvider ? _self.documentSymbolProvider : documentSymbolProvider ,codeActionProvider: freezed == codeActionProvider ? _self.codeActionProvider : codeActionProvider ,codeLensProvider: freezed == codeLensProvider ? _self.codeLensProvider : codeLensProvider // ignore: cast_nullable_to_non_nullable
 as CodeLensOptions?,documentLinkProvider: freezed == documentLinkProvider ? _self.documentLinkProvider : documentLinkProvider // ignore: cast_nullable_to_non_nullable
@@ -37903,7 +37903,7 @@ mixin _$FileSystemWatcher {
 /// support for relative patterns.
  GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to
 /// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
- int? get kind;
+ WatchKind? get kind;
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37936,7 +37936,7 @@ abstract mixin class $FileSystemWatcherCopyWith<$Res>  {
   factory $FileSystemWatcherCopyWith(FileSystemWatcher value, $Res Function(FileSystemWatcher) _then) = _$FileSystemWatcherCopyWithImpl;
 @useResult
 $Res call({
- GlobPattern globPattern, int? kind
+ GlobPattern globPattern, WatchKind? kind
 });
 
 
@@ -37956,7 +37956,7 @@ class _$FileSystemWatcherCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? globPattern = null,Object? kind = freezed,}) {
   return _then(_self.copyWith(
 globPattern: null == globPattern ? _self.globPattern : globPattern ,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as int?,
+as WatchKind?,
   ));
 }
 
@@ -37967,8 +37967,8 @@ as int?,
 /// @nodoc
 @JsonSerializable()
 
-class _FileSystemWatcher extends FileSystemWatcher {
-  const _FileSystemWatcher({required this.globPattern, this.kind}): super._();
+class _FileSystemWatcher implements FileSystemWatcher {
+  const _FileSystemWatcher({required this.globPattern, this.kind});
   factory _FileSystemWatcher.fromJson(Map<String, dynamic> json) => _$FileSystemWatcherFromJson(json);
 
 /// The glob pattern to watch. See [GlobPattern] for more detail.
@@ -37977,7 +37977,7 @@ class _FileSystemWatcher extends FileSystemWatcher {
 @override final  GlobPattern globPattern;
 /// The kind of events of interest. If omitted it defaults to
 /// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
-@override final  int? kind;
+@override final  WatchKind? kind;
 
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
@@ -38012,7 +38012,7 @@ abstract mixin class _$FileSystemWatcherCopyWith<$Res> implements $FileSystemWat
   factory _$FileSystemWatcherCopyWith(_FileSystemWatcher value, $Res Function(_FileSystemWatcher) _then) = __$FileSystemWatcherCopyWithImpl;
 @override @useResult
 $Res call({
- GlobPattern globPattern, int? kind
+ GlobPattern globPattern, WatchKind? kind
 });
 
 
@@ -38032,7 +38032,7 @@ class __$FileSystemWatcherCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? globPattern = null,Object? kind = freezed,}) {
   return _then(_FileSystemWatcher(
 globPattern: null == globPattern ? _self.globPattern : globPattern ,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as int?,
+as WatchKind?,
   ));
 }
 

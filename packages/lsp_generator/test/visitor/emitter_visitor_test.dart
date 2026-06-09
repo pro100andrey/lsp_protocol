@@ -359,7 +359,7 @@ void main() {
       expect(src, contains("delete('delete')"));
     });
 
-    test('supportsCustomValues open enum uses dart enum with decode()', () {
+    test('supportsCustomValues open enum uses extension type', () {
       final state = _stateWith(
         enumerations: [
           _enum('FoldingRangeKind', 'String', [
@@ -369,10 +369,18 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildEnumerations());
-      expect(src, contains('enum FoldingRangeKind'));
-      expect(src, contains('final String value'));
-      expect(src, contains("comment('comment')"));
-      expect(src, contains('static FoldingRangeKind? decode('));
+      expect(
+        src,
+        contains('extension type const FoldingRangeKind(String value)'),
+      );
+      expect(
+        src,
+        contains(
+          "static const FoldingRangeKind comment = FoldingRangeKind('comment')",
+        ),
+      );
+      expect(src, contains('factory FoldingRangeKind.fromJson(Object? json)'));
+      expect(src, contains('String toJson()'));
     });
 
     test('supportsCustomValues class has const constructor', () {
@@ -660,11 +668,11 @@ void main() {
     });
 
     test(
-      'enumerations output contains FoldingRangeKind as enum '
+      'enumerations output contains FoldingRangeKind as extension type '
       '(supportsCustomValues)',
       () {
         final src = _format(EmitterVisitor(resolved).buildEnumerations());
-        expect(src, contains('enum FoldingRangeKind'));
+        expect(src, contains('extension type const FoldingRangeKind'));
       },
     );
 

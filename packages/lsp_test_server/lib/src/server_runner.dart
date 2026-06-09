@@ -54,9 +54,11 @@ final class ServerRunner {
 
       return const .new(
         capabilities: .new(
-          positionEncoding: 'utf-16',
+          positionEncoding: PositionEncodingKind.uTF16,
           hoverProvider: true,
-          completionProvider: .new(triggerCharacters: ['.', ':']),
+          completionProvider: .new(
+            triggerCharacters: ['.', ':'],
+          ),
           textDocumentSync: TextDocumentSyncOptions(
             change: .full,
             openClose: true,

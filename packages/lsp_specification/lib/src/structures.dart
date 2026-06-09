@@ -286,8 +286,6 @@ abstract class FoldingRangeParams with _$FoldingRangeParams {
 /// free to ignore invalid ranges.
 @freezed
 abstract class FoldingRange with _$FoldingRange {
-  const FoldingRange._();
-
   const factory FoldingRange({
     /// The zero-based start line of the range to fold. The folded area starts
     /// after the line's last character. To be valid, the end must be zero or
@@ -311,7 +309,7 @@ abstract class FoldingRange with _$FoldingRange {
     /// The kind is used to categorize folding ranges and used by commands like
     /// 'Fold all comments'. See [FoldingRangeKind] for an enumeration of
     /// standardized kinds.
-    String? kind,
+    FoldingRangeKind? kind,
 
     /// The text that the client should show when the specified range is
     /// collapsed. If not defined or not supported by the client, a default will
@@ -321,9 +319,6 @@ abstract class FoldingRange with _$FoldingRange {
 
   factory FoldingRange.fromJson(Map<String, dynamic> json) =>
       _$FoldingRangeFromJson(json);
-
-  FoldingRangeKind? get kindEnum =>
-      kind != null ? FoldingRangeKind.decode(kind!) : null;
 }
 
 @freezed
@@ -2700,8 +2695,6 @@ abstract class Command with _$Command {
 /// supplied, the `edit` is applied first, then the `command` is executed.
 @freezed
 abstract class CodeAction with _$CodeAction {
-  const CodeAction._();
-
   const factory CodeAction({
     /// A short, human-readable, title for this code action.
     required String title,
@@ -2709,7 +2702,7 @@ abstract class CodeAction with _$CodeAction {
     /// The kind of the code action.
     ///
     /// Used to filter code actions.
-    String? kind,
+    CodeActionKind? kind,
 
     /// The diagnostics that this code action resolves.
     List<Diagnostic>? diagnostics,
@@ -2756,9 +2749,6 @@ abstract class CodeAction with _$CodeAction {
 
   factory CodeAction.fromJson(Map<String, dynamic> json) =>
       _$CodeActionFromJson(json);
-
-  CodeActionKind? get kindEnum =>
-      kind != null ? CodeActionKind.decode(kind!) : null;
 }
 
 /// Registration options for a [CodeActionRequest].
@@ -4474,8 +4464,6 @@ abstract class WorkspaceFoldersInitializeParams
 /// Defines the capabilities provided by a language server.
 @freezed
 abstract class ServerCapabilities with _$ServerCapabilities {
-  const ServerCapabilities._();
-
   const factory ServerCapabilities({
     /// The position encoding the server picked from the encodings offered by
     /// the client via the client capability `general.positionEncodings`.
@@ -4484,7 +4472,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// that a server can return is 'utf-16'.
     ///
     /// If omitted it defaults to 'utf-16'.
-    String? positionEncoding,
+    PositionEncodingKind? positionEncoding,
 
     /// Defines how text documents are synced. Is either a detailed structure
     /// defining each notification or for backwards compatibility the
@@ -4658,10 +4646,6 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
   factory ServerCapabilities.fromJson(Map<String, dynamic> json) =>
       _$ServerCapabilitiesFromJson(json);
-
-  PositionEncodingKind? get positionEncodingEnum => positionEncoding != null
-      ? PositionEncodingKind.decode(positionEncoding!)
-      : null;
 }
 
 /// A text document identifier to denote a specific version of a text document.
@@ -4709,8 +4693,6 @@ abstract class FileEvent with _$FileEvent {
 
 @freezed
 abstract class FileSystemWatcher with _$FileSystemWatcher {
-  const FileSystemWatcher._();
-
   const factory FileSystemWatcher({
     /// The glob pattern to watch. See [GlobPattern] for more detail.
     ///
@@ -4719,13 +4701,11 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
 
     /// The kind of events of interest. If omitted it defaults to
     /// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
-    int? kind,
+    WatchKind? kind,
   }) = _FileSystemWatcher;
 
   factory FileSystemWatcher.fromJson(Map<String, dynamic> json) =>
       _$FileSystemWatcherFromJson(json);
-
-  WatchKind? get kindEnum => kind != null ? WatchKind.decode(kind!) : null;
 }
 
 /// Represents a diagnostic, such as a compiler error or warning. Diagnostic

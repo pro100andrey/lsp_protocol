@@ -1098,6 +1098,79 @@ final class EmitterVisitor {
     final isInt = en.valueType == 'int';
     final valueTypeName = isInt ? 'int' : 'String';
 
+    if (en.supportsCustomValues) {
+      return ExtensionType((b) {
+        b
+          ..name = en.name
+          ..constant = true
+          ..representationDeclaration = RepresentationDeclaration(
+            (r) => r
+              ..name = 'value'
+              ..declaredRepresentationType = refer(valueTypeName),
+          );
+
+        b.docs.addAll(
+          _docLines(en.documentation, since: en.since, proposed: en.proposed),
+        );
+
+        // static const values
+        for (final member in en.members) {
+          b.fields.add(
+            Field(
+              (b) => b
+                ..static = true
+                ..modifier = FieldModifier.constant
+                ..name = _safeIdentifier(_toLowerCamelCase(member.name))
+                ..type = refer(en.name)
+                ..assignment = refer(en.name).call([
+                  if (isInt)
+                    literalNum(int.parse(member.value))
+                  else
+                    literalString(member.value),
+                ]).code
+                ..docs.addAll(
+                  _docLines(
+                    member.documentation,
+                    since: member.since,
+                    indent: 2,
+                  ),
+                ),
+            ),
+          );
+        }
+
+        // fromJson constructor
+        b.constructors.add(
+          Constructor(
+            (b) => b
+              ..factory = true
+              ..name = 'fromJson'
+              ..requiredParameters.add(
+                Parameter(
+                  (b) => b
+                    ..name = 'json'
+                    ..type = refer('Object?'),
+                ),
+              )
+              ..body = refer(
+                en.name,
+              ).call([refer('json').asA(refer(valueTypeName))]).code,
+          ),
+        );
+
+        // toJson method
+        b.methods.add(
+          Method(
+            (b) => b
+              ..name = 'toJson'
+              ..returns = refer(valueTypeName)
+              ..lambda = true
+              ..body = refer('value').code,
+          ),
+        );
+      });
+    }
+
     return Enum((b) {
       b.name = en.name;
       b.annotations.add(
@@ -2208,10 +2281,9 @@ final class EmitterVisitor {
       InlineRecord(:final fields) => orNull(
         _inlineRecordFromJson(fields, '($jsonExpr as Map<String, Object?>)'),
       ),
-      EnumType(:final ref) when ref.supportsCustomValues =>
-        nullable
-            ? '$jsonExpr as ${_enumPrimitiveName(ref)}?'
-            : '$jsonExpr as ${_enumPrimitiveName(ref)}',
+      EnumType(:final ref) when ref.supportsCustomValues => orNull(
+        '${ref.name}.fromJson($jsonExpr)',
+      ),
       EnumType(:final ref) => orNull(
         '${ref.name}.decode($jsonExpr as ${_enumPrimitiveName(ref)})!',
       ),
@@ -2230,8 +2302,7 @@ final class EmitterVisitor {
       DartCoreType() => fieldExpr,
       ClassType() => nullable ? '$fieldExpr?.toJson()' : '$fieldExpr.toJson()',
       EnumType(:final ref) when ref.supportsCustomValues =>
-        // stored as raw primitive — no conversion needed
-        fieldExpr,
+        nullable ? '$fieldExpr?.toJson()' : '$fieldExpr.toJson()',
       EnumType() =>
         // closed enum — serialize via the value field
         nullable ? '$fieldExpr?.value' : '$fieldExpr.value',
@@ -2264,8 +2335,8 @@ final class EmitterVisitor {
             ).newInstanceNamed('fromJson', [refer('e').asA(_jsonMapRef())]),
           ),
     EnumType(:final ref) when ref.supportsCustomValues => refer(
-      'e',
-    ).asA(refer(_enumPrimitiveName(ref))),
+      ref.name,
+    ).newInstanceNamed('fromJson', [refer('e')]),
     EnumType(:final ref) => refer(ref.name).property('decode').call([
       refer('e').asA(refer(_enumPrimitiveName(ref))),
     ]).nullChecked,
@@ -2274,7 +2345,7 @@ final class EmitterVisitor {
 
   String _toJsonCallerFor(ResolvedType t, String v) => switch (t) {
     ClassType() => '$v.toJson()',
-    EnumType(:final ref) when ref.supportsCustomValues => v,
+    EnumType(:final ref) when ref.supportsCustomValues => '$v.toJson()',
     EnumType() => '$v.value',
     _ => v,
   };
@@ -2291,13 +2362,8 @@ final class EmitterVisitor {
   /// If [type] (unwrapping [NullableType]) is an open enum
   /// (`supportsCustomValues`), returns the Dart primitive name (`'String'` or
   /// `'int'`) and the enum ref. Otherwise returns `null`.
-  ({String primitive, ResolvedEnum ref})? _openEnumInfo(ResolvedType type) {
-    final inner = type is NullableType ? type.inner : type;
-    if (inner case EnumType(:final ref) when ref.supportsCustomValues) {
-      return (primitive: _enumPrimitiveName(ref), ref: ref);
-    }
-    return null;
-  }
+  ({String primitive, ResolvedEnum ref})? _openEnumInfo(ResolvedType type) =>
+      null;
 
   // ---------------------------------------------------------------------------
   // Documentation helpers
@@ -2418,14 +2484,14 @@ final class EmitterVisitor {
   }
 
   static String _typeName(ResolvedType type) => switch (type) {
-        ClassType(:final ref) => ref.name,
-        EnumType(:final ref) => ref.name,
-        AliasType(:final ref) => ref.name,
-        DartCoreType(:final dartName) => dartName,
-        TupleType(:final items) => '(${items.map(_typeName).join(', ')})',
-        ListType(:final element) => 'List<${_typeName(element)}>',
-        _ => 'Object',
-      };
+    ClassType(:final ref) => ref.name,
+    EnumType(:final ref) => ref.name,
+    AliasType(:final ref) => ref.name,
+    DartCoreType(:final dartName) => dartName,
+    TupleType(:final items) => '(${items.map(_typeName).join(', ')})',
+    ListType(:final element) => 'List<${_typeName(element)}>',
+    _ => 'Object',
+  };
 
   /// If [type] is an inline [UnionType] (i.e. not a named alias), returns a
   /// one-line note listing the variant names, e.g.

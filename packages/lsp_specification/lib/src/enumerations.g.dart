@@ -6,71 +6,9 @@ part of 'enumerations.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-const _$SemanticTokenTypesEnumMap = {
-  SemanticTokenTypes.namespace: 'namespace',
-  SemanticTokenTypes.type: 'type',
-  SemanticTokenTypes.class_: 'class',
-  SemanticTokenTypes.enum_: 'enum',
-  SemanticTokenTypes.interface_: 'interface',
-  SemanticTokenTypes.struct: 'struct',
-  SemanticTokenTypes.typeParameter: 'typeParameter',
-  SemanticTokenTypes.parameter: 'parameter',
-  SemanticTokenTypes.variable: 'variable',
-  SemanticTokenTypes.property: 'property',
-  SemanticTokenTypes.enumMember: 'enumMember',
-  SemanticTokenTypes.event: 'event',
-  SemanticTokenTypes.function: 'function',
-  SemanticTokenTypes.method: 'method',
-  SemanticTokenTypes.macro_: 'macro',
-  SemanticTokenTypes.keyword: 'keyword',
-  SemanticTokenTypes.modifier: 'modifier',
-  SemanticTokenTypes.comment: 'comment',
-  SemanticTokenTypes.string: 'string',
-  SemanticTokenTypes.number: 'number',
-  SemanticTokenTypes.regexp: 'regexp',
-  SemanticTokenTypes.operator_: 'operator',
-  SemanticTokenTypes.decorator: 'decorator',
-};
-
-const _$SemanticTokenModifiersEnumMap = {
-  SemanticTokenModifiers.declaration: 'declaration',
-  SemanticTokenModifiers.definition: 'definition',
-  SemanticTokenModifiers.readonly: 'readonly',
-  SemanticTokenModifiers.static_: 'static',
-  SemanticTokenModifiers.deprecated: 'deprecated',
-  SemanticTokenModifiers.abstract_: 'abstract',
-  SemanticTokenModifiers.async_: 'async',
-  SemanticTokenModifiers.modification: 'modification',
-  SemanticTokenModifiers.documentation: 'documentation',
-  SemanticTokenModifiers.defaultLibrary: 'defaultLibrary',
-};
-
 const _$DocumentDiagnosticReportKindEnumMap = {
   DocumentDiagnosticReportKind.full: 'full',
   DocumentDiagnosticReportKind.unchanged: 'unchanged',
-};
-
-const _$ErrorCodesEnumMap = {
-  ErrorCodes.parseError: -32700,
-  ErrorCodes.invalidRequest: -32600,
-  ErrorCodes.methodNotFound: -32601,
-  ErrorCodes.invalidParams: -32602,
-  ErrorCodes.internalError: -32603,
-  ErrorCodes.serverNotInitialized: -32002,
-  ErrorCodes.unknownErrorCode: -32001,
-};
-
-const _$LSPErrorCodesEnumMap = {
-  LSPErrorCodes.requestFailed: -32803,
-  LSPErrorCodes.serverCancelled: -32802,
-  LSPErrorCodes.contentModified: -32801,
-  LSPErrorCodes.requestCancelled: -32800,
-};
-
-const _$FoldingRangeKindEnumMap = {
-  FoldingRangeKind.comment: 'comment',
-  FoldingRangeKind.imports: 'imports',
-  FoldingRangeKind.region: 'region',
 };
 
 const _$SymbolKindEnumMap = {
@@ -189,18 +127,6 @@ const _$DocumentHighlightKindEnumMap = {
   DocumentHighlightKind.write: 3,
 };
 
-const _$CodeActionKindEnumMap = {
-  CodeActionKind.empty: '',
-  CodeActionKind.quickFix: 'quickfix',
-  CodeActionKind.refactor: 'refactor',
-  CodeActionKind.refactorExtract: 'refactor.extract',
-  CodeActionKind.refactorInline: 'refactor.inline',
-  CodeActionKind.refactorRewrite: 'refactor.rewrite',
-  CodeActionKind.source: 'source',
-  CodeActionKind.sourceOrganizeImports: 'source.organizeImports',
-  CodeActionKind.sourceFixAll: 'source.fixAll',
-};
-
 const _$TraceValuesEnumMap = {
   TraceValues.off: 'off',
   TraceValues.messages: 'messages',
@@ -217,22 +143,10 @@ const _$InlineCompletionTriggerKindEnumMap = {
   InlineCompletionTriggerKind.automatic: 1,
 };
 
-const _$PositionEncodingKindEnumMap = {
-  PositionEncodingKind.uTF8: 'utf-8',
-  PositionEncodingKind.uTF16: 'utf-16',
-  PositionEncodingKind.uTF32: 'utf-32',
-};
-
 const _$FileChangeTypeEnumMap = {
   FileChangeType.created: 1,
   FileChangeType.changed: 2,
   FileChangeType.deleted: 3,
-};
-
-const _$WatchKindEnumMap = {
-  WatchKind.create: 1,
-  WatchKind.change: 2,
-  WatchKind.delete: 4,
 };
 
 const _$DiagnosticSeverityEnumMap = {

@@ -324,7 +324,9 @@ _FoldingRange _$FoldingRangeFromJson(Map<String, dynamic> json) =>
       startCharacter: (json['startCharacter'] as num?)?.toInt(),
       endLine: (json['endLine'] as num).toInt(),
       endCharacter: (json['endCharacter'] as num?)?.toInt(),
-      kind: json['kind'] as String?,
+      kind: json['kind'] == null
+          ? null
+          : FoldingRangeKind.fromJson(json['kind']),
       collapsedText: json['collapsedText'] as String?,
     );
 
@@ -334,7 +336,7 @@ Map<String, dynamic> _$FoldingRangeToJson(_FoldingRange instance) =>
       'startCharacter': ?instance.startCharacter,
       'endLine': instance.endLine,
       'endCharacter': ?instance.endCharacter,
-      'kind': ?instance.kind,
+      'kind': ?instance.kind?.toJson(),
       'collapsedText': ?instance.collapsedText,
     };
 
@@ -2643,7 +2645,7 @@ Map<String, dynamic> _$CommandToJson(_Command instance) => <String, dynamic>{
 
 _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) => _CodeAction(
   title: json['title'] as String,
-  kind: json['kind'] as String?,
+  kind: json['kind'] == null ? null : CodeActionKind.fromJson(json['kind']),
   diagnostics: (json['diagnostics'] as List<dynamic>?)
       ?.map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -2664,7 +2666,7 @@ _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) => _CodeAction(
 Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
     <String, dynamic>{
       'title': instance.title,
-      'kind': ?instance.kind,
+      'kind': ?instance.kind?.toJson(),
       'diagnostics': ?instance.diagnostics?.map((e) => e.toJson()).toList(),
       'isPreferred': ?instance.isPreferred,
       'disabled': ?instance.disabled == null
@@ -2683,7 +2685,7 @@ _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
-      ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+      ?.map(CodeActionKind.fromJson)
       .toList(),
   resolveProvider: json['resolveProvider'] as bool?,
 );
@@ -2693,22 +2695,8 @@ Map<String, dynamic> _$CodeActionRegistrationOptionsToJson(
 ) => <String, dynamic>{
   'documentSelector': ?instance.documentSelector,
   'workDoneProgress': ?instance.workDoneProgress,
-  'codeActionKinds': ?instance.codeActionKinds
-      ?.map((e) => _$CodeActionKindEnumMap[e]!)
-      .toList(),
+  'codeActionKinds': ?instance.codeActionKinds?.map((e) => e.toJson()).toList(),
   'resolveProvider': ?instance.resolveProvider,
-};
-
-const _$CodeActionKindEnumMap = {
-  CodeActionKind.empty: '',
-  CodeActionKind.quickFix: 'quickfix',
-  CodeActionKind.refactor: 'refactor',
-  CodeActionKind.refactorExtract: 'refactor.extract',
-  CodeActionKind.refactorInline: 'refactor.inline',
-  CodeActionKind.refactorRewrite: 'refactor.rewrite',
-  CodeActionKind.source: 'source',
-  CodeActionKind.sourceOrganizeImports: 'source.organizeImports',
-  CodeActionKind.sourceFixAll: 'source.fixAll',
 };
 
 _WorkspaceSymbolParams _$WorkspaceSymbolParamsFromJson(
@@ -4049,7 +4037,9 @@ Map<String, dynamic> _$WorkspaceFoldersInitializeParamsToJson(
 
 _ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) =>
     _ServerCapabilities(
-      positionEncoding: json['positionEncoding'] as String?,
+      positionEncoding: json['positionEncoding'] == null
+          ? null
+          : PositionEncodingKind.fromJson(json['positionEncoding']),
       textDocumentSync: json['textDocumentSync'],
       notebookDocumentSync: json['notebookDocumentSync'],
       completionProvider: json['completionProvider'] == null
@@ -4129,7 +4119,7 @@ _ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ServerCapabilitiesToJson(
   _ServerCapabilities instance,
 ) => <String, dynamic>{
-  'positionEncoding': ?instance.positionEncoding,
+  'positionEncoding': ?instance.positionEncoding?.toJson(),
   'textDocumentSync': ?instance.textDocumentSync,
   'notebookDocumentSync': ?instance.notebookDocumentSync,
   'completionProvider': ?instance.completionProvider?.toJson(),
@@ -4210,13 +4200,13 @@ const _$FileChangeTypeEnumMap = {
 _FileSystemWatcher _$FileSystemWatcherFromJson(Map<String, dynamic> json) =>
     _FileSystemWatcher(
       globPattern: json['globPattern'] as Object,
-      kind: (json['kind'] as num?)?.toInt(),
+      kind: json['kind'] == null ? null : WatchKind.fromJson(json['kind']),
     );
 
 Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
     <String, dynamic>{
       'globPattern': instance.globPattern,
-      'kind': ?instance.kind,
+      'kind': ?instance.kind?.toJson(),
     };
 
 _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) => _Diagnostic(
@@ -4493,7 +4483,7 @@ _CodeActionContext _$CodeActionContextFromJson(Map<String, dynamic> json) =>
           .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
           .toList(),
       only: (json['only'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+          ?.map(CodeActionKind.fromJson)
           .toList(),
       triggerKind: $enumDecodeNullable(
         _$CodeActionTriggerKindEnumMap,
@@ -4504,7 +4494,7 @@ _CodeActionContext _$CodeActionContextFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$CodeActionContextToJson(_CodeActionContext instance) =>
     <String, dynamic>{
       'diagnostics': instance.diagnostics.map((e) => e.toJson()).toList(),
-      'only': ?instance.only?.map((e) => _$CodeActionKindEnumMap[e]!).toList(),
+      'only': ?instance.only?.map((e) => e.toJson()).toList(),
       'triggerKind': ?_$CodeActionTriggerKindEnumMap[instance.triggerKind],
     };
 
@@ -4517,19 +4507,18 @@ _CodeActionOptions _$CodeActionOptionsFromJson(Map<String, dynamic> json) =>
     _CodeActionOptions(
       workDoneProgress: json['workDoneProgress'] as bool?,
       codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+          ?.map(CodeActionKind.fromJson)
           .toList(),
       resolveProvider: json['resolveProvider'] as bool?,
     );
 
-Map<String, dynamic> _$CodeActionOptionsToJson(_CodeActionOptions instance) =>
-    <String, dynamic>{
-      'workDoneProgress': ?instance.workDoneProgress,
-      'codeActionKinds': ?instance.codeActionKinds
-          ?.map((e) => _$CodeActionKindEnumMap[e]!)
-          .toList(),
-      'resolveProvider': ?instance.resolveProvider,
-    };
+Map<String, dynamic> _$CodeActionOptionsToJson(
+  _CodeActionOptions instance,
+) => <String, dynamic>{
+  'workDoneProgress': ?instance.workDoneProgress,
+  'codeActionKinds': ?instance.codeActionKinds?.map((e) => e.toJson()).toList(),
+  'resolveProvider': ?instance.resolveProvider,
+};
 
 _WorkspaceSymbolOptions _$WorkspaceSymbolOptionsFromJson(
   Map<String, dynamic> json,
@@ -5436,7 +5425,7 @@ _GeneralClientCapabilities _$GeneralClientCapabilitiesFromJson(
           json['markdown'] as Map<String, dynamic>,
         ),
   positionEncodings: (json['positionEncodings'] as List<dynamic>?)
-      ?.map((e) => $enumDecode(_$PositionEncodingKindEnumMap, e))
+      ?.map(PositionEncodingKind.fromJson)
       .toList(),
 );
 
@@ -5453,14 +5442,8 @@ Map<String, dynamic> _$GeneralClientCapabilitiesToJson(
   'regularExpressions': ?instance.regularExpressions?.toJson(),
   'markdown': ?instance.markdown?.toJson(),
   'positionEncodings': ?instance.positionEncodings
-      ?.map((e) => _$PositionEncodingKindEnumMap[e]!)
+      ?.map((e) => e.toJson())
       .toList(),
-};
-
-const _$PositionEncodingKindEnumMap = {
-  PositionEncodingKind.uTF8: 'utf-8',
-  PositionEncodingKind.uTF16: 'utf-16',
-  PositionEncodingKind.uTF32: 'utf-32',
 };
 
 _RelativePattern _$RelativePatternFromJson(Map<String, dynamic> json) =>
@@ -6033,7 +6016,7 @@ _CodeActionClientCapabilities _$CodeActionClientCapabilitiesFromJson(
         $jsonValue['codeActionKind'],
         ($jsonValue) => (
           valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-              .map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+              .map(CodeActionKind.fromJson)
               .toList(),
         ),
       ),
@@ -6065,7 +6048,7 @@ Map<String, dynamic> _$CodeActionClientCapabilitiesToJson(
                 .codeActionLiteralSupport!
                 .codeActionKind
                 .valueSet
-                .map((e) => _$CodeActionKindEnumMap[e]!)
+                .map((e) => e.toJson())
                 .toList(),
           },
         },
@@ -6188,7 +6171,7 @@ _FoldingRangeClientCapabilities _$FoldingRangeClientCapabilitiesFromJson(
     json['foldingRangeKind'],
     ($jsonValue) => (
       valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$FoldingRangeKindEnumMap, e))
+          ?.map(FoldingRangeKind.fromJson)
           .toList(),
     ),
   ),
@@ -6208,7 +6191,7 @@ Map<String, dynamic> _$FoldingRangeClientCapabilitiesToJson(
       ? null
       : <String, dynamic>{
           'valueSet': instance.foldingRangeKind!.valueSet
-              ?.map((e) => _$FoldingRangeKindEnumMap[e]!)
+              ?.map((e) => e.toJson())
               .toList(),
         },
   'foldingRange': ?instance.foldingRange == null
@@ -6216,12 +6199,6 @@ Map<String, dynamic> _$FoldingRangeClientCapabilitiesToJson(
       : <String, dynamic>{
           'collapsedText': instance.foldingRange!.collapsedText,
         },
-};
-
-const _$FoldingRangeKindEnumMap = {
-  FoldingRangeKind.comment: 'comment',
-  FoldingRangeKind.imports: 'imports',
-  FoldingRangeKind.region: 'region',
 };
 
 _SelectionRangeClientCapabilities _$SelectionRangeClientCapabilitiesFromJson(

@@ -8,68 +8,111 @@ part 'enumerations.g.dart';
 /// specify additional token types via the corresponding client capabilities.
 ///
 /// @since 3.16.0
-@JsonEnum(valueField: 'value', alwaysCreate: true)
-enum SemanticTokenTypes {
-  namespace('namespace'),
+extension type const SemanticTokenTypes(String value) {
+  factory SemanticTokenTypes.fromJson(Object? json) =>
+      SemanticTokenTypes((json as String));
+
+  static const SemanticTokenTypes namespace = SemanticTokenTypes('namespace');
 
   /// Represents a generic type. Acts as a fallback for types which can't be
   /// mapped to a specific type like class or enum.
-  type('type'),
-  class_('class'),
-  enum_('enum'),
-  interface_('interface'),
-  struct('struct'),
-  typeParameter('typeParameter'),
-  parameter('parameter'),
-  variable('variable'),
-  property('property'),
-  enumMember('enumMember'),
-  event('event'),
-  function('function'),
-  method('method'),
-  macro_('macro'),
-  keyword('keyword'),
-  modifier('modifier'),
-  comment('comment'),
-  string('string'),
-  number('number'),
-  regexp('regexp'),
-  operator_('operator'),
+  static const SemanticTokenTypes type = SemanticTokenTypes('type');
+
+  static const SemanticTokenTypes class_ = SemanticTokenTypes('class');
+
+  static const SemanticTokenTypes enum_ = SemanticTokenTypes('enum');
+
+  static const SemanticTokenTypes interface_ = SemanticTokenTypes('interface');
+
+  static const SemanticTokenTypes struct = SemanticTokenTypes('struct');
+
+  static const SemanticTokenTypes typeParameter = SemanticTokenTypes(
+    'typeParameter',
+  );
+
+  static const SemanticTokenTypes parameter = SemanticTokenTypes('parameter');
+
+  static const SemanticTokenTypes variable = SemanticTokenTypes('variable');
+
+  static const SemanticTokenTypes property = SemanticTokenTypes('property');
+
+  static const SemanticTokenTypes enumMember = SemanticTokenTypes('enumMember');
+
+  static const SemanticTokenTypes event = SemanticTokenTypes('event');
+
+  static const SemanticTokenTypes function = SemanticTokenTypes('function');
+
+  static const SemanticTokenTypes method = SemanticTokenTypes('method');
+
+  static const SemanticTokenTypes macro_ = SemanticTokenTypes('macro');
+
+  static const SemanticTokenTypes keyword = SemanticTokenTypes('keyword');
+
+  static const SemanticTokenTypes modifier = SemanticTokenTypes('modifier');
+
+  static const SemanticTokenTypes comment = SemanticTokenTypes('comment');
+
+  static const SemanticTokenTypes string = SemanticTokenTypes('string');
+
+  static const SemanticTokenTypes number = SemanticTokenTypes('number');
+
+  static const SemanticTokenTypes regexp = SemanticTokenTypes('regexp');
+
+  static const SemanticTokenTypes operator_ = SemanticTokenTypes('operator');
 
   /// @since 3.17.0
-  decorator('decorator');
+  static const SemanticTokenTypes decorator = SemanticTokenTypes('decorator');
 
-  const SemanticTokenTypes(this.value);
-
-  final String value;
-
-  static SemanticTokenTypes? decode(String json) =>
-      $enumDecodeNullable(_$SemanticTokenTypesEnumMap, json);
+  String toJson() => value;
 }
 
 /// A set of predefined token modifiers. This set is not fixed an clients can
 /// specify additional token types via the corresponding client capabilities.
 ///
 /// @since 3.16.0
-@JsonEnum(valueField: 'value', alwaysCreate: true)
-enum SemanticTokenModifiers {
-  declaration('declaration'),
-  definition('definition'),
-  readonly('readonly'),
-  static_('static'),
-  deprecated('deprecated'),
-  abstract_('abstract'),
-  async_('async'),
-  modification('modification'),
-  documentation('documentation'),
-  defaultLibrary('defaultLibrary');
+extension type const SemanticTokenModifiers(String value) {
+  factory SemanticTokenModifiers.fromJson(Object? json) =>
+      SemanticTokenModifiers((json as String));
 
-  const SemanticTokenModifiers(this.value);
+  static const SemanticTokenModifiers declaration = SemanticTokenModifiers(
+    'declaration',
+  );
 
-  final String value;
+  static const SemanticTokenModifiers definition = SemanticTokenModifiers(
+    'definition',
+  );
 
-  static SemanticTokenModifiers? decode(String json) =>
-      $enumDecodeNullable(_$SemanticTokenModifiersEnumMap, json);
+  static const SemanticTokenModifiers readonly = SemanticTokenModifiers(
+    'readonly',
+  );
+
+  static const SemanticTokenModifiers static_ = SemanticTokenModifiers(
+    'static',
+  );
+
+  static const SemanticTokenModifiers deprecated = SemanticTokenModifiers(
+    'deprecated',
+  );
+
+  static const SemanticTokenModifiers abstract_ = SemanticTokenModifiers(
+    'abstract',
+  );
+
+  static const SemanticTokenModifiers async_ = SemanticTokenModifiers('async');
+
+  static const SemanticTokenModifiers modification = SemanticTokenModifiers(
+    'modification',
+  );
+
+  static const SemanticTokenModifiers documentation = SemanticTokenModifiers(
+    'documentation',
+  );
+
+  static const SemanticTokenModifiers defaultLibrary = SemanticTokenModifiers(
+    'defaultLibrary',
+  );
+
+  String toJson() => value;
 }
 
 /// The document diagnostic report kinds.
@@ -92,41 +135,42 @@ enum DocumentDiagnosticReportKind {
 }
 
 /// Predefined error codes.
-@JsonEnum(valueField: 'value', alwaysCreate: true)
-enum ErrorCodes {
-  parseError(-32700),
-  invalidRequest(-32600),
-  methodNotFound(-32601),
-  invalidParams(-32602),
-  internalError(-32603),
+extension type const ErrorCodes(int value) {
+  factory ErrorCodes.fromJson(Object? json) => ErrorCodes((json as int));
+
+  static const ErrorCodes parseError = ErrorCodes(-32700);
+
+  static const ErrorCodes invalidRequest = ErrorCodes(-32600);
+
+  static const ErrorCodes methodNotFound = ErrorCodes(-32601);
+
+  static const ErrorCodes invalidParams = ErrorCodes(-32602);
+
+  static const ErrorCodes internalError = ErrorCodes(-32603);
 
   /// Error code indicating that a server received a notification or request
   /// before the server has received the `initialize` request.
-  serverNotInitialized(-32002),
-  unknownErrorCode(-32001);
+  static const ErrorCodes serverNotInitialized = ErrorCodes(-32002);
 
-  const ErrorCodes(this.value);
+  static const ErrorCodes unknownErrorCode = ErrorCodes(-32001);
 
-  final int value;
-
-  static ErrorCodes? decode(int json) =>
-      $enumDecodeNullable(_$ErrorCodesEnumMap, json);
+  int toJson() => value;
 }
+extension type const LSPErrorCodes(int value) {
+  factory LSPErrorCodes.fromJson(Object? json) => LSPErrorCodes((json as int));
 
-@JsonEnum(valueField: 'value', alwaysCreate: true)
-enum LSPErrorCodes {
   /// A request failed but it was syntactically correct, e.g the method name was
   /// known and the parameters were valid. The error message should contain
   /// human readable information about why the request failed.
   ///
   /// @since 3.17.0
-  requestFailed(-32803),
+  static const LSPErrorCodes requestFailed = LSPErrorCodes(-32803);
 
   /// The server cancelled the request. This error code should only be used for
   /// requests that explicitly support being server cancellable.
   ///
   /// @since 3.17.0
-  serverCancelled(-32802),
+  static const LSPErrorCodes serverCancelled = LSPErrorCodes(-32802);
 
   /// The server detected that the content of a document got modified outside
   /// normal conditions. A server should NOT send this error code if it detects
@@ -135,37 +179,29 @@ enum LSPErrorCodes {
   ///
   /// If a client decides that a result is not of any use anymore the client
   /// should cancel the request.
-  contentModified(-32801),
+  static const LSPErrorCodes contentModified = LSPErrorCodes(-32801);
 
   /// The client has canceled a request and a server has detected the cancel.
-  requestCancelled(-32800);
+  static const LSPErrorCodes requestCancelled = LSPErrorCodes(-32800);
 
-  const LSPErrorCodes(this.value);
-
-  final int value;
-
-  static LSPErrorCodes? decode(int json) =>
-      $enumDecodeNullable(_$LSPErrorCodesEnumMap, json);
+  int toJson() => value;
 }
 
 /// A set of predefined range kinds.
-@JsonEnum(valueField: 'value', alwaysCreate: true)
-enum FoldingRangeKind {
+extension type const FoldingRangeKind(String value) {
+  factory FoldingRangeKind.fromJson(Object? json) =>
+      FoldingRangeKind((json as String));
+
   /// Folding range for a comment
-  comment('comment'),
+  static const FoldingRangeKind comment = FoldingRangeKind('comment');
 
   /// Folding range for an import or include
-  imports('imports'),
+  static const FoldingRangeKind imports = FoldingRangeKind('imports');
 
   /// Folding range for a region (e.g. `#region`)
-  region('region');
+  static const FoldingRangeKind region = FoldingRangeKind('region');
 
-  const FoldingRangeKind(this.value);
-
-  final String value;
-
-  static FoldingRangeKind? decode(String json) =>
-      $enumDecodeNullable(_$FoldingRangeKindEnumMap, json);
+  String toJson() => value;
 }
 
 /// A symbol kind.
@@ -491,16 +527,18 @@ enum DocumentHighlightKind {
 }
 
 /// A set of predefined code action kinds
-@JsonEnum(valueField: 'value', alwaysCreate: true)
-enum CodeActionKind {
+extension type const CodeActionKind(String value) {
+  factory CodeActionKind.fromJson(Object? json) =>
+      CodeActionKind((json as String));
+
   /// Empty kind.
-  empty(''),
+  static const CodeActionKind empty = CodeActionKind('');
 
   /// Base kind for quickfix actions: 'quickfix'
-  quickFix('quickfix'),
+  static const CodeActionKind quickFix = CodeActionKind('quickfix');
 
   /// Base kind for refactoring actions: 'refactor'
-  refactor('refactor'),
+  static const CodeActionKind refactor = CodeActionKind('refactor');
 
   /// Base kind for refactoring extraction actions: 'refactor.extract'
   ///
@@ -508,14 +546,18 @@ enum CodeActionKind {
   ///
   /// - Extract method - Extract function - Extract variable - Extract interface
   /// from class - ...
-  refactorExtract('refactor.extract'),
+  static const CodeActionKind refactorExtract = CodeActionKind(
+    'refactor.extract',
+  );
 
   /// Base kind for refactoring inline actions: 'refactor.inline'
   ///
   /// Example inline actions:
   ///
   /// - Inline function - Inline variable - Inline constant - ...
-  refactorInline('refactor.inline'),
+  static const CodeActionKind refactorInline = CodeActionKind(
+    'refactor.inline',
+  );
 
   /// Base kind for refactoring rewrite actions: 'refactor.rewrite'
   ///
@@ -523,15 +565,19 @@ enum CodeActionKind {
   ///
   /// - Convert JavaScript function to class - Add or remove parameter -
   /// Encapsulate field - Make method static - Move method to base class - ...
-  refactorRewrite('refactor.rewrite'),
+  static const CodeActionKind refactorRewrite = CodeActionKind(
+    'refactor.rewrite',
+  );
 
   /// Base kind for source actions: `source`
   ///
   /// Source code actions apply to the entire file.
-  source('source'),
+  static const CodeActionKind source = CodeActionKind('source');
 
   /// Base kind for an organize imports source action: `source.organizeImports`
-  sourceOrganizeImports('source.organizeImports'),
+  static const CodeActionKind sourceOrganizeImports = CodeActionKind(
+    'source.organizeImports',
+  );
 
   /// Base kind for auto-fix source actions: `source.fixAll`.
   ///
@@ -540,14 +586,9 @@ enum CodeActionKind {
   /// fixes such as generating new types or classes.
   ///
   /// @since 3.15.0
-  sourceFixAll('source.fixAll');
+  static const CodeActionKind sourceFixAll = CodeActionKind('source.fixAll');
 
-  const CodeActionKind(this.value);
-
-  final String value;
-
-  static CodeActionKind? decode(String json) =>
-      $enumDecodeNullable(_$CodeActionKindEnumMap, json);
+  String toJson() => value;
 }
 
 @JsonEnum(valueField: 'value', alwaysCreate: true)
@@ -613,29 +654,26 @@ enum InlineCompletionTriggerKind {
 /// A set of predefined position encoding kinds.
 ///
 /// @since 3.17.0
-@JsonEnum(valueField: 'value', alwaysCreate: true)
-enum PositionEncodingKind {
+extension type const PositionEncodingKind(String value) {
+  factory PositionEncodingKind.fromJson(Object? json) =>
+      PositionEncodingKind((json as String));
+
   /// Character offsets count UTF-8 code units (e.g. bytes).
-  uTF8('utf-8'),
+  static const PositionEncodingKind uTF8 = PositionEncodingKind('utf-8');
 
   /// Character offsets count UTF-16 code units.
   ///
   /// This is the default and must always be supported by servers
-  uTF16('utf-16'),
+  static const PositionEncodingKind uTF16 = PositionEncodingKind('utf-16');
 
   /// Character offsets count UTF-32 code units.
   ///
   /// Implementation note: these are the same as Unicode codepoints, so this
   /// `PositionEncodingKind` may also be used for an encoding-agnostic
   /// representation of character offsets.
-  uTF32('utf-32');
+  static const PositionEncodingKind uTF32 = PositionEncodingKind('utf-32');
 
-  const PositionEncodingKind(this.value);
-
-  final String value;
-
-  static PositionEncodingKind? decode(String json) =>
-      $enumDecodeNullable(_$PositionEncodingKindEnumMap, json);
+  String toJson() => value;
 }
 
 /// The file event type
@@ -658,23 +696,19 @@ enum FileChangeType {
       $enumDecodeNullable(_$FileChangeTypeEnumMap, json);
 }
 
-@JsonEnum(valueField: 'value', alwaysCreate: true)
-enum WatchKind {
+extension type const WatchKind(int value) {
+  factory WatchKind.fromJson(Object? json) => WatchKind((json as int));
+
   /// Interested in create events.
-  create(1),
+  static const WatchKind create = WatchKind(1);
 
   /// Interested in change events
-  change(2),
+  static const WatchKind change = WatchKind(2);
 
   /// Interested in delete events
-  delete(4);
+  static const WatchKind delete = WatchKind(4);
 
-  const WatchKind(this.value);
-
-  final int value;
-
-  static WatchKind? decode(int json) =>
-      $enumDecodeNullable(_$WatchKindEnumMap, json);
+  int toJson() => value;
 }
 
 /// The diagnostic's severity.
