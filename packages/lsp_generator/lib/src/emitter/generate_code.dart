@@ -5,7 +5,7 @@ import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
 import '../resolver/resolved_state.dart';
-import '../visiter/emitter_visitor.dart';
+import '../visitor/emitter_visitor.dart';
 
 void generateCode(ResolvedState resolved, String outputDir) {
   final visitor = EmitterVisitor(resolved);

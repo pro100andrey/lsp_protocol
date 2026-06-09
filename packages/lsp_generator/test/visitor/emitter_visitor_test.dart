@@ -7,8 +7,8 @@ import 'package:lsp_generator/src/models/protocol.dart';
 import 'package:lsp_generator/src/models/resolved_decl.dart';
 import 'package:lsp_generator/src/models/resolved_type.dart';
 import 'package:lsp_generator/src/resolver/resolved_state.dart';
-import 'package:lsp_generator/src/visiter/emitter_visitor.dart';
-import 'package:lsp_generator/src/visiter/resolver_visitor.dart';
+import 'package:lsp_generator/src/visitor/emitter_visitor.dart';
+import 'package:lsp_generator/src/visitor/resolver_visitor.dart';
 import 'package:test/test.dart';
 
 // ---------------------------------------------------------------------------

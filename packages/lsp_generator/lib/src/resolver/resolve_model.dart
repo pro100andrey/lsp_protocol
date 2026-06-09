@@ -1,5 +1,5 @@
 import '../models/protocol.dart';
-import '../visiter/resolver_visitor.dart';
+import '../visitor/resolver_visitor.dart';
 import 'resolved_state.dart';
 
 ResolvedState resolveModel(MetaProtocol protocol) {

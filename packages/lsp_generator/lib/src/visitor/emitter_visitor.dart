@@ -44,10 +44,10 @@ typedef _ConverterEntry = ({String name, _ConverterKind kind});
 /// Generates a Dart `if` (optionally `else`) statement from code_builder
 /// [condition] and block bodies.
 Code ifStatement(Expression condition, Block ifBlock, [Block? elseBlock]) {
-  final visiter = DartEmitter();
-  final conditionV = condition.accept(visiter);
-  final ifBlockV = ifBlock.accept(visiter);
-  final elseBlockV = elseBlock?.accept(visiter);
+  final visitor = DartEmitter();
+  final conditionV = condition.accept(visitor);
+  final ifBlockV = ifBlock.accept(visitor);
+  final elseBlockV = elseBlock?.accept(visitor);
 
   final ifElse =
       'if($conditionV){$ifBlockV}'

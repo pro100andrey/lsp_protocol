@@ -2,5 +2,5 @@
 library;
 
 export 'src/runner/runner.dart';
-export 'src/visiter/meta_visitor.dart';
-export 'src/visiter/resolver_visitor.dart';
+export 'src/visitor/meta_visitor.dart';
+export 'src/visitor/resolver_visitor.dart';

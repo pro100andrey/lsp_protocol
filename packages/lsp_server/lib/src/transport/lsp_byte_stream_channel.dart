@@ -85,7 +85,7 @@ final class _Parser {
     final asString = ascii.decode(_buffer);
     final headers = asString.split('\r\n');
     final lengthHeader = headers.firstWhere(
-      (h) => h.startsWith('Content-Length'),
+      (h) => h.toLowerCase().startsWith('content-length'),
     );
     return int.parse(lengthHeader.split(':').last.trim());
   }

@@ -5,7 +5,7 @@ import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
 import '../resolver/resolved_state.dart';
-import '../visiter/server_api_visitor.dart';
+import '../visitor/server_api_visitor.dart';
 
 /// Generates `packages/lsp_server/lib/src/generated/server_api.dart` from
 /// the resolved LSP model.
