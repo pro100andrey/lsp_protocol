@@ -8,11 +8,6 @@ environment:
   sdk: ^3.11.4
 
 dependencies:
-  dar:
-    git:
-      url: https://github.com/pro100andrey/dar.git
-      ref: 03192dec8a4d20b7339fb195e124cd0ad546af58
-  freezed_annotation: ^3.1.0
   lsp_server:
     path: ../lsp_server
   lsp_specification:
@@ -20,6 +15,4 @@ dependencies:
   stream_channel: ^2.1.4
 
 dev_dependencies:
-  build_runner: ^2.13.1
-  freezed: ^3.2.5
   pro_lints: ^5.1.0

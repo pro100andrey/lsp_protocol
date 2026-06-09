@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
-
 @freezed
 abstract class MetaProtocol with _$MetaProtocol {
   const factory MetaProtocol({
@@ -237,31 +236,30 @@ enum TypeKind {
   and('and'),
   reference('reference'),
   string('stringLiteral'),
-  tuple('tuple')
-  ;
+  tuple('tuple');
 
   const TypeKind(this.kind);
   final String kind;
 
   String get name {
     switch (this) {
-      case TypeKind.array:
+      case .array:
         return 'List';
-      case TypeKind.base$:
+      case .base$:
         return 'Base';
-      case TypeKind.literal:
+      case .literal:
         return 'Literal';
-      case TypeKind.map:
+      case .map:
         return 'Map';
-      case TypeKind.or:
+      case .or:
         return 'Or';
-      case TypeKind.and:
+      case .and:
         return 'And';
-      case TypeKind.reference:
+      case .reference:
         return 'Reference';
-      case TypeKind.string:
+      case .string:
         return 'StringLiteral';
-      case TypeKind.tuple:
+      case .tuple:
         return 'Tuple';
     }
   }
@@ -271,8 +269,7 @@ enum TypeKind {
 enum MessageDirection {
   both('both'),
   clientToServer('clientToServer'),
-  serverToClient('serverToClient')
-  ;
+  serverToClient('serverToClient');
 
   const MessageDirection(this.messageDirection);
   final String messageDirection;

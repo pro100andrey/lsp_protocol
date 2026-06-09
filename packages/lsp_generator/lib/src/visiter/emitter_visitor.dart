@@ -1,9 +1,9 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../redux/models/protocol.dart' show MessageDirection, MetaNotification;
-import '../redux/models/resolved_decl.dart';
-import '../redux/models/resolved_type.dart';
-import '../redux/resolved/resolved_state.dart';
+import '../models/protocol.dart' show MessageDirection, MetaNotification;
+import '../models/resolved_decl.dart';
+import '../models/resolved_type.dart';
+import '../resolver/resolved_state.dart';
 import 'type_reference.dart';
 
 // ---------------------------------------------------------------------------

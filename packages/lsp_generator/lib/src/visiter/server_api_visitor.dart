@@ -1,7 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../redux/models/protocol.dart';
-import '../redux/resolved/resolved_state.dart';
+import '../models/protocol.dart';
+import '../resolver/resolved_state.dart';
 
 // ---------------------------------------------------------------------------
 // Public API

@@ -1,18 +1,14 @@
 import 'dart:io';
 
-import 'package:dar/dar.dart';
-import 'package:dar/log.dart';
 import 'package:lsp_server/lsp_server.dart';
 import 'package:lsp_specification/lsp_specification.dart';
 import 'package:stream_channel/stream_channel.dart';
 
-import 'redux/actions/completion_action.dart';
-import 'redux/actions/hover_action.dart';
-import 'redux/actions/initialize_action.dart';
-import 'redux/actions/text_sync_actions.dart';
-import 'redux/app_state.dart';
+import 'services/completion_service.dart';
+import 'services/document_service.dart';
+import 'services/hover_service.dart';
 
-/// Wires [Store] and [LspServer]: registers all LSP handlers as Redux actions.
+/// Registers all LSP handlers.
 ///
 /// Usage:
 ///
@@ -26,28 +22,25 @@ import 'redux/app_state.dart';
 final class ServerRunner {
   ServerRunner()
     : _server = LspServer(),
-      _store = Store<AppState>(
-        initialState: AppState.initial(),
-        actionObservers: [Log()],
-        globalErrorObserver: (store) => GlobalErrorObserverForDevelopment(),
-      );
+      _docService = DocumentService(),
+      _completionService = CompletionService(),
+      _hoverService = HoverService();
 
   /// Creates a server backed by an arbitrary byte [channel] (e.g. a TCP
   /// socket).
   ServerRunner.fromChannel(StreamChannel<List<int>> channel)
     : _server = LspServer.fromChannel(channel),
-      _store = Store<AppState>(
-        initialState: AppState.initial(),
-        actionObservers: [Log()],
-        globalErrorObserver: (store) => GlobalErrorObserverForDevelopment(),
-      );
+      _docService = DocumentService(),
+      _completionService = CompletionService(),
+      _hoverService = HoverService();
 
   final LspServer _server;
-  final Store<AppState> _store;
+  final DocumentService _docService;
+  final CompletionService _completionService;
+  final HoverService _hoverService;
 
   /// Registers all handlers and starts listening on stdio.
   Future<void> run() async {
-    _store.setProp(_server);
     _registerHandlers();
     await _server.listen();
   }
@@ -59,9 +52,6 @@ final class ServerRunner {
     _server.general.onInitialize((params) async {
       logInfo('Received initialize request');
 
-      final action = InitializeAction(params);
-      await _store.dispatchAndWait(action);
-
       return const .new(
         capabilities: .new(
           positionEncoding: 'utf-16',
@@ -72,10 +62,7 @@ final class ServerRunner {
             openClose: true,
           ),
           workspace: (
-            workspaceFolders: .new(
-              supported: true,
-              changeNotifications: true
-            ),
+            workspaceFolders: .new(supported: true, changeNotifications: true),
             fileOperations: .new(
               willCreate: .new(
                 filters: [
@@ -144,13 +131,7 @@ final class ServerRunner {
 
     _server.textDocument.onDidOpen((params) async {
       logInfo('Document opened: ${params.textDocument.uri}');
-
-      await _store.dispatchAndWait(
-        DidOpenAction(
-          uri: params.textDocument.uri,
-          text: params.textDocument.text,
-        ),
-      );
+      _docService.open(params.textDocument.uri, params.textDocument.text);
     });
 
     _server.textDocument.onDidChange((params) async {
@@ -164,18 +145,13 @@ final class ServerRunner {
       };
 
       if (text != null) {
-        await _store.dispatchAndWait(
-          DidChangeAction(uri: params.textDocument.uri, text: text),
-        );
+        _docService.update(params.textDocument.uri, text);
       }
     });
 
     _server.textDocument.onDidClose((params) async {
       logInfo('Document closed: ${params.textDocument.uri}');
-
-      await _store.dispatchAndWait(
-        DidCloseAction(uri: params.textDocument.uri),
-      );
+      _docService.close(params.textDocument.uri);
     });
 
     // -------------------------------------------------------------------------
@@ -187,10 +163,7 @@ final class ServerRunner {
         'Hover request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
-
-      final action = HoverAction(params);
-      await _store.dispatchAndWait(action);
-      return action.result;
+      return _hoverService.getHover(params);
     });
 
     // -------------------------------------------------------------------------
@@ -199,11 +172,7 @@ final class ServerRunner {
 
     _server.textDocument.onCompletion((params) async {
       logInfo('Completion request: ${params.textDocument.uri}');
-
-      final action = CompletionAction(params);
-      await _store.dispatchAndWait(action);
-
-      return action.result;
+      return _completionService.getCompletions(params);
     });
 
     // -------------------------------------------------------------------------

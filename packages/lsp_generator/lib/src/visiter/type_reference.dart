@@ -1,7 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../redux/models/resolved_decl.dart' show ResolvedProperty;
-import '../redux/models/resolved_type.dart';
+import '../models/resolved_decl.dart' show ResolvedProperty;
+import '../models/resolved_type.dart';
 
 /// Converts a [ResolvedType] from the IR into a code_builder [Reference].
 ///
@@ -11,7 +11,7 @@ Reference toRef(ResolvedType type, {bool nullable = false}) {
   if (type is InlineRecord) {
     return _buildRecordRef(type.fields, nullable: nullable);
   }
-  
+
   if (type is NullableType) {
     final inner = type.inner;
     if (inner is InlineRecord) {

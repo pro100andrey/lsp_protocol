@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:lsp_generator/src/redux/models/resolved_decl.dart';
-import 'package:lsp_generator/src/redux/models/resolved_type.dart';
+import 'package:lsp_generator/src/models/resolved_decl.dart';
+import 'package:lsp_generator/src/models/resolved_type.dart';
 import 'package:lsp_generator/src/visiter/type_reference.dart';
 import 'package:test/test.dart';
 

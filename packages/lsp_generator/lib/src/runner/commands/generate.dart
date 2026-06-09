@@ -1,14 +1,15 @@
 import 'package:args/command_runner.dart';
-import 'package:dar/dar.dart';
+import 'package:mason_logger/mason_logger.dart';
 
-import '../../redux/app_state.dart';
-import '../../redux/emit/emit.dart';
-import '../../redux/meta/meta.dart';
-import '../../redux/resolved/resolved.dart';
-import 'with_store.dart';
+import '../../emitter/generate_code.dart';
+import '../../emitter/generate_server_api.dart';
+import '../../emitter/run_build_runner.dart';
+import '../../network/fetch_lsp_license.dart';
+import '../../network/fetch_lsp_model.dart';
+import '../../resolver/resolve_model.dart';
 
-final class GenerateCommand extends Command with WithStore {
-  GenerateCommand({required this.store}) {
+final class GenerateCommand extends Command {
+  GenerateCommand({required this.logger}) {
     argParser.addOption(
       'output',
       abbr: 'o',
@@ -24,24 +25,23 @@ final class GenerateCommand extends Command with WithStore {
   @override
   final description = 'Generates code for the Language Server Protocol (LSP).';
 
-  @override
-  final Store<AppState> store;
+  final Logger logger;
 
   @override
   Future<void> run() async {
-    final outputPath = argResults?['output'] as String?;
-    if (outputPath != null) {
-      dispatchSync(SetOutputDirAction(path: outputPath));
-    }
+    final outputPath =
+        argResults?['output'] as String? ?? 'packages/lsp_specification';
+    const lspVersion = '3.17';
 
-    await dispatchAndWaitAll([
-      FetchLSPModelAction(),
-      FetchLSPLicenseAction(),
+    await Future.wait([
+      fetchLSPModel(lspVersion, outputPath, logger).then((metaProtocol) {
+        final resolvedModel = resolveModel(metaProtocol);
+        generateCode(resolvedModel, outputPath);
+        generateServerApi(resolvedModel);
+      }),
+      fetchLSPLicense(lspVersion, outputPath, logger),
     ]);
 
-    await store.dispatchAndWait(ResolveModelAction());
-    await store.dispatchAndWait(GenerateCodeAction());
-    await store.dispatchAndWait(GenerateServerApiAction());
-    await store.dispatchAndWait(RunBuildRunnerAction());
+    await runBuildRunner(outputPath, logger);
   }
 }

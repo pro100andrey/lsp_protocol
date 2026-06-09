@@ -1,4 +1,4 @@
-import '../redux/models/protocol.dart';
+import '../models/protocol.dart';
 
 /// Abstract base visitor for the [MetaProtocol] tree.
 ///

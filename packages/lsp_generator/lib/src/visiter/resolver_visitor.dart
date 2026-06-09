@@ -1,6 +1,6 @@
-import '../redux/models/protocol.dart';
-import '../redux/models/resolved_decl.dart';
-import '../redux/models/resolved_type.dart';
+import '../models/protocol.dart';
+import '../models/resolved_decl.dart';
+import '../models/resolved_type.dart';
 import 'meta_visitor.dart';
 
 /// Two-pass visitor that builds resolved IR from a [MetaProtocol].
@@ -272,7 +272,7 @@ final class _RegisterPass extends MetaVisitor {
       deprecated: typeAlias.deprecated,
       proposed: typeAlias.proposed,
     );
-    
+
     _r._registry[typeAlias.name] = alias;
     _r._aliases.add(alias);
   }

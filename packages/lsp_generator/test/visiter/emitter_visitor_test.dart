@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
-import 'package:lsp_generator/src/redux/models/protocol.dart';
-import 'package:lsp_generator/src/redux/models/resolved_decl.dart';
-import 'package:lsp_generator/src/redux/models/resolved_type.dart';
-import 'package:lsp_generator/src/redux/resolved/resolved_state.dart';
+import 'package:lsp_generator/src/models/protocol.dart';
+import 'package:lsp_generator/src/models/resolved_decl.dart';
+import 'package:lsp_generator/src/models/resolved_type.dart';
+import 'package:lsp_generator/src/resolver/resolved_state.dart';
 import 'package:lsp_generator/src/visiter/emitter_visitor.dart';
 import 'package:lsp_generator/src/visiter/resolver_visitor.dart';
 import 'package:test/test.dart';
@@ -693,34 +693,34 @@ void main() {
   // -----------------------------------------------------------------------
 
   group('@Deprecated annotations', () {
-    test('deprecated property emits @Deprecated on redirecting factory param',
-        () {
-      final state = _stateWith(
-        classes: [
-          _cls(
-            'Foo',
-            properties: [
-              _prop(
-                'oldField',
-                const DartCoreType(dartName: 'String'),
-                deprecated: 'Use newField instead.',
-              ),
-              _prop('newField', const DartCoreType(dartName: 'String')),
-            ],
-          ),
-        ],
-      );
-      final src = _format(EmitterVisitor(state).buildStructures());
-      expect(
-        src,
-        contains("@Deprecated('Use newField instead.')"),
-      );
-    });
-
     test(
-        'deprecated property keeps @Deprecated on private'
-        ' JsonSerializable class field',
-        () {
+      'deprecated property emits @Deprecated on redirecting factory param',
+      () {
+        final state = _stateWith(
+          classes: [
+            _cls(
+              'Foo',
+              properties: [
+                _prop(
+                  'oldField',
+                  const DartCoreType(dartName: 'String'),
+                  deprecated: 'Use newField instead.',
+                ),
+                _prop('newField', const DartCoreType(dartName: 'String')),
+              ],
+            ),
+          ],
+        );
+        final src = _format(EmitterVisitor(state).buildStructures());
+        expect(
+          src,
+          contains("@Deprecated('Use newField instead.')"),
+        );
+      },
+    );
+
+    test('deprecated property keeps @Deprecated on private'
+        ' JsonSerializable class field', () {
       final state = _stateWith(
         classes: [
           _cls(
@@ -820,22 +820,23 @@ void main() {
     });
 
     test(
-        'class with documentation and since appends @since to doc comment',
-        () {
-      final state = _stateWith(
-        classes: [
-          ResolvedClass(
-            name: 'DocThing',
-            properties: [],
-            documentation: 'Main description.',
-            since: '3.16.0',
-          ),
-        ],
-      );
-      final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains('/// Main description.'));
-      expect(src, contains('/// @since 3.16.0'));
-    });
+      'class with documentation and since appends @since to doc comment',
+      () {
+        final state = _stateWith(
+          classes: [
+            ResolvedClass(
+              name: 'DocThing',
+              properties: [],
+              documentation: 'Main description.',
+              since: '3.16.0',
+            ),
+          ],
+        );
+        final src = _format(EmitterVisitor(state).buildStructures());
+        expect(src, contains('/// Main description.'));
+        expect(src, contains('/// @since 3.16.0'));
+      },
+    );
 
     test('enum with since and proposed emits both tags', () {
       final state = _stateWith(

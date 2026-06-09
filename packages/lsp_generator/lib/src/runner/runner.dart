@@ -1,20 +1,13 @@
 import 'package:args/command_runner.dart';
-import 'package:dar/dar.dart';
 import 'package:mason_logger/mason_logger.dart';
 
-import '../redux/redux.dart';
+import '../common/user_exception.dart';
 import 'commands/generate.dart';
 
 Future<int> run(List<String> args) async {
   final logger = Logger();
 
   try {
-    final store = Store<AppState>(
-      initialState: AppState.initial(),
-      actionObservers: [AppActionLogger(logger: logger)],
-       globalErrorObserver: (store) => GlobalErrorObserverForDevelopment(),
-    );
-
     final runner =
         CommandRunner(
             'lsp_generator',
@@ -29,10 +22,9 @@ Future<int> run(List<String> args) async {
             callback: (value) =>
                 logger.level = value ? Level.verbose : Level.info,
           )
-          ..addCommand(GenerateCommand(store: store));
+          ..addCommand(GenerateCommand(logger: logger));
 
     final result = runner.parse(args);
-    store.setProp(logger);
 
     logger.detail('Logger instance stored');
 
