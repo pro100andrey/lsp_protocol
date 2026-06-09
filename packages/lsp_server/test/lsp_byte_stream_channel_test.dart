@@ -12,8 +12,8 @@ void main() {
     late StreamChannel<String> lspChannel;
 
     setUp(() {
-      incomingController = StreamController<List<int>>();
-      outgoingController = StreamController<List<int>>();
+      incomingController = StreamController<List<int>>.broadcast();
+      outgoingController = StreamController<List<int>>.broadcast();
       byteChannel = StreamChannel<List<int>>(
         incomingController.stream,
         outgoingController.sink,
