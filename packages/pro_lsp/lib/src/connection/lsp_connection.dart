@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:json_rpc_2/json_rpc_2.dart' as rpc;
 import 'package:stream_channel/stream_channel.dart';
 
-import '../server/lsp_server.dart';
+import '../generated/models/methods.dart';
+import '../server/cancellation_token.dart';
+import '../server/lsp_state.dart';
+import '../server/middleware.dart';
 import 'lsp_exception.dart';
 
 /// Low-level LSP connection backed by a [rpc.Peer].
@@ -15,11 +19,103 @@ import 'lsp_exception.dart';
 /// handler and sender classes. You rarely interact with it directly — the
 /// typed [LspServer] API is the preferred entry point.
 final class LspConnection {
-  LspConnection(StreamChannel<String> channel) : _peer = rpc.Peer(channel) {
+  LspConnection(StreamChannel<String> channel) {
+    // Intercept incoming stream to extract request IDs and handle cancelRequest
+    final mappedStream = channel.stream.map((event) {
+      try {
+        final decoded = jsonDecode(event);
+        if (decoded is Map<String, Object?>) {
+          final id = decoded['id'];
+          final method = decoded['method'];
+          if (id != null && method is String) {
+            // Request: Inject request ID so handlers can map it to cancellation
+            final params = decoded['params'];
+            final cleanParams = params is Map<String, Object?>
+                ? Map<String, Object?>.of(params)
+                : <String, Object?>{};
+            cleanParams['_requestId'] = id;
+            decoded['params'] = cleanParams;
+            return jsonEncode(decoded);
+          } else if (id == null && method == NotificationMethod.cancelRequest.value) {
+            final params = decoded['params'];
+            if (params is Map<String, Object?>) {
+              final cancelId = params['id'];
+              if (cancelId != null) {
+                _cancelRequest(cancelId);
+              }
+            }
+          }
+        }
+      } catch (_) {}
+      return event;
+    });
+
+    _peer = rpc.Peer(StreamChannel<String>(mappedStream, channel.sink));
     _peer.registerFallback(_handleUnknownMethod);
+
+    // Register $/cancelRequest handler so json_rpc_2 doesn't treat it as unknown
+    registerNotificationHandler(NotificationMethod.cancelRequest.value, (params) async {});
   }
 
-  final rpc.Peer _peer;
+  late final rpc.Peer _peer;
+
+  // ---------------------------------------------------------------------------
+  // Lifecycle & State
+  // ---------------------------------------------------------------------------
+
+  LspState _state = LspState.uninitialized;
+
+  /// Gets the current lifecycle state of this connection.
+  LspState get state => _state;
+
+  void _verifyState(String method, {required bool isNotification}) {
+    if (isNotification) {
+      if (!_state.isNotificationAllowed(method)) {
+        throw LspException.invalidRequest(
+          'Notification $method is not allowed in state $_state',
+        );
+      }
+    } else {
+      if (!_state.isRequestAllowed(method)) {
+        if (_state == LspState.uninitialized || _state == LspState.initializing) {
+          throw LspException.serverNotInitialized(
+            'Server is not initialized. Request: $method',
+          );
+        }
+        throw LspException.invalidRequest(
+          'Request $method is not allowed in state $_state',
+        );
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Middleware & Error Handling
+  // ---------------------------------------------------------------------------
+
+  final List<LspMiddleware> _middlewares = [];
+
+  /// Gets the list of registered middlewares.
+  List<LspMiddleware> get middlewares => _middlewares;
+
+  void Function(Object error, StackTrace stackTrace)? _onError;
+
+  /// Gets the error callback triggered on unhandled exceptions in handlers.
+  void Function(Object error, StackTrace stackTrace)? get onError => _onError;
+
+  /// Sets the error callback triggered on unhandled exceptions in handlers.
+  set onError(void Function(Object error, StackTrace stackTrace)? value) =>
+      _onError = value;
+
+  // ---------------------------------------------------------------------------
+  // Cancellation Tracking
+  // ---------------------------------------------------------------------------
+
+  final _activeCancellations = <Object, CancellationToken>{};
+
+  void _cancelRequest(Object id) {
+    _activeCancellations[id]?.cancel();
+  }
 
   // ---------------------------------------------------------------------------
   // Handler registration
@@ -35,10 +131,68 @@ final class LspConnection {
     Future<Object?> Function(Object? params) handler,
   ) {
     _peer.registerMethod(method, (rpc.Parameters params) async {
+      final rawVal = params.value;
+      Object? requestId;
+      if (rawVal is Map) {
+        requestId = rawVal['_requestId'];
+      }
+
+      final token = CancellationToken();
+      if (requestId != null) {
+        _activeCancellations[requestId] = token;
+      }
+
       try {
-        return await handler(params.value);
+        // 1. Verify state permissions
+        _verifyState(method, isNotification: false);
+
+        // 2. Lifecycle state changes
+        if (method == RequestMethod.initialize.value) {
+          _state = LspState.initializing;
+        } else if (method == RequestMethod.shutdown.value) {
+          _state = LspState.shuttingDown;
+        }
+
+        final request = LspIncomingRequest(
+          method: method,
+          params: rawVal,
+          requestId: requestId,
+        );
+
+        final response = await composeMiddlewares(_middlewares, (req) async {
+          // Bind the CancellationToken inside a Zone
+          return runZoned(
+            () => handler(req.params),
+            zoneValues: {#cancellationToken: token},
+          );
+        })(request);
+
+        if (method == RequestMethod.initialize.value) {
+          _state = LspState.initialized;
+        }
+
+        return response;
       } on LspException catch (e) {
+        if (method == RequestMethod.initialize.value) {
+          _state = LspState.uninitialized; // Reset on initialization failure
+        }
         throw e.toRpcException();
+      } catch (e, stackTrace) {
+        if (method == RequestMethod.initialize.value) {
+          _state = LspState.uninitialized; // Reset on initialization failure
+        }
+        if (_onError != null) {
+          _onError!(e, stackTrace);
+        }
+        throw rpc.RpcException(
+          LspErrorCodes.internalError,
+          'Internal error processing request: $e',
+          data: {'stackTrace': stackTrace.toString()},
+        );
+      } finally {
+        if (requestId != null) {
+          _activeCancellations.remove(requestId);
+        }
       }
     });
   }
@@ -53,11 +207,40 @@ final class LspConnection {
     Future<void> Function(Object? params) handler,
   ) {
     _peer.registerMethod(method, (rpc.Parameters params) async {
+      final rawVal = params.value;
+
       try {
-        await handler(params.value);
+        // 1. Verify state permissions
+        _verifyState(method, isNotification: true);
+
+        if (method == NotificationMethod.exit.value) {
+          _state = LspState.exited;
+        }
+
+        final request = LspIncomingRequest(
+          method: method,
+          params: rawVal,
+        );
+
+        await composeMiddlewares(_middlewares, (req) async {
+          await handler(req.params);
+          return null;
+        })(request);
+
+        if (method == NotificationMethod.exit.value) {
+          await close();
+        }
       } on LspException catch (e) {
-        // Notifications have no response channel; escalate so the peer logs it.
         throw e.toRpcException();
+      } catch (e, stackTrace) {
+        if (_onError != null) {
+          _onError!(e, stackTrace);
+        }
+        throw rpc.RpcException(
+          LspErrorCodes.internalError,
+          'Internal error processing notification: $e',
+          data: {'stackTrace': stackTrace.toString()},
+        );
       }
     });
   }
@@ -89,7 +272,6 @@ final class LspConnection {
   // ---------------------------------------------------------------------------
 
   void _handleUnknownMethod(rpc.Parameters params) {
-    // Respond with MethodNotFound for any unregistered method.
     throw rpc.RpcException(
       LspErrorCodes.methodNotFound,
       'Method not found: ${params.method}',

@@ -5,8 +5,15 @@ import 'package:stream_channel/stream_channel.dart';
 import '../connection/lsp_connection.dart';
 import '../generated/server/server_api.dart';
 import '../transport/lsp_byte_stream_channel.dart';
+import 'lsp_state.dart';
+import 'middleware.dart';
+import 'progress_manager.dart';
 
 export '../generated/server/server_api.dart';
+export 'cancellation_token.dart';
+export 'lsp_state.dart';
+export 'middleware.dart';
+export 'progress_manager.dart';
 
 /// Top-level LSP server.
 ///
@@ -52,9 +59,9 @@ final class LspServer {
   ///
   /// Useful for testing or alternative transports (TCP, pipes, etc.).
   LspServer.fromChannel(StreamChannel<List<int>> channel)
-    : _connection = LspConnection(
-        LspByteStreamChannel.fromByteChannel(channel),
-      );
+      : _connection = LspConnection(
+          LspByteStreamChannel.fromByteChannel(channel),
+        );
 
   final LspConnection _connection;
 
@@ -108,6 +115,27 @@ final class LspServer {
 
   /// Proxy for all outgoing (server → client) messages.
   late final client = ServerToClientProxy(_connection);
+
+  // -------------------------------------------------------------------------
+  // Additional capabilities
+  // -------------------------------------------------------------------------
+
+  /// High-level manager for creating work done progress sessions.
+  late final progress = WorkDoneProgressManager(_connection);
+
+  /// Registered middleware list for request/notification interception.
+  List<LspMiddleware> get middlewares => _connection.middlewares;
+
+  /// Gets the current lifecycle state of the LSP server.
+  LspState get state => _connection.state;
+
+  /// Gets the error callback triggered on unhandled exceptions in handlers.
+  void Function(Object error, StackTrace stackTrace)? get onError =>
+      _connection.onError;
+
+  /// Sets the error callback triggered on unhandled exceptions in handlers.
+  set onError(void Function(Object error, StackTrace stackTrace)? value) =>
+      _connection.onError = value;
 
   // -------------------------------------------------------------------------
   // Lifecycle
