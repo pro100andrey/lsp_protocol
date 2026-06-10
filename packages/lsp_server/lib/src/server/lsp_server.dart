@@ -26,8 +26,12 @@ export '../generated/server_api.dart';
 ///     );
 ///   });
 ///
-///   server.textDocument.onHover((params) async =>
-///     Hover(contents: MarkupContent(kind: MarkupKind.markdown, value: '**Hi**')));
+///   server.textDocument.onHover((params) async => Hover(
+///         contents: MarkupContent(
+///           kind: MarkupKind.markdown,
+///           value: '**Hi**',
+///         ),
+///       ));
 ///
 ///   await server.listen();
 /// }

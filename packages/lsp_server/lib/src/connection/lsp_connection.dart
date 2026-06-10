@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:json_rpc_2/json_rpc_2.dart' as rpc;
 import 'package:stream_channel/stream_channel.dart';
 
+import '../server/lsp_server.dart';
 import 'lsp_exception.dart';
 
-/// Low-level LSP connection backed by a [json_rpc_2.Peer].
+/// Low-level LSP connection backed by a [rpc.Peer].
 ///
 /// Wraps a [StreamChannel<String>] carrying JSON-RPC 2.0 messages and exposes
 /// typed helpers for registering method handlers and sending outgoing messages.

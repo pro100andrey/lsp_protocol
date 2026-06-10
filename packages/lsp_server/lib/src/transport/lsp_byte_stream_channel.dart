@@ -25,13 +25,15 @@ final class LspByteStreamChannel {
   /// body) and emitted as [String] values on the returned channel's stream.
   ///
   /// Outgoing [String] values are encoded with Content-Length framing and
-  /// passed to [channel.sink] as [List<int>] byte chunks.
+  /// passed to `channel.sink` as `List<int>` byte chunks.
   static StreamChannel<String> fromByteChannel(
     StreamChannel<List<int>> channel,
   ) {
     final parser = _Parser(channel.stream);
-    final sink = _LspMessageSink(channel.sink);
-    return StreamChannel<String>.withGuarantees(parser.stream, sink);
+    return StreamChannel<String>.withGuarantees(
+      parser.stream,
+      _LspMessageSink(channel.sink),
+    );
   }
 }
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:lsp_server/lsp_server.dart';
 import 'package:stream_channel/stream_channel.dart';
 import 'package:test/test.dart';
@@ -27,12 +28,12 @@ void main() {
     });
 
     test('parses a standard message with Content-Length', () async {
-      final message = '{"jsonrpc":"2.0","method":"test"}';
+      const message = '{"jsonrpc":"2.0","method":"test"}';
       final bodyBytes = utf8.encode(message);
       final headerStr = 'Content-Length: ${bodyBytes.length}\r\n\r\n';
       final headerBytes = ascii.encode(headerStr);
 
-      final List<String> received = [];
+      final received = <String>[];
       final done = lspChannel.stream.forEach(received.add);
 
       incomingController.add([...headerBytes, ...bodyBytes]);
@@ -44,12 +45,12 @@ void main() {
     });
 
     test('parses a message with lowercase content-length', () async {
-      final message = '{"jsonrpc":"2.0","method":"test-lower"}';
+      const message = '{"jsonrpc":"2.0","method":"test-lower"}';
       final bodyBytes = utf8.encode(message);
       final headerStr = 'content-length: ${bodyBytes.length}\r\n\r\n';
       final headerBytes = ascii.encode(headerStr);
 
-      final List<String> received = [];
+      final received = <String>[];
       final done = lspChannel.stream.forEach(received.add);
 
       incomingController.add([...headerBytes, ...bodyBytes]);
@@ -61,14 +62,14 @@ void main() {
     });
 
     test('parses multiple headers in framing', () async {
-      final message = '{"jsonrpc":"2.0","method":"test-multi-headers"}';
+      const message = '{"jsonrpc":"2.0","method":"test-multi-headers"}';
       final bodyBytes = utf8.encode(message);
       final headerStr =
           'Content-Type: application/vscode-jsonrpc; charset=utf-8\r\n'
           'Content-Length: ${bodyBytes.length}\r\n\r\n';
       final headerBytes = ascii.encode(headerStr);
 
-      final List<String> received = [];
+      final received = <String>[];
       final done = lspChannel.stream.forEach(received.add);
 
       incomingController.add([...headerBytes, ...bodyBytes]);
@@ -80,8 +81,8 @@ void main() {
     });
 
     test('parses multiple sequential messages', () async {
-      final message1 = '{"id":1,"method":"first"}';
-      final message2 = '{"id":2,"method":"second"}';
+      const message1 = '{"id":1,"method":"first"}';
+      const message2 = '{"id":2,"method":"second"}';
 
       final bodyBytes1 = utf8.encode(message1);
       final headerStr1 = 'Content-Length: ${bodyBytes1.length}\r\n\r\n';
@@ -91,13 +92,14 @@ void main() {
       final headerStr2 = 'Content-Length: ${bodyBytes2.length}\r\n\r\n';
       final frame2 = [...ascii.encode(headerStr2), ...bodyBytes2];
 
-      final List<String> received = [];
+      final received = <String>[];
       final done = lspChannel.stream.forEach(received.add);
 
       // Send in parts to test buffer accumulation
-      incomingController.add(frame1.sublist(0, 10));
-      incomingController.add(frame1.sublist(10));
-      incomingController.add(frame2);
+      incomingController
+        ..add(frame1.sublist(0, 10))
+        ..add(frame1.sublist(10))
+        ..add(frame2);
 
       await incomingController.close();
       await done;
@@ -108,8 +110,8 @@ void main() {
     });
 
     test('encodes and writes outgoing messages with header', () async {
-      final message = '{"jsonrpc":"2.0","result":"ok"}';
-      final List<List<int>> writtenBytesList = [];
+      const message = '{"jsonrpc":"2.0","result":"ok"}';
+      final writtenBytesList = <List<int>>[];
       outgoingController.stream.listen(writtenBytesList.add);
 
       lspChannel.sink.add(message);

@@ -37,13 +37,6 @@ abstract final class LspErrorCodes {
 final class LspException implements Exception {
   const LspException(this.code, this.message, [this.data]);
 
-  final int code;
-  final String message;
-  final Object? data;
-
-  /// Converts to a [RpcException] suitable for [json_rpc_2].
-  RpcException toRpcException() => RpcException(code, message, data: data);
-
   factory LspException.parseError(String message, [Object? data]) =>
       LspException(LspErrorCodes.parseError, message, data);
 
@@ -67,6 +60,13 @@ final class LspException implements Exception {
 
   factory LspException.contentModified(String message, [Object? data]) =>
       LspException(LspErrorCodes.contentModified, message, data);
+
+  final int code;
+  final String message;
+  final Object? data;
+
+  /// Converts to a [RpcException] suitable for json_rpc_2.
+  RpcException toRpcException() => RpcException(code, message, data: data);
 
   @override
   String toString() => 'LspException($code): $message';
