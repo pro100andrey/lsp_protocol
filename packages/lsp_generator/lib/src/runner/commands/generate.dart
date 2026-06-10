@@ -3,6 +3,7 @@ import 'package:mason_logger/mason_logger.dart';
 
 import '../../emitter/generate_code.dart';
 import '../../emitter/generate_server_api.dart';
+import '../../emitter/run_analyzer.dart';
 import '../../emitter/run_build_runner.dart';
 import '../../network/fetch_lsp_license.dart';
 import '../../network/fetch_lsp_model.dart';
@@ -43,5 +44,6 @@ final class GenerateCommand extends Command {
     ]);
 
     await runBuildRunner(outputPath, logger);
+    await runAnalyzer(outputPath, logger);
   }
 }
