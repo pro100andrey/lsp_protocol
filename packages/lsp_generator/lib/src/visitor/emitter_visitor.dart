@@ -88,6 +88,9 @@ final class EmitterVisitor {
   /// items). Emitted to [_scalarUnionsFile]; no import of structures needed.
   late final Set<String> _scalarUnionNames = _computeScalarUnionNames();
 
+  /// Inline anonymous unions collected from all class properties.
+  late final Map<String, UnionType> _inlineUnions = _computeInlineUnions();
+
   /// Converter classes needed in `structures.dart`, keyed by type name.
   late final ({
     Map<String, _ConverterEntry> scalar,
@@ -239,6 +242,23 @@ final class EmitterVisitor {
       );
     }
 
+    // Add inline scalar unions
+    for (final entry in _inlineUnions.entries) {
+      final name = entry.key;
+      final ut = entry.value;
+      final kind = _classifyUnion(ut);
+      if (kind == _UnionKind.scalar) {
+        specs.addAll(
+          _buildUnionSpecs(
+            name,
+            ut,
+            kind,
+            docs: _docLines('Inline union: $name.'),
+          ),
+        );
+      }
+    }
+
     // Scalar unions reference no structs — no cross-imports needed.
     return Library(
       (b) => b
@@ -284,6 +304,24 @@ final class EmitterVisitor {
         ),
       );
       referencedTypes.addAll(ut.items);
+    }
+
+    // Add inline non-scalar unions
+    for (final entry in _inlineUnions.entries) {
+      final name = entry.key;
+      final ut = entry.value;
+      final kind = _classifyUnion(ut);
+      if (kind != _UnionKind.scalar && kind != _UnionKind.mixed) {
+        specs.addAll(
+          _buildUnionSpecs(
+            name,
+            ut,
+            kind,
+            docs: _docLines('Inline union: $name.'),
+          ),
+        );
+        referencedTypes.addAll(ut.items);
+      }
     }
 
     return Library(
@@ -533,20 +571,11 @@ final class EmitterVisitor {
       for (final p in allProps) {
         b.fields.add(
           Field((b) {
-            final openEnum = _openEnumInfo(p.type);
             b
               ..modifier = FieldModifier.final$
               ..name = p.name
-              ..type = openEnum != null
-                  ? (p.optional
-                        ? TypeReference(
-                            (b) => b
-                              ..symbol = openEnum.primitive
-                              ..isNullable = true,
-                          )
-                        : refer(openEnum.primitive))
-                  : toRef(p.type, nullable: p.optional);
-            _annotationsForParam(p).forEach(b.annotations.add);
+              ..type = _propertyTypeRef(cls.name, p);
+            _annotationsForParam(cls.name, p).forEach(b.annotations.add);
             b.docs.addAll(_docLines(p.documentation, indent: 2));
           }),
         );
@@ -627,23 +656,14 @@ final class EmitterVisitor {
       ..redirect = refer('_$className')
       ..optionalParameters.addAll(
         props.map((p) {
-          final openEnum = _openEnumInfo(p.type);
-          final typeRef = openEnum != null
-              ? (p.optional
-                    ? TypeReference(
-                        (b) => b
-                          ..symbol = openEnum.primitive
-                          ..isNullable = true,
-                      )
-                    : refer(openEnum.primitive))
-              : toRef(p.type, nullable: p.optional);
+          final typeRef = _propertyTypeRef(className, p);
           return Parameter((b) {
             b
               ..name = p.name
               ..type = typeRef
               ..named = true
               ..required = !p.optional;
-            _annotationsForParam(p).forEach(b.annotations.add);
+            _annotationsForParam(className, p).forEach(b.annotations.add);
             b.docs.addAll(
               _docLines(
                 p.documentation,
@@ -661,12 +681,23 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
 
   /// Returns a call expression for the converter annotation that should be
-  /// placed on a factory parameter of the given [type], or `null`
+  /// placed on a factory parameter of the given property [p], or `null`
   /// if no annotation is needed (json_serializable handles the type natively).
-  Expression? _converterAnnotationFor(ResolvedType type) {
+  Expression? _converterAnnotationFor(String className, ResolvedProperty p) {
+    final type = p.type;
     // Strip the outer NullableType — the converter itself is non-nullable;
     // json_serializable adds the null check around the converter call.
     final inner = type is NullableType ? type.inner : type;
+
+    final inlineUnionName = _getInlineUnionName(className, p.name, inner);
+    if (inlineUnionName != null) {
+      if (inner is ListType) {
+        return refer('_${inlineUnionName}ListConverter').call([]);
+      } else {
+        return refer('_${inlineUnionName}Converter').call([]);
+      }
+    }
+
     return switch (inner) {
       AliasType(:final ref)
           when _scalarUnionNames.contains(ref.name) ||
@@ -686,8 +717,8 @@ final class EmitterVisitor {
   }
 
   /// Returns the list of annotations for factory/field parameter [p].
-  List<Expression> _annotationsForParam(ResolvedProperty p) {
-    final conv = _converterAnnotationFor(p.type);
+  List<Expression> _annotationsForParam(String className, ResolvedProperty p) {
+    final conv = _converterAnnotationFor(className, p);
     final deprecated = p.deprecated != null
         ? refer('Deprecated').call([literalString(p.deprecated!)])
         : null;
@@ -737,7 +768,40 @@ final class EmitterVisitor {
 
     for (final cls in _resolved.classes) {
       for (final prop in _allProperties(cls)) {
-        processType(prop.type);
+        final inlineUnionName = _getInlineUnionName(
+          cls.name,
+          prop.name,
+          prop.type,
+        );
+        if (inlineUnionName != null) {
+          final inner = prop.type is NullableType
+              ? (prop.type as NullableType).inner
+              : prop.type;
+          if (inner is UnionType) {
+            final kind = _classifyUnion(inner);
+            register(
+              inlineUnionName,
+              kind == _UnionKind.scalar
+                  ? _ConverterKind.scalarUnion
+                  : _ConverterKind.structUnion,
+            );
+          } else if (inner is ListType) {
+            final el = inner.element is NullableType
+                ? (inner.element as NullableType).inner
+                : inner.element;
+            if (el is UnionType) {
+              final kind = _classifyUnion(el);
+              registerList(
+                inlineUnionName,
+                kind == _UnionKind.scalar
+                    ? _ConverterKind.scalarUnion
+                    : _ConverterKind.structUnion,
+              );
+            }
+          }
+        } else {
+          processType(prop.type);
+        }
       }
     }
 
@@ -1333,7 +1397,9 @@ final class EmitterVisitor {
   }
 
   _UnionKind _classifyUnion(UnionType u) {
-    final scalars = u.items.whereType<DartCoreType>().toList(growable: false);
+    final scalars = u.items
+        .where((t) => t is DartCoreType || t is TupleType)
+        .toList(growable: false);
     final structs = u.items
         .where((t) => t is ClassType || t is InlineRecord)
         .toList(growable: false);
@@ -1341,13 +1407,14 @@ final class EmitterVisitor {
     final others = u.items.where(
       (t) =>
           t is! DartCoreType &&
+          t is! TupleType &&
           t is! ClassType &&
           t is! InlineRecord &&
           t is! ListType,
     );
 
     if (others.isNotEmpty) {
-      return .mixed;
+      return _UnionKind.mixed;
     }
 
     if (structs.isEmpty && lists.isEmpty) {
@@ -1554,6 +1621,7 @@ final class EmitterVisitor {
           : fields
                 .map((f) => f.name[0].toUpperCase() + f.name.substring(1))
                 .join(),
+    TupleType() => 'Tuple',
     _ => 'Unknown',
   };
 
@@ -1563,16 +1631,35 @@ final class EmitterVisitor {
 
   List<Spec> _buildScalarUnionSpecs(
     String name,
-    List<DartCoreType> scalars, {
+    List<ResolvedType> scalars, {
     String? deprecated,
     List<String> docs = const [],
   }) {
     final variants = scalars
-        .map((s) => (suffix: _variantSuffix(s, name), dartName: s.dartName))
+        .map(
+          (s) => (
+            suffix: _variantSuffix(s, name),
+            type: s,
+            dartName: _dartTypeName(s),
+          ),
+        )
         .toList();
 
+    String toJsonExpr(ResolvedType t) {
+      if (t is TupleType) {
+        final elements = [
+          for (var i = 0; i < t.items.length; i++) 'value.\$${i + 1}'
+        ];
+        return '[${elements.join(', ')}]';
+      }
+      return 'value';
+    }
+
     final switchCases = variants
-        .map((v) => '    $name\$${v.suffix}(:final value) => value,')
+        .map(
+          (v) =>
+              '    $name\$${v.suffix}(:final value) => ${toJsonExpr(v.type)},',
+        )
         .join('\n');
 
     return [
@@ -1632,29 +1719,53 @@ final class EmitterVisitor {
                   ),
                 )
                 ..body = Block((b) {
-                  for (final v in variants.sublist(0, variants.length - 1)) {
+                  for (final v in variants) {
                     final fn = _safeIdentifier(_factoryName(v.suffix));
-                    b.statements.add(
-                      ifStatement(
-                        refer('json').isA(refer(v.dartName)),
-                        Block(
-                          (bb) => bb.addExpression(
-                            refer(name).newInstanceNamed(fn, [], {
-                              'value': refer('json'),
-                            }).returned,
+
+                    Expression cond;
+                    Expression valueExpr;
+                    if (v.type is TupleType) {
+                      cond = refer('json').isA(refer('List'));
+                      final tuple = v.type as TupleType;
+                      final elements = [
+                        for (var i = 0; i < tuple.items.length; i++)
+                          'json[$i] as ${_dartTypeName(tuple.items[i])}',
+                      ];
+                      valueExpr = CodeExpression(
+                        Code('(${elements.join(', ')})'),
+                      );
+                    } else {
+                      cond = refer('json').isA(refer(v.dartName));
+                      valueExpr = refer('json');
+                    }
+
+                    final isLast = v == variants.last;
+                    if (isLast) {
+                      final castedJson = v.type is TupleType
+                          ? valueExpr
+                          : refer('json').asA(refer(v.dartName));
+                      b.addExpression(
+                        refer(name).newInstanceNamed(
+                          fn,
+                          [],
+                          {'value': castedJson},
+                        ).returned,
+                      );
+                    } else {
+                      b.statements.add(
+                        ifStatement(
+                          cond,
+                          Block(
+                            (bb) => bb.addExpression(
+                              refer(name).newInstanceNamed(fn, [], {
+                                'value': valueExpr,
+                              }).returned,
+                            ),
                           ),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   }
-                  final last = variants.last;
-                  b.addExpression(
-                    refer(name).newInstanceNamed(
-                      _safeIdentifier(_factoryName(last.suffix)),
-                      [],
-                      {'value': refer('json').asA(refer(last.dartName))},
-                    ).returned,
-                  );
                 }),
             ),
           )
@@ -1673,7 +1784,7 @@ final class EmitterVisitor {
 
   List<Spec> _buildScalarStructUnionSpecs(
     String name,
-    List<DartCoreType> scalars,
+    List<ResolvedType> scalars,
     ResolvedType struct, {
     String? deprecated,
     List<String> docs = const [],
@@ -1683,7 +1794,13 @@ final class EmitterVisitor {
     final structFn = _safeIdentifier(_factoryName(structSuffix));
 
     final scalarVariants = scalars
-        .map((s) => (suffix: _variantSuffix(s, name), dartName: s.dartName))
+        .map(
+          (s) => (
+            suffix: _variantSuffix(s, name),
+            type: s,
+            dartName: _dartTypeName(s),
+          ),
+        )
         .toList();
 
     final structToJson = switch (struct) {
@@ -1691,10 +1808,23 @@ final class EmitterVisitor {
       _ => 'value.toJson()',
     };
 
+    String toJsonExpr(ResolvedType t) {
+      if (t is TupleType) {
+        final elements = [
+          for (var i = 0; i < t.items.length; i++) 'value.\$${i + 1}'
+        ];
+        return '[${elements.join(', ')}]';
+      }
+      return 'value';
+    }
+
+    final structClsBind = (struct is InlineRecord && struct.fields.isEmpty)
+        ? ''
+        : ':final value';
     final switchCases = [
-      '    $structCls(:final value) => $structToJson,',
+      '    $structCls($structClsBind) => $structToJson,',
       ...scalarVariants.map(
-        (v) => '    $name\$${v.suffix}(:final value) => value,',
+        (v) => '    $name\$${v.suffix}(:final value) => ${toJsonExpr(v.type)},',
       ),
     ].join('\n');
 
@@ -1803,32 +1933,53 @@ final class EmitterVisitor {
                       ),
                     ),
                   );
-                  for (final v in scalarVariants.sublist(
-                    0,
-                    scalarVariants.length - 1,
-                  )) {
+                  for (final v in scalarVariants) {
                     final fn = _safeIdentifier(_factoryName(v.suffix));
-                    b.statements.add(
-                      ifStatement(
-                        refer('json').isA(refer(v.dartName)),
-                        Block(
-                          (bb) => bb.addExpression(
-                            refer(name).newInstanceNamed(fn, [], {
-                              'value': refer('json'),
-                            }).returned,
+
+                    Expression cond;
+                    Expression valueExpr;
+                    if (v.type is TupleType) {
+                      cond = refer('json').isA(refer('List'));
+                      final tuple = v.type as TupleType;
+                      final elements = [
+                        for (var i = 0; i < tuple.items.length; i++)
+                          'json[$i] as ${_dartTypeName(tuple.items[i])}',
+                      ];
+                      valueExpr = CodeExpression(
+                        Code('(${elements.join(', ')})'),
+                      );
+                    } else {
+                      cond = refer('json').isA(refer(v.dartName));
+                      valueExpr = refer('json');
+                    }
+
+                    final isLast = v == scalarVariants.last;
+                    if (isLast) {
+                      final castedJson = v.type is TupleType
+                          ? valueExpr
+                          : refer('json').asA(refer(v.dartName));
+                      b.addExpression(
+                        refer(name).newInstanceNamed(
+                          fn,
+                          [],
+                          {'value': castedJson},
+                        ).returned,
+                      );
+                    } else {
+                      b.statements.add(
+                        ifStatement(
+                          cond,
+                          Block(
+                            (bb) => bb.addExpression(
+                              refer(name).newInstanceNamed(fn, [], {
+                                'value': valueExpr,
+                              }).returned,
+                            ),
                           ),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   }
-                  final last = scalarVariants.last;
-                  b.addExpression(
-                    refer(name).newInstanceNamed(
-                      _safeIdentifier(_factoryName(last.suffix)),
-                      [],
-                      {'value': refer('json').asA(refer(last.dartName))},
-                    ).returned,
-                  );
                 }),
             ),
           )
@@ -2182,7 +2333,7 @@ final class EmitterVisitor {
       'Map<${_dartTypeName(key)}, ${_dartTypeName(value)}>',
     NullableType(:final inner) => '${_dartTypeName(inner)}?',
     UnionType() => 'Object',
-    TupleType() => 'List<Object?>',
+    TupleType(:final items) => '(${items.map(_dartTypeName).join(', ')})',
     StringLiteralType() => 'String',
     InlineRecord() => 'Object',
   };
@@ -2544,4 +2695,108 @@ final class EmitterVisitor {
   /// to the lowerCamelCase Dart convention.
   static String _toLowerCamelCase(String name) =>
       name.isEmpty ? name : name[0].toLowerCase() + name.substring(1);
+
+  static String _capitalize(String s) =>
+      s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
+
+  bool _isSupportedInlineUnion(UnionType ut) {
+    final kind = _classifyUnion(ut);
+    if (kind == _UnionKind.mixed) {
+      return false;
+    }
+    if (kind == _UnionKind.structStruct) {
+      final structs = ut.items
+          .where((t) => t is ClassType || t is InlineRecord)
+          .toList();
+      return _findStructDiscriminator(structs) != null;
+    }
+    return true;
+  }
+
+  Reference _propertyTypeRef(String className, ResolvedProperty p) {
+    final openEnum = _openEnumInfo(p.type);
+    final inlineUnionName = _getInlineUnionName(className, p.name, p.type);
+    if (inlineUnionName != null) {
+      final actualType = p.type is NullableType
+          ? (p.type as NullableType).inner
+          : p.type;
+      final isNullable = p.optional || p.type is NullableType;
+      if (actualType is ListType) {
+        return TypeReference(
+          (b) => b
+            ..symbol = 'List'
+            ..types.add(refer(inlineUnionName))
+            ..isNullable = isNullable,
+        );
+      } else {
+        return TypeReference(
+          (b) => b
+            ..symbol = inlineUnionName
+            ..isNullable = isNullable,
+        );
+      }
+    }
+    if (openEnum != null) {
+      return p.optional
+          ? TypeReference(
+              (b) => b
+                ..symbol = openEnum.primitive
+                ..isNullable = true,
+            )
+          : refer(openEnum.primitive);
+    }
+    return toRef(p.type, nullable: p.optional);
+  }
+
+  /// Returns the unique name of an inline union type for field [propName]
+  /// of class [className], if it is indeed an inline union.
+  String? _getInlineUnionName(
+    String className,
+    String propName,
+    ResolvedType type,
+  ) {
+    final inner = type is NullableType ? type.inner : type;
+    if (inner is UnionType) {
+      if (_isSupportedInlineUnion(inner)) {
+        return '$className${_capitalize(propName)}';
+      }
+    }
+    if (inner is ListType) {
+      final el = inner.element is NullableType
+          ? (inner.element as NullableType).inner
+          : inner.element;
+      if (el is UnionType) {
+        if (_isSupportedInlineUnion(el)) {
+          return '$className${_capitalize(propName)}Item';
+        }
+      }
+    }
+    return null;
+  }
+
+  /// Traverse all classes and collect all unique inline union types.
+  Map<String, UnionType> _computeInlineUnions() {
+    final result = <String, UnionType>{};
+    for (final cls in _resolved.classes) {
+      for (final prop in _allProperties(cls)) {
+        final name = _getInlineUnionName(cls.name, prop.name, prop.type);
+        if (name != null) {
+          final inner = prop.type is NullableType
+              ? (prop.type as NullableType).inner
+              : prop.type;
+          if (inner is UnionType) {
+            result[name] = inner;
+          } else if (inner is ListType) {
+            final el = inner.element is NullableType
+                ? (inner.element as NullableType).inner
+                : inner.element;
+            if (el is UnionType) {
+              result[name] = el;
+            }
+          }
+        }
+      }
+    }
+    return result;
+  }
 }

@@ -54,8 +54,8 @@ final class ServerRunner {
 
       return const .new(
         capabilities: .new(
-          positionEncoding: PositionEncodingKind.uTF16,
-          hoverProvider: true,
+          positionEncoding: .uTF16,
+          hoverProvider: .bool(value: true),
           completionProvider: .new(
             triggerCharacters: ['.', ':'],
           ),
@@ -64,7 +64,10 @@ final class ServerRunner {
             openClose: true,
           ),
           workspace: (
-            workspaceFolders: .new(supported: true, changeNotifications: true),
+            workspaceFolders: .new(
+              supported: true,
+              changeNotifications: .bool(value: true),
+            ),
             fileOperations: .new(
               willCreate: .new(
                 filters: [

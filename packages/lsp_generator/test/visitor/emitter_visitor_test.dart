@@ -577,6 +577,41 @@ void main() {
       expect(src, isNot(contains('LSPAny')));
     });
 
+    test('inline scalar union is generated in buildScalarUnions()', () {
+      final state = _stateWith(
+        classes: [
+          _cls(
+            'TextDocumentEdit',
+            properties: [
+              _prop(
+                'edits',
+                const ListType(
+                  element: UnionType(
+                    items: [
+                      DartCoreType(dartName: 'int'),
+                      DartCoreType(dartName: 'String'),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+      final visitor = EmitterVisitor(state);
+      final unionsSrc = _format(visitor.buildScalarUnions());
+      expect(unionsSrc, contains('sealed class TextDocumentEditEditsItem'));
+      expect(unionsSrc, contains(r'TextDocumentEditEditsItem$Int'));
+      expect(unionsSrc, contains(r'TextDocumentEditEditsItem$String'));
+
+      final structSrc = _format(visitor.buildStructures());
+      expect(
+        structSrc,
+        contains('required List<TextDocumentEditEditsItem> edits'),
+      );
+      expect(structSrc, contains('@_TextDocumentEditEditsItemListConverter()'));
+    });
+
     test('buildUnions() integration emits valid Dart', () {
       final file = File('../lsp_specification/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;

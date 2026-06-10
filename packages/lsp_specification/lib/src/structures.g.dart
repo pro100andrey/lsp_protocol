@@ -744,8 +744,22 @@ _SemanticTokensRegistrationOptions _$SemanticTokensRegistrationOptionsFromJson(
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   legend: SemanticTokensLegend.fromJson(json['legend'] as Map<String, dynamic>),
-  range: json['range'],
-  full: json['full'],
+  range:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        SemanticTokensRegistrationOptionsRange
+      >(
+        json['range'],
+        const _SemanticTokensRegistrationOptionsRangeConverter().fromJson,
+      ),
+  full:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        SemanticTokensRegistrationOptionsFull
+      >(
+        json['full'],
+        const _SemanticTokensRegistrationOptionsFullConverter().fromJson,
+      ),
   id: json['id'] as String?,
 );
 
@@ -755,8 +769,22 @@ Map<String, dynamic> _$SemanticTokensRegistrationOptionsToJson(
   'documentSelector': ?instance.documentSelector,
   'workDoneProgress': ?instance.workDoneProgress,
   'legend': instance.legend.toJson(),
-  'range': ?instance.range,
-  'full': ?instance.full,
+  'range':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        SemanticTokensRegistrationOptionsRange
+      >(
+        instance.range,
+        const _SemanticTokensRegistrationOptionsRangeConverter().toJson,
+      ),
+  'full':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        SemanticTokensRegistrationOptionsFull
+      >(
+        instance.full,
+        const _SemanticTokensRegistrationOptionsFullConverter().toJson,
+      ),
   'id': ?instance.id,
 };
 
@@ -1279,7 +1307,10 @@ _InlayHint _$InlayHintFromJson(Map<String, dynamic> json) => _InlayHint(
   textEdits: (json['textEdits'] as List<dynamic>?)
       ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
       .toList(),
-  tooltip: json['tooltip'],
+  tooltip: _$JsonConverterFromJson<Map<String, Object?>, InlayHintTooltip>(
+    json['tooltip'],
+    const _InlayHintTooltipConverter().fromJson,
+  ),
   paddingLeft: json['paddingLeft'] as bool?,
   paddingRight: json['paddingRight'] as bool?,
   data: json['data'],
@@ -1291,7 +1322,10 @@ Map<String, dynamic> _$InlayHintToJson(_InlayHint instance) =>
       'label': instance.label,
       'kind': ?_$InlayHintKindEnumMap[instance.kind],
       'textEdits': ?instance.textEdits?.map((e) => e.toJson()).toList(),
-      'tooltip': ?instance.tooltip,
+      'tooltip': ?_$JsonConverterToJson<Map<String, Object?>, InlayHintTooltip>(
+        instance.tooltip,
+        const _InlayHintTooltipConverter().toJson,
+      ),
       'paddingLeft': ?instance.paddingLeft,
       'paddingRight': ?instance.paddingRight,
       'data': ?instance.data,
@@ -1581,7 +1615,9 @@ Map<String, dynamic> _$InlineCompletionListToJson(
 _InlineCompletionItem _$InlineCompletionItemFromJson(
   Map<String, dynamic> json,
 ) => _InlineCompletionItem(
-  insertText: json['insertText'] as Object,
+  insertText: const _InlineCompletionItemInsertTextConverter().fromJson(
+    json['insertText'] as Map<String, Object?>,
+  ),
   filterText: json['filterText'] as String?,
   range: json['range'] == null
       ? null
@@ -1594,7 +1630,9 @@ _InlineCompletionItem _$InlineCompletionItemFromJson(
 Map<String, dynamic> _$InlineCompletionItemToJson(
   _InlineCompletionItem instance,
 ) => <String, dynamic>{
-  'insertText': instance.insertText,
+  'insertText': const _InlineCompletionItemInsertTextConverter().toJson(
+    instance.insertText,
+  ),
   'filterText': ?instance.filterText,
   'range': ?instance.range?.toJson(),
   'command': ?instance.command?.toJson(),
@@ -2039,7 +2077,14 @@ _CompletionItem _$CompletionItemFromJson(Map<String, dynamic> json) =>
           ?.map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
           .toList(),
       detail: json['detail'] as String?,
-      documentation: json['documentation'],
+      documentation:
+          _$JsonConverterFromJson<
+            Map<String, Object?>,
+            CompletionItemDocumentation
+          >(
+            json['documentation'],
+            const _CompletionItemDocumentationConverter().fromJson,
+          ),
       deprecated: json['deprecated'] as bool?,
       preselect: json['preselect'] as bool?,
       sortText: json['sortText'] as String?,
@@ -2053,7 +2098,11 @@ _CompletionItem _$CompletionItemFromJson(Map<String, dynamic> json) =>
         _$InsertTextModeEnumMap,
         json['insertTextMode'],
       ),
-      textEdit: json['textEdit'],
+      textEdit:
+          _$JsonConverterFromJson<Map<String, Object?>, CompletionItemTextEdit>(
+            json['textEdit'],
+            const _CompletionItemTextEditConverter().fromJson,
+          ),
       textEditText: json['textEditText'] as String?,
       additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
           ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
@@ -2075,7 +2124,11 @@ Map<String, dynamic> _$CompletionItemToJson(
   'kind': ?_$CompletionItemKindEnumMap[instance.kind],
   'tags': ?instance.tags?.map((e) => _$CompletionItemTagEnumMap[e]!).toList(),
   'detail': ?instance.detail,
-  'documentation': ?instance.documentation,
+  'documentation':
+      ?_$JsonConverterToJson<Map<String, Object?>, CompletionItemDocumentation>(
+        instance.documentation,
+        const _CompletionItemDocumentationConverter().toJson,
+      ),
   'deprecated': ?instance.deprecated,
   'preselect': ?instance.preselect,
   'sortText': ?instance.sortText,
@@ -2083,7 +2136,11 @@ Map<String, dynamic> _$CompletionItemToJson(
   'insertText': ?instance.insertText,
   'insertTextFormat': ?_$InsertTextFormatEnumMap[instance.insertTextFormat],
   'insertTextMode': ?_$InsertTextModeEnumMap[instance.insertTextMode],
-  'textEdit': ?instance.textEdit,
+  'textEdit':
+      ?_$JsonConverterToJson<Map<String, Object?>, CompletionItemTextEdit>(
+        instance.textEdit,
+        const _CompletionItemTextEditConverter().toJson,
+      ),
   'textEditText': ?instance.textEditText,
   'additionalTextEdits': ?instance.additionalTextEdits
       ?.map((e) => e.toJson())
@@ -2735,7 +2792,9 @@ _WorkspaceSymbol _$WorkspaceSymbolFromJson(Map<String, dynamic> json) =>
           ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
           .toList(),
       containerName: json['containerName'] as String?,
-      location: json['location'] as Object,
+      location: const _WorkspaceSymbolLocationConverter().fromJson(
+        json['location'] as Map<String, Object?>,
+      ),
       data: json['data'],
     );
 
@@ -2745,7 +2804,9 @@ Map<String, dynamic> _$WorkspaceSymbolToJson(_WorkspaceSymbol instance) =>
       'kind': _$SymbolKindEnumMap[instance.kind]!,
       'tags': ?instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
       'containerName': ?instance.containerName,
-      'location': instance.location,
+      'location': const _WorkspaceSymbolLocationConverter().toJson(
+        instance.location,
+      ),
       'data': ?instance.data,
     };
 
@@ -3241,10 +3302,14 @@ Map<String, dynamic> _$LogTraceParamsToJson(_LogTraceParams instance) =>
     };
 
 _CancelParams _$CancelParamsFromJson(Map<String, dynamic> json) =>
-    _CancelParams(id: json['id'] as Object);
+    _CancelParams(
+      id: const _CancelParamsIdConverter().fromJson(json['id'] as Object),
+    );
 
 Map<String, dynamic> _$CancelParamsToJson(_CancelParams instance) =>
-    <String, dynamic>{'id': instance.id};
+    <String, dynamic>{
+      'id': const _CancelParamsIdConverter().toJson(instance.id),
+    };
 
 _ProgressParams _$ProgressParamsFromJson(Map<String, dynamic> json) =>
     _ProgressParams(
@@ -3472,8 +3537,16 @@ _SemanticTokensOptions _$SemanticTokensOptionsFromJson(
 ) => _SemanticTokensOptions(
   workDoneProgress: json['workDoneProgress'] as bool?,
   legend: SemanticTokensLegend.fromJson(json['legend'] as Map<String, dynamic>),
-  range: json['range'],
-  full: json['full'],
+  range:
+      _$JsonConverterFromJson<Map<String, Object?>, SemanticTokensOptionsRange>(
+        json['range'],
+        const _SemanticTokensOptionsRangeConverter().fromJson,
+      ),
+  full:
+      _$JsonConverterFromJson<Map<String, Object?>, SemanticTokensOptionsFull>(
+        json['full'],
+        const _SemanticTokensOptionsFullConverter().fromJson,
+      ),
 );
 
 Map<String, dynamic> _$SemanticTokensOptionsToJson(
@@ -3481,8 +3554,16 @@ Map<String, dynamic> _$SemanticTokensOptionsToJson(
 ) => <String, dynamic>{
   'workDoneProgress': ?instance.workDoneProgress,
   'legend': instance.legend.toJson(),
-  'range': ?instance.range,
-  'full': ?instance.full,
+  'range':
+      ?_$JsonConverterToJson<Map<String, Object?>, SemanticTokensOptionsRange>(
+        instance.range,
+        const _SemanticTokensOptionsRangeConverter().toJson,
+      ),
+  'full':
+      ?_$JsonConverterToJson<Map<String, Object?>, SemanticTokensOptionsFull>(
+        instance.full,
+        const _SemanticTokensOptionsFullConverter().toJson,
+      ),
 };
 
 _SemanticTokensEdit _$SemanticTokensEditFromJson(Map<String, dynamic> json) =>
@@ -3522,13 +3603,17 @@ _TextDocumentEdit _$TextDocumentEditFromJson(Map<String, dynamic> json) =>
       textDocument: OptionalVersionedTextDocumentIdentifier.fromJson(
         json['textDocument'] as Map<String, dynamic>,
       ),
-      edits: (json['edits'] as List<dynamic>).map((e) => e as Object).toList(),
+      edits: const _TextDocumentEditEditsItemListConverter().fromJson(
+        json['edits'] as List,
+      ),
     );
 
 Map<String, dynamic> _$TextDocumentEditToJson(_TextDocumentEdit instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
-      'edits': instance.edits,
+      'edits': const _TextDocumentEditEditsItemListConverter().toJson(
+        instance.edits,
+      ),
     };
 
 _CreateFile _$CreateFileFromJson(Map<String, dynamic> json) => _CreateFile(
@@ -3700,25 +3785,35 @@ _InlineValueOptions _$InlineValueOptionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$InlineValueOptionsToJson(_InlineValueOptions instance) =>
     <String, dynamic>{'workDoneProgress': ?instance.workDoneProgress};
 
-_InlayHintLabelPart _$InlayHintLabelPartFromJson(Map<String, dynamic> json) =>
-    _InlayHintLabelPart(
-      value: json['value'] as String,
-      tooltip: json['tooltip'],
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, dynamic>),
-      command: json['command'] == null
-          ? null
-          : Command.fromJson(json['command'] as Map<String, dynamic>),
-    );
+_InlayHintLabelPart _$InlayHintLabelPartFromJson(
+  Map<String, dynamic> json,
+) => _InlayHintLabelPart(
+  value: json['value'] as String,
+  tooltip:
+      _$JsonConverterFromJson<Map<String, Object?>, InlayHintLabelPartTooltip>(
+        json['tooltip'],
+        const _InlayHintLabelPartTooltipConverter().fromJson,
+      ),
+  location: json['location'] == null
+      ? null
+      : Location.fromJson(json['location'] as Map<String, dynamic>),
+  command: json['command'] == null
+      ? null
+      : Command.fromJson(json['command'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$InlayHintLabelPartToJson(_InlayHintLabelPart instance) =>
-    <String, dynamic>{
-      'value': instance.value,
-      'tooltip': ?instance.tooltip,
-      'location': ?instance.location?.toJson(),
-      'command': ?instance.command?.toJson(),
-    };
+Map<String, dynamic> _$InlayHintLabelPartToJson(
+  _InlayHintLabelPart instance,
+) => <String, dynamic>{
+  'value': instance.value,
+  'tooltip':
+      ?_$JsonConverterToJson<Map<String, Object?>, InlayHintLabelPartTooltip>(
+        instance.tooltip,
+        const _InlayHintLabelPartTooltipConverter().toJson,
+      ),
+  'location': ?instance.location?.toJson(),
+  'command': ?instance.command?.toJson(),
+};
 
 _MarkupContent _$MarkupContentFromJson(Map<String, dynamic> json) =>
     _MarkupContent(
@@ -4035,86 +4130,179 @@ Map<String, dynamic> _$WorkspaceFoldersInitializeParamsToJson(
       .toList(),
 };
 
-_ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) =>
-    _ServerCapabilities(
-      positionEncoding: json['positionEncoding'] == null
-          ? null
-          : PositionEncodingKind.fromJson(json['positionEncoding']),
-      textDocumentSync: json['textDocumentSync'],
-      notebookDocumentSync: json['notebookDocumentSync'],
-      completionProvider: json['completionProvider'] == null
-          ? null
-          : CompletionOptions.fromJson(
-              json['completionProvider'] as Map<String, dynamic>,
-            ),
-      hoverProvider: json['hoverProvider'],
-      signatureHelpProvider: json['signatureHelpProvider'] == null
-          ? null
-          : SignatureHelpOptions.fromJson(
-              json['signatureHelpProvider'] as Map<String, dynamic>,
-            ),
-      declarationProvider: json['declarationProvider'],
-      definitionProvider: json['definitionProvider'],
-      typeDefinitionProvider: json['typeDefinitionProvider'],
-      implementationProvider: json['implementationProvider'],
-      referencesProvider: json['referencesProvider'],
-      documentHighlightProvider: json['documentHighlightProvider'],
-      documentSymbolProvider: json['documentSymbolProvider'],
-      codeActionProvider: json['codeActionProvider'],
-      codeLensProvider: json['codeLensProvider'] == null
-          ? null
-          : CodeLensOptions.fromJson(
-              json['codeLensProvider'] as Map<String, dynamic>,
-            ),
-      documentLinkProvider: json['documentLinkProvider'] == null
-          ? null
-          : DocumentLinkOptions.fromJson(
-              json['documentLinkProvider'] as Map<String, dynamic>,
-            ),
-      colorProvider: json['colorProvider'],
-      workspaceSymbolProvider: json['workspaceSymbolProvider'],
-      documentFormattingProvider: json['documentFormattingProvider'],
-      documentRangeFormattingProvider: json['documentRangeFormattingProvider'],
-      documentOnTypeFormattingProvider:
-          json['documentOnTypeFormattingProvider'] == null
-          ? null
-          : DocumentOnTypeFormattingOptions.fromJson(
-              json['documentOnTypeFormattingProvider'] as Map<String, dynamic>,
-            ),
-      renameProvider: json['renameProvider'],
-      foldingRangeProvider: json['foldingRangeProvider'],
-      selectionRangeProvider: json['selectionRangeProvider'],
-      executeCommandProvider: json['executeCommandProvider'] == null
-          ? null
-          : ExecuteCommandOptions.fromJson(
-              json['executeCommandProvider'] as Map<String, dynamic>,
-            ),
-      callHierarchyProvider: json['callHierarchyProvider'],
-      linkedEditingRangeProvider: json['linkedEditingRangeProvider'],
-      semanticTokensProvider: json['semanticTokensProvider'],
-      monikerProvider: json['monikerProvider'],
-      typeHierarchyProvider: json['typeHierarchyProvider'],
-      inlineValueProvider: json['inlineValueProvider'],
-      inlayHintProvider: json['inlayHintProvider'],
-      diagnosticProvider: json['diagnosticProvider'],
-      inlineCompletionProvider: json['inlineCompletionProvider'],
-      workspace: _$recordConvertNullable(
-        json['workspace'],
-        ($jsonValue) => (
-          fileOperations: $jsonValue['fileOperations'] == null
-              ? null
-              : FileOperationOptions.fromJson(
-                  $jsonValue['fileOperations'] as Map<String, dynamic>,
-                ),
-          workspaceFolders: $jsonValue['workspaceFolders'] == null
-              ? null
-              : WorkspaceFoldersServerCapabilities.fromJson(
-                  $jsonValue['workspaceFolders'] as Map<String, dynamic>,
-                ),
+_ServerCapabilities _$ServerCapabilitiesFromJson(
+  Map<String, dynamic> json,
+) => _ServerCapabilities(
+  positionEncoding: json['positionEncoding'] == null
+      ? null
+      : PositionEncodingKind.fromJson(json['positionEncoding']),
+  textDocumentSync: json['textDocumentSync'],
+  notebookDocumentSync: json['notebookDocumentSync'],
+  completionProvider: json['completionProvider'] == null
+      ? null
+      : CompletionOptions.fromJson(
+          json['completionProvider'] as Map<String, dynamic>,
         ),
+  hoverProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesHoverProvider
+      >(
+        json['hoverProvider'],
+        const _ServerCapabilitiesHoverProviderConverter().fromJson,
       ),
-      experimental: json['experimental'],
-    );
+  signatureHelpProvider: json['signatureHelpProvider'] == null
+      ? null
+      : SignatureHelpOptions.fromJson(
+          json['signatureHelpProvider'] as Map<String, dynamic>,
+        ),
+  declarationProvider: json['declarationProvider'],
+  definitionProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDefinitionProvider
+      >(
+        json['definitionProvider'],
+        const _ServerCapabilitiesDefinitionProviderConverter().fromJson,
+      ),
+  typeDefinitionProvider: json['typeDefinitionProvider'],
+  implementationProvider: json['implementationProvider'],
+  referencesProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesReferencesProvider
+      >(
+        json['referencesProvider'],
+        const _ServerCapabilitiesReferencesProviderConverter().fromJson,
+      ),
+  documentHighlightProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDocumentHighlightProvider
+      >(
+        json['documentHighlightProvider'],
+        const _ServerCapabilitiesDocumentHighlightProviderConverter().fromJson,
+      ),
+  documentSymbolProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDocumentSymbolProvider
+      >(
+        json['documentSymbolProvider'],
+        const _ServerCapabilitiesDocumentSymbolProviderConverter().fromJson,
+      ),
+  codeActionProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesCodeActionProvider
+      >(
+        json['codeActionProvider'],
+        const _ServerCapabilitiesCodeActionProviderConverter().fromJson,
+      ),
+  codeLensProvider: json['codeLensProvider'] == null
+      ? null
+      : CodeLensOptions.fromJson(
+          json['codeLensProvider'] as Map<String, dynamic>,
+        ),
+  documentLinkProvider: json['documentLinkProvider'] == null
+      ? null
+      : DocumentLinkOptions.fromJson(
+          json['documentLinkProvider'] as Map<String, dynamic>,
+        ),
+  colorProvider: json['colorProvider'],
+  workspaceSymbolProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesWorkspaceSymbolProvider
+      >(
+        json['workspaceSymbolProvider'],
+        const _ServerCapabilitiesWorkspaceSymbolProviderConverter().fromJson,
+      ),
+  documentFormattingProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDocumentFormattingProvider
+      >(
+        json['documentFormattingProvider'],
+        const _ServerCapabilitiesDocumentFormattingProviderConverter().fromJson,
+      ),
+  documentRangeFormattingProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDocumentRangeFormattingProvider
+      >(
+        json['documentRangeFormattingProvider'],
+        const _ServerCapabilitiesDocumentRangeFormattingProviderConverter()
+            .fromJson,
+      ),
+  documentOnTypeFormattingProvider:
+      json['documentOnTypeFormattingProvider'] == null
+      ? null
+      : DocumentOnTypeFormattingOptions.fromJson(
+          json['documentOnTypeFormattingProvider'] as Map<String, dynamic>,
+        ),
+  renameProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesRenameProvider
+      >(
+        json['renameProvider'],
+        const _ServerCapabilitiesRenameProviderConverter().fromJson,
+      ),
+  foldingRangeProvider: json['foldingRangeProvider'],
+  selectionRangeProvider: json['selectionRangeProvider'],
+  executeCommandProvider: json['executeCommandProvider'] == null
+      ? null
+      : ExecuteCommandOptions.fromJson(
+          json['executeCommandProvider'] as Map<String, dynamic>,
+        ),
+  callHierarchyProvider: json['callHierarchyProvider'],
+  linkedEditingRangeProvider: json['linkedEditingRangeProvider'],
+  semanticTokensProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesSemanticTokensProvider
+      >(
+        json['semanticTokensProvider'],
+        const _ServerCapabilitiesSemanticTokensProviderConverter().fromJson,
+      ),
+  monikerProvider: json['monikerProvider'],
+  typeHierarchyProvider: json['typeHierarchyProvider'],
+  inlineValueProvider: json['inlineValueProvider'],
+  inlayHintProvider: json['inlayHintProvider'],
+  diagnosticProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDiagnosticProvider
+      >(
+        json['diagnosticProvider'],
+        const _ServerCapabilitiesDiagnosticProviderConverter().fromJson,
+      ),
+  inlineCompletionProvider:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ServerCapabilitiesInlineCompletionProvider
+      >(
+        json['inlineCompletionProvider'],
+        const _ServerCapabilitiesInlineCompletionProviderConverter().fromJson,
+      ),
+  workspace: _$recordConvertNullable(
+    json['workspace'],
+    ($jsonValue) => (
+      fileOperations: $jsonValue['fileOperations'] == null
+          ? null
+          : FileOperationOptions.fromJson(
+              $jsonValue['fileOperations'] as Map<String, dynamic>,
+            ),
+      workspaceFolders: $jsonValue['workspaceFolders'] == null
+          ? null
+          : WorkspaceFoldersServerCapabilities.fromJson(
+              $jsonValue['workspaceFolders'] as Map<String, dynamic>,
+            ),
+    ),
+  ),
+  experimental: json['experimental'],
+);
 
 Map<String, dynamic> _$ServerCapabilitiesToJson(
   _ServerCapabilities instance,
@@ -4123,37 +4311,129 @@ Map<String, dynamic> _$ServerCapabilitiesToJson(
   'textDocumentSync': ?instance.textDocumentSync,
   'notebookDocumentSync': ?instance.notebookDocumentSync,
   'completionProvider': ?instance.completionProvider?.toJson(),
-  'hoverProvider': ?instance.hoverProvider,
+  'hoverProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesHoverProvider
+      >(
+        instance.hoverProvider,
+        const _ServerCapabilitiesHoverProviderConverter().toJson,
+      ),
   'signatureHelpProvider': ?instance.signatureHelpProvider?.toJson(),
   'declarationProvider': ?instance.declarationProvider,
-  'definitionProvider': ?instance.definitionProvider,
+  'definitionProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDefinitionProvider
+      >(
+        instance.definitionProvider,
+        const _ServerCapabilitiesDefinitionProviderConverter().toJson,
+      ),
   'typeDefinitionProvider': ?instance.typeDefinitionProvider,
   'implementationProvider': ?instance.implementationProvider,
-  'referencesProvider': ?instance.referencesProvider,
-  'documentHighlightProvider': ?instance.documentHighlightProvider,
-  'documentSymbolProvider': ?instance.documentSymbolProvider,
-  'codeActionProvider': ?instance.codeActionProvider,
+  'referencesProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesReferencesProvider
+      >(
+        instance.referencesProvider,
+        const _ServerCapabilitiesReferencesProviderConverter().toJson,
+      ),
+  'documentHighlightProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDocumentHighlightProvider
+      >(
+        instance.documentHighlightProvider,
+        const _ServerCapabilitiesDocumentHighlightProviderConverter().toJson,
+      ),
+  'documentSymbolProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDocumentSymbolProvider
+      >(
+        instance.documentSymbolProvider,
+        const _ServerCapabilitiesDocumentSymbolProviderConverter().toJson,
+      ),
+  'codeActionProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesCodeActionProvider
+      >(
+        instance.codeActionProvider,
+        const _ServerCapabilitiesCodeActionProviderConverter().toJson,
+      ),
   'codeLensProvider': ?instance.codeLensProvider?.toJson(),
   'documentLinkProvider': ?instance.documentLinkProvider?.toJson(),
   'colorProvider': ?instance.colorProvider,
-  'workspaceSymbolProvider': ?instance.workspaceSymbolProvider,
-  'documentFormattingProvider': ?instance.documentFormattingProvider,
-  'documentRangeFormattingProvider': ?instance.documentRangeFormattingProvider,
+  'workspaceSymbolProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesWorkspaceSymbolProvider
+      >(
+        instance.workspaceSymbolProvider,
+        const _ServerCapabilitiesWorkspaceSymbolProviderConverter().toJson,
+      ),
+  'documentFormattingProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDocumentFormattingProvider
+      >(
+        instance.documentFormattingProvider,
+        const _ServerCapabilitiesDocumentFormattingProviderConverter().toJson,
+      ),
+  'documentRangeFormattingProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDocumentRangeFormattingProvider
+      >(
+        instance.documentRangeFormattingProvider,
+        const _ServerCapabilitiesDocumentRangeFormattingProviderConverter()
+            .toJson,
+      ),
   'documentOnTypeFormattingProvider': ?instance.documentOnTypeFormattingProvider
       ?.toJson(),
-  'renameProvider': ?instance.renameProvider,
+  'renameProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesRenameProvider
+      >(
+        instance.renameProvider,
+        const _ServerCapabilitiesRenameProviderConverter().toJson,
+      ),
   'foldingRangeProvider': ?instance.foldingRangeProvider,
   'selectionRangeProvider': ?instance.selectionRangeProvider,
   'executeCommandProvider': ?instance.executeCommandProvider?.toJson(),
   'callHierarchyProvider': ?instance.callHierarchyProvider,
   'linkedEditingRangeProvider': ?instance.linkedEditingRangeProvider,
-  'semanticTokensProvider': ?instance.semanticTokensProvider,
+  'semanticTokensProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesSemanticTokensProvider
+      >(
+        instance.semanticTokensProvider,
+        const _ServerCapabilitiesSemanticTokensProviderConverter().toJson,
+      ),
   'monikerProvider': ?instance.monikerProvider,
   'typeHierarchyProvider': ?instance.typeHierarchyProvider,
   'inlineValueProvider': ?instance.inlineValueProvider,
   'inlayHintProvider': ?instance.inlayHintProvider,
-  'diagnosticProvider': ?instance.diagnosticProvider,
-  'inlineCompletionProvider': ?instance.inlineCompletionProvider,
+  'diagnosticProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesDiagnosticProvider
+      >(
+        instance.diagnosticProvider,
+        const _ServerCapabilitiesDiagnosticProviderConverter().toJson,
+      ),
+  'inlineCompletionProvider':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ServerCapabilitiesInlineCompletionProvider
+      >(
+        instance.inlineCompletionProvider,
+        const _ServerCapabilitiesInlineCompletionProviderConverter().toJson,
+      ),
   'workspace': ?instance.workspace == null
       ? null
       : <String, dynamic>{
@@ -4212,7 +4492,10 @@ Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
 _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) => _Diagnostic(
   range: Range.fromJson(json['range'] as Map<String, dynamic>),
   severity: $enumDecodeNullable(_$DiagnosticSeverityEnumMap, json['severity']),
-  code: json['code'],
+  code: _$JsonConverterFromJson<Object, DiagnosticCode>(
+    json['code'],
+    const _DiagnosticCodeConverter().fromJson,
+  ),
   codeDescription: json['codeDescription'] == null
       ? null
       : CodeDescription.fromJson(
@@ -4235,7 +4518,10 @@ Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
     <String, dynamic>{
       'range': instance.range.toJson(),
       'severity': ?_$DiagnosticSeverityEnumMap[instance.severity],
-      'code': ?instance.code,
+      'code': ?_$JsonConverterToJson<Object, DiagnosticCode>(
+        instance.code,
+        const _DiagnosticCodeConverter().toJson,
+      ),
       'codeDescription': ?instance.codeDescription?.toJson(),
       'source': ?instance.source,
       'message': instance.message,
@@ -4379,7 +4665,14 @@ _SignatureInformation _$SignatureInformationFromJson(
   Map<String, dynamic> json,
 ) => _SignatureInformation(
   label: json['label'] as String,
-  documentation: json['documentation'],
+  documentation:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        SignatureInformationDocumentation
+      >(
+        json['documentation'],
+        const _SignatureInformationDocumentationConverter().fromJson,
+      ),
   parameters: (json['parameters'] as List<dynamic>?)
       ?.map((e) => ParameterInformation.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -4390,7 +4683,14 @@ Map<String, dynamic> _$SignatureInformationToJson(
   _SignatureInformation instance,
 ) => <String, dynamic>{
   'label': instance.label,
-  'documentation': ?instance.documentation,
+  'documentation':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        SignatureInformationDocumentation
+      >(
+        instance.documentation,
+        const _SignatureInformationDocumentationConverter().toJson,
+      ),
   'parameters': ?instance.parameters?.map((e) => e.toJson()).toList(),
   'activeParameter': ?instance.activeParameter,
 };
@@ -4908,7 +5208,11 @@ _TextDocumentSyncOptions _$TextDocumentSyncOptionsFromJson(
   change: $enumDecodeNullable(_$TextDocumentSyncKindEnumMap, json['change']),
   willSave: json['willSave'] as bool?,
   willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
-  save: json['save'],
+  save:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        TextDocumentSyncOptionsSave
+      >(json['save'], const _TextDocumentSyncOptionsSaveConverter().fromJson),
 );
 
 Map<String, dynamic> _$TextDocumentSyncOptionsToJson(
@@ -4918,7 +5222,11 @@ Map<String, dynamic> _$TextDocumentSyncOptionsToJson(
   'change': ?_$TextDocumentSyncKindEnumMap[instance.change],
   'willSave': ?instance.willSave,
   'willSaveWaitUntil': ?instance.willSaveWaitUntil,
-  'save': ?instance.save,
+  'save':
+      ?_$JsonConverterToJson<Map<String, Object?>, TextDocumentSyncOptionsSave>(
+        instance.save,
+        const _TextDocumentSyncOptionsSaveConverter().toJson,
+      ),
 };
 
 _NotebookDocumentSyncOptions _$NotebookDocumentSyncOptionsFromJson(
@@ -4956,17 +5264,34 @@ Map<String, dynamic> _$NotebookDocumentSyncRegistrationOptionsToJson(
 };
 
 _WorkspaceFoldersServerCapabilities
-_$WorkspaceFoldersServerCapabilitiesFromJson(Map<String, dynamic> json) =>
-    _WorkspaceFoldersServerCapabilities(
-      supported: json['supported'] as bool?,
-      changeNotifications: json['changeNotifications'],
-    );
+_$WorkspaceFoldersServerCapabilitiesFromJson(
+  Map<String, dynamic> json,
+) => _WorkspaceFoldersServerCapabilities(
+  supported: json['supported'] as bool?,
+  changeNotifications:
+      _$JsonConverterFromJson<
+        Object,
+        WorkspaceFoldersServerCapabilitiesChangeNotifications
+      >(
+        json['changeNotifications'],
+        const _WorkspaceFoldersServerCapabilitiesChangeNotificationsConverter()
+            .fromJson,
+      ),
+);
 
 Map<String, dynamic> _$WorkspaceFoldersServerCapabilitiesToJson(
   _WorkspaceFoldersServerCapabilities instance,
 ) => <String, dynamic>{
   'supported': ?instance.supported,
-  'changeNotifications': ?instance.changeNotifications,
+  'changeNotifications':
+      ?_$JsonConverterToJson<
+        Object,
+        WorkspaceFoldersServerCapabilitiesChangeNotifications
+      >(
+        instance.changeNotifications,
+        const _WorkspaceFoldersServerCapabilitiesChangeNotificationsConverter()
+            .toJson,
+      ),
 };
 
 _FileOperationOptions _$FileOperationOptionsFromJson(
@@ -5038,15 +5363,31 @@ Map<String, dynamic> _$DiagnosticRelatedInformationToJson(
 _ParameterInformation _$ParameterInformationFromJson(
   Map<String, dynamic> json,
 ) => _ParameterInformation(
-  label: json['label'] as Object,
-  documentation: json['documentation'],
+  label: const _ParameterInformationLabelConverter().fromJson(
+    json['label'] as Object,
+  ),
+  documentation:
+      _$JsonConverterFromJson<
+        Map<String, Object?>,
+        ParameterInformationDocumentation
+      >(
+        json['documentation'],
+        const _ParameterInformationDocumentationConverter().fromJson,
+      ),
 );
 
 Map<String, dynamic> _$ParameterInformationToJson(
   _ParameterInformation instance,
 ) => <String, dynamic>{
-  'label': instance.label,
-  'documentation': ?instance.documentation,
+  'label': const _ParameterInformationLabelConverter().toJson(instance.label),
+  'documentation':
+      ?_$JsonConverterToJson<
+        Map<String, Object?>,
+        ParameterInformationDocumentation
+      >(
+        instance.documentation,
+        const _ParameterInformationDocumentationConverter().toJson,
+      ),
 };
 
 _NotebookCellTextDocumentFilter _$NotebookCellTextDocumentFilterFromJson(
@@ -5448,12 +5789,18 @@ Map<String, dynamic> _$GeneralClientCapabilitiesToJson(
 
 _RelativePattern _$RelativePatternFromJson(Map<String, dynamic> json) =>
     _RelativePattern(
-      baseUri: json['baseUri'] as Object,
+      baseUri: const _RelativePatternBaseUriConverter().fromJson(
+        json['baseUri'] as Map<String, Object?>,
+      ),
       pattern: json['pattern'] as String,
     );
 
-Map<String, dynamic> _$RelativePatternToJson(_RelativePattern instance) =>
-    <String, dynamic>{'baseUri': instance.baseUri, 'pattern': instance.pattern};
+Map<String, dynamic> _$RelativePatternToJson(
+  _RelativePattern instance,
+) => <String, dynamic>{
+  'baseUri': const _RelativePatternBaseUriConverter().toJson(instance.baseUri),
+  'pattern': instance.pattern,
+};
 
 _WorkspaceEditClientCapabilities _$WorkspaceEditClientCapabilitiesFromJson(
   Map<String, dynamic> json,

@@ -687,12 +687,14 @@ abstract class SemanticTokensRegistrationOptions
     /// document.
     ///
     /// Type: bool | Object
-    Object? range,
+    @_SemanticTokensRegistrationOptionsRangeConverter()
+    SemanticTokensRegistrationOptionsRange? range,
 
     /// Server supports providing semantic tokens for a full document.
     ///
     /// Type: bool | Object
-    Object? full,
+    @_SemanticTokensRegistrationOptionsFullConverter()
+    SemanticTokensRegistrationOptionsFull? full,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1265,7 +1267,7 @@ abstract class InlayHint with _$InlayHint {
     /// The tooltip text when you hover over this item.
     ///
     /// Type: String | MarkupContent
-    Object? tooltip,
+    @_InlayHintTooltipConverter() InlayHintTooltip? tooltip,
 
     /// Render padding before the hint.
     ///
@@ -1598,7 +1600,8 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
     /// The text to replace the range with. Must be set.
     ///
     /// Type: String | StringValue
-    required Object insertText,
+    @_InlineCompletionItemInsertTextConverter()
+    required InlineCompletionItemInsertText insertText,
 
     /// A text that is used to decide if this inline completion should be shown.
     /// When `falsy` the [InlineCompletionItem.insertText] is used.
@@ -2071,7 +2074,8 @@ abstract class CompletionItem with _$CompletionItem {
     /// A human-readable string that represents a doc-comment.
     ///
     /// Type: String | MarkupContent
-    Object? documentation,
+    @_CompletionItemDocumentationConverter()
+    CompletionItemDocumentation? documentation,
 
     /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
     @Deprecated('Use `tags` instead.') bool? deprecated,
@@ -2136,7 +2140,7 @@ abstract class CompletionItem with _$CompletionItem {
     /// additional type `InsertReplaceEdit`
     ///
     /// Type: TextEdit | InsertReplaceEdit
-    Object? textEdit,
+    @_CompletionItemTextEditConverter() CompletionItemTextEdit? textEdit,
 
     /// The edit text used if the completion item is part of a CompletionList
     /// and CompletionList defines an item default for the text edit range.
@@ -2826,7 +2830,8 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     /// See SymbolInformation#location for more details.
     ///
     /// Type: Location | Object
-    required Object location,
+    @_WorkspaceSymbolLocationConverter()
+    required WorkspaceSymbolLocation location,
 
     /// A data entry field that is preserved on a workspace symbol between a
     /// workspace symbol request and a workspace symbol resolve request.
@@ -3367,7 +3372,7 @@ abstract class CancelParams with _$CancelParams {
     /// The request id to cancel.
     ///
     /// Type: int | String
-    required Object id,
+    @_CancelParamsIdConverter() required CancelParamsId id,
   }) = _CancelParams;
 
   factory CancelParams.fromJson(Map<String, dynamic> json) =>
@@ -3684,12 +3689,12 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
     /// document.
     ///
     /// Type: bool | Object
-    Object? range,
+    @_SemanticTokensOptionsRangeConverter() SemanticTokensOptionsRange? range,
 
     /// Server supports providing semantic tokens for a full document.
     ///
     /// Type: bool | Object
-    Object? full,
+    @_SemanticTokensOptionsFullConverter() SemanticTokensOptionsFull? full,
   }) = _SemanticTokensOptions;
 
   factory SemanticTokensOptions.fromJson(Map<String, dynamic> json) =>
@@ -3752,7 +3757,8 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
     ///
     /// - support for AnnotatedTextEdit. This is guarded using a client
     /// capability.
-    required List<Object> edits,
+    @_TextDocumentEditEditsItemListConverter()
+    required List<TextDocumentEditEditsItem> edits,
   }) = _TextDocumentEdit;
 
   factory TextDocumentEdit.fromJson(Map<String, dynamic> json) =>
@@ -4024,7 +4030,7 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     /// property late using the resolve request.
     ///
     /// Type: String | MarkupContent
-    Object? tooltip,
+    @_InlayHintLabelPartTooltipConverter() InlayHintLabelPartTooltip? tooltip,
 
     /// An optional source code location that represents this label part.
     ///
@@ -4492,7 +4498,8 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// The server provides hover support.
     ///
     /// Type: bool | HoverOptions
-    Object? hoverProvider,
+    @_ServerCapabilitiesHoverProviderConverter()
+    ServerCapabilitiesHoverProvider? hoverProvider,
 
     /// The server provides signature help support.
     SignatureHelpOptions? signatureHelpProvider,
@@ -4505,7 +4512,8 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// The server provides goto definition support.
     ///
     /// Type: bool | DefinitionOptions
-    Object? definitionProvider,
+    @_ServerCapabilitiesDefinitionProviderConverter()
+    ServerCapabilitiesDefinitionProvider? definitionProvider,
 
     /// The server provides Goto Type Definition support.
     ///
@@ -4520,24 +4528,28 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// The server provides find references support.
     ///
     /// Type: bool | ReferenceOptions
-    Object? referencesProvider,
+    @_ServerCapabilitiesReferencesProviderConverter()
+    ServerCapabilitiesReferencesProvider? referencesProvider,
 
     /// The server provides document highlight support.
     ///
     /// Type: bool | DocumentHighlightOptions
-    Object? documentHighlightProvider,
+    @_ServerCapabilitiesDocumentHighlightProviderConverter()
+    ServerCapabilitiesDocumentHighlightProvider? documentHighlightProvider,
 
     /// The server provides document symbol support.
     ///
     /// Type: bool | DocumentSymbolOptions
-    Object? documentSymbolProvider,
+    @_ServerCapabilitiesDocumentSymbolProviderConverter()
+    ServerCapabilitiesDocumentSymbolProvider? documentSymbolProvider,
 
     /// The server provides code actions. CodeActionOptions may only be
     /// specified if the client states that it supports
     /// `codeActionLiteralSupport` in its initial `initialize` request.
     ///
     /// Type: bool | CodeActionOptions
-    Object? codeActionProvider,
+    @_ServerCapabilitiesCodeActionProviderConverter()
+    ServerCapabilitiesCodeActionProvider? codeActionProvider,
 
     /// The server provides code lens.
     CodeLensOptions? codeLensProvider,
@@ -4553,17 +4565,21 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// The server provides workspace symbol support.
     ///
     /// Type: bool | WorkspaceSymbolOptions
-    Object? workspaceSymbolProvider,
+    @_ServerCapabilitiesWorkspaceSymbolProviderConverter()
+    ServerCapabilitiesWorkspaceSymbolProvider? workspaceSymbolProvider,
 
     /// The server provides document formatting.
     ///
     /// Type: bool | DocumentFormattingOptions
-    Object? documentFormattingProvider,
+    @_ServerCapabilitiesDocumentFormattingProviderConverter()
+    ServerCapabilitiesDocumentFormattingProvider? documentFormattingProvider,
 
     /// The server provides document range formatting.
     ///
     /// Type: bool | DocumentRangeFormattingOptions
-    Object? documentRangeFormattingProvider,
+    @_ServerCapabilitiesDocumentRangeFormattingProviderConverter()
+    ServerCapabilitiesDocumentRangeFormattingProvider?
+    documentRangeFormattingProvider,
 
     /// The server provides document formatting on typing.
     DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,
@@ -4573,7 +4589,8 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// `initialize` request.
     ///
     /// Type: bool | RenameOptions
-    Object? renameProvider,
+    @_ServerCapabilitiesRenameProviderConverter()
+    ServerCapabilitiesRenameProvider? renameProvider,
 
     /// The server provides folding provider support.
     ///
@@ -4601,7 +4618,8 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// The server provides semantic tokens support.
     ///
     /// Type: SemanticTokensOptions | SemanticTokensRegistrationOptions
-    Object? semanticTokensProvider,
+    @_ServerCapabilitiesSemanticTokensProviderConverter()
+    ServerCapabilitiesSemanticTokensProvider? semanticTokensProvider,
 
     /// The server provides moniker support.
     ///
@@ -4626,12 +4644,14 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// The server has support for pull model diagnostics.
     ///
     /// Type: DiagnosticOptions | DiagnosticRegistrationOptions
-    Object? diagnosticProvider,
+    @_ServerCapabilitiesDiagnosticProviderConverter()
+    ServerCapabilitiesDiagnosticProvider? diagnosticProvider,
 
     /// Inline completion options used during static registration.
     ///
     /// Type: bool | InlineCompletionOptions
-    Object? inlineCompletionProvider,
+    @_ServerCapabilitiesInlineCompletionProviderConverter()
+    ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider,
 
     /// Workspace specific server capabilities.
     ({
@@ -4723,7 +4743,7 @@ abstract class Diagnostic with _$Diagnostic {
     /// The diagnostic's code, which usually appear in the user interface.
     ///
     /// Type: int | String
-    Object? code,
+    @_DiagnosticCodeConverter() DiagnosticCode? code,
 
     /// An optional property to describe the error code. Requires the code field
     /// (above) to be present/not null.
@@ -4907,7 +4927,8 @@ abstract class SignatureInformation with _$SignatureInformation {
     /// UI but can be omitted.
     ///
     /// Type: String | MarkupContent
-    Object? documentation,
+    @_SignatureInformationDocumentationConverter()
+    SignatureInformationDocumentation? documentation,
 
     /// The parameters of this signature.
     List<ParameterInformation>? parameters,
@@ -5538,7 +5559,7 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
     /// notification should not be sent.
     ///
     /// Type: bool | SaveOptions
-    Object? save,
+    @_TextDocumentSyncOptionsSaveConverter() TextDocumentSyncOptionsSave? save,
   }) = _TextDocumentSyncOptions;
 
   factory TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
@@ -5610,7 +5631,8 @@ abstract class WorkspaceFoldersServerCapabilities
     /// request.
     ///
     /// Type: String | bool
-    Object? changeNotifications,
+    @_WorkspaceFoldersServerCapabilitiesChangeNotificationsConverter()
+    WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications,
   }) = _WorkspaceFoldersServerCapabilities;
 
   factory WorkspaceFoldersServerCapabilities.fromJson(
@@ -5696,13 +5718,15 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// label part in the `SignatureInformation.label`.
     ///
     /// Type: String | (int, int)
-    required Object label,
+    @_ParameterInformationLabelConverter()
+    required ParameterInformationLabel label,
 
     /// The human-readable doc-comment of this parameter. Will be shown in the
     /// UI but can be omitted.
     ///
     /// Type: String | MarkupContent
-    Object? documentation,
+    @_ParameterInformationDocumentationConverter()
+    ParameterInformationDocumentation? documentation,
   }) = _ParameterInformation;
 
   factory ParameterInformation.fromJson(Map<String, dynamic> json) =>
@@ -6022,7 +6046,7 @@ abstract class RelativePattern with _$RelativePattern {
     /// against relatively.
     ///
     /// Type: WorkspaceFolder | String
-    required Object baseUri,
+    @_RelativePatternBaseUriConverter() required RelativePatternBaseUri baseUri,
 
     /// The actual glob pattern;
     required Pattern pattern,
@@ -7067,6 +7091,477 @@ class _ProgressTokenConverter extends JsonConverter<ProgressToken, Object> {
   Object toJson(ProgressToken object) => object.toJson();
 }
 
+class _SemanticTokensRegistrationOptionsRangeConverter
+    extends
+        JsonConverter<
+          SemanticTokensRegistrationOptionsRange,
+          Map<String, Object?>
+        > {
+  const _SemanticTokensRegistrationOptionsRangeConverter();
+
+  @override
+  SemanticTokensRegistrationOptionsRange fromJson(Map<String, Object?> json) =>
+      SemanticTokensRegistrationOptionsRange.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(SemanticTokensRegistrationOptionsRange object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _SemanticTokensRegistrationOptionsFullConverter
+    extends
+        JsonConverter<
+          SemanticTokensRegistrationOptionsFull,
+          Map<String, Object?>
+        > {
+  const _SemanticTokensRegistrationOptionsFullConverter();
+
+  @override
+  SemanticTokensRegistrationOptionsFull fromJson(Map<String, Object?> json) =>
+      SemanticTokensRegistrationOptionsFull.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(SemanticTokensRegistrationOptionsFull object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _InlayHintTooltipConverter
+    extends JsonConverter<InlayHintTooltip, Map<String, Object?>> {
+  const _InlayHintTooltipConverter();
+
+  @override
+  InlayHintTooltip fromJson(Map<String, Object?> json) =>
+      InlayHintTooltip.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(InlayHintTooltip object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _InlineCompletionItemInsertTextConverter
+    extends
+        JsonConverter<InlineCompletionItemInsertText, Map<String, Object?>> {
+  const _InlineCompletionItemInsertTextConverter();
+
+  @override
+  InlineCompletionItemInsertText fromJson(Map<String, Object?> json) =>
+      InlineCompletionItemInsertText.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(InlineCompletionItemInsertText object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _CompletionItemDocumentationConverter
+    extends JsonConverter<CompletionItemDocumentation, Map<String, Object?>> {
+  const _CompletionItemDocumentationConverter();
+
+  @override
+  CompletionItemDocumentation fromJson(Map<String, Object?> json) =>
+      CompletionItemDocumentation.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(CompletionItemDocumentation object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _CompletionItemTextEditConverter
+    extends JsonConverter<CompletionItemTextEdit, Map<String, Object?>> {
+  const _CompletionItemTextEditConverter();
+
+  @override
+  CompletionItemTextEdit fromJson(Map<String, Object?> json) =>
+      CompletionItemTextEdit.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(CompletionItemTextEdit object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _WorkspaceSymbolLocationConverter
+    extends JsonConverter<WorkspaceSymbolLocation, Map<String, Object?>> {
+  const _WorkspaceSymbolLocationConverter();
+
+  @override
+  WorkspaceSymbolLocation fromJson(Map<String, Object?> json) =>
+      WorkspaceSymbolLocation.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(WorkspaceSymbolLocation object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _CancelParamsIdConverter extends JsonConverter<CancelParamsId, Object> {
+  const _CancelParamsIdConverter();
+
+  @override
+  CancelParamsId fromJson(Object json) => CancelParamsId.fromJson(json);
+
+  @override
+  Object toJson(CancelParamsId object) => object.toJson();
+}
+
+class _SemanticTokensOptionsRangeConverter
+    extends JsonConverter<SemanticTokensOptionsRange, Map<String, Object?>> {
+  const _SemanticTokensOptionsRangeConverter();
+
+  @override
+  SemanticTokensOptionsRange fromJson(Map<String, Object?> json) =>
+      SemanticTokensOptionsRange.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(SemanticTokensOptionsRange object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _SemanticTokensOptionsFullConverter
+    extends JsonConverter<SemanticTokensOptionsFull, Map<String, Object?>> {
+  const _SemanticTokensOptionsFullConverter();
+
+  @override
+  SemanticTokensOptionsFull fromJson(Map<String, Object?> json) =>
+      SemanticTokensOptionsFull.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(SemanticTokensOptionsFull object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _InlayHintLabelPartTooltipConverter
+    extends JsonConverter<InlayHintLabelPartTooltip, Map<String, Object?>> {
+  const _InlayHintLabelPartTooltipConverter();
+
+  @override
+  InlayHintLabelPartTooltip fromJson(Map<String, Object?> json) =>
+      InlayHintLabelPartTooltip.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(InlayHintLabelPartTooltip object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesHoverProviderConverter
+    extends
+        JsonConverter<ServerCapabilitiesHoverProvider, Map<String, Object?>> {
+  const _ServerCapabilitiesHoverProviderConverter();
+
+  @override
+  ServerCapabilitiesHoverProvider fromJson(Map<String, Object?> json) =>
+      ServerCapabilitiesHoverProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(ServerCapabilitiesHoverProvider object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesDefinitionProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesDefinitionProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesDefinitionProviderConverter();
+
+  @override
+  ServerCapabilitiesDefinitionProvider fromJson(Map<String, Object?> json) =>
+      ServerCapabilitiesDefinitionProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(ServerCapabilitiesDefinitionProvider object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesReferencesProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesReferencesProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesReferencesProviderConverter();
+
+  @override
+  ServerCapabilitiesReferencesProvider fromJson(Map<String, Object?> json) =>
+      ServerCapabilitiesReferencesProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(ServerCapabilitiesReferencesProvider object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesDocumentHighlightProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesDocumentHighlightProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesDocumentHighlightProviderConverter();
+
+  @override
+  ServerCapabilitiesDocumentHighlightProvider fromJson(
+    Map<String, Object?> json,
+  ) => ServerCapabilitiesDocumentHighlightProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(
+    ServerCapabilitiesDocumentHighlightProvider object,
+  ) => (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesDocumentSymbolProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesDocumentSymbolProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesDocumentSymbolProviderConverter();
+
+  @override
+  ServerCapabilitiesDocumentSymbolProvider fromJson(
+    Map<String, Object?> json,
+  ) => ServerCapabilitiesDocumentSymbolProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(
+    ServerCapabilitiesDocumentSymbolProvider object,
+  ) => (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesCodeActionProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesCodeActionProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesCodeActionProviderConverter();
+
+  @override
+  ServerCapabilitiesCodeActionProvider fromJson(Map<String, Object?> json) =>
+      ServerCapabilitiesCodeActionProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(ServerCapabilitiesCodeActionProvider object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesWorkspaceSymbolProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesWorkspaceSymbolProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesWorkspaceSymbolProviderConverter();
+
+  @override
+  ServerCapabilitiesWorkspaceSymbolProvider fromJson(
+    Map<String, Object?> json,
+  ) => ServerCapabilitiesWorkspaceSymbolProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(
+    ServerCapabilitiesWorkspaceSymbolProvider object,
+  ) => (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesDocumentFormattingProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesDocumentFormattingProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesDocumentFormattingProviderConverter();
+
+  @override
+  ServerCapabilitiesDocumentFormattingProvider fromJson(
+    Map<String, Object?> json,
+  ) => ServerCapabilitiesDocumentFormattingProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(
+    ServerCapabilitiesDocumentFormattingProvider object,
+  ) => (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesDocumentRangeFormattingProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesDocumentRangeFormattingProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesDocumentRangeFormattingProviderConverter();
+
+  @override
+  ServerCapabilitiesDocumentRangeFormattingProvider fromJson(
+    Map<String, Object?> json,
+  ) => ServerCapabilitiesDocumentRangeFormattingProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(
+    ServerCapabilitiesDocumentRangeFormattingProvider object,
+  ) => (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesRenameProviderConverter
+    extends
+        JsonConverter<ServerCapabilitiesRenameProvider, Map<String, Object?>> {
+  const _ServerCapabilitiesRenameProviderConverter();
+
+  @override
+  ServerCapabilitiesRenameProvider fromJson(Map<String, Object?> json) =>
+      ServerCapabilitiesRenameProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(ServerCapabilitiesRenameProvider object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesSemanticTokensProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesSemanticTokensProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesSemanticTokensProviderConverter();
+
+  @override
+  ServerCapabilitiesSemanticTokensProvider fromJson(
+    Map<String, Object?> json,
+  ) => ServerCapabilitiesSemanticTokensProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(
+    ServerCapabilitiesSemanticTokensProvider object,
+  ) => (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesDiagnosticProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesDiagnosticProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesDiagnosticProviderConverter();
+
+  @override
+  ServerCapabilitiesDiagnosticProvider fromJson(Map<String, Object?> json) =>
+      ServerCapabilitiesDiagnosticProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(ServerCapabilitiesDiagnosticProvider object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _ServerCapabilitiesInlineCompletionProviderConverter
+    extends
+        JsonConverter<
+          ServerCapabilitiesInlineCompletionProvider,
+          Map<String, Object?>
+        > {
+  const _ServerCapabilitiesInlineCompletionProviderConverter();
+
+  @override
+  ServerCapabilitiesInlineCompletionProvider fromJson(
+    Map<String, Object?> json,
+  ) => ServerCapabilitiesInlineCompletionProvider.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(
+    ServerCapabilitiesInlineCompletionProvider object,
+  ) => (object.toJson() as Map<String, Object?>);
+}
+
+class _DiagnosticCodeConverter extends JsonConverter<DiagnosticCode, Object> {
+  const _DiagnosticCodeConverter();
+
+  @override
+  DiagnosticCode fromJson(Object json) => DiagnosticCode.fromJson(json);
+
+  @override
+  Object toJson(DiagnosticCode object) => object.toJson();
+}
+
+class _SignatureInformationDocumentationConverter
+    extends
+        JsonConverter<SignatureInformationDocumentation, Map<String, Object?>> {
+  const _SignatureInformationDocumentationConverter();
+
+  @override
+  SignatureInformationDocumentation fromJson(Map<String, Object?> json) =>
+      SignatureInformationDocumentation.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(SignatureInformationDocumentation object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _TextDocumentSyncOptionsSaveConverter
+    extends JsonConverter<TextDocumentSyncOptionsSave, Map<String, Object?>> {
+  const _TextDocumentSyncOptionsSaveConverter();
+
+  @override
+  TextDocumentSyncOptionsSave fromJson(Map<String, Object?> json) =>
+      TextDocumentSyncOptionsSave.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(TextDocumentSyncOptionsSave object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _WorkspaceFoldersServerCapabilitiesChangeNotificationsConverter
+    extends
+        JsonConverter<
+          WorkspaceFoldersServerCapabilitiesChangeNotifications,
+          Object
+        > {
+  const _WorkspaceFoldersServerCapabilitiesChangeNotificationsConverter();
+
+  @override
+  WorkspaceFoldersServerCapabilitiesChangeNotifications fromJson(Object json) =>
+      WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(json);
+
+  @override
+  Object toJson(WorkspaceFoldersServerCapabilitiesChangeNotifications object) =>
+      object.toJson();
+}
+
+class _ParameterInformationLabelConverter
+    extends JsonConverter<ParameterInformationLabel, Object> {
+  const _ParameterInformationLabelConverter();
+
+  @override
+  ParameterInformationLabel fromJson(Object json) =>
+      ParameterInformationLabel.fromJson(json);
+
+  @override
+  Object toJson(ParameterInformationLabel object) => object.toJson();
+}
+
+class _ParameterInformationDocumentationConverter
+    extends
+        JsonConverter<ParameterInformationDocumentation, Map<String, Object?>> {
+  const _ParameterInformationDocumentationConverter();
+
+  @override
+  ParameterInformationDocumentation fromJson(Map<String, Object?> json) =>
+      ParameterInformationDocumentation.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(ParameterInformationDocumentation object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
+class _RelativePatternBaseUriConverter
+    extends JsonConverter<RelativePatternBaseUri, Map<String, Object?>> {
+  const _RelativePatternBaseUriConverter();
+
+  @override
+  RelativePatternBaseUri fromJson(Map<String, Object?> json) =>
+      RelativePatternBaseUri.fromJson(json);
+
+  @override
+  Map<String, Object?> toJson(RelativePatternBaseUri object) =>
+      (object.toJson() as Map<String, Object?>);
+}
+
 class _WorkspaceDocumentDiagnosticReportListConverter
     extends
         JsonConverter<List<WorkspaceDocumentDiagnosticReport>, List<dynamic>> {
@@ -7101,5 +7596,21 @@ class _TextDocumentContentChangeEventListConverter
 
   @override
   List<dynamic> toJson(List<TextDocumentContentChangeEvent> object) =>
+      object.map<Object>((e) => e.toJson()).toList();
+}
+
+class _TextDocumentEditEditsItemListConverter
+    extends JsonConverter<List<TextDocumentEditEditsItem>, List<dynamic>> {
+  const _TextDocumentEditEditsItemListConverter();
+
+  @override
+  List<TextDocumentEditEditsItem> fromJson(List<dynamic> json) => json
+      .map(
+        (e) => TextDocumentEditEditsItem.fromJson((e as Map<String, Object?>)),
+      )
+      .toList();
+
+  @override
+  List<dynamic> toJson(List<TextDocumentEditEditsItem> object) =>
       object.map<Object>((e) => e.toJson()).toList();
 }
