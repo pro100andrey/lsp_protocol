@@ -128,13 +128,25 @@ final class EmitterVisitor {
         ..directives.addAll(_crossImports(allTypes, _structuresFile))
         ..directives.add(Directive.part('structures.freezed.dart'))
         ..directives.add(Directive.part('structures.g.dart'))
+        ..directives.add(Directive.part('structures.converters.dart'))
         ..body.addAll([
           ...anonymous.map(_buildClass),
           ...named.map(_buildClass),
-          ..._buildConverterSpecs(),
         ]),
     );
   }
+
+  /// Builds a [Library] containing all converters for structures.
+  Library buildStructuresConverters() => Library(
+    (b) => b
+      ..comments.addAll([
+        _header,
+      ])
+      ..directives.add(
+        Directive.partOf('structures.dart'),
+      )
+      ..body.addAll(_buildConverterSpecs()),
+  );
 
   /// Builds a [Library] containing all resolved enumerations.
   Library buildEnumerations() => Library(

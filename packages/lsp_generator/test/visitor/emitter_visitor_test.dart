@@ -674,6 +674,13 @@ void main() {
       expect(() => _format(lib), returnsNormally);
     });
 
+    test('buildStructuresConverters() emits valid Dart and part of', () {
+      final lib = EmitterVisitor(resolved).buildStructuresConverters();
+      expect(() => _format(lib), returnsNormally);
+      final src = _format(lib);
+      expect(src, contains("part of 'structures.dart';"));
+    });
+
     test('structiures output contains Position class', () {
       final src = _format(EmitterVisitor(resolved).buildStructures());
       expect(src, contains('abstract class Position'));

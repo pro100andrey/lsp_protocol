@@ -31,6 +31,7 @@ void generateCode(ResolvedState resolved, String outputDir) {
   }
 
   final structures = emit(visitor.buildStructures());
+  final structuresConverters = emit(visitor.buildStructuresConverters());
   final enumerations = emit(visitor.buildEnumerations());
   final aliases = emit(visitor.buildAliases());
   final scalarUnions = emit(visitor.buildScalarUnions());
@@ -45,6 +46,8 @@ void generateCode(ResolvedState resolved, String outputDir) {
   }
 
   final structuresPath = p.join(srcDir.path, 'structures.dart');
+  final structuresConvertersPath =
+      p.join(srcDir.path, 'structures.converters.dart');
   final enumerationsPath = p.join(srcDir.path, 'enumerations.dart');
   final aliasesPath = p.join(srcDir.path, 'type_aliases.dart');
   final scalarUnionsPath = p.join(srcDir.path, 'scalar_unions.dart');
@@ -52,6 +55,7 @@ void generateCode(ResolvedState resolved, String outputDir) {
   final methodsPath = p.join(srcDir.path, 'methods.dart');
 
   File(structuresPath).writeAsStringSync(structures);
+  File(structuresConvertersPath).writeAsStringSync(structuresConverters);
   File(enumerationsPath).writeAsStringSync(enumerations);
   File(aliasesPath).writeAsStringSync(aliases);
   File(scalarUnionsPath).writeAsStringSync(scalarUnions);
