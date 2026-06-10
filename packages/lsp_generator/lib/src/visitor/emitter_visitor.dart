@@ -31,6 +31,8 @@ typedef _UnionCheck = ({
 
 // ---------------------------------------------------------------------------
 
+enum _ClassCategory { capabilities, params, common }
+
 /// Discriminates how a converter class is generated.
 /// Enums use `@JsonEnum(valueField: 'value')` with a static `decode()` — no
 /// converter needed.
@@ -103,14 +105,36 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
 
   /// Builds a [Library] containing all resolved classes (anonymous first).
-  Library buildStructures() {
-    final anonymous = _resolved.classes.where((c) => c.isAnonymous);
-    // Skip non-anonymous LSP base classes (names starting with '_') — they are
-    // structural ancestors flattened into their descendants and unused in Dart.
-    final named = _resolved.classes.where(
-      (c) => !c.isAnonymous && !c.name.startsWith('_'),
-    );
+  _ClassCategory _classifyClass(ResolvedClass cls) {
+    if (cls.name.contains('Capabilities')) {
+      return _ClassCategory.capabilities;
+    }
+    if (cls.name.endsWith('Params') || cls.name.endsWith('Options')) {
+      return _ClassCategory.params;
+    }
+    return _ClassCategory.common;
+  }
 
+  Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) {
+    final filtered = _resolved.classes.where((c) {
+      if (c.name.startsWith('_') && !c.isAnonymous) {
+        // Skip non-anonymous LSP base classes.
+        return false;
+      }
+      return _classifyClass(c) == category;
+    });
+    if (category == _ClassCategory.common) {
+      // Keep anonymous classes before named classes for backward compatibility/ordering.
+      return [
+        ...filtered.where((c) => c.isAnonymous),
+        ...filtered.where((c) => !c.isAnonymous),
+      ];
+    }
+    return filtered;
+  }
+
+  /// Builds a [Library] containing all resolved classes (anonymous first).
+  Library buildStructures() {
     final allTypes = _resolved.classes.expand(
       (c) => [...c.properties.map((p) => p.type), ...c.extends$, ...c.mixins$],
     );
@@ -128,13 +152,51 @@ final class EmitterVisitor {
         ..directives.addAll(_crossImports(allTypes, _structuresFile))
         ..directives.add(Directive.part('structures.freezed.dart'))
         ..directives.add(Directive.part('structures.g.dart'))
-        ..directives.add(Directive.part('structures.converters.dart'))
-        ..body.addAll([
-          ...anonymous.map(_buildClass),
-          ...named.map(_buildClass),
-        ]),
+        ..directives.add(Directive.part('structures.capabilities.dart'))
+        ..directives.add(Directive.part('structures.params.dart'))
+        ..directives.add(Directive.part('structures.common.dart'))
+        ..directives.add(Directive.part('structures.converters.dart')),
     );
   }
+
+  Library buildStructuresCapabilities() => Library(
+        (b) => b
+          ..comments.addAll([
+            _header,
+          ])
+          ..directives.add(
+            Directive.partOf('structures.dart'),
+          )
+          ..body.addAll(
+            _classesForCategory(_ClassCategory.capabilities).map(_buildClass),
+          ),
+      );
+
+  Library buildStructuresParams() => Library(
+        (b) => b
+          ..comments.addAll([
+            _header,
+          ])
+          ..directives.add(
+            Directive.partOf('structures.dart'),
+          )
+          ..body.addAll(
+            _classesForCategory(_ClassCategory.params).map(_buildClass),
+          ),
+      );
+
+  Library buildStructuresCommon() => Library(
+        (b) => b
+          ..comments.addAll([
+            _header,
+          ])
+          ..directives.add(
+            Directive.partOf('structures.dart'),
+          )
+          ..body.addAll(
+            _classesForCategory(_ClassCategory.common).map(_buildClass),
+          ),
+      );
 
   /// Builds a [Library] containing all converters for structures.
   Library buildStructuresConverters() => Library(

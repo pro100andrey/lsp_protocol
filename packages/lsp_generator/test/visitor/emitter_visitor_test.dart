@@ -25,6 +25,16 @@ final _formatter = DartFormatter(
 
 String _format(Library lib) => _formatter.format('${lib.accept(_emitter)}');
 
+String _allStructuresSrc(EmitterVisitor visitor) => [
+      _format(visitor.buildStructures()),
+      _format(visitor.buildStructuresCapabilities()),
+      _format(visitor.buildStructuresParams()),
+      _format(visitor.buildStructuresCommon()),
+    ].join('\n');
+
+String _getStructures(ResolvedState state) =>
+    _allStructuresSrc(EmitterVisitor(state));
+
 ResolvedClass _cls(
   String name, {
   List<ResolvedProperty> properties = const [],
@@ -83,8 +93,7 @@ ResolvedState _stateWith({
 void main() {
   group('EmitterVisitor.buildStructures()', () {
     test('empty state produces empty library', () {
-      final lib = EmitterVisitor(_stateWith()).buildStructures();
-      final src = _format(lib);
+      final src = _getStructures(_stateWith());
       // Only the GENERATED header comment; no class declarations.
       expect(src.contains('class '), isFalse);
     });
@@ -93,7 +102,7 @@ void main() {
       final state = _stateWith(
         classes: [_cls('Position', properties: [])],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       expect(src, contains('abstract class Position'));
       expect(src, contains('@freezed'));
       expect(src, contains(r'with _$Position'));
@@ -111,7 +120,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       expect(src, contains('const factory Position('));
       // Freezed redirect target (may wrap to next line after dart_style).
       expect(src, contains('_Position'));
@@ -129,7 +138,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       // Fields live in the redirecting factory parameters.
       expect(src, contains('required Position start'));
       expect(src, contains('required Position end'));
@@ -154,7 +163,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       expect(src, contains('String? newEol'));
     });
 
@@ -169,7 +178,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       // json_serializable pattern: factory constructor delegates to generated
       // fn
       expect(
@@ -192,7 +201,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       // json_serializable + freezed: toJson comes from the generated mixin,
       // so no manual Map<String, Object?> toJson() body in the source class.
       expect(src, isNot(contains('Map<String, Object?> toJson()')));
@@ -203,7 +212,7 @@ void main() {
       final anon = _cls(r'Anon$0', isAnonymous: true);
       final named = _cls('Foo');
       final state = _stateWith(classes: [named, anon]);
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       expect(src.indexOf(r'Anon$0'), lessThan(src.indexOf('Foo')));
     });
 
@@ -222,7 +231,7 @@ void main() {
         ],
       );
       final state = _stateWith(classes: [posClass, rangeClass]);
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       // Each class delegates to _$XxxFromJson — no manual nested calls
       expect(src, contains(r'_$PositionFromJson(json)'));
       expect(src, contains(r'_$RangeFromJson(json)'));
@@ -244,7 +253,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       // json_serializable handles the List<String> deserialization
       // automatically
       expect(src, contains(r'_$FooFromJson(json)'));
@@ -268,7 +277,7 @@ void main() {
             ),
           ],
         );
-        final src = _format(EmitterVisitor(state).buildStructures());
+        final src = _getStructures(state);
         expect(src, contains(r'_$FooFromJson(json)'));
         expect(src, isNot(contains("json['items'] as List<Object?>?")));
       },
@@ -286,7 +295,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       // json_serializable handles nullable fields — no manual null guard needed
       expect(src, contains(r'_$FooFromJson(json)'));
       expect(src, isNot(contains("json['pos'] == null")));
@@ -304,7 +313,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       // No manual start.toJson() call in the source — freezed/json_serializable
       // generates the toJson mixin method
       expect(src, isNot(contains('start.toJson()')));
@@ -604,7 +613,7 @@ void main() {
       expect(unionsSrc, contains(r'TextDocumentEditEditsItem$Int'));
       expect(unionsSrc, contains(r'TextDocumentEditEditsItem$String'));
 
-      final structSrc = _format(visitor.buildStructures());
+      final structSrc = _allStructuresSrc(visitor);
       expect(
         structSrc,
         contains('required List<TextDocumentEditEditsItem> edits'),
@@ -669,9 +678,20 @@ void main() {
     });
 
     test('buildStructures() emits valid formattable Dart', () {
-      final lib = EmitterVisitor(resolved).buildStructures();
-      // Should not throw.
-      expect(() => _format(lib), returnsNormally);
+      final visitor = EmitterVisitor(resolved);
+      expect(() => _format(visitor.buildStructures()), returnsNormally);
+      expect(
+        () => _format(visitor.buildStructuresCapabilities()),
+        returnsNormally,
+      );
+      expect(
+        () => _format(visitor.buildStructuresParams()),
+        returnsNormally,
+      );
+      expect(
+        () => _format(visitor.buildStructuresCommon()),
+        returnsNormally,
+      );
     });
 
     test('buildStructuresConverters() emits valid Dart and part of', () {
@@ -682,7 +702,7 @@ void main() {
     });
 
     test('structiures output contains Position class', () {
-      final src = _format(EmitterVisitor(resolved).buildStructures());
+      final src = _getStructures(resolved);
       expect(src, contains('abstract class Position'));
       expect(src, contains('@freezed'));
       expect(src, contains('required int line'));
@@ -690,7 +710,7 @@ void main() {
     });
 
     test('structures output contains Range class', () {
-      final src = _format(EmitterVisitor(resolved).buildStructures());
+      final src = _getStructures(resolved);
       expect(src, contains('abstract class Range'));
       expect(src, contains('required Position start'));
       expect(src, contains('required Position end'));
@@ -730,7 +750,7 @@ void main() {
     });
 
     test('anonymous classes appear before named classes in structures', () {
-      final src = _format(EmitterVisitor(resolved).buildStructures());
+      final src = _getStructures(resolved);
       // All anonymous classes (isAnonymous == true) have \$ in their name by
       // convention.Just verify Position (a named class) exists and the output
       // is not empty.
@@ -761,7 +781,7 @@ void main() {
             ),
           ],
         );
-        final src = _format(EmitterVisitor(state).buildStructures());
+        final src = _getStructures(state);
         expect(
           src,
           contains("@Deprecated('Use newField instead.')"),
@@ -786,7 +806,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       expect(src, contains("@Deprecated('Old.')"));
     });
 
@@ -851,7 +871,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       expect(src, contains('/// @since 3.17.0'));
     });
 
@@ -865,7 +885,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildStructures());
+      final src = _getStructures(state);
       expect(src, contains('/// @proposed'));
     });
 
@@ -882,7 +902,7 @@ void main() {
             ),
           ],
         );
-        final src = _format(EmitterVisitor(state).buildStructures());
+        final src = _getStructures(state);
         expect(src, contains('/// Main description.'));
         expect(src, contains('/// @since 3.16.0'));
       },
