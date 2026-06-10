@@ -63,9 +63,8 @@ final class ServerApiVisitor {
         ..directives.addAll([
           Directive.import('dart:async'),
           Directive.import(
-            'package:lsp_specification/lsp_specification.dart',
+            'package:pro_lsp/pro_lsp.dart',
           ),
-          Directive.import('../connection/lsp_connection.dart'),
         ])
         ..body.addAll(specs),
     );

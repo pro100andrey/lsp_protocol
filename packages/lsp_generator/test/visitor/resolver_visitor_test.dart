@@ -274,7 +274,7 @@ void main() {
     late ResolverVisitor visitor;
 
     setUpAll(() {
-      final file = File('../lsp_specification/metaModel.json');
+      final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
       visitor = ResolverVisitor()..resolve(protocol);

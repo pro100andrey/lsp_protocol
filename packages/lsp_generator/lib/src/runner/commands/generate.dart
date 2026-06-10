@@ -16,7 +16,7 @@ final class GenerateCommand extends Command {
       abbr: 'o',
       help:
           'Output directory for generated files. '
-          'Defaults to packages/lsp_specification.',
+          'Defaults to packages/pro_lsp.',
     );
   }
 
@@ -31,7 +31,7 @@ final class GenerateCommand extends Command {
   @override
   Future<void> run() async {
     final outputPath =
-        argResults?['output'] as String? ?? 'packages/lsp_specification';
+        argResults?['output'] as String? ?? 'packages/pro_lsp';
     const lspVersion = '3.17';
 
     await Future.wait([

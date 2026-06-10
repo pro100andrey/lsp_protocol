@@ -7,7 +7,7 @@ import 'package:path/path.dart' as p;
 import '../resolver/resolved_state.dart';
 import '../visitor/server_api_visitor.dart';
 
-/// Generates `packages/lsp_server/lib/src/generated/server_api.dart` from
+/// Generates `packages/pro_lsp/lib/src/generated/server/server_api.dart` from
 /// the resolved LSP model.
 void generateServerApi(ResolvedState resolved) {
   final visitor = ServerApiVisitor(resolved);
@@ -33,10 +33,11 @@ void generateServerApi(ResolvedState resolved) {
 
   final generatedPath = p.join(
     'packages',
-    'lsp_server',
+    'pro_lsp',
     'lib',
     'src',
     'generated',
+    'server',
   );
 
   final generatedDir = Directory(generatedPath);

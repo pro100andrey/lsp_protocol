@@ -622,7 +622,7 @@ void main() {
     });
 
     test('buildUnions() integration emits valid Dart', () {
-      final file = File('../lsp_specification/metaModel.json');
+      final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
       final resolver = ResolverVisitor()..resolve(protocol);
@@ -637,7 +637,7 @@ void main() {
     });
 
     test('buildUnions() integration contains ProgressToken sealed class', () {
-      final file = File('../lsp_specification/metaModel.json');
+      final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
       final resolver = ResolverVisitor()..resolve(protocol);
@@ -664,7 +664,7 @@ void main() {
     late ResolvedState resolved;
 
     setUpAll(() {
-      final file = File('../lsp_specification/metaModel.json');
+      final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
 
@@ -948,7 +948,7 @@ void main() {
     late ResolvedState resolved;
 
     setUpAll(() {
-      final file = File('../lsp_specification/metaModel.json');
+      final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
       final resolver = ResolverVisitor()..resolve(protocol);

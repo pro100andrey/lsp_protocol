@@ -1,0 +1,16 @@
+name: lsp_test_server
+description: Minimal LSP test server for validating the generated protocol bindings.
+version: 0.1.0
+
+publish_to: none
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  pro_lsp:
+    path: ../../packages/pro_lsp
+  stream_channel: ^2.1.4
+
+dev_dependencies:
+  pro_lints: ^5.1.0

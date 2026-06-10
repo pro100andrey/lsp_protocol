@@ -41,7 +41,9 @@ void generateCode(ResolvedState resolved, String outputDir) {
   final unions = emit(visitor.buildUnions());
   final methods = emit(visitor.buildNotificationMethods());
 
-  final srcDir = Directory(p.join(outputDir, 'lib', 'src'));
+  final srcDir = Directory(
+    p.join(outputDir, 'lib', 'src', 'generated', 'models'),
+  );
   final libDir = Directory(p.join(outputDir, 'lib'));
 
   if (!srcDir.existsSync()) {
@@ -78,12 +80,18 @@ void generateCode(ResolvedState resolved, String outputDir) {
     (b) => b
       ..comments.add('GENERATED — do not edit.')
       ..directives.addAll([
-        Directive.export('src/structures.dart'),
-        Directive.export('src/enumerations.dart'),
-        Directive.export('src/type_aliases.dart'),
-        Directive.export('src/scalar_unions.dart'),
-        Directive.export('src/unions.dart'),
-        Directive.export('src/methods.dart'),
+        Directive.export('src/generated/models/structures.dart'),
+        Directive.export('src/generated/models/enumerations.dart'),
+        Directive.export('src/generated/models/type_aliases.dart'),
+        Directive.export('src/generated/models/scalar_unions.dart'),
+        Directive.export('src/generated/models/unions.dart'),
+        Directive.export('src/generated/models/methods.dart'),
+        if (packageName == 'pro_lsp') ...[
+          Directive.export('src/connection/lsp_connection.dart'),
+          Directive.export('src/connection/lsp_exception.dart'),
+          Directive.export('src/server/lsp_server.dart'),
+          Directive.export('src/transport/lsp_byte_stream_channel.dart'),
+        ],
       ]),
   );
 

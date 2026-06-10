@@ -1,8 +1,0 @@
-include: package:pro_lints/recommended.yaml
-
-analyzer:
-  exclude:
-    - "lib/src/generated/**"
-
-formatter:
-  trailing_commas: preserve
