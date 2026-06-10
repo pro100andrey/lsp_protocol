@@ -1185,7 +1185,6 @@ final class EmitterVisitor {
                 ..static = true
                 ..modifier = FieldModifier.constant
                 ..name = _safeIdentifier(_toLowerCamelCase(member.name))
-                ..type = refer(en.name)
                 ..assignment = refer(en.name).call([
                   if (isInt)
                     literalNum(int.parse(member.value))

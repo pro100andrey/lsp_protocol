@@ -376,7 +376,7 @@ void main() {
       expect(
         src,
         contains(
-          "static const FoldingRangeKind comment = FoldingRangeKind('comment')",
+          "static const comment = FoldingRangeKind('comment')",
         ),
       );
       expect(src, contains('factory FoldingRangeKind.fromJson(Object? json)'));

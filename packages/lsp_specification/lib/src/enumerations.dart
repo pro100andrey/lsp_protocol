@@ -12,56 +12,54 @@ extension type const SemanticTokenTypes(String value) {
   factory SemanticTokenTypes.fromJson(Object? json) =>
       SemanticTokenTypes((json as String));
 
-  static const SemanticTokenTypes namespace = SemanticTokenTypes('namespace');
+  static const namespace = SemanticTokenTypes('namespace');
 
   /// Represents a generic type. Acts as a fallback for types which can't be
   /// mapped to a specific type like class or enum.
-  static const SemanticTokenTypes type = SemanticTokenTypes('type');
+  static const type = SemanticTokenTypes('type');
 
-  static const SemanticTokenTypes class_ = SemanticTokenTypes('class');
+  static const class_ = SemanticTokenTypes('class');
 
-  static const SemanticTokenTypes enum_ = SemanticTokenTypes('enum');
+  static const enum_ = SemanticTokenTypes('enum');
 
-  static const SemanticTokenTypes interface_ = SemanticTokenTypes('interface');
+  static const interface_ = SemanticTokenTypes('interface');
 
-  static const SemanticTokenTypes struct = SemanticTokenTypes('struct');
+  static const struct = SemanticTokenTypes('struct');
 
-  static const SemanticTokenTypes typeParameter = SemanticTokenTypes(
-    'typeParameter',
-  );
+  static const typeParameter = SemanticTokenTypes('typeParameter');
 
-  static const SemanticTokenTypes parameter = SemanticTokenTypes('parameter');
+  static const parameter = SemanticTokenTypes('parameter');
 
-  static const SemanticTokenTypes variable = SemanticTokenTypes('variable');
+  static const variable = SemanticTokenTypes('variable');
 
-  static const SemanticTokenTypes property = SemanticTokenTypes('property');
+  static const property = SemanticTokenTypes('property');
 
-  static const SemanticTokenTypes enumMember = SemanticTokenTypes('enumMember');
+  static const enumMember = SemanticTokenTypes('enumMember');
 
-  static const SemanticTokenTypes event = SemanticTokenTypes('event');
+  static const event = SemanticTokenTypes('event');
 
-  static const SemanticTokenTypes function = SemanticTokenTypes('function');
+  static const function = SemanticTokenTypes('function');
 
-  static const SemanticTokenTypes method = SemanticTokenTypes('method');
+  static const method = SemanticTokenTypes('method');
 
-  static const SemanticTokenTypes macro_ = SemanticTokenTypes('macro');
+  static const macro_ = SemanticTokenTypes('macro');
 
-  static const SemanticTokenTypes keyword = SemanticTokenTypes('keyword');
+  static const keyword = SemanticTokenTypes('keyword');
 
-  static const SemanticTokenTypes modifier = SemanticTokenTypes('modifier');
+  static const modifier = SemanticTokenTypes('modifier');
 
-  static const SemanticTokenTypes comment = SemanticTokenTypes('comment');
+  static const comment = SemanticTokenTypes('comment');
 
-  static const SemanticTokenTypes string = SemanticTokenTypes('string');
+  static const string = SemanticTokenTypes('string');
 
-  static const SemanticTokenTypes number = SemanticTokenTypes('number');
+  static const number = SemanticTokenTypes('number');
 
-  static const SemanticTokenTypes regexp = SemanticTokenTypes('regexp');
+  static const regexp = SemanticTokenTypes('regexp');
 
-  static const SemanticTokenTypes operator_ = SemanticTokenTypes('operator');
+  static const operator_ = SemanticTokenTypes('operator');
 
   /// @since 3.17.0
-  static const SemanticTokenTypes decorator = SemanticTokenTypes('decorator');
+  static const decorator = SemanticTokenTypes('decorator');
 
   String toJson() => value;
 }
@@ -74,43 +72,25 @@ extension type const SemanticTokenModifiers(String value) {
   factory SemanticTokenModifiers.fromJson(Object? json) =>
       SemanticTokenModifiers((json as String));
 
-  static const SemanticTokenModifiers declaration = SemanticTokenModifiers(
-    'declaration',
-  );
+  static const declaration = SemanticTokenModifiers('declaration');
 
-  static const SemanticTokenModifiers definition = SemanticTokenModifiers(
-    'definition',
-  );
+  static const definition = SemanticTokenModifiers('definition');
 
-  static const SemanticTokenModifiers readonly = SemanticTokenModifiers(
-    'readonly',
-  );
+  static const readonly = SemanticTokenModifiers('readonly');
 
-  static const SemanticTokenModifiers static_ = SemanticTokenModifiers(
-    'static',
-  );
+  static const static_ = SemanticTokenModifiers('static');
 
-  static const SemanticTokenModifiers deprecated = SemanticTokenModifiers(
-    'deprecated',
-  );
+  static const deprecated = SemanticTokenModifiers('deprecated');
 
-  static const SemanticTokenModifiers abstract_ = SemanticTokenModifiers(
-    'abstract',
-  );
+  static const abstract_ = SemanticTokenModifiers('abstract');
 
-  static const SemanticTokenModifiers async_ = SemanticTokenModifiers('async');
+  static const async_ = SemanticTokenModifiers('async');
 
-  static const SemanticTokenModifiers modification = SemanticTokenModifiers(
-    'modification',
-  );
+  static const modification = SemanticTokenModifiers('modification');
 
-  static const SemanticTokenModifiers documentation = SemanticTokenModifiers(
-    'documentation',
-  );
+  static const documentation = SemanticTokenModifiers('documentation');
 
-  static const SemanticTokenModifiers defaultLibrary = SemanticTokenModifiers(
-    'defaultLibrary',
-  );
+  static const defaultLibrary = SemanticTokenModifiers('defaultLibrary');
 
   String toJson() => value;
 }
@@ -138,21 +118,21 @@ enum DocumentDiagnosticReportKind {
 extension type const ErrorCodes(int value) {
   factory ErrorCodes.fromJson(Object? json) => ErrorCodes((json as int));
 
-  static const ErrorCodes parseError = ErrorCodes(-32700);
+  static const parseError = ErrorCodes(-32700);
 
-  static const ErrorCodes invalidRequest = ErrorCodes(-32600);
+  static const invalidRequest = ErrorCodes(-32600);
 
-  static const ErrorCodes methodNotFound = ErrorCodes(-32601);
+  static const methodNotFound = ErrorCodes(-32601);
 
-  static const ErrorCodes invalidParams = ErrorCodes(-32602);
+  static const invalidParams = ErrorCodes(-32602);
 
-  static const ErrorCodes internalError = ErrorCodes(-32603);
+  static const internalError = ErrorCodes(-32603);
 
   /// Error code indicating that a server received a notification or request
   /// before the server has received the `initialize` request.
-  static const ErrorCodes serverNotInitialized = ErrorCodes(-32002);
+  static const serverNotInitialized = ErrorCodes(-32002);
 
-  static const ErrorCodes unknownErrorCode = ErrorCodes(-32001);
+  static const unknownErrorCode = ErrorCodes(-32001);
 
   int toJson() => value;
 }
@@ -164,13 +144,13 @@ extension type const LSPErrorCodes(int value) {
   /// human readable information about why the request failed.
   ///
   /// @since 3.17.0
-  static const LSPErrorCodes requestFailed = LSPErrorCodes(-32803);
+  static const requestFailed = LSPErrorCodes(-32803);
 
   /// The server cancelled the request. This error code should only be used for
   /// requests that explicitly support being server cancellable.
   ///
   /// @since 3.17.0
-  static const LSPErrorCodes serverCancelled = LSPErrorCodes(-32802);
+  static const serverCancelled = LSPErrorCodes(-32802);
 
   /// The server detected that the content of a document got modified outside
   /// normal conditions. A server should NOT send this error code if it detects
@@ -179,10 +159,10 @@ extension type const LSPErrorCodes(int value) {
   ///
   /// If a client decides that a result is not of any use anymore the client
   /// should cancel the request.
-  static const LSPErrorCodes contentModified = LSPErrorCodes(-32801);
+  static const contentModified = LSPErrorCodes(-32801);
 
   /// The client has canceled a request and a server has detected the cancel.
-  static const LSPErrorCodes requestCancelled = LSPErrorCodes(-32800);
+  static const requestCancelled = LSPErrorCodes(-32800);
 
   int toJson() => value;
 }
@@ -193,13 +173,13 @@ extension type const FoldingRangeKind(String value) {
       FoldingRangeKind((json as String));
 
   /// Folding range for a comment
-  static const FoldingRangeKind comment = FoldingRangeKind('comment');
+  static const comment = FoldingRangeKind('comment');
 
   /// Folding range for an import or include
-  static const FoldingRangeKind imports = FoldingRangeKind('imports');
+  static const imports = FoldingRangeKind('imports');
 
   /// Folding range for a region (e.g. `#region`)
-  static const FoldingRangeKind region = FoldingRangeKind('region');
+  static const region = FoldingRangeKind('region');
 
   String toJson() => value;
 }
@@ -532,13 +512,13 @@ extension type const CodeActionKind(String value) {
       CodeActionKind((json as String));
 
   /// Empty kind.
-  static const CodeActionKind empty = CodeActionKind('');
+  static const empty = CodeActionKind('');
 
   /// Base kind for quickfix actions: 'quickfix'
-  static const CodeActionKind quickFix = CodeActionKind('quickfix');
+  static const quickFix = CodeActionKind('quickfix');
 
   /// Base kind for refactoring actions: 'refactor'
-  static const CodeActionKind refactor = CodeActionKind('refactor');
+  static const refactor = CodeActionKind('refactor');
 
   /// Base kind for refactoring extraction actions: 'refactor.extract'
   ///
@@ -546,18 +526,14 @@ extension type const CodeActionKind(String value) {
   ///
   /// - Extract method - Extract function - Extract variable - Extract interface
   /// from class - ...
-  static const CodeActionKind refactorExtract = CodeActionKind(
-    'refactor.extract',
-  );
+  static const refactorExtract = CodeActionKind('refactor.extract');
 
   /// Base kind for refactoring inline actions: 'refactor.inline'
   ///
   /// Example inline actions:
   ///
   /// - Inline function - Inline variable - Inline constant - ...
-  static const CodeActionKind refactorInline = CodeActionKind(
-    'refactor.inline',
-  );
+  static const refactorInline = CodeActionKind('refactor.inline');
 
   /// Base kind for refactoring rewrite actions: 'refactor.rewrite'
   ///
@@ -565,19 +541,15 @@ extension type const CodeActionKind(String value) {
   ///
   /// - Convert JavaScript function to class - Add or remove parameter -
   /// Encapsulate field - Make method static - Move method to base class - ...
-  static const CodeActionKind refactorRewrite = CodeActionKind(
-    'refactor.rewrite',
-  );
+  static const refactorRewrite = CodeActionKind('refactor.rewrite');
 
   /// Base kind for source actions: `source`
   ///
   /// Source code actions apply to the entire file.
-  static const CodeActionKind source = CodeActionKind('source');
+  static const source = CodeActionKind('source');
 
   /// Base kind for an organize imports source action: `source.organizeImports`
-  static const CodeActionKind sourceOrganizeImports = CodeActionKind(
-    'source.organizeImports',
-  );
+  static const sourceOrganizeImports = CodeActionKind('source.organizeImports');
 
   /// Base kind for auto-fix source actions: `source.fixAll`.
   ///
@@ -586,7 +558,7 @@ extension type const CodeActionKind(String value) {
   /// fixes such as generating new types or classes.
   ///
   /// @since 3.15.0
-  static const CodeActionKind sourceFixAll = CodeActionKind('source.fixAll');
+  static const sourceFixAll = CodeActionKind('source.fixAll');
 
   String toJson() => value;
 }
@@ -659,19 +631,19 @@ extension type const PositionEncodingKind(String value) {
       PositionEncodingKind((json as String));
 
   /// Character offsets count UTF-8 code units (e.g. bytes).
-  static const PositionEncodingKind uTF8 = PositionEncodingKind('utf-8');
+  static const uTF8 = PositionEncodingKind('utf-8');
 
   /// Character offsets count UTF-16 code units.
   ///
   /// This is the default and must always be supported by servers
-  static const PositionEncodingKind uTF16 = PositionEncodingKind('utf-16');
+  static const uTF16 = PositionEncodingKind('utf-16');
 
   /// Character offsets count UTF-32 code units.
   ///
   /// Implementation note: these are the same as Unicode codepoints, so this
   /// `PositionEncodingKind` may also be used for an encoding-agnostic
   /// representation of character offsets.
-  static const PositionEncodingKind uTF32 = PositionEncodingKind('utf-32');
+  static const uTF32 = PositionEncodingKind('utf-32');
 
   String toJson() => value;
 }
@@ -700,13 +672,13 @@ extension type const WatchKind(int value) {
   factory WatchKind.fromJson(Object? json) => WatchKind((json as int));
 
   /// Interested in create events.
-  static const WatchKind create = WatchKind(1);
+  static const create = WatchKind(1);
 
   /// Interested in change events
-  static const WatchKind change = WatchKind(2);
+  static const change = WatchKind(2);
 
   /// Interested in delete events
-  static const WatchKind delete = WatchKind(4);
+  static const delete = WatchKind(4);
 
   int toJson() => value;
 }

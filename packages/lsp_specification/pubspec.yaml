@@ -3,13 +3,13 @@ description: Generated LSP 3.17 Dart bindings.
 version: 0.1.0
 
 environment:
-  sdk: "^3.8.0"
+  sdk: "^3.10.0"
 
 dependencies:
   freezed_annotation: ^3.1.0
-  json_annotation: ^4.11.0
+  json_annotation: ^4.12.0
 
 dev_dependencies:
-  build_runner: ^2.13.1
+  build_runner: ^2.15.0
   freezed: ^3.2.5
-  json_serializable: ^6.9.0
+  json_serializable: ^6.14.0
