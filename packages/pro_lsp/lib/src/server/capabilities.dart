@@ -1,4 +1,5 @@
 import '../generated/models/structures.dart';
+import '../generated/models/unions.dart';
 import 'lsp_server.dart';
 
 /// Simplifies registering and unregistering server capabilities dynamically.
@@ -14,7 +15,7 @@ final class CapabilityManager {
   /// Returns a registration ID string that can be used to unregister later.
   Future<String> register({
     required String method,
-    Object? registerOptions,
+    LSPAny? registerOptions,
   }) async {
     final registrationId = 'dynamic-registration-${_registrationIdCounter++}';
     await _server.client.client.registerCapability(

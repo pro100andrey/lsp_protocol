@@ -14,11 +14,11 @@ abstract class ImplementationParams with _$ImplementationParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _ImplementationParams;
 
   factory ImplementationParams.fromJson(Map<String, dynamic> json) =>
@@ -54,11 +54,11 @@ abstract class TypeDefinitionParams with _$TypeDefinitionParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _TypeDefinitionParams;
 
   factory TypeDefinitionParams.fromJson(Map<String, dynamic> json) =>
@@ -115,11 +115,11 @@ abstract class DocumentColorParams with _$DocumentColorParams {
     required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _DocumentColorParams;
 
   factory DocumentColorParams.fromJson(Map<String, dynamic> json) =>
@@ -159,11 +159,11 @@ abstract class ColorPresentationParams with _$ColorPresentationParams {
     required Range range,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _ColorPresentationParams;
 
   factory ColorPresentationParams.fromJson(Map<String, dynamic> json) =>
@@ -201,11 +201,11 @@ abstract class FoldingRangeParams with _$FoldingRangeParams {
     required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _FoldingRangeParams;
 
   factory FoldingRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -240,11 +240,11 @@ abstract class DeclarationParams with _$DeclarationParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _DeclarationParams;
 
   factory DeclarationParams.fromJson(Map<String, dynamic> json) =>
@@ -280,11 +280,11 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
     required List<Position> positions,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _SelectionRangeParams;
 
   factory SelectionRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -315,7 +315,7 @@ abstract class WorkDoneProgressCreateParams
     with _$WorkDoneProgressCreateParams {
   const factory WorkDoneProgressCreateParams({
     /// The token to be used to report progress.
-    @_ProgressTokenConverter() required ProgressToken token,
+    required ProgressToken token,
   }) = _WorkDoneProgressCreateParams;
 
   factory WorkDoneProgressCreateParams.fromJson(Map<String, dynamic> json) =>
@@ -327,7 +327,7 @@ abstract class WorkDoneProgressCancelParams
     with _$WorkDoneProgressCancelParams {
   const factory WorkDoneProgressCancelParams({
     /// The token to be used to report progress.
-    @_ProgressTokenConverter() required ProgressToken token,
+    required ProgressToken token,
   }) = _WorkDoneProgressCancelParams;
 
   factory WorkDoneProgressCancelParams.fromJson(Map<String, dynamic> json) =>
@@ -347,7 +347,7 @@ abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _CallHierarchyPrepareParams;
 
   factory CallHierarchyPrepareParams.fromJson(Map<String, dynamic> json) =>
@@ -386,11 +386,11 @@ abstract class CallHierarchyIncomingCallsParams
     required CallHierarchyItem item,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _CallHierarchyIncomingCallsParams;
 
   factory CallHierarchyIncomingCallsParams.fromJson(
@@ -408,11 +408,11 @@ abstract class CallHierarchyOutgoingCallsParams
     required CallHierarchyItem item,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _CallHierarchyOutgoingCallsParams;
 
   factory CallHierarchyOutgoingCallsParams.fromJson(
@@ -428,11 +428,11 @@ abstract class SemanticTokensParams with _$SemanticTokensParams {
     required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _SemanticTokensParams;
 
   factory SemanticTokensParams.fromJson(Map<String, dynamic> json) =>
@@ -456,13 +456,11 @@ abstract class SemanticTokensRegistrationOptions
     /// document.
     ///
     /// Type: bool | Object
-    @_SemanticTokensRegistrationOptionsRangeConverter()
     SemanticTokensRegistrationOptionsRange? range,
 
     /// Server supports providing semantic tokens for a full document.
     ///
     /// Type: bool | Object
-    @_SemanticTokensRegistrationOptionsFullConverter()
     SemanticTokensRegistrationOptionsFull? full,
 
     /// The id used to register the request. The id can be used to deregister
@@ -487,11 +485,11 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
     required String previousResultId,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _SemanticTokensDeltaParams;
 
   factory SemanticTokensDeltaParams.fromJson(Map<String, dynamic> json) =>
@@ -509,11 +507,11 @@ abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
     required Range range,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _SemanticTokensRangeParams;
 
   factory SemanticTokensRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -559,7 +557,7 @@ abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _LinkedEditingRangeParams;
 
   factory LinkedEditingRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -657,11 +655,11 @@ abstract class MonikerParams with _$MonikerParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _MonikerParams;
 
   factory MonikerParams.fromJson(Map<String, dynamic> json) =>
@@ -694,7 +692,7 @@ abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _TypeHierarchyPrepareParams;
 
   factory TypeHierarchyPrepareParams.fromJson(Map<String, dynamic> json) =>
@@ -733,11 +731,11 @@ abstract class TypeHierarchySupertypesParams
     required TypeHierarchyItem item,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _TypeHierarchySupertypesParams;
 
   factory TypeHierarchySupertypesParams.fromJson(Map<String, dynamic> json) =>
@@ -753,11 +751,11 @@ abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
     required TypeHierarchyItem item,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _TypeHierarchySubtypesParams;
 
   factory TypeHierarchySubtypesParams.fromJson(Map<String, dynamic> json) =>
@@ -781,7 +779,7 @@ abstract class InlineValueParams with _$InlineValueParams {
     required InlineValueContext context,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _InlineValueParams;
 
   factory InlineValueParams.fromJson(Map<String, dynamic> json) =>
@@ -822,7 +820,7 @@ abstract class InlayHintParams with _$InlayHintParams {
     required Range range,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _InlayHintParams;
 
   factory InlayHintParams.fromJson(Map<String, dynamic> json) =>
@@ -864,11 +862,11 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
     required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
 
     /// The additional identifier provided during registration.
     String? identifier,
@@ -925,11 +923,11 @@ abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
     required List<PreviousResultId> previousResultIds,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
 
     /// The additional identifier provided during registration.
     String? identifier,
@@ -1042,7 +1040,7 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
     required InlineCompletionContext context,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _InlineCompletionParams;
 
   factory InlineCompletionParams.fromJson(Map<String, dynamic> json) =>
@@ -1111,7 +1109,7 @@ abstract class InitializeParams with _$InitializeParams {
     required ClientCapabilities capabilities,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// Information about the client
     ({String name, String? version})? clientInfo,
@@ -1170,8 +1168,9 @@ abstract class DidChangeConfigurationParams
 @freezed
 abstract class DidChangeConfigurationRegistrationOptions
     with _$DidChangeConfigurationRegistrationOptions {
-  const factory DidChangeConfigurationRegistrationOptions({Object? section}) =
-      _DidChangeConfigurationRegistrationOptions;
+  const factory DidChangeConfigurationRegistrationOptions({
+    DidChangeConfigurationRegistrationOptionsSection? section,
+  }) = _DidChangeConfigurationRegistrationOptions;
 
   factory DidChangeConfigurationRegistrationOptions.fromJson(
     Map<String, dynamic> json,
@@ -1256,7 +1255,6 @@ abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
     /// 'textDocument/didChange' notifications in the order you receive them. -
     /// apply the `TextDocumentContentChangeEvent`s in a single notification in
     /// the order you receive them.
-    @_TextDocumentContentChangeEventListConverter()
     required List<TextDocumentContentChangeEvent> contentChanges,
   }) = _DidChangeTextDocumentParams;
 
@@ -1399,11 +1397,11 @@ abstract class CompletionParams with _$CompletionParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
 
     /// The completion context. This is only available if the client specifies
     /// to send this using the client capability
@@ -1470,7 +1468,7 @@ abstract class HoverParams with _$HoverParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _HoverParams;
 
   factory HoverParams.fromJson(Map<String, dynamic> json) =>
@@ -1502,7 +1500,7 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// The signature help context. This is only available if the client
     /// specifies to send this using the client capability
@@ -1551,11 +1549,11 @@ abstract class DefinitionParams with _$DefinitionParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _DefinitionParams;
 
   factory DefinitionParams.fromJson(Map<String, dynamic> json) =>
@@ -1589,11 +1587,11 @@ abstract class ReferenceParams with _$ReferenceParams {
     required ReferenceContext context,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _ReferenceParams;
 
   factory ReferenceParams.fromJson(Map<String, dynamic> json) =>
@@ -1626,11 +1624,11 @@ abstract class DocumentHighlightParams with _$DocumentHighlightParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _DocumentHighlightParams;
 
   factory DocumentHighlightParams.fromJson(Map<String, dynamic> json) =>
@@ -1661,11 +1659,11 @@ abstract class DocumentSymbolParams with _$DocumentSymbolParams {
     required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _DocumentSymbolParams;
 
   factory DocumentSymbolParams.fromJson(Map<String, dynamic> json) =>
@@ -1706,11 +1704,11 @@ abstract class CodeActionParams with _$CodeActionParams {
     required CodeActionContext context,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _CodeActionParams;
 
   factory CodeActionParams.fromJson(Map<String, dynamic> json) =>
@@ -1751,11 +1749,11 @@ abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
     required String query,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _WorkspaceSymbolParams;
 
   factory WorkspaceSymbolParams.fromJson(Map<String, dynamic> json) =>
@@ -1787,11 +1785,11 @@ abstract class CodeLensParams with _$CodeLensParams {
     required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _CodeLensParams;
 
   factory CodeLensParams.fromJson(Map<String, dynamic> json) =>
@@ -1823,11 +1821,11 @@ abstract class DocumentLinkParams with _$DocumentLinkParams {
     required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _DocumentLinkParams;
 
   factory DocumentLinkParams.fromJson(Map<String, dynamic> json) =>
@@ -1863,7 +1861,7 @@ abstract class DocumentFormattingParams with _$DocumentFormattingParams {
     required FormattingOptions options,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentFormattingParams;
 
   factory DocumentFormattingParams.fromJson(Map<String, dynamic> json) =>
@@ -1901,7 +1899,7 @@ abstract class DocumentRangeFormattingParams
     required FormattingOptions options,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentRangeFormattingParams;
 
   factory DocumentRangeFormattingParams.fromJson(Map<String, dynamic> json) =>
@@ -1945,7 +1943,7 @@ abstract class DocumentRangesFormattingParams
     required FormattingOptions options,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentRangesFormattingParams;
 
   factory DocumentRangesFormattingParams.fromJson(Map<String, dynamic> json) =>
@@ -2015,7 +2013,7 @@ abstract class RenameParams with _$RenameParams {
     required String newName,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _RenameParams;
 
   factory RenameParams.fromJson(Map<String, dynamic> json) =>
@@ -2051,7 +2049,7 @@ abstract class PrepareRenameParams with _$PrepareRenameParams {
     required Position position,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _PrepareRenameParams;
 
   factory PrepareRenameParams.fromJson(Map<String, dynamic> json) =>
@@ -2066,7 +2064,7 @@ abstract class ExecuteCommandParams with _$ExecuteCommandParams {
     required String command,
 
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
 
     /// Arguments that the command should be invoked with.
     List<LSPAny>? arguments,
@@ -2130,7 +2128,7 @@ abstract class CancelParams with _$CancelParams {
     /// The request id to cancel.
     ///
     /// Type: int | String
-    @_CancelParamsIdConverter() required CancelParamsId id,
+    required CancelParamsId id,
   }) = _CancelParams;
 
   factory CancelParams.fromJson(Map<String, dynamic> json) =>
@@ -2141,7 +2139,7 @@ abstract class CancelParams with _$CancelParams {
 abstract class ProgressParams with _$ProgressParams {
   const factory ProgressParams({
     /// The progress token provided by the client or server.
-    @_ProgressTokenConverter() required ProgressToken token,
+    required ProgressToken token,
 
     /// The progress data.
     required LSPAny value,
@@ -2171,7 +2169,7 @@ abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
 abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
   const factory WorkDoneProgressParams({
     /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _WorkDoneProgressParams;
 
   factory WorkDoneProgressParams.fromJson(Map<String, dynamic> json) =>
@@ -2183,7 +2181,7 @@ abstract class PartialResultParams with _$PartialResultParams {
   const factory PartialResultParams({
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+    ProgressToken? partialResultToken,
   }) = _PartialResultParams;
 
   factory PartialResultParams.fromJson(Map<String, dynamic> json) =>
@@ -2281,12 +2279,12 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
     /// document.
     ///
     /// Type: bool | Object
-    @_SemanticTokensOptionsRangeConverter() SemanticTokensOptionsRange? range,
+    SemanticTokensOptionsRange? range,
 
     /// Server supports providing semantic tokens for a full document.
     ///
     /// Type: bool | Object
-    @_SemanticTokensOptionsFullConverter() SemanticTokensOptionsFull? full,
+    SemanticTokensOptionsFull? full,
   }) = _SemanticTokensOptions;
 
   factory SemanticTokensOptions.fromJson(Map<String, dynamic> json) =>
@@ -2760,7 +2758,7 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
     /// notification should not be sent.
     ///
     /// Type: bool | SaveOptions
-    @_TextDocumentSyncOptionsSaveConverter() TextDocumentSyncOptionsSave? save,
+    TextDocumentSyncOptionsSave? save,
   }) = _TextDocumentSyncOptions;
 
   factory TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
@@ -2781,7 +2779,8 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
 abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
   const factory NotebookDocumentSyncOptions({
     /// The notebooks to be synced
-    required List<Object> notebookSelector,
+    required List<NotebookDocumentSyncOptionsNotebookSelectorItem>
+    notebookSelector,
 
     /// Whether save notification should be forwarded to the server. Will only
     /// be honored if mode === `notebook`.
@@ -2800,7 +2799,8 @@ abstract class NotebookDocumentSyncRegistrationOptions
     with _$NotebookDocumentSyncRegistrationOptions {
   const factory NotebookDocumentSyncRegistrationOptions({
     /// The notebooks to be synced
-    required List<Object> notebookSelector,
+    required List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem>
+    notebookSelector,
 
     /// Whether save notification should be forwarded to the server. Will only
     /// be honored if mode === `notebook`.

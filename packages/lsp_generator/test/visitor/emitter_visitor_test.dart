@@ -26,11 +26,11 @@ final _formatter = DartFormatter(
 String _format(Library lib) => _formatter.format('${lib.accept(_emitter)}');
 
 String _allStructuresSrc(EmitterVisitor visitor) => [
-      _format(visitor.buildStructures()),
-      _format(visitor.buildStructuresCapabilities()),
-      _format(visitor.buildStructuresParams()),
-      _format(visitor.buildStructuresCommon()),
-    ].join('\n');
+  _format(visitor.buildStructures()),
+  _format(visitor.buildStructuresCapabilities()),
+  _format(visitor.buildStructuresParams()),
+  _format(visitor.buildStructuresCommon()),
+].join('\n');
 
 String _getStructures(ResolvedState state) =>
     _allStructuresSrc(EmitterVisitor(state));
@@ -456,8 +456,7 @@ void main() {
       expect(src, contains('typedef StringList = List<String>'));
     });
 
-    test('generates typedef for union alias (collapsed to Object)', () {
-      // A union that includes a MapType is classified as 'mixed' → Object.
+    test('mixed union alias is skipped in buildAliases()', () {
       final state = _stateWith(
         aliases: [
           _alias(
@@ -476,7 +475,7 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildAliases());
-      expect(src, contains('typedef LSPAny = Object'));
+      expect(src, isNot(contains('typedef LSPAny')));
     });
 
     test('skips sealed union alias in buildAliases()', () {
@@ -504,7 +503,7 @@ void main() {
   // ---------------------------------------------------------------------------
 
   group('EmitterVisitor.buildUnions()', () {
-    test('scalar union generates sealed class + 2 variants', () {
+    test('scalar union generates extension type const + getter variants', () {
       final state = _stateWith(
         aliases: [
           _alias(
@@ -520,14 +519,16 @@ void main() {
       );
       // Scalar unions go to buildScalarUnions(), not buildUnions().
       final src = _format(EmitterVisitor(state).buildScalarUnions());
-      expect(src, contains('sealed class ProgressToken'));
-      expect(src, contains(r'ProgressToken$Int'));
-      expect(src, contains(r'ProgressToken$String'));
+      expect(src, contains('extension type const ProgressToken(Object value)'));
+      expect(src, contains('bool get isInt => value is int;'));
+      expect(src, contains('int? get asInt'));
+      expect(src, contains('bool get isString => value is String;'));
+      expect(src, contains('String? get asString'));
       expect(src, contains('factory ProgressToken.fromJson'));
       expect(src, contains('Object toJson()'));
     });
 
-    test('scalar union fromJson checks first variant by type', () {
+    test('scalar union redirecting fromJson constructor', () {
       final state = _stateWith(
         aliases: [
           _alias(
@@ -543,7 +544,12 @@ void main() {
       );
       // Scalar unions go to buildScalarUnions().
       final src = _format(EmitterVisitor(state).buildScalarUnions());
-      expect(src, contains('if (json is int)'));
+      expect(
+        src,
+        contains(
+          'factory ProgressToken.fromJson(Object json) => ProgressToken(json);',
+        ),
+      );
     });
 
     test('scalar union absent from buildUnions()', () {
@@ -565,7 +571,7 @@ void main() {
       expect(src, isNot(contains('ProgressToken')));
     });
 
-    test('mixed union absent from buildUnions()', () {
+    test('mixed union generated in buildUnions()', () {
       final state = _stateWith(
         aliases: [
           _alias(
@@ -583,7 +589,7 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildUnions());
-      expect(src, isNot(contains('LSPAny')));
+      expect(src, contains('extension type const LSPAny(Object value)'));
     });
 
     test('inline scalar union is generated in buildScalarUnions()', () {
@@ -609,16 +615,24 @@ void main() {
       );
       final visitor = EmitterVisitor(state);
       final unionsSrc = _format(visitor.buildScalarUnions());
-      expect(unionsSrc, contains('sealed class TextDocumentEditEditsItem'));
-      expect(unionsSrc, contains(r'TextDocumentEditEditsItem$Int'));
-      expect(unionsSrc, contains(r'TextDocumentEditEditsItem$String'));
+      expect(
+        unionsSrc,
+        contains(
+          'extension type const TextDocumentEditEditsItem(Object value)',
+        ),
+      );
+      expect(unionsSrc, contains('bool get isInt => value is int;'));
+      expect(unionsSrc, contains('bool get isString => value is String;'));
 
       final structSrc = _allStructuresSrc(visitor);
       expect(
         structSrc,
         contains('required List<TextDocumentEditEditsItem> edits'),
       );
-      expect(structSrc, contains('@_TextDocumentEditEditsItemListConverter()'));
+      expect(
+        structSrc,
+        isNot(contains('@_TextDocumentEditEditsItemListConverter()')),
+      );
     });
 
     test('buildUnions() integration emits valid Dart', () {
@@ -636,7 +650,7 @@ void main() {
       expect(() => _format(lib), returnsNormally);
     });
 
-    test('buildUnions() integration contains ProgressToken sealed class', () {
+    test('buildUnions() integration contains ProgressToken extension type', () {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
@@ -650,9 +664,10 @@ void main() {
       // ProgressToken is scalar → lives in buildScalarUnions(), not
       // buildUnions().
       final scalarSrc = _format(EmitterVisitor(resolved).buildScalarUnions());
-      expect(scalarSrc, contains('sealed class ProgressToken'));
-      expect(scalarSrc, contains(r'ProgressToken$Int'));
-      expect(scalarSrc, contains(r'ProgressToken$String'));
+      expect(
+        scalarSrc,
+        contains('extension type const ProgressToken(Object value)'),
+      );
     });
   });
 
@@ -694,12 +709,7 @@ void main() {
       );
     });
 
-    test('buildStructuresConverters() emits valid Dart and part of', () {
-      final lib = EmitterVisitor(resolved).buildStructuresConverters();
-      expect(() => _format(lib), returnsNormally);
-      final src = _format(lib);
-      expect(src, contains("part of 'structures.dart';"));
-    });
+
 
     test('structiures output contains Position class', () {
       final src = _getStructures(resolved);

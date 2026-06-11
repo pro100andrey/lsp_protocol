@@ -6,9 +6,9 @@ class CompletionService {
       label: 'hello',
       kind: .keyword,
       detail: 'LSP test completion',
-      documentation: .markupContent(
-        value: .new(
-          kind: .plainText,
+      documentation: CompletionItemDocumentation(
+        MarkupContent(
+          kind: MarkupKind.plainText,
           value: 'A test completion item from lsp_test_server',
         ),
       ),

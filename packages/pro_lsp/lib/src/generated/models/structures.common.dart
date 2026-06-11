@@ -325,7 +325,7 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
     /// If a client neither supports `documentChanges` nor
     /// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
     /// using the `changes` property are supported.
-    List<Object>? documentChanges,
+    List<WorkspaceEditDocumentChangesItem>? documentChanges,
 
     /// A map of change annotations that can be referenced in
     /// `AnnotatedTextEdit`s or create, rename and delete file / folder
@@ -420,7 +420,7 @@ abstract class InlayHint with _$InlayHint {
     /// *Note* that neither the string nor the label part can be empty.
     ///
     /// Type: String | List<InlayHintLabelPart>
-    required Object label,
+    required InlayHintLabel label,
 
     /// The kind of this hint. Can be omitted in which case the client should
     /// fall back to a reasonable default.
@@ -436,7 +436,7 @@ abstract class InlayHint with _$InlayHint {
     /// The tooltip text when you hover over this item.
     ///
     /// Type: String | MarkupContent
-    @_InlayHintTooltipConverter() InlayHintTooltip? tooltip,
+    InlayHintTooltip? tooltip,
 
     /// Render padding before the hint.
     ///
@@ -497,7 +497,6 @@ abstract class DiagnosticServerCancellationData
 @freezed
 abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
   const factory WorkspaceDiagnosticReport({
-    @_WorkspaceDocumentDiagnosticReportListConverter()
     required List<WorkspaceDocumentDiagnosticReport> items,
   }) = _WorkspaceDiagnosticReport;
 
@@ -512,7 +511,6 @@ abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
 abstract class WorkspaceDiagnosticReportPartialResult
     with _$WorkspaceDiagnosticReportPartialResult {
   const factory WorkspaceDiagnosticReportPartialResult({
-    @_WorkspaceDocumentDiagnosticReportListConverter()
     required List<WorkspaceDocumentDiagnosticReport> items,
   }) = _WorkspaceDiagnosticReportPartialResult;
 
@@ -548,7 +546,6 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
     /// The text to replace the range with. Must be set.
     ///
     /// Type: String | StringValue
-    @_InlineCompletionItemInsertTextConverter()
     required InlineCompletionItemInsertText insertText,
 
     /// A text that is used to decide if this inline completion should be shown.
@@ -655,7 +652,6 @@ abstract class CompletionItem with _$CompletionItem {
     /// A human-readable string that represents a doc-comment.
     ///
     /// Type: String | MarkupContent
-    @_CompletionItemDocumentationConverter()
     CompletionItemDocumentation? documentation,
 
     /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
@@ -721,7 +717,7 @@ abstract class CompletionItem with _$CompletionItem {
     /// additional type `InsertReplaceEdit`
     ///
     /// Type: TextEdit | InsertReplaceEdit
-    @_CompletionItemTextEditConverter() CompletionItemTextEdit? textEdit,
+    CompletionItemTextEdit? textEdit,
 
     /// The edit text used if the completion item is part of a CompletionList
     /// and CompletionList defines an item default for the text edit range.
@@ -807,7 +803,7 @@ abstract class Hover with _$Hover {
     /// The hover's content
     ///
     /// Type: MarkupContent | MarkedString | List<MarkedString>
-    required Object contents,
+    required HoverContents contents,
 
     /// An optional range inside the text document that is used to visualize the
     /// hover, e.g. by changing the background color.
@@ -1055,7 +1051,6 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     /// See SymbolInformation#location for more details.
     ///
     /// Type: Location | Object
-    @_WorkspaceSymbolLocationConverter()
     required WorkspaceSymbolLocation location,
 
     /// Tags for this symbol.
@@ -1449,7 +1444,6 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
     ///
     /// - support for AnnotatedTextEdit. This is guarded using a client
     /// capability.
-    @_TextDocumentEditEditsItemListConverter()
     required List<TextDocumentEditEditsItem> edits,
   }) = _TextDocumentEdit;
 
@@ -1690,7 +1684,7 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     /// property late using the resolve request.
     ///
     /// Type: String | MarkupContent
-    @_InlayHintLabelPartTooltipConverter() InlayHintLabelPartTooltip? tooltip,
+    InlayHintLabelPartTooltip? tooltip,
 
     /// An optional source code location that represents this label part.
     ///
@@ -2120,7 +2114,7 @@ abstract class Diagnostic with _$Diagnostic {
     /// The diagnostic's code, which usually appear in the user interface.
     ///
     /// Type: int | String
-    @_DiagnosticCodeConverter() DiagnosticCode? code,
+    DiagnosticCode? code,
 
     /// An optional property to describe the error code. Requires the code field
     /// (above) to be present/not null.
@@ -2252,7 +2246,6 @@ abstract class SignatureInformation with _$SignatureInformation {
     /// UI but can be omitted.
     ///
     /// Type: String | MarkupContent
-    @_SignatureInformationDocumentationConverter()
     SignatureInformationDocumentation? documentation,
 
     /// The parameters of this signature.
@@ -2612,14 +2605,12 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// label part in the `SignatureInformation.label`.
     ///
     /// Type: String | (int, int)
-    @_ParameterInformationLabelConverter()
     required ParameterInformationLabel label,
 
     /// The human-readable doc-comment of this parameter. Will be shown in the
     /// UI but can be omitted.
     ///
     /// Type: String | MarkupContent
-    @_ParameterInformationDocumentationConverter()
     ParameterInformationDocumentation? documentation,
   }) = _ParameterInformation;
 
@@ -2640,7 +2631,7 @@ abstract class NotebookCellTextDocumentFilter
     /// matches every notebook.
     ///
     /// Type: String | NotebookDocumentFilter
-    required Object notebook,
+    required NotebookCellTextDocumentFilterNotebook notebook,
 
     /// A language id like `python`.
     ///
@@ -2680,7 +2671,7 @@ abstract class RelativePattern with _$RelativePattern {
     /// against relatively.
     ///
     /// Type: WorkspaceFolder | String
-    @_RelativePatternBaseUriConverter() required RelativePatternBaseUri baseUri,
+    required RelativePatternBaseUri baseUri,
 
     /// The actual glob pattern;
     required Pattern pattern,

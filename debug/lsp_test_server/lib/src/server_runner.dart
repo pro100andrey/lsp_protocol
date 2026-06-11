@@ -54,18 +54,23 @@ final class ServerRunner {
       return const .new(
         capabilities: .new(
           positionEncoding: .uTF16,
-          hoverProvider: .bool(value: true),
+          hoverProvider: .new(true),
           completionProvider: .new(
             triggerCharacters: ['.', ':'],
           ),
-          textDocumentSync: TextDocumentSyncOptions(
-            change: .full,
-            openClose: true,
+          textDocumentSync: ServerCapabilitiesTextDocumentSync(
+            TextDocumentSyncOptions(
+              change: .full,
+              openClose: true,
+            ),
           ),
           workspace: (
             workspaceFolders: .new(
               supported: true,
-              changeNotifications: .bool(value: true),
+              changeNotifications:
+                  WorkspaceFoldersServerCapabilitiesChangeNotifications(
+                true,
+              ),
             ),
             fileOperations: .new(
               willCreate: .new(
@@ -141,12 +146,9 @@ final class ServerRunner {
     _server.textDocument.onDidChange((params) async {
       logInfo('Document changed: ${params.textDocument.uri}');
 
-      final text = switch (params.contentChanges.lastOrNull) {
-        TextDocumentContentChangeEvent$Text(:final value) => value.text,
-        TextDocumentContentChangeEvent$RangeRangeLengthText(:final value) =>
-          value.text,
-        null => null,
-      };
+      final lastChange = params.contentChanges.lastOrNull;
+      final text = lastChange?.asText?.text ??
+          lastChange?.asRangeRangeLengthText?.text;
 
       if (text != null) {
         _docService.update(params.textDocument.uri, text);

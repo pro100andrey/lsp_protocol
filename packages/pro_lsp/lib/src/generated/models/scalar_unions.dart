@@ -2,128 +2,105 @@
 
 // GENERATED — do not edit.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+extension type const ProgressToken(Object value) {
+  factory ProgressToken.fromJson(Object json) => ProgressToken(json);
 
-part 'scalar_unions.freezed.dart';
+  Object toJson() => value;
 
-@freezed
-sealed class ProgressToken with _$ProgressToken {
-  const ProgressToken._();
+  bool get isInt => value is int;
 
-  const factory ProgressToken.int({required int value}) = ProgressToken$Int;
-
-  const factory ProgressToken.string({required String value}) =
-      ProgressToken$String;
-
-  factory ProgressToken.fromJson(dynamic json) {
-    if (json is int) {
-      return ProgressToken.int(value: json);
-    }
-    return ProgressToken.string(value: json! as String);
+  int? get asInt {
+    return value is int ? (value as int) : null;
   }
 
-  Object toJson() => switch (this) {
-    ProgressToken$Int(:final value) => value,
-    ProgressToken$String(:final value) => value,
-  };
+  bool get isString => value is String;
+
+  String? get asString {
+    return value is String ? (value as String) : null;
+  }
 }
 
 /// Inline union: CancelParamsId.
-@freezed
-sealed class CancelParamsId with _$CancelParamsId {
-  const CancelParamsId._();
+extension type const CancelParamsId(Object value) {
+  factory CancelParamsId.fromJson(Object json) => CancelParamsId(json);
 
-  const factory CancelParamsId.int({required int value}) = CancelParamsId$Int;
+  Object toJson() => value;
 
-  const factory CancelParamsId.string({required String value}) =
-      CancelParamsId$String;
+  bool get isInt => value is int;
 
-  factory CancelParamsId.fromJson(dynamic json) {
-    if (json is int) {
-      return CancelParamsId.int(value: json);
-    }
-    return CancelParamsId.string(value: json! as String);
+  int? get asInt {
+    return value is int ? (value as int) : null;
   }
 
-  Object toJson() => switch (this) {
-    CancelParamsId$Int(:final value) => value,
-    CancelParamsId$String(:final value) => value,
-  };
+  bool get isString => value is String;
+
+  String? get asString {
+    return value is String ? (value as String) : null;
+  }
 }
 
 /// Inline union: DiagnosticCode.
-@freezed
-sealed class DiagnosticCode with _$DiagnosticCode {
-  const DiagnosticCode._();
+extension type const DiagnosticCode(Object value) {
+  factory DiagnosticCode.fromJson(Object json) => DiagnosticCode(json);
 
-  const factory DiagnosticCode.int({required int value}) = DiagnosticCode$Int;
+  Object toJson() => value;
 
-  const factory DiagnosticCode.string({required String value}) =
-      DiagnosticCode$String;
+  bool get isInt => value is int;
 
-  factory DiagnosticCode.fromJson(dynamic json) {
-    if (json is int) {
-      return DiagnosticCode.int(value: json);
-    }
-    return DiagnosticCode.string(value: json! as String);
+  int? get asInt {
+    return value is int ? (value as int) : null;
   }
 
-  Object toJson() => switch (this) {
-    DiagnosticCode$Int(:final value) => value,
-    DiagnosticCode$String(:final value) => value,
-  };
+  bool get isString => value is String;
+
+  String? get asString {
+    return value is String ? (value as String) : null;
+  }
 }
 
 /// Inline union: WorkspaceFoldersServerCapabilitiesChangeNotifications.
-@freezed
-sealed class WorkspaceFoldersServerCapabilitiesChangeNotifications
-    with _$WorkspaceFoldersServerCapabilitiesChangeNotifications {
-  const WorkspaceFoldersServerCapabilitiesChangeNotifications._();
-
-  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.string({
-    required String value,
-  }) = WorkspaceFoldersServerCapabilitiesChangeNotifications$String;
-
-  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.bool({
-    required bool value,
-  }) = WorkspaceFoldersServerCapabilitiesChangeNotifications$Bool;
-
+extension type const WorkspaceFoldersServerCapabilitiesChangeNotifications(
+  Object value
+) {
   factory WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
-    dynamic json,
-  ) {
-    if (json is String) {
-      return WorkspaceFoldersServerCapabilitiesChangeNotifications.string(
-        value: json,
-      );
-    }
-    return WorkspaceFoldersServerCapabilitiesChangeNotifications.bool(
-      value: json! as bool,
-    );
+    Object json,
+  ) => WorkspaceFoldersServerCapabilitiesChangeNotifications(json);
+
+  Object toJson() => value;
+
+  bool get isString => value is String;
+
+  String? get asString {
+    return value is String ? (value as String) : null;
   }
 
-  Object toJson() => switch (this) {
-    WorkspaceFoldersServerCapabilitiesChangeNotifications$String(
-      :final value,
-    ) =>
-      value,
-    WorkspaceFoldersServerCapabilitiesChangeNotifications$Bool(:final value) =>
-      value,
-  };
+  bool get isBool => value is bool;
+
+  bool? get asBool {
+    return value is bool ? (value as bool) : null;
+  }
 }
 
 /// Inline union: ParameterInformationLabel.
-@freezed
-sealed class ParameterInformationLabel with _$ParameterInformationLabel {
-  const ParameterInformationLabel._();
+extension type const ParameterInformationLabel(Object value) {
+  factory ParameterInformationLabel.fromJson(Object json) =>
+      ParameterInformationLabel(json);
 
-  const factory ParameterInformationLabel.string({required String value}) =
-      ParameterInformationLabel$String;
+  Object toJson() => value;
 
-  factory ParameterInformationLabel.fromJson(dynamic json) {
-    return ParameterInformationLabel.string(value: json! as String);
+  bool get isString => value is String;
+
+  String? get asString {
+    return value is String ? (value as String) : null;
   }
 
-  Object toJson() => switch (this) {
-    ParameterInformationLabel$String(:final value) => value,
-  };
+  bool get isTuple => value is List && (value as List).length == 2;
+
+  (int, int)? get asTuple {
+    if (isTuple) {
+      final list = value as List;
+      return (list[0] as int, list[1] as int);
+    }
+    return null;
+  }
 }

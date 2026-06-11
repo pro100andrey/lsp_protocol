@@ -1,4 +1,3 @@
-import '../generated/models/unions.dart';
 import 'lsp_server.dart';
 
 /// Represents an open text document in the virtual file system of the LSP 
@@ -58,11 +57,9 @@ final class TextDocumentManager {
       // to send the entire content in the change list (usually one item).
       final lastChange = changes.last;
 
-      final lastChangeText = switch (lastChange) {
-        TextDocumentContentChangeEvent$RangeRangeLengthText(:final value) =>
-          value.text,
-        TextDocumentContentChangeEvent$Text(:final value) => value.text,
-      };
+      final lastChangeText = lastChange.asText?.text ??
+          lastChange.asRangeRangeLengthText?.text ??
+          '';
 
       final existingDoc = _documents[uri];
       if (existingDoc != null) {

@@ -4,6 +4,7 @@ import '../connection/lsp_connection.dart';
 import '../generated/models/methods.dart';
 import '../generated/models/scalar_unions.dart';
 import '../generated/models/structures.dart';
+import '../generated/models/unions.dart';
 
 /// Represents a work done progress session initiated by the server.
 final class LspProgress {
@@ -28,7 +29,7 @@ final class LspProgress {
     );
     _connection.sendNotification(
       NotificationMethod.progress.value,
-      ProgressParams(token: _token, value: beginValue).toJson(),
+      ProgressParams(token: _token, value: LSPAny(beginValue)).toJson(),
     );
   }
 
@@ -46,7 +47,7 @@ final class LspProgress {
     );
     _connection.sendNotification(
       NotificationMethod.progress.value,
-      ProgressParams(token: _token, value: reportValue).toJson(),
+      ProgressParams(token: _token, value: LSPAny(reportValue)).toJson(),
     );
   }
 
@@ -58,7 +59,7 @@ final class LspProgress {
     );
     _connection.sendNotification(
       NotificationMethod.progress.value,
-      ProgressParams(token: _token, value: endValue).toJson(),
+      ProgressParams(token: _token, value: LSPAny(endValue)).toJson(),
     );
   }
 }
@@ -78,7 +79,7 @@ final class WorkDoneProgressManager {
     int? percentage,
     bool? cancellable,
   }) async {
-    final token = ProgressToken.string(value: 'progress-${_nextProgressId++}');
+    final token = ProgressToken('progress-${_nextProgressId++}');
 
     await _connection.sendRequest(
       RequestMethod.create.value,

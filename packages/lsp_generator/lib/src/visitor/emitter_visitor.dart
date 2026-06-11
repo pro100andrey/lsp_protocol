@@ -1,9 +1,11 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 
 import '../models/protocol.dart' show MessageDirection, MetaNotification;
 import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
 import '../resolver/resolved_state.dart';
+import 'emitter_helpers.dart';
 import 'type_reference.dart';
 
 // ---------------------------------------------------------------------------
@@ -33,30 +35,7 @@ typedef _UnionCheck = ({
 
 enum _ClassCategory { capabilities, params, common }
 
-/// Discriminates how a converter class is generated.
-/// Enums use `@JsonEnum(valueField: 'value')` with a static `decode()` — no
-/// converter needed.
-enum _ConverterKind { scalarUnion, structUnion }
-
-/// Metadata about a single needed JsonConverter.
-typedef _ConverterEntry = ({String name, _ConverterKind kind});
-
 // ---------------------------------------------------------------------------
-
-/// Generates a Dart `if` (optionally `else`) statement from code_builder
-/// [condition] and block bodies.
-Code ifStatement(Expression condition, Block ifBlock, [Block? elseBlock]) {
-  final visitor = DartEmitter();
-  final conditionV = condition.accept(visitor);
-  final ifBlockV = ifBlock.accept(visitor);
-  final elseBlockV = elseBlock?.accept(visitor);
-
-  final ifElse =
-      'if($conditionV){$ifBlockV}'
-      '${elseBlockV != null ? 'else {$elseBlockV}' : ''}';
-
-  return Code(ifElse);
-}
 
 /// Builds code_builder [Library] objects from a fully resolved [ResolvedState].
 ///
@@ -92,13 +71,6 @@ final class EmitterVisitor {
 
   /// Inline anonymous unions collected from all class properties.
   late final Map<String, UnionType> _inlineUnions = _computeInlineUnions();
-
-  /// Converter classes needed in `structures.dart`, keyed by type name.
-  late final ({
-    Map<String, _ConverterEntry> scalar,
-    Map<String, _ConverterEntry> list,
-  })
-  _converterNeeds = _computeConverterNeeds();
 
   // ---------------------------------------------------------------------------
   // Public API
@@ -156,8 +128,7 @@ final class EmitterVisitor {
         ..directives.add(Directive.part('structures.g.dart'))
         ..directives.add(Directive.part('structures.capabilities.dart'))
         ..directives.add(Directive.part('structures.params.dart'))
-        ..directives.add(Directive.part('structures.common.dart'))
-        ..directives.add(Directive.part('structures.converters.dart')),
+        ..directives.add(Directive.part('structures.common.dart')),
     );
   }
 
@@ -198,18 +169,6 @@ final class EmitterVisitor {
       ..body.addAll(
         _classesForCategory(_ClassCategory.common).map(_buildClass),
       ),
-  );
-
-  /// Builds a [Library] containing all converters for structures.
-  Library buildStructuresConverters() => Library(
-    (b) => b
-      ..comments.addAll([
-        _header,
-      ])
-      ..directives.add(
-        Directive.partOf('structures.dart'),
-      )
-      ..body.addAll(_buildConverterSpecs()),
   );
 
   /// Builds a [Library] containing all resolved enumerations.
@@ -304,12 +263,10 @@ final class EmitterVisitor {
     for (final name in _scalarUnionNames) {
       final alias = _resolved.aliases.firstWhere((a) => a.name == name);
       final ut = alias.type as UnionType;
-      final kind = _classifyUnion(ut);
-      specs.addAll(
-        _buildUnionSpecs(
+      specs.add(
+        _buildExtensionTypeUnion(
           name,
           ut,
-          kind,
           deprecated: alias.deprecated,
           docs: _docLines(
             alias.documentation,
@@ -326,11 +283,10 @@ final class EmitterVisitor {
       final ut = entry.value;
       final kind = _classifyUnion(ut);
       if (kind == _UnionKind.scalar) {
-        specs.addAll(
-          _buildUnionSpecs(
+        specs.add(
+          _buildExtensionTypeUnion(
             name,
             ut,
-            kind,
             docs: _docLines('Inline union: $name.'),
           ),
         );
@@ -341,12 +297,6 @@ final class EmitterVisitor {
     return Library(
       (b) => b
         ..comments.add(_header)
-        ..directives.add(
-          Directive.import(
-            'package:freezed_annotation/freezed_annotation.dart',
-          ),
-        )
-        ..directives.add(Directive.part('scalar_unions.freezed.dart'))
         ..body.addAll(specs),
     );
   }
@@ -367,12 +317,10 @@ final class EmitterVisitor {
     for (final name in nonScalarNames) {
       final alias = _resolved.aliases.firstWhere((a) => a.name == name);
       final ut = alias.type as UnionType;
-      final kind = _classifyUnion(ut);
-      specs.addAll(
-        _buildUnionSpecs(
+      specs.add(
+        _buildExtensionTypeUnion(
           name,
           ut,
-          kind,
           deprecated: alias.deprecated,
           docs: _docLines(
             alias.documentation,
@@ -389,12 +337,11 @@ final class EmitterVisitor {
       final name = entry.key;
       final ut = entry.value;
       final kind = _classifyUnion(ut);
-      if (kind != _UnionKind.scalar && kind != _UnionKind.mixed) {
-        specs.addAll(
-          _buildUnionSpecs(
+      if (kind != _UnionKind.scalar) {
+        specs.add(
+          _buildExtensionTypeUnion(
             name,
             ut,
-            kind,
             docs: _docLines('Inline union: $name.'),
           ),
         );
@@ -405,13 +352,7 @@ final class EmitterVisitor {
     return Library(
       (b) => b
         ..comments.add(_header)
-        ..directives.add(
-          Directive.import(
-            'package:freezed_annotation/freezed_annotation.dart',
-          ),
-        )
         ..directives.addAll(_crossImports(referencedTypes, _unionsFile))
-        ..directives.add(Directive.part('unions.freezed.dart'))
         ..body.addAll(specs),
     );
   }
@@ -761,298 +702,18 @@ final class EmitterVisitor {
   );
 
   // ---------------------------------------------------------------------------
-  // Converter infrastructure (json_serializable)
+  // Annotations
   // ---------------------------------------------------------------------------
-
-  /// Returns a call expression for the converter annotation that should be
-  /// placed on a factory parameter of the given property [p], or `null`
-  /// if no annotation is needed (json_serializable handles the type natively).
-  Expression? _converterAnnotationFor(String className, ResolvedProperty p) {
-    final type = p.type;
-    // Strip the outer NullableType — the converter itself is non-nullable;
-    // json_serializable adds the null check around the converter call.
-    final inner = type is NullableType ? type.inner : type;
-
-    final inlineUnionName = _getInlineUnionName(className, p.name, inner);
-    if (inlineUnionName != null) {
-      if (inner is ListType) {
-        return refer('_${inlineUnionName}ListConverter').call([]);
-      } else {
-        return refer('_${inlineUnionName}Converter').call([]);
-      }
-    }
-
-    return switch (inner) {
-      AliasType(:final ref)
-          when _scalarUnionNames.contains(ref.name) ||
-              _sealedUnionNames.contains(ref.name) =>
-        refer('_${ref.name}Converter').call([]),
-      ListType(element: final el) => switch (el is NullableType
-          ? el.inner
-          : el) {
-        AliasType(:final ref)
-            when _scalarUnionNames.contains(ref.name) ||
-                _sealedUnionNames.contains(ref.name) =>
-          refer('_${ref.name}ListConverter').call([]),
-        _ => null,
-      },
-      _ => null,
-    };
-  }
 
   /// Returns the list of annotations for factory/field parameter [p].
   List<Expression> _annotationsForParam(String className, ResolvedProperty p) {
-    final conv = _converterAnnotationFor(className, p);
     final deprecated = p.deprecated != null
         ? refer('Deprecated').call([literalString(p.deprecated!)])
         : null;
     return [
       ?deprecated,
-      ?conv,
     ];
   }
-
-  /// Walks every property of every resolved class and collects the set of
-  /// converter classes that need to be emitted into `structures.dart`.
-  ({Map<String, _ConverterEntry> scalar, Map<String, _ConverterEntry> list})
-  _computeConverterNeeds() {
-    final scalar = <String, _ConverterEntry>{};
-    final list = <String, _ConverterEntry>{};
-
-    void register(String name, _ConverterKind kind) {
-      scalar[name] ??= (name: name, kind: kind);
-    }
-
-    void registerList(String name, _ConverterKind kind) {
-      list[name] ??= (name: name, kind: kind);
-    }
-
-    void processType(ResolvedType type) {
-      final inner = type is NullableType ? type.inner : type;
-      switch (inner) {
-        case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
-          register(ref.name, .scalarUnion);
-        case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
-          register(ref.name, .structUnion);
-        case ListType(element: final el):
-          switch (el is NullableType ? el.inner : el) {
-            case AliasType(:final ref)
-                when _scalarUnionNames.contains(ref.name):
-              registerList(ref.name, .scalarUnion);
-            case AliasType(:final ref)
-                when _sealedUnionNames.contains(ref.name):
-              registerList(ref.name, .structUnion);
-            default:
-              break;
-          }
-        default:
-          break;
-      }
-    }
-
-    for (final cls in _resolved.classes) {
-      for (final prop in _allProperties(cls)) {
-        final inlineUnionName = _getInlineUnionName(
-          cls.name,
-          prop.name,
-          prop.type,
-        );
-        if (inlineUnionName != null) {
-          final inner = prop.type is NullableType
-              ? (prop.type as NullableType).inner
-              : prop.type;
-          if (inner is UnionType) {
-            final kind = _classifyUnion(inner);
-            register(
-              inlineUnionName,
-              kind == .scalar ? .scalarUnion : .structUnion,
-            );
-          } else if (inner is ListType) {
-            final el = inner.element is NullableType
-                ? (inner.element as NullableType).inner
-                : inner.element;
-            if (el is UnionType) {
-              final kind = _classifyUnion(el);
-              registerList(
-                inlineUnionName,
-                kind == .scalar ? .scalarUnion : .structUnion,
-              );
-            }
-          }
-        } else {
-          processType(prop.type);
-        }
-      }
-    }
-
-    return (scalar: scalar, list: list);
-  }
-
-  /// Emits one [Spec] per needed converter (scalar + list variants).
-  Iterable<Spec> _buildConverterSpecs() => [
-    ..._converterNeeds.scalar.values.map(_scalarConverterSpec),
-    ..._converterNeeds.list.values.map(_listConverterSpec),
-  ];
-
-  Class _scalarConverterSpec(_ConverterEntry entry) {
-    final n = entry.name;
-    final mapStringObjectNullable = TypeReference(
-      (b) => b
-        ..symbol = 'Map'
-        ..types.addAll([
-          refer('String'),
-          TypeReference((b) => b..symbol = 'dynamic'),
-        ]),
-    );
-
-    final rawType = entry.kind == .structUnion
-        ? mapStringObjectNullable
-        : refer('Object');
-
-    final fromBody = refer(
-      n,
-    ).newInstanceNamed('fromJson', [refer('json')]).code;
-
-    final toBody = Block.of([
-      refer('object').property('toJson').call([]).code,
-      if (entry.kind == .structUnion) const Code(' as Map<String, dynamic>'),
-    ]);
-
-    return Class(
-      (b) => b
-        ..name = '_${n}Converter'
-        ..extend = TypeReference(
-          (b) => b
-            ..symbol = 'JsonConverter'
-            ..types.addAll([refer(n), rawType]),
-        )
-        ..constructors.add(Constructor((b) => b..constant = true))
-        ..methods.addAll([
-          _converterMethod(
-            name: 'fromJson',
-            returns: refer(n),
-            paramName: 'json',
-            paramType: rawType,
-            body: fromBody,
-          ),
-          _converterMethod(
-            name: 'toJson',
-            returns: rawType,
-            paramName: 'object',
-            paramType: refer(n),
-            body: toBody,
-          ),
-        ]),
-    );
-  }
-
-  Class _listConverterSpec(_ConverterEntry entry) {
-    final n = entry.name;
-    final listN = TypeReference(
-      (b) => b
-        ..symbol = 'List'
-        ..types.add(refer(n)),
-    );
-    final listDynamic = TypeReference(
-      (b) => b
-        ..symbol = 'List'
-        ..types.add(refer('dynamic')),
-    );
-
-    // Helper: inline closure `(e) => <body>`
-    Expression closure(Code body) => Method(
-      (b) => b
-        ..lambda = true
-        ..requiredParameters.add(Parameter((b) => b..name = 'e'))
-        ..body = body,
-    ).closure;
-
-    final Code fromBody;
-    final Code toBody;
-
-    switch (entry.kind) {
-      case _ConverterKind.scalarUnion:
-        throw UnsupportedError(
-          'List converters for scalar unions are not supported: $n',
-        );
-
-      case _ConverterKind.structUnion:
-        fromBody = refer('json')
-            .property('map')
-            .call([
-              closure(
-                refer(n).newInstanceNamed('fromJson', [
-                  const CodeExpression(Code('e as Map<String, dynamic>')),
-                ]).code,
-              ),
-            ])
-            .property('toList')
-            .call([])
-            .code;
-
-        toBody = refer('object')
-            .property('map')
-            .call(
-              [closure(refer('e').property('toJson').call([]).code)],
-              {},
-              [refer('Object')],
-            )
-            .property('toList')
-            .call([])
-            .code;
-    }
-
-    return Class(
-      (b) => b
-        ..name = '_${n}ListConverter'
-        ..extend = TypeReference(
-          (b) => b
-            ..symbol = 'JsonConverter'
-            ..types.addAll([listN, listDynamic]),
-        )
-        ..constructors.add(Constructor((b) => b..constant = true))
-        ..methods.addAll([
-          _converterMethod(
-            name: 'fromJson',
-            returns: listN,
-            paramName: 'json',
-            paramType: listDynamic,
-            body: fromBody,
-          ),
-          _converterMethod(
-            name: 'toJson',
-            returns: listDynamic,
-            paramName: 'object',
-            paramType: listN,
-            body: toBody,
-          ),
-        ]),
-    );
-  }
-
-  /// Creates an `@override` method with one required parameter and a lambda
-  /// body.
-  Method _converterMethod({
-    required String name,
-    required Reference returns,
-    required String paramName,
-    required Reference paramType,
-    required Code body,
-  }) => Method(
-    (b) => b
-      ..annotations.add(refer('override'))
-      ..name = name
-      ..returns = returns
-      ..requiredParameters.add(
-        Parameter(
-          (b) => b
-            ..name = paramName
-            ..type = paramType,
-        ),
-      )
-      ..lambda = true
-      ..body = body,
-  );
 
   // ---------------------------------------------------------------------------
   // Enum builder
@@ -1421,22 +1082,6 @@ final class EmitterVisitor {
         continue;
       }
 
-      final ut = alias.type as UnionType;
-      final kind = _classifyUnion(ut);
-
-      if (kind == _UnionKind.mixed) {
-        continue;
-      }
-
-      if (kind == _UnionKind.structStruct) {
-        final structs = ut.items
-            .where((t) => t is ClassType || t is InlineRecord)
-            .toList();
-        if (_findStructDiscriminator(structs) == null) {
-          continue;
-        }
-      }
-
       result.add(alias.name);
     }
     return result;
@@ -1483,18 +1128,15 @@ final class EmitterVisitor {
 
     return .mixed;
   }
+  String _singleStructKey(ResolvedType t) => switch (t) {
+        ClassType(:final ref) => ref.name,
+        InlineRecord(:final fields) =>
+          'Record(${fields.map((f) => f.name).join(',')})',
+        _ => t.toString(),
+      };
 
-  /// Deduplication key for a struct-like type item.
-  Iterable<String> _structKey(Iterable<ResolvedType> items) => items.map(
-    (t) => switch (t) {
-      ClassType(:final ref) => ref.name,
-      InlineRecord(:final fields) =>
-        'Record(${fields.map(
-          (f) => '${f.name}:${f.type.runtimeType}',
-        ).join(',')})',
-      _ => t.toString(),
-    },
-  );
+  Iterable<String> _structKey(Iterable<ResolvedType> items) =>
+      items.map(_singleStructKey);
 
   /// Returns a list of discriminator checks (last entry = else branch) or
   /// `null` if no reliable discriminator can be found.
@@ -1504,12 +1146,7 @@ final class EmitterVisitor {
     // Deduplicate by struct key.
     final seen = <String>{};
     final unique = variants.where((t) {
-      final key = switch (t) {
-        ClassType(:final ref) => ref.name,
-        InlineRecord(:final fields) =>
-          'Record(${fields.map((f) => f.name).join(',')})',
-        _ => t.toString(),
-      };
+      final key = _singleStructKey(t);
       return seen.add(key);
     }).toList();
 
@@ -1605,49 +1242,112 @@ final class EmitterVisitor {
   // Union spec builders (code_builder Class / Constructor / Method)
   // ---------------------------------------------------------------------------
 
-  List<Spec> _buildUnionSpecs(
+  Spec _buildExtensionTypeUnion(
     String name,
-    UnionType ut,
-    _UnionKind kind, {
+    UnionType ut, {
     String? deprecated,
     List<String> docs = const [],
-  }) {
-    final structItems = ut.items
+  }) => ExtensionType((b) {
+    b
+      ..name = name
+      ..constant = true
+      ..representationDeclaration = RepresentationDeclaration(
+        (r) => r
+          ..name = 'value'
+          ..declaredRepresentationType = refer('Object'),
+      );
+
+    b.docs.addAll(docs);
+    if (deprecated != null) {
+      b.annotations.add(refer('Deprecated').call([literalString(deprecated)]));
+    }
+
+    // fromJson constructor
+    b.constructors.add(
+      Constructor(
+        (b) => b
+          ..factory = true
+          ..name = 'fromJson'
+          ..requiredParameters.add(
+            Parameter(
+              (b) => b
+                ..name = 'json'
+                ..type = refer('Object'),
+            ),
+          )
+          ..body = refer(name).call([refer('json')]).code,
+      ),
+    );
+
+    // toJson method
+    b.methods.add(
+      Method(
+        (b) => b
+          ..name = 'toJson'
+          ..returns = refer('Object')
+          ..lambda = true
+          ..body = refer('value').code,
+      ),
+    );
+
+    // For each variant in the union, add getters
+    final uniqueItems = <ResolvedType>[];
+    final seenSuffixes = <String>{};
+    for (final item in ut.items) {
+      final suffix = _variantSuffix(item, name);
+      final capSuffix = _capitalize(suffix);
+      if (seenSuffixes.add(capSuffix)) {
+        uniqueItems.add(item);
+      }
+    }
+
+    final structs = uniqueItems
         .where((t) => t is ClassType || t is InlineRecord)
         .toList();
-    return switch (kind) {
-      _UnionKind.scalar => _buildScalarUnionSpecs(
-        name,
-        ut.items.whereType<DartCoreType>().toList(),
-        deprecated: deprecated,
-        docs: docs,
-      ),
-      _UnionKind.scalarStruct => _buildScalarStructUnionSpecs(
-        name,
-        ut.items.whereType<DartCoreType>().toList(),
-        structItems.first,
-        deprecated: deprecated,
-        docs: docs,
-      ),
-      _UnionKind.structList => _buildStructListUnionSpecs(
-        name,
-        ut.items.whereType<ClassType>().first,
-        ut.items.whereType<ListType>().first,
-        deprecated: deprecated,
-        docs: docs,
-      ),
-      _UnionKind.structStruct => _buildStructStructUnionSpecs(
-        name,
-        _findStructDiscriminator(structItems)!,
-        deprecated: deprecated,
-        docs: docs,
-      ),
-      _UnionKind.mixed => [],
-    };
-  }
+    final structChecks = _findStructDiscriminator(structs);
 
-  /// Variant suffix: strips the [aliasName] prefix from struct names so that
-  /// e.g. `InlineValue` + `InlineValueText` → suffix `Text`.
+    for (final item in uniqueItems) {
+      final suffix = _variantSuffix(item, name);
+      final capSuffix = _capitalize(suffix);
+
+      // Get the Dart type reference for the variant
+      final typeRef = toRef(item);
+
+      final checkExpr = _variantCheckExpression(item, structChecks);
+      final castExpr = _variantCastExpression(item, typeRef, capSuffix);
+
+      b.methods.add(
+        Method(
+          (b) => b
+            ..name = 'is$capSuffix'
+            ..returns = refer('bool')
+            ..type = MethodType.getter
+            ..lambda = true
+            ..body = checkExpr.code,
+        ),
+      );
+
+      final isNullType = typeRef is TypeReference && typeRef.symbol == 'Null';
+      final nullableTypeRef = isNullType
+          ? typeRef
+          : (typeRef is TypeReference
+              ? typeRef.rebuild((b) => b.isNullable = true)
+              : (typeRef is RecordType
+                  ? typeRef.rebuild((b) => b.isNullable = true)
+                  : typeRef));
+
+      b.methods.add(
+        Method(
+          (b) => b
+            ..name = 'as$capSuffix'
+            ..returns = nullableTypeRef
+            ..type = MethodType.getter
+            ..body = castExpr,
+        ),
+      );
+    }
+  });
+
   String _variantSuffix(ResolvedType item, String aliasName) => switch (item) {
     DartCoreType(:final dartName) => switch (dartName) {
       'int' => 'Int',
@@ -1660,7 +1360,16 @@ final class EmitterVisitor {
       ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
           ? ref.name.substring(aliasName.length)
           : ref.name,
+    AliasType(:final ref) =>
+      ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
+          ? ref.name.substring(aliasName.length)
+          : ref.name,
+    EnumType(:final ref) =>
+      ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
+          ? ref.name.substring(aliasName.length)
+          : ref.name,
     ListType() => 'List',
+    MapType() => 'Map',
     InlineRecord(:final fields) =>
       fields.isEmpty
           ? 'Empty'
@@ -1671,672 +1380,425 @@ final class EmitterVisitor {
     _ => 'Unknown',
   };
 
-  /// Lowercase first character of [suffix] to form a factory constructor name.
-  String _factoryName(String suffix) =>
-      suffix.isEmpty ? suffix : suffix[0].toLowerCase() + suffix.substring(1);
+  Expression _variantCheckExpression(
+    ResolvedType type, [
+    List<_UnionCheck>? structChecks,
+  ]) {
+    final actual = type is NullableType ? type.inner : type;
+    final val = refer('value');
 
-  List<Spec> _buildScalarUnionSpecs(
-    String name,
-    List<ResolvedType> scalars, {
-    String? deprecated,
-    List<String> docs = const [],
-  }) {
-    final variants = scalars
-        .map(
-          (s) => (
-            suffix: _variantSuffix(s, name),
-            type: s,
-            dartName: _dartTypeName(s),
-          ),
-        )
-        .toList();
+    switch (actual) {
+      case DartCoreType(:final dartName):
+        if (dartName == 'Object?') {
+          return literalTrue;
+        }
+        if (dartName == 'Null') {
+          return val.asA(refer('Object?')).equalTo(literalNull);
+        }
+        return val.isA(refer(dartName));
 
-    String toJsonExpr(ResolvedType t) {
-      if (t is TupleType) {
-        final elements = [
-          for (var i = 0; i < t.items.length; i++) 'value.\$${i + 1}',
-        ];
-        return '[${elements.join(', ')}]';
-      }
-      return 'value';
-    }
+      case ClassType(:final ref):
+        final classRef = refer(ref.name);
+        final isClass = val.isA(classRef);
+        final mapCheck = _buildStructCheck(
+          actual,
+          structChecks,
+          val,
+          val.isA(refer('Map<String, dynamic>')),
+        );
+        return isClass.or(mapCheck);
 
-    final switchCases = variants
-        .map(
-          (v) =>
-              '    $name\$${v.suffix}(:final value) => ${toJsonExpr(v.type)},',
-        )
-        .join('\n');
+      case EnumType(:final ref):
+        return val.isA(refer(ref.name)).or(val.isA(refer(ref.valueType)));
 
-    return [
-      Class(
-        (b) => b
-          ..name = name
-          ..sealed = true
-          ..annotations.addAll([
-            refer('freezed'),
-            if (deprecated != null)
-              refer('Deprecated').call([literalString(deprecated)]),
-          ])
-          ..docs.addAll(docs)
-          ..mixins.add(refer('_\$$name'))
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..constant = true
-                ..name = '_',
-            ),
-          )
-          ..constructors.addAll(
-            variants.map(
-              (v) => Constructor(
-                (b) => b
-                  ..constant = true
-                  ..factory = true
-                  ..name = _safeIdentifier(_factoryName(v.suffix))
-                  ..optionalParameters.add(
-                    Parameter(
-                      (b) => b
-                        ..name = 'value'
-                        ..named = true
-                        ..required = true
-                        ..type = refer(v.dartName),
-                    ),
-                  )
-                  ..redirect = refer('$name\$${v.suffix}'),
-              ),
-            ),
-          )
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..factory = true
-                ..name = 'fromJson'
-                ..requiredParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'json'
-                      ..type = refer('dynamic'),
+      case AliasType(:final ref):
+        final alias = _resolved.aliases.firstWhere((a) => a.name == ref.name);
+        return _variantCheckExpression(alias.type, structChecks);
+
+      case UnionType(:final items):
+        var cond = _variantCheckExpression(items.first, structChecks);
+        for (final item in items.skip(1)) {
+          cond = cond.or(_variantCheckExpression(item, structChecks));
+        }
+        return cond;
+
+      case ListType():
+        return val.isA(refer('List'));
+
+      case MapType():
+        return val.isA(refer('Map<String, dynamic>'));
+
+      case InlineRecord():
+        return _buildStructCheck(
+          actual,
+          structChecks,
+          val,
+          val.isA(refer('Map<String, dynamic>')),
+        );
+
+      case TupleType(:final items):
+        return val.isA(refer('List')).and(
+              val.asA(refer('List')).property('length').equalTo(
+                    literalNum(items.length),
                   ),
-                )
-                ..body = Block((b) {
-                  for (final v in variants) {
-                    final fn = _safeIdentifier(_factoryName(v.suffix));
+            );
 
-                    Expression cond;
-                    Expression valueExpr;
-                    if (v.type is TupleType) {
-                      cond = refer('json').isA(refer('List'));
-                      final tuple = v.type as TupleType;
-                      final elements = [
-                        for (var i = 0; i < tuple.items.length; i++)
-                          'json[$i] as ${_dartTypeName(tuple.items[i])}',
-                      ];
-                      valueExpr = CodeExpression(
-                        Code('(${elements.join(', ')})'),
-                      );
-                    } else {
-                      cond = refer('json').isA(refer(v.dartName));
-                      valueExpr = refer('json');
-                    }
+      case StringLiteralType():
+        return val.isA(refer('String'));
 
-                    final isLast = v == variants.last;
-                    if (isLast) {
-                      final castedJson = v.type is TupleType
-                          ? valueExpr
-                          : CodeExpression(Code('json! as ${v.dartName}'));
-                      b.addExpression(
-                        refer(name).newInstanceNamed(
-                          fn,
-                          [],
-                          {'value': castedJson},
-                        ).returned,
-                      );
-                    } else {
-                      b.statements.add(
-                        ifStatement(
-                          cond,
-                          Block(
-                            (bb) => bb.addExpression(
-                              refer(name).newInstanceNamed(fn, [], {
-                                'value': valueExpr,
-                              }).returned,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                  }
-                }),
-            ),
-          )
-          ..methods.add(
-            Method(
-              (b) => b
-                ..returns = refer('Object')
-                ..name = 'toJson'
-                ..lambda = true
-                ..body = Code('switch (this) {\n$switchCases\n  }'),
-            ),
-          ),
-      ),
-    ];
+      default:
+        return val.isA(refer('Object'));
+    }
   }
 
-  List<Spec> _buildScalarStructUnionSpecs(
-    String name,
-    List<ResolvedType> scalars,
-    ResolvedType struct, {
-    String? deprecated,
-    List<String> docs = const [],
-  }) {
-    final structSuffix = _variantSuffix(struct, name);
-    final structCls = '$name\$$structSuffix';
-    final structFn = _safeIdentifier(_factoryName(structSuffix));
+  Expression _buildStructCheck(
+    ResolvedType actual,
+    List<_UnionCheck>? structChecks,
+    Expression val,
+    Expression fallback,
+  ) {
+    if (structChecks != null) {
+      final key = _singleStructKey(actual);
+      final check = structChecks.firstWhereOrNull(
+        (c) => _singleStructKey(c.variant) == key,
+      );
+      if (check != null) {
+        final mapRef = refer('Map<String, dynamic>');
+        final isMap = val.isA(mapRef);
 
-    final scalarVariants = scalars
-        .map(
-          (s) => (
-            suffix: _variantSuffix(s, name),
-            type: s,
-            dartName: _dartTypeName(s),
-          ),
-        )
-        .toList();
-
-    final structToJson = switch (struct) {
-      InlineRecord(:final fields) => _inlineRecordToJson(fields, 'value'),
-      _ => 'value.toJson()',
-    };
-
-    String toJsonExpr(ResolvedType t) {
-      if (t is TupleType) {
-        final elements = [
-          for (var i = 0; i < t.items.length; i++) 'value.\$${i + 1}',
-        ];
-        return '[${elements.join(', ')}]';
+        if (check.fieldName.isNotEmpty) {
+          final mapVal = val.asA(mapRef);
+          if (check.literalValue != null) {
+            final hasLiteral = mapVal
+                .index(literalString(check.fieldName))
+                .equalTo(literalString(check.literalValue!));
+            return isMap.and(hasLiteral);
+          } else {
+            final hasKey = mapVal
+                .property('containsKey')
+                .call([literalString(check.fieldName)]);
+            return isMap.and(hasKey);
+          }
+        } else {
+          var cond = isMap;
+          for (final other in structChecks) {
+            if (other != check && other.fieldName.isNotEmpty) {
+              final mapVal = val.asA(mapRef);
+              final hasKey = mapVal
+                  .property('containsKey')
+                  .call([literalString(other.fieldName)]);
+              cond = cond.and(hasKey.negate());
+            }
+          }
+          return cond;
+        }
       }
-      return 'value';
     }
-
-    final structClsBind = (struct is InlineRecord && struct.fields.isEmpty)
-        ? ''
-        : ':final value';
-    final switchCases = [
-      '    $structCls($structClsBind) => $structToJson,',
-      ...scalarVariants.map(
-        (v) => '    $name\$${v.suffix}(:final value) => ${toJsonExpr(v.type)},',
-      ),
-    ].join('\n');
-
-    // fromJson: value expression for the struct arm
-    final structFromJsonExpr = switch (struct) {
-      ClassType(:final ref) => refer(
-        ref.name,
-      ).newInstanceNamed('fromJson', [refer('json')]),
-      InlineRecord(:final fields) => CodeExpression(
-        Code(
-          _inlineRecordFromJson(
-            fields,
-            // Inside `if (json is Map<String, dynamic>)` Dart narrows the
-            // type — no explicit cast needed.
-            'json',
-          ),
-        ),
-      ),
-      _ => refer('json'),
-    };
-
-    return [
-      Class(
-        (b) => b
-          ..name = name
-          ..sealed = true
-          ..annotations.addAll([
-            refer('freezed'),
-            if (deprecated != null)
-              refer('Deprecated').call([literalString(deprecated)]),
-          ])
-          ..docs.addAll(docs)
-          ..mixins.add(refer('_\$$name'))
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..constant = true
-                ..name = '_',
-            ),
-          )
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..constant = true
-                ..factory = true
-                ..name = structFn
-                ..optionalParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'value'
-                      ..named = true
-                      ..required = true
-                      ..type = toRef(struct),
-                  ),
-                )
-                ..redirect = refer(structCls),
-            ),
-          )
-          ..constructors.addAll(
-            scalarVariants.map(
-              (v) => Constructor(
-                (b) => b
-                  ..constant = true
-                  ..factory = true
-                  ..name = _safeIdentifier(_factoryName(v.suffix))
-                  ..optionalParameters.add(
-                    Parameter(
-                      (b) => b
-                        ..name = 'value'
-                        ..named = true
-                        ..required = true
-                        ..type = refer(v.dartName),
-                    ),
-                  )
-                  ..redirect = refer('$name\$${v.suffix}'),
-              ),
-            ),
-          )
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..factory = true
-                ..name = 'fromJson'
-                ..requiredParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'json'
-                      ..type = refer('dynamic'),
-                  ),
-                )
-                ..body = Block((b) {
-                  b.statements.add(
-                    ifStatement(
-                      refer('json').isA(_jsonMapRef()),
-                      Block(
-                        (bb) => bb.addExpression(
-                          refer(name).newInstanceNamed(structFn, [], {
-                            'value': structFromJsonExpr,
-                          }).returned,
-                        ),
-                      ),
-                    ),
-                  );
-                  for (final v in scalarVariants) {
-                    final fn = _safeIdentifier(_factoryName(v.suffix));
-
-                    Expression cond;
-                    Expression valueExpr;
-                    if (v.type is TupleType) {
-                      cond = refer('json').isA(refer('List'));
-                      final tuple = v.type as TupleType;
-                      final elements = [
-                        for (var i = 0; i < tuple.items.length; i++)
-                          'json[$i] as ${_dartTypeName(tuple.items[i])}',
-                      ];
-                      valueExpr = CodeExpression(
-                        Code('(${elements.join(', ')})'),
-                      );
-                    } else {
-                      cond = refer('json').isA(refer(v.dartName));
-                      valueExpr = refer('json');
-                    }
-
-                    final isLast = v == scalarVariants.last;
-                    if (isLast) {
-                      final castedJson = v.type is TupleType
-                          ? valueExpr
-                          : CodeExpression(Code('json as ${v.dartName}'));
-                      b.addExpression(
-                        refer(name).newInstanceNamed(
-                          fn,
-                          [],
-                          {'value': castedJson},
-                        ).returned,
-                      );
-                    } else {
-                      b.statements.add(
-                        ifStatement(
-                          cond,
-                          Block(
-                            (bb) => bb.addExpression(
-                              refer(name).newInstanceNamed(fn, [], {
-                                'value': valueExpr,
-                              }).returned,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                  }
-                }),
-            ),
-          )
-          ..methods.add(
-            Method(
-              (b) => b
-                ..returns = refer('Object')
-                ..name = 'toJson'
-                ..lambda = true
-                ..body = Code('switch (this) {\n$switchCases\n  }'),
-            ),
-          ),
-      ),
-    ];
+    return _buildRequiredPropertiesCheck(actual, val);
   }
 
-  List<Spec> _buildStructListUnionSpecs(
-    String name,
-    ClassType struct,
-    ListType list, {
-    String? deprecated,
-    List<String> docs = const [],
-  }) {
-    final structSuffix = _variantSuffix(struct, name);
-    final structCls = '$name\$$structSuffix';
-    final structFn = _safeIdentifier(_factoryName(structSuffix));
-    const listCls = r'$List';
-    const listFn = 'list';
+  Expression _buildRequiredPropertiesCheck(ResolvedType type, Expression val) {
+    final actual = type is NullableType ? type.inner : type;
+    final List<String> reqs;
+    if (actual is ClassType) {
+      final cls = _resolved.classes.firstWhereOrNull(
+        (c) => c.name == actual.ref.name,
+      );
+      reqs = cls != null
+          ? [
+              for (final p in cls.properties)
+                if (!p.optional) p.name
+            ]
+          : [];
+    } else if (actual is InlineRecord) {
+      reqs = [for (final f in actual.fields) if (!f.optional) f.name];
+    } else {
+      reqs = [];
+    }
 
-    final elemType = _dartTypeName(list.element);
-    final elemToJson = _toJsonCallerFor(list.element, 'e');
+    if (reqs.isEmpty) {
+      return val.isA(refer('Map<String, dynamic>'));
+    }
 
-    final listObjectNullable = TypeReference(
-      (b) => b
-        ..symbol = 'List'
-        ..types.add(
-          TypeReference(
+    final mapRef = refer('Map<String, dynamic>');
+    var cond = val.isA(mapRef);
+    final mapVal = val.asA(mapRef);
+    for (final req in reqs) {
+      cond = cond.and(
+        mapVal.property('containsKey').call([literalString(req)]),
+      );
+    }
+    return cond;
+  }
+
+  Code _variantCastExpression(
+    ResolvedType type,
+    Reference typeRef,
+    String capSuffix,
+  ) {
+    final actual = type is NullableType ? type.inner : type;
+    final typeName = _dartTypeName(actual);
+    final val = refer('value');
+
+    switch (actual) {
+      case DartCoreType():
+        if (typeName == 'Null') {
+          return literalNull.returned.statement;
+        }
+        final typeRef = refer(typeName);
+        return val
+            .isA(typeRef)
+            .conditional(val.asA(typeRef), literalNull)
+            .returned
+            .statement;
+
+      case ClassType(:final ref):
+        final classRef = refer(ref.name);
+        return Block.of([
+          ifStatement(
+            val.isA(classRef),
+            Block.of([val.asA(classRef).returned.statement]),
+          ),
+          ifStatement(
+            refer('is$capSuffix'),
+            Block.of([
+              classRef
+                  .newInstanceNamed('fromJson', [
+                    val.asA(refer('Map<String, dynamic>')),
+                  ])
+                  .returned
+                  .statement,
+            ]),
+          ),
+          literalNull.returned.statement,
+        ]);
+
+      case EnumType(:final ref):
+        final enumRef = refer(ref.name);
+        final valueType = refer(ref.valueType);
+        return Block.of([
+          ifStatement(
+            val.isA(enumRef),
+            Block.of([val.asA(enumRef).returned.statement]),
+          ),
+          ifStatement(
+            refer('is$capSuffix'),
+            Block.of([
+              enumRef
+                  .property('decode')
+                  .call([
+                    val.asA(valueType),
+                  ])
+                  .returned
+                  .statement,
+            ]),
+          ),
+          literalNull.returned.statement,
+        ]);
+
+      case AliasType(:final ref):
+        final aliasRef = refer(ref.name);
+        if (_sealedUnionNames.contains(ref.name) ||
+            _scalarUnionNames.contains(ref.name)) {
+          return Block.of([
+            ifStatement(
+              val.isA(aliasRef),
+              Block.of([val.asA(aliasRef).returned.statement]),
+            ),
+            ifStatement(
+              refer('is$capSuffix'),
+              Block.of([
+                aliasRef.newInstanceNamed('fromJson', [val]).returned.statement,
+              ]),
+            ),
+            literalNull.returned.statement,
+          ]);
+        }
+        return val
+            .isA(aliasRef)
+            .conditional(val.asA(aliasRef), literalNull)
+            .returned
+            .statement;
+
+      case ListType(:final element):
+        final elName = _dartTypeName(element);
+        final elActual = element is NullableType ? element.inner : element;
+
+        if (elActual is ClassType) {
+          final elClassRef = refer(elActual.ref.name);
+          final listClass = TypeReference(
             (b) => b
-              ..symbol = 'Object'
-              ..isNullable = true,
-          ),
-        ),
-    );
+              ..symbol = 'List'
+              ..types.add(elClassRef),
+          );
 
-    // List variant fromJson:
-    // (json as List<Object?>).map((e) => fromJson(e)).toList()
-    final listFromExpr = refer('json')
-        .asA(listObjectNullable)
-        .property('map')
-        .call([
-          Method(
+          final mapExpr = val
+              .asA(refer('List'))
+              .property('map')
+              .call([
+                Method(
+                  (m) => m
+                    ..lambda = true
+                    ..requiredParameters.add(Parameter((p) => p..name = 'e'))
+                    ..body = refer('e')
+                        .isA(elClassRef)
+                        .conditional(
+                          refer('e'),
+                          elClassRef.newInstanceNamed('fromJson', [
+                            refer('e').asA(refer('Map<String, dynamic>')),
+                          ]),
+                        )
+                        .code,
+                ).closure,
+              ])
+              .property('toList')
+              .call([]);
+
+          return Block.of([
+            ifStatement(
+              val.isA(listClass),
+              Block.of([val.asA(listClass).returned.statement]),
+            ),
+            ifStatement(
+              refer('is$capSuffix'),
+              Block.of([mapExpr.returned.statement]),
+            ),
+            literalNull.returned.statement,
+          ]);
+        } else if (elActual is AliasType &&
+            (_sealedUnionNames.contains(elActual.ref.name) ||
+                _scalarUnionNames.contains(elActual.ref.name))) {
+          final elAliasRef = refer(elActual.ref.name);
+          final listAlias = TypeReference(
             (b) => b
-              ..lambda = true
-              ..requiredParameters.add(
-                Parameter((b) => b..name = 'e'),
-              )
-              ..body = _listElementCastExpr(list.element).code,
-          ).closure,
-        ])
-        .property('toList')
-        .call([]);
+              ..symbol = 'List'
+              ..types.add(elAliasRef),
+          );
 
-    final switchCases = [
-      '$name\$$structSuffix(:final value) => value.toJson(),',
-      '$name$listCls(:final value) => value.map((e) => $elemToJson).toList(),',
-    ].join('\n');
+          final mapExpr = val
+              .asA(refer('List'))
+              .property('map')
+              .call([
+                Method(
+                  (m) => m
+                    ..lambda = true
+                    ..requiredParameters.add(Parameter((p) => p..name = 'e'))
+                    ..body = refer('e')
+                        .isA(elAliasRef)
+                        .conditional(
+                          refer('e'),
+                          elAliasRef.newInstanceNamed('fromJson', [
+                            refer('e').asA(refer('Object')),
+                          ]),
+                        )
+                        .code,
+                ).closure,
+              ])
+              .property('toList')
+              .call([]);
 
-    return [
-      Class(
-        (b) => b
-          ..name = name
-          ..sealed = true
-          ..annotations.addAll([
-            refer('freezed'),
-            if (deprecated != null)
-              refer('Deprecated').call([literalString(deprecated)]),
-          ])
-          ..docs.addAll(docs)
-          ..mixins.add(refer('_\$$name'))
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..constant = true
-                ..name = '_',
+          return Block.of([
+            ifStatement(
+              val.isA(listAlias),
+              Block.of([val.asA(listAlias).returned.statement]),
             ),
-          )
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..constant = true
-                ..factory = true
-                ..name = structFn
-                ..optionalParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'value'
-                      ..named = true
-                      ..required = true
-                      ..type = refer(struct.ref.name),
-                  ),
-                )
-                ..redirect = refer(structCls),
+            ifStatement(
+              refer('is$capSuffix'),
+              Block.of([mapExpr.returned.statement]),
             ),
-          )
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..constant = true
-                ..factory = true
-                ..name = listFn
-                ..optionalParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'value'
-                      ..named = true
-                      ..required = true
-                      ..type = TypeReference(
-                        (b) => b
-                          ..symbol = 'List'
-                          ..types.add(refer(elemType)),
-                      ),
-                  ),
-                )
-                ..redirect = refer('$name\$List'),
-            ),
-          )
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..factory = true
-                ..name = 'fromJson'
-                ..requiredParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'json'
-                      ..type = refer('dynamic'),
-                  ),
-                )
-                ..body = Block((b) {
-                  b.statements.add(
-                    ifStatement(
-                      refer('json').isA(refer('List')),
-                      Block(
-                        (bb) => bb.addExpression(
-                          refer(name).newInstanceNamed(listFn, [], {
-                            'value': listFromExpr,
-                          }).returned,
-                        ),
-                      ),
-                    ),
-                  );
-                  b.addExpression(
-                    refer(name).newInstanceNamed(structFn, [], {
-                      'value': refer(struct.ref.name).newInstanceNamed(
-                        'fromJson',
-                        [
-                          const CodeExpression(
-                            Code('json as Map<String, dynamic>'),
-                          ),
-                        ],
-                      ),
-                    }).returned,
-                  );
-                }),
-            ),
-          )
-          ..methods.add(
-            Method(
-              (b) => b
-                ..returns = refer('Object')
-                ..name = 'toJson'
-                ..lambda = true
-                ..body = Code('switch (this) {\n$switchCases\n  }'),
+            literalNull.returned.statement,
+          ]);
+        }
+
+        final castList = val.asA(refer('List')).property('cast').call([], {}, [
+          refer(elName),
+        ]);
+        return refer('is$capSuffix')
+            .conditional(castList, literalNull)
+            .returned
+            .statement;
+
+      case MapType():
+        final mapType = refer('Map<String, dynamic>');
+        return refer('is$capSuffix')
+            .conditional(val.asA(mapType), literalNull)
+            .returned
+            .statement;
+
+      case InlineRecord(:final fields):
+        final buffer = StringBuffer();
+        if (fields.isNotEmpty) {
+          buffer.write('  final map = value as Map<String, dynamic>;\n');
+        }
+        buffer.write('  return (\n');
+        for (final f in fields) {
+          final fName = f.name;
+          final fActual = f.type is NullableType
+              ? (f.type as NullableType).inner
+              : f.type;
+          if (fActual is ClassType) {
+            final fClass = fActual.ref.name;
+            if (f.optional) {
+              buffer.write(
+                "    $fName: map['$fName'] != null ? "
+                "(map['$fName'] is $fClass ? map['$fName'] as $fClass : "
+                "$fClass.fromJson(map['$fName'] as Map<String, dynamic>)) "
+                ': null,\n',
+              );
+            } else {
+              buffer.write(
+                "    $fName: map['$fName'] is $fClass ? "
+                "map['$fName'] as $fClass : "
+                "$fClass.fromJson(map['$fName'] as Map<String, dynamic>),\n",
+              );
+            }
+          } else {
+            final fTypeName = f.optional || f.type is NullableType
+                ? '${_dartTypeName(fActual)}?'
+                : _dartTypeName(fActual);
+            buffer.write("    $fName: map['$fName'] as $fTypeName,\n");
+          }
+        }
+        buffer.write('  );');
+
+        return Block.of([
+          ifStatement(
+            refer('is$capSuffix'),
+            Block(
+              (b) => b.statements.add(Code(buffer.toString())),
             ),
           ),
-      ),
-    ];
-  }
+          literalNull.returned.statement,
+        ]);
 
-  List<Spec> _buildStructStructUnionSpecs(
-    String name,
-    List<_UnionCheck> checks, {
-    String? deprecated,
-    List<String> docs = const [],
-  }) {
-    final seenSuffixes = <String>{};
-    final variants =
-        <({String suffix, String cls, String fn, ResolvedType variant})>[];
-    for (final check in checks) {
-      final suffix = _variantSuffix(check.variant, name);
-      if (seenSuffixes.add(suffix)) {
-        variants.add((
-          suffix: suffix,
-          cls: '$name\$$suffix',
-          fn: _safeIdentifier(_factoryName(suffix)),
-          variant: check.variant,
-        ));
-      }
+      case TupleType(:final items):
+        final buffer = StringBuffer();
+        buffer.write('  final list = value as List;\n');
+        buffer.write('  return (\n');
+        for (var i = 0; i < items.length; i++) {
+          final item = items[i];
+          final typeName = _dartTypeName(item);
+          buffer.write('    list[$i] as $typeName,\n');
+        }
+        buffer.write('  );');
+
+        return Block.of([
+          ifStatement(
+            refer('is$capSuffix'),
+            Block(
+              (b) => b.statements.add(Code(buffer.toString())),
+            ),
+          ),
+          literalNull.returned.statement,
+        ]);
+
+      default:
+        final typeRef = refer(typeName);
+        return refer('is$capSuffix')
+            .conditional(val.asA(typeRef), literalNull)
+            .returned
+            .statement;
     }
-
-    final switchCases = variants
-        .map((v) {
-          final toJsonExpr = switch (v.variant) {
-            InlineRecord(:final fields) => _inlineRecordToJson(fields, 'value'),
-            _ => 'value.toJson()',
-          };
-          return '    ${v.cls}(:final value) => $toJsonExpr,';
-        })
-        .join('\n');
-
-    final mapType = TypeReference(
-      (b) => b
-        ..symbol = 'Map'
-        ..types.addAll([
-          refer('String'),
-          refer('dynamic'),
-        ]),
-    );
-
-    return [
-      Class(
-        (b) => b
-          ..name = name
-          ..sealed = true
-          ..annotations.addAll([
-            refer('freezed'),
-            if (deprecated != null)
-              refer('Deprecated').call([literalString(deprecated)]),
-          ])
-          ..docs.addAll(docs)
-          ..mixins.add(refer('_\$$name'))
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..constant = true
-                ..name = '_',
-            ),
-          )
-          ..constructors.addAll(
-            variants.map(
-              (v) => Constructor(
-                (b) => b
-                  ..constant = true
-                  ..factory = true
-                  ..name = v.fn
-                  ..optionalParameters.add(
-                    Parameter(
-                      (b) => b
-                        ..name = 'value'
-                        ..named = true
-                        ..required = true
-                        ..type = toRef(v.variant),
-                    ),
-                  )
-                  ..redirect = refer(v.cls),
-              ),
-            ),
-          )
-          ..constructors.add(
-            Constructor(
-              (b) => b
-                ..factory = true
-                ..name = 'fromJson'
-                ..requiredParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'json'
-                      ..type = mapType,
-                  ),
-                )
-                ..body = Block((b) {
-                  for (final check in checks.sublist(0, checks.length - 1)) {
-                    final suffix = _variantSuffix(check.variant, name);
-                    final fn = _safeIdentifier(_factoryName(suffix));
-                    final condExpr = check.literalValue != null
-                        ? refer('json')
-                              .index(literalString(check.fieldName))
-                              .equalTo(literalString(check.literalValue!))
-                        : refer('json').property('containsKey').call([
-                            literalString(check.fieldName),
-                          ]);
-                    final valueExpr = _variantFromJsonExpr(
-                      check.variant,
-                      'json',
-                    );
-                    b.statements.add(
-                      ifStatement(
-                        condExpr,
-                        Block(
-                          (bb) => bb.addExpression(
-                            refer(name).newInstanceNamed(fn, [], {
-                              'value': valueExpr,
-                            }).returned,
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                  final last = checks.last;
-                  final lastFn = _safeIdentifier(
-                    _factoryName(_variantSuffix(last.variant, name)),
-                  );
-                  b.addExpression(
-                    refer(name).newInstanceNamed(lastFn, [], {
-                      'value': _variantFromJsonExpr(last.variant, 'json'),
-                    }).returned,
-                  );
-                }),
-            ),
-          )
-          ..methods.add(
-            Method(
-              (b) => b
-                ..returns = refer('Object')
-                ..name = 'toJson'
-                ..lambda = true
-                ..body = Code('switch (this) {\n$switchCases\n  }'),
-            ),
-          ),
-      ),
-    ];
   }
 
   /// Returns the Dart type name string for a resolved type, used in string
@@ -2359,19 +1821,6 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
   // InlineRecord serialization helpers
   // ---------------------------------------------------------------------------
-
-  /// Returns a code_builder [Expression] that deserializes [variant] from a
-  /// JSON map variable named [jsonVar].
-  Expression _variantFromJsonExpr(ResolvedType variant, String jsonVar) =>
-      switch (variant) {
-        ClassType(:final ref) => refer(
-          ref.name,
-        ).newInstanceNamed('fromJson', [refer(jsonVar)]),
-        InlineRecord(:final fields) => CodeExpression(
-          Code(_inlineRecordFromJson(fields, jsonVar)),
-        ),
-        _ => refer(jsonVar),
-      };
 
   /// Builds a Dart expression string that constructs an inline record from a
   /// JSON map (e.g. `(delta: json['delta'] as bool?)`).
@@ -2489,35 +1938,6 @@ final class EmitterVisitor {
       _ => fieldExpr,
     };
   }
-
-  Expression _listElementCastExpr(ResolvedType element) => switch (element) {
-    ClassType(:final ref) => refer(ref.name).newInstanceNamed('fromJson', [
-        const CodeExpression(Code('e as Map<String, dynamic>')),
-      ]),
-    NullableType(inner: ClassType(:final ref)) =>
-      refer('e')
-          .equalTo(literalNull)
-          .conditional(
-            literalNull,
-            refer(ref.name).newInstanceNamed('fromJson', [
-              const CodeExpression(Code('e as Map<String, dynamic>')),
-            ]),
-          ),
-    EnumType(:final ref) when ref.supportsCustomValues => refer(
-      ref.name,
-    ).newInstanceNamed('fromJson', [refer('e')]),
-    EnumType(:final ref) => refer(ref.name).property('decode').call([
-      CodeExpression(Code('e as ${_enumPrimitiveName(ref)}')),
-    ]).nullChecked,
-    _ => CodeExpression(Code('e as ${_dartTypeName(element)}')),
-  };
-
-  String _toJsonCallerFor(ResolvedType t, String v) => switch (t) {
-    ClassType() => '$v.toJson()',
-    EnumType(:final ref) when ref.supportsCustomValues => '$v.toJson()',
-    EnumType() => '$v.value',
-    _ => v,
-  };
 
   // ---------------------------------------------------------------------------
   // Helpers
@@ -2675,16 +2095,6 @@ final class EmitterVisitor {
     return ['Type: ${names.join(' | ')}'];
   }
 
-  /// Returns a [TypeReference] for `Map<String, dynamic>}`.
-  static TypeReference _jsonMapRef() => TypeReference(
-    (b) => b
-      ..symbol = 'Map'
-      ..types.addAll([
-        refer('String'),
-        TypeReference((b) => b..symbol = 'dynamic'),
-      ]),
-  );
-
   /// Ensures an identifier is valid Dart (e.g. avoids reserved words).
   static String _safeIdentifier(String name) {
     const reserved = {
@@ -2713,19 +2123,7 @@ final class EmitterVisitor {
   static String _capitalize(String s) =>
       s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
 
-  bool _isSupportedInlineUnion(UnionType ut) {
-    final kind = _classifyUnion(ut);
-    if (kind == _UnionKind.mixed) {
-      return false;
-    }
-    if (kind == _UnionKind.structStruct) {
-      final structs = ut.items
-          .where((t) => t is ClassType || t is InlineRecord)
-          .toList();
-      return _findStructDiscriminator(structs) != null;
-    }
-    return true;
-  }
+  bool _isSupportedInlineUnion(UnionType ut) => true;
 
   Reference _propertyTypeRef(String className, ResolvedProperty p) {
     final openEnum = _openEnumInfo(p.type);

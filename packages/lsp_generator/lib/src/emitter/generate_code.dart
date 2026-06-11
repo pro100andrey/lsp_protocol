@@ -34,7 +34,6 @@ void generateCode(ResolvedState resolved, String outputDir) {
   final structuresCapabilities = emit(visitor.buildStructuresCapabilities());
   final structuresParams = emit(visitor.buildStructuresParams());
   final structuresCommon = emit(visitor.buildStructuresCommon());
-  final structuresConverters = emit(visitor.buildStructuresConverters());
   final enumerations = emit(visitor.buildEnumerations());
   final aliases = emit(visitor.buildAliases());
   final scalarUnions = emit(visitor.buildScalarUnions());
@@ -55,8 +54,6 @@ void generateCode(ResolvedState resolved, String outputDir) {
       p.join(srcDir.path, 'structures.capabilities.dart');
   final structuresParamsPath = p.join(srcDir.path, 'structures.params.dart');
   final structuresCommonPath = p.join(srcDir.path, 'structures.common.dart');
-  final structuresConvertersPath =
-      p.join(srcDir.path, 'structures.converters.dart');
   final enumerationsPath = p.join(srcDir.path, 'enumerations.dart');
   final aliasesPath = p.join(srcDir.path, 'type_aliases.dart');
   final scalarUnionsPath = p.join(srcDir.path, 'scalar_unions.dart');
@@ -67,7 +64,6 @@ void generateCode(ResolvedState resolved, String outputDir) {
   File(structuresCapabilitiesPath).writeAsStringSync(structuresCapabilities);
   File(structuresParamsPath).writeAsStringSync(structuresParams);
   File(structuresCommonPath).writeAsStringSync(structuresCommon);
-  File(structuresConvertersPath).writeAsStringSync(structuresConverters);
   File(enumerationsPath).writeAsStringSync(enumerations);
   File(aliasesPath).writeAsStringSync(aliases);
   File(scalarUnionsPath).writeAsStringSync(scalarUnions);

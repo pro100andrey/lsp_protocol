@@ -11,7 +11,6 @@ import 'unions.dart';
 
 part 'structures.capabilities.dart';
 part 'structures.common.dart';
-part 'structures.converters.dart';
 part 'structures.freezed.dart';
 part 'structures.g.dart';
 part 'structures.params.dart';

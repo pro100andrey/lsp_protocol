@@ -6,333 +6,250 @@ part of 'structures.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_ServerCapabilities _$ServerCapabilitiesFromJson(
-  Map<String, dynamic> json,
-) => _ServerCapabilities(
-  positionEncoding: json['positionEncoding'] == null
-      ? null
-      : PositionEncodingKind.fromJson(json['positionEncoding']),
-  textDocumentSync: json['textDocumentSync'],
-  notebookDocumentSync: json['notebookDocumentSync'],
-  completionProvider: json['completionProvider'] == null
-      ? null
-      : CompletionOptions.fromJson(
-          json['completionProvider'] as Map<String, dynamic>,
-        ),
-  hoverProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesHoverProvider
-      >(
-        json['hoverProvider'],
-        const _ServerCapabilitiesHoverProviderConverter().fromJson,
-      ),
-  signatureHelpProvider: json['signatureHelpProvider'] == null
-      ? null
-      : SignatureHelpOptions.fromJson(
-          json['signatureHelpProvider'] as Map<String, dynamic>,
-        ),
-  declarationProvider: json['declarationProvider'],
-  definitionProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDefinitionProvider
-      >(
-        json['definitionProvider'],
-        const _ServerCapabilitiesDefinitionProviderConverter().fromJson,
-      ),
-  typeDefinitionProvider: json['typeDefinitionProvider'],
-  implementationProvider: json['implementationProvider'],
-  referencesProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesReferencesProvider
-      >(
-        json['referencesProvider'],
-        const _ServerCapabilitiesReferencesProviderConverter().fromJson,
-      ),
-  documentHighlightProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDocumentHighlightProvider
-      >(
-        json['documentHighlightProvider'],
-        const _ServerCapabilitiesDocumentHighlightProviderConverter().fromJson,
-      ),
-  documentSymbolProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDocumentSymbolProvider
-      >(
-        json['documentSymbolProvider'],
-        const _ServerCapabilitiesDocumentSymbolProviderConverter().fromJson,
-      ),
-  codeActionProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesCodeActionProvider
-      >(
-        json['codeActionProvider'],
-        const _ServerCapabilitiesCodeActionProviderConverter().fromJson,
-      ),
-  codeLensProvider: json['codeLensProvider'] == null
-      ? null
-      : CodeLensOptions.fromJson(
-          json['codeLensProvider'] as Map<String, dynamic>,
-        ),
-  documentLinkProvider: json['documentLinkProvider'] == null
-      ? null
-      : DocumentLinkOptions.fromJson(
-          json['documentLinkProvider'] as Map<String, dynamic>,
-        ),
-  colorProvider: json['colorProvider'],
-  workspaceSymbolProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesWorkspaceSymbolProvider
-      >(
-        json['workspaceSymbolProvider'],
-        const _ServerCapabilitiesWorkspaceSymbolProviderConverter().fromJson,
-      ),
-  documentFormattingProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDocumentFormattingProvider
-      >(
-        json['documentFormattingProvider'],
-        const _ServerCapabilitiesDocumentFormattingProviderConverter().fromJson,
-      ),
-  documentRangeFormattingProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDocumentRangeFormattingProvider
-      >(
-        json['documentRangeFormattingProvider'],
-        const _ServerCapabilitiesDocumentRangeFormattingProviderConverter()
-            .fromJson,
-      ),
-  documentOnTypeFormattingProvider:
-      json['documentOnTypeFormattingProvider'] == null
-      ? null
-      : DocumentOnTypeFormattingOptions.fromJson(
-          json['documentOnTypeFormattingProvider'] as Map<String, dynamic>,
-        ),
-  renameProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesRenameProvider
-      >(
-        json['renameProvider'],
-        const _ServerCapabilitiesRenameProviderConverter().fromJson,
-      ),
-  foldingRangeProvider: json['foldingRangeProvider'],
-  selectionRangeProvider: json['selectionRangeProvider'],
-  executeCommandProvider: json['executeCommandProvider'] == null
-      ? null
-      : ExecuteCommandOptions.fromJson(
-          json['executeCommandProvider'] as Map<String, dynamic>,
-        ),
-  callHierarchyProvider: json['callHierarchyProvider'],
-  linkedEditingRangeProvider: json['linkedEditingRangeProvider'],
-  semanticTokensProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesSemanticTokensProvider
-      >(
-        json['semanticTokensProvider'],
-        const _ServerCapabilitiesSemanticTokensProviderConverter().fromJson,
-      ),
-  monikerProvider: json['monikerProvider'],
-  typeHierarchyProvider: json['typeHierarchyProvider'],
-  inlineValueProvider: json['inlineValueProvider'],
-  inlayHintProvider: json['inlayHintProvider'],
-  diagnosticProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDiagnosticProvider
-      >(
-        json['diagnosticProvider'],
-        const _ServerCapabilitiesDiagnosticProviderConverter().fromJson,
-      ),
-  inlineCompletionProvider:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesInlineCompletionProvider
-      >(
-        json['inlineCompletionProvider'],
-        const _ServerCapabilitiesInlineCompletionProviderConverter().fromJson,
-      ),
-  workspace: _$recordConvertNullable(
-    json['workspace'],
-    ($jsonValue) => (
-      fileOperations: $jsonValue['fileOperations'] == null
+_ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) =>
+    _ServerCapabilities(
+      positionEncoding: json['positionEncoding'] == null
           ? null
-          : FileOperationOptions.fromJson(
-              $jsonValue['fileOperations'] as Map<String, dynamic>,
-            ),
-      workspaceFolders: $jsonValue['workspaceFolders'] == null
+          : PositionEncodingKind.fromJson(json['positionEncoding']),
+      textDocumentSync: json['textDocumentSync'] == null
           ? null
-          : WorkspaceFoldersServerCapabilities.fromJson(
-              $jsonValue['workspaceFolders'] as Map<String, dynamic>,
+          : ServerCapabilitiesTextDocumentSync.fromJson(
+              json['textDocumentSync'] as Object,
             ),
-    ),
-  ),
-  experimental: json['experimental'],
-);
+      notebookDocumentSync: json['notebookDocumentSync'] == null
+          ? null
+          : ServerCapabilitiesNotebookDocumentSync.fromJson(
+              json['notebookDocumentSync'] as Object,
+            ),
+      completionProvider: json['completionProvider'] == null
+          ? null
+          : CompletionOptions.fromJson(
+              json['completionProvider'] as Map<String, dynamic>,
+            ),
+      hoverProvider: json['hoverProvider'] == null
+          ? null
+          : ServerCapabilitiesHoverProvider.fromJson(
+              json['hoverProvider'] as Object,
+            ),
+      signatureHelpProvider: json['signatureHelpProvider'] == null
+          ? null
+          : SignatureHelpOptions.fromJson(
+              json['signatureHelpProvider'] as Map<String, dynamic>,
+            ),
+      declarationProvider: json['declarationProvider'] == null
+          ? null
+          : ServerCapabilitiesDeclarationProvider.fromJson(
+              json['declarationProvider'] as Object,
+            ),
+      definitionProvider: json['definitionProvider'] == null
+          ? null
+          : ServerCapabilitiesDefinitionProvider.fromJson(
+              json['definitionProvider'] as Object,
+            ),
+      typeDefinitionProvider: json['typeDefinitionProvider'] == null
+          ? null
+          : ServerCapabilitiesTypeDefinitionProvider.fromJson(
+              json['typeDefinitionProvider'] as Object,
+            ),
+      implementationProvider: json['implementationProvider'] == null
+          ? null
+          : ServerCapabilitiesImplementationProvider.fromJson(
+              json['implementationProvider'] as Object,
+            ),
+      referencesProvider: json['referencesProvider'] == null
+          ? null
+          : ServerCapabilitiesReferencesProvider.fromJson(
+              json['referencesProvider'] as Object,
+            ),
+      documentHighlightProvider: json['documentHighlightProvider'] == null
+          ? null
+          : ServerCapabilitiesDocumentHighlightProvider.fromJson(
+              json['documentHighlightProvider'] as Object,
+            ),
+      documentSymbolProvider: json['documentSymbolProvider'] == null
+          ? null
+          : ServerCapabilitiesDocumentSymbolProvider.fromJson(
+              json['documentSymbolProvider'] as Object,
+            ),
+      codeActionProvider: json['codeActionProvider'] == null
+          ? null
+          : ServerCapabilitiesCodeActionProvider.fromJson(
+              json['codeActionProvider'] as Object,
+            ),
+      codeLensProvider: json['codeLensProvider'] == null
+          ? null
+          : CodeLensOptions.fromJson(
+              json['codeLensProvider'] as Map<String, dynamic>,
+            ),
+      documentLinkProvider: json['documentLinkProvider'] == null
+          ? null
+          : DocumentLinkOptions.fromJson(
+              json['documentLinkProvider'] as Map<String, dynamic>,
+            ),
+      colorProvider: json['colorProvider'] == null
+          ? null
+          : ServerCapabilitiesColorProvider.fromJson(
+              json['colorProvider'] as Object,
+            ),
+      workspaceSymbolProvider: json['workspaceSymbolProvider'] == null
+          ? null
+          : ServerCapabilitiesWorkspaceSymbolProvider.fromJson(
+              json['workspaceSymbolProvider'] as Object,
+            ),
+      documentFormattingProvider: json['documentFormattingProvider'] == null
+          ? null
+          : ServerCapabilitiesDocumentFormattingProvider.fromJson(
+              json['documentFormattingProvider'] as Object,
+            ),
+      documentRangeFormattingProvider:
+          json['documentRangeFormattingProvider'] == null
+          ? null
+          : ServerCapabilitiesDocumentRangeFormattingProvider.fromJson(
+              json['documentRangeFormattingProvider'] as Object,
+            ),
+      documentOnTypeFormattingProvider:
+          json['documentOnTypeFormattingProvider'] == null
+          ? null
+          : DocumentOnTypeFormattingOptions.fromJson(
+              json['documentOnTypeFormattingProvider'] as Map<String, dynamic>,
+            ),
+      renameProvider: json['renameProvider'] == null
+          ? null
+          : ServerCapabilitiesRenameProvider.fromJson(
+              json['renameProvider'] as Object,
+            ),
+      foldingRangeProvider: json['foldingRangeProvider'] == null
+          ? null
+          : ServerCapabilitiesFoldingRangeProvider.fromJson(
+              json['foldingRangeProvider'] as Object,
+            ),
+      selectionRangeProvider: json['selectionRangeProvider'] == null
+          ? null
+          : ServerCapabilitiesSelectionRangeProvider.fromJson(
+              json['selectionRangeProvider'] as Object,
+            ),
+      executeCommandProvider: json['executeCommandProvider'] == null
+          ? null
+          : ExecuteCommandOptions.fromJson(
+              json['executeCommandProvider'] as Map<String, dynamic>,
+            ),
+      callHierarchyProvider: json['callHierarchyProvider'] == null
+          ? null
+          : ServerCapabilitiesCallHierarchyProvider.fromJson(
+              json['callHierarchyProvider'] as Object,
+            ),
+      linkedEditingRangeProvider: json['linkedEditingRangeProvider'] == null
+          ? null
+          : ServerCapabilitiesLinkedEditingRangeProvider.fromJson(
+              json['linkedEditingRangeProvider'] as Object,
+            ),
+      semanticTokensProvider: json['semanticTokensProvider'] == null
+          ? null
+          : ServerCapabilitiesSemanticTokensProvider.fromJson(
+              json['semanticTokensProvider'] as Object,
+            ),
+      monikerProvider: json['monikerProvider'] == null
+          ? null
+          : ServerCapabilitiesMonikerProvider.fromJson(
+              json['monikerProvider'] as Object,
+            ),
+      typeHierarchyProvider: json['typeHierarchyProvider'] == null
+          ? null
+          : ServerCapabilitiesTypeHierarchyProvider.fromJson(
+              json['typeHierarchyProvider'] as Object,
+            ),
+      inlineValueProvider: json['inlineValueProvider'] == null
+          ? null
+          : ServerCapabilitiesInlineValueProvider.fromJson(
+              json['inlineValueProvider'] as Object,
+            ),
+      inlayHintProvider: json['inlayHintProvider'] == null
+          ? null
+          : ServerCapabilitiesInlayHintProvider.fromJson(
+              json['inlayHintProvider'] as Object,
+            ),
+      diagnosticProvider: json['diagnosticProvider'] == null
+          ? null
+          : ServerCapabilitiesDiagnosticProvider.fromJson(
+              json['diagnosticProvider'] as Object,
+            ),
+      inlineCompletionProvider: json['inlineCompletionProvider'] == null
+          ? null
+          : ServerCapabilitiesInlineCompletionProvider.fromJson(
+              json['inlineCompletionProvider'] as Object,
+            ),
+      workspace: _$recordConvertNullable(
+        json['workspace'],
+        ($jsonValue) => (
+          fileOperations: $jsonValue['fileOperations'] == null
+              ? null
+              : FileOperationOptions.fromJson(
+                  $jsonValue['fileOperations'] as Map<String, dynamic>,
+                ),
+          workspaceFolders: $jsonValue['workspaceFolders'] == null
+              ? null
+              : WorkspaceFoldersServerCapabilities.fromJson(
+                  $jsonValue['workspaceFolders'] as Map<String, dynamic>,
+                ),
+        ),
+      ),
+      experimental: json['experimental'] == null
+          ? null
+          : LSPAny.fromJson(json['experimental'] as Object),
+    );
 
 Map<String, dynamic> _$ServerCapabilitiesToJson(
   _ServerCapabilities instance,
 ) => <String, dynamic>{
   'positionEncoding': ?instance.positionEncoding?.toJson(),
-  'textDocumentSync': ?instance.textDocumentSync,
-  'notebookDocumentSync': ?instance.notebookDocumentSync,
+  'textDocumentSync': ?instance.textDocumentSync?.toJson(),
+  'notebookDocumentSync': ?instance.notebookDocumentSync?.toJson(),
   'completionProvider': ?instance.completionProvider?.toJson(),
-  'hoverProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesHoverProvider
-      >(
-        instance.hoverProvider,
-        const _ServerCapabilitiesHoverProviderConverter().toJson,
-      ),
+  'hoverProvider': ?instance.hoverProvider?.toJson(),
   'signatureHelpProvider': ?instance.signatureHelpProvider?.toJson(),
-  'declarationProvider': ?instance.declarationProvider,
-  'definitionProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDefinitionProvider
-      >(
-        instance.definitionProvider,
-        const _ServerCapabilitiesDefinitionProviderConverter().toJson,
-      ),
-  'typeDefinitionProvider': ?instance.typeDefinitionProvider,
-  'implementationProvider': ?instance.implementationProvider,
-  'referencesProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesReferencesProvider
-      >(
-        instance.referencesProvider,
-        const _ServerCapabilitiesReferencesProviderConverter().toJson,
-      ),
-  'documentHighlightProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDocumentHighlightProvider
-      >(
-        instance.documentHighlightProvider,
-        const _ServerCapabilitiesDocumentHighlightProviderConverter().toJson,
-      ),
-  'documentSymbolProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDocumentSymbolProvider
-      >(
-        instance.documentSymbolProvider,
-        const _ServerCapabilitiesDocumentSymbolProviderConverter().toJson,
-      ),
-  'codeActionProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesCodeActionProvider
-      >(
-        instance.codeActionProvider,
-        const _ServerCapabilitiesCodeActionProviderConverter().toJson,
-      ),
+  'declarationProvider': ?instance.declarationProvider?.toJson(),
+  'definitionProvider': ?instance.definitionProvider?.toJson(),
+  'typeDefinitionProvider': ?instance.typeDefinitionProvider?.toJson(),
+  'implementationProvider': ?instance.implementationProvider?.toJson(),
+  'referencesProvider': ?instance.referencesProvider?.toJson(),
+  'documentHighlightProvider': ?instance.documentHighlightProvider?.toJson(),
+  'documentSymbolProvider': ?instance.documentSymbolProvider?.toJson(),
+  'codeActionProvider': ?instance.codeActionProvider?.toJson(),
   'codeLensProvider': ?instance.codeLensProvider?.toJson(),
   'documentLinkProvider': ?instance.documentLinkProvider?.toJson(),
-  'colorProvider': ?instance.colorProvider,
-  'workspaceSymbolProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesWorkspaceSymbolProvider
-      >(
-        instance.workspaceSymbolProvider,
-        const _ServerCapabilitiesWorkspaceSymbolProviderConverter().toJson,
-      ),
-  'documentFormattingProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDocumentFormattingProvider
-      >(
-        instance.documentFormattingProvider,
-        const _ServerCapabilitiesDocumentFormattingProviderConverter().toJson,
-      ),
-  'documentRangeFormattingProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDocumentRangeFormattingProvider
-      >(
-        instance.documentRangeFormattingProvider,
-        const _ServerCapabilitiesDocumentRangeFormattingProviderConverter()
-            .toJson,
-      ),
+  'colorProvider': ?instance.colorProvider?.toJson(),
+  'workspaceSymbolProvider': ?instance.workspaceSymbolProvider?.toJson(),
+  'documentFormattingProvider': ?instance.documentFormattingProvider?.toJson(),
+  'documentRangeFormattingProvider': ?instance.documentRangeFormattingProvider
+      ?.toJson(),
   'documentOnTypeFormattingProvider': ?instance.documentOnTypeFormattingProvider
       ?.toJson(),
-  'renameProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesRenameProvider
-      >(
-        instance.renameProvider,
-        const _ServerCapabilitiesRenameProviderConverter().toJson,
-      ),
-  'foldingRangeProvider': ?instance.foldingRangeProvider,
-  'selectionRangeProvider': ?instance.selectionRangeProvider,
+  'renameProvider': ?instance.renameProvider?.toJson(),
+  'foldingRangeProvider': ?instance.foldingRangeProvider?.toJson(),
+  'selectionRangeProvider': ?instance.selectionRangeProvider?.toJson(),
   'executeCommandProvider': ?instance.executeCommandProvider?.toJson(),
-  'callHierarchyProvider': ?instance.callHierarchyProvider,
-  'linkedEditingRangeProvider': ?instance.linkedEditingRangeProvider,
-  'semanticTokensProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesSemanticTokensProvider
-      >(
-        instance.semanticTokensProvider,
-        const _ServerCapabilitiesSemanticTokensProviderConverter().toJson,
-      ),
-  'monikerProvider': ?instance.monikerProvider,
-  'typeHierarchyProvider': ?instance.typeHierarchyProvider,
-  'inlineValueProvider': ?instance.inlineValueProvider,
-  'inlayHintProvider': ?instance.inlayHintProvider,
-  'diagnosticProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesDiagnosticProvider
-      >(
-        instance.diagnosticProvider,
-        const _ServerCapabilitiesDiagnosticProviderConverter().toJson,
-      ),
-  'inlineCompletionProvider':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ServerCapabilitiesInlineCompletionProvider
-      >(
-        instance.inlineCompletionProvider,
-        const _ServerCapabilitiesInlineCompletionProviderConverter().toJson,
-      ),
+  'callHierarchyProvider': ?instance.callHierarchyProvider?.toJson(),
+  'linkedEditingRangeProvider': ?instance.linkedEditingRangeProvider?.toJson(),
+  'semanticTokensProvider': ?instance.semanticTokensProvider?.toJson(),
+  'monikerProvider': ?instance.monikerProvider?.toJson(),
+  'typeHierarchyProvider': ?instance.typeHierarchyProvider?.toJson(),
+  'inlineValueProvider': ?instance.inlineValueProvider?.toJson(),
+  'inlayHintProvider': ?instance.inlayHintProvider?.toJson(),
+  'diagnosticProvider': ?instance.diagnosticProvider?.toJson(),
+  'inlineCompletionProvider': ?instance.inlineCompletionProvider?.toJson(),
   'workspace': ?instance.workspace == null
       ? null
       : <String, dynamic>{
           'fileOperations': instance.workspace!.fileOperations?.toJson(),
           'workspaceFolders': instance.workspace!.workspaceFolders?.toJson(),
         },
-  'experimental': ?instance.experimental,
+  'experimental': ?instance.experimental?.toJson(),
 };
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) => json == null ? null : fromJson(json as Json);
 
 $Rec? _$recordConvertNullable<$Rec>(
   Object? value,
   $Rec Function(Map) convert,
 ) => value == null ? null : convert(value as Map<String, dynamic>);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) => value == null ? null : toJson(value);
 
 _ClientCapabilities _$ClientCapabilitiesFromJson(Map<String, dynamic> json) =>
     _ClientCapabilities(
@@ -361,7 +278,9 @@ _ClientCapabilities _$ClientCapabilitiesFromJson(Map<String, dynamic> json) =>
           : GeneralClientCapabilities.fromJson(
               json['general'] as Map<String, dynamic>,
             ),
-      experimental: json['experimental'],
+      experimental: json['experimental'] == null
+          ? null
+          : LSPAny.fromJson(json['experimental'] as Object),
     );
 
 Map<String, dynamic> _$ClientCapabilitiesToJson(_ClientCapabilities instance) =>
@@ -371,38 +290,25 @@ Map<String, dynamic> _$ClientCapabilitiesToJson(_ClientCapabilities instance) =>
       'notebookDocument': ?instance.notebookDocument?.toJson(),
       'window': ?instance.window?.toJson(),
       'general': ?instance.general?.toJson(),
-      'experimental': ?instance.experimental,
+      'experimental': ?instance.experimental?.toJson(),
     };
 
 _WorkspaceFoldersServerCapabilities
-_$WorkspaceFoldersServerCapabilitiesFromJson(
-  Map<String, dynamic> json,
-) => _WorkspaceFoldersServerCapabilities(
-  supported: json['supported'] as bool?,
-  changeNotifications:
-      _$JsonConverterFromJson<
-        Object,
-        WorkspaceFoldersServerCapabilitiesChangeNotifications
-      >(
-        json['changeNotifications'],
-        const _WorkspaceFoldersServerCapabilitiesChangeNotificationsConverter()
-            .fromJson,
-      ),
-);
+_$WorkspaceFoldersServerCapabilitiesFromJson(Map<String, dynamic> json) =>
+    _WorkspaceFoldersServerCapabilities(
+      supported: json['supported'] as bool?,
+      changeNotifications: json['changeNotifications'] == null
+          ? null
+          : WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
+              json['changeNotifications'] as Object,
+            ),
+    );
 
 Map<String, dynamic> _$WorkspaceFoldersServerCapabilitiesToJson(
   _WorkspaceFoldersServerCapabilities instance,
 ) => <String, dynamic>{
   'supported': ?instance.supported,
-  'changeNotifications':
-      ?_$JsonConverterToJson<
-        Object,
-        WorkspaceFoldersServerCapabilitiesChangeNotifications
-      >(
-        instance.changeNotifications,
-        const _WorkspaceFoldersServerCapabilitiesChangeNotificationsConverter()
-            .toJson,
-      ),
+  'changeNotifications': ?instance.changeNotifications?.toJson(),
 };
 
 _WorkspaceClientCapabilities _$WorkspaceClientCapabilitiesFromJson(
@@ -1943,7 +1849,9 @@ _CallHierarchyItem _$CallHierarchyItemFromJson(Map<String, dynamic> json) =>
           ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
           .toList(),
       detail: json['detail'] as String?,
-      data: json['data'],
+      data: json['data'] == null
+          ? null
+          : LSPAny.fromJson(json['data'] as Object),
     );
 
 Map<String, dynamic> _$CallHierarchyItemToJson(_CallHierarchyItem instance) =>
@@ -1955,7 +1863,7 @@ Map<String, dynamic> _$CallHierarchyItemToJson(_CallHierarchyItem instance) =>
       'selectionRange': instance.selectionRange.toJson(),
       'tags': ?instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
       'detail': ?instance.detail,
-      'data': ?instance.data,
+      'data': ?instance.data?.toJson(),
     };
 
 _CallHierarchyIncomingCall _$CallHierarchyIncomingCallFromJson(
@@ -2071,23 +1979,24 @@ _WorkspaceEdit _$WorkspaceEditFromJson(
     ),
   ),
   documentChanges: (json['documentChanges'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => WorkspaceEditDocumentChangesItem.fromJson(e as Object))
       .toList(),
   changeAnnotations: (json['changeAnnotations'] as Map<String, dynamic>?)?.map(
     (k, e) => MapEntry(k, ChangeAnnotation.fromJson(e as Map<String, dynamic>)),
   ),
 );
 
-Map<String, dynamic> _$WorkspaceEditToJson(_WorkspaceEdit instance) =>
-    <String, dynamic>{
-      'changes': ?instance.changes?.map(
-        (k, e) => MapEntry(k, e.map((e) => e.toJson()).toList()),
-      ),
-      'documentChanges': ?instance.documentChanges,
-      'changeAnnotations': ?instance.changeAnnotations?.map(
-        (k, e) => MapEntry(k, e.toJson()),
-      ),
-    };
+Map<String, dynamic> _$WorkspaceEditToJson(
+  _WorkspaceEdit instance,
+) => <String, dynamic>{
+  'changes': ?instance.changes?.map(
+    (k, e) => MapEntry(k, e.map((e) => e.toJson()).toList()),
+  ),
+  'documentChanges': ?instance.documentChanges?.map((e) => e.toJson()).toList(),
+  'changeAnnotations': ?instance.changeAnnotations?.map(
+    (k, e) => MapEntry(k, e.toJson()),
+  ),
+};
 
 _Moniker _$MonikerFromJson(Map<String, dynamic> json) => _Moniker(
   scheme: json['scheme'] as String,
@@ -2130,7 +2039,9 @@ _TypeHierarchyItem _$TypeHierarchyItemFromJson(Map<String, dynamic> json) =>
           ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
           .toList(),
       detail: json['detail'] as String?,
-      data: json['data'],
+      data: json['data'] == null
+          ? null
+          : LSPAny.fromJson(json['data'] as Object),
     );
 
 Map<String, dynamic> _$TypeHierarchyItemToJson(_TypeHierarchyItem instance) =>
@@ -2142,38 +2053,34 @@ Map<String, dynamic> _$TypeHierarchyItemToJson(_TypeHierarchyItem instance) =>
       'selectionRange': instance.selectionRange.toJson(),
       'tags': ?instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
       'detail': ?instance.detail,
-      'data': ?instance.data,
+      'data': ?instance.data?.toJson(),
     };
 
 _InlayHint _$InlayHintFromJson(Map<String, dynamic> json) => _InlayHint(
   position: Position.fromJson(json['position'] as Map<String, dynamic>),
-  label: json['label'] as Object,
+  label: InlayHintLabel.fromJson(json['label'] as Object),
   kind: $enumDecodeNullable(_$InlayHintKindEnumMap, json['kind']),
   textEdits: (json['textEdits'] as List<dynamic>?)
       ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
       .toList(),
-  tooltip: _$JsonConverterFromJson<Map<String, dynamic>, InlayHintTooltip>(
-    json['tooltip'],
-    const _InlayHintTooltipConverter().fromJson,
-  ),
+  tooltip: json['tooltip'] == null
+      ? null
+      : InlayHintTooltip.fromJson(json['tooltip'] as Object),
   paddingLeft: json['paddingLeft'] as bool?,
   paddingRight: json['paddingRight'] as bool?,
-  data: json['data'],
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
 );
 
 Map<String, dynamic> _$InlayHintToJson(_InlayHint instance) =>
     <String, dynamic>{
       'position': instance.position.toJson(),
-      'label': instance.label,
+      'label': instance.label.toJson(),
       'kind': ?_$InlayHintKindEnumMap[instance.kind],
       'textEdits': ?instance.textEdits?.map((e) => e.toJson()).toList(),
-      'tooltip': ?_$JsonConverterToJson<Map<String, dynamic>, InlayHintTooltip>(
-        instance.tooltip,
-        const _InlayHintTooltipConverter().toJson,
-      ),
+      'tooltip': ?instance.tooltip?.toJson(),
       'paddingLeft': ?instance.paddingLeft,
       'paddingRight': ?instance.paddingRight,
-      'data': ?instance.data,
+      'data': ?instance.data?.toJson(),
     };
 
 const _$InlayHintKindEnumMap = {
@@ -2206,34 +2113,26 @@ Map<String, dynamic> _$DiagnosticServerCancellationDataToJson(
 _WorkspaceDiagnosticReport _$WorkspaceDiagnosticReportFromJson(
   Map<String, dynamic> json,
 ) => _WorkspaceDiagnosticReport(
-  items: const _WorkspaceDocumentDiagnosticReportListConverter().fromJson(
-    json['items'] as List,
-  ),
+  items: (json['items'] as List<dynamic>)
+      .map((e) => WorkspaceDocumentDiagnosticReport.fromJson(e as Object))
+      .toList(),
 );
 
 Map<String, dynamic> _$WorkspaceDiagnosticReportToJson(
   _WorkspaceDiagnosticReport instance,
-) => <String, dynamic>{
-  'items': const _WorkspaceDocumentDiagnosticReportListConverter().toJson(
-    instance.items,
-  ),
-};
+) => <String, dynamic>{'items': instance.items.map((e) => e.toJson()).toList()};
 
 _WorkspaceDiagnosticReportPartialResult
 _$WorkspaceDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) =>
     _WorkspaceDiagnosticReportPartialResult(
-      items: const _WorkspaceDocumentDiagnosticReportListConverter().fromJson(
-        json['items'] as List,
-      ),
+      items: (json['items'] as List<dynamic>)
+          .map((e) => WorkspaceDocumentDiagnosticReport.fromJson(e as Object))
+          .toList(),
     );
 
 Map<String, dynamic> _$WorkspaceDiagnosticReportPartialResultToJson(
   _WorkspaceDiagnosticReportPartialResult instance,
-) => <String, dynamic>{
-  'items': const _WorkspaceDocumentDiagnosticReportListConverter().toJson(
-    instance.items,
-  ),
-};
+) => <String, dynamic>{'items': instance.items.map((e) => e.toJson()).toList()};
 
 _InlineCompletionList _$InlineCompletionListFromJson(
   Map<String, dynamic> json,
@@ -2250,8 +2149,8 @@ Map<String, dynamic> _$InlineCompletionListToJson(
 _InlineCompletionItem _$InlineCompletionItemFromJson(
   Map<String, dynamic> json,
 ) => _InlineCompletionItem(
-  insertText: const _InlineCompletionItemInsertTextConverter().fromJson(
-    json['insertText'] as Map<String, dynamic>,
+  insertText: InlineCompletionItemInsertText.fromJson(
+    json['insertText'] as Object,
   ),
   filterText: json['filterText'] as String?,
   range: json['range'] == null
@@ -2265,9 +2164,7 @@ _InlineCompletionItem _$InlineCompletionItemFromJson(
 Map<String, dynamic> _$InlineCompletionItemToJson(
   _InlineCompletionItem instance,
 ) => <String, dynamic>{
-  'insertText': const _InlineCompletionItemInsertTextConverter().toJson(
-    instance.insertText,
-  ),
+  'insertText': instance.insertText.toJson(),
   'filterText': ?instance.filterText,
   'range': ?instance.range?.toJson(),
   'command': ?instance.command?.toJson(),
@@ -2320,57 +2217,51 @@ Map<String, dynamic> _$TextEditToJson(_TextEdit instance) => <String, dynamic>{
   'newText': instance.newText,
 };
 
-_CompletionItem _$CompletionItemFromJson(Map<String, dynamic> json) =>
-    _CompletionItem(
-      label: json['label'] as String,
-      labelDetails: json['labelDetails'] == null
-          ? null
-          : CompletionItemLabelDetails.fromJson(
-              json['labelDetails'] as Map<String, dynamic>,
-            ),
-      kind: $enumDecodeNullable(_$CompletionItemKindEnumMap, json['kind']),
-      tags: (json['tags'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
-          .toList(),
-      detail: json['detail'] as String?,
-      documentation:
-          _$JsonConverterFromJson<
-            Map<String, dynamic>,
-            CompletionItemDocumentation
-          >(
-            json['documentation'],
-            const _CompletionItemDocumentationConverter().fromJson,
-          ),
-      deprecated: json['deprecated'] as bool?,
-      preselect: json['preselect'] as bool?,
-      sortText: json['sortText'] as String?,
-      filterText: json['filterText'] as String?,
-      insertText: json['insertText'] as String?,
-      insertTextFormat: $enumDecodeNullable(
-        _$InsertTextFormatEnumMap,
-        json['insertTextFormat'],
-      ),
-      insertTextMode: $enumDecodeNullable(
-        _$InsertTextModeEnumMap,
-        json['insertTextMode'],
-      ),
-      textEdit:
-          _$JsonConverterFromJson<Map<String, dynamic>, CompletionItemTextEdit>(
-            json['textEdit'],
-            const _CompletionItemTextEditConverter().fromJson,
-          ),
-      textEditText: json['textEditText'] as String?,
-      additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
-          ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      commitCharacters: (json['commitCharacters'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      command: json['command'] == null
-          ? null
-          : Command.fromJson(json['command'] as Map<String, dynamic>),
-      data: json['data'],
-    );
+_CompletionItem _$CompletionItemFromJson(
+  Map<String, dynamic> json,
+) => _CompletionItem(
+  label: json['label'] as String,
+  labelDetails: json['labelDetails'] == null
+      ? null
+      : CompletionItemLabelDetails.fromJson(
+          json['labelDetails'] as Map<String, dynamic>,
+        ),
+  kind: $enumDecodeNullable(_$CompletionItemKindEnumMap, json['kind']),
+  tags: (json['tags'] as List<dynamic>?)
+      ?.map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
+      .toList(),
+  detail: json['detail'] as String?,
+  documentation: json['documentation'] == null
+      ? null
+      : CompletionItemDocumentation.fromJson(json['documentation'] as Object),
+  deprecated: json['deprecated'] as bool?,
+  preselect: json['preselect'] as bool?,
+  sortText: json['sortText'] as String?,
+  filterText: json['filterText'] as String?,
+  insertText: json['insertText'] as String?,
+  insertTextFormat: $enumDecodeNullable(
+    _$InsertTextFormatEnumMap,
+    json['insertTextFormat'],
+  ),
+  insertTextMode: $enumDecodeNullable(
+    _$InsertTextModeEnumMap,
+    json['insertTextMode'],
+  ),
+  textEdit: json['textEdit'] == null
+      ? null
+      : CompletionItemTextEdit.fromJson(json['textEdit'] as Object),
+  textEditText: json['textEditText'] as String?,
+  additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
+      ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  commitCharacters: (json['commitCharacters'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  command: json['command'] == null
+      ? null
+      : Command.fromJson(json['command'] as Map<String, dynamic>),
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
+);
 
 Map<String, dynamic> _$CompletionItemToJson(
   _CompletionItem instance,
@@ -2380,11 +2271,7 @@ Map<String, dynamic> _$CompletionItemToJson(
   'kind': ?_$CompletionItemKindEnumMap[instance.kind],
   'tags': ?instance.tags?.map((e) => _$CompletionItemTagEnumMap[e]!).toList(),
   'detail': ?instance.detail,
-  'documentation':
-      ?_$JsonConverterToJson<Map<String, dynamic>, CompletionItemDocumentation>(
-        instance.documentation,
-        const _CompletionItemDocumentationConverter().toJson,
-      ),
+  'documentation': ?instance.documentation?.toJson(),
   'deprecated': ?instance.deprecated,
   'preselect': ?instance.preselect,
   'sortText': ?instance.sortText,
@@ -2392,18 +2279,14 @@ Map<String, dynamic> _$CompletionItemToJson(
   'insertText': ?instance.insertText,
   'insertTextFormat': ?_$InsertTextFormatEnumMap[instance.insertTextFormat],
   'insertTextMode': ?_$InsertTextModeEnumMap[instance.insertTextMode],
-  'textEdit':
-      ?_$JsonConverterToJson<Map<String, dynamic>, CompletionItemTextEdit>(
-        instance.textEdit,
-        const _CompletionItemTextEditConverter().toJson,
-      ),
+  'textEdit': ?instance.textEdit?.toJson(),
   'textEditText': ?instance.textEditText,
   'additionalTextEdits': ?instance.additionalTextEdits
       ?.map((e) => e.toJson())
       .toList(),
   'commitCharacters': ?instance.commitCharacters,
   'command': ?instance.command?.toJson(),
-  'data': ?instance.data,
+  'data': ?instance.data?.toJson(),
 };
 
 const _$InsertTextFormatEnumMap = {
@@ -2423,7 +2306,9 @@ _CompletionList _$CompletionListFromJson(Map<String, dynamic> json) =>
           commitCharacters: ($jsonValue['commitCharacters'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList(),
-          data: $jsonValue['data'],
+          data: $jsonValue['data'] == null
+              ? null
+              : LSPAny.fromJson($jsonValue['data'] as Object),
           editRange: $jsonValue['editRange'],
           insertTextFormat: $enumDecodeNullable(
             _$InsertTextFormatEnumMap,
@@ -2446,7 +2331,7 @@ Map<String, dynamic> _$CompletionListToJson(
       ? null
       : <String, dynamic>{
           'commitCharacters': instance.itemDefaults!.commitCharacters,
-          'data': instance.itemDefaults!.data,
+          'data': instance.itemDefaults!.data?.toJson(),
           'editRange': instance.itemDefaults!.editRange,
           'insertTextFormat':
               _$InsertTextFormatEnumMap[instance
@@ -2458,14 +2343,14 @@ Map<String, dynamic> _$CompletionListToJson(
 };
 
 _Hover _$HoverFromJson(Map<String, dynamic> json) => _Hover(
-  contents: json['contents'] as Object,
+  contents: HoverContents.fromJson(json['contents'] as Object),
   range: json['range'] == null
       ? null
       : Range.fromJson(json['range'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$HoverToJson(_Hover instance) => <String, dynamic>{
-  'contents': instance.contents,
+  'contents': instance.contents.toJson(),
   'range': ?instance.range?.toJson(),
 };
 
@@ -2559,14 +2444,14 @@ _Command _$CommandFromJson(Map<String, dynamic> json) => _Command(
   title: json['title'] as String,
   command: json['command'] as String,
   arguments: (json['arguments'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => LSPAny.fromJson(e as Object))
       .toList(),
 );
 
 Map<String, dynamic> _$CommandToJson(_Command instance) => <String, dynamic>{
   'title': instance.title,
   'command': instance.command,
-  'arguments': ?instance.arguments,
+  'arguments': ?instance.arguments?.map((e) => e.toJson()).toList(),
 };
 
 _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) => _CodeAction(
@@ -2586,7 +2471,7 @@ _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) => _CodeAction(
   command: json['command'] == null
       ? null
       : Command.fromJson(json['command'] as Map<String, dynamic>),
-  data: json['data'],
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
 );
 
 Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
@@ -2600,33 +2485,31 @@ Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
           : <String, dynamic>{'reason': instance.disabled!.reason},
       'edit': ?instance.edit?.toJson(),
       'command': ?instance.command?.toJson(),
-      'data': ?instance.data,
+      'data': ?instance.data?.toJson(),
     };
 
 _WorkspaceSymbol _$WorkspaceSymbolFromJson(Map<String, dynamic> json) =>
     _WorkspaceSymbol(
       name: json['name'] as String,
       kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
-      location: const _WorkspaceSymbolLocationConverter().fromJson(
-        json['location'] as Map<String, dynamic>,
-      ),
+      location: WorkspaceSymbolLocation.fromJson(json['location'] as Object),
       tags: (json['tags'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
           .toList(),
       containerName: json['containerName'] as String?,
-      data: json['data'],
+      data: json['data'] == null
+          ? null
+          : LSPAny.fromJson(json['data'] as Object),
     );
 
 Map<String, dynamic> _$WorkspaceSymbolToJson(_WorkspaceSymbol instance) =>
     <String, dynamic>{
       'name': instance.name,
       'kind': _$SymbolKindEnumMap[instance.kind]!,
-      'location': const _WorkspaceSymbolLocationConverter().toJson(
-        instance.location,
-      ),
+      'location': instance.location.toJson(),
       'tags': ?instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
       'containerName': ?instance.containerName,
-      'data': ?instance.data,
+      'data': ?instance.data?.toJson(),
     };
 
 _CodeLens _$CodeLensFromJson(Map<String, dynamic> json) => _CodeLens(
@@ -2634,13 +2517,13 @@ _CodeLens _$CodeLensFromJson(Map<String, dynamic> json) => _CodeLens(
   command: json['command'] == null
       ? null
       : Command.fromJson(json['command'] as Map<String, dynamic>),
-  data: json['data'],
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
 );
 
 Map<String, dynamic> _$CodeLensToJson(_CodeLens instance) => <String, dynamic>{
   'range': instance.range.toJson(),
   'command': ?instance.command?.toJson(),
-  'data': ?instance.data,
+  'data': ?instance.data?.toJson(),
 };
 
 _DocumentLink _$DocumentLinkFromJson(Map<String, dynamic> json) =>
@@ -2648,7 +2531,9 @@ _DocumentLink _$DocumentLinkFromJson(Map<String, dynamic> json) =>
       range: Range.fromJson(json['range'] as Map<String, dynamic>),
       target: json['target'] as String?,
       tooltip: json['tooltip'] as String?,
-      data: json['data'],
+      data: json['data'] == null
+          ? null
+          : LSPAny.fromJson(json['data'] as Object),
     );
 
 Map<String, dynamic> _$DocumentLinkToJson(_DocumentLink instance) =>
@@ -2656,7 +2541,7 @@ Map<String, dynamic> _$DocumentLinkToJson(_DocumentLink instance) =>
       'range': instance.range.toJson(),
       'target': ?instance.target,
       'tooltip': ?instance.tooltip,
-      'data': ?instance.data,
+      'data': ?instance.data?.toJson(),
     };
 
 _ApplyWorkspaceEditResult _$ApplyWorkspaceEditResultFromJson(
@@ -2844,17 +2729,15 @@ _TextDocumentEdit _$TextDocumentEditFromJson(Map<String, dynamic> json) =>
       textDocument: OptionalVersionedTextDocumentIdentifier.fromJson(
         json['textDocument'] as Map<String, dynamic>,
       ),
-      edits: const _TextDocumentEditEditsItemListConverter().fromJson(
-        json['edits'] as List,
-      ),
+      edits: (json['edits'] as List<dynamic>)
+          .map((e) => TextDocumentEditEditsItem.fromJson(e as Object))
+          .toList(),
     );
 
 Map<String, dynamic> _$TextDocumentEditToJson(_TextDocumentEdit instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
-      'edits': const _TextDocumentEditEditsItemListConverter().toJson(
-        instance.edits,
-      ),
+      'edits': instance.edits.map((e) => e.toJson()).toList(),
     };
 
 _CreateFile _$CreateFileFromJson(Map<String, dynamic> json) => _CreateFile(
@@ -3006,35 +2889,27 @@ Map<String, dynamic> _$InlineValueEvaluatableExpressionToJson(
   'expression': ?instance.expression,
 };
 
-_InlayHintLabelPart _$InlayHintLabelPartFromJson(
-  Map<String, dynamic> json,
-) => _InlayHintLabelPart(
-  value: json['value'] as String,
-  tooltip:
-      _$JsonConverterFromJson<Map<String, dynamic>, InlayHintLabelPartTooltip>(
-        json['tooltip'],
-        const _InlayHintLabelPartTooltipConverter().fromJson,
-      ),
-  location: json['location'] == null
-      ? null
-      : Location.fromJson(json['location'] as Map<String, dynamic>),
-  command: json['command'] == null
-      ? null
-      : Command.fromJson(json['command'] as Map<String, dynamic>),
-);
+_InlayHintLabelPart _$InlayHintLabelPartFromJson(Map<String, dynamic> json) =>
+    _InlayHintLabelPart(
+      value: json['value'] as String,
+      tooltip: json['tooltip'] == null
+          ? null
+          : InlayHintLabelPartTooltip.fromJson(json['tooltip'] as Object),
+      location: json['location'] == null
+          ? null
+          : Location.fromJson(json['location'] as Map<String, dynamic>),
+      command: json['command'] == null
+          ? null
+          : Command.fromJson(json['command'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$InlayHintLabelPartToJson(
-  _InlayHintLabelPart instance,
-) => <String, dynamic>{
-  'value': instance.value,
-  'tooltip':
-      ?_$JsonConverterToJson<Map<String, dynamic>, InlayHintLabelPartTooltip>(
-        instance.tooltip,
-        const _InlayHintLabelPartTooltipConverter().toJson,
-      ),
-  'location': ?instance.location?.toJson(),
-  'command': ?instance.command?.toJson(),
-};
+Map<String, dynamic> _$InlayHintLabelPartToJson(_InlayHintLabelPart instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'tooltip': ?instance.tooltip?.toJson(),
+      'location': ?instance.location?.toJson(),
+      'command': ?instance.command?.toJson(),
+    };
 
 _MarkupContent _$MarkupContentFromJson(Map<String, dynamic> json) =>
     _MarkupContent(
@@ -3133,7 +3008,7 @@ _NotebookDocument _$NotebookDocumentFromJson(Map<String, dynamic> json) =>
           .map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
           .toList(),
       metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as Object),
+        (k, e) => MapEntry(k, LSPAny.fromJson(e as Object)),
       ),
     );
 
@@ -3143,7 +3018,7 @@ Map<String, dynamic> _$NotebookDocumentToJson(_NotebookDocument instance) =>
       'notebookType': instance.notebookType,
       'version': instance.version,
       'cells': instance.cells.map((e) => e.toJson()).toList(),
-      'metadata': ?instance.metadata,
+      'metadata': ?instance.metadata?.map((k, e) => MapEntry(k, e.toJson())),
     };
 
 _TextDocumentItem _$TextDocumentItemFromJson(Map<String, dynamic> json) =>
@@ -3177,7 +3052,7 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
   Map<String, dynamic> json,
 ) => _NotebookDocumentChangeEvent(
   metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
-    (k, e) => MapEntry(k, e as Object),
+    (k, e) => MapEntry(k, LSPAny.fromJson(e as Object)),
   ),
   cells: _$recordConvertNullable(
     json['cells'],
@@ -3212,7 +3087,7 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
 Map<String, dynamic> _$NotebookDocumentChangeEventToJson(
   _NotebookDocumentChangeEvent instance,
 ) => <String, dynamic>{
-  'metadata': ?instance.metadata,
+  'metadata': ?instance.metadata?.map((k, e) => MapEntry(k, e.toJson())),
   'cells': ?instance.cells == null
       ? null
       : <String, dynamic>{
@@ -3276,14 +3151,16 @@ _Registration _$RegistrationFromJson(Map<String, dynamic> json) =>
     _Registration(
       id: json['id'] as String,
       method: json['method'] as String,
-      registerOptions: json['registerOptions'],
+      registerOptions: json['registerOptions'] == null
+          ? null
+          : LSPAny.fromJson(json['registerOptions'] as Object),
     );
 
 Map<String, dynamic> _$RegistrationToJson(_Registration instance) =>
     <String, dynamic>{
       'id': instance.id,
       'method': instance.method,
-      'registerOptions': ?instance.registerOptions,
+      'registerOptions': ?instance.registerOptions?.toJson(),
     };
 
 _Unregistration _$UnregistrationFromJson(Map<String, dynamic> json) =>
@@ -3322,13 +3199,13 @@ const _$FileChangeTypeEnumMap = {
 
 _FileSystemWatcher _$FileSystemWatcherFromJson(Map<String, dynamic> json) =>
     _FileSystemWatcher(
-      globPattern: json['globPattern'] as Object,
+      globPattern: GlobPattern.fromJson(json['globPattern'] as Object),
       kind: json['kind'] == null ? null : WatchKind.fromJson(json['kind']),
     );
 
 Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
     <String, dynamic>{
-      'globPattern': instance.globPattern,
+      'globPattern': instance.globPattern.toJson(),
       'kind': ?instance.kind?.toJson(),
     };
 
@@ -3336,10 +3213,9 @@ _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) => _Diagnostic(
   range: Range.fromJson(json['range'] as Map<String, dynamic>),
   message: json['message'] as String,
   severity: $enumDecodeNullable(_$DiagnosticSeverityEnumMap, json['severity']),
-  code: _$JsonConverterFromJson<Object, DiagnosticCode>(
-    json['code'],
-    const _DiagnosticCodeConverter().fromJson,
-  ),
+  code: json['code'] == null
+      ? null
+      : DiagnosticCode.fromJson(json['code'] as Object),
   codeDescription: json['codeDescription'] == null
       ? null
       : CodeDescription.fromJson(
@@ -3354,7 +3230,7 @@ _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) => _Diagnostic(
         (e) => DiagnosticRelatedInformation.fromJson(e as Map<String, dynamic>),
       )
       .toList(),
-  data: json['data'],
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
 );
 
 Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
@@ -3362,17 +3238,14 @@ Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
       'range': instance.range.toJson(),
       'message': instance.message,
       'severity': ?_$DiagnosticSeverityEnumMap[instance.severity],
-      'code': ?_$JsonConverterToJson<Object, DiagnosticCode>(
-        instance.code,
-        const _DiagnosticCodeConverter().toJson,
-      ),
+      'code': ?instance.code?.toJson(),
       'codeDescription': ?instance.codeDescription?.toJson(),
       'source': ?instance.source,
       'tags': ?instance.tags?.map((e) => _$DiagnosticTagEnumMap[e]!).toList(),
       'relatedInformation': ?instance.relatedInformation
           ?.map((e) => e.toJson())
           .toList(),
-      'data': ?instance.data,
+      'data': ?instance.data?.toJson(),
     };
 
 const _$DiagnosticSeverityEnumMap = {
@@ -3466,14 +3339,11 @@ _SignatureInformation _$SignatureInformationFromJson(
   Map<String, dynamic> json,
 ) => _SignatureInformation(
   label: json['label'] as String,
-  documentation:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        SignatureInformationDocumentation
-      >(
-        json['documentation'],
-        const _SignatureInformationDocumentationConverter().fromJson,
-      ),
+  documentation: json['documentation'] == null
+      ? null
+      : SignatureInformationDocumentation.fromJson(
+          json['documentation'] as Object,
+        ),
   parameters: (json['parameters'] as List<dynamic>?)
       ?.map((e) => ParameterInformation.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -3484,14 +3354,7 @@ Map<String, dynamic> _$SignatureInformationToJson(
   _SignatureInformation instance,
 ) => <String, dynamic>{
   'label': instance.label,
-  'documentation':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        SignatureInformationDocumentation
-      >(
-        instance.documentation,
-        const _SignatureInformationDocumentationConverter().toJson,
-      ),
+  'documentation': ?instance.documentation?.toJson(),
   'parameters': ?instance.parameters?.map((e) => e.toJson()).toList(),
   'activeParameter': ?instance.activeParameter,
 };
@@ -3677,7 +3540,7 @@ _NotebookCell _$NotebookCellFromJson(Map<String, dynamic> json) =>
       kind: $enumDecode(_$NotebookCellKindEnumMap, json['kind']),
       document: json['document'] as String,
       metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as Object),
+        (k, e) => MapEntry(k, LSPAny.fromJson(e as Object)),
       ),
       executionSummary: json['executionSummary'] == null
           ? null
@@ -3690,7 +3553,7 @@ Map<String, dynamic> _$NotebookCellToJson(_NotebookCell instance) =>
     <String, dynamic>{
       'kind': _$NotebookCellKindEnumMap[instance.kind]!,
       'document': instance.document,
-      'metadata': ?instance.metadata,
+      'metadata': ?instance.metadata?.map((k, e) => MapEntry(k, e.toJson())),
       'executionSummary': ?instance.executionSummary?.toJson(),
     };
 
@@ -3751,44 +3614,34 @@ Map<String, dynamic> _$DiagnosticRelatedInformationToJson(
 _ParameterInformation _$ParameterInformationFromJson(
   Map<String, dynamic> json,
 ) => _ParameterInformation(
-  label: const _ParameterInformationLabelConverter().fromJson(
-    json['label'] as Object,
-  ),
-  documentation:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        ParameterInformationDocumentation
-      >(
-        json['documentation'],
-        const _ParameterInformationDocumentationConverter().fromJson,
-      ),
+  label: ParameterInformationLabel.fromJson(json['label'] as Object),
+  documentation: json['documentation'] == null
+      ? null
+      : ParameterInformationDocumentation.fromJson(
+          json['documentation'] as Object,
+        ),
 );
 
 Map<String, dynamic> _$ParameterInformationToJson(
   _ParameterInformation instance,
 ) => <String, dynamic>{
-  'label': const _ParameterInformationLabelConverter().toJson(instance.label),
-  'documentation':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        ParameterInformationDocumentation
-      >(
-        instance.documentation,
-        const _ParameterInformationDocumentationConverter().toJson,
-      ),
+  'label': instance.label.toJson(),
+  'documentation': ?instance.documentation?.toJson(),
 };
 
 _NotebookCellTextDocumentFilter _$NotebookCellTextDocumentFilterFromJson(
   Map<String, dynamic> json,
 ) => _NotebookCellTextDocumentFilter(
-  notebook: json['notebook'] as Object,
+  notebook: NotebookCellTextDocumentFilterNotebook.fromJson(
+    json['notebook'] as Object,
+  ),
   language: json['language'] as String?,
 );
 
 Map<String, dynamic> _$NotebookCellTextDocumentFilterToJson(
   _NotebookCellTextDocumentFilter instance,
 ) => <String, dynamic>{
-  'notebook': instance.notebook,
+  'notebook': instance.notebook.toJson(),
   'language': ?instance.language,
 };
 
@@ -3806,18 +3659,15 @@ Map<String, dynamic> _$ExecutionSummaryToJson(_ExecutionSummary instance) =>
 
 _RelativePattern _$RelativePatternFromJson(Map<String, dynamic> json) =>
     _RelativePattern(
-      baseUri: const _RelativePatternBaseUriConverter().fromJson(
-        json['baseUri'] as Map<String, dynamic>,
-      ),
+      baseUri: RelativePatternBaseUri.fromJson(json['baseUri'] as Object),
       pattern: json['pattern'] as String,
     );
 
-Map<String, dynamic> _$RelativePatternToJson(
-  _RelativePattern instance,
-) => <String, dynamic>{
-  'baseUri': const _RelativePatternBaseUriConverter().toJson(instance.baseUri),
-  'pattern': instance.pattern,
-};
+Map<String, dynamic> _$RelativePatternToJson(_RelativePattern instance) =>
+    <String, dynamic>{
+      'baseUri': instance.baseUri.toJson(),
+      'pattern': instance.pattern,
+    };
 
 _ImplementationParams _$ImplementationParamsFromJson(
   Map<String, dynamic> json,
@@ -3826,14 +3676,12 @@ _ImplementationParams _$ImplementationParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   position: Position.fromJson(json['position'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$ImplementationParamsToJson(
@@ -3841,21 +3689,15 @@ Map<String, dynamic> _$ImplementationParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _ImplementationRegistrationOptions _$ImplementationRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _ImplementationRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -3864,7 +3706,9 @@ _ImplementationRegistrationOptions _$ImplementationRegistrationOptionsFromJson(
 Map<String, dynamic> _$ImplementationRegistrationOptionsToJson(
   _ImplementationRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -3876,14 +3720,12 @@ _TypeDefinitionParams _$TypeDefinitionParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   position: Position.fromJson(json['position'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$TypeDefinitionParamsToJson(
@@ -3891,21 +3733,15 @@ Map<String, dynamic> _$TypeDefinitionParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _TypeDefinitionRegistrationOptions _$TypeDefinitionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _TypeDefinitionRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -3914,7 +3750,9 @@ _TypeDefinitionRegistrationOptions _$TypeDefinitionRegistrationOptionsFromJson(
 Map<String, dynamic> _$TypeDefinitionRegistrationOptionsToJson(
   _TypeDefinitionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -3947,35 +3785,27 @@ _DocumentColorParams _$DocumentColorParamsFromJson(Map<String, dynamic> json) =>
       textDocument: TextDocumentIdentifier.fromJson(
         json['textDocument'] as Map<String, dynamic>,
       ),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$DocumentColorParamsToJson(
   _DocumentColorParams instance,
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _DocumentColorRegistrationOptions _$DocumentColorRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _DocumentColorRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -3984,7 +3814,9 @@ _DocumentColorRegistrationOptions _$DocumentColorRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentColorRegistrationOptionsToJson(
   _DocumentColorRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -3997,14 +3829,12 @@ _ColorPresentationParams _$ColorPresentationParamsFromJson(
   ),
   color: Color.fromJson(json['color'] as Map<String, dynamic>),
   range: Range.fromJson(json['range'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$ColorPresentationParamsToJson(
@@ -4013,14 +3843,8 @@ Map<String, dynamic> _$ColorPresentationParamsToJson(
   'textDocument': instance.textDocument.toJson(),
   'color': instance.color.toJson(),
   'range': instance.range.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _WorkDoneProgressOptions _$WorkDoneProgressOptionsFromJson(
@@ -4037,47 +3861,43 @@ _TextDocumentRegistrationOptions _$TextDocumentRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _TextDocumentRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
 );
 
 Map<String, dynamic> _$TextDocumentRegistrationOptionsToJson(
   _TextDocumentRegistrationOptions instance,
-) => <String, dynamic>{'documentSelector': ?instance.documentSelector};
+) => <String, dynamic>{
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
+};
 
 _FoldingRangeParams _$FoldingRangeParamsFromJson(Map<String, dynamic> json) =>
     _FoldingRangeParams(
       textDocument: TextDocumentIdentifier.fromJson(
         json['textDocument'] as Map<String, dynamic>,
       ),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$FoldingRangeParamsToJson(_FoldingRangeParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
     };
 
 _FoldingRangeRegistrationOptions _$FoldingRangeRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _FoldingRangeRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -4086,7 +3906,9 @@ _FoldingRangeRegistrationOptions _$FoldingRangeRegistrationOptionsFromJson(
 Map<String, dynamic> _$FoldingRangeRegistrationOptionsToJson(
   _FoldingRangeRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -4097,35 +3919,27 @@ _DeclarationParams _$DeclarationParamsFromJson(Map<String, dynamic> json) =>
         json['textDocument'] as Map<String, dynamic>,
       ),
       position: Position.fromJson(json['position'] as Map<String, dynamic>),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$DeclarationParamsToJson(_DeclarationParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
       'position': instance.position.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
     };
 
 _DeclarationRegistrationOptions _$DeclarationRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _DeclarationRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -4134,7 +3948,9 @@ _DeclarationRegistrationOptions _$DeclarationRegistrationOptionsFromJson(
 Map<String, dynamic> _$DeclarationRegistrationOptionsToJson(
   _DeclarationRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -4148,14 +3964,12 @@ _SelectionRangeParams _$SelectionRangeParamsFromJson(
   positions: (json['positions'] as List<dynamic>)
       .map((e) => Position.fromJson(e as Map<String, dynamic>))
       .toList(),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$SelectionRangeParamsToJson(
@@ -4163,21 +3977,15 @@ Map<String, dynamic> _$SelectionRangeParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'positions': instance.positions.map((e) => e.toJson()).toList(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _SelectionRangeRegistrationOptions _$SelectionRangeRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _SelectionRangeRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -4186,7 +3994,9 @@ _SelectionRangeRegistrationOptions _$SelectionRangeRegistrationOptionsFromJson(
 Map<String, dynamic> _$SelectionRangeRegistrationOptionsToJson(
   _SelectionRangeRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -4194,26 +4004,22 @@ Map<String, dynamic> _$SelectionRangeRegistrationOptionsToJson(
 _WorkDoneProgressCreateParams _$WorkDoneProgressCreateParamsFromJson(
   Map<String, dynamic> json,
 ) => _WorkDoneProgressCreateParams(
-  token: const _ProgressTokenConverter().fromJson(json['token'] as Object),
+  token: ProgressToken.fromJson(json['token'] as Object),
 );
 
 Map<String, dynamic> _$WorkDoneProgressCreateParamsToJson(
   _WorkDoneProgressCreateParams instance,
-) => <String, dynamic>{
-  'token': const _ProgressTokenConverter().toJson(instance.token),
-};
+) => <String, dynamic>{'token': instance.token.toJson()};
 
 _WorkDoneProgressCancelParams _$WorkDoneProgressCancelParamsFromJson(
   Map<String, dynamic> json,
 ) => _WorkDoneProgressCancelParams(
-  token: const _ProgressTokenConverter().fromJson(json['token'] as Object),
+  token: ProgressToken.fromJson(json['token'] as Object),
 );
 
 Map<String, dynamic> _$WorkDoneProgressCancelParamsToJson(
   _WorkDoneProgressCancelParams instance,
-) => <String, dynamic>{
-  'token': const _ProgressTokenConverter().toJson(instance.token),
-};
+) => <String, dynamic>{'token': instance.token.toJson()};
 
 _CallHierarchyPrepareParams _$CallHierarchyPrepareParamsFromJson(
   Map<String, dynamic> json,
@@ -4222,10 +4028,9 @@ _CallHierarchyPrepareParams _$CallHierarchyPrepareParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   position: Position.fromJson(json['position'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$CallHierarchyPrepareParamsToJson(
@@ -4233,17 +4038,14 @@ Map<String, dynamic> _$CallHierarchyPrepareParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
 };
 
 _CallHierarchyRegistrationOptions _$CallHierarchyRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _CallHierarchyRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -4252,7 +4054,9 @@ _CallHierarchyRegistrationOptions _$CallHierarchyRegistrationOptionsFromJson(
 Map<String, dynamic> _$CallHierarchyRegistrationOptionsToJson(
   _CallHierarchyRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -4261,56 +4065,40 @@ _CallHierarchyIncomingCallsParams _$CallHierarchyIncomingCallsParamsFromJson(
   Map<String, dynamic> json,
 ) => _CallHierarchyIncomingCallsParams(
   item: CallHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$CallHierarchyIncomingCallsParamsToJson(
   _CallHierarchyIncomingCallsParams instance,
 ) => <String, dynamic>{
   'item': instance.item.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _CallHierarchyOutgoingCallsParams _$CallHierarchyOutgoingCallsParamsFromJson(
   Map<String, dynamic> json,
 ) => _CallHierarchyOutgoingCallsParams(
   item: CallHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$CallHierarchyOutgoingCallsParamsToJson(
   _CallHierarchyOutgoingCallsParams instance,
 ) => <String, dynamic>{
   'item': instance.item.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _SemanticTokensParams _$SemanticTokensParamsFromJson(
@@ -4319,79 +4107,51 @@ _SemanticTokensParams _$SemanticTokensParamsFromJson(
   textDocument: TextDocumentIdentifier.fromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$SemanticTokensParamsToJson(
   _SemanticTokensParams instance,
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _SemanticTokensRegistrationOptions _$SemanticTokensRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _SemanticTokensRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   legend: SemanticTokensLegend.fromJson(json['legend'] as Map<String, dynamic>),
   workDoneProgress: json['workDoneProgress'] as bool?,
-  range:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        SemanticTokensRegistrationOptionsRange
-      >(
-        json['range'],
-        const _SemanticTokensRegistrationOptionsRangeConverter().fromJson,
-      ),
-  full:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        SemanticTokensRegistrationOptionsFull
-      >(
-        json['full'],
-        const _SemanticTokensRegistrationOptionsFullConverter().fromJson,
-      ),
+  range: json['range'] == null
+      ? null
+      : SemanticTokensRegistrationOptionsRange.fromJson(
+          json['range'] as Object,
+        ),
+  full: json['full'] == null
+      ? null
+      : SemanticTokensRegistrationOptionsFull.fromJson(json['full'] as Object),
   id: json['id'] as String?,
 );
 
 Map<String, dynamic> _$SemanticTokensRegistrationOptionsToJson(
   _SemanticTokensRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'legend': instance.legend.toJson(),
   'workDoneProgress': ?instance.workDoneProgress,
-  'range':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        SemanticTokensRegistrationOptionsRange
-      >(
-        instance.range,
-        const _SemanticTokensRegistrationOptionsRangeConverter().toJson,
-      ),
-  'full':
-      ?_$JsonConverterToJson<
-        Map<String, dynamic>,
-        SemanticTokensRegistrationOptionsFull
-      >(
-        instance.full,
-        const _SemanticTokensRegistrationOptionsFullConverter().toJson,
-      ),
+  'range': ?instance.range?.toJson(),
+  'full': ?instance.full?.toJson(),
   'id': ?instance.id,
 };
 
@@ -4402,14 +4162,12 @@ _SemanticTokensDeltaParams _$SemanticTokensDeltaParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   previousResultId: json['previousResultId'] as String,
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$SemanticTokensDeltaParamsToJson(
@@ -4417,14 +4175,8 @@ Map<String, dynamic> _$SemanticTokensDeltaParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'previousResultId': instance.previousResultId,
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _SemanticTokensRangeParams _$SemanticTokensRangeParamsFromJson(
@@ -4434,14 +4186,12 @@ _SemanticTokensRangeParams _$SemanticTokensRangeParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   range: Range.fromJson(json['range'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$SemanticTokensRangeParamsToJson(
@@ -4449,14 +4199,8 @@ Map<String, dynamic> _$SemanticTokensRangeParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'range': instance.range.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _ShowDocumentParams _$ShowDocumentParamsFromJson(Map<String, dynamic> json) =>
@@ -4484,10 +4228,9 @@ _LinkedEditingRangeParams _$LinkedEditingRangeParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   position: Position.fromJson(json['position'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$LinkedEditingRangeParamsToJson(
@@ -4495,17 +4238,14 @@ Map<String, dynamic> _$LinkedEditingRangeParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
 };
 
 _LinkedEditingRangeRegistrationOptions
 _$LinkedEditingRangeRegistrationOptionsFromJson(Map<String, dynamic> json) =>
     _LinkedEditingRangeRegistrationOptions(
       documentSelector: (json['documentSelector'] as List<dynamic>?)
-          ?.map((e) => e as Object)
+          ?.map((e) => DocumentFilter.fromJson(e as Object))
           .toList(),
       workDoneProgress: json['workDoneProgress'] as bool?,
       id: json['id'] as String?,
@@ -4514,7 +4254,9 @@ _$LinkedEditingRangeRegistrationOptionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$LinkedEditingRangeRegistrationOptionsToJson(
   _LinkedEditingRangeRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -4569,35 +4311,27 @@ _MonikerParams _$MonikerParamsFromJson(Map<String, dynamic> json) =>
         json['textDocument'] as Map<String, dynamic>,
       ),
       position: Position.fromJson(json['position'] as Map<String, dynamic>),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$MonikerParamsToJson(_MonikerParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
       'position': instance.position.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
     };
 
 _MonikerRegistrationOptions _$MonikerRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _MonikerRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
 );
@@ -4605,7 +4339,9 @@ _MonikerRegistrationOptions _$MonikerRegistrationOptionsFromJson(
 Map<String, dynamic> _$MonikerRegistrationOptionsToJson(
   _MonikerRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -4616,10 +4352,9 @@ _TypeHierarchyPrepareParams _$TypeHierarchyPrepareParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   position: Position.fromJson(json['position'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$TypeHierarchyPrepareParamsToJson(
@@ -4627,17 +4362,14 @@ Map<String, dynamic> _$TypeHierarchyPrepareParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
 };
 
 _TypeHierarchyRegistrationOptions _$TypeHierarchyRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _TypeHierarchyRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -4646,7 +4378,9 @@ _TypeHierarchyRegistrationOptions _$TypeHierarchyRegistrationOptionsFromJson(
 Map<String, dynamic> _$TypeHierarchyRegistrationOptionsToJson(
   _TypeHierarchyRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -4655,56 +4389,40 @@ _TypeHierarchySupertypesParams _$TypeHierarchySupertypesParamsFromJson(
   Map<String, dynamic> json,
 ) => _TypeHierarchySupertypesParams(
   item: TypeHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$TypeHierarchySupertypesParamsToJson(
   _TypeHierarchySupertypesParams instance,
 ) => <String, dynamic>{
   'item': instance.item.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _TypeHierarchySubtypesParams _$TypeHierarchySubtypesParamsFromJson(
   Map<String, dynamic> json,
 ) => _TypeHierarchySubtypesParams(
   item: TypeHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$TypeHierarchySubtypesParamsToJson(
   _TypeHierarchySubtypesParams instance,
 ) => <String, dynamic>{
   'item': instance.item.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _InlineValueParams _$InlineValueParamsFromJson(Map<String, dynamic> json) =>
@@ -4716,10 +4434,9 @@ _InlineValueParams _$InlineValueParamsFromJson(Map<String, dynamic> json) =>
       context: InlineValueContext.fromJson(
         json['context'] as Map<String, dynamic>,
       ),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
     );
 
 Map<String, dynamic> _$InlineValueParamsToJson(_InlineValueParams instance) =>
@@ -4727,17 +4444,14 @@ Map<String, dynamic> _$InlineValueParamsToJson(_InlineValueParams instance) =>
       'textDocument': instance.textDocument.toJson(),
       'range': instance.range.toJson(),
       'context': instance.context.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
     };
 
 _InlineValueRegistrationOptions _$InlineValueRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _InlineValueRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   id: json['id'] as String?,
@@ -4746,7 +4460,9 @@ _InlineValueRegistrationOptions _$InlineValueRegistrationOptionsFromJson(
 Map<String, dynamic> _$InlineValueRegistrationOptionsToJson(
   _InlineValueRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -4757,27 +4473,23 @@ _InlayHintParams _$InlayHintParamsFromJson(Map<String, dynamic> json) =>
         json['textDocument'] as Map<String, dynamic>,
       ),
       range: Range.fromJson(json['range'] as Map<String, dynamic>),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
     );
 
 Map<String, dynamic> _$InlayHintParamsToJson(_InlayHintParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
       'range': instance.range.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
     };
 
 _InlayHintRegistrationOptions _$InlayHintRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _InlayHintRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   resolveProvider: json['resolveProvider'] as bool?,
@@ -4787,7 +4499,9 @@ _InlayHintRegistrationOptions _$InlayHintRegistrationOptionsFromJson(
 Map<String, dynamic> _$InlayHintRegistrationOptionsToJson(
   _InlayHintRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'resolveProvider': ?instance.resolveProvider,
   'id': ?instance.id,
@@ -4799,14 +4513,12 @@ _DocumentDiagnosticParams _$DocumentDiagnosticParamsFromJson(
   textDocument: TextDocumentIdentifier.fromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
   identifier: json['identifier'] as String?,
   previousResultId: json['previousResultId'] as String?,
 );
@@ -4815,14 +4527,8 @@ Map<String, dynamic> _$DocumentDiagnosticParamsToJson(
   _DocumentDiagnosticParams instance,
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
   'identifier': ?instance.identifier,
   'previousResultId': ?instance.previousResultId,
 };
@@ -4831,7 +4537,7 @@ _DiagnosticRegistrationOptions _$DiagnosticRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _DiagnosticRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   interFileDependencies: json['interFileDependencies'] as bool,
   workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
@@ -4843,7 +4549,9 @@ _DiagnosticRegistrationOptions _$DiagnosticRegistrationOptionsFromJson(
 Map<String, dynamic> _$DiagnosticRegistrationOptionsToJson(
   _DiagnosticRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'interFileDependencies': instance.interFileDependencies,
   'workspaceDiagnostics': instance.workspaceDiagnostics,
   'workDoneProgress': ?instance.workDoneProgress,
@@ -4857,14 +4565,12 @@ _WorkspaceDiagnosticParams _$WorkspaceDiagnosticParamsFromJson(
   previousResultIds: (json['previousResultIds'] as List<dynamic>)
       .map((e) => PreviousResultId.fromJson(e as Map<String, dynamic>))
       .toList(),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
   identifier: json['identifier'] as String?,
 );
 
@@ -4874,14 +4580,8 @@ Map<String, dynamic> _$WorkspaceDiagnosticParamsToJson(
   'previousResultIds': instance.previousResultIds
       .map((e) => e.toJson())
       .toList(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
   'identifier': ?instance.identifier,
 };
 
@@ -4965,10 +4665,9 @@ _InlineCompletionParams _$InlineCompletionParamsFromJson(
   context: InlineCompletionContext.fromJson(
     json['context'] as Map<String, dynamic>,
   ),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$InlineCompletionParamsToJson(
@@ -4977,17 +4676,14 @@ Map<String, dynamic> _$InlineCompletionParamsToJson(
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
   'context': instance.context.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
 };
 
 _InlineCompletionRegistrationOptions
 _$InlineCompletionRegistrationOptionsFromJson(Map<String, dynamic> json) =>
     _InlineCompletionRegistrationOptions(
       documentSelector: (json['documentSelector'] as List<dynamic>?)
-          ?.map((e) => e as Object)
+          ?.map((e) => DocumentFilter.fromJson(e as Object))
           .toList(),
       workDoneProgress: json['workDoneProgress'] as bool?,
       id: json['id'] as String?,
@@ -4996,7 +4692,9 @@ _$InlineCompletionRegistrationOptionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$InlineCompletionRegistrationOptionsToJson(
   _InlineCompletionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'id': ?instance.id,
 };
@@ -5034,10 +4732,9 @@ _InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) =>
       capabilities: ClientCapabilities.fromJson(
         json['capabilities'] as Map<String, dynamic>,
       ),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
       clientInfo: _$recordConvertNullable(
         json['clientInfo'],
         ($jsonValue) => (
@@ -5047,7 +4744,9 @@ _InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) =>
       ),
       locale: json['locale'] as String?,
       rootPath: json['rootPath'] as String?,
-      initializationOptions: json['initializationOptions'],
+      initializationOptions: json['initializationOptions'] == null
+          ? null
+          : LSPAny.fromJson(json['initializationOptions'] as Object),
       trace: $enumDecodeNullable(_$TraceValuesEnumMap, json['trace']),
       workspaceFolders: (json['workspaceFolders'] as List<dynamic>?)
           ?.map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
@@ -5059,10 +4758,7 @@ Map<String, dynamic> _$InitializeParamsToJson(_InitializeParams instance) =>
       'processId': ?instance.processId,
       'rootUri': ?instance.rootUri,
       'capabilities': instance.capabilities.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
       'clientInfo': ?instance.clientInfo == null
           ? null
           : <String, dynamic>{
@@ -5071,7 +4767,7 @@ Map<String, dynamic> _$InitializeParamsToJson(_InitializeParams instance) =>
             },
       'locale': ?instance.locale,
       'rootPath': ?instance.rootPath,
-      'initializationOptions': ?instance.initializationOptions,
+      'initializationOptions': ?instance.initializationOptions?.toJson(),
       'trace': ?_$TraceValuesEnumMap[instance.trace],
       'workspaceFolders': ?instance.workspaceFolders
           ?.map((e) => e.toJson())
@@ -5092,20 +4788,28 @@ Map<String, dynamic> _$InitializedParamsToJson(_InitializedParams instance) =>
 
 _DidChangeConfigurationParams _$DidChangeConfigurationParamsFromJson(
   Map<String, dynamic> json,
-) => _DidChangeConfigurationParams(settings: json['settings'] as Object);
+) => _DidChangeConfigurationParams(
+  settings: LSPAny.fromJson(json['settings'] as Object),
+);
 
 Map<String, dynamic> _$DidChangeConfigurationParamsToJson(
   _DidChangeConfigurationParams instance,
-) => <String, dynamic>{'settings': instance.settings};
+) => <String, dynamic>{'settings': instance.settings.toJson()};
 
 _DidChangeConfigurationRegistrationOptions
 _$DidChangeConfigurationRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => _DidChangeConfigurationRegistrationOptions(section: json['section']);
+) => _DidChangeConfigurationRegistrationOptions(
+  section: json['section'] == null
+      ? null
+      : DidChangeConfigurationRegistrationOptionsSection.fromJson(
+          json['section'] as Object,
+        ),
+);
 
 Map<String, dynamic> _$DidChangeConfigurationRegistrationOptionsToJson(
   _DidChangeConfigurationRegistrationOptions instance,
-) => <String, dynamic>{'section': ?instance.section};
+) => <String, dynamic>{'section': ?instance.section?.toJson()};
 
 _ShowMessageParams _$ShowMessageParamsFromJson(Map<String, dynamic> json) =>
     _ShowMessageParams(
@@ -5175,25 +4879,23 @@ _DidChangeTextDocumentParams _$DidChangeTextDocumentParamsFromJson(
   textDocument: VersionedTextDocumentIdentifier.fromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
-  contentChanges: const _TextDocumentContentChangeEventListConverter().fromJson(
-    json['contentChanges'] as List,
-  ),
+  contentChanges: (json['contentChanges'] as List<dynamic>)
+      .map((e) => TextDocumentContentChangeEvent.fromJson(e as Object))
+      .toList(),
 );
 
 Map<String, dynamic> _$DidChangeTextDocumentParamsToJson(
   _DidChangeTextDocumentParams instance,
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
-  'contentChanges': const _TextDocumentContentChangeEventListConverter().toJson(
-    instance.contentChanges,
-  ),
+  'contentChanges': instance.contentChanges.map((e) => e.toJson()).toList(),
 };
 
 _TextDocumentChangeRegistrationOptions
 _$TextDocumentChangeRegistrationOptionsFromJson(Map<String, dynamic> json) =>
     _TextDocumentChangeRegistrationOptions(
       documentSelector: (json['documentSelector'] as List<dynamic>?)
-          ?.map((e) => e as Object)
+          ?.map((e) => DocumentFilter.fromJson(e as Object))
           .toList(),
       syncKind: $enumDecode(_$TextDocumentSyncKindEnumMap, json['syncKind']),
     );
@@ -5201,7 +4903,9 @@ _$TextDocumentChangeRegistrationOptionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TextDocumentChangeRegistrationOptionsToJson(
   _TextDocumentChangeRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'syncKind': _$TextDocumentSyncKindEnumMap[instance.syncKind]!,
 };
 
@@ -5243,7 +4947,7 @@ _TextDocumentSaveRegistrationOptions
 _$TextDocumentSaveRegistrationOptionsFromJson(Map<String, dynamic> json) =>
     _TextDocumentSaveRegistrationOptions(
       documentSelector: (json['documentSelector'] as List<dynamic>?)
-          ?.map((e) => e as Object)
+          ?.map((e) => DocumentFilter.fromJson(e as Object))
           .toList(),
       includeText: json['includeText'] as bool?,
     );
@@ -5251,7 +4955,9 @@ _$TextDocumentSaveRegistrationOptionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TextDocumentSaveRegistrationOptionsToJson(
   _TextDocumentSaveRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'includeText': ?instance.includeText,
 };
 
@@ -5329,14 +5035,12 @@ _CompletionParams _$CompletionParamsFromJson(Map<String, dynamic> json) =>
         json['textDocument'] as Map<String, dynamic>,
       ),
       position: Position.fromJson(json['position'] as Map<String, dynamic>),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
       context: json['context'] == null
           ? null
           : CompletionContext.fromJson(json['context'] as Map<String, dynamic>),
@@ -5346,14 +5050,8 @@ Map<String, dynamic> _$CompletionParamsToJson(_CompletionParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
       'position': instance.position.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
       'context': ?instance.context?.toJson(),
     };
 
@@ -5361,7 +5059,7 @@ _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _CompletionRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
@@ -5381,7 +5079,9 @@ _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
 Map<String, dynamic> _$CompletionRegistrationOptionsToJson(
   _CompletionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'triggerCharacters': ?instance.triggerCharacters,
   'allCommitCharacters': ?instance.allCommitCharacters,
@@ -5398,27 +5098,23 @@ _HoverParams _$HoverParamsFromJson(Map<String, dynamic> json) => _HoverParams(
     json['textDocument'] as Map<String, dynamic>,
   ),
   position: Position.fromJson(json['position'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$HoverParamsToJson(_HoverParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
       'position': instance.position.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
     };
 
 _HoverRegistrationOptions _$HoverRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _HoverRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
 );
@@ -5426,7 +5122,9 @@ _HoverRegistrationOptions _$HoverRegistrationOptionsFromJson(
 Map<String, dynamic> _$HoverRegistrationOptionsToJson(
   _HoverRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -5436,10 +5134,9 @@ _SignatureHelpParams _$SignatureHelpParamsFromJson(Map<String, dynamic> json) =>
         json['textDocument'] as Map<String, dynamic>,
       ),
       position: Position.fromJson(json['position'] as Map<String, dynamic>),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
       context: json['context'] == null
           ? null
           : SignatureHelpContext.fromJson(
@@ -5452,10 +5149,7 @@ Map<String, dynamic> _$SignatureHelpParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
   'context': ?instance.context?.toJson(),
 };
 
@@ -5463,7 +5157,7 @@ _SignatureHelpRegistrationOptions _$SignatureHelpRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _SignatureHelpRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
@@ -5477,7 +5171,9 @@ _SignatureHelpRegistrationOptions _$SignatureHelpRegistrationOptionsFromJson(
 Map<String, dynamic> _$SignatureHelpRegistrationOptionsToJson(
   _SignatureHelpRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'triggerCharacters': ?instance.triggerCharacters,
   'retriggerCharacters': ?instance.retriggerCharacters,
@@ -5489,35 +5185,27 @@ _DefinitionParams _$DefinitionParamsFromJson(Map<String, dynamic> json) =>
         json['textDocument'] as Map<String, dynamic>,
       ),
       position: Position.fromJson(json['position'] as Map<String, dynamic>),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$DefinitionParamsToJson(_DefinitionParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
       'position': instance.position.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
     };
 
 _DefinitionRegistrationOptions _$DefinitionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _DefinitionRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
 );
@@ -5525,7 +5213,9 @@ _DefinitionRegistrationOptions _$DefinitionRegistrationOptionsFromJson(
 Map<String, dynamic> _$DefinitionRegistrationOptionsToJson(
   _DefinitionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -5538,14 +5228,12 @@ _ReferenceParams _$ReferenceParamsFromJson(Map<String, dynamic> json) =>
       context: ReferenceContext.fromJson(
         json['context'] as Map<String, dynamic>,
       ),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$ReferenceParamsToJson(_ReferenceParams instance) =>
@@ -5553,21 +5241,15 @@ Map<String, dynamic> _$ReferenceParamsToJson(_ReferenceParams instance) =>
       'textDocument': instance.textDocument.toJson(),
       'position': instance.position.toJson(),
       'context': instance.context.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
     };
 
 _ReferenceRegistrationOptions _$ReferenceRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _ReferenceRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
 );
@@ -5575,7 +5257,9 @@ _ReferenceRegistrationOptions _$ReferenceRegistrationOptionsFromJson(
 Map<String, dynamic> _$ReferenceRegistrationOptionsToJson(
   _ReferenceRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -5586,14 +5270,12 @@ _DocumentHighlightParams _$DocumentHighlightParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   position: Position.fromJson(json['position'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$DocumentHighlightParamsToJson(
@@ -5601,21 +5283,15 @@ Map<String, dynamic> _$DocumentHighlightParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _DocumentHighlightRegistrationOptions
 _$DocumentHighlightRegistrationOptionsFromJson(Map<String, dynamic> json) =>
     _DocumentHighlightRegistrationOptions(
       documentSelector: (json['documentSelector'] as List<dynamic>?)
-          ?.map((e) => e as Object)
+          ?.map((e) => DocumentFilter.fromJson(e as Object))
           .toList(),
       workDoneProgress: json['workDoneProgress'] as bool?,
     );
@@ -5623,7 +5299,9 @@ _$DocumentHighlightRegistrationOptionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DocumentHighlightRegistrationOptionsToJson(
   _DocumentHighlightRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -5633,35 +5311,27 @@ _DocumentSymbolParams _$DocumentSymbolParamsFromJson(
   textDocument: TextDocumentIdentifier.fromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$DocumentSymbolParamsToJson(
   _DocumentSymbolParams instance,
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _DocumentSymbolRegistrationOptions _$DocumentSymbolRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _DocumentSymbolRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   label: json['label'] as String?,
@@ -5670,7 +5340,9 @@ _DocumentSymbolRegistrationOptions _$DocumentSymbolRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentSymbolRegistrationOptionsToJson(
   _DocumentSymbolRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'label': ?instance.label,
 };
@@ -5684,14 +5356,12 @@ _CodeActionParams _$CodeActionParamsFromJson(Map<String, dynamic> json) =>
       context: CodeActionContext.fromJson(
         json['context'] as Map<String, dynamic>,
       ),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$CodeActionParamsToJson(_CodeActionParams instance) =>
@@ -5699,21 +5369,15 @@ Map<String, dynamic> _$CodeActionParamsToJson(_CodeActionParams instance) =>
       'textDocument': instance.textDocument.toJson(),
       'range': instance.range.toJson(),
       'context': instance.context.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
     };
 
 _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _CodeActionRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
@@ -5725,7 +5389,9 @@ _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
 Map<String, dynamic> _$CodeActionRegistrationOptionsToJson(
   _CodeActionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'codeActionKinds': ?instance.codeActionKinds?.map((e) => e.toJson()).toList(),
   'resolveProvider': ?instance.resolveProvider,
@@ -5735,28 +5401,20 @@ _WorkspaceSymbolParams _$WorkspaceSymbolParamsFromJson(
   Map<String, dynamic> json,
 ) => _WorkspaceSymbolParams(
   query: json['query'] as String,
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
-  partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['partialResultToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
+  partialResultToken: json['partialResultToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['partialResultToken'] as Object),
 );
 
 Map<String, dynamic> _$WorkspaceSymbolParamsToJson(
   _WorkspaceSymbolParams instance,
 ) => <String, dynamic>{
   'query': instance.query,
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _WorkspaceSymbolRegistrationOptions
@@ -5778,34 +5436,26 @@ _CodeLensParams _$CodeLensParamsFromJson(Map<String, dynamic> json) =>
       textDocument: TextDocumentIdentifier.fromJson(
         json['textDocument'] as Map<String, dynamic>,
       ),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$CodeLensParamsToJson(_CodeLensParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
     };
 
 _CodeLensRegistrationOptions _$CodeLensRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _CodeLensRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   resolveProvider: json['resolveProvider'] as bool?,
@@ -5814,7 +5464,9 @@ _CodeLensRegistrationOptions _$CodeLensRegistrationOptionsFromJson(
 Map<String, dynamic> _$CodeLensRegistrationOptionsToJson(
   _CodeLensRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'resolveProvider': ?instance.resolveProvider,
 };
@@ -5824,34 +5476,26 @@ _DocumentLinkParams _$DocumentLinkParamsFromJson(Map<String, dynamic> json) =>
       textDocument: TextDocumentIdentifier.fromJson(
         json['textDocument'] as Map<String, dynamic>,
       ),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$DocumentLinkParamsToJson(_DocumentLinkParams instance) =>
     <String, dynamic>{
       'textDocument': instance.textDocument.toJson(),
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
-      'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.partialResultToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
+      'partialResultToken': ?instance.partialResultToken?.toJson(),
     };
 
 _DocumentLinkRegistrationOptions _$DocumentLinkRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _DocumentLinkRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   resolveProvider: json['resolveProvider'] as bool?,
@@ -5860,7 +5504,9 @@ _DocumentLinkRegistrationOptions _$DocumentLinkRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentLinkRegistrationOptionsToJson(
   _DocumentLinkRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'resolveProvider': ?instance.resolveProvider,
 };
@@ -5872,10 +5518,9 @@ _DocumentFormattingParams _$DocumentFormattingParamsFromJson(
     json['textDocument'] as Map<String, dynamic>,
   ),
   options: FormattingOptions.fromJson(json['options'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$DocumentFormattingParamsToJson(
@@ -5883,17 +5528,14 @@ Map<String, dynamic> _$DocumentFormattingParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'options': instance.options.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
 };
 
 _DocumentFormattingRegistrationOptions
 _$DocumentFormattingRegistrationOptionsFromJson(Map<String, dynamic> json) =>
     _DocumentFormattingRegistrationOptions(
       documentSelector: (json['documentSelector'] as List<dynamic>?)
-          ?.map((e) => e as Object)
+          ?.map((e) => DocumentFilter.fromJson(e as Object))
           .toList(),
       workDoneProgress: json['workDoneProgress'] as bool?,
     );
@@ -5901,7 +5543,9 @@ _$DocumentFormattingRegistrationOptionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DocumentFormattingRegistrationOptionsToJson(
   _DocumentFormattingRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -5913,10 +5557,9 @@ _DocumentRangeFormattingParams _$DocumentRangeFormattingParamsFromJson(
   ),
   range: Range.fromJson(json['range'] as Map<String, dynamic>),
   options: FormattingOptions.fromJson(json['options'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$DocumentRangeFormattingParamsToJson(
@@ -5925,10 +5568,7 @@ Map<String, dynamic> _$DocumentRangeFormattingParamsToJson(
   'textDocument': instance.textDocument.toJson(),
   'range': instance.range.toJson(),
   'options': instance.options.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
 };
 
 _DocumentRangeFormattingRegistrationOptions
@@ -5936,7 +5576,7 @@ _$DocumentRangeFormattingRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _DocumentRangeFormattingRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   rangesSupport: json['rangesSupport'] as bool?,
@@ -5945,7 +5585,9 @@ _$DocumentRangeFormattingRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentRangeFormattingRegistrationOptionsToJson(
   _DocumentRangeFormattingRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'rangesSupport': ?instance.rangesSupport,
 };
@@ -5960,10 +5602,9 @@ _DocumentRangesFormattingParams _$DocumentRangesFormattingParamsFromJson(
       .map((e) => Range.fromJson(e as Map<String, dynamic>))
       .toList(),
   options: FormattingOptions.fromJson(json['options'] as Map<String, dynamic>),
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$DocumentRangesFormattingParamsToJson(
@@ -5972,10 +5613,7 @@ Map<String, dynamic> _$DocumentRangesFormattingParamsToJson(
   'textDocument': instance.textDocument.toJson(),
   'ranges': instance.ranges.map((e) => e.toJson()).toList(),
   'options': instance.options.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
 };
 
 _DocumentOnTypeFormattingParams _$DocumentOnTypeFormattingParamsFromJson(
@@ -6003,7 +5641,7 @@ _$DocumentOnTypeFormattingRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _DocumentOnTypeFormattingRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   firstTriggerCharacter: json['firstTriggerCharacter'] as String,
   moreTriggerCharacter: (json['moreTriggerCharacter'] as List<dynamic>?)
@@ -6014,7 +5652,9 @@ _$DocumentOnTypeFormattingRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentOnTypeFormattingRegistrationOptionsToJson(
   _DocumentOnTypeFormattingRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'firstTriggerCharacter': instance.firstTriggerCharacter,
   'moreTriggerCharacter': ?instance.moreTriggerCharacter,
 };
@@ -6026,10 +5666,9 @@ _RenameParams _$RenameParamsFromJson(Map<String, dynamic> json) =>
       ),
       position: Position.fromJson(json['position'] as Map<String, dynamic>),
       newName: json['newName'] as String,
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
     );
 
 Map<String, dynamic> _$RenameParamsToJson(_RenameParams instance) =>
@@ -6037,17 +5676,14 @@ Map<String, dynamic> _$RenameParamsToJson(_RenameParams instance) =>
       'textDocument': instance.textDocument.toJson(),
       'position': instance.position.toJson(),
       'newName': instance.newName,
-      'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-        instance.workDoneToken,
-        const _ProgressTokenConverter().toJson,
-      ),
+      'workDoneToken': ?instance.workDoneToken?.toJson(),
     };
 
 _RenameRegistrationOptions _$RenameRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) => _RenameRegistrationOptions(
   documentSelector: (json['documentSelector'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => DocumentFilter.fromJson(e as Object))
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   prepareProvider: json['prepareProvider'] as bool?,
@@ -6056,7 +5692,9 @@ _RenameRegistrationOptions _$RenameRegistrationOptionsFromJson(
 Map<String, dynamic> _$RenameRegistrationOptionsToJson(
   _RenameRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': ?instance.documentSelector
+      ?.map((e) => e.toJson())
+      .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'prepareProvider': ?instance.prepareProvider,
 };
@@ -6067,10 +5705,9 @@ _PrepareRenameParams _$PrepareRenameParamsFromJson(Map<String, dynamic> json) =>
         json['textDocument'] as Map<String, dynamic>,
       ),
       position: Position.fromJson(json['position'] as Map<String, dynamic>),
-      workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['workDoneToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      workDoneToken: json['workDoneToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['workDoneToken'] as Object),
     );
 
 Map<String, dynamic> _$PrepareRenameParamsToJson(
@@ -6078,22 +5715,18 @@ Map<String, dynamic> _$PrepareRenameParamsToJson(
 ) => <String, dynamic>{
   'textDocument': instance.textDocument.toJson(),
   'position': instance.position.toJson(),
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
 };
 
 _ExecuteCommandParams _$ExecuteCommandParamsFromJson(
   Map<String, dynamic> json,
 ) => _ExecuteCommandParams(
   command: json['command'] as String,
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
   arguments: (json['arguments'] as List<dynamic>?)
-      ?.map((e) => e as Object)
+      ?.map((e) => LSPAny.fromJson(e as Object))
       .toList(),
 );
 
@@ -6101,11 +5734,8 @@ Map<String, dynamic> _$ExecuteCommandParamsToJson(
   _ExecuteCommandParams instance,
 ) => <String, dynamic>{
   'command': instance.command,
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-  'arguments': ?instance.arguments,
+  'workDoneToken': ?instance.workDoneToken?.toJson(),
+  'arguments': ?instance.arguments?.map((e) => e.toJson()).toList(),
 };
 
 _ExecuteCommandRegistrationOptions _$ExecuteCommandRegistrationOptionsFromJson(
@@ -6157,25 +5787,21 @@ Map<String, dynamic> _$LogTraceParamsToJson(_LogTraceParams instance) =>
     };
 
 _CancelParams _$CancelParamsFromJson(Map<String, dynamic> json) =>
-    _CancelParams(
-      id: const _CancelParamsIdConverter().fromJson(json['id'] as Object),
-    );
+    _CancelParams(id: CancelParamsId.fromJson(json['id'] as Object));
 
 Map<String, dynamic> _$CancelParamsToJson(_CancelParams instance) =>
-    <String, dynamic>{
-      'id': const _CancelParamsIdConverter().toJson(instance.id),
-    };
+    <String, dynamic>{'id': instance.id.toJson()};
 
 _ProgressParams _$ProgressParamsFromJson(Map<String, dynamic> json) =>
     _ProgressParams(
-      token: const _ProgressTokenConverter().fromJson(json['token'] as Object),
-      value: json['value'] as Object,
+      token: ProgressToken.fromJson(json['token'] as Object),
+      value: LSPAny.fromJson(json['value'] as Object),
     );
 
 Map<String, dynamic> _$ProgressParamsToJson(_ProgressParams instance) =>
     <String, dynamic>{
-      'token': const _ProgressTokenConverter().toJson(instance.token),
-      'value': instance.value,
+      'token': instance.token.toJson(),
+      'value': instance.value.toJson(),
     };
 
 _TextDocumentPositionParams _$TextDocumentPositionParamsFromJson(
@@ -6197,36 +5823,26 @@ Map<String, dynamic> _$TextDocumentPositionParamsToJson(
 _WorkDoneProgressParams _$WorkDoneProgressParamsFromJson(
   Map<String, dynamic> json,
 ) => _WorkDoneProgressParams(
-  workDoneToken: _$JsonConverterFromJson<Object, ProgressToken>(
-    json['workDoneToken'],
-    const _ProgressTokenConverter().fromJson,
-  ),
+  workDoneToken: json['workDoneToken'] == null
+      ? null
+      : ProgressToken.fromJson(json['workDoneToken'] as Object),
 );
 
 Map<String, dynamic> _$WorkDoneProgressParamsToJson(
   _WorkDoneProgressParams instance,
-) => <String, dynamic>{
-  'workDoneToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.workDoneToken,
-    const _ProgressTokenConverter().toJson,
-  ),
-};
+) => <String, dynamic>{'workDoneToken': ?instance.workDoneToken?.toJson()};
 
 _PartialResultParams _$PartialResultParamsFromJson(Map<String, dynamic> json) =>
     _PartialResultParams(
-      partialResultToken: _$JsonConverterFromJson<Object, ProgressToken>(
-        json['partialResultToken'],
-        const _ProgressTokenConverter().fromJson,
-      ),
+      partialResultToken: json['partialResultToken'] == null
+          ? null
+          : ProgressToken.fromJson(json['partialResultToken'] as Object),
     );
 
 Map<String, dynamic> _$PartialResultParamsToJson(
   _PartialResultParams instance,
 ) => <String, dynamic>{
-  'partialResultToken': ?_$JsonConverterToJson<Object, ProgressToken>(
-    instance.partialResultToken,
-    const _ProgressTokenConverter().toJson,
-  ),
+  'partialResultToken': ?instance.partialResultToken?.toJson(),
 };
 
 _ImplementationOptions _$ImplementationOptionsFromJson(
@@ -6298,16 +5914,12 @@ _SemanticTokensOptions _$SemanticTokensOptionsFromJson(
 ) => _SemanticTokensOptions(
   legend: SemanticTokensLegend.fromJson(json['legend'] as Map<String, dynamic>),
   workDoneProgress: json['workDoneProgress'] as bool?,
-  range:
-      _$JsonConverterFromJson<Map<String, dynamic>, SemanticTokensOptionsRange>(
-        json['range'],
-        const _SemanticTokensOptionsRangeConverter().fromJson,
-      ),
-  full:
-      _$JsonConverterFromJson<Map<String, dynamic>, SemanticTokensOptionsFull>(
-        json['full'],
-        const _SemanticTokensOptionsFullConverter().fromJson,
-      ),
+  range: json['range'] == null
+      ? null
+      : SemanticTokensOptionsRange.fromJson(json['range'] as Object),
+  full: json['full'] == null
+      ? null
+      : SemanticTokensOptionsFull.fromJson(json['full'] as Object),
 );
 
 Map<String, dynamic> _$SemanticTokensOptionsToJson(
@@ -6315,16 +5927,8 @@ Map<String, dynamic> _$SemanticTokensOptionsToJson(
 ) => <String, dynamic>{
   'legend': instance.legend.toJson(),
   'workDoneProgress': ?instance.workDoneProgress,
-  'range':
-      ?_$JsonConverterToJson<Map<String, dynamic>, SemanticTokensOptionsRange>(
-        instance.range,
-        const _SemanticTokensOptionsRangeConverter().toJson,
-      ),
-  'full':
-      ?_$JsonConverterToJson<Map<String, dynamic>, SemanticTokensOptionsFull>(
-        instance.full,
-        const _SemanticTokensOptionsFullConverter().toJson,
-      ),
+  'range': ?instance.range?.toJson(),
+  'full': ?instance.full?.toJson(),
 };
 
 _LinkedEditingRangeOptions _$LinkedEditingRangeOptionsFromJson(
@@ -6695,11 +6299,9 @@ _TextDocumentSyncOptions _$TextDocumentSyncOptionsFromJson(
   change: $enumDecodeNullable(_$TextDocumentSyncKindEnumMap, json['change']),
   willSave: json['willSave'] as bool?,
   willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
-  save:
-      _$JsonConverterFromJson<
-        Map<String, dynamic>,
-        TextDocumentSyncOptionsSave
-      >(json['save'], const _TextDocumentSyncOptionsSaveConverter().fromJson),
+  save: json['save'] == null
+      ? null
+      : TextDocumentSyncOptionsSave.fromJson(json['save'] as Object),
 );
 
 Map<String, dynamic> _$TextDocumentSyncOptionsToJson(
@@ -6709,18 +6311,18 @@ Map<String, dynamic> _$TextDocumentSyncOptionsToJson(
   'change': ?_$TextDocumentSyncKindEnumMap[instance.change],
   'willSave': ?instance.willSave,
   'willSaveWaitUntil': ?instance.willSaveWaitUntil,
-  'save':
-      ?_$JsonConverterToJson<Map<String, dynamic>, TextDocumentSyncOptionsSave>(
-        instance.save,
-        const _TextDocumentSyncOptionsSaveConverter().toJson,
-      ),
+  'save': ?instance.save?.toJson(),
 };
 
 _NotebookDocumentSyncOptions _$NotebookDocumentSyncOptionsFromJson(
   Map<String, dynamic> json,
 ) => _NotebookDocumentSyncOptions(
   notebookSelector: (json['notebookSelector'] as List<dynamic>)
-      .map((e) => e as Object)
+      .map(
+        (e) => NotebookDocumentSyncOptionsNotebookSelectorItem.fromJson(
+          e as Object,
+        ),
+      )
       .toList(),
   save: json['save'] as bool?,
 );
@@ -6728,24 +6330,30 @@ _NotebookDocumentSyncOptions _$NotebookDocumentSyncOptionsFromJson(
 Map<String, dynamic> _$NotebookDocumentSyncOptionsToJson(
   _NotebookDocumentSyncOptions instance,
 ) => <String, dynamic>{
-  'notebookSelector': instance.notebookSelector,
+  'notebookSelector': instance.notebookSelector.map((e) => e.toJson()).toList(),
   'save': ?instance.save,
 };
 
 _NotebookDocumentSyncRegistrationOptions
-_$NotebookDocumentSyncRegistrationOptionsFromJson(Map<String, dynamic> json) =>
-    _NotebookDocumentSyncRegistrationOptions(
-      notebookSelector: (json['notebookSelector'] as List<dynamic>)
-          .map((e) => e as Object)
-          .toList(),
-      save: json['save'] as bool?,
-      id: json['id'] as String?,
-    );
+_$NotebookDocumentSyncRegistrationOptionsFromJson(
+  Map<String, dynamic> json,
+) => _NotebookDocumentSyncRegistrationOptions(
+  notebookSelector: (json['notebookSelector'] as List<dynamic>)
+      .map(
+        (e) =>
+            NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.fromJson(
+              e as Object,
+            ),
+      )
+      .toList(),
+  save: json['save'] as bool?,
+  id: json['id'] as String?,
+);
 
 Map<String, dynamic> _$NotebookDocumentSyncRegistrationOptionsToJson(
   _NotebookDocumentSyncRegistrationOptions instance,
 ) => <String, dynamic>{
-  'notebookSelector': instance.notebookSelector,
+  'notebookSelector': instance.notebookSelector.map((e) => e.toJson()).toList(),
   'save': ?instance.save,
   'id': ?instance.id,
 };
