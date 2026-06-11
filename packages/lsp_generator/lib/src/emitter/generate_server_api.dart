@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:path/path.dart' as p;
-
+import '../config/generated_files.dart';
 import '../resolver/resolved_state.dart';
 import '../visitor/emitter_helpers.dart';
 import '../visitor/server_api_visitor.dart';
@@ -13,19 +12,8 @@ void generateServerApi(ResolvedState resolved, String outputDir) {
   final lib = visitor.buildServerApi();
   final source = emitLibrary(lib);
 
-  final generatedPath = p.join(
-    outputDir,
-    'lib',
-    'src',
-    'generated',
-    'server',
-  );
+  final dir = Directory(outputDir);
+  dir.serverDir.createSync(recursive: true);
 
-  final generatedDir = Directory(generatedPath);
-  if (!generatedDir.existsSync()) {
-    generatedDir.createSync(recursive: true);
-  }
-
-  final outputPath = p.join(generatedPath, 'server_api.dart');
-  File(outputPath).writeAsStringSync(source);
+  dir.serverApiFile.writeAsStringSync(source);
 }

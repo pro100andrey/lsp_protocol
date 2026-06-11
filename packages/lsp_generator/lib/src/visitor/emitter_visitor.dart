@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
 
+import '../config/generated_files.dart';
 import '../models/protocol.dart' show MessageDirection, MetaNotification;
 import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
@@ -46,14 +47,6 @@ final class EmitterVisitor {
   final ResolvedState _resolved;
 
   static const _header = 'GENERATED — do not edit.';
-  static const _structuresFile = 'structures.dart';
-  static const _enumerationsFile = 'enumerations.dart';
-  static const _aliasesFile = 'type_aliases.dart';
-  static const _unionsFile = 'unions.dart';
-
-  /// Scalar-only unions (e.g. `ProgressToken = int | string`). These live in a
-  /// separate file so that `structures.dart` can import them without circulars.
-  static const _scalarUnionsFile = 'scalar_unions.dart';
 
   /// All class names (including anonymous) — used to filter conflicting
   /// aliases.
@@ -66,7 +59,8 @@ final class EmitterVisitor {
   late final Set<String> _sealedUnionNames = _computeSealedUnionNames();
 
   /// Subset of [_sealedUnionNames]: purely scalar unions (only [DartCoreType]
-  /// items). Emitted to [_scalarUnionsFile]; no import of structures needed.
+  /// items). Emitted to [GeneratedFiles.scalarUnions]; no import of
+  /// structures needed.
   late final Set<String> _scalarUnionNames = _computeScalarUnionNames();
 
   /// Inline anonymous unions collected from all class properties.
@@ -78,11 +72,11 @@ final class EmitterVisitor {
 
   /// Builds a [Library] containing all resolved classes (anonymous first).
   _ClassCategory _classifyClass(ResolvedClass cls) => switch (cls.name) {
-        final s when s.contains('Capabilities') => _ClassCategory.capabilities,
-        final s when s.endsWith('Params') || s.endsWith('Options') =>
-          _ClassCategory.params,
-        _ => _ClassCategory.common,
-      };
+    final s when s.contains('Capabilities') => _ClassCategory.capabilities,
+    final s when s.endsWith('Params') || s.endsWith('Options') =>
+      _ClassCategory.params,
+    _ => _ClassCategory.common,
+  };
 
   Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) {
     final filtered = _resolved.classes.where((c) {
@@ -118,12 +112,16 @@ final class EmitterVisitor {
             'package:freezed_annotation/freezed_annotation.dart',
           ),
         )
-        ..directives.addAll(_crossImports(allTypes, _structuresFile))
-        ..directives.add(Directive.part('structures.freezed.dart'))
-        ..directives.add(Directive.part('structures.g.dart'))
-        ..directives.add(Directive.part('structures.capabilities.dart'))
-        ..directives.add(Directive.part('structures.params.dart'))
-        ..directives.add(Directive.part('structures.common.dart')),
+        ..directives.addAll(
+          _crossImports(allTypes, GeneratedFiles.structures),
+        )
+        ..directives.add(Directive.part(GeneratedFiles.structuresFreezed))
+        ..directives.add(Directive.part(GeneratedFiles.structuresG))
+        ..directives.add(
+          Directive.part(GeneratedFiles.structuresCapabilities),
+        )
+        ..directives.add(Directive.part(GeneratedFiles.structuresParams))
+        ..directives.add(Directive.part(GeneratedFiles.structuresCommon)),
     );
   }
 
@@ -133,7 +131,7 @@ final class EmitterVisitor {
         _header,
       ])
       ..directives.add(
-        Directive.partOf('structures.dart'),
+        Directive.partOf(GeneratedFiles.structures),
       )
       ..body.addAll(
         _classesForCategory(_ClassCategory.capabilities).map(_buildClass),
@@ -146,7 +144,7 @@ final class EmitterVisitor {
         _header,
       ])
       ..directives.add(
-        Directive.partOf('structures.dart'),
+        Directive.partOf(GeneratedFiles.structures),
       )
       ..body.addAll(
         _classesForCategory(_ClassCategory.params).map(_buildClass),
@@ -159,7 +157,7 @@ final class EmitterVisitor {
         _header,
       ])
       ..directives.add(
-        Directive.partOf('structures.dart'),
+        Directive.partOf(GeneratedFiles.structures),
       )
       ..body.addAll(
         _classesForCategory(_ClassCategory.common).map(_buildClass),
@@ -175,7 +173,7 @@ final class EmitterVisitor {
       ..directives.add(
         Directive.import('package:json_annotation/json_annotation.dart'),
       )
-      ..directives.add(Directive.part('enumerations.g.dart'))
+      ..directives.add(Directive.part(GeneratedFiles.enumerationsG))
       ..body.addAll(_resolved.enumerations.map(_buildEnum)),
   );
 
@@ -196,7 +194,7 @@ final class EmitterVisitor {
         ..directives.add(
           Directive.import('package:json_annotation/json_annotation.dart'),
         )
-        ..directives.add(Directive.part('methods.g.dart'))
+        ..directives.add(Directive.part(GeneratedFiles.methodsG))
         ..body.add(
           _buildMethodEnum(
             'NotificationMethod',
@@ -242,13 +240,14 @@ final class EmitterVisitor {
     return Library(
       (b) => b
         ..comments.add(_header)
-        ..directives.addAll(_crossImports(allTypes, _aliasesFile))
+        ..directives.addAll(_crossImports(allTypes, GeneratedFiles.aliases))
         ..body.addAll(aliases.map(_buildAlias)),
     );
   }
 
   /// Builds a [Library] containing sealed classes for purely scalar unions
-  /// (e.g. `ProgressToken = int | string`). Written to [_scalarUnionsFile].
+  /// (e.g. `ProgressToken = int | string`). Written to 
+  /// [GeneratedFiles.scalarUnions].
   ///
   /// This file does **not** import `structures.dart`, so `structures.dart` can
   /// safely import this file without creating a circular dependency.
@@ -347,7 +346,9 @@ final class EmitterVisitor {
     return Library(
       (b) => b
         ..comments.add(_header)
-        ..directives.addAll(_crossImports(referencedTypes, _unionsFile))
+        ..directives.addAll(
+          _crossImports(referencedTypes, GeneratedFiles.unions),
+        )
         ..body.addAll(specs),
     );
   }
@@ -364,15 +365,15 @@ final class EmitterVisitor {
     void walk(ResolvedType type) {
       switch (type) {
         case ClassType():
-          needed.add(_structuresFile);
+          needed.add(GeneratedFiles.structures);
         case EnumType():
-          needed.add(_enumerationsFile);
+          needed.add(GeneratedFiles.enumerations);
         case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
-          needed.add(_scalarUnionsFile);
+          needed.add(GeneratedFiles.scalarUnions);
         case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
-          needed.add(_unionsFile);
+          needed.add(GeneratedFiles.unions);
         case AliasType():
-          needed.add(_aliasesFile);
+          needed.add(GeneratedFiles.aliases);
         case ListType(:final element):
           walk(element);
         case MapType(:final key, :final value):
@@ -394,11 +395,11 @@ final class EmitterVisitor {
     // Preserve stable output order.
     return [
       for (final f in [
-        _structuresFile,
-        _enumerationsFile,
-        _aliasesFile,
-        _scalarUnionsFile,
-        _unionsFile,
+        GeneratedFiles.structures,
+        GeneratedFiles.enumerations,
+        GeneratedFiles.aliases,
+        GeneratedFiles.scalarUnions,
+        GeneratedFiles.unions,
       ])
         if (needed.contains(f)) Directive.import(f),
     ];
@@ -1028,12 +1029,13 @@ final class EmitterVisitor {
 
     return _UnionKind.mixed;
   }
+
   String _singleStructKey(ResolvedType t) => switch (t) {
-        ClassType(:final ref) => ref.name,
-        InlineRecord(:final fields) =>
-          'Record(${fields.map((f) => f.name).join(',')})',
-        _ => t.toString(),
-      };
+    ClassType(:final ref) => ref.name,
+    InlineRecord(:final fields) =>
+      'Record(${fields.map((f) => f.name).join(',')})',
+    _ => t.toString(),
+  };
 
   /// Returns a list of discriminator checks (last entry = else branch) or
   /// `null` if no reliable discriminator can be found.
@@ -1127,8 +1129,8 @@ final class EmitterVisitor {
   Map<String, ResolvedProperty> _variantPropertiesMap(ResolvedType variant) =>
       switch (variant) {
         ClassType(:final ref) => {
-            for (final p in _allProperties(ref)) p.name: p,
-          },
+          for (final p in _allProperties(ref)) p.name: p,
+        },
         InlineRecord(:final fields) => {for (final f in fields) f.name: f},
         _ => {},
       };
@@ -1226,10 +1228,10 @@ final class EmitterVisitor {
       final nullableTypeRef = isNullType
           ? typeRef
           : (typeRef is TypeReference
-              ? typeRef.rebuild((b) => b.isNullable = true)
-              : (typeRef is RecordType
-                  ? typeRef.rebuild((b) => b.isNullable = true)
-                  : typeRef));
+                ? typeRef.rebuild((b) => b.isNullable = true)
+                : (typeRef is RecordType
+                      ? typeRef.rebuild((b) => b.isNullable = true)
+                      : typeRef));
 
       b.methods.add(
         Method(
@@ -1287,38 +1289,50 @@ final class EmitterVisitor {
       DartCoreType(dartName: 'Null') =>
         val.asA(tObjectNullable).equalTo(literalNull),
       DartCoreType(:final dartName) => val.isA(refer(dartName)),
-      ClassType(:final ref) => val.isA(refer(ref.name)).or(
-            _buildStructCheck(
-              actual,
-              structChecks,
-              val,
-              val.isA(tMapStringDynamic),
+      ClassType(:final ref) =>
+        val
+            .isA(refer(ref.name))
+            .or(
+              _buildStructCheck(
+                actual,
+                structChecks,
+                val,
+                val.isA(tMapStringDynamic),
+              ),
             ),
-          ),
       EnumType(:final ref) =>
         val.isA(refer(ref.name)).or(val.isA(refer(ref.valueType))),
       AliasType(:final ref) => _variantCheckExpression(
-          _resolved.aliases.firstWhere((a) => a.name == ref.name).type,
-          structChecks,
-        ),
-      UnionType(:final items) => items.skip(1).fold(
-            _variantCheckExpression(items.first, structChecks),
-            (cond, item) =>
-                cond.or(_variantCheckExpression(item, structChecks)),
-          ),
+        _resolved.aliases.firstWhere((a) => a.name == ref.name).type,
+        structChecks,
+      ),
+      UnionType(:final items) =>
+        items
+            .skip(1)
+            .fold(
+              _variantCheckExpression(items.first, structChecks),
+              (cond, item) =>
+                  cond.or(_variantCheckExpression(item, structChecks)),
+            ),
       ListType() => val.isA(tList),
       MapType() => val.isA(tMapStringDynamic),
       InlineRecord() => _buildStructCheck(
-            actual,
-            structChecks,
-            val,
-            val.isA(tMapStringDynamic),
-          ),
-      TupleType(:final items) => val.isA(tList).and(
-            val.asA(tList).property('length').equalTo(
-                  literalNum(items.length),
-                ),
-          ),
+        actual,
+        structChecks,
+        val,
+        val.isA(tMapStringDynamic),
+      ),
+      TupleType(:final items) =>
+        val
+            .isA(tList)
+            .and(
+              val
+                  .asA(tList)
+                  .property('length')
+                  .equalTo(
+                    literalNum(items.length),
+                  ),
+            ),
       StringLiteralType() => val.isA(tString),
       _ => val.isA(tObject),
     };
@@ -1347,9 +1361,9 @@ final class EmitterVisitor {
                 .equalTo(literalString(check.literalValue!));
             return isMap.and(hasLiteral);
           } else {
-            final hasKey = mapVal
-                .property('containsKey')
-                .call([literalString(check.fieldName)]);
+            final hasKey = mapVal.property('containsKey').call([
+              literalString(check.fieldName),
+            ]);
             return isMap.and(hasKey);
           }
         } else {
@@ -1357,9 +1371,9 @@ final class EmitterVisitor {
           for (final other in structChecks) {
             if (other != check && other.fieldName.isNotEmpty) {
               final mapVal = val.asA(mapRef);
-              final hasKey = mapVal
-                  .property('containsKey')
-                  .call([literalString(other.fieldName)]);
+              final hasKey = mapVal.property('containsKey').call([
+                literalString(other.fieldName),
+              ]);
               cond = cond.and(hasKey.negate());
             }
           }
@@ -1380,11 +1394,14 @@ final class EmitterVisitor {
       reqs = cls != null
           ? [
               for (final p in cls.properties)
-                if (!p.optional) p.name
+                if (!p.optional) p.name,
             ]
           : [];
     } else if (actual is InlineRecord) {
-      reqs = [for (final f in actual.fields) if (!f.optional) f.name];
+      reqs = [
+        for (final f in actual.fields)
+          if (!f.optional) f.name,
+      ];
     } else {
       reqs = [];
     }
@@ -1586,31 +1603,30 @@ final class EmitterVisitor {
         final castList = val.asA(refer('List')).property('cast').call([], {}, [
           refer(elName),
         ]);
-        return refer('is$capSuffix')
-            .conditional(castList, literalNull)
-            .returned
-            .statement;
+        return refer(
+          'is$capSuffix',
+        ).conditional(castList, literalNull).returned.statement;
 
       case MapType():
         final mapType = refer('Map<String, dynamic>');
-        return refer('is$capSuffix')
-            .conditional(val.bareAsA(mapType), literalNull)
-            .returned
-            .statement;
+        return refer(
+          'is$capSuffix',
+        ).conditional(val.bareAsA(mapType), literalNull).returned.statement;
 
       case InlineRecord(:final fields):
         final emitter = DartEmitter();
         final mapVar = refer('map');
         final mapDecl = fields.isNotEmpty
-            ? declareFinal('map')
-                .assign(val.bareAsA(refer('Map<String, dynamic>')))
-                .statement
+            ? declareFinal(
+                'map',
+              ).assign(val.bareAsA(refer('Map<String, dynamic>'))).statement
             : null;
 
         final fieldExprs = <String>[];
         for (final f in fields) {
-          final fActual =
-              f.type is NullableType ? (f.type as NullableType).inner : f.type;
+          final fActual = f.type is NullableType
+              ? (f.type as NullableType).inner
+              : f.type;
           final mapAccess = mapVar.index(literalString(f.name));
 
           final Expression fieldExpr;
@@ -1623,10 +1639,12 @@ final class EmitterVisitor {
                 .isA(fClassRef)
                 .conditional(mapAccess.bareAsA(fClassRef), fromJson);
             fieldExpr = f.optional
-                ? mapAccess.notEqualTo(literalNull).conditional(
-                    castOrCreate,
-                    literalNull,
-                  )
+                ? mapAccess
+                      .notEqualTo(literalNull)
+                      .conditional(
+                        castOrCreate,
+                        literalNull,
+                      )
                 : castOrCreate;
           } else {
             final fTypeName = f.optional || f.type is NullableType
@@ -1650,8 +1668,9 @@ final class EmitterVisitor {
 
       case TupleType(:final items):
         final listVar = refer('list');
-        final listDecl =
-            declareFinal('list').assign(val.bareAsA(refer('List'))).statement;
+        final listDecl = declareFinal(
+          'list',
+        ).assign(val.bareAsA(refer('List'))).statement;
         final emitter = DartEmitter();
 
         final positionalExprs = <String>[];
@@ -1673,10 +1692,9 @@ final class EmitterVisitor {
 
       default:
         final typeRef = refer(typeName);
-        return refer('is$capSuffix')
-            .conditional(val.bareAsA(typeRef), literalNull)
-            .returned
-            .statement;
+        return refer(
+          'is$capSuffix',
+        ).conditional(val.bareAsA(typeRef), literalNull).returned.statement;
     }
   }
 
@@ -1946,7 +1964,6 @@ final class EmitterVisitor {
     return const [];
   }
 
-
   /// Converts the first character of [name] to lowercase.
   ///
   /// Used to normalise PascalCase LSP enum member names (e.g. `PlainText`)
@@ -1992,8 +2009,9 @@ final class EmitterVisitor {
     final inner = type is NullableType ? type.inner : type;
     return switch (inner) {
       UnionType() => '$className${_capitalize(propName)}',
-      ListType(:final element) => switch (
-          element is NullableType ? element.inner : element) {
+      ListType(:final element) => switch (element is NullableType
+          ? element.inner
+          : element) {
         UnionType() => '$className${_capitalize(propName)}Item',
         _ => null,
       },

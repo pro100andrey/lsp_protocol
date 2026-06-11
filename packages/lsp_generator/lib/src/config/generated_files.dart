@@ -1,0 +1,101 @@
+import 'dart:io';
+
+import 'package:path/path.dart' as p;
+
+/// File name constants for all generated output files.
+class GeneratedFiles {
+  // ---------------------------------------------------------------------------
+  // Model files
+  // ---------------------------------------------------------------------------
+
+  static const structures = 'structures.dart';
+  static const structuresCapabilities = 'structures.capabilities.dart';
+  static const structuresParams = 'structures.params.dart';
+  static const structuresCommon = 'structures.common.dart';
+  static const enumerations = 'enumerations.dart';
+  static const aliases = 'type_aliases.dart';
+  static const scalarUnions = 'scalar_unions.dart';
+  static const unions = 'unions.dart';
+  static const methods = 'methods.dart';
+
+  // ---------------------------------------------------------------------------
+  // Part files
+  // ---------------------------------------------------------------------------
+
+  static const structuresFreezed = 'structures.freezed.dart';
+  static const structuresG = 'structures.g.dart';
+  static const enumerationsG = 'enumerations.g.dart';
+  static const methodsG = 'methods.g.dart';
+
+  // ---------------------------------------------------------------------------
+  // Server API
+  // ---------------------------------------------------------------------------
+
+  static const serverApi = 'server_api.dart';
+}
+
+/// Extension on [Directory] that provides paths to generated output files.
+///
+/// Example:
+/// ```dart
+/// final outputDir = Directory('path/to/project');
+/// outputDir.modelsDir.createSync(recursive: true);
+/// outputDir.structuresFile.writeAsStringSync(source);
+/// ```
+extension GeneratedPaths on Directory {
+  // ---------------------------------------------------------------------------
+  // Directories
+  // ---------------------------------------------------------------------------
+
+  Directory get libDir => Directory(p.join(path, 'lib'));
+
+  Directory get modelsDir =>
+      Directory(p.join(libDir.path, 'src', 'generated', 'models'));
+
+  Directory get serverDir =>
+      Directory(p.join(libDir.path, 'src', 'generated', 'server'));
+
+  // ---------------------------------------------------------------------------
+  // Model files
+  // ---------------------------------------------------------------------------
+
+  File get structuresFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.structures));
+  File get structuresCapabilitiesFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.structuresCapabilities));
+  File get structuresParamsFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.structuresParams));
+  File get structuresCommonFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.structuresCommon));
+  File get enumerationsFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.enumerations));
+  File get aliasesFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.aliases));
+  File get scalarUnionsFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.scalarUnions));
+  File get unionsFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.unions));
+  File get methodsFile =>
+      File(p.join(modelsDir.path, GeneratedFiles.methods));
+
+  // ---------------------------------------------------------------------------
+  // Server API
+  // ---------------------------------------------------------------------------
+
+  File get serverApiFile =>
+      File(p.join(serverDir.path, GeneratedFiles.serverApi));
+
+  // ---------------------------------------------------------------------------
+  // Barrel file
+  // ---------------------------------------------------------------------------
+
+  /// Package name extracted from the last path segment.
+  String get packageName => p.basename(path);
+
+  /// `outputDir/lib/<packageName>.dart`
+  File get barrelFile => File(p.join(libDir.path, '$packageName.dart'));
+
+  /// Relative export path for a model file: `src/generated/models/<fileName>`.
+  static String modelExport(String fileName) =>
+      p.join('src', 'generated', 'models', fileName);
+}
