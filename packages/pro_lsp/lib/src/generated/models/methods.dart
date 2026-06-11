@@ -6,9 +6,14 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'methods.g.dart';
 
+/// Base interface for LSP method identifiers.
+abstract class LSPMethod {
+  String get value;
+}
+
 /// LSP notification method identifiers, as sent over the wire.
 @JsonEnum(valueField: 'value', alwaysCreate: true)
-enum NotificationMethod {
+enum NotificationMethod implements LSPMethod {
   /// The `workspace/didChangeWorkspaceFolders` notification is sent from the
   /// client to the server when the workspace folder configuration changes.
   didChangeWorkspaceFolders('workspace/didChangeWorkspaceFolders'),
@@ -129,7 +134,7 @@ enum NotificationMethod {
 
 /// LSP request method identifiers, as sent over the wire.
 @JsonEnum(valueField: 'value', alwaysCreate: true)
-enum RequestMethod {
+enum RequestMethod implements LSPMethod {
   /// A request to resolve the implementation locations of a symbol at a given
   /// text document position. The request's parameter is of type
   /// `TextDocumentPositionParams` the response is of type `Definition` or a

@@ -829,16 +829,16 @@ final class ServerApiVisitor {
       )
       .statement;
 
-  /// Returns `EnumType.memberName.value` for [wireMethod].
-  /// Falls back to a raw string if the method is not in the enum map
-  /// (should not happen for a well-formed meta-model).
+  /// Returns `EnumType.memberName` for [wireMethod] (the enum value itself,
+  /// not `.value`). Falls back to a raw string if the method is not in the
+  /// enum map (should not happen for a well-formed meta-model).
   Expression _methodRef(String enumType, String wireMethod) {
     final map = enumType == 'RequestMethod'
         ? _requestMethods
         : _notificationMethods;
     final member = map[wireMethod];
     if (member != null) {
-      return refer(enumType).property(member).property('value');
+      return refer(enumType).property(member);
     }
     // Fallback — preserves correctness even if meta-model adds new methods.
     return literalString(wireMethod, raw: wireMethod.contains(r'$'));

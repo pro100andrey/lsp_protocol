@@ -1,12 +1,16 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:stream_channel/stream_channel.dart';
 
 import '../connection/lsp_connection.dart';
 import '../generated/client/client_api.dart';
+import '../generated/models/structures.dart';
+import '../generated/models/unions.dart';
 import '../server/lsp_state.dart';
 import '../server/middleware.dart';
 import '../transport/lsp_byte_stream_channel.dart';
+import 'documents.dart';
 
 export '../generated/client/client_api.dart';
 
@@ -51,6 +55,64 @@ final class LspClient {
 
   /// Proxy for all outgoing (client → server) messages.
   late final server = ClientToServerProxy(_connection);
+
+  /// High-level manager for text documents on the client side.
+  final documents = ClientDocumentManager();
+
+  /// Capabilities of the server, populated after [start].
+  ServerCapabilities? serverCapabilities;
+
+  // -------------------------------------------------------------------------
+  // High-level API
+  // -------------------------------------------------------------------------
+
+  /// Starts the client, performs the `initialize` handshake, and waits for the
+  /// server to be ready.
+  ///
+  /// This is the recommended way to start an LSP client as it handles the
+  /// mandatory protocol sequence automatically.
+  Future<InitializeResult> start({
+    required ClientCapabilities capabilities,
+    String? rootUri,
+    List<WorkspaceFolder>? workspaceFolders,
+    Object? initializationOptions,
+    Map<String, Object?>? clientInfo,
+  }) async {
+    // Start listening
+    unawaited(_connection.listen());
+
+    // 1. Send initialize
+    InitializeResult result;
+   try {
+      result = await server.general.initialize(
+        InitializeParams(
+          processId: clientInfo?['processId'] as int? ?? pid,
+          capabilities: capabilities,
+          rootUri: rootUri,
+          workspaceFolders: workspaceFolders,
+          initializationOptions: initializationOptions != null
+              ? LSPAny(initializationOptions)
+              : null,
+          clientInfo: clientInfo != null
+              ? (
+                  name: clientInfo['name']! as String,
+                  version: clientInfo['version'] as String?,
+                )
+              : null,
+        ),
+      );
+    } catch (e) {
+      await _connection.close();
+      rethrow;
+    }
+
+    serverCapabilities = result.capabilities;
+
+    // 2. Send initialized notification
+    server.general.initialized(const InitializedParams());
+
+    return result;
+  }
 
   // -------------------------------------------------------------------------
   // Lifecycle & State

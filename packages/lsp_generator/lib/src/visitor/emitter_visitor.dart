@@ -195,6 +195,7 @@ final class EmitterVisitor {
           Directive.import('package:json_annotation/json_annotation.dart'),
         )
         ..directives.add(Directive.part(Files.methodsG))
+        ..body.add(_buildLSPMethodClass())
         ..body.add(
           _buildMethodEnum(
             'NotificationMethod',
@@ -227,6 +228,23 @@ final class EmitterVisitor {
         ),
     );
   }
+
+  /// Builds the abstract LSPMethod interface that both NotificationMethod
+  /// and RequestMethod enums implement.
+  Spec _buildLSPMethodClass() => Class((b) {
+    b
+      ..name = 'LSPMethod'
+      ..abstract = true
+      ..docs.add('/// Base interface for LSP method identifiers.');
+    b.methods.add(
+      Method(
+        (m) => m
+          ..name = 'value'
+          ..returns = refer('String')
+          ..type = MethodType.getter,
+      ),
+    );
+  });
 
   /// Builds a [Library] containing all resolved type aliases.
   Library buildAliases() {
@@ -685,6 +703,7 @@ final class EmitterVisitor {
     b.docs.add(
       '/// LSP ${enumName.startsWith('Notification') ? 'notification' : 'request'} method identifiers, as sent over the wire.',
     );
+    b.implements.add(refer('LSPMethod'));
     b.annotations.add(
       tJsonEnum.call([], {
         'valueField': literalString('value'),

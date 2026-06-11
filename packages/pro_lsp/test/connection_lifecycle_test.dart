@@ -32,7 +32,7 @@ void main() {
         final listenFuture = connection.listen();
         var handlerCalled = false;
         connection.registerRequestHandler(
-          'textDocument/hover',
+          RequestMethod.hover,
           (params, _) async {
             handlerCalled = true;
             return null;
@@ -68,13 +68,13 @@ void main() {
       test('allows initialize and transitions state', () async {
         connection
           ..registerRequestHandler(
-            'initialize',
+            RequestMethod.initialize,
             (params, _) async => <String, dynamic>{
               'capabilities': <String, dynamic>{},
             },
           )
           ..registerRequestHandler(
-            'textDocument/hover',
+            RequestMethod.hover,
             (params, _) async => <String, dynamic>{'contents': 'Hover result'},
           );
 
@@ -122,14 +122,17 @@ void main() {
       test('rejects requests after shutdown', () async {
         connection
           ..registerRequestHandler(
-            'initialize',
+            RequestMethod.initialize,
             (params, _) async => <String, dynamic>{
               'capabilities': <String, dynamic>{},
             },
           )
-          ..registerRequestHandler('shutdown', (params, _) async => null)
           ..registerRequestHandler(
-            'textDocument/hover',
+            RequestMethod.shutdown,
+            (params, _) async => null,
+          )
+          ..registerRequestHandler(
+            RequestMethod.hover,
             (params, _) async => null,
           );
 
@@ -193,10 +196,10 @@ void main() {
 
           connection
             ..registerRequestHandler(
-              'initialize',
+              RequestMethod.initialize,
               (params, _) async => <String, dynamic>{},
             )
-            ..registerRequestHandler('textDocument/hover', (
+            ..registerRequestHandler(RequestMethod.hover, (
               params,
               context,
             ) async {
@@ -294,11 +297,11 @@ void main() {
 
         connection
           ..registerRequestHandler(
-            'initialize',
+            RequestMethod.initialize,
             (params, _) async => <String, dynamic>{},
           )
           ..registerRequestHandler(
-            'textDocument/hover',
+            RequestMethod.hover,
             (params, _) async => <String, dynamic>{
               'contents': 'Original Hover',
             },
@@ -351,10 +354,10 @@ void main() {
               caughtError = err;
             }
             ..registerRequestHandler(
-              'initialize',
+              RequestMethod.initialize,
               (params, _) async => <String, dynamic>{},
             )
-            ..registerRequestHandler('textDocument/hover', (
+            ..registerRequestHandler(RequestMethod.hover, (
               params,
               _,
             ) {

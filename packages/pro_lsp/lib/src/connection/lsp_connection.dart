@@ -59,12 +59,15 @@ final class LspConnection {
 
     // Register $/cancelRequest handler so json_rpc_2 doesn't treat it as unknown
     registerNotificationHandler(
-      NotificationMethod.cancelRequest.value,
+      NotificationMethod.cancelRequest,
       (params, context) async {},
     );
   }
 
   late final rpc.Peer _peer;
+
+  /// The set of LSP methods that have a registered handler.
+  final Set<LSPMethod> registeredMethods = {};
 
   // ---------------------------------------------------------------------------
   // Lifecycle & State
@@ -129,10 +132,11 @@ final class LspConnection {
   /// must return a JSON-encodable value or null.  Throw [LspException] to send
   /// a structured error response to the client.
   void registerRequestHandler(
-    String method,
+    LSPMethod method,
     Future<Object?> Function(Object? params, LspRequest context) handler,
   ) {
-    _peer.registerMethod(method, (rpc.Parameters params) async {
+    registeredMethods.add(method);
+    _peer.registerMethod(method.value, (rpc.Parameters params) async {
       final rawVal = params.value;
       Object? requestId;
       if (rawVal is Map) {
@@ -145,24 +149,24 @@ final class LspConnection {
       }
 
       final context = LspRequest(
-        method: method,
+        method: method.value,
         cancellationToken: token,
         id: requestId,
       );
 
       try {
         // 1. Verify state permissions
-        _verifyState(method, isNotification: false);
+        _verifyState(method.value, isNotification: false);
 
         // 2. Lifecycle state changes
-        if (method == RequestMethod.initialize.value) {
+        if (method == RequestMethod.initialize) {
           _state = LspState.initializing;
-        } else if (method == RequestMethod.shutdown.value) {
+        } else if (method == RequestMethod.shutdown) {
           _state = LspState.shuttingDown;
         }
 
         final request = LspIncomingRequest(
-          method: method,
+          method: method.value,
           params: rawVal,
           requestId: requestId,
         );
@@ -175,18 +179,18 @@ final class LspConnection {
           ),
         )(request);
 
-        if (method == RequestMethod.initialize.value) {
+        if (method == RequestMethod.initialize) {
           _state = LspState.initialized;
         }
 
         return response;
       } on LspException catch (e) {
-        if (method == RequestMethod.initialize.value) {
+        if (method == RequestMethod.initialize) {
           _state = LspState.uninitialized; // Reset on initialization failure
         }
         throw e.toRpcException();
       } catch (e, stackTrace) {
-        if (method == RequestMethod.initialize.value) {
+        if (method == RequestMethod.initialize) {
           _state = LspState.uninitialized; // Reset on initialization failure
         }
 
@@ -211,27 +215,28 @@ final class LspConnection {
   /// Return value is ignored by the protocol.  Throw [LspException] to
   /// propagate as an RpcException (visible in logs on the sender side).
   void registerNotificationHandler(
-    String method,
+    LSPMethod method,
     Future<void> Function(Object? params, LspRequest context) handler,
   ) {
-    _peer.registerMethod(method, (rpc.Parameters params) async {
+    registeredMethods.add(method);
+    _peer.registerMethod(method.value, (rpc.Parameters params) async {
       final rawVal = params.value;
 
       final context = LspRequest(
-        method: method,
+        method: method.value,
         cancellationToken: CancellationToken(),
       );
 
       try {
         // 1. Verify state permissions
-        _verifyState(method, isNotification: true);
+        _verifyState(method.value, isNotification: true);
 
-        if (method == NotificationMethod.exit.value) {
+        if (method == NotificationMethod.exit) {
           _state = LspState.exited;
         }
 
         final request = LspIncomingRequest(
-          method: method,
+          method: method.value,
           params: rawVal,
         );
 
@@ -240,7 +245,7 @@ final class LspConnection {
           return null;
         })(request);
 
-        if (method == NotificationMethod.exit.value) {
+        if (method == NotificationMethod.exit) {
           await close();
         }
       } on LspException catch (e) {
@@ -262,12 +267,12 @@ final class LspConnection {
   // ---------------------------------------------------------------------------
 
   /// Sends a notification to the client (no response expected).
-  void sendNotification(String method, [Object? params]) =>
-      _peer.sendNotification(method, params);
+  void sendNotification(LSPMethod method, [Object? params]) =>
+      _peer.sendNotification(method.value, params);
 
   /// Sends a request to the client and returns the decoded response value.
-  Future<Object?> sendRequest(String method, [Object? params]) =>
-      _peer.sendRequest(method, params);
+  Future<Object?> sendRequest(LSPMethod method, [Object? params]) =>
+      _peer.sendRequest(method.value, params);
 
   // ---------------------------------------------------------------------------
   // Lifecycle
