@@ -388,7 +388,7 @@ void main() {
           "static const comment = FoldingRangeKind('comment')",
         ),
       );
-      expect(src, contains('factory FoldingRangeKind.fromJson(Object? json)'));
+      expect(src, contains('factory FoldingRangeKind.fromJson(dynamic json)'));
       expect(src, contains('String toJson()'));
     });
 
@@ -523,7 +523,7 @@ void main() {
       expect(src, contains('sealed class ProgressToken'));
       expect(src, contains(r'ProgressToken$Int'));
       expect(src, contains(r'ProgressToken$String'));
-      expect(src, contains('static ProgressToken fromJson'));
+      expect(src, contains('factory ProgressToken.fromJson'));
       expect(src, contains('Object toJson()'));
     });
 

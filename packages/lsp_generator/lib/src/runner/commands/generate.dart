@@ -9,7 +9,7 @@ import '../../network/fetch_lsp_license.dart';
 import '../../network/fetch_lsp_model.dart';
 import '../../resolver/resolve_model.dart';
 
-final class GenerateCommand extends Command {
+final class GenerateCommand extends Command<dynamic> {
   GenerateCommand({required this.logger}) {
     argParser.addOption(
       'output',

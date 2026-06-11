@@ -9,7 +9,7 @@ Future<int> run(List<String> args) async {
 
   try {
     final runner =
-        CommandRunner(
+        CommandRunner<dynamic>(
             'lsp_generator',
             'A command-line tool for generating code for the '
                 'Language Server Protocol (LSP).',
