@@ -196,7 +196,9 @@ final class ServerRunner {
 
     _server.textDocument.onCompletion((params, context) async {
       logInfo('Completion request: ${params.textDocument.uri}');
-      return _completionService.getCompletions(params);
+
+      final items = _completionService.getCompletions(params);
+      return CompletionResult(items);
     });
 
     // -------------------------------------------------------------------------

@@ -1,7 +1,8 @@
 import 'package:code_builder/code_builder.dart';
 
 import '../models/protocol.dart';
-import '../resolver/resolved_state.dart';
+import '../resolver/resolved_state.dart' show ResolvedState;
+import 'api_visitor_base.dart';
 import 'emitter_helpers.dart';
 
 // ---------------------------------------------------------------------------
@@ -19,31 +20,8 @@ import 'emitter_helpers.dart';
 /// ```dart
 /// final lib = ServerApiVisitor(resolvedState).buildServerApi();
 /// ```
-final class ServerApiVisitor {
-  ServerApiVisitor(this._resolved) {
-    _requestMethods = {
-      for (final e in dartNames(
-        _resolved.requests,
-        (r) => r.method,
-      ).entries)
-        e.key.method: e.value,
-    };
-    _notificationMethods = {
-      for (final e in dartNames(
-        _resolved.notifications,
-        (n) => n.method,
-      ).entries)
-        e.key.method: e.value,
-    };
-  }
-
-  final ResolvedState _resolved;
-
-  /// wire method → `RequestMethod` enum member name.
-  late final Map<String, String> _requestMethods;
-
-  /// wire method → `NotificationMethod` enum member name.
-  late final Map<String, String> _notificationMethods;
+final class ServerApiVisitor extends ApiVisitorBase {
+  ServerApiVisitor(super.resolved);
 
   static const _header = [
     'ignore_for_file: unused_import',
@@ -74,6 +52,7 @@ final class ServerApiVisitor {
         ..directives.addAll([
           Directive.import('dart:async'),
           Directive.import('../../connection/lsp_connection.dart'),
+          Directive.import('../../connection/lsp_exception.dart'),
           Directive.import('../../server/lsp_request.dart'),
           Directive.import('../models/enumerations.dart'),
           Directive.import('../models/methods.dart'),
@@ -103,7 +82,7 @@ final class ServerApiVisitor {
       MetaReference? result, {
       required bool isNotification,
     }) {
-      final (ns, dartName) = _namespacedMethod(method);
+      final (ns, dartName) = namespacedMethod(method);
       map
           .putIfAbsent(ns, () => [])
           .add(
@@ -117,9 +96,10 @@ final class ServerApiVisitor {
           );
     }
 
-    for (final req in _resolved.requests) {
+    for (final req in resolved.requests) {
       final dir = req.messageDirection;
-      if (dir == .clientToServer || dir == .both) {
+      if (dir == MessageDirection.clientToServer ||
+          dir == MessageDirection.both) {
         addTo(
           handlerGroups,
           req.method,
@@ -128,7 +108,8 @@ final class ServerApiVisitor {
           isNotification: false,
         );
       }
-      if (dir == .serverToClient || dir == .both) {
+      if (dir == MessageDirection.serverToClient ||
+          dir == MessageDirection.both) {
         addTo(
           senderGroups,
           req.method,
@@ -139,9 +120,10 @@ final class ServerApiVisitor {
       }
     }
 
-    for (final notif in _resolved.notifications) {
+    for (final notif in resolved.notifications) {
       final dir = notif.messageDirection;
-      if (dir == .clientToServer || dir == .both) {
+      if (dir == MessageDirection.clientToServer ||
+          dir == MessageDirection.both) {
         addTo(
           handlerGroups,
           notif.method,
@@ -150,7 +132,8 @@ final class ServerApiVisitor {
           isNotification: true,
         );
       }
-      if (dir == .serverToClient || dir == .both) {
+      if (dir == MessageDirection.serverToClient ||
+          dir == MessageDirection.both) {
         addTo(
           senderGroups,
           notif.method,
@@ -169,7 +152,7 @@ final class ServerApiVisitor {
   // -------------------------------------------------------------------------
 
   Class _buildHandlerClass(String namespace, List<_MethodEntry> entries) {
-    final className = _handlerClassName(namespace);
+    final className = ApiVisitorBase.handlerClassName(namespace);
     return Class(
       (b) => b
         ..name = className
@@ -202,11 +185,11 @@ final class ServerApiVisitor {
   }
 
   Method _buildHandlerMethod(_MethodEntry entry) {
-    final paramsType = _paramsTypeName(entry.params);
-    final resultType = _resultTypeName(entry.result);
+    final paramsType = paramsTypeName(entry.params);
+    final resultType = resultTypeName(entry.result, entry.wireMethod);
 
     // Build the handler function type reference string.
-    final handlerType = _handlerFunctionType(
+    final handlerType = handlerFunctionType(
       paramsType: paramsType,
       resultType: resultType,
       isNotification: entry.isNotification,
@@ -219,7 +202,7 @@ final class ServerApiVisitor {
     return Method(
       (b) => b
         ..name =
-            '${entry.isNotification ? 'on' : 'on'}${_capitalize(
+            '${entry.isNotification ? 'on' : 'on'}${ApiVisitorBase.capitalize(
               entry.dartName,
             )}'
         ..returns = tVoid
@@ -248,7 +231,7 @@ final class ServerApiVisitor {
       if (hasParams)
         isRawParams
             ? declareFinal('p').assign(refer('json')).statement
-            : _fromJsonAssign(paramsType, 'p', 'json'),
+            : ApiVisitorBase.fromJsonAssign(paramsType, 'p', 'json'),
     ];
     final handlerExpr = hasParams
         ? refer('handler').call([refer('p'), refer('context')])
@@ -259,7 +242,7 @@ final class ServerApiVisitor {
         ..add(handlerExpr.awaited.statement)
         ..add(literalNull.returned.statement);
     } else {
-      statements.addAll(_returnStatements(resultType, handlerExpr));
+      statements.addAll(returnStatements(resultType, handlerExpr));
     }
 
     final needsAsync =
@@ -284,7 +267,7 @@ final class ServerApiVisitor {
     ).closure;
 
     return eConnection.property('registerRequestHandler').call([
-      _methodRef('RequestMethod', wireMethod),
+      methodRef('RequestMethod', wireMethod),
       closure,
     ]).statement;
   }
@@ -297,7 +280,7 @@ final class ServerApiVisitor {
       if (hasParams)
         isRawParams
             ? declareFinal('p').assign(refer('json')).statement
-            : _fromJsonAssign(paramsType, 'p', 'json'),
+            : ApiVisitorBase.fromJsonAssign(paramsType, 'p', 'json'),
     ];
     final handlerExpr = hasParams
         ? refer('handler').call([refer('p'), refer('context')]).awaited
@@ -323,7 +306,7 @@ final class ServerApiVisitor {
     ).closure;
 
     return eConnection.property('registerNotificationHandler').call([
-      _methodRef('NotificationMethod', wireMethod),
+      methodRef('NotificationMethod', wireMethod),
       closure,
     ]).statement;
   }
@@ -333,7 +316,7 @@ final class ServerApiVisitor {
   // -------------------------------------------------------------------------
 
   Class _buildSenderClass(String namespace, List<_MethodEntry> entries) {
-    final className = _senderClassName(namespace);
+    final className = ApiVisitorBase.senderClassName(namespace);
     return Class(
       (b) => b
         ..name = className
@@ -366,10 +349,10 @@ final class ServerApiVisitor {
   }
 
   Method _buildSenderMethod(_MethodEntry entry) {
-    final paramsType = _paramsTypeName(entry.params);
+    final paramsType = paramsTypeName(entry.params);
     final resultType = entry.isNotification
         ? 'void'
-        : _resultTypeName(entry.result);
+        : resultTypeName(entry.result, entry.wireMethod);
     final isVoidResult = resultType == 'void';
     final hasParams = paramsType.isNotEmpty;
 
@@ -403,11 +386,11 @@ final class ServerApiVisitor {
         : eParams.property('toJson').call([]);
     final sendCall = hasParams
         ? eConnection.property('sendNotification').call([
-            _methodRef('NotificationMethod', wireMethod),
+            methodRef('NotificationMethod', wireMethod),
             paramsExpr,
           ])
         : eConnection.property('sendNotification').call([
-            _methodRef('NotificationMethod', wireMethod),
+            methodRef('NotificationMethod', wireMethod),
           ]);
 
     return Method(
@@ -446,11 +429,11 @@ final class ServerApiVisitor {
 
     final sendCallExpr = hasParams
         ? eConnection.property('sendRequest').call([
-            _methodRef('RequestMethod', wireMethod),
+            methodRef('RequestMethod', wireMethod),
             eParams.property('toJson').call([]),
           ])
         : eConnection.property('sendRequest').call([
-            _methodRef('RequestMethod', wireMethod),
+            methodRef('RequestMethod', wireMethod),
           ]);
 
     final bodyStatements = <Code>[
@@ -461,7 +444,7 @@ final class ServerApiVisitor {
           'raw',
           type: tDynamic,
         ).assign(sendCallExpr.awaited).statement,
-        ..._senderDecodeStatements(resultType),
+        ...senderDecodeStatements(resultType),
       ],
     ];
 
@@ -516,7 +499,7 @@ final class ServerApiVisitor {
           Field(
             (b) => b
               ..name = '_connection'
-              ..modifier = .final$
+              ..modifier = FieldModifier.final$
               ..type = tLspConnection,
           ),
         )
@@ -530,318 +513,14 @@ final class ServerApiVisitor {
                     ? 'general'
                     : ns
                 ..late = true
-                ..modifier = .final$
+                ..modifier = FieldModifier.final$
                 ..assignment = Code(
-                  '${_senderClassName(ns)}(_connection)',
+                  '${ApiVisitorBase.senderClassName(ns)}(_connection)',
                 ),
             ),
           ),
         ),
     );
-  }
-
-  // -------------------------------------------------------------------------
-  // Type name helpers
-  // -------------------------------------------------------------------------
-
-  /// Returns the Dart handler function type string.
-  /// e.g. `Future<Hover?> Function(HoverParams params)`
-  String _handlerFunctionType({
-    required String paramsType,
-    required String resultType,
-    required bool isNotification,
-  }) {
-    final returnType = isNotification ? 'Future<void>' : 'Future<$resultType>';
-    final param = paramsType.isNotEmpty ? '$paramsType params' : '';
-    final comma = param.isNotEmpty ? ', ' : '';
-    return '$returnType Function($param${comma}LspRequest context)';
-  }
-
-  /// Returns code_builder [Code] statements that serialize [handlerExpr]
-  /// (the awaited handler call, e.g. `await handler(p)`) and return it from
-  /// the registerRequestHandler closure.
-  List<Code> _returnStatements(String resultType, Expression handlerExpr) {
-    final isNullable = resultType.endsWith('?');
-    final baseType = isNullable
-        ? resultType.substring(0, resultType.length - 1)
-        : resultType;
-
-    // Object?/Object — return the handler result directly.
-    if (resultType == 'Object?' || resultType == 'Object') {
-      return [handlerExpr.returned.statement];
-    }
-
-    if (baseType.startsWith('List<')) {
-      // final r = await handler(p);
-      // return r.map((e) => e.toJson()).toList();  (or r?.map(...).toList())
-      final innerType = baseType.substring(5, baseType.length - 1);
-      final isRawObject = innerType == 'Object' || innerType == 'Object?';
-      final mapClosure = Method(
-        (b) => b
-          ..lambda = true
-          ..requiredParameters.add(Parameter((b) => b..name = 'e'))
-          ..body =
-              (isRawObject
-                      ? refer(
-                          'e',
-                        ).asA(tDynamic).property('toJson').call([])
-                      : refer('e').property('toJson').call([]))
-                  .code,
-      ).closure;
-      final listExpr = isNullable
-          ? refer('r')
-                .nullSafeProperty('map')
-                .call([mapClosure])
-                .property('toList')
-                .call([])
-          : refer(
-              'r',
-            ).property('map').call([mapClosure]).property('toList').call([]);
-      return [
-        declareFinal('r').assign(handlerExpr.awaited).statement,
-        listExpr.returned.statement,
-      ];
-    }
-
-    // Named type: return r.toJson() / r?.toJson()
-    final toJson = isNullable
-        ? refer('r').nullSafeProperty('toJson').call([])
-        : refer('r').property('toJson').call([]);
-    return [
-      declareFinal('r').assign(handlerExpr.awaited).statement,
-      toJson.returned.statement,
-    ];
-  }
-
-  /// Returns code_builder [Code] statements that decode the `raw` local
-  /// variable (type [Object?] from `LspConnection.sendRequest`) into
-  /// [resultType].
-  List<Code> _senderDecodeStatements(String resultType) {
-    final isNullable = resultType.endsWith('?');
-    final baseType = isNullable
-        ? resultType.substring(0, resultType.length - 1)
-        : resultType;
-
-    if (resultType == 'Object?' || resultType == 'Object') {
-      return [refer('raw').returned.statement];
-    }
-    if (resultType == 'Null' || resultType == 'void') {
-      return [];
-    }
-    if (baseType.startsWith('List<')) {
-      final innerType = baseType.substring(5, baseType.length - 1);
-      if (innerType == 'Object' || innerType == 'Object?') {
-        // LSPAny list — values are already raw JSON, no deserialization needed.
-        return [
-          refer('raw')
-              .asA(tList)
-              .property('cast')
-              .call([], {}, [tObject])
-              .property('toList')
-              .call([])
-              .returned
-              .statement,
-        ];
-      }
-      // (raw as List).cast<Map<String, Object?>>().map(T.fromJson).toList()
-      return [
-        refer('raw')
-            .asA(tList)
-            .property('cast')
-            .call([], {}, [_jsonMapRef()])
-            .property('map')
-            .call([refer(innerType).property('fromJson')])
-            .property('toList')
-            .call([])
-            .returned
-            .statement,
-      ];
-    }
-    if (isNullable) {
-      // raw == null ? null : T.fromJson(raw as Map<String, dynamic>)
-      return [
-        refer('raw')
-            .equalTo(literalNull)
-            .conditional(
-              literalNull,
-              refer(baseType).newInstanceNamed(
-                'fromJson',
-                [const CodeExpression(Code('raw as Map<String, dynamic>'))],
-              ),
-            )
-            .returned
-            .statement,
-      ];
-    }
-    return [
-      refer(baseType)
-          .newInstanceNamed(
-            'fromJson',
-            [const CodeExpression(Code('raw as Map<String, dynamic>'))],
-          )
-          .returned
-          .statement,
-    ];
-  }
-
-  // -------------------------------------------------------------------------
-  // MetaReference → Dart type name
-  // -------------------------------------------------------------------------
-
-  /// Returns the Dart type name for a params [MetaReference].
-  /// Empty string means no params.
-  String _paramsTypeName(MetaReference? params) {
-    if (params == null) {
-      return '';
-    }
-
-    return switch (params) {
-      TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
-      BaseRef(name: 'null') => '',
-      _ => 'Object?',
-    };
-  }
-
-  /// Returns the Dart type name for a result [MetaReference].
-  String _resultTypeName(MetaReference? result) {
-    if (result == null) {
-      return 'void';
-    }
-
-    return switch (result) {
-      BaseRef(name: 'null') => 'void',
-      TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
-      ArrayRef(:final element) => 'List<${_innerTypeName(element)}>',
-      OrRef(:final items) => _orTypeName(items),
-      _ => 'Object?',
-    };
-  }
-
-  String _innerTypeName(MetaReference ref) => switch (ref) {
-    TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
-    BaseRef(:final name) => _baseDartName(name),
-    ArrayRef(:final element) => 'List<${_innerTypeName(element)}>',
-    OrRef(:final items) => _orTypeName(items),
-    _ => 'Object?',
-  };
-
-  String _orTypeName(List<MetaReference> items) {
-    final hasNull = items.any((i) => i is BaseRef && i.name == 'null');
-    final nonNull = items
-        .where((i) => !(i is BaseRef && i.name == 'null'))
-        .toList();
-    if (nonNull.isEmpty) {
-      return 'void';
-    }
-
-    if (nonNull.length == 1) {
-      final t = _innerTypeName(nonNull.first);
-      if (!hasNull) {
-        return t;
-      }
-      // Avoid double-nullable: Object? from LSPAny should not become Object??
-      return t.endsWith('?') ? t : '$t?';
-    }
-    return hasNull ? 'Object?' : 'Object';
-  }
-
-  static String _baseDartName(String name) => switch (name) {
-    'null' => 'Null',
-    'string' => 'String',
-    'integer' => 'int',
-    'uinteger' => 'int',
-    'decimal' => 'double',
-    'boolean' => 'bool',
-    'DocumentUri' => 'String',
-    'URI' => 'String',
-    _ => 'Object?',
-  };
-
-  // -------------------------------------------------------------------------
-  // Naming helpers
-  // -------------------------------------------------------------------------
-
-  /// Extracts (namespace, dartMethodName) from a wire method string.
-  ///
-  /// - `textDocument/hover`              → (`textDocument`, `hover`)
-  /// - `textDocument/semanticTokens/full`→ (`textDocument`, `semanticTokensFull`)
-  /// - `initialize`                      → (`general`, `initialize`)
-  /// - `$/cancelRequest`                 → (`general`, `cancelRequest`)
-  static (String, String) _namespacedMethod(String method) {
-    final clean = method.startsWith(r'$/')
-        ? method.substring(2)
-        : method.startsWith(r'$')
-        ? method.substring(1)
-        : method;
-
-    final slashIdx = clean.indexOf('/');
-    if (slashIdx == -1) {
-      return ('general', safeIdentifier(clean));
-    }
-
-    final ns = clean.substring(0, slashIdx);
-    final rest = clean.substring(slashIdx + 1);
-    final parts = rest.split('/');
-    final camel = [
-      parts.first,
-      ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
-    ].join();
-
-    return (ns, safeIdentifier(camel));
-  }
-
-  static String _handlerClassName(String namespace) =>
-      '${_capitalize(namespace == 'general' ? 'general' : namespace)}Handlers';
-
-  static String _senderClassName(String namespace) =>
-      '${_capitalize(namespace == r'$'
-          ? 'general'
-          : namespace == 'general'
-          ? 'general'
-          : namespace)}Sender';
-
-  static String _capitalize(String s) =>
-      s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
-
-  // -------------------------------------------------------------------------
-  // code_builder helpers
-  // -------------------------------------------------------------------------
-
-  /// Returns a [TypeReference] for `Map<String, dynamic>`.
-  static TypeReference _jsonMapRef() => TypeReference(
-    (b) => b
-      ..symbol = 'Map'
-      ..types.addAll([tString, tDynamic]),
-  );
-
-  /// Emits `final [varName] =
-  /// [typeName].fromJson([sourceVar] as `Map<String, dynamic>`);`
-  static Code _fromJsonAssign(
-    String typeName,
-    String varName,
-    String sourceVar,
-  ) => declareFinal(varName)
-      .assign(
-        refer(typeName).newInstanceNamed(
-          'fromJson',
-          [CodeExpression(Code('$sourceVar as Map<String, dynamic>'))],
-        ),
-      )
-      .statement;
-
-  /// Returns `EnumType.memberName` for [wireMethod] (the enum value itself,
-  /// not `.value`). Falls back to a raw string if the method is not in the
-  /// enum map (should not happen for a well-formed meta-model).
-  Expression _methodRef(String enumType, String wireMethod) {
-    final map = enumType == 'RequestMethod'
-        ? _requestMethods
-        : _notificationMethods;
-    final member = map[wireMethod];
-    if (member != null) {
-      return refer(enumType).property(member);
-    }
-    // Fallback — preserves correctness even if meta-model adds new methods.
-    return literalString(wireMethod, raw: wireMethod.contains(r'$'));
   }
 }
 

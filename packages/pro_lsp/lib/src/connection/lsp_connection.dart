@@ -27,30 +27,23 @@ final class LspConnection {
     final mappedStream = channel.stream.map((event) {
       try {
         final decoded = jsonDecode(event);
-        if (decoded is Map<String, Object?>) {
-          final id = decoded['id'];
-          final method = decoded['method'];
-          if (id != null && method is String) {
-            // Request: Inject request ID so handlers can map it to cancellation
-            final params = decoded['params'];
-            final cleanParams = params is Map<String, Object?>
-                ? Map<String, Object?>.of(params)
-                : <String, Object?>{};
-            cleanParams['_requestId'] = id;
-            decoded['params'] = cleanParams;
-            return jsonEncode(decoded);
-          } else if (id == null &&
-              method == NotificationMethod.cancelRequest.value) {
-            final params = decoded['params'];
-            if (params is Map<String, Object?>) {
-              final cancelId = params['id'];
-              if (cancelId != null) {
-                _cancelRequest(cancelId);
-              }
-            }
+        if (decoded case {'id': final Object id, 'method': String _}) {
+          // Request: Inject request ID so handlers can map it to cancellation
+          final params = decoded['params'];
+          if (params is Map) {
+            params['_requestId'] = id;
+          } else if (params == null) {
+            decoded['params'] = <String, Object?>{'_requestId': id};
           }
+          return jsonEncode(decoded);
+        } else if (decoded case {
+          'method': final String method,
+          'params': {'id': final Object cancelId},
+        } when method == NotificationMethod.cancelRequest.value) {
+          _cancelRequest(cancelId);
         }
       } on Object catch (_) {}
+
       return event;
     });
 
@@ -69,6 +62,25 @@ final class LspConnection {
   /// The set of LSP methods that have a registered handler.
   final Set<LSPMethod> registeredMethods = {};
 
+  final Map<Type, Object> _services = {};
+
+  /// Registers a service in the connection context.
+  void register<T extends Object>(T service) {
+    _services[T] = service;
+  }
+
+  /// Resolves a registered service. Throws if not found.
+  T resolve<T extends Object>() {
+    final service = _services[T];
+    if (service == null) {
+      throw StateError('Service of type $T is not registered.');
+    }
+    return service as T;
+  }
+
+  /// Tries to resolve a registered service, returns null if not found.
+  T? tryResolve<T extends Object>() => _services[T] as T?;
+
   // ---------------------------------------------------------------------------
   // Lifecycle & State
   // ---------------------------------------------------------------------------
@@ -78,15 +90,15 @@ final class LspConnection {
   /// Gets the current lifecycle state of this connection.
   LspState get state => _state;
 
-  void _verifyState(String method, {required bool isNotification}) {
+  void _verifyState(LSPMethod method, {required bool isNotification}) {
     if (isNotification) {
-      if (!_state.isNotificationAllowed(method)) {
+      if (!_state.isNotificationAllowed(method as NotificationMethod)) {
         throw LspException.invalidRequest(
           'Notification $method is not allowed in state $_state',
         );
       }
     } else {
-      if (!_state.isRequestAllowed(method)) {
+      if (!_state.isRequestAllowed(method as RequestMethod)) {
         if (_state == LspState.uninitialized ||
             _state == LspState.initializing) {
           throw LspException.serverNotInitialized(
@@ -152,11 +164,12 @@ final class LspConnection {
         method: method.value,
         cancellationToken: token,
         id: requestId,
+        connection: this,
       );
 
       try {
         // 1. Verify state permissions
-        _verifyState(method.value, isNotification: false);
+        _verifyState(method, isNotification: false);
 
         // 2. Lifecycle state changes
         if (method == RequestMethod.initialize) {
@@ -171,13 +184,13 @@ final class LspConnection {
           requestId: requestId,
         );
 
-        final response = await composeMiddlewares(
-          _middlewares,
-          (req) => runZoned(
-            () => handler(req.params, context),
-            zoneValues: {#cancellationToken: token},
-          ),
-        )(request);
+        final response = await runZoned(
+          () => composeMiddlewares(
+            _middlewares,
+            (req) => handler(req.params, context),
+          )(request),
+          zoneValues: {#cancellationToken: token},
+        );
 
         if (method == RequestMethod.initialize) {
           _state = LspState.initialized;
@@ -225,11 +238,12 @@ final class LspConnection {
       final context = LspRequest(
         method: method.value,
         cancellationToken: CancellationToken(),
+        connection: this,
       );
 
       try {
         // 1. Verify state permissions
-        _verifyState(method.value, isNotification: true);
+        _verifyState(method, isNotification: true);
 
         if (method == NotificationMethod.exit) {
           _state = LspState.exited;

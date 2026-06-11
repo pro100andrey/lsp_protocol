@@ -2,11 +2,12 @@ import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
 
 import '../config/files.dart';
-import '../models/protocol.dart' show MessageDirection, MetaNotification;
+import '../models/protocol.dart';
 import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
 import '../resolver/resolved_state.dart';
 import 'emitter_helpers.dart';
+import 'resolver_visitor.dart';
 import 'type_reference.dart';
 
 // ---------------------------------------------------------------------------
@@ -2061,6 +2062,27 @@ final class EmitterVisitor {
         }
       }
     }
+
+    // Synthesize union types for request inline union results
+    final resolver = ResolverVisitor(_resolved.registry);
+    for (final req in _resolved.requests) {
+      final resRef = req.result;
+      if (resRef != null && resRef is OrRef) {
+        final nonNullItems = resRef.items
+            .where((item) => !(item is BaseRef && item.name == 'null'))
+            .toList();
+        if (nonNullItems.length > 1) {
+          final cleanOrRef = OrRef(kind: resRef.kind, items: nonNullItems);
+          final resolvedType = resolver.resolveRef(cleanOrRef,
+              parentName: req.method, fieldName: 'result');
+          if (resolvedType is UnionType) {
+            final unionName = requestResultUnionName(req.method);
+            result[unionName] = resolvedType;
+          }
+        }
+      }
+    }
+
     return result;
   }
 }

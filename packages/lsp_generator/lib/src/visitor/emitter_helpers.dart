@@ -193,3 +193,34 @@ Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
       ),
   };
 }
+
+/// Extracts (namespace, dartMethodName) from a wire method string.
+(String, String) namespacedMethod(String method) {
+  final clean = method.startsWith(r'$/')
+      ? method.substring(2)
+      : method.startsWith(r'$')
+      ? method.substring(1)
+      : method;
+
+  final slashIdx = clean.indexOf('/');
+  if (slashIdx == -1) {
+    return ('general', safeIdentifier(clean));
+  }
+
+  final ns = clean.substring(0, slashIdx);
+  final rest = clean.substring(slashIdx + 1);
+  final parts = rest.split('/');
+  final camel = [
+    parts.first,
+    ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
+  ].join();
+
+  return (ns, safeIdentifier(camel));
+}
+
+/// Returns the synthesized union name for a request's inline union result.
+String requestResultUnionName(String method) {
+  final (_, dartName) = namespacedMethod(method);
+  final capitalized = dartName[0].toUpperCase() + dartName.substring(1);
+  return '${capitalized}Result';
+}

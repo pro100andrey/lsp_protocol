@@ -25,35 +25,35 @@ enum LspState {
 extension LspStateExtension on LspState {
   /// Returns whether a request with the given [method] is allowed in this
   /// state.
-  bool isRequestAllowed(String method) {
+  bool isRequestAllowed(RequestMethod method) {
     switch (this) {
-      case LspState.uninitialized:
-        return method == RequestMethod.initialize.value;
-      case LspState.initializing:
-        return method == RequestMethod.initialize.value;
-      case LspState.initialized:
+      case .uninitialized:
+        return method == .initialize;
+      case .initializing:
+        return method == .initialize;
+      case .initialized:
         // initialize is not allowed after we are initialized
-        return method != RequestMethod.initialize.value;
-      case LspState.shuttingDown:
+        return method != .initialize;
+      case .shuttingDown:
         return false; // No requests allowed during shutdown
-      case LspState.exited:
+      case .exited:
         return false;
     }
   }
 
   /// Returns whether a notification with the given [method] is allowed in this
   ///  state.
-  bool isNotificationAllowed(String method) {
+  bool isNotificationAllowed(NotificationMethod method) {
     switch (this) {
-      case LspState.uninitialized:
-        return method == NotificationMethod.exit.value;
-      case LspState.initializing:
-        return method == NotificationMethod.exit.value;
-      case LspState.initialized:
+      case .uninitialized:
+        return method == .exit;
+      case .initializing:
+        return method == .exit;
+      case .initialized:
         return true;
-      case LspState.shuttingDown:
-        return method == NotificationMethod.exit.value;
-      case LspState.exited:
+      case .shuttingDown:
+        return method == .exit;
+      case .exited:
         return false;
     }
   }

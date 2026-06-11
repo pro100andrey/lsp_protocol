@@ -1,3 +1,4 @@
+import '../connection/lsp_connection.dart';
 import 'cancellation_token.dart';
 
 /// Context for an incoming LSP request.
@@ -5,9 +6,10 @@ import 'cancellation_token.dart';
 /// Provides access to metadata about the request and a [cancellationToken]
 /// to handle client-side cancellation.
 final class LspRequest {
-  const LspRequest({
+  LspRequest({
     required this.method,
     required this.cancellationToken,
+    required this.connection,
     this.id,
   });
 
@@ -19,4 +21,13 @@ final class LspRequest {
 
   /// The JSON-RPC 2.0 request ID, if applicable.
   final Object? id;
+
+  /// The underlying connection that received this request.
+  final LspConnection connection;
+
+  /// Resolves a dependency registered on the connection.
+  T resolve<T extends Object>() => connection.resolve<T>();
+
+  /// Tries to resolve a dependency registered on the connection.
+  T? tryResolve<T extends Object>() => connection.tryResolve<T>();
 }

@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import '../generated/models/structures.dart';
-import 'lsp_server.dart';
+import 'package:pro_lsp/pro_lsp.dart';
 
 /// Manages and caches configuration settings retrieved from the client.
 final class LspConfigurationManager {

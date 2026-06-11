@@ -71,3 +71,15 @@ final class LspException implements Exception {
   @override
   String toString() => 'LspException($code): $message';
 }
+
+/// Parses JSON parameters using the provided `fromJson` deserializer.
+/// Throws an [LspException.invalidParams] if parsing fails.
+T parseParams<T>(dynamic json, T Function(Map<String, dynamic> json) fromJson) {
+  try {
+    return fromJson(json as Map<String, dynamic>);
+  } catch (e) {
+    throw LspException.invalidParams(
+      'Invalid parameters for $T: $e',
+    );
+  }
+}

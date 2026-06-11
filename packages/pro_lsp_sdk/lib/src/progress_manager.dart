@@ -1,10 +1,6 @@
 import 'dart:async';
 
-import '../connection/lsp_connection.dart';
-import '../generated/models/methods.dart';
-import '../generated/models/scalar_unions.dart';
-import '../generated/models/structures.dart';
-import '../generated/models/unions.dart';
+import 'package:pro_lsp/pro_lsp.dart';
 
 /// Represents a work done progress session initiated by the server.
 final class LspProgress {

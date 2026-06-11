@@ -7,6 +7,7 @@
 import 'dart:async';
 
 import '../../connection/lsp_connection.dart';
+import '../../connection/lsp_exception.dart';
 import '../../server/lsp_request.dart';
 import '../models/enumerations.dart';
 import '../models/methods.dart';
@@ -46,7 +47,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ConfigurationParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ConfigurationParams.fromJson);
       final r = await handler(p, context);
       return r.map((e) => (e as dynamic).toJson()).toList();
     });
@@ -134,7 +135,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ApplyWorkspaceEditParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ApplyWorkspaceEditParams.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -159,9 +160,7 @@ class WindowHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = WorkDoneProgressCreateParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, WorkDoneProgressCreateParams.fromJson);
       await handler(p, context);
       return null;
     });
@@ -179,7 +178,7 @@ class WindowHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ShowDocumentParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ShowDocumentParams.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -197,7 +196,7 @@ class WindowHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ShowMessageRequestParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ShowMessageRequestParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -211,7 +210,7 @@ class WindowHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ShowMessageParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ShowMessageParams.fromJson);
       await handler(p, context);
     });
   }
@@ -224,7 +223,7 @@ class WindowHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = LogMessageParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, LogMessageParams.fromJson);
       await handler(p, context);
     });
   }
@@ -245,7 +244,7 @@ class ClientHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = RegistrationParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, RegistrationParams.fromJson);
       await handler(p, context);
       return null;
     });
@@ -260,7 +259,7 @@ class ClientHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = UnregistrationParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, UnregistrationParams.fromJson);
       await handler(p, context);
       return null;
     });
@@ -301,9 +300,7 @@ class TextDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.publishDiagnostics,
       (dynamic json, LspRequest context) async {
-        final p = PublishDiagnosticsParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, PublishDiagnosticsParams.fromJson);
         await handler(p, context);
       },
     );
@@ -324,7 +321,7 @@ class GeneralHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = LogTraceParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, LogTraceParams.fromJson);
       await handler(p, context);
     });
   }
@@ -337,7 +334,7 @@ class GeneralHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CancelParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CancelParams.fromJson);
       await handler(p, context);
     });
   }
@@ -350,7 +347,7 @@ class GeneralHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ProgressParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ProgressParams.fromJson);
       await handler(p, context);
     });
   }
@@ -363,21 +360,25 @@ class TextDocumentSender {
   final LspConnection _connection;
 
   /// Sends the `textDocument/implementation` request to the server.
-  Future<Object?> implementation(ImplementationParams params) async {
+  Future<ImplementationResult?> implementation(
+    ImplementationParams params,
+  ) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.implementation,
       params.toJson(),
     );
-    return raw;
+    return raw == null ? null : ImplementationResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/typeDefinition` request to the server.
-  Future<Object?> typeDefinition(TypeDefinitionParams params) async {
+  Future<TypeDefinitionResult?> typeDefinition(
+    TypeDefinitionParams params,
+  ) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.typeDefinition,
       params.toJson(),
     );
-    return raw;
+    return raw == null ? null : TypeDefinitionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/documentColor` request to the server.
@@ -421,12 +422,12 @@ class TextDocumentSender {
   }
 
   /// Sends the `textDocument/declaration` request to the server.
-  Future<Object?> declaration(DeclarationParams params) async {
+  Future<DeclarationResult?> declaration(DeclarationParams params) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.declaration,
       params.toJson(),
     );
-    return raw;
+    return raw == null ? null : DeclarationResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/selectionRange` request to the server.
@@ -471,14 +472,16 @@ class TextDocumentSender {
   }
 
   /// Sends the `textDocument/semanticTokens/full/delta` request to the server.
-  Future<Object?> semanticTokensFullDelta(
+  Future<SemanticTokensFullDeltaResult?> semanticTokensFullDelta(
     SemanticTokensDeltaParams params,
   ) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.delta,
       params.toJson(),
     );
-    return raw;
+    return raw == null
+        ? null
+        : SemanticTokensFullDeltaResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/semanticTokens/range` request to the server.
@@ -540,8 +543,7 @@ class TextDocumentSender {
       params.toJson(),
     );
     return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(InlineValue.fromJson)
+        .map((e) => InlineValue.fromJson((e as Object)))
         .toList();
   }
 
@@ -565,16 +567,18 @@ class TextDocumentSender {
       RequestMethod.textDocumentDiagnostic,
       params.toJson(),
     );
-    return DocumentDiagnosticReport.fromJson(raw as Map<String, dynamic>);
+    return DocumentDiagnosticReport.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/inlineCompletion` request to the server.
-  Future<Object?> inlineCompletion(InlineCompletionParams params) async {
+  Future<InlineCompletionResult?> inlineCompletion(
+    InlineCompletionParams params,
+  ) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.inlineCompletion,
       params.toJson(),
     );
-    return raw;
+    return raw == null ? null : InlineCompletionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/willSaveWaitUntil` request to the server.
@@ -592,12 +596,12 @@ class TextDocumentSender {
   }
 
   /// Sends the `textDocument/completion` request to the server.
-  Future<Object?> completion(CompletionParams params) async {
+  Future<CompletionResult?> completion(CompletionParams params) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.completion,
       params.toJson(),
     );
-    return raw;
+    return raw == null ? null : CompletionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/hover` request to the server.
@@ -621,12 +625,12 @@ class TextDocumentSender {
   }
 
   /// Sends the `textDocument/definition` request to the server.
-  Future<Object?> definition(DefinitionParams params) async {
+  Future<DefinitionResult?> definition(DefinitionParams params) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.definition,
       params.toJson(),
     );
-    return raw;
+    return raw == null ? null : DefinitionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/references` request to the server.
@@ -656,12 +660,14 @@ class TextDocumentSender {
   }
 
   /// Sends the `textDocument/documentSymbol` request to the server.
-  Future<Object?> documentSymbol(DocumentSymbolParams params) async {
+  Future<DocumentSymbolResult?> documentSymbol(
+    DocumentSymbolParams params,
+  ) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.documentSymbol,
       params.toJson(),
     );
-    return raw;
+    return raw == null ? null : DocumentSymbolResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/codeAction` request to the server.
@@ -768,9 +774,7 @@ class TextDocumentSender {
       RequestMethod.prepareRename,
       params.toJson(),
     );
-    return raw == null
-        ? null
-        : PrepareRenameResult.fromJson(raw as Map<String, dynamic>);
+    return raw == null ? null : PrepareRenameResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/didOpen` notification to the server.
@@ -892,12 +896,12 @@ class WorkspaceSender {
   }
 
   /// Sends the `workspace/symbol` request to the server.
-  Future<Object?> symbol(WorkspaceSymbolParams params) async {
+  Future<SymbolResult?> symbol(WorkspaceSymbolParams params) async {
     final dynamic raw = await _connection.sendRequest(
       RequestMethod.symbol,
       params.toJson(),
     );
-    return raw;
+    return raw == null ? null : SymbolResult.fromJson(raw as Object);
   }
 
   /// Sends the `workspace/executeCommand` request to the server.

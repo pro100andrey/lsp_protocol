@@ -10,7 +10,6 @@ import '../generated/models/unions.dart';
 import '../server/lsp_state.dart';
 import '../server/middleware.dart';
 import '../transport/lsp_byte_stream_channel.dart';
-import 'documents.dart';
 
 export '../generated/client/client_api.dart';
 
@@ -55,9 +54,6 @@ final class LspClient {
 
   /// Proxy for all outgoing (client → server) messages.
   late final server = ClientToServerProxy(_connection);
-
-  /// High-level manager for text documents on the client side.
-  final documents = ClientDocumentManager();
 
   /// Capabilities of the server, populated after [start].
   ServerCapabilities? serverCapabilities;

@@ -7,6 +7,7 @@
 import 'dart:async';
 
 import '../../connection/lsp_connection.dart';
+import '../../connection/lsp_exception.dart';
 import '../../server/lsp_request.dart';
 import '../models/enumerations.dart';
 import '../models/methods.dart';
@@ -23,29 +24,37 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/implementation`.
   void onImplementation(
-    Future<Object?> Function(ImplementationParams params, LspRequest context)
+    Future<ImplementationResult?> Function(
+      ImplementationParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.implementation, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = ImplementationParams.fromJson(json as Map<String, dynamic>);
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, ImplementationParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
   /// Registers handler for `textDocument/typeDefinition`.
   void onTypeDefinition(
-    Future<Object?> Function(TypeDefinitionParams params, LspRequest context)
+    Future<TypeDefinitionResult?> Function(
+      TypeDefinitionParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.typeDefinition, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = TypeDefinitionParams.fromJson(json as Map<String, dynamic>);
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, TypeDefinitionParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
@@ -61,7 +70,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentColorParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, DocumentColorParams.fromJson);
       final r = await handler(p, context);
       return r.map((e) => e.toJson()).toList();
     });
@@ -79,7 +88,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ColorPresentationParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ColorPresentationParams.fromJson);
       final r = await handler(p, context);
       return r.map((e) => e.toJson()).toList();
     });
@@ -97,7 +106,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = FoldingRangeParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, FoldingRangeParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -105,15 +114,19 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/declaration`.
   void onDeclaration(
-    Future<Object?> Function(DeclarationParams params, LspRequest context)
+    Future<DeclarationResult?> Function(
+      DeclarationParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.declaration, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = DeclarationParams.fromJson(json as Map<String, dynamic>);
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, DeclarationParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
@@ -129,7 +142,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = SelectionRangeParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, SelectionRangeParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -147,9 +160,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CallHierarchyPrepareParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, CallHierarchyPrepareParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -167,7 +178,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = SemanticTokensParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, SemanticTokensParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -175,7 +186,7 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/semanticTokens/full/delta`.
   void onSemanticTokensFullDelta(
-    Future<Object?> Function(
+    Future<SemanticTokensFullDeltaResult?> Function(
       SemanticTokensDeltaParams params,
       LspRequest context,
     )
@@ -184,11 +195,10 @@ class TextDocumentHandlers {
     _connection.registerRequestHandler(RequestMethod.delta, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = SemanticTokensDeltaParams.fromJson(
-        json as Map<String, dynamic>,
-      );
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, SemanticTokensDeltaParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
@@ -204,9 +214,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = SemanticTokensRangeParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, SemanticTokensRangeParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -224,7 +232,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = LinkedEditingRangeParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, LinkedEditingRangeParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -239,7 +247,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = MonikerParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, MonikerParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -257,9 +265,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = TypeHierarchyPrepareParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, TypeHierarchyPrepareParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -277,7 +283,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = InlineValueParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, InlineValueParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -295,7 +301,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = InlayHintParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, InlayHintParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -313,7 +319,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentDiagnosticParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, DocumentDiagnosticParams.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -321,15 +327,19 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/inlineCompletion`.
   void onInlineCompletion(
-    Future<Object?> Function(InlineCompletionParams params, LspRequest context)
+    Future<InlineCompletionResult?> Function(
+      InlineCompletionParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.inlineCompletion, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = InlineCompletionParams.fromJson(json as Map<String, dynamic>);
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, InlineCompletionParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
@@ -345,9 +355,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = WillSaveTextDocumentParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, WillSaveTextDocumentParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -355,15 +363,19 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/completion`.
   void onCompletion(
-    Future<Object?> Function(CompletionParams params, LspRequest context)
+    Future<CompletionResult?> Function(
+      CompletionParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.completion, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = CompletionParams.fromJson(json as Map<String, dynamic>);
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, CompletionParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
@@ -375,7 +387,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = HoverParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, HoverParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -393,7 +405,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = SignatureHelpParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, SignatureHelpParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -401,15 +413,19 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/definition`.
   void onDefinition(
-    Future<Object?> Function(DefinitionParams params, LspRequest context)
+    Future<DefinitionResult?> Function(
+      DefinitionParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.definition, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = DefinitionParams.fromJson(json as Map<String, dynamic>);
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, DefinitionParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
@@ -422,7 +438,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ReferenceParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ReferenceParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -440,7 +456,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentHighlightParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, DocumentHighlightParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -448,15 +464,19 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/documentSymbol`.
   void onDocumentSymbol(
-    Future<Object?> Function(DocumentSymbolParams params, LspRequest context)
+    Future<DocumentSymbolResult?> Function(
+      DocumentSymbolParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.documentSymbol, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = DocumentSymbolParams.fromJson(json as Map<String, dynamic>);
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, DocumentSymbolParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
@@ -469,7 +489,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CodeActionParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CodeActionParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => (e as dynamic).toJson()).toList();
     });
@@ -484,7 +504,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CodeLensParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CodeLensParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -502,7 +522,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentLinkParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, DocumentLinkParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -520,7 +540,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentFormattingParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, DocumentFormattingParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -538,9 +558,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentRangeFormattingParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, DocumentRangeFormattingParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -558,9 +576,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentRangesFormattingParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, DocumentRangesFormattingParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -578,9 +594,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentOnTypeFormattingParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, DocumentOnTypeFormattingParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -595,7 +609,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = RenameParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, RenameParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -613,7 +627,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = PrepareRenameParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, PrepareRenameParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -627,9 +641,7 @@ class TextDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.textDocumentDidOpen,
       (dynamic json, LspRequest context) async {
-        final p = DidOpenTextDocumentParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidOpenTextDocumentParams.fromJson);
         await handler(p, context);
       },
     );
@@ -646,9 +658,7 @@ class TextDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.textDocumentDidChange,
       (dynamic json, LspRequest context) async {
-        final p = DidChangeTextDocumentParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidChangeTextDocumentParams.fromJson);
         await handler(p, context);
       },
     );
@@ -662,9 +672,7 @@ class TextDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.textDocumentDidClose,
       (dynamic json, LspRequest context) async {
-        final p = DidCloseTextDocumentParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidCloseTextDocumentParams.fromJson);
         await handler(p, context);
       },
     );
@@ -678,9 +686,7 @@ class TextDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.textDocumentDidSave,
       (dynamic json, LspRequest context) async {
-        final p = DidSaveTextDocumentParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidSaveTextDocumentParams.fromJson);
         await handler(p, context);
       },
     );
@@ -695,9 +701,7 @@ class TextDocumentHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = WillSaveTextDocumentParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, WillSaveTextDocumentParams.fromJson);
       await handler(p, context);
     });
   }
@@ -721,9 +725,7 @@ class CallHierarchyHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CallHierarchyIncomingCallsParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, CallHierarchyIncomingCallsParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -741,9 +743,7 @@ class CallHierarchyHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CallHierarchyOutgoingCallsParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, CallHierarchyOutgoingCallsParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -768,7 +768,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CreateFilesParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CreateFilesParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -786,7 +786,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = RenameFilesParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, RenameFilesParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -804,7 +804,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DeleteFilesParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, DeleteFilesParams.fromJson);
       final r = await handler(p, context);
       return r?.toJson();
     });
@@ -822,9 +822,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = WorkspaceDiagnosticParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, WorkspaceDiagnosticParams.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -832,15 +830,19 @@ class WorkspaceHandlers {
 
   /// Registers handler for `workspace/symbol`.
   void onSymbol(
-    Future<Object?> Function(WorkspaceSymbolParams params, LspRequest context)
+    Future<SymbolResult?> Function(
+      WorkspaceSymbolParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.symbol, (
       dynamic json,
       LspRequest context,
-    ) {
-      final p = WorkspaceSymbolParams.fromJson(json as Map<String, dynamic>);
-      return handler(p, context);
+    ) async {
+      final p = parseParams(json, WorkspaceSymbolParams.fromJson);
+      final r = await handler(p, context);
+      return r?.toJson();
     });
   }
 
@@ -853,7 +855,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) {
-      final p = ExecuteCommandParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ExecuteCommandParams.fromJson);
       return handler(p, context);
     });
   }
@@ -869,9 +871,7 @@ class WorkspaceHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.didChangeWorkspaceFolders,
       (dynamic json, LspRequest context) async {
-        final p = DidChangeWorkspaceFoldersParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidChangeWorkspaceFoldersParams.fromJson);
         await handler(p, context);
       },
     );
@@ -885,7 +885,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CreateFilesParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CreateFilesParams.fromJson);
       await handler(p, context);
     });
   }
@@ -898,7 +898,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = RenameFilesParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, RenameFilesParams.fromJson);
       await handler(p, context);
     });
   }
@@ -911,7 +911,7 @@ class WorkspaceHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DeleteFilesParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, DeleteFilesParams.fromJson);
       await handler(p, context);
     });
   }
@@ -927,9 +927,7 @@ class WorkspaceHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.didChangeConfiguration,
       (dynamic json, LspRequest context) async {
-        final p = DidChangeConfigurationParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidChangeConfigurationParams.fromJson);
         await handler(p, context);
       },
     );
@@ -946,9 +944,7 @@ class WorkspaceHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.didChangeWatchedFiles,
       (dynamic json, LspRequest context) async {
-        final p = DidChangeWatchedFilesParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidChangeWatchedFilesParams.fromJson);
         await handler(p, context);
       },
     );
@@ -973,9 +969,7 @@ class TypeHierarchyHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = TypeHierarchySupertypesParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, TypeHierarchySupertypesParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -993,9 +987,7 @@ class TypeHierarchyHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = TypeHierarchySubtypesParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, TypeHierarchySubtypesParams.fromJson);
       final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
@@ -1016,7 +1008,7 @@ class InlayHintHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = InlayHint.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, InlayHint.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -1041,7 +1033,7 @@ class GeneralHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = InitializeParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, InitializeParams.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -1066,7 +1058,7 @@ class GeneralHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = InitializedParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, InitializedParams.fromJson);
       await handler(p, context);
     });
   }
@@ -1089,7 +1081,7 @@ class GeneralHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = SetTraceParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, SetTraceParams.fromJson);
       await handler(p, context);
     });
   }
@@ -1102,7 +1094,7 @@ class GeneralHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CancelParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CancelParams.fromJson);
       await handler(p, context);
     });
   }
@@ -1115,7 +1107,7 @@ class GeneralHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = ProgressParams.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, ProgressParams.fromJson);
       await handler(p, context);
     });
   }
@@ -1136,7 +1128,7 @@ class CompletionItemHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CompletionItem.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CompletionItem.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -1157,7 +1149,7 @@ class CodeActionHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CodeAction.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CodeAction.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -1179,7 +1171,7 @@ class WorkspaceSymbolHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = WorkspaceSymbol.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, WorkspaceSymbol.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -1200,7 +1192,7 @@ class CodeLensHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = CodeLens.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, CodeLens.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -1222,7 +1214,7 @@ class DocumentLinkHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = DocumentLink.fromJson(json as Map<String, dynamic>);
+      final p = parseParams(json, DocumentLink.fromJson);
       final r = await handler(p, context);
       return r.toJson();
     });
@@ -1247,9 +1239,7 @@ class WindowHandlers {
       dynamic json,
       LspRequest context,
     ) async {
-      final p = WorkDoneProgressCancelParams.fromJson(
-        json as Map<String, dynamic>,
-      );
+      final p = parseParams(json, WorkDoneProgressCancelParams.fromJson);
       await handler(p, context);
     });
   }
@@ -1272,9 +1262,7 @@ class NotebookDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.notebookDocumentDidOpen,
       (dynamic json, LspRequest context) async {
-        final p = DidOpenNotebookDocumentParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidOpenNotebookDocumentParams.fromJson);
         await handler(p, context);
       },
     );
@@ -1291,9 +1279,7 @@ class NotebookDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.notebookDocumentDidChange,
       (dynamic json, LspRequest context) async {
-        final p = DidChangeNotebookDocumentParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidChangeNotebookDocumentParams.fromJson);
         await handler(p, context);
       },
     );
@@ -1310,9 +1296,7 @@ class NotebookDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.notebookDocumentDidSave,
       (dynamic json, LspRequest context) async {
-        final p = DidSaveNotebookDocumentParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidSaveNotebookDocumentParams.fromJson);
         await handler(p, context);
       },
     );
@@ -1329,9 +1313,7 @@ class NotebookDocumentHandlers {
     _connection.registerNotificationHandler(
       NotificationMethod.notebookDocumentDidClose,
       (dynamic json, LspRequest context) async {
-        final p = DidCloseNotebookDocumentParams.fromJson(
-          json as Map<String, dynamic>,
-        );
+        final p = parseParams(json, DidCloseNotebookDocumentParams.fromJson);
         await handler(p, context);
       },
     );

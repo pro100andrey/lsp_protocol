@@ -7,16 +7,16 @@ void main() {
       test('uninitialized allows only initialize', () {
         expect(
           LspState.uninitialized.isRequestAllowed(
-            RequestMethod.initialize.value,
+            RequestMethod.initialize,
           ),
           isTrue,
         );
         expect(
-          LspState.uninitialized.isRequestAllowed('textDocument/hover'),
+          LspState.uninitialized.isRequestAllowed(RequestMethod.hover),
           isFalse,
         );
         expect(
-          LspState.uninitialized.isRequestAllowed('shutdown'),
+          LspState.uninitialized.isRequestAllowed(RequestMethod.shutdown),
           isFalse,
         );
       });
@@ -24,12 +24,12 @@ void main() {
       test('initializing allows only initialize', () {
         expect(
           LspState.initializing.isRequestAllowed(
-            RequestMethod.initialize.value,
+            RequestMethod.initialize,
           ),
           isTrue,
         );
         expect(
-          LspState.initializing.isRequestAllowed('textDocument/hover'),
+          LspState.initializing.isRequestAllowed(RequestMethod.hover),
           isFalse,
         );
       });
@@ -37,20 +37,20 @@ void main() {
       test('initialized allows all requests except initialize', () {
         expect(
           LspState.initialized.isRequestAllowed(
-            RequestMethod.initialize.value,
+            RequestMethod.initialize,
           ),
           isFalse,
         );
         expect(
-          LspState.initialized.isRequestAllowed('textDocument/hover'),
+          LspState.initialized.isRequestAllowed(RequestMethod.hover),
           isTrue,
         );
         expect(
-          LspState.initialized.isRequestAllowed('shutdown'),
+          LspState.initialized.isRequestAllowed(RequestMethod.shutdown),
           isTrue,
         );
         expect(
-          LspState.initialized.isRequestAllowed('workspace/executeCommand'),
+          LspState.initialized.isRequestAllowed(RequestMethod.executeCommand),
           isTrue,
         );
       });
@@ -58,27 +58,27 @@ void main() {
       test('shuttingDown allows no requests', () {
         expect(
           LspState.shuttingDown.isRequestAllowed(
-            RequestMethod.initialize.value,
+            RequestMethod.initialize,
           ),
           isFalse,
         );
         expect(
-          LspState.shuttingDown.isRequestAllowed('textDocument/hover'),
+          LspState.shuttingDown.isRequestAllowed(RequestMethod.hover),
           isFalse,
         );
         expect(
-          LspState.shuttingDown.isRequestAllowed('shutdown'),
+          LspState.shuttingDown.isRequestAllowed(RequestMethod.shutdown),
           isFalse,
         );
       });
 
       test('exited allows no requests', () {
         expect(
-          LspState.exited.isRequestAllowed(RequestMethod.initialize.value),
+          LspState.exited.isRequestAllowed(RequestMethod.initialize),
           isFalse,
         );
         expect(
-          LspState.exited.isRequestAllowed('textDocument/hover'),
+          LspState.exited.isRequestAllowed(RequestMethod.hover),
           isFalse,
         );
       });
@@ -88,17 +88,19 @@ void main() {
       test('uninitialized allows only exit', () {
         expect(
           LspState.uninitialized.isNotificationAllowed(
-            NotificationMethod.exit.value,
+            NotificationMethod.exit,
           ),
           isTrue,
         );
         expect(
-          LspState.uninitialized.isNotificationAllowed('window/logMessage'),
+          LspState.uninitialized.isNotificationAllowed(
+            NotificationMethod.logMessage,
+          ),
           isFalse,
         );
         expect(
           LspState.uninitialized.isNotificationAllowed(
-            NotificationMethod.didChangeConfiguration.value,
+            NotificationMethod.didChangeConfiguration,
           ),
           isFalse,
         );
@@ -107,12 +109,14 @@ void main() {
       test('initializing allows only exit', () {
         expect(
           LspState.initializing.isNotificationAllowed(
-            NotificationMethod.exit.value,
+            NotificationMethod.exit,
           ),
           isTrue,
         );
         expect(
-          LspState.initializing.isNotificationAllowed('window/logMessage'),
+          LspState.initializing.isNotificationAllowed(
+            NotificationMethod.logMessage,
+          ),
           isFalse,
         );
       });
@@ -120,23 +124,25 @@ void main() {
       test('initialized allows all notifications', () {
         expect(
           LspState.initialized.isNotificationAllowed(
-            NotificationMethod.exit.value,
-          ),
-          isTrue,
-        );
-        expect(
-          LspState.initialized.isNotificationAllowed('window/logMessage'),
-          isTrue,
-        );
-        expect(
-          LspState.initialized.isNotificationAllowed(
-            NotificationMethod.didChangeConfiguration.value,
+            NotificationMethod.exit,
           ),
           isTrue,
         );
         expect(
           LspState.initialized.isNotificationAllowed(
-            NotificationMethod.textDocumentDidOpen.value,
+            NotificationMethod.logMessage,
+          ),
+          isTrue,
+        );
+        expect(
+          LspState.initialized.isNotificationAllowed(
+            NotificationMethod.didChangeConfiguration,
+          ),
+          isTrue,
+        );
+        expect(
+          LspState.initialized.isNotificationAllowed(
+            NotificationMethod.textDocumentDidOpen,
           ),
           isTrue,
         );
@@ -145,23 +151,25 @@ void main() {
       test('shuttingDown allows only exit', () {
         expect(
           LspState.shuttingDown.isNotificationAllowed(
-            NotificationMethod.exit.value,
+            NotificationMethod.exit,
           ),
           isTrue,
         );
         expect(
-          LspState.shuttingDown.isNotificationAllowed('window/logMessage'),
+          LspState.shuttingDown.isNotificationAllowed(
+            NotificationMethod.logMessage,
+          ),
           isFalse,
         );
       });
 
       test('exited allows no notifications', () {
         expect(
-          LspState.exited.isNotificationAllowed(NotificationMethod.exit.value),
+          LspState.exited.isNotificationAllowed(NotificationMethod.exit),
           isFalse,
         );
         expect(
-          LspState.exited.isNotificationAllowed('window/logMessage'),
+          LspState.exited.isNotificationAllowed(NotificationMethod.logMessage),
           isFalse,
         );
       });

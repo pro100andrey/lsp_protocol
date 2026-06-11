@@ -1,4 +1,4 @@
-import 'package:pro_lsp/src/server/documents.dart';
+import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {

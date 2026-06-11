@@ -2301,3 +2301,296 @@ extension type const RelativePatternBaseUri(Object value) {
     return value is String ? value as String : null;
   }
 }
+
+/// Inline union: ImplementationResult.
+extension type const ImplementationResult(Object value) {
+  factory ImplementationResult.fromJson(Object json) =>
+      ImplementationResult(json);
+
+  Object toJson() => value;
+
+  bool get isDefinition =>
+      value is Location ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('uri') &&
+          (value as Map<String, dynamic>).containsKey('range') ||
+      value is List;
+
+  Definition? get asDefinition {
+    if (value is Definition) {
+      return value as Definition;
+    }
+    if (isDefinition) {
+      return Definition.fromJson(value);
+    }
+    return null;
+  }
+
+  bool get isList => value is List;
+
+  List<DefinitionLink>? get asList {
+    return isList ? (value as List).cast<DefinitionLink>() : null;
+  }
+}
+
+/// Inline union: TypeDefinitionResult.
+extension type const TypeDefinitionResult(Object value) {
+  factory TypeDefinitionResult.fromJson(Object json) =>
+      TypeDefinitionResult(json);
+
+  Object toJson() => value;
+
+  bool get isDefinition =>
+      value is Location ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('uri') &&
+          (value as Map<String, dynamic>).containsKey('range') ||
+      value is List;
+
+  Definition? get asDefinition {
+    if (value is Definition) {
+      return value as Definition;
+    }
+    if (isDefinition) {
+      return Definition.fromJson(value);
+    }
+    return null;
+  }
+
+  bool get isList => value is List;
+
+  List<DefinitionLink>? get asList {
+    return isList ? (value as List).cast<DefinitionLink>() : null;
+  }
+}
+
+/// Inline union: DeclarationResult.
+extension type const DeclarationResult(Object value) {
+  factory DeclarationResult.fromJson(Object json) => DeclarationResult(json);
+
+  Object toJson() => value;
+
+  bool get isDeclaration =>
+      value is Location ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('uri') &&
+          (value as Map<String, dynamic>).containsKey('range') ||
+      value is List;
+
+  Declaration? get asDeclaration {
+    if (value is Declaration) {
+      return value as Declaration;
+    }
+    if (isDeclaration) {
+      return Declaration.fromJson(value);
+    }
+    return null;
+  }
+
+  bool get isList => value is List;
+
+  List<DeclarationLink>? get asList {
+    return isList ? (value as List).cast<DeclarationLink>() : null;
+  }
+}
+
+/// Inline union: SemanticTokensFullDeltaResult.
+extension type const SemanticTokensFullDeltaResult(Object value) {
+  factory SemanticTokensFullDeltaResult.fromJson(Object json) =>
+      SemanticTokensFullDeltaResult(json);
+
+  Object toJson() => value;
+
+  bool get isSemanticTokens =>
+      value is SemanticTokens ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('data');
+
+  SemanticTokens? get asSemanticTokens {
+    if (value is SemanticTokens) {
+      return value as SemanticTokens;
+    }
+    if (isSemanticTokens) {
+      return SemanticTokens.fromJson(value as Map<String, dynamic>);
+    }
+    return null;
+  }
+
+  bool get isSemanticTokensDelta =>
+      value is SemanticTokensDelta ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('edits');
+
+  SemanticTokensDelta? get asSemanticTokensDelta {
+    if (value is SemanticTokensDelta) {
+      return value as SemanticTokensDelta;
+    }
+    if (isSemanticTokensDelta) {
+      return SemanticTokensDelta.fromJson(value as Map<String, dynamic>);
+    }
+    return null;
+  }
+}
+
+/// Inline union: InlineCompletionResult.
+extension type const InlineCompletionResult(Object value) {
+  factory InlineCompletionResult.fromJson(Object json) =>
+      InlineCompletionResult(json);
+
+  Object toJson() => value;
+
+  bool get isInlineCompletionList =>
+      value is InlineCompletionList ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('items');
+
+  InlineCompletionList? get asInlineCompletionList {
+    if (value is InlineCompletionList) {
+      return value as InlineCompletionList;
+    }
+    if (isInlineCompletionList) {
+      return InlineCompletionList.fromJson(value as Map<String, dynamic>);
+    }
+    return null;
+  }
+
+  bool get isList => value is List;
+
+  List<InlineCompletionItem>? get asList {
+    if (value is List<InlineCompletionItem>) {
+      return value as List<InlineCompletionItem>;
+    }
+    if (isList) {
+      return (value as List)
+          .map(
+            (e) => e is InlineCompletionItem
+                ? e
+                : InlineCompletionItem.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    }
+    return null;
+  }
+}
+
+/// Inline union: CompletionResult.
+extension type const CompletionResult(Object value) {
+  factory CompletionResult.fromJson(Object json) => CompletionResult(json);
+
+  Object toJson() => value;
+
+  bool get isList => value is List;
+
+  List<CompletionItem>? get asList {
+    if (value is List<CompletionItem>) {
+      return value as List<CompletionItem>;
+    }
+    if (isList) {
+      return (value as List)
+          .map(
+            (e) => e is CompletionItem
+                ? e
+                : CompletionItem.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    }
+    return null;
+  }
+
+  bool get isCompletionList =>
+      value is CompletionList ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('isIncomplete') &&
+          (value as Map<String, dynamic>).containsKey('items');
+
+  CompletionList? get asCompletionList {
+    if (value is CompletionList) {
+      return value as CompletionList;
+    }
+    if (isCompletionList) {
+      return CompletionList.fromJson(value as Map<String, dynamic>);
+    }
+    return null;
+  }
+}
+
+/// Inline union: DefinitionResult.
+extension type const DefinitionResult(Object value) {
+  factory DefinitionResult.fromJson(Object json) => DefinitionResult(json);
+
+  Object toJson() => value;
+
+  bool get isDefinition =>
+      value is Location ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('uri') &&
+          (value as Map<String, dynamic>).containsKey('range') ||
+      value is List;
+
+  Definition? get asDefinition {
+    if (value is Definition) {
+      return value as Definition;
+    }
+    if (isDefinition) {
+      return Definition.fromJson(value);
+    }
+    return null;
+  }
+
+  bool get isList => value is List;
+
+  List<DefinitionLink>? get asList {
+    return isList ? (value as List).cast<DefinitionLink>() : null;
+  }
+}
+
+/// Inline union: DocumentSymbolResult.
+extension type const DocumentSymbolResult(Object value) {
+  factory DocumentSymbolResult.fromJson(Object json) =>
+      DocumentSymbolResult(json);
+
+  Object toJson() => value;
+
+  bool get isList => value is List;
+
+  List<SymbolInformation>? get asList {
+    if (value is List<SymbolInformation>) {
+      return value as List<SymbolInformation>;
+    }
+    if (isList) {
+      return (value as List)
+          .map(
+            (e) => e is SymbolInformation
+                ? e
+                : SymbolInformation.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    }
+    return null;
+  }
+}
+
+/// Inline union: SymbolResult.
+extension type const SymbolResult(Object value) {
+  factory SymbolResult.fromJson(Object json) => SymbolResult(json);
+
+  Object toJson() => value;
+
+  bool get isList => value is List;
+
+  List<SymbolInformation>? get asList {
+    if (value is List<SymbolInformation>) {
+      return value as List<SymbolInformation>;
+    }
+    if (isList) {
+      return (value as List)
+          .map(
+            (e) => e is SymbolInformation
+                ? e
+                : SymbolInformation.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    }
+    return null;
+  }
+}

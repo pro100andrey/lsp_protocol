@@ -10,6 +10,12 @@ import 'meta_visitor.dart';
 /// Pass 2 — resolve pass: fills in all resolved type fields by resolving
 ///   every [MetaReference] against the registry.
 final class ResolverVisitor {
+  ResolverVisitor([Map<String, ResolvedDecl>? registry]) {
+    if (registry != null) {
+      _registry.addAll(registry);
+    }
+  }
+
   final Map<String, ResolvedDecl> _registry = {};
   final List<ResolvedClass> _classes = [];
   final List<ResolvedEnum> _enumerations = [];

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:pro_lsp/pro_lsp.dart';
+import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
 import 'package:stream_channel/stream_channel.dart';
 import 'package:test/test.dart';
 
@@ -20,10 +21,11 @@ void main() {
         clientOutgoing.sink,
       );
       server = LspServer.fromChannel(serverChannel);
-      config = server.config;
+      config = LspConfigurationManager(server);
     });
 
     tearDown(() async {
+      config.close();
       await server.close();
       await clientIncoming.close();
       await clientOutgoing.close();
