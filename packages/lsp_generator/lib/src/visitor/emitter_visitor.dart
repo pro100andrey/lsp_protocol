@@ -1,7 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
 
-import '../config/generated_files.dart';
+import '../config/files.dart';
 import '../models/protocol.dart' show MessageDirection, MetaNotification;
 import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
@@ -59,7 +59,7 @@ final class EmitterVisitor {
   late final Set<String> _sealedUnionNames = _computeSealedUnionNames();
 
   /// Subset of [_sealedUnionNames]: purely scalar unions (only [DartCoreType]
-  /// items). Emitted to [GeneratedFiles.scalarUnions]; no import of
+  /// items). Emitted to [Files.scalarUnions]; no import of
   /// structures needed.
   late final Set<String> _scalarUnionNames = _computeScalarUnionNames();
 
@@ -113,15 +113,15 @@ final class EmitterVisitor {
           ),
         )
         ..directives.addAll(
-          _crossImports(allTypes, GeneratedFiles.structures),
+          _crossImports(allTypes, Files.structures),
         )
-        ..directives.add(Directive.part(GeneratedFiles.structuresFreezed))
-        ..directives.add(Directive.part(GeneratedFiles.structuresG))
+        ..directives.add(Directive.part(Files.structuresFreezed))
+        ..directives.add(Directive.part(Files.structuresG))
         ..directives.add(
-          Directive.part(GeneratedFiles.structuresCapabilities),
+          Directive.part(Files.structuresCapabilities),
         )
-        ..directives.add(Directive.part(GeneratedFiles.structuresParams))
-        ..directives.add(Directive.part(GeneratedFiles.structuresCommon)),
+        ..directives.add(Directive.part(Files.structuresParams))
+        ..directives.add(Directive.part(Files.structuresCommon)),
     );
   }
 
@@ -131,7 +131,7 @@ final class EmitterVisitor {
         _header,
       ])
       ..directives.add(
-        Directive.partOf(GeneratedFiles.structures),
+        Directive.partOf(Files.structures),
       )
       ..body.addAll(
         _classesForCategory(_ClassCategory.capabilities).map(_buildClass),
@@ -144,7 +144,7 @@ final class EmitterVisitor {
         _header,
       ])
       ..directives.add(
-        Directive.partOf(GeneratedFiles.structures),
+        Directive.partOf(Files.structures),
       )
       ..body.addAll(
         _classesForCategory(_ClassCategory.params).map(_buildClass),
@@ -157,7 +157,7 @@ final class EmitterVisitor {
         _header,
       ])
       ..directives.add(
-        Directive.partOf(GeneratedFiles.structures),
+        Directive.partOf(Files.structures),
       )
       ..body.addAll(
         _classesForCategory(_ClassCategory.common).map(_buildClass),
@@ -173,7 +173,7 @@ final class EmitterVisitor {
       ..directives.add(
         Directive.import('package:json_annotation/json_annotation.dart'),
       )
-      ..directives.add(Directive.part(GeneratedFiles.enumerationsG))
+      ..directives.add(Directive.part(Files.enumerationsG))
       ..body.addAll(_resolved.enumerations.map(_buildEnum)),
   );
 
@@ -194,7 +194,7 @@ final class EmitterVisitor {
         ..directives.add(
           Directive.import('package:json_annotation/json_annotation.dart'),
         )
-        ..directives.add(Directive.part(GeneratedFiles.methodsG))
+        ..directives.add(Directive.part(Files.methodsG))
         ..body.add(
           _buildMethodEnum(
             'NotificationMethod',
@@ -240,14 +240,14 @@ final class EmitterVisitor {
     return Library(
       (b) => b
         ..comments.add(_header)
-        ..directives.addAll(_crossImports(allTypes, GeneratedFiles.aliases))
+        ..directives.addAll(_crossImports(allTypes, Files.aliases))
         ..body.addAll(aliases.map(_buildAlias)),
     );
   }
 
   /// Builds a [Library] containing sealed classes for purely scalar unions
-  /// (e.g. `ProgressToken = int | string`). Written to 
-  /// [GeneratedFiles.scalarUnions].
+  /// (e.g. `ProgressToken = int | string`). Written to
+  /// [Files.scalarUnions].
   ///
   /// This file does **not** import `structures.dart`, so `structures.dart` can
   /// safely import this file without creating a circular dependency.
@@ -347,7 +347,7 @@ final class EmitterVisitor {
       (b) => b
         ..comments.add(_header)
         ..directives.addAll(
-          _crossImports(referencedTypes, GeneratedFiles.unions),
+          _crossImports(referencedTypes, Files.unions),
         )
         ..body.addAll(specs),
     );
@@ -365,15 +365,15 @@ final class EmitterVisitor {
     void walk(ResolvedType type) {
       switch (type) {
         case ClassType():
-          needed.add(GeneratedFiles.structures);
+          needed.add(Files.structures);
         case EnumType():
-          needed.add(GeneratedFiles.enumerations);
+          needed.add(Files.enumerations);
         case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
-          needed.add(GeneratedFiles.scalarUnions);
+          needed.add(Files.scalarUnions);
         case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
-          needed.add(GeneratedFiles.unions);
+          needed.add(Files.unions);
         case AliasType():
-          needed.add(GeneratedFiles.aliases);
+          needed.add(Files.aliases);
         case ListType(:final element):
           walk(element);
         case MapType(:final key, :final value):
@@ -395,11 +395,11 @@ final class EmitterVisitor {
     // Preserve stable output order.
     return [
       for (final f in [
-        GeneratedFiles.structures,
-        GeneratedFiles.enumerations,
-        GeneratedFiles.aliases,
-        GeneratedFiles.scalarUnions,
-        GeneratedFiles.unions,
+        Files.structures,
+        Files.enumerations,
+        Files.aliases,
+        Files.scalarUnions,
+        Files.unions,
       ])
         if (needed.contains(f)) Directive.import(f),
     ];

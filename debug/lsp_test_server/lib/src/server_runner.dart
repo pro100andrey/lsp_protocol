@@ -69,8 +69,8 @@ final class ServerRunner {
               supported: true,
               changeNotifications:
                   WorkspaceFoldersServerCapabilitiesChangeNotifications(
-                true,
-              ),
+                    true,
+                  ),
             ),
             fileOperations: .new(
               willCreate: .new(
@@ -147,8 +147,8 @@ final class ServerRunner {
       logInfo('Document changed: ${params.textDocument.uri}');
 
       final lastChange = params.contentChanges.lastOrNull;
-      final text = lastChange?.asText?.text ??
-          lastChange?.asRangeRangeLengthText?.text;
+      final text =
+          lastChange?.asText?.text ?? lastChange?.asRangeRangeLengthText?.text;
 
       if (text != null) {
         _docService.update(params.textDocument.uri, text);

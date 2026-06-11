@@ -1,6 +1,6 @@
 import 'lsp_server.dart';
 
-/// Represents an open text document in the virtual file system of the LSP 
+/// Represents an open text document in the virtual file system of the LSP
 /// server.
 final class LspDocument {
   LspDocument({
@@ -57,7 +57,8 @@ final class TextDocumentManager {
       // to send the entire content in the change list (usually one item).
       final lastChange = changes.last;
 
-      final lastChangeText = lastChange.asText?.text ??
+      final lastChangeText =
+          lastChange.asText?.text ??
           lastChange.asRangeRangeLengthText?.text ??
           '';
 

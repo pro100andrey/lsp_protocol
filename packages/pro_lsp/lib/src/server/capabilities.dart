@@ -9,7 +9,7 @@ final class CapabilityManager {
   final LspServer _server;
   var _registrationIdCounter = 0;
 
-  /// Dynamically registers a capability on the client for the specified 
+  /// Dynamically registers a capability on the client for the specified
   /// [method].
   ///
   /// Returns a registration ID string that can be used to unregister later.

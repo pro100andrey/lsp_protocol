@@ -63,27 +63,26 @@ void main() {
       final sub = clientLspStream.listen(messages.add);
 
       // Publish diagnostics for two different URIs with short debounce
-      diagnostics..debounceDuration = const Duration(milliseconds: 10)
-
-      ..publish('file:///a.dart', [
-        const Diagnostic(
-          range: Range(
-            start: Position(line: 0, character: 0),
-            end: Position(line: 0, character: 5),
+      diagnostics
+        ..debounceDuration = const Duration(milliseconds: 10)
+        ..publish('file:///a.dart', [
+          const Diagnostic(
+            range: Range(
+              start: Position(line: 0, character: 0),
+              end: Position(line: 0, character: 5),
+            ),
+            message: 'error a',
           ),
-          message: 'error a',
-        ),
-      ])
-
-      ..publish('file:///b.dart', [
-        const Diagnostic(
-          range: Range(
-            start: Position(line: 1, character: 0),
-            end: Position(line: 1, character: 10),
+        ])
+        ..publish('file:///b.dart', [
+          const Diagnostic(
+            range: Range(
+              start: Position(line: 1, character: 0),
+              end: Position(line: 1, character: 10),
+            ),
+            message: 'error b',
           ),
-          message: 'error b',
-        ),
-      ]);
+        ]);
 
       // Wait for debounce
       await Future<void>.delayed(const Duration(milliseconds: 50));

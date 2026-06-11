@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 /// File name constants for all generated output files.
-class GeneratedFiles {
+class Files {
   // ---------------------------------------------------------------------------
   // Model files
   // ---------------------------------------------------------------------------
@@ -59,31 +59,24 @@ extension GeneratedPaths on Directory {
   // Model files
   // ---------------------------------------------------------------------------
 
-  File get structuresFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.structures));
+  File get structuresFile => File(p.join(modelsDir.path, Files.structures));
   File get structuresCapabilitiesFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.structuresCapabilities));
+      File(p.join(modelsDir.path, Files.structuresCapabilities));
   File get structuresParamsFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.structuresParams));
+      File(p.join(modelsDir.path, Files.structuresParams));
   File get structuresCommonFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.structuresCommon));
-  File get enumerationsFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.enumerations));
-  File get aliasesFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.aliases));
-  File get scalarUnionsFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.scalarUnions));
-  File get unionsFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.unions));
-  File get methodsFile =>
-      File(p.join(modelsDir.path, GeneratedFiles.methods));
+      File(p.join(modelsDir.path, Files.structuresCommon));
+  File get enumerationsFile => File(p.join(modelsDir.path, Files.enumerations));
+  File get aliasesFile => File(p.join(modelsDir.path, Files.aliases));
+  File get scalarUnionsFile => File(p.join(modelsDir.path, Files.scalarUnions));
+  File get unionsFile => File(p.join(modelsDir.path, Files.unions));
+  File get methodsFile => File(p.join(modelsDir.path, Files.methods));
 
   // ---------------------------------------------------------------------------
   // Server API
   // ---------------------------------------------------------------------------
 
-  File get serverApiFile =>
-      File(p.join(serverDir.path, GeneratedFiles.serverApi));
+  File get serverApiFile => File(p.join(serverDir.path, Files.serverApi));
 
   // ---------------------------------------------------------------------------
   // Barrel file

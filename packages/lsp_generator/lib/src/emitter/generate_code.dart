@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:code_builder/code_builder.dart';
 
-import '../config/generated_files.dart';
+import '../config/files.dart';
 import '../resolver/resolved_state.dart';
 import '../visitor/emitter_helpers.dart';
 import '../visitor/emitter_visitor.dart';
@@ -11,8 +11,9 @@ void generateCode(ResolvedState resolved, String outputDir) {
   final visitor = EmitterVisitor(resolved);
 
   final structures = emitLibrary(visitor.buildStructures());
-  final structuresCapabilities =
-      emitLibrary(visitor.buildStructuresCapabilities());
+  final structuresCapabilities = emitLibrary(
+    visitor.buildStructuresCapabilities(),
+  );
   final structuresParams = emitLibrary(visitor.buildStructuresParams());
   final structuresCommon = emitLibrary(visitor.buildStructuresCommon());
   final enumerations = emitLibrary(visitor.buildEnumerations());
@@ -40,14 +41,12 @@ void generateCode(ResolvedState resolved, String outputDir) {
     (b) => b
       ..comments.add('GENERATED — do not edit.')
       ..directives.addAll([
-        Directive.export(GeneratedPaths.modelExport(GeneratedFiles.structures)),
-        Directive.export(
-            GeneratedPaths.modelExport(GeneratedFiles.enumerations)),
-        Directive.export(GeneratedPaths.modelExport(GeneratedFiles.aliases)),
-        Directive.export(
-            GeneratedPaths.modelExport(GeneratedFiles.scalarUnions)),
-        Directive.export(GeneratedPaths.modelExport(GeneratedFiles.unions)),
-        Directive.export(GeneratedPaths.modelExport(GeneratedFiles.methods)),
+        Directive.export(GeneratedPaths.modelExport(Files.structures)),
+        Directive.export(GeneratedPaths.modelExport(Files.enumerations)),
+        Directive.export(GeneratedPaths.modelExport(Files.aliases)),
+        Directive.export(GeneratedPaths.modelExport(Files.scalarUnions)),
+        Directive.export(GeneratedPaths.modelExport(Files.unions)),
+        Directive.export(GeneratedPaths.modelExport(Files.methods)),
         if (dir.packageName == 'pro_lsp') ...[
           Directive.export('src/connection/lsp_connection.dart'),
           Directive.export('src/connection/lsp_exception.dart'),

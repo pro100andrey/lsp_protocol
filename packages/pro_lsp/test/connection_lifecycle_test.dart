@@ -447,76 +447,76 @@ void main() {
         await clientLspStream.first;
       }
 
-     group('Documents', () {
+      group('Documents', () {
         test('synchronizes documents', () async {
           await performInitialization();
 
-        expect(server.documents.all, isEmpty);
+          expect(server.documents.all, isEmpty);
 
-        // didOpen
-        sendClientMessage(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'method': 'textDocument/didOpen',
-            'params': <String, dynamic>{
-              'textDocument': <String, dynamic>{
-                'uri': 'file:///test.dart',
-                'languageId': 'dart',
-                'version': 1,
-                'text': 'void main() {}',
+          // didOpen
+          sendClientMessage(
+            jsonEncode(<String, dynamic>{
+              'jsonrpc': '2.0',
+              'method': 'textDocument/didOpen',
+              'params': <String, dynamic>{
+                'textDocument': <String, dynamic>{
+                  'uri': 'file:///test.dart',
+                  'languageId': 'dart',
+                  'version': 1,
+                  'text': 'void main() {}',
+                },
               },
-            },
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+            }),
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        final doc = server.documents.get('file:///test.dart');
-        expect(doc, isNotNull);
-        expect(doc!.text, 'void main() {}');
-        expect(doc.languageId, 'dart');
-        expect(doc.version, 1);
+          final doc = server.documents.get('file:///test.dart');
+          expect(doc, isNotNull);
+          expect(doc!.text, 'void main() {}');
+          expect(doc.languageId, 'dart');
+          expect(doc.version, 1);
 
-        // didChange (Full Sync)
-        sendClientMessage(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'method': 'textDocument/didChange',
-            'params': <String, dynamic>{
-              'textDocument': <String, dynamic>{
-                'uri': 'file:///test.dart',
-                'version': 2,
+          // didChange (Full Sync)
+          sendClientMessage(
+            jsonEncode(<String, dynamic>{
+              'jsonrpc': '2.0',
+              'method': 'textDocument/didChange',
+              'params': <String, dynamic>{
+                'textDocument': <String, dynamic>{
+                  'uri': 'file:///test.dart',
+                  'version': 2,
+                },
+                'contentChanges': <dynamic>[
+                  <String, dynamic>{'text': 'void main() { print("Hello"); }'},
+                ],
               },
-              'contentChanges': <dynamic>[
-                <String, dynamic>{'text': 'void main() { print("Hello"); }'},
-              ],
-            },
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+            }),
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        final updatedDoc = server.documents.get('file:///test.dart');
-        expect(updatedDoc!.text, 'void main() { print("Hello"); }');
-        expect(updatedDoc.version, 2);
+          final updatedDoc = server.documents.get('file:///test.dart');
+          expect(updatedDoc!.text, 'void main() { print("Hello"); }');
+          expect(updatedDoc.version, 2);
 
-        // didClose
-        sendClientMessage(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'method': 'textDocument/didClose',
-            'params': <String, dynamic>{
-              'textDocument': <String, dynamic>{
-                'uri': 'file:///test.dart',
+          // didClose
+          sendClientMessage(
+            jsonEncode(<String, dynamic>{
+              'jsonrpc': '2.0',
+              'method': 'textDocument/didClose',
+              'params': <String, dynamic>{
+                'textDocument': <String, dynamic>{
+                  'uri': 'file:///test.dart',
+                },
               },
-            },
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+            }),
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        expect(server.documents.get('file:///test.dart'), null);
+          expect(server.documents.get('file:///test.dart'), null);
         });
       });
 
-     group('Diagnostics', () {
+      group('Diagnostics', () {
         test('publishes diagnostics with debouncing', () async {
           await performInitialization();
 
@@ -545,8 +545,8 @@ void main() {
           await Future<void>.delayed(const Duration(milliseconds: 100));
           expect(receivedMessages, hasLength(1));
 
-          final diagParams = jsonDecode(receivedMessages.first)
-              as Map<String, dynamic>;
+          final diagParams =
+              jsonDecode(receivedMessages.first) as Map<String, dynamic>;
           expect(diagParams['method'], 'textDocument/publishDiagnostics');
           final params = diagParams['params'] as Map<String, dynamic>;
           expect(params['uri'], 'file:///test.dart');
@@ -557,114 +557,117 @@ void main() {
           await Future<void>.delayed(const Duration(milliseconds: 20));
 
           expect(receivedMessages, hasLength(2));
-          final clearParams = jsonDecode(receivedMessages.last)
-              as Map<String, dynamic>;
+          final clearParams =
+              jsonDecode(receivedMessages.last) as Map<String, dynamic>;
           final clearParamsParams =
               clearParams['params'] as Map<String, dynamic>;
           expect(clearParamsParams['diagnostics'] as List, isEmpty);
         });
       });
 
-     group('Configuration', () {
+      group('Configuration', () {
         test('queries and caches configs', () async {
           await performInitialization();
 
-        var configResponse = <String, dynamic>{'editor.tabSize': 4};
+          var configResponse = <String, dynamic>{'editor.tabSize': 4};
 
-        // Listen for workspace/configuration request from server and respond
-        clientLspStream.listen((msg) {
-          final json = jsonDecode(msg) as Map<String, dynamic>;
-          if (json['method'] == 'workspace/configuration') {
-            sendClientMessage(
-              jsonEncode(<String, dynamic>{
-                'jsonrpc': '2.0',
-                'id': json['id'],
-                'result': <dynamic>[configResponse],
-              }),
-            );
-          }
-        });
+          // Listen for workspace/configuration request from server and respond
+          clientLspStream.listen((msg) {
+            final json = jsonDecode(msg) as Map<String, dynamic>;
+            if (json['method'] == 'workspace/configuration') {
+              sendClientMessage(
+                jsonEncode(<String, dynamic>{
+                  'jsonrpc': '2.0',
+                  'id': json['id'],
+                  'result': <dynamic>[configResponse],
+                }),
+              );
+            }
+          });
 
-        // 1. Fetch config (should request from client)
-        final tabSize1 = await server.config
-            .getSection<Map<String, dynamic>>('editor');
-        expect(tabSize1, equals({'editor.tabSize': 4}));
+          // 1. Fetch config (should request from client)
+          final tabSize1 = await server.config.getSection<Map<String, dynamic>>(
+            'editor',
+          );
+          expect(tabSize1, equals({'editor.tabSize': 4}));
 
-        // 2. Fetch again (should return cached value)
-        configResponse = <String, dynamic>{'editor.tabSize': 2};
-        final tabSize2 = await server.config
-            .getSection<Map<String, dynamic>>('editor');
-        expect(tabSize2, equals({'editor.tabSize': 4})); // cached
+          // 2. Fetch again (should return cached value)
+          configResponse = <String, dynamic>{'editor.tabSize': 2};
+          final tabSize2 = await server.config.getSection<Map<String, dynamic>>(
+            'editor',
+          );
+          expect(tabSize2, equals({'editor.tabSize': 4})); // cached
 
-        // 3. Send didChangeConfiguration notification from client
-        sendClientMessage(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'method': 'workspace/didChangeConfiguration',
-            'params': <String, dynamic>{'settings': <String, dynamic>{}},
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+          // 3. Send didChangeConfiguration notification from client
+          sendClientMessage(
+            jsonEncode(<String, dynamic>{
+              'jsonrpc': '2.0',
+              'method': 'workspace/didChangeConfiguration',
+              'params': <String, dynamic>{'settings': <String, dynamic>{}},
+            }),
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        // 4. Fetch config again (should fetch new value)
-        final tabSize3 = await server.config
-            .getSection<Map<String, dynamic>>('editor');
-        expect(tabSize3, equals({'editor.tabSize': 2}));
+          // 4. Fetch config again (should fetch new value)
+          final tabSize3 = await server.config.getSection<Map<String, dynamic>>(
+            'editor',
+          );
+          expect(tabSize3, equals({'editor.tabSize': 2}));
         });
       });
 
-     group('Capabilities', () {
+      group('Capabilities', () {
         test('registers and unregisters dynamically', () async {
           await performInitialization();
 
-        final receivedMessages = <String>[];
-        clientLspStream.listen((msg) {
-          receivedMessages.add(msg);
-          // Respond success to registration request
-          final json = jsonDecode(msg) as Map<String, dynamic>;
-          if (json['id'] != null) {
-            sendClientMessage(
-              jsonEncode(<String, dynamic>{
-                'jsonrpc': '2.0',
-                'id': json['id'],
-                'result': null,
-              }),
-            );
-          }
-        });
+          final receivedMessages = <String>[];
+          clientLspStream.listen((msg) {
+            receivedMessages.add(msg);
+            // Respond success to registration request
+            final json = jsonDecode(msg) as Map<String, dynamic>;
+            if (json['id'] != null) {
+              sendClientMessage(
+                jsonEncode(<String, dynamic>{
+                  'jsonrpc': '2.0',
+                  'id': json['id'],
+                  'result': null,
+                }),
+              );
+            }
+          });
 
-        // Register hover
-        final regId = await server.capabilities.register(
-          method: 'textDocument/hover',
-        );
-        expect(regId, startsWith('dynamic-registration-'));
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+          // Register hover
+          final regId = await server.capabilities.register(
+            method: 'textDocument/hover',
+          );
+          expect(regId, startsWith('dynamic-registration-'));
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        expect(receivedMessages, hasLength(1));
-        final regReq =
-            jsonDecode(receivedMessages.first) as Map<String, dynamic>;
-        expect(regReq['method'], 'client/registerCapability');
-        final regParams = regReq['params'] as Map<String, dynamic>;
-        final registrations = regParams['registrations'] as List<dynamic>;
-        final firstReg = registrations.first as Map<String, dynamic>;
-        expect(firstReg['id'], regId);
+          expect(receivedMessages, hasLength(1));
+          final regReq =
+              jsonDecode(receivedMessages.first) as Map<String, dynamic>;
+          expect(regReq['method'], 'client/registerCapability');
+          final regParams = regReq['params'] as Map<String, dynamic>;
+          final registrations = regParams['registrations'] as List<dynamic>;
+          final firstReg = registrations.first as Map<String, dynamic>;
+          expect(firstReg['id'], regId);
 
-        // Unregister
-        await server.capabilities.unregister(
-          registrationId: regId,
-          method: 'textDocument/hover',
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+          // Unregister
+          await server.capabilities.unregister(
+            registrationId: regId,
+            method: 'textDocument/hover',
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        expect(receivedMessages, hasLength(2));
-        final unregReq =
-            jsonDecode(receivedMessages.last) as Map<String, dynamic>;
-        expect(unregReq['method'], 'client/unregisterCapability');
-        final unregParams = unregReq['params'] as Map<String, dynamic>;
-        final unregistrations =
-            unregParams['unregisterations'] as List<dynamic>;
-        final firstUnreg = unregistrations.first as Map<String, dynamic>;
-        expect(firstUnreg['id'], regId);
+          expect(receivedMessages, hasLength(2));
+          final unregReq =
+              jsonDecode(receivedMessages.last) as Map<String, dynamic>;
+          expect(unregReq['method'], 'client/unregisterCapability');
+          final unregParams = unregReq['params'] as Map<String, dynamic>;
+          final unregistrations =
+              unregParams['unregisterations'] as List<dynamic>;
+          final firstUnreg = unregistrations.first as Map<String, dynamic>;
+          expect(firstUnreg['id'], regId);
         });
       });
     });

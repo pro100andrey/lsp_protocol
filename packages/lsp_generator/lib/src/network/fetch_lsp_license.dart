@@ -41,6 +41,6 @@ Future<void> fetchLSPLicense(
 
   final filePath = p.join(outDir.path, 'License-code.txt');
   File(filePath).writeAsStringSync(response.body);
-  
+
   saveProgress.complete('Saved to $filePath');
 }

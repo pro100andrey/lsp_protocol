@@ -428,9 +428,10 @@ final class ServerApiVisitor {
       if (isVoidResult)
         sendCallExpr.awaited.statement
       else ...[
-        declareFinal('raw', type: tDynamic)
-            .assign(sendCallExpr.awaited)
-            .statement,
+        declareFinal(
+          'raw',
+          type: tDynamic,
+        ).assign(sendCallExpr.awaited).statement,
         ..._senderDecodeStatements(resultType),
       ],
     ];
@@ -793,7 +794,7 @@ final class ServerApiVisitor {
       .assign(
         refer(typeName).newInstanceNamed(
           'fromJson',
-          [ CodeExpression(Code('$sourceVar as Map<String, dynamic>'))],
+          [CodeExpression(Code('$sourceVar as Map<String, dynamic>'))],
         ),
       )
       .statement;
@@ -812,8 +813,6 @@ final class ServerApiVisitor {
     // Fallback — preserves correctness even if meta-model adds new methods.
     return literalString(wireMethod, raw: wireMethod.contains(r'$'));
   }
-
-
 }
 
 // ---------------------------------------------------------------------------

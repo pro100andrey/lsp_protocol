@@ -54,8 +54,7 @@ void main() {
     });
 
     test('throwIfCancelled() throws LspException when cancelled', () {
-      final token = CancellationToken()
-      ..cancel();
+      final token = CancellationToken()..cancel();
 
       expect(
         token.throwIfCancelled,

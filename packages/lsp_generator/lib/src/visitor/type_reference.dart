@@ -12,9 +12,10 @@ Reference toRef(ResolvedType type, {bool nullable = false}) {
   final actualType = type is NullableType ? type.inner : type;
 
   final ref = switch (actualType) {
-    InlineRecord(:final fields) => fields.isEmpty
-        ? TypeReference((b) => b..symbol = 'Object')
-        : _buildRecordRef(fields),
+    InlineRecord(:final fields) =>
+      fields.isEmpty
+          ? TypeReference((b) => b..symbol = 'Object')
+          : _buildRecordRef(fields),
     _ => toTypeRef(actualType),
   };
 

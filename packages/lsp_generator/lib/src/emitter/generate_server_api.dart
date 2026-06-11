@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../config/generated_files.dart';
+import '../config/files.dart';
 import '../resolver/resolved_state.dart';
 import '../visitor/emitter_helpers.dart';
 import '../visitor/server_api_visitor.dart';

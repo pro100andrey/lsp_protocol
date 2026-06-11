@@ -1,5 +1,4 @@
 class UserException implements Exception {
-
   UserException(this.message, {this.reason, this.code});
   final String message;
   final String? reason;

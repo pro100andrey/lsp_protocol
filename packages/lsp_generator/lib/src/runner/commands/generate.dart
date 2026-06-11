@@ -30,8 +30,7 @@ final class GenerateCommand extends Command<dynamic> {
 
   @override
   Future<void> run() async {
-    final outputPath =
-        argResults?['output'] as String? ?? 'packages/pro_lsp';
+    final outputPath = argResults?['output'] as String? ?? 'packages/pro_lsp';
     const lspVersion = '3.17';
 
     await Future.wait([

@@ -16,7 +16,7 @@ final class DiagnosticsManager {
   final Map<String, Timer> _timers = {};
 
   /// The duration to wait before publishing changes for a document.
-   Duration debounceDuration;
+  Duration debounceDuration;
 
   /// Schedules diagnostics to be published to the client.
   ///

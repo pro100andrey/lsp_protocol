@@ -709,8 +709,6 @@ void main() {
       );
     });
 
-
-
     test('structiures output contains Position class', () {
       final src = _getStructures(resolved);
       expect(src, contains('abstract class Position'));

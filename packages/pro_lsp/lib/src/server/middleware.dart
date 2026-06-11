@@ -19,10 +19,11 @@ final class LspIncomingRequest {
 }
 
 /// A function type for LSP middleware / request interceptors.
-typedef LspMiddleware = Future<Object?> Function(
-  LspIncomingRequest request,
-  Future<Object?> Function(LspIncomingRequest request) next,
-);
+typedef LspMiddleware =
+    Future<Object?> Function(
+      LspIncomingRequest request,
+      Future<Object?> Function(LspIncomingRequest request) next,
+    );
 
 /// Composes a list of [LspMiddleware] into a single handler function.
 Future<Object?> Function(LspIncomingRequest) composeMiddlewares(
@@ -34,6 +35,6 @@ Future<Object?> Function(LspIncomingRequest) composeMiddlewares(
     final currentHandler = handler;
     handler = (request) => middleware(request, currentHandler);
   }
-  
+
   return handler;
 }

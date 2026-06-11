@@ -16,14 +16,14 @@ enum LspState {
   ///  `exit` notification.
   shuttingDown,
 
-  /// The server has received an `exit` notification and has stopped processing 
+  /// The server has received an `exit` notification and has stopped processing
   /// messages.
   exited,
 }
 
 /// Helper extension on [LspState] to validate transitions and allowed messages.
 extension LspStateExtension on LspState {
-  /// Returns whether a request with the given [method] is allowed in this 
+  /// Returns whether a request with the given [method] is allowed in this
   /// state.
   bool isRequestAllowed(String method) {
     switch (this) {
