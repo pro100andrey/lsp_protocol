@@ -1,3 +1,5 @@
+// ignore_for_file: type=lint
+
 // GENERATED — do not edit.
 
 part of 'structures.dart';
@@ -553,7 +555,7 @@ abstract class DidChangeWatchedFilesClientCapabilities
     /// configuration for file changes from the server side.
     bool? dynamicRegistration,
 
-    /// Whether the client has support for [RelativePattern] or not.
+    /// Whether the client has support for `RelativePattern` or not.
     bool? relativePatternSupport,
   }) = _DidChangeWatchedFilesClientCapabilities;
 
@@ -562,7 +564,7 @@ abstract class DidChangeWatchedFilesClientCapabilities
   ) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities for a [WorkspaceSymbolRequest].
+/// Client capabilities for a `WorkspaceSymbolRequest`.
 @freezed
 abstract class WorkspaceSymbolClientCapabilities
     with _$WorkspaceSymbolClientCapabilities {
@@ -589,7 +591,7 @@ abstract class WorkspaceSymbolClientCapabilities
   ) => _$WorkspaceSymbolClientCapabilitiesFromJson(json);
 }
 
-/// The client capabilities of a [ExecuteCommandRequest].
+/// The client capabilities of a `ExecuteCommandRequest`.
 @freezed
 abstract class ExecuteCommandClientCapabilities
     with _$ExecuteCommandClientCapabilities {
@@ -852,7 +854,7 @@ abstract class HoverClientCapabilities with _$HoverClientCapabilities {
       _$HoverClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a [SignatureHelpRequest].
+/// Client Capabilities for a `SignatureHelpRequest`.
 @freezed
 abstract class SignatureHelpClientCapabilities
     with _$SignatureHelpClientCapabilities {
@@ -899,7 +901,7 @@ abstract class DeclarationClientCapabilities
       _$DeclarationClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a [DefinitionRequest].
+/// Client Capabilities for a `DefinitionRequest`.
 @freezed
 abstract class DefinitionClientCapabilities
     with _$DefinitionClientCapabilities {
@@ -955,7 +957,7 @@ abstract class ImplementationClientCapabilities
   ) => _$ImplementationClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a [ReferencesRequest].
+/// Client Capabilities for a `ReferencesRequest`.
 @freezed
 abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
   const factory ReferenceClientCapabilities({
@@ -967,7 +969,7 @@ abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
       _$ReferenceClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a [DocumentHighlightRequest].
+/// Client Capabilities for a `DocumentHighlightRequest`.
 @freezed
 abstract class DocumentHighlightClientCapabilities
     with _$DocumentHighlightClientCapabilities {
@@ -981,7 +983,7 @@ abstract class DocumentHighlightClientCapabilities
   ) => _$DocumentHighlightClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a [DocumentSymbolRequest].
+/// Client Capabilities for a `DocumentSymbolRequest`.
 @freezed
 abstract class DocumentSymbolClientCapabilities
     with _$DocumentSymbolClientCapabilities {
@@ -1011,7 +1013,7 @@ abstract class DocumentSymbolClientCapabilities
   ) => _$DocumentSymbolClientCapabilitiesFromJson(json);
 }
 
-/// The Client Capabilities of a [CodeActionRequest].
+/// The Client Capabilities of a `CodeActionRequest`.
 @freezed
 abstract class CodeActionClientCapabilities
     with _$CodeActionClientCapabilities {
@@ -1050,7 +1052,7 @@ abstract class CodeActionClientCapabilities
       _$CodeActionClientCapabilitiesFromJson(json);
 }
 
-/// The client capabilities of a [CodeLensRequest].
+/// The client capabilities of a `CodeLensRequest`.
 @freezed
 abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
   const factory CodeLensClientCapabilities({
@@ -1062,7 +1064,7 @@ abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
       _$CodeLensClientCapabilitiesFromJson(json);
 }
 
-/// The client capabilities of a [DocumentLinkRequest].
+/// The client capabilities of a `DocumentLinkRequest`.
 @freezed
 abstract class DocumentLinkClientCapabilities
     with _$DocumentLinkClientCapabilities {
@@ -1092,7 +1094,7 @@ abstract class DocumentColorClientCapabilities
       _$DocumentColorClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities of a [DocumentFormattingRequest].
+/// Client capabilities of a `DocumentFormattingRequest`.
 @freezed
 abstract class DocumentFormattingClientCapabilities
     with _$DocumentFormattingClientCapabilities {
@@ -1106,7 +1108,7 @@ abstract class DocumentFormattingClientCapabilities
   ) => _$DocumentFormattingClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities of a [DocumentRangeFormattingRequest].
+/// Client capabilities of a `DocumentRangeFormattingRequest`.
 @freezed
 abstract class DocumentRangeFormattingClientCapabilities
     with _$DocumentRangeFormattingClientCapabilities {
@@ -1123,7 +1125,7 @@ abstract class DocumentRangeFormattingClientCapabilities
   ) => _$DocumentRangeFormattingClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities of a [DocumentOnTypeFormattingRequest].
+/// Client capabilities of a `DocumentOnTypeFormattingRequest`.
 @freezed
 abstract class DocumentOnTypeFormattingClientCapabilities
     with _$DocumentOnTypeFormattingClientCapabilities {
@@ -1262,12 +1264,6 @@ abstract class CallHierarchyClientCapabilities
 abstract class SemanticTokensClientCapabilities
     with _$SemanticTokensClientCapabilities {
   const factory SemanticTokensClientCapabilities({
-    /// Whether implementation supports dynamic registration. If this is set to
-    /// `true` the client supports the new `(TextDocumentRegistrationOptions &
-    /// StaticRegistrationOptions)` return value for the corresponding server
-    /// capability as well.
-    bool? dynamicRegistration,
-
     /// Which requests the client supports and might send to the server
     /// depending on the server's capability. Please note that clients might not
     /// show semantic tokens or degrade some of the user experience if a range
@@ -1286,6 +1282,12 @@ abstract class SemanticTokensClientCapabilities
 
     /// The token formats the clients supports.
     required List<TokenFormat> formats,
+
+    /// Whether implementation supports dynamic registration. If this is set to
+    /// `true` the client supports the new `(TextDocumentRegistrationOptions &
+    /// StaticRegistrationOptions)` return value for the corresponding server
+    /// capability as well.
+    bool? dynamicRegistration,
 
     /// Whether the client supports tokens that can overlap each other.
     bool? overlappingTokenSupport,

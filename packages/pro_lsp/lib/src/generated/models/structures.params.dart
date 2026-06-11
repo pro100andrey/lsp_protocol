@@ -1,3 +1,5 @@
+// ignore_for_file: type=lint
+
 // GENERATED — do not edit.
 
 part of 'structures.dart';
@@ -105,19 +107,19 @@ abstract class ConfigurationParams with _$ConfigurationParams {
       _$ConfigurationParamsFromJson(json);
 }
 
-/// Parameters for a [DocumentColorRequest].
+/// Parameters for a `DocumentColorRequest`.
 @freezed
 abstract class DocumentColorParams with _$DocumentColorParams {
   const factory DocumentColorParams({
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
   }) = _DocumentColorParams;
 
   factory DocumentColorParams.fromJson(Map<String, dynamic> json) =>
@@ -143,17 +145,10 @@ abstract class DocumentColorRegistrationOptions
   ) => _$DocumentColorRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a [ColorPresentationRequest].
+/// Parameters for a `ColorPresentationRequest`.
 @freezed
 abstract class ColorPresentationParams with _$ColorPresentationParams {
   const factory ColorPresentationParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
     /// The text document.
     required TextDocumentIdentifier textDocument,
 
@@ -162,6 +157,13 @@ abstract class ColorPresentationParams with _$ColorPresentationParams {
 
     /// The range where the color would be inserted. Serves as a context.
     required Range range,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _ColorPresentationParams;
 
   factory ColorPresentationParams.fromJson(Map<String, dynamic> json) =>
@@ -191,19 +193,19 @@ abstract class TextDocumentRegistrationOptions
       _$TextDocumentRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a [FoldingRangeRequest].
+/// Parameters for a `FoldingRangeRequest`.
 @freezed
 abstract class FoldingRangeParams with _$FoldingRangeParams {
   const factory FoldingRangeParams({
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
   }) = _FoldingRangeParams;
 
   factory FoldingRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -253,11 +255,10 @@ abstract class DeclarationParams with _$DeclarationParams {
 abstract class DeclarationRegistrationOptions
     with _$DeclarationRegistrationOptions {
   const factory DeclarationRegistrationOptions({
-    bool? workDoneProgress,
-
     /// A document selector to identify the scope of the registration. If set to
     /// null the document selector provided on the client side will be used.
     required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -272,18 +273,18 @@ abstract class DeclarationRegistrationOptions
 @freezed
 abstract class SelectionRangeParams with _$SelectionRangeParams {
   const factory SelectionRangeParams({
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
+
+    /// The positions inside the text document.
+    required List<Position> positions,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
-    /// The positions inside the text document.
-    required List<Position> positions,
   }) = _SelectionRangeParams;
 
   factory SelectionRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -294,11 +295,10 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
 abstract class SelectionRangeRegistrationOptions
     with _$SelectionRangeRegistrationOptions {
   const factory SelectionRangeRegistrationOptions({
-    bool? workDoneProgress,
-
     /// A document selector to identify the scope of the registration. If set to
     /// null the document selector provided on the client side will be used.
     required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -383,13 +383,14 @@ abstract class CallHierarchyRegistrationOptions
 abstract class CallHierarchyIncomingCallsParams
     with _$CallHierarchyIncomingCallsParams {
   const factory CallHierarchyIncomingCallsParams({
+    required CallHierarchyItem item,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-    required CallHierarchyItem item,
   }) = _CallHierarchyIncomingCallsParams;
 
   factory CallHierarchyIncomingCallsParams.fromJson(
@@ -404,13 +405,14 @@ abstract class CallHierarchyIncomingCallsParams
 abstract class CallHierarchyOutgoingCallsParams
     with _$CallHierarchyOutgoingCallsParams {
   const factory CallHierarchyOutgoingCallsParams({
+    required CallHierarchyItem item,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-    required CallHierarchyItem item,
   }) = _CallHierarchyOutgoingCallsParams;
 
   factory CallHierarchyOutgoingCallsParams.fromJson(
@@ -422,15 +424,15 @@ abstract class CallHierarchyOutgoingCallsParams
 @freezed
 abstract class SemanticTokensParams with _$SemanticTokensParams {
   const factory SemanticTokensParams({
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
   }) = _SemanticTokensParams;
 
   factory SemanticTokensParams.fromJson(Map<String, dynamic> json) =>
@@ -445,10 +447,10 @@ abstract class SemanticTokensRegistrationOptions
     /// A document selector to identify the scope of the registration. If set to
     /// null the document selector provided on the client side will be used.
     required DocumentSelector? documentSelector,
-    bool? workDoneProgress,
 
     /// The legend used by the server
     required SemanticTokensLegend legend,
+    bool? workDoneProgress,
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
@@ -477,19 +479,19 @@ abstract class SemanticTokensRegistrationOptions
 @freezed
 abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
   const factory SemanticTokensDeltaParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
     /// The text document.
     required TextDocumentIdentifier textDocument,
 
     /// The result id of a previous response. The result Id can either point to
     /// a full response or a delta response depending on what was received last.
     required String previousResultId,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _SemanticTokensDeltaParams;
 
   factory SemanticTokensDeltaParams.fromJson(Map<String, dynamic> json) =>
@@ -500,18 +502,18 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
 @freezed
 abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
   const factory SemanticTokensRangeParams({
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
+
+    /// The range the semantic tokens are requested for.
+    required Range range,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
-    /// The range the semantic tokens are requested for.
-    required Range range,
   }) = _SemanticTokensRangeParams;
 
   factory SemanticTokensRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -728,13 +730,14 @@ abstract class TypeHierarchyRegistrationOptions
 abstract class TypeHierarchySupertypesParams
     with _$TypeHierarchySupertypesParams {
   const factory TypeHierarchySupertypesParams({
+    required TypeHierarchyItem item,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-    required TypeHierarchyItem item,
   }) = _TypeHierarchySupertypesParams;
 
   factory TypeHierarchySupertypesParams.fromJson(Map<String, dynamic> json) =>
@@ -747,13 +750,14 @@ abstract class TypeHierarchySupertypesParams
 @freezed
 abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
   const factory TypeHierarchySubtypesParams({
+    required TypeHierarchyItem item,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-    required TypeHierarchyItem item,
   }) = _TypeHierarchySubtypesParams;
 
   factory TypeHierarchySubtypesParams.fromJson(Map<String, dynamic> json) =>
@@ -766,9 +770,6 @@ abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
 @freezed
 abstract class InlineValueParams with _$InlineValueParams {
   const factory InlineValueParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// The text document.
     required TextDocumentIdentifier textDocument,
 
@@ -778,6 +779,9 @@ abstract class InlineValueParams with _$InlineValueParams {
     /// Additional information about the context in which inline values were
     /// requested.
     required InlineValueContext context,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _InlineValueParams;
 
   factory InlineValueParams.fromJson(Map<String, dynamic> json) =>
@@ -791,11 +795,10 @@ abstract class InlineValueParams with _$InlineValueParams {
 abstract class InlineValueRegistrationOptions
     with _$InlineValueRegistrationOptions {
   const factory InlineValueRegistrationOptions({
-    bool? workDoneProgress,
-
     /// A document selector to identify the scope of the registration. If set to
     /// null the document selector provided on the client side will be used.
     required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -812,14 +815,14 @@ abstract class InlineValueRegistrationOptions
 @freezed
 abstract class InlayHintParams with _$InlayHintParams {
   const factory InlayHintParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// The text document.
     required TextDocumentIdentifier textDocument,
 
     /// The document range for which inlay hints should be computed.
     required Range range,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _InlayHintParams;
 
   factory InlayHintParams.fromJson(Map<String, dynamic> json) =>
@@ -833,15 +836,14 @@ abstract class InlayHintParams with _$InlayHintParams {
 abstract class InlayHintRegistrationOptions
     with _$InlayHintRegistrationOptions {
   const factory InlayHintRegistrationOptions({
+    /// A document selector to identify the scope of the registration. If set to
+    /// null the document selector provided on the client side will be used.
+    required DocumentSelector? documentSelector,
     bool? workDoneProgress,
 
     /// The server provides support to resolve additional information for an
     /// inlay hint item.
     bool? resolveProvider,
-
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -858,15 +860,15 @@ abstract class InlayHintRegistrationOptions
 @freezed
 abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
   const factory DocumentDiagnosticParams({
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
 
     /// The additional identifier provided during registration.
     String? identifier,
@@ -889,11 +891,6 @@ abstract class DiagnosticRegistrationOptions
     /// A document selector to identify the scope of the registration. If set to
     /// null the document selector provided on the client side will be used.
     required DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-
-    /// An optional identifier under which the diagnostics are managed by the
-    /// client.
-    String? identifier,
 
     /// Whether the language has inter file dependencies meaning that editing
     /// code in one file can result in a different diagnostic set in another
@@ -903,6 +900,11 @@ abstract class DiagnosticRegistrationOptions
 
     /// The server provides support for workspace diagnostics as well.
     required bool workspaceDiagnostics,
+    bool? workDoneProgress,
+
+    /// An optional identifier under which the diagnostics are managed by the
+    /// client.
+    String? identifier,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -919,6 +921,9 @@ abstract class DiagnosticRegistrationOptions
 @freezed
 abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
   const factory WorkspaceDiagnosticParams({
+    /// The currently known diagnostic reports with their previous result ids.
+    required List<PreviousResultId> previousResultIds,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
@@ -928,9 +933,6 @@ abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
 
     /// The additional identifier provided during registration.
     String? identifier,
-
-    /// The currently known diagnostic reports with their previous result ids.
-    required List<PreviousResultId> previousResultIds,
   }) = _WorkspaceDiagnosticParams;
 
   factory WorkspaceDiagnosticParams.fromJson(Map<String, dynamic> json) =>
@@ -1035,12 +1037,12 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
     /// The position inside the text document.
     required Position position,
 
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// Additional information about the context in which inline completions
     /// were requested.
     required InlineCompletionContext context,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _InlineCompletionParams;
 
   factory InlineCompletionParams.fromJson(Map<String, dynamic> json) =>
@@ -1055,11 +1057,10 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
 abstract class InlineCompletionRegistrationOptions
     with _$InlineCompletionRegistrationOptions {
   const factory InlineCompletionRegistrationOptions({
-    bool? workDoneProgress,
-
     /// A document selector to identify the scope of the registration. If set to
     /// null the document selector provided on the client side will be used.
     required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1094,14 +1095,23 @@ abstract class UnregistrationParams with _$UnregistrationParams {
 @freezed
 abstract class InitializeParams with _$InitializeParams {
   const factory InitializeParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// The process Id of the parent process that started the server.
     ///
     /// Is `null` if the process has not been started by another process. If the
     /// parent process is not alive then the server should exit.
     required int? processId,
+
+    /// The rootUri of the workspace. Is null if no folder is open. If both
+    /// `rootPath` and `rootUri` are set `rootUri` wins.
+    ///
+    /// @deprecated in favour of workspaceFolders.
+    @Deprecated('in favour of workspaceFolders.') required String? rootUri,
+
+    /// The capabilities provided by the client (editor or tool)
+    required ClientCapabilities capabilities,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// Information about the client
     ({String name, String? version})? clientInfo,
@@ -1117,15 +1127,6 @@ abstract class InitializeParams with _$InitializeParams {
     ///
     /// @deprecated in favour of rootUri.
     @Deprecated('in favour of rootUri.') String? rootPath,
-
-    /// The rootUri of the workspace. Is null if no folder is open. If both
-    /// `rootPath` and `rootUri` are set `rootUri` wins.
-    ///
-    /// @deprecated in favour of workspaceFolders.
-    @Deprecated('in favour of workspaceFolders.') required String? rootUri,
-
-    /// The capabilities provided by the client (editor or tool)
-    required ClientCapabilities capabilities,
 
     /// User provided initialization options.
     LSPAny? initializationOptions,
@@ -1181,7 +1182,7 @@ abstract class DidChangeConfigurationRegistrationOptions
 @freezed
 abstract class ShowMessageParams with _$ShowMessageParams {
   const factory ShowMessageParams({
-    /// The message type. See [MessageType]
+    /// The message type. See `MessageType`
     required MessageType type,
 
     /// The actual message.
@@ -1195,7 +1196,7 @@ abstract class ShowMessageParams with _$ShowMessageParams {
 @freezed
 abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
   const factory ShowMessageRequestParams({
-    /// The message type. See [MessageType]
+    /// The message type. See `MessageType`
     required MessageType type,
 
     /// The actual message.
@@ -1213,7 +1214,7 @@ abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
 @freezed
 abstract class LogMessageParams with _$LogMessageParams {
   const factory LogMessageParams({
-    /// The message type. See [MessageType]
+    /// The message type. See `MessageType`
     required MessageType type,
 
     /// The actual message.
@@ -1375,12 +1376,12 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
     /// The URI for which diagnostic information is reported.
     required String uri,
 
+    /// An array of diagnostic information items.
+    required List<Diagnostic> diagnostics,
+
     /// Optional the version number of the document the diagnostics are
     /// published for.
     int? version,
-
-    /// An array of diagnostic information items.
-    required List<Diagnostic> diagnostics,
   }) = _PublishDiagnosticsParams;
 
   factory PublishDiagnosticsParams.fromJson(Map<String, dynamic> json) =>
@@ -1414,7 +1415,7 @@ abstract class CompletionParams with _$CompletionParams {
       _$CompletionParamsFromJson(json);
 }
 
-/// Registration options for a [CompletionRequest].
+/// Registration options for a `CompletionRequest`.
 @freezed
 abstract class CompletionRegistrationOptions
     with _$CompletionRegistrationOptions {
@@ -1458,7 +1459,7 @@ abstract class CompletionRegistrationOptions
       _$CompletionRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a [HoverRequest].
+/// Parameters for a `HoverRequest`.
 @freezed
 abstract class HoverParams with _$HoverParams {
   const factory HoverParams({
@@ -1476,7 +1477,7 @@ abstract class HoverParams with _$HoverParams {
       _$HoverParamsFromJson(json);
 }
 
-/// Registration options for a [HoverRequest].
+/// Registration options for a `HoverRequest`.
 @freezed
 abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
   const factory HoverRegistrationOptions({
@@ -1490,7 +1491,7 @@ abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
       _$HoverRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a [SignatureHelpRequest].
+/// Parameters for a `SignatureHelpRequest`.
 @freezed
 abstract class SignatureHelpParams with _$SignatureHelpParams {
   const factory SignatureHelpParams({
@@ -1513,7 +1514,7 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
       _$SignatureHelpParamsFromJson(json);
 }
 
-/// Registration options for a [SignatureHelpRequest].
+/// Registration options for a `SignatureHelpRequest`.
 @freezed
 abstract class SignatureHelpRegistrationOptions
     with _$SignatureHelpRegistrationOptions {
@@ -1539,7 +1540,7 @@ abstract class SignatureHelpRegistrationOptions
   ) => _$SignatureHelpRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a [DefinitionRequest].
+/// Parameters for a `DefinitionRequest`.
 @freezed
 abstract class DefinitionParams with _$DefinitionParams {
   const factory DefinitionParams({
@@ -1561,7 +1562,7 @@ abstract class DefinitionParams with _$DefinitionParams {
       _$DefinitionParamsFromJson(json);
 }
 
-/// Registration options for a [DefinitionRequest].
+/// Registration options for a `DefinitionRequest`.
 @freezed
 abstract class DefinitionRegistrationOptions
     with _$DefinitionRegistrationOptions {
@@ -1576,7 +1577,7 @@ abstract class DefinitionRegistrationOptions
       _$DefinitionRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a [ReferencesRequest].
+/// Parameters for a `ReferencesRequest`.
 @freezed
 abstract class ReferenceParams with _$ReferenceParams {
   const factory ReferenceParams({
@@ -1585,6 +1586,7 @@ abstract class ReferenceParams with _$ReferenceParams {
 
     /// The position inside the text document.
     required Position position,
+    required ReferenceContext context,
 
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
@@ -1592,14 +1594,13 @@ abstract class ReferenceParams with _$ReferenceParams {
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-    required ReferenceContext context,
   }) = _ReferenceParams;
 
   factory ReferenceParams.fromJson(Map<String, dynamic> json) =>
       _$ReferenceParamsFromJson(json);
 }
 
-/// Registration options for a [ReferencesRequest].
+/// Registration options for a `ReferencesRequest`.
 @freezed
 abstract class ReferenceRegistrationOptions
     with _$ReferenceRegistrationOptions {
@@ -1614,7 +1615,7 @@ abstract class ReferenceRegistrationOptions
       _$ReferenceRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a [DocumentHighlightRequest].
+/// Parameters for a `DocumentHighlightRequest`.
 @freezed
 abstract class DocumentHighlightParams with _$DocumentHighlightParams {
   const factory DocumentHighlightParams({
@@ -1636,7 +1637,7 @@ abstract class DocumentHighlightParams with _$DocumentHighlightParams {
       _$DocumentHighlightParamsFromJson(json);
 }
 
-/// Registration options for a [DocumentHighlightRequest].
+/// Registration options for a `DocumentHighlightRequest`.
 @freezed
 abstract class DocumentHighlightRegistrationOptions
     with _$DocumentHighlightRegistrationOptions {
@@ -1652,26 +1653,26 @@ abstract class DocumentHighlightRegistrationOptions
   ) => _$DocumentHighlightRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a [DocumentSymbolRequest].
+/// Parameters for a `DocumentSymbolRequest`.
 @freezed
 abstract class DocumentSymbolParams with _$DocumentSymbolParams {
   const factory DocumentSymbolParams({
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
   }) = _DocumentSymbolParams;
 
   factory DocumentSymbolParams.fromJson(Map<String, dynamic> json) =>
       _$DocumentSymbolParamsFromJson(json);
 }
 
-/// Registration options for a [DocumentSymbolRequest].
+/// Registration options for a `DocumentSymbolRequest`.
 @freezed
 abstract class DocumentSymbolRegistrationOptions
     with _$DocumentSymbolRegistrationOptions {
@@ -1691,17 +1692,10 @@ abstract class DocumentSymbolRegistrationOptions
   ) => _$DocumentSymbolRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a [CodeActionRequest].
+/// The parameters of a `CodeActionRequest`.
 @freezed
 abstract class CodeActionParams with _$CodeActionParams {
   const factory CodeActionParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
     /// The document in which the command was invoked.
     required TextDocumentIdentifier textDocument,
 
@@ -1710,13 +1704,20 @@ abstract class CodeActionParams with _$CodeActionParams {
 
     /// Context carrying additional information.
     required CodeActionContext context,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _CodeActionParams;
 
   factory CodeActionParams.fromJson(Map<String, dynamic> json) =>
       _$CodeActionParamsFromJson(json);
 }
 
-/// Registration options for a [CodeActionRequest].
+/// Registration options for a `CodeActionRequest`.
 @freezed
 abstract class CodeActionRegistrationOptions
     with _$CodeActionRegistrationOptions {
@@ -1741,27 +1742,27 @@ abstract class CodeActionRegistrationOptions
       _$CodeActionRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a [WorkspaceSymbolRequest].
+/// The parameters of a `WorkspaceSymbolRequest`.
 @freezed
 abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
   const factory WorkspaceSymbolParams({
+    /// A query string to filter symbols by. Clients may send an empty string
+    /// here to request all symbols.
+    required String query,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// A query string to filter symbols by. Clients may send an empty string
-    /// here to request all symbols.
-    required String query,
   }) = _WorkspaceSymbolParams;
 
   factory WorkspaceSymbolParams.fromJson(Map<String, dynamic> json) =>
       _$WorkspaceSymbolParamsFromJson(json);
 }
 
-/// Registration options for a [WorkspaceSymbolRequest].
+/// Registration options for a `WorkspaceSymbolRequest`.
 @freezed
 abstract class WorkspaceSymbolRegistrationOptions
     with _$WorkspaceSymbolRegistrationOptions {
@@ -1778,26 +1779,26 @@ abstract class WorkspaceSymbolRegistrationOptions
   ) => _$WorkspaceSymbolRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a [CodeLensRequest].
+/// The parameters of a `CodeLensRequest`.
 @freezed
 abstract class CodeLensParams with _$CodeLensParams {
   const factory CodeLensParams({
+    /// The document to request code lens for.
+    required TextDocumentIdentifier textDocument,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The document to request code lens for.
-    required TextDocumentIdentifier textDocument,
   }) = _CodeLensParams;
 
   factory CodeLensParams.fromJson(Map<String, dynamic> json) =>
       _$CodeLensParamsFromJson(json);
 }
 
-/// Registration options for a [CodeLensRequest].
+/// Registration options for a `CodeLensRequest`.
 @freezed
 abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
   const factory CodeLensRegistrationOptions({
@@ -1814,26 +1815,26 @@ abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
       _$CodeLensRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a [DocumentLinkRequest].
+/// The parameters of a `DocumentLinkRequest`.
 @freezed
 abstract class DocumentLinkParams with _$DocumentLinkParams {
   const factory DocumentLinkParams({
+    /// The document to provide document links for.
+    required TextDocumentIdentifier textDocument,
+
     /// An optional token that a server can use to report work done progress.
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
-
-    /// The document to provide document links for.
-    required TextDocumentIdentifier textDocument,
   }) = _DocumentLinkParams;
 
   factory DocumentLinkParams.fromJson(Map<String, dynamic> json) =>
       _$DocumentLinkParamsFromJson(json);
 }
 
-/// Registration options for a [DocumentLinkRequest].
+/// Registration options for a `DocumentLinkRequest`.
 @freezed
 abstract class DocumentLinkRegistrationOptions
     with _$DocumentLinkRegistrationOptions {
@@ -1851,25 +1852,25 @@ abstract class DocumentLinkRegistrationOptions
       _$DocumentLinkRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a [DocumentFormattingRequest].
+/// The parameters of a `DocumentFormattingRequest`.
 @freezed
 abstract class DocumentFormattingParams with _$DocumentFormattingParams {
   const factory DocumentFormattingParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// The document to format.
     required TextDocumentIdentifier textDocument,
 
     /// The format options.
     required FormattingOptions options,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _DocumentFormattingParams;
 
   factory DocumentFormattingParams.fromJson(Map<String, dynamic> json) =>
       _$DocumentFormattingParamsFromJson(json);
 }
 
-/// Registration options for a [DocumentFormattingRequest].
+/// Registration options for a `DocumentFormattingRequest`.
 @freezed
 abstract class DocumentFormattingRegistrationOptions
     with _$DocumentFormattingRegistrationOptions {
@@ -1885,14 +1886,11 @@ abstract class DocumentFormattingRegistrationOptions
   ) => _$DocumentFormattingRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a [DocumentRangeFormattingRequest].
+/// The parameters of a `DocumentRangeFormattingRequest`.
 @freezed
 abstract class DocumentRangeFormattingParams
     with _$DocumentRangeFormattingParams {
   const factory DocumentRangeFormattingParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// The document to format.
     required TextDocumentIdentifier textDocument,
 
@@ -1901,13 +1899,16 @@ abstract class DocumentRangeFormattingParams
 
     /// The format options
     required FormattingOptions options,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _DocumentRangeFormattingParams;
 
   factory DocumentRangeFormattingParams.fromJson(Map<String, dynamic> json) =>
       _$DocumentRangeFormattingParamsFromJson(json);
 }
 
-/// Registration options for a [DocumentRangeFormattingRequest].
+/// Registration options for a `DocumentRangeFormattingRequest`.
 @freezed
 abstract class DocumentRangeFormattingRegistrationOptions
     with _$DocumentRangeFormattingRegistrationOptions {
@@ -1926,7 +1927,7 @@ abstract class DocumentRangeFormattingRegistrationOptions
   ) => _$DocumentRangeFormattingRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a [DocumentRangesFormattingRequest].
+/// The parameters of a `DocumentRangesFormattingRequest`.
 ///
 /// @since 3.18.0
 /// @proposed
@@ -1934,9 +1935,6 @@ abstract class DocumentRangeFormattingRegistrationOptions
 abstract class DocumentRangesFormattingParams
     with _$DocumentRangesFormattingParams {
   const factory DocumentRangesFormattingParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// The document to format.
     required TextDocumentIdentifier textDocument,
 
@@ -1945,13 +1943,16 @@ abstract class DocumentRangesFormattingParams
 
     /// The format options
     required FormattingOptions options,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _DocumentRangesFormattingParams;
 
   factory DocumentRangesFormattingParams.fromJson(Map<String, dynamic> json) =>
       _$DocumentRangesFormattingParamsFromJson(json);
 }
 
-/// The parameters of a [DocumentOnTypeFormattingRequest].
+/// The parameters of a `DocumentOnTypeFormattingRequest`.
 @freezed
 abstract class DocumentOnTypeFormattingParams
     with _$DocumentOnTypeFormattingParams {
@@ -1978,7 +1979,7 @@ abstract class DocumentOnTypeFormattingParams
       _$DocumentOnTypeFormattingParamsFromJson(json);
 }
 
-/// Registration options for a [DocumentOnTypeFormattingRequest].
+/// Registration options for a `DocumentOnTypeFormattingRequest`.
 @freezed
 abstract class DocumentOnTypeFormattingRegistrationOptions
     with _$DocumentOnTypeFormattingRegistrationOptions {
@@ -1999,13 +2000,10 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
   ) => _$DocumentOnTypeFormattingRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a [RenameRequest].
+/// The parameters of a `RenameRequest`.
 @freezed
 abstract class RenameParams with _$RenameParams {
   const factory RenameParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// The document to rename.
     required TextDocumentIdentifier textDocument,
 
@@ -2013,15 +2011,18 @@ abstract class RenameParams with _$RenameParams {
     required Position position,
 
     /// The new name of the symbol. If the given name is not valid the request
-    /// must return a [ResponseError] with an appropriate message set.
+    /// must return a `ResponseError` with an appropriate message set.
     required String newName,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _RenameParams;
 
   factory RenameParams.fromJson(Map<String, dynamic> json) =>
       _$RenameParamsFromJson(json);
 }
 
-/// Registration options for a [RenameRequest].
+/// Registration options for a `RenameRequest`.
 @freezed
 abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
   const factory RenameRegistrationOptions({
@@ -2057,15 +2058,15 @@ abstract class PrepareRenameParams with _$PrepareRenameParams {
       _$PrepareRenameParamsFromJson(json);
 }
 
-/// The parameters of a [ExecuteCommandRequest].
+/// The parameters of a `ExecuteCommandRequest`.
 @freezed
 abstract class ExecuteCommandParams with _$ExecuteCommandParams {
   const factory ExecuteCommandParams({
-    /// An optional token that a server can use to report work done progress.
-    @_ProgressTokenConverter() ProgressToken? workDoneToken,
-
     /// The identifier of the actual command handler.
     required String command,
+
+    /// An optional token that a server can use to report work done progress.
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
 
     /// Arguments that the command should be invoked with.
     List<LSPAny>? arguments,
@@ -2075,15 +2076,14 @@ abstract class ExecuteCommandParams with _$ExecuteCommandParams {
       _$ExecuteCommandParamsFromJson(json);
 }
 
-/// Registration options for a [ExecuteCommandRequest].
+/// Registration options for a `ExecuteCommandRequest`.
 @freezed
 abstract class ExecuteCommandRegistrationOptions
     with _$ExecuteCommandRegistrationOptions {
   const factory ExecuteCommandRegistrationOptions({
-    bool? workDoneProgress,
-
     /// The commands to be executed on the server
     required List<String> commands,
+    bool? workDoneProgress,
   }) = _ExecuteCommandRegistrationOptions;
 
   factory ExecuteCommandRegistrationOptions.fromJson(
@@ -2095,12 +2095,12 @@ abstract class ExecuteCommandRegistrationOptions
 @freezed
 abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
   const factory ApplyWorkspaceEditParams({
+    /// The edits to apply.
+    required WorkspaceEdit edit,
+
     /// An optional label of the workspace edit. This label is presented in the
     /// user interface for example on an undo stack to undo the workspace edit.
     String? label,
-
-    /// The edits to apply.
-    required WorkspaceEdit edit,
   }) = _ApplyWorkspaceEditParams;
 
   factory ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) =>
@@ -2273,10 +2273,9 @@ abstract class CallHierarchyOptions with _$CallHierarchyOptions {
 @freezed
 abstract class SemanticTokensOptions with _$SemanticTokensOptions {
   const factory SemanticTokensOptions({
-    bool? workDoneProgress,
-
     /// The legend used by the server
     required SemanticTokensLegend legend,
+    bool? workDoneProgress,
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
@@ -2358,12 +2357,6 @@ abstract class InlayHintOptions with _$InlayHintOptions {
 @freezed
 abstract class DiagnosticOptions with _$DiagnosticOptions {
   const factory DiagnosticOptions({
-    bool? workDoneProgress,
-
-    /// An optional identifier under which the diagnostics are managed by the
-    /// client.
-    String? identifier,
-
     /// Whether the language has inter file dependencies meaning that editing
     /// code in one file can result in a different diagnostic set in another
     /// file. Inter file dependencies are common for most programming languages
@@ -2372,6 +2365,11 @@ abstract class DiagnosticOptions with _$DiagnosticOptions {
 
     /// The server provides support for workspace diagnostics as well.
     required bool workspaceDiagnostics,
+    bool? workDoneProgress,
+
+    /// An optional identifier under which the diagnostics are managed by the
+    /// client.
+    String? identifier,
   }) = _DiagnosticOptions;
 
   factory DiagnosticOptions.fromJson(Map<String, dynamic> json) =>
@@ -2469,7 +2467,7 @@ abstract class HoverOptions with _$HoverOptions {
       _$HoverOptionsFromJson(json);
 }
 
-/// Server Capabilities for a [SignatureHelpRequest].
+/// Server Capabilities for a `SignatureHelpRequest`.
 @freezed
 abstract class SignatureHelpOptions with _$SignatureHelpOptions {
   const factory SignatureHelpOptions({
@@ -2490,7 +2488,7 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
       _$SignatureHelpOptionsFromJson(json);
 }
 
-/// Server Capabilities for a [DefinitionRequest].
+/// Server Capabilities for a `DefinitionRequest`.
 @freezed
 abstract class DefinitionOptions with _$DefinitionOptions {
   const factory DefinitionOptions({bool? workDoneProgress}) =
@@ -2509,7 +2507,7 @@ abstract class ReferenceOptions with _$ReferenceOptions {
       _$ReferenceOptionsFromJson(json);
 }
 
-/// Provider options for a [DocumentHighlightRequest].
+/// Provider options for a `DocumentHighlightRequest`.
 @freezed
 abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
   const factory DocumentHighlightOptions({bool? workDoneProgress}) =
@@ -2519,7 +2517,7 @@ abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
       _$DocumentHighlightOptionsFromJson(json);
 }
 
-/// Provider options for a [DocumentSymbolRequest].
+/// Provider options for a `DocumentSymbolRequest`.
 @freezed
 abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
   const factory DocumentSymbolOptions({
@@ -2534,7 +2532,7 @@ abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
       _$DocumentSymbolOptionsFromJson(json);
 }
 
-/// Provider options for a [CodeActionRequest].
+/// Provider options for a `CodeActionRequest`.
 @freezed
 abstract class CodeActionOptions with _$CodeActionOptions {
   const factory CodeActionOptions({
@@ -2555,7 +2553,7 @@ abstract class CodeActionOptions with _$CodeActionOptions {
       _$CodeActionOptionsFromJson(json);
 }
 
-/// Server capabilities for a [WorkspaceSymbolRequest].
+/// Server capabilities for a `WorkspaceSymbolRequest`.
 @freezed
 abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
   const factory WorkspaceSymbolOptions({
@@ -2570,7 +2568,7 @@ abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
       _$WorkspaceSymbolOptionsFromJson(json);
 }
 
-/// Code Lens provider options of a [CodeLensRequest].
+/// Code Lens provider options of a `CodeLensRequest`.
 @freezed
 abstract class CodeLensOptions with _$CodeLensOptions {
   const factory CodeLensOptions({
@@ -2584,7 +2582,7 @@ abstract class CodeLensOptions with _$CodeLensOptions {
       _$CodeLensOptionsFromJson(json);
 }
 
-/// Provider options for a [DocumentLinkRequest].
+/// Provider options for a `DocumentLinkRequest`.
 @freezed
 abstract class DocumentLinkOptions with _$DocumentLinkOptions {
   const factory DocumentLinkOptions({
@@ -2622,7 +2620,7 @@ abstract class FormattingOptions with _$FormattingOptions {
       _$FormattingOptionsFromJson(json);
 }
 
-/// Provider options for a [DocumentFormattingRequest].
+/// Provider options for a `DocumentFormattingRequest`.
 @freezed
 abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
   const factory DocumentFormattingOptions({bool? workDoneProgress}) =
@@ -2632,7 +2630,7 @@ abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
       _$DocumentFormattingOptionsFromJson(json);
 }
 
-/// Provider options for a [DocumentRangeFormattingRequest].
+/// Provider options for a `DocumentRangeFormattingRequest`.
 @freezed
 abstract class DocumentRangeFormattingOptions
     with _$DocumentRangeFormattingOptions {
@@ -2647,7 +2645,7 @@ abstract class DocumentRangeFormattingOptions
       _$DocumentRangeFormattingOptionsFromJson(json);
 }
 
-/// Provider options for a [DocumentOnTypeFormattingRequest].
+/// Provider options for a `DocumentOnTypeFormattingRequest`.
 @freezed
 abstract class DocumentOnTypeFormattingOptions
     with _$DocumentOnTypeFormattingOptions {
@@ -2663,7 +2661,7 @@ abstract class DocumentOnTypeFormattingOptions
       _$DocumentOnTypeFormattingOptionsFromJson(json);
 }
 
-/// Provider options for a [RenameRequest].
+/// Provider options for a `RenameRequest`.
 @freezed
 abstract class RenameOptions with _$RenameOptions {
   const factory RenameOptions({
@@ -2679,14 +2677,13 @@ abstract class RenameOptions with _$RenameOptions {
       _$RenameOptionsFromJson(json);
 }
 
-/// The server capabilities of a [ExecuteCommandRequest].
+/// The server capabilities of a `ExecuteCommandRequest`.
 @freezed
 abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
   const factory ExecuteCommandOptions({
-    bool? workDoneProgress,
-
     /// The commands to be executed on the server
     required List<String> commands,
+    bool? workDoneProgress,
   }) = _ExecuteCommandOptions;
 
   factory ExecuteCommandOptions.fromJson(Map<String, dynamic> json) =>

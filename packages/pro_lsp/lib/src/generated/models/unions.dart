@@ -1,3 +1,5 @@
+// ignore_for_file: type=lint
+
 // GENERATED — do not edit.
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -6,7 +8,7 @@ import 'structures.dart';
 
 part 'unions.freezed.dart';
 
-/// The definition of a symbol represented as one or many [locations]. For most
+/// The definition of a symbol represented as one or many `locations`. For most
 /// programming languages there is only one location at which a symbol is
 /// defined.
 ///
@@ -22,16 +24,16 @@ sealed class Definition with _$Definition {
   const factory Definition.list({required List<Location> value}) =
       Definition$List;
 
-  static Definition fromJson(Object? json) {
+  factory Definition.fromJson(dynamic json) {
     if (json is List) {
       return Definition.list(
         value: (json as List<Object>)
-            .map((e) => Location.fromJson((e as Map<String, Object>)))
+            .map((e) => Location.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
     }
     return Definition.location(
-      value: Location.fromJson((json as Map<String, Object?>)),
+      value: Location.fromJson(json as Map<String, dynamic>),
     );
   }
 
@@ -41,7 +43,7 @@ sealed class Definition with _$Definition {
   };
 }
 
-/// The declaration of a symbol representation as one or many [locations].
+/// The declaration of a symbol representation as one or many `locations`.
 @freezed
 sealed class Declaration with _$Declaration {
   const Declaration._();
@@ -52,16 +54,16 @@ sealed class Declaration with _$Declaration {
   const factory Declaration.list({required List<Location> value}) =
       Declaration$List;
 
-  static Declaration fromJson(Object? json) {
+  factory Declaration.fromJson(dynamic json) {
     if (json is List) {
       return Declaration.list(
         value: (json as List<Object>)
-            .map((e) => Location.fromJson((e as Map<String, Object>)))
+            .map((e) => Location.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
     }
     return Declaration.location(
-      value: Location.fromJson((json as Map<String, Object?>)),
+      value: Location.fromJson(json as Map<String, dynamic>),
     );
   }
 
@@ -93,7 +95,7 @@ sealed class InlineValue with _$InlineValue {
     required InlineValueEvaluatableExpression value,
   }) = InlineValue$EvaluatableExpression;
 
-  static InlineValue fromJson(Map<String, Object?> json) {
+  factory InlineValue.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('text')) {
       return InlineValue.text(value: InlineValueText.fromJson(json));
     }
@@ -132,7 +134,7 @@ sealed class DocumentDiagnosticReport with _$DocumentDiagnosticReport {
     required RelatedUnchangedDocumentDiagnosticReport value,
   }) = DocumentDiagnosticReport$RelatedUnchangedDocumentDiagnosticReport;
 
-  static DocumentDiagnosticReport fromJson(Map<String, Object?> json) {
+  factory DocumentDiagnosticReport.fromJson(Map<String, dynamic> json) {
     if (json['kind'] == 'full') {
       return DocumentDiagnosticReport.relatedFullDocumentDiagnosticReport(
         value: RelatedFullDocumentDiagnosticReport.fromJson(json),
@@ -170,14 +172,14 @@ sealed class PrepareRenameResult with _$PrepareRenameResult {
     required ({bool defaultBehavior}) value,
   }) = PrepareRenameResult$DefaultBehavior;
 
-  static PrepareRenameResult fromJson(Map<String, Object?> json) {
+  factory PrepareRenameResult.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('start')) {
       return PrepareRenameResult.range(value: Range.fromJson(json));
     }
     if (json.containsKey('range')) {
       return PrepareRenameResult.rangePlaceholder(
         value: (
-          range: Range.fromJson(json['range'] as Map<String, Object?>),
+          range: Range.fromJson(json['range'] as Map<String, dynamic>),
           placeholder: json['placeholder'] as String,
         ),
       );
@@ -221,7 +223,9 @@ sealed class WorkspaceDocumentDiagnosticReport
   }) =
       WorkspaceDocumentDiagnosticReport$WorkspaceUnchangedDocumentDiagnosticReport;
 
-  static WorkspaceDocumentDiagnosticReport fromJson(Map<String, Object?> json) {
+  factory WorkspaceDocumentDiagnosticReport.fromJson(
+    Map<String, dynamic> json,
+  ) {
     if (json['kind'] == 'full') {
       return WorkspaceDocumentDiagnosticReport.workspaceFullDocumentDiagnosticReport(
         value: WorkspaceFullDocumentDiagnosticReport.fromJson(json),
@@ -259,11 +263,11 @@ sealed class TextDocumentContentChangeEvent
     required ({String text}) value,
   }) = TextDocumentContentChangeEvent$Text;
 
-  static TextDocumentContentChangeEvent fromJson(Map<String, Object?> json) {
+  factory TextDocumentContentChangeEvent.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('range')) {
       return TextDocumentContentChangeEvent.rangeRangeLengthText(
         value: (
-          range: Range.fromJson(json['range'] as Map<String, Object?>),
+          range: Range.fromJson(json['range'] as Map<String, dynamic>),
           rangeLength: json['rangeLength'] as int?,
           text: json['text'] as String,
         ),
@@ -307,8 +311,8 @@ sealed class MarkedString with _$MarkedString {
   const factory MarkedString.string({required String value}) =
       MarkedString$String;
 
-  static MarkedString fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory MarkedString.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return MarkedString.languageValue(
         value: (
           language: json['language'] as String,
@@ -316,7 +320,7 @@ sealed class MarkedString with _$MarkedString {
         ),
       );
     }
-    return MarkedString.string(value: (json as String));
+    return MarkedString.string(value: json as String);
   }
 
   Object toJson() => switch (this) {
@@ -342,15 +346,15 @@ sealed class SemanticTokensRegistrationOptionsRange
     required bool value,
   }) = SemanticTokensRegistrationOptionsRange$Bool;
 
-  static SemanticTokensRegistrationOptionsRange fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory SemanticTokensRegistrationOptionsRange.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return SemanticTokensRegistrationOptionsRange.empty(value: ());
     }
-    return SemanticTokensRegistrationOptionsRange.bool(value: (json as bool));
+    return SemanticTokensRegistrationOptionsRange.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
-    SemanticTokensRegistrationOptionsRange$Empty() => <String, Object?>{},
+    SemanticTokensRegistrationOptionsRange$Empty() => <String, dynamic>{},
     SemanticTokensRegistrationOptionsRange$Bool(:final value) => value,
   };
 }
@@ -369,13 +373,13 @@ sealed class SemanticTokensRegistrationOptionsFull
     required bool value,
   }) = SemanticTokensRegistrationOptionsFull$Bool;
 
-  static SemanticTokensRegistrationOptionsFull fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory SemanticTokensRegistrationOptionsFull.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return SemanticTokensRegistrationOptionsFull.delta(
         value: (delta: json['delta'] as bool?),
       );
     }
-    return SemanticTokensRegistrationOptionsFull.bool(value: (json as bool));
+    return SemanticTokensRegistrationOptionsFull.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -397,13 +401,13 @@ sealed class InlayHintTooltip with _$InlayHintTooltip {
   const factory InlayHintTooltip.string({required String value}) =
       InlayHintTooltip$String;
 
-  static InlayHintTooltip fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory InlayHintTooltip.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return InlayHintTooltip.markupContent(
         value: MarkupContent.fromJson(json),
       );
     }
-    return InlayHintTooltip.string(value: (json as String));
+    return InlayHintTooltip.string(value: json as String);
   }
 
   Object toJson() => switch (this) {
@@ -425,13 +429,13 @@ sealed class InlineCompletionItemInsertText
   const factory InlineCompletionItemInsertText.string({required String value}) =
       InlineCompletionItemInsertText$String;
 
-  static InlineCompletionItemInsertText fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory InlineCompletionItemInsertText.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return InlineCompletionItemInsertText.stringValue(
         value: StringValue.fromJson(json),
       );
     }
-    return InlineCompletionItemInsertText.string(value: (json as String));
+    return InlineCompletionItemInsertText.string(value: json as String);
   }
 
   Object toJson() => switch (this) {
@@ -452,13 +456,13 @@ sealed class CompletionItemDocumentation with _$CompletionItemDocumentation {
   const factory CompletionItemDocumentation.string({required String value}) =
       CompletionItemDocumentation$String;
 
-  static CompletionItemDocumentation fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory CompletionItemDocumentation.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return CompletionItemDocumentation.markupContent(
         value: MarkupContent.fromJson(json),
       );
     }
-    return CompletionItemDocumentation.string(value: (json as String));
+    return CompletionItemDocumentation.string(value: json as String);
   }
 
   Object toJson() => switch (this) {
@@ -479,7 +483,7 @@ sealed class CompletionItemTextEdit with _$CompletionItemTextEdit {
     required InsertReplaceEdit value,
   }) = CompletionItemTextEdit$InsertReplaceEdit;
 
-  static CompletionItemTextEdit fromJson(Map<String, Object?> json) {
+  factory CompletionItemTextEdit.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('range')) {
       return CompletionItemTextEdit.textEdit(value: TextEdit.fromJson(json));
     }
@@ -510,7 +514,7 @@ sealed class WorkspaceSymbolLocation with _$WorkspaceSymbolLocation {
   const factory WorkspaceSymbolLocation.uri({required ({String uri}) value}) =
       WorkspaceSymbolLocation$Uri;
 
-  static WorkspaceSymbolLocation fromJson(Map<String, Object?> json) {
+  factory WorkspaceSymbolLocation.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('range')) {
       return WorkspaceSymbolLocation.location(value: Location.fromJson(json));
     }
@@ -534,15 +538,15 @@ sealed class SemanticTokensOptionsRange with _$SemanticTokensOptionsRange {
   const factory SemanticTokensOptionsRange.bool({required bool value}) =
       SemanticTokensOptionsRange$Bool;
 
-  static SemanticTokensOptionsRange fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory SemanticTokensOptionsRange.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return SemanticTokensOptionsRange.empty(value: ());
     }
-    return SemanticTokensOptionsRange.bool(value: (json as bool));
+    return SemanticTokensOptionsRange.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
-    SemanticTokensOptionsRange$Empty() => <String, Object?>{},
+    SemanticTokensOptionsRange$Empty() => <String, dynamic>{},
     SemanticTokensOptionsRange$Bool(:final value) => value,
   };
 }
@@ -559,13 +563,13 @@ sealed class SemanticTokensOptionsFull with _$SemanticTokensOptionsFull {
   const factory SemanticTokensOptionsFull.bool({required bool value}) =
       SemanticTokensOptionsFull$Bool;
 
-  static SemanticTokensOptionsFull fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory SemanticTokensOptionsFull.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return SemanticTokensOptionsFull.delta(
         value: (delta: json['delta'] as bool?),
       );
     }
-    return SemanticTokensOptionsFull.bool(value: (json as bool));
+    return SemanticTokensOptionsFull.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -588,7 +592,7 @@ sealed class TextDocumentEditEditsItem with _$TextDocumentEditEditsItem {
   const factory TextDocumentEditEditsItem.textEdit({required TextEdit value}) =
       TextDocumentEditEditsItem$TextEdit;
 
-  static TextDocumentEditEditsItem fromJson(Map<String, Object?> json) {
+  factory TextDocumentEditEditsItem.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('annotationId')) {
       return TextDocumentEditEditsItem.annotatedTextEdit(
         value: AnnotatedTextEdit.fromJson(json),
@@ -615,13 +619,13 @@ sealed class InlayHintLabelPartTooltip with _$InlayHintLabelPartTooltip {
   const factory InlayHintLabelPartTooltip.string({required String value}) =
       InlayHintLabelPartTooltip$String;
 
-  static InlayHintLabelPartTooltip fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory InlayHintLabelPartTooltip.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return InlayHintLabelPartTooltip.markupContent(
         value: MarkupContent.fromJson(json),
       );
     }
-    return InlayHintLabelPartTooltip.string(value: (json as String));
+    return InlayHintLabelPartTooltip.string(value: json as String);
   }
 
   Object toJson() => switch (this) {
@@ -643,13 +647,13 @@ sealed class ServerCapabilitiesHoverProvider
   const factory ServerCapabilitiesHoverProvider.bool({required bool value}) =
       ServerCapabilitiesHoverProvider$Bool;
 
-  static ServerCapabilitiesHoverProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesHoverProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesHoverProvider.hoverOptions(
         value: HoverOptions.fromJson(json),
       );
     }
-    return ServerCapabilitiesHoverProvider.bool(value: (json as bool));
+    return ServerCapabilitiesHoverProvider.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -673,13 +677,13 @@ sealed class ServerCapabilitiesDefinitionProvider
     required bool value,
   }) = ServerCapabilitiesDefinitionProvider$Bool;
 
-  static ServerCapabilitiesDefinitionProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesDefinitionProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesDefinitionProvider.definitionOptions(
         value: DefinitionOptions.fromJson(json),
       );
     }
-    return ServerCapabilitiesDefinitionProvider.bool(value: (json as bool));
+    return ServerCapabilitiesDefinitionProvider.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -703,13 +707,13 @@ sealed class ServerCapabilitiesReferencesProvider
     required bool value,
   }) = ServerCapabilitiesReferencesProvider$Bool;
 
-  static ServerCapabilitiesReferencesProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesReferencesProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesReferencesProvider.referenceOptions(
         value: ReferenceOptions.fromJson(json),
       );
     }
-    return ServerCapabilitiesReferencesProvider.bool(value: (json as bool));
+    return ServerCapabilitiesReferencesProvider.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -733,14 +737,14 @@ sealed class ServerCapabilitiesDocumentHighlightProvider
     required bool value,
   }) = ServerCapabilitiesDocumentHighlightProvider$Bool;
 
-  static ServerCapabilitiesDocumentHighlightProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesDocumentHighlightProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesDocumentHighlightProvider.documentHighlightOptions(
         value: DocumentHighlightOptions.fromJson(json),
       );
     }
     return ServerCapabilitiesDocumentHighlightProvider.bool(
-      value: (json as bool),
+      value: json as bool,
     );
   }
 
@@ -767,13 +771,13 @@ sealed class ServerCapabilitiesDocumentSymbolProvider
     required bool value,
   }) = ServerCapabilitiesDocumentSymbolProvider$Bool;
 
-  static ServerCapabilitiesDocumentSymbolProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesDocumentSymbolProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesDocumentSymbolProvider.documentSymbolOptions(
         value: DocumentSymbolOptions.fromJson(json),
       );
     }
-    return ServerCapabilitiesDocumentSymbolProvider.bool(value: (json as bool));
+    return ServerCapabilitiesDocumentSymbolProvider.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -799,13 +803,13 @@ sealed class ServerCapabilitiesCodeActionProvider
     required bool value,
   }) = ServerCapabilitiesCodeActionProvider$Bool;
 
-  static ServerCapabilitiesCodeActionProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesCodeActionProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesCodeActionProvider.codeActionOptions(
         value: CodeActionOptions.fromJson(json),
       );
     }
-    return ServerCapabilitiesCodeActionProvider.bool(value: (json as bool));
+    return ServerCapabilitiesCodeActionProvider.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -829,15 +833,13 @@ sealed class ServerCapabilitiesWorkspaceSymbolProvider
     required bool value,
   }) = ServerCapabilitiesWorkspaceSymbolProvider$Bool;
 
-  static ServerCapabilitiesWorkspaceSymbolProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesWorkspaceSymbolProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesWorkspaceSymbolProvider.workspaceSymbolOptions(
         value: WorkspaceSymbolOptions.fromJson(json),
       );
     }
-    return ServerCapabilitiesWorkspaceSymbolProvider.bool(
-      value: (json as bool),
-    );
+    return ServerCapabilitiesWorkspaceSymbolProvider.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -863,14 +865,14 @@ sealed class ServerCapabilitiesDocumentFormattingProvider
     required bool value,
   }) = ServerCapabilitiesDocumentFormattingProvider$Bool;
 
-  static ServerCapabilitiesDocumentFormattingProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesDocumentFormattingProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesDocumentFormattingProvider.documentFormattingOptions(
         value: DocumentFormattingOptions.fromJson(json),
       );
     }
     return ServerCapabilitiesDocumentFormattingProvider.bool(
-      value: (json as bool),
+      value: json as bool,
     );
   }
 
@@ -898,16 +900,16 @@ sealed class ServerCapabilitiesDocumentRangeFormattingProvider
     required bool value,
   }) = ServerCapabilitiesDocumentRangeFormattingProvider$Bool;
 
-  static ServerCapabilitiesDocumentRangeFormattingProvider fromJson(
-    Object? json,
+  factory ServerCapabilitiesDocumentRangeFormattingProvider.fromJson(
+    dynamic json,
   ) {
-    if (json is Map<String, Object>) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesDocumentRangeFormattingProvider.documentRangeFormattingOptions(
         value: DocumentRangeFormattingOptions.fromJson(json),
       );
     }
     return ServerCapabilitiesDocumentRangeFormattingProvider.bool(
-      value: (json as bool),
+      value: json as bool,
     );
   }
 
@@ -934,13 +936,13 @@ sealed class ServerCapabilitiesRenameProvider
   const factory ServerCapabilitiesRenameProvider.bool({required bool value}) =
       ServerCapabilitiesRenameProvider$Bool;
 
-  static ServerCapabilitiesRenameProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesRenameProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesRenameProvider.renameOptions(
         value: RenameOptions.fromJson(json),
       );
     }
-    return ServerCapabilitiesRenameProvider.bool(value: (json as bool));
+    return ServerCapabilitiesRenameProvider.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -965,8 +967,8 @@ sealed class ServerCapabilitiesSemanticTokensProvider
     required SemanticTokensOptions value,
   }) = ServerCapabilitiesSemanticTokensProvider$SemanticTokensOptions;
 
-  static ServerCapabilitiesSemanticTokensProvider fromJson(
-    Map<String, Object?> json,
+  factory ServerCapabilitiesSemanticTokensProvider.fromJson(
+    Map<String, dynamic> json,
   ) {
     if (json.containsKey('documentSelector')) {
       return ServerCapabilitiesSemanticTokensProvider.semanticTokensRegistrationOptions(
@@ -1004,8 +1006,8 @@ sealed class ServerCapabilitiesDiagnosticProvider
     required DiagnosticOptions value,
   }) = ServerCapabilitiesDiagnosticProvider$DiagnosticOptions;
 
-  static ServerCapabilitiesDiagnosticProvider fromJson(
-    Map<String, Object?> json,
+  factory ServerCapabilitiesDiagnosticProvider.fromJson(
+    Map<String, dynamic> json,
   ) {
     if (json.containsKey('documentSelector')) {
       return ServerCapabilitiesDiagnosticProvider.diagnosticRegistrationOptions(
@@ -1041,15 +1043,13 @@ sealed class ServerCapabilitiesInlineCompletionProvider
     required bool value,
   }) = ServerCapabilitiesInlineCompletionProvider$Bool;
 
-  static ServerCapabilitiesInlineCompletionProvider fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ServerCapabilitiesInlineCompletionProvider.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ServerCapabilitiesInlineCompletionProvider.inlineCompletionOptions(
         value: InlineCompletionOptions.fromJson(json),
       );
     }
-    return ServerCapabilitiesInlineCompletionProvider.bool(
-      value: (json as bool),
-    );
+    return ServerCapabilitiesInlineCompletionProvider.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -1075,13 +1075,13 @@ sealed class SignatureInformationDocumentation
     required String value,
   }) = SignatureInformationDocumentation$String;
 
-  static SignatureInformationDocumentation fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory SignatureInformationDocumentation.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return SignatureInformationDocumentation.markupContent(
         value: MarkupContent.fromJson(json),
       );
     }
-    return SignatureInformationDocumentation.string(value: (json as String));
+    return SignatureInformationDocumentation.string(value: json as String);
   }
 
   Object toJson() => switch (this) {
@@ -1103,13 +1103,13 @@ sealed class TextDocumentSyncOptionsSave with _$TextDocumentSyncOptionsSave {
   const factory TextDocumentSyncOptionsSave.bool({required bool value}) =
       TextDocumentSyncOptionsSave$Bool;
 
-  static TextDocumentSyncOptionsSave fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory TextDocumentSyncOptionsSave.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return TextDocumentSyncOptionsSave.saveOptions(
         value: SaveOptions.fromJson(json),
       );
     }
-    return TextDocumentSyncOptionsSave.bool(value: (json as bool));
+    return TextDocumentSyncOptionsSave.bool(value: json as bool);
   }
 
   Object toJson() => switch (this) {
@@ -1132,13 +1132,13 @@ sealed class ParameterInformationDocumentation
     required String value,
   }) = ParameterInformationDocumentation$String;
 
-  static ParameterInformationDocumentation fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory ParameterInformationDocumentation.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return ParameterInformationDocumentation.markupContent(
         value: MarkupContent.fromJson(json),
       );
     }
-    return ParameterInformationDocumentation.string(value: (json as String));
+    return ParameterInformationDocumentation.string(value: json as String);
   }
 
   Object toJson() => switch (this) {
@@ -1160,13 +1160,13 @@ sealed class RelativePatternBaseUri with _$RelativePatternBaseUri {
   const factory RelativePatternBaseUri.string({required String value}) =
       RelativePatternBaseUri$String;
 
-  static RelativePatternBaseUri fromJson(Object? json) {
-    if (json is Map<String, Object>) {
+  factory RelativePatternBaseUri.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
       return RelativePatternBaseUri.workspaceFolder(
         value: WorkspaceFolder.fromJson(json),
       );
     }
-    return RelativePatternBaseUri.string(value: (json as String));
+    return RelativePatternBaseUri.string(value: json as String);
   }
 
   Object toJson() => switch (this) {

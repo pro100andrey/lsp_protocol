@@ -68,7 +68,7 @@ final class WorkDoneProgressManager {
   WorkDoneProgressManager(this._connection);
 
   final LspConnection _connection;
-  int _nextProgressId = 0;
+  var _nextProgressId = 0;
 
   /// Creates a new progress session, requests the client to create a token,
   /// and returns an [LspProgress] instance.
@@ -79,7 +79,7 @@ final class WorkDoneProgressManager {
     bool? cancellable,
   }) async {
     final token = ProgressToken.string(value: 'progress-${_nextProgressId++}');
-    
+
     await _connection.sendRequest(
       RequestMethod.create.value,
       WorkDoneProgressCreateParams(token: token).toJson(),

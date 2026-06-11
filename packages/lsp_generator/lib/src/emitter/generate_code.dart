@@ -22,11 +22,11 @@ void generateCode(ResolvedState resolved, String outputDir) {
   String emit(Library lib) {
     final raw = lib.accept(dartEmitter).toString();
     try {
-      return formatter.format(raw);
+      return '// ignore_for_file: type=lint\n\n${formatter.format(raw)}';
     } on Object catch (_) {
       // Return unformatted if the formatter fails (e.g. syntax error in
       // generated code).
-      return raw;
+      return '// ignore_for_file: type=lint\n\n$raw';
     }
   }
 

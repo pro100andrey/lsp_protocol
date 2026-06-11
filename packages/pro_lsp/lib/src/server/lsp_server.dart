@@ -5,12 +5,20 @@ import 'package:stream_channel/stream_channel.dart';
 import '../connection/lsp_connection.dart';
 import '../generated/server/server_api.dart';
 import '../transport/lsp_byte_stream_channel.dart';
+import 'capabilities.dart';
+import 'config.dart';
+import 'diagnostics.dart';
+import 'documents.dart';
 import 'lsp_state.dart';
 import 'middleware.dart';
 import 'progress_manager.dart';
 
 export '../generated/server/server_api.dart';
 export 'cancellation_token.dart';
+export 'capabilities.dart';
+export 'config.dart';
+export 'diagnostics.dart';
+export 'documents.dart';
 export 'lsp_state.dart';
 export 'middleware.dart';
 export 'progress_manager.dart';
@@ -53,15 +61,24 @@ export 'progress_manager.dart';
 final class LspServer {
   /// Creates a server using stdin/stdout as the byte transport (the
   /// standard LSP process communication model).
-  LspServer() : _connection = LspConnection(LspByteStreamChannel.fromStdio());
+  LspServer() : _connection = LspConnection(LspByteStreamChannel.fromStdio()) {
+    _init();
+  }
 
   /// Creates a server from an arbitrary byte [StreamChannel].
   ///
   /// Useful for testing or alternative transports (TCP, pipes, etc.).
   LspServer.fromChannel(StreamChannel<List<int>> channel)
-      : _connection = LspConnection(
-          LspByteStreamChannel.fromByteChannel(channel),
-        );
+    : _connection = LspConnection(
+        LspByteStreamChannel.fromByteChannel(channel),
+      ) {
+    _init();
+  }
+
+  void _init() {
+    documents.bind(this);
+    config.bind();
+  }
 
   final LspConnection _connection;
 
@@ -120,6 +137,18 @@ final class LspServer {
   // Additional capabilities
   // -------------------------------------------------------------------------
 
+  /// High-level manager for active open document synchronization.
+  final documents = TextDocumentManager();
+
+  /// High-level manager for publishing diagnostics with built-in debouncing.
+  late final diagnostics = DiagnosticsManager(this);
+
+  /// High-level manager for caching and query workspace config settings.
+  late final config = LspConfigurationManager(this);
+
+  /// High-level manager for dynamic capability registrations.
+  late final capabilities = CapabilityManager(this);
+
   /// High-level manager for creating work done progress sessions.
   late final progress = WorkDoneProgressManager(_connection);
 
@@ -147,5 +176,9 @@ final class LspServer {
   Future<void> listen() => _connection.listen();
 
   /// Closes the connection and stops processing.
-  Future<void> close() => _connection.close();
+  Future<void> close() async {
+    diagnostics.close();
+    config.close();
+    await _connection.close();
+  }
 }

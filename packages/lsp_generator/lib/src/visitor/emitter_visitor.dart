@@ -109,10 +109,12 @@ final class EmitterVisitor {
     if (cls.name.contains('Capabilities')) {
       return _ClassCategory.capabilities;
     }
+
     if (cls.name.endsWith('Params') || cls.name.endsWith('Options')) {
-      return _ClassCategory.params;
+      return .params;
     }
-    return _ClassCategory.common;
+
+    return .common;
   }
 
   Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) {
@@ -123,7 +125,7 @@ final class EmitterVisitor {
       }
       return _classifyClass(c) == category;
     });
-    if (category == _ClassCategory.common) {
+    if (category == .common) {
       // Keep anonymous classes before named classes for backward compatibility/ordering.
       return [
         ...filtered.where((c) => c.isAnonymous),
@@ -160,43 +162,43 @@ final class EmitterVisitor {
   }
 
   Library buildStructuresCapabilities() => Library(
-        (b) => b
-          ..comments.addAll([
-            _header,
-          ])
-          ..directives.add(
-            Directive.partOf('structures.dart'),
-          )
-          ..body.addAll(
-            _classesForCategory(_ClassCategory.capabilities).map(_buildClass),
-          ),
-      );
+    (b) => b
+      ..comments.addAll([
+        _header,
+      ])
+      ..directives.add(
+        Directive.partOf('structures.dart'),
+      )
+      ..body.addAll(
+        _classesForCategory(_ClassCategory.capabilities).map(_buildClass),
+      ),
+  );
 
   Library buildStructuresParams() => Library(
-        (b) => b
-          ..comments.addAll([
-            _header,
-          ])
-          ..directives.add(
-            Directive.partOf('structures.dart'),
-          )
-          ..body.addAll(
-            _classesForCategory(_ClassCategory.params).map(_buildClass),
-          ),
-      );
+    (b) => b
+      ..comments.addAll([
+        _header,
+      ])
+      ..directives.add(
+        Directive.partOf('structures.dart'),
+      )
+      ..body.addAll(
+        _classesForCategory(_ClassCategory.params).map(_buildClass),
+      ),
+  );
 
   Library buildStructuresCommon() => Library(
-        (b) => b
-          ..comments.addAll([
-            _header,
-          ])
-          ..directives.add(
-            Directive.partOf('structures.dart'),
-          )
-          ..body.addAll(
-            _classesForCategory(_ClassCategory.common).map(_buildClass),
-          ),
-      );
+    (b) => b
+      ..comments.addAll([
+        _header,
+      ])
+      ..directives.add(
+        Directive.partOf('structures.dart'),
+      )
+      ..body.addAll(
+        _classesForCategory(_ClassCategory.common).map(_buildClass),
+      ),
+  );
 
   /// Builds a [Library] containing all converters for structures.
   Library buildStructuresConverters() => Library(
@@ -213,7 +215,9 @@ final class EmitterVisitor {
   /// Builds a [Library] containing all resolved enumerations.
   Library buildEnumerations() => Library(
     (b) => b
-      ..comments.add(_header)
+      ..comments.addAll([
+        _header,
+      ])
       ..directives.add(
         Directive.import('package:json_annotation/json_annotation.dart'),
       )
@@ -661,7 +665,10 @@ final class EmitterVisitor {
           (b) => b
             ..constant = true
             ..optionalParameters.addAll(
-              allProps.map(
+              [
+                ...allProps.where((p) => !p.optional),
+                ...allProps.where((p) => p.optional),
+              ].map(
                 (p) => Parameter(
                   (b) => b
                     ..name = p.name
@@ -729,7 +736,10 @@ final class EmitterVisitor {
       // Prepend `_` to className: for `Foo` → `_Foo`; for `_Foo` → `__Foo`.
       ..redirect = refer('_$className')
       ..optionalParameters.addAll(
-        props.map((p) {
+        [
+          ...props.where((p) => !p.optional),
+          ...props.where((p) => p.optional),
+        ].map((p) {
           final typeRef = _propertyTypeRef(className, p);
           return Parameter((b) {
             b
@@ -821,17 +831,17 @@ final class EmitterVisitor {
       final inner = type is NullableType ? type.inner : type;
       switch (inner) {
         case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
-          register(ref.name, _ConverterKind.scalarUnion);
+          register(ref.name, .scalarUnion);
         case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
-          register(ref.name, _ConverterKind.structUnion);
+          register(ref.name, .structUnion);
         case ListType(element: final el):
           switch (el is NullableType ? el.inner : el) {
             case AliasType(:final ref)
                 when _scalarUnionNames.contains(ref.name):
-              registerList(ref.name, _ConverterKind.scalarUnion);
+              registerList(ref.name, .scalarUnion);
             case AliasType(:final ref)
                 when _sealedUnionNames.contains(ref.name):
-              registerList(ref.name, _ConverterKind.structUnion);
+              registerList(ref.name, .structUnion);
             default:
               break;
           }
@@ -855,9 +865,7 @@ final class EmitterVisitor {
             final kind = _classifyUnion(inner);
             register(
               inlineUnionName,
-              kind == _UnionKind.scalar
-                  ? _ConverterKind.scalarUnion
-                  : _ConverterKind.structUnion,
+              kind == .scalar ? .scalarUnion : .structUnion,
             );
           } else if (inner is ListType) {
             final el = inner.element is NullableType
@@ -867,9 +875,7 @@ final class EmitterVisitor {
               final kind = _classifyUnion(el);
               registerList(
                 inlineUnionName,
-                kind == _UnionKind.scalar
-                    ? _ConverterKind.scalarUnion
-                    : _ConverterKind.structUnion,
+                kind == .scalar ? .scalarUnion : .structUnion,
               );
             }
           }
@@ -895,30 +901,22 @@ final class EmitterVisitor {
         ..symbol = 'Map'
         ..types.addAll([
           refer('String'),
-          TypeReference(
-            (b) => b
-              ..symbol = 'Object'
-              ..isNullable = true,
-          ),
+          TypeReference((b) => b..symbol = 'dynamic'),
         ]),
     );
 
-    final Reference rawType;
-    final Code fromBody;
-    final Code toBody;
+    final rawType = entry.kind == .structUnion
+        ? mapStringObjectNullable
+        : refer('Object');
 
-    switch (entry.kind) {
-      case _ConverterKind.scalarUnion:
-        rawType = refer('Object');
-        fromBody = refer(n).newInstanceNamed('fromJson', [refer('json')]).code;
-        toBody = refer('object').property('toJson').call([]).code;
-      case _ConverterKind.structUnion:
-        rawType = mapStringObjectNullable;
-        fromBody = refer(n).newInstanceNamed('fromJson', [refer('json')]).code;
-        toBody = refer(
-          'object',
-        ).property('toJson').call([]).asA(mapStringObjectNullable).code;
-    }
+    final fromBody = refer(
+      n,
+    ).newInstanceNamed('fromJson', [refer('json')]).code;
+
+    final toBody = Block.of([
+      refer('object').property('toJson').call([]).code,
+      if (entry.kind == .structUnion) const Code(' as Map<String, dynamic>'),
+    ]);
 
     return Class(
       (b) => b
@@ -974,49 +972,24 @@ final class EmitterVisitor {
 
     switch (entry.kind) {
       case _ConverterKind.scalarUnion:
+        throw UnsupportedError(
+          'List converters for scalar unions are not supported: $n',
+        );
+
+      case _ConverterKind.structUnion:
         fromBody = refer('json')
             .property('map')
             .call([
               closure(
                 refer(n).newInstanceNamed('fromJson', [
-                  refer('e').asA(refer('Object')),
+                  const CodeExpression(Code('e as Map<String, dynamic>')),
                 ]).code,
               ),
             ])
             .property('toList')
             .call([])
             .code;
-        toBody = refer('object')
-            .property('map')
-            .call([closure(refer('e').property('toJson').call([]).code)])
-            .property('toList')
-            .call([])
-            .code;
-      case _ConverterKind.structUnion:
-        final mapType = TypeReference(
-          (b) => b
-            ..symbol = 'Map'
-            ..types.addAll([
-              refer('String'),
-              TypeReference(
-                (b) => b
-                  ..symbol = 'Object'
-                  ..isNullable = true,
-              ),
-            ]),
-        );
-        fromBody = refer('json')
-            .property('map')
-            .call([
-              closure(
-                refer(
-                  n,
-                ).newInstanceNamed('fromJson', [refer('e').asA(mapType)]).code,
-              ),
-            ])
-            .property('toList')
-            .call([])
-            .code;
+
         toBody = refer('object')
             .property('map')
             .call(
@@ -1257,7 +1230,7 @@ final class EmitterVisitor {
             Field(
               (b) => b
                 ..static = true
-                ..modifier = FieldModifier.constant
+                ..modifier = .constant
                 ..name = _safeIdentifier(_toLowerCamelCase(member.name))
                 ..assignment = refer(en.name).call([
                   if (isInt)
@@ -1286,12 +1259,12 @@ final class EmitterVisitor {
                 Parameter(
                   (b) => b
                     ..name = 'json'
-                    ..type = refer('Object?'),
+                    ..type = refer('dynamic'),
                 ),
               )
-              ..body = refer(
-                en.name,
-              ).call([refer('json').asA(refer(valueTypeName))]).code,
+              ..body = refer(en.name).call([
+                CodeExpression(Code('json as $valueTypeName')),
+              ]).code,
           ),
         );
 
@@ -1721,7 +1694,7 @@ final class EmitterVisitor {
     String toJsonExpr(ResolvedType t) {
       if (t is TupleType) {
         final elements = [
-          for (var i = 0; i < t.items.length; i++) 'value.\$${i + 1}'
+          for (var i = 0; i < t.items.length; i++) 'value.\$${i + 1}',
         ];
         return '[${elements.join(', ')}]';
       }
@@ -1774,21 +1747,16 @@ final class EmitterVisitor {
               ),
             ),
           )
-          ..methods.add(
-            Method(
+          ..constructors.add(
+            Constructor(
               (b) => b
-                ..static = true
-                ..returns = refer(name)
+                ..factory = true
                 ..name = 'fromJson'
                 ..requiredParameters.add(
                   Parameter(
                     (b) => b
                       ..name = 'json'
-                      ..type = TypeReference(
-                        (b) => b
-                          ..symbol = 'Object'
-                          ..isNullable = true,
-                      ),
+                      ..type = refer('dynamic'),
                   ),
                 )
                 ..body = Block((b) {
@@ -1816,7 +1784,7 @@ final class EmitterVisitor {
                     if (isLast) {
                       final castedJson = v.type is TupleType
                           ? valueExpr
-                          : refer('json').asA(refer(v.dartName));
+                          : CodeExpression(Code('json! as ${v.dartName}'));
                       b.addExpression(
                         refer(name).newInstanceNamed(
                           fn,
@@ -1884,7 +1852,7 @@ final class EmitterVisitor {
     String toJsonExpr(ResolvedType t) {
       if (t is TupleType) {
         final elements = [
-          for (var i = 0; i < t.items.length; i++) 'value.\$${i + 1}'
+          for (var i = 0; i < t.items.length; i++) 'value.\$${i + 1}',
         ];
         return '[${elements.join(', ')}]';
       }
@@ -1910,7 +1878,7 @@ final class EmitterVisitor {
         Code(
           _inlineRecordFromJson(
             fields,
-            // Inside `if (json is Map<String, Object?>)` Dart narrows the
+            // Inside `if (json is Map<String, dynamic>)` Dart narrows the
             // type — no explicit cast needed.
             'json',
           ),
@@ -1976,21 +1944,16 @@ final class EmitterVisitor {
               ),
             ),
           )
-          ..methods.add(
-            Method(
+          ..constructors.add(
+            Constructor(
               (b) => b
-                ..static = true
-                ..returns = refer(name)
+                ..factory = true
                 ..name = 'fromJson'
                 ..requiredParameters.add(
                   Parameter(
                     (b) => b
                       ..name = 'json'
-                      ..type = TypeReference(
-                        (b) => b
-                          ..symbol = 'Object'
-                          ..isNullable = true,
-                      ),
+                      ..type = refer('dynamic'),
                   ),
                 )
                 ..body = Block((b) {
@@ -2030,7 +1993,7 @@ final class EmitterVisitor {
                     if (isLast) {
                       final castedJson = v.type is TupleType
                           ? valueExpr
-                          : refer('json').asA(refer(v.dartName));
+                          : CodeExpression(Code('json as ${v.dartName}'));
                       b.addExpression(
                         refer(name).newInstanceNamed(
                           fn,
@@ -2085,18 +2048,6 @@ final class EmitterVisitor {
     final elemType = _dartTypeName(list.element);
     final elemToJson = _toJsonCallerFor(list.element, 'e');
 
-    final mapType = TypeReference(
-      (b) => b
-        ..symbol = 'Map'
-        ..types.addAll([
-          refer('String'),
-          TypeReference(
-            (b) => b
-              ..symbol = 'Object'
-              ..isNullable = true,
-          ),
-        ]),
-    );
     final listObjectNullable = TypeReference(
       (b) => b
         ..symbol = 'List'
@@ -2191,21 +2142,16 @@ final class EmitterVisitor {
                 ..redirect = refer('$name\$List'),
             ),
           )
-          ..methods.add(
-            Method(
+          ..constructors.add(
+            Constructor(
               (b) => b
-                ..static = true
-                ..returns = refer(name)
+                ..factory = true
                 ..name = 'fromJson'
                 ..requiredParameters.add(
                   Parameter(
                     (b) => b
                       ..name = 'json'
-                      ..type = TypeReference(
-                        (b) => b
-                          ..symbol = 'Object'
-                          ..isNullable = true,
-                      ),
+                      ..type = refer('dynamic'),
                   ),
                 )
                 ..body = Block((b) {
@@ -2225,7 +2171,11 @@ final class EmitterVisitor {
                     refer(name).newInstanceNamed(structFn, [], {
                       'value': refer(struct.ref.name).newInstanceNamed(
                         'fromJson',
-                        [refer('json').asA(mapType)],
+                        [
+                          const CodeExpression(
+                            Code('json as Map<String, dynamic>'),
+                          ),
+                        ],
                       ),
                     }).returned,
                   );
@@ -2281,11 +2231,7 @@ final class EmitterVisitor {
         ..symbol = 'Map'
         ..types.addAll([
           refer('String'),
-          TypeReference(
-            (b) => b
-              ..symbol = 'Object'
-              ..isNullable = true,
-          ),
+          refer('dynamic'),
         ]),
     );
 
@@ -2328,11 +2274,10 @@ final class EmitterVisitor {
               ),
             ),
           )
-          ..methods.add(
-            Method(
+          ..constructors.add(
+            Constructor(
               (b) => b
-                ..static = true
-                ..returns = refer(name)
+                ..factory = true
                 ..name = 'fromJson'
                 ..requiredParameters.add(
                   Parameter(
@@ -2455,7 +2400,7 @@ final class EmitterVisitor {
   /// JSON map (e.g. `{'delta': value.delta}`).
   String _inlineRecordToJson(List<ResolvedProperty> fields, String valueVar) {
     if (fields.isEmpty) {
-      return '<String, Object?>{}';
+      return '<String, dynamic>{}';
     }
 
     final entries = fields.map((f) {
@@ -2494,7 +2439,7 @@ final class EmitterVisitor {
           when const {'String', 'int', 'bool', 'double'}.contains(dartName) =>
         nullable ? '$jsonExpr as $dartName?' : '$jsonExpr as $dartName',
       ClassType(:final ref) => orNull(
-        '${ref.name}.fromJson($jsonExpr as Map<String, Object?>)',
+        '${ref.name}.fromJson($jsonExpr as Map<String, dynamic>)',
       ),
       ListType(element: final el) => orNull(
         '($jsonExpr as List<dynamic>).map((e) => ${_jsonFieldExtract(
@@ -2503,7 +2448,7 @@ final class EmitterVisitor {
         )}).toList()',
       ),
       InlineRecord(:final fields) => orNull(
-        _inlineRecordFromJson(fields, '($jsonExpr as Map<String, Object?>)'),
+        _inlineRecordFromJson(fields, '($jsonExpr as Map<String, dynamic>)'),
       ),
       EnumType(:final ref) when ref.supportsCustomValues => orNull(
         '${ref.name}.fromJson($jsonExpr)',
@@ -2546,25 +2491,25 @@ final class EmitterVisitor {
   }
 
   Expression _listElementCastExpr(ResolvedType element) => switch (element) {
-    ClassType(:final ref) => refer(
-      ref.name,
-    ).newInstanceNamed('fromJson', [refer('e').asA(_jsonMapRef())]),
+    ClassType(:final ref) => refer(ref.name).newInstanceNamed('fromJson', [
+        const CodeExpression(Code('e as Map<String, dynamic>')),
+      ]),
     NullableType(inner: ClassType(:final ref)) =>
       refer('e')
           .equalTo(literalNull)
           .conditional(
             literalNull,
-            refer(
-              ref.name,
-            ).newInstanceNamed('fromJson', [refer('e').asA(_jsonMapRef())]),
+            refer(ref.name).newInstanceNamed('fromJson', [
+              const CodeExpression(Code('e as Map<String, dynamic>')),
+            ]),
           ),
     EnumType(:final ref) when ref.supportsCustomValues => refer(
       ref.name,
     ).newInstanceNamed('fromJson', [refer('e')]),
     EnumType(:final ref) => refer(ref.name).property('decode').call([
-      refer('e').asA(refer(_enumPrimitiveName(ref))),
+      CodeExpression(Code('e as ${_enumPrimitiveName(ref)}')),
     ]).nullChecked,
-    _ => refer('e').asA(refer(_dartTypeName(element))),
+    _ => CodeExpression(Code('e as ${_dartTypeName(element)}')),
   };
 
   String _toJsonCallerFor(ResolvedType t, String v) => switch (t) {
@@ -2645,14 +2590,14 @@ final class EmitterVisitor {
         final target = m.group(1)!.replaceAll('[]', '');
         final rawDisplay = m.group(2)?.replaceAll('`', '').trim() ?? '';
         if (rawDisplay.isEmpty) {
-          return '[$target]';
+          return '`$target`';
         }
         // Single valid Dart identifier → use as reference.
         if (RegExp(r'^\w+$').hasMatch(rawDisplay)) {
-          return '[$rawDisplay]';
+          return '`$rawDisplay`';
         }
         // Multi-word / non-identifier → link to the type part only.
-        return '[${target.split('.').first}]';
+        return '`${target.split('.').first}`';
       },
     );
 
@@ -2730,17 +2675,13 @@ final class EmitterVisitor {
     return ['Type: ${names.join(' | ')}'];
   }
 
-  /// Returns a [TypeReference] for `Map<String, Object?>}`.
+  /// Returns a [TypeReference] for `Map<String, dynamic>}`.
   static TypeReference _jsonMapRef() => TypeReference(
     (b) => b
       ..symbol = 'Map'
       ..types.addAll([
         refer('String'),
-        TypeReference(
-          (b) => b
-            ..symbol = 'Object'
-            ..isNullable = true,
-        ),
+        TypeReference((b) => b..symbol = 'dynamic'),
       ]),
   );
 

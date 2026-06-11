@@ -1,3 +1,5 @@
+// ignore_for_file: type=lint
+
 // GENERATED — do not edit.
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,11 +15,11 @@ sealed class ProgressToken with _$ProgressToken {
   const factory ProgressToken.string({required String value}) =
       ProgressToken$String;
 
-  static ProgressToken fromJson(Object? json) {
+  factory ProgressToken.fromJson(dynamic json) {
     if (json is int) {
       return ProgressToken.int(value: json);
     }
-    return ProgressToken.string(value: (json as String));
+    return ProgressToken.string(value: json! as String);
   }
 
   Object toJson() => switch (this) {
@@ -36,11 +38,11 @@ sealed class CancelParamsId with _$CancelParamsId {
   const factory CancelParamsId.string({required String value}) =
       CancelParamsId$String;
 
-  static CancelParamsId fromJson(Object? json) {
+  factory CancelParamsId.fromJson(dynamic json) {
     if (json is int) {
       return CancelParamsId.int(value: json);
     }
-    return CancelParamsId.string(value: (json as String));
+    return CancelParamsId.string(value: json! as String);
   }
 
   Object toJson() => switch (this) {
@@ -59,11 +61,11 @@ sealed class DiagnosticCode with _$DiagnosticCode {
   const factory DiagnosticCode.string({required String value}) =
       DiagnosticCode$String;
 
-  static DiagnosticCode fromJson(Object? json) {
+  factory DiagnosticCode.fromJson(dynamic json) {
     if (json is int) {
       return DiagnosticCode.int(value: json);
     }
-    return DiagnosticCode.string(value: (json as String));
+    return DiagnosticCode.string(value: json! as String);
   }
 
   Object toJson() => switch (this) {
@@ -86,8 +88,8 @@ sealed class WorkspaceFoldersServerCapabilitiesChangeNotifications
     required bool value,
   }) = WorkspaceFoldersServerCapabilitiesChangeNotifications$Bool;
 
-  static WorkspaceFoldersServerCapabilitiesChangeNotifications fromJson(
-    Object? json,
+  factory WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
+    dynamic json,
   ) {
     if (json is String) {
       return WorkspaceFoldersServerCapabilitiesChangeNotifications.string(
@@ -95,7 +97,7 @@ sealed class WorkspaceFoldersServerCapabilitiesChangeNotifications
       );
     }
     return WorkspaceFoldersServerCapabilitiesChangeNotifications.bool(
-      value: (json as bool),
+      value: json! as bool,
     );
   }
 
@@ -117,8 +119,8 @@ sealed class ParameterInformationLabel with _$ParameterInformationLabel {
   const factory ParameterInformationLabel.string({required String value}) =
       ParameterInformationLabel$String;
 
-  static ParameterInformationLabel fromJson(Object? json) {
-    return ParameterInformationLabel.string(value: (json as String));
+  factory ParameterInformationLabel.fromJson(dynamic json) {
+    return ParameterInformationLabel.string(value: json! as String);
   }
 
   Object toJson() => switch (this) {

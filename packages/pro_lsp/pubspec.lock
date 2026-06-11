@@ -313,6 +313,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.2"
+  pro_lints:
+    dependency: "direct dev"
+    description:
+      name: pro_lints
+      sha256: "70377f7bbffad1ab57b04403f003bf0713910034c3b2d3d185d2870643277b9a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.0"
   pub_semver:
     dependency: transitive
     description:
@@ -530,4 +538,4 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.10.0 <4.0.0"
+  dart: ">=3.11.5 <4.0.0"

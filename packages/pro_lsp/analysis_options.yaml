@@ -1,0 +1,11 @@
+include: package:pro_lints/recommended.yaml
+
+
+analyzer: 
+  exclude:
+    - "**/*.g.dart"  
+    - "**/*.freezed.dart"
+    - "lib/src/generated/**"
+
+formatter:
+  trailing_commas: preserve

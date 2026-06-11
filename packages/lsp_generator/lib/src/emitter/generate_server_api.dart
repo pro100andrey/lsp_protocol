@@ -25,9 +25,9 @@ void generateServerApi(ResolvedState resolved) {
   final raw = lib.accept(dartEmitter).toString();
   final source = () {
     try {
-      return formatter.format(raw);
+      return '// ignore_for_file: type=lint\n\n${formatter.format(raw)}';
     } on Object catch (_) {
-      return raw;
+      return '// ignore_for_file: type=lint\n\n$raw';
     }
   }();
 

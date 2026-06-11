@@ -62,9 +62,7 @@ final class ServerApiVisitor {
         ..comments.add(_header)
         ..directives.addAll([
           Directive.import('dart:async'),
-          Directive.import(
-            'package:pro_lsp/pro_lsp.dart',
-          ),
+          Directive.import('../../../pro_lsp.dart'),
         ])
         ..body.addAll(specs),
     );
@@ -231,21 +229,30 @@ final class ServerApiVisitor {
       if (hasParams) _fromJsonAssign(paramsType, 'p', 'json'),
     ];
     final handlerExpr = hasParams
-        ? refer('handler').call([refer('p')]).awaited
-        : refer('handler').call([]).awaited;
+        ? refer('handler').call([refer('p')])
+        : refer('handler').call([]);
 
     if (isVoidResult) {
       statements
-        ..add(handlerExpr.statement)
+        ..add(handlerExpr.awaited.statement)
         ..add(literalNull.returned.statement);
     } else {
       statements.addAll(_returnStatements(resultType, handlerExpr));
     }
 
+    final needsAsync =
+        isVoidResult || (resultType != 'Object?' && resultType != 'Object');
+
     final closure = Method(
       (b) => b
-        ..modifier = MethodModifier.async
-        ..requiredParameters.add(Parameter((b) => b..name = 'json'))
+        ..modifier = needsAsync ? MethodModifier.async : null
+        ..requiredParameters.add(
+          Parameter(
+            (b) => b
+              ..name = 'json'
+              ..type = refer('dynamic'),
+          ),
+        )
         ..body = Block.of(statements),
     ).closure;
 
@@ -269,7 +276,13 @@ final class ServerApiVisitor {
     final closure = Method(
       (b) => b
         ..modifier = MethodModifier.async
-        ..requiredParameters.add(Parameter((b) => b..name = 'json'))
+        ..requiredParameters.add(
+          Parameter(
+            (b) => b
+              ..name = 'json'
+              ..type = refer('dynamic'),
+          ),
+        )
         ..body = Block.of(statements),
     ).closure;
 
@@ -410,7 +423,9 @@ final class ServerApiVisitor {
       if (isVoidResult)
         sendCallExpr.awaited.statement
       else ...[
-        declareFinal('raw').assign(sendCallExpr.awaited).statement,
+        declareFinal('raw', type: refer('dynamic'))
+            .assign(sendCallExpr.awaited)
+            .statement,
         ..._senderDecodeStatements(resultType),
       ],
     ];
@@ -547,7 +562,7 @@ final class ServerApiVisitor {
               'r',
             ).property('map').call([mapClosure]).property('toList').call([]);
       return [
-        declareFinal('r').assign(handlerExpr).statement,
+        declareFinal('r').assign(handlerExpr.awaited).statement,
         listExpr.returned.statement,
       ];
     }
@@ -557,7 +572,7 @@ final class ServerApiVisitor {
         ? refer('r').nullSafeProperty('toJson').call([])
         : refer('r').property('toJson').call([]);
     return [
-      declareFinal('r').assign(handlerExpr).statement,
+      declareFinal('r').assign(handlerExpr.awaited).statement,
       toJson.returned.statement,
     ];
   }
@@ -607,7 +622,7 @@ final class ServerApiVisitor {
       ];
     }
     if (isNullable) {
-      // raw == null ? null : T.fromJson(raw as Map<String, Object?>)
+      // raw == null ? null : T.fromJson(raw as Map<String, dynamic>)
       return [
         refer('raw')
             .equalTo(literalNull)
@@ -615,7 +630,7 @@ final class ServerApiVisitor {
               literalNull,
               refer(baseType).newInstanceNamed(
                 'fromJson',
-                [refer('raw').asA(_jsonMapRef())],
+                [const CodeExpression(Code('raw as Map<String, dynamic>'))],
               ),
             )
             .returned
@@ -624,7 +639,10 @@ final class ServerApiVisitor {
     }
     return [
       refer(baseType)
-          .newInstanceNamed('fromJson', [refer('raw').asA(_jsonMapRef())])
+          .newInstanceNamed(
+            'fromJson',
+            [const CodeExpression(Code('raw as Map<String, dynamic>'))],
+          )
           .returned
           .statement,
     ];
@@ -753,22 +771,18 @@ final class ServerApiVisitor {
   // code_builder helpers
   // -------------------------------------------------------------------------
 
-  /// Returns a [TypeReference] for `Map<String, Object?>`.
+  /// Returns a [TypeReference] for `Map<String, dynamic>`.
   static TypeReference _jsonMapRef() => TypeReference(
     (b) => b
       ..symbol = 'Map'
       ..types.addAll([
         refer('String'),
-        TypeReference(
-          (b) => b
-            ..symbol = 'Object'
-            ..isNullable = true,
-        ),
+        refer('dynamic'),
       ]),
   );
 
   /// Emits `final [varName] =
-  /// [typeName].fromJson([sourceVar] as `Map<String, Object?>`);`
+  /// [typeName].fromJson([sourceVar] as `Map<String, dynamic>`);`
   static Code _fromJsonAssign(
     String typeName,
     String varName,
@@ -777,7 +791,7 @@ final class ServerApiVisitor {
       .assign(
         refer(typeName).newInstanceNamed(
           'fromJson',
-          [refer(sourceVar).asA(_jsonMapRef())],
+          [ CodeExpression(Code('$sourceVar as Map<String, dynamic>'))],
         ),
       )
       .statement;

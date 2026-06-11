@@ -1,10 +1,12 @@
+// ignore_for_file: type=lint
+
 // GENERATED — do not edit.
 
 import 'structures.dart';
 
 /// Information about where a symbol is defined.
 ///
-/// Provides additional metadata over normal [location] definitions, including
+/// Provides additional metadata over normal `location` definitions, including
 /// the range of the defining symbol
 typedef DefinitionLink = LocationLink;
 
@@ -23,7 +25,7 @@ typedef LSPAny = Object;
 
 /// Information about where a symbol is declared.
 ///
-/// Provides additional metadata over normal [location] declarations, including
+/// Provides additional metadata over normal `location` declarations, including
 /// the range of the declaring symbol.
 ///
 /// Servers should prefer returning `DeclarationLink` over `Declaration` if
@@ -62,8 +64,8 @@ typedef LSPObject = Map<String, LSPAny>;
 typedef GlobPattern = Object;
 
 /// A document filter denotes a document by different properties like the
-/// [language], the [scheme] of its resource, or a glob-pattern that is applied
-/// to the [path].
+/// `language`, the `scheme` of its resource, or a glob-pattern that is applied
+/// to the `path`.
 ///
 /// Glob patterns can have the following syntax: - `*` to match zero or more
 /// characters in a path segment - `?` to match on one character in a path

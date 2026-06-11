@@ -8,19 +8,23 @@ enum LspState {
   /// The server is currently processing the `initialize` request.
   initializing,
 
-  /// The server has responded to the `initialize` request and is fully operational.
+  /// The server has responded to the `initialize` request and is fully
+  ///  operational.
   initialized,
 
-  /// The server has received a `shutdown` request but has not yet received an `exit` notification.
+  /// The server has received a `shutdown` request but has not yet received an
+  ///  `exit` notification.
   shuttingDown,
 
-  /// The server has received an `exit` notification and has stopped processing messages.
+  /// The server has received an `exit` notification and has stopped processing 
+  /// messages.
   exited,
 }
 
 /// Helper extension on [LspState] to validate transitions and allowed messages.
 extension LspStateExtension on LspState {
-  /// Returns whether a request with the given [method] is allowed in this state.
+  /// Returns whether a request with the given [method] is allowed in this 
+  /// state.
   bool isRequestAllowed(String method) {
     switch (this) {
       case LspState.uninitialized:
@@ -37,7 +41,8 @@ extension LspStateExtension on LspState {
     }
   }
 
-  /// Returns whether a notification with the given [method] is allowed in this state.
+  /// Returns whether a notification with the given [method] is allowed in this
+  ///  state.
   bool isNotificationAllowed(String method) {
     switch (this) {
       case LspState.uninitialized:

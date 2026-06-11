@@ -6,7 +6,7 @@ import '../connection/lsp_exception.dart';
 final class CancellationToken {
   CancellationToken();
 
-  bool _isCancelled = false;
+  var _isCancelled = false;
   final _onCancelled = StreamController<void>.broadcast();
 
   /// Whether the operation has been cancelled.
@@ -17,10 +17,12 @@ final class CancellationToken {
 
   /// Cancels the operation.
   void cancel() {
-    if (_isCancelled) return;
+    if (_isCancelled) {
+      return;
+    }
     _isCancelled = true;
     _onCancelled.add(null);
-    _onCancelled.close();
+    _onCancelled.close().ignore();
   }
 
   /// Throws an [LspException.requestCancelled] if the token has been cancelled.

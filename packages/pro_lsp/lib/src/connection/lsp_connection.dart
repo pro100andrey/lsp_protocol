@@ -4,8 +4,10 @@ import 'dart:convert';
 import 'package:json_rpc_2/json_rpc_2.dart' as rpc;
 import 'package:stream_channel/stream_channel.dart';
 
+import '../../pro_lsp.dart' show LspServer;
 import '../generated/models/methods.dart';
 import '../server/cancellation_token.dart';
+import '../server/lsp_server.dart' show LspServer;
 import '../server/lsp_state.dart';
 import '../server/middleware.dart';
 import 'lsp_exception.dart';
@@ -36,7 +38,8 @@ final class LspConnection {
             cleanParams['_requestId'] = id;
             decoded['params'] = cleanParams;
             return jsonEncode(decoded);
-          } else if (id == null && method == NotificationMethod.cancelRequest.value) {
+          } else if (id == null &&
+              method == NotificationMethod.cancelRequest.value) {
             final params = decoded['params'];
             if (params is Map<String, Object?>) {
               final cancelId = params['id'];
@@ -46,7 +49,7 @@ final class LspConnection {
             }
           }
         }
-      } catch (_) {}
+      } on Object catch (_) {}
       return event;
     });
 
@@ -54,7 +57,10 @@ final class LspConnection {
     _peer.registerFallback(_handleUnknownMethod);
 
     // Register $/cancelRequest handler so json_rpc_2 doesn't treat it as unknown
-    registerNotificationHandler(NotificationMethod.cancelRequest.value, (params) async {});
+    registerNotificationHandler(
+      NotificationMethod.cancelRequest.value,
+      (params) async {},
+    );
   }
 
   late final rpc.Peer _peer;
@@ -77,7 +83,8 @@ final class LspConnection {
       }
     } else {
       if (!_state.isRequestAllowed(method)) {
-        if (_state == LspState.uninitialized || _state == LspState.initializing) {
+        if (_state == LspState.uninitialized ||
+            _state == LspState.initializing) {
           throw LspException.serverNotInitialized(
             'Server is not initialized. Request: $method',
           );
@@ -98,14 +105,8 @@ final class LspConnection {
   /// Gets the list of registered middlewares.
   List<LspMiddleware> get middlewares => _middlewares;
 
-  void Function(Object error, StackTrace stackTrace)? _onError;
-
-  /// Gets the error callback triggered on unhandled exceptions in handlers.
-  void Function(Object error, StackTrace stackTrace)? get onError => _onError;
-
-  /// Sets the error callback triggered on unhandled exceptions in handlers.
-  set onError(void Function(Object error, StackTrace stackTrace)? value) =>
-      _onError = value;
+  /// The error callback triggered on unhandled exceptions in handlers.
+  void Function(Object error, StackTrace stackTrace)? onError;
 
   // ---------------------------------------------------------------------------
   // Cancellation Tracking
@@ -159,13 +160,13 @@ final class LspConnection {
           requestId: requestId,
         );
 
-        final response = await composeMiddlewares(_middlewares, (req) async {
-          // Bind the CancellationToken inside a Zone
-          return runZoned(
+        final response = await composeMiddlewares(
+          _middlewares,
+          (req) => runZoned(
             () => handler(req.params),
             zoneValues: {#cancellationToken: token},
-          );
-        })(request);
+          ),
+        )(request);
 
         if (method == RequestMethod.initialize.value) {
           _state = LspState.initialized;
@@ -181,9 +182,9 @@ final class LspConnection {
         if (method == RequestMethod.initialize.value) {
           _state = LspState.uninitialized; // Reset on initialization failure
         }
-        if (_onError != null) {
-          _onError!(e, stackTrace);
-        }
+
+        onError?.call(e, stackTrace);
+
         throw rpc.RpcException(
           LspErrorCodes.internalError,
           'Internal error processing request: $e',
@@ -233,9 +234,8 @@ final class LspConnection {
       } on LspException catch (e) {
         throw e.toRpcException();
       } catch (e, stackTrace) {
-        if (_onError != null) {
-          _onError!(e, stackTrace);
-        }
+        onError?.call(e, stackTrace);
+
         throw rpc.RpcException(
           LspErrorCodes.internalError,
           'Internal error processing notification: $e',

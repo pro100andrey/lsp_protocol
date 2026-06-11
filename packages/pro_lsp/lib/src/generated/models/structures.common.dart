@@ -1,3 +1,5 @@
+// ignore_for_file: type=lint
+
 // GENERATED — do not edit.
 
 part of 'structures.dart';
@@ -51,13 +53,13 @@ abstract class ColorPresentation with _$ColorPresentation {
     /// selecting this color presentation.
     required String label,
 
-    /// An [edit] which is applied to a document when selecting this
-    /// presentation for the color. When `falsy` the [label] is used.
+    /// An `edit` which is applied to a document when selecting this
+    /// presentation for the color. When `falsy` the `label` is used.
     TextEdit? textEdit,
 
-    /// An optional array of additional [TextEdit] that are applied when
+    /// An optional array of additional `TextEdit` that are applied when
     /// selecting this color presentation. Edits must not overlap with the main
-    /// [edit] nor with themselves.
+    /// `edit` nor with themselves.
     List<TextEdit>? additionalTextEdits,
   }) = _ColorPresentation;
 
@@ -76,14 +78,14 @@ abstract class FoldingRange with _$FoldingRange {
     /// larger and smaller than the number of lines in the document.
     required int startLine,
 
-    /// The zero-based character offset from where the folded range starts. If
-    /// not defined, defaults to the length of the start line.
-    int? startCharacter,
-
     /// The zero-based end line of the range to fold. The folded area ends with
     /// the line's last character. To be valid, the end must be zero or larger
     /// and smaller than the number of lines in the document.
     required int endLine,
+
+    /// The zero-based character offset from where the folded range starts. If
+    /// not defined, defaults to the length of the start line.
+    int? startCharacter,
 
     /// The zero-based character offset before the folded range ends. If not
     /// defined, defaults to the length of the end line.
@@ -91,7 +93,7 @@ abstract class FoldingRange with _$FoldingRange {
 
     /// Describes the kind of the folding range such as `comment' or 'region'.
     /// The kind is used to categorize folding ranges and used by commands like
-    /// 'Fold all comments'. See [FoldingRangeKind] for an enumeration of
+    /// 'Fold all comments'. See `FoldingRangeKind` for an enumeration of
     /// standardized kinds.
     FoldingRangeKind? kind,
 
@@ -110,7 +112,7 @@ abstract class FoldingRange with _$FoldingRange {
 @freezed
 abstract class SelectionRange with _$SelectionRange {
   const factory SelectionRange({
-    /// The [range] of this selection range.
+    /// The `range` of this selection range.
     required Range range,
 
     /// The parent selection range containing this range. Therefore
@@ -135,12 +137,6 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
     /// The kind of this item.
     required SymbolKind kind,
 
-    /// Tags for this item.
-    List<SymbolTag>? tags,
-
-    /// More detail for this item, e.g. the signature of a function.
-    String? detail,
-
     /// The resource identifier of this item.
     required String uri,
 
@@ -149,8 +145,14 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
     required Range range,
 
     /// The range that should be selected and revealed when this symbol is being
-    /// picked, e.g. the name of a function. Must be contained by the [range].
+    /// picked, e.g. the name of a function. Must be contained by the `range`.
     required Range selectionRange,
+
+    /// Tags for this item.
+    List<SymbolTag>? tags,
+
+    /// More detail for this item, e.g. the signature of a function.
+    String? detail,
 
     /// A data entry field that is preserved between a call hierarchy prepare
     /// and incoming calls or outgoing calls requests.
@@ -171,7 +173,7 @@ abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
     required CallHierarchyItem from,
 
     /// The ranges at which the calls appear. This is relative to the caller
-    /// denoted by [CallHierarchyIncomingCall].
+    /// denoted by `CallHierarchyIncomingCall`.
     required List<Range> fromRanges,
   }) = _CallHierarchyIncomingCall;
 
@@ -190,8 +192,8 @@ abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
     required CallHierarchyItem to,
 
     /// The range at which this item is called. This is the range relative to
-    /// the caller, e.g the item passed to [provideCallHierarchyOutgoingCalls]
-    /// and not [CallHierarchyOutgoingCall].
+    /// the caller, e.g the item passed to `provideCallHierarchyOutgoingCalls`
+    /// and not `CallHierarchyOutgoingCall`.
     required List<Range> fromRanges,
   }) = _CallHierarchyOutgoingCall;
 
@@ -203,14 +205,14 @@ abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
 @freezed
 abstract class SemanticTokens with _$SemanticTokens {
   const factory SemanticTokens({
+    /// The actual tokens.
+    required List<int> data,
+
     /// An optional result id. If provided and clients support delta updating
     /// the client will include the result id in the next semantic token
     /// request. A server can then instead of computing all semantic tokens
     /// again simply send a delta.
     String? resultId,
-
-    /// The actual tokens.
-    required List<int> data,
   }) = _SemanticTokens;
 
   factory SemanticTokens.fromJson(Map<String, dynamic> json) =>
@@ -231,11 +233,10 @@ abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
 @freezed
 abstract class SemanticTokensDelta with _$SemanticTokensDelta {
   const factory SemanticTokensDelta({
-    String? resultId,
-
     /// The semantic token edits to transform a previous result into a new
     /// result.
     required List<SemanticTokensEdit> edits,
+    String? resultId,
   }) = _SemanticTokensDelta;
 
   factory SemanticTokensDelta.fromJson(Map<String, dynamic> json) =>
@@ -373,12 +374,6 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
     /// The kind of this item.
     required SymbolKind kind,
 
-    /// Tags for this item.
-    List<SymbolTag>? tags,
-
-    /// More detail for this item, e.g. the signature of a function.
-    String? detail,
-
     /// The resource identifier of this item.
     required String uri,
 
@@ -387,8 +382,14 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
     required Range range,
 
     /// The range that should be selected and revealed when this symbol is being
-    /// picked, e.g. the name of a function. Must be contained by the [range].
+    /// picked, e.g. the name of a function. Must be contained by the `range`.
     required Range selectionRange,
+
+    /// Tags for this item.
+    List<SymbolTag>? tags,
+
+    /// More detail for this item, e.g. the signature of a function.
+    String? detail,
 
     /// A data entry field that is preserved between a type hierarchy prepare
     /// and supertypes or subtypes requests. It could also be used to identify
@@ -520,7 +521,7 @@ abstract class WorkspaceDiagnosticReportPartialResult
   ) => _$WorkspaceDiagnosticReportPartialResultFromJson(json);
 }
 
-/// Represents a collection of [InlineCompletionItem] to be presented in the
+/// Represents a collection of `InlineCompletionItem` to be presented in the
 /// editor.
 ///
 /// @since 3.18.0
@@ -551,13 +552,13 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
     required InlineCompletionItemInsertText insertText,
 
     /// A text that is used to decide if this inline completion should be shown.
-    /// When `falsy` the [InlineCompletionItem.insertText] is used.
+    /// When `falsy` the `InlineCompletionItem.insertText` is used.
     String? filterText,
 
     /// The range to replace. Must begin and end on the same line.
     Range? range,
 
-    /// An optional [Command] that is executed *after* inserting this
+    /// An optional `Command` that is executed *after* inserting this
     /// completion.
     Command? command,
   }) = _InlineCompletionItem;
@@ -668,15 +669,15 @@ abstract class CompletionItem with _$CompletionItem {
     bool? preselect,
 
     /// A string that should be used when comparing this item with other items.
-    /// When `falsy` the [label] is used.
+    /// When `falsy` the `label` is used.
     String? sortText,
 
     /// A string that should be used when filtering a set of completion items.
-    /// When `falsy` the [label] is used.
+    /// When `falsy` the `label` is used.
     String? filterText,
 
     /// A string that should be inserted into a document when selecting this
-    /// completion. When `falsy` the [label] is used.
+    /// completion. When `falsy` the `label` is used.
     ///
     /// The `insertText` is subject to interpretation by the client side. Some
     /// tools might not take the string literally. For example VS Code when code
@@ -699,8 +700,8 @@ abstract class CompletionItem with _$CompletionItem {
     /// `textDocument.completion.insertTextMode` client capability.
     InsertTextMode? insertTextMode,
 
-    /// An [edit] which is applied to a document when selecting this completion.
-    /// When an edit is provided the value of [insertText] is ignored.
+    /// An `edit` which is applied to a document when selecting this completion.
+    /// When an edit is provided the value of `insertText` is ignored.
     ///
     /// Most editors support two different operations when accepting a
     /// completion item. One is to insert a completion text and the other is to
@@ -732,9 +733,9 @@ abstract class CompletionItem with _$CompletionItem {
     /// property is used as a text.
     String? textEditText,
 
-    /// An optional array of additional [TextEdit] that are applied when
+    /// An optional array of additional `TextEdit` that are applied when
     /// selecting this completion. Edits must not overlap (including the same
-    /// insert position) with the main [edit] nor with themselves.
+    /// insert position) with the main `edit` nor with themselves.
     ///
     /// Additional text edits should be used to change text unrelated to the
     /// current cursor position (for example adding an import statement at the
@@ -747,13 +748,13 @@ abstract class CompletionItem with _$CompletionItem {
     /// characters will be ignored.
     List<String>? commitCharacters,
 
-    /// An optional [command] that is executed *after* inserting this
+    /// An optional `command` that is executed *after* inserting this
     /// completion. *Note* that additional modifications to the current document
-    /// should be described with the [additionalTextEdits]-property.
+    /// should be described with the `additionalTextEdits`-property.
     Command? command,
 
     /// A data entry field that is preserved on a completion item between a
-    /// [CompletionRequest] and a [CompletionResolveRequest].
+    /// `CompletionRequest` and a `CompletionResolveRequest`.
     LSPAny? data,
   }) = _CompletionItem;
 
@@ -761,7 +762,7 @@ abstract class CompletionItem with _$CompletionItem {
       _$CompletionItemFromJson(json);
 }
 
-/// Represents a collection of [CompletionItem] to be presented in the editor.
+/// Represents a collection of `CompletionItem` to be presented in the editor.
 @freezed
 abstract class CompletionList with _$CompletionList {
   const factory CompletionList({
@@ -771,6 +772,9 @@ abstract class CompletionList with _$CompletionList {
     /// Recomputed lists have all their items replaced (not appended) in the
     /// incomplete completion sessions.
     required bool isIncomplete,
+
+    /// The completion items.
+    required List<CompletionItem> items,
 
     /// In many cases the items of an actual completion result share the same
     /// value for properties like `commitCharacters` or the range of a text
@@ -790,9 +794,6 @@ abstract class CompletionList with _$CompletionList {
       LSPAny? data,
     })?
     itemDefaults,
-
-    /// The completion items.
-    required List<CompletionItem> items,
   }) = _CompletionList;
 
   factory CompletionList.fromJson(Map<String, dynamic> json) =>
@@ -857,7 +858,7 @@ abstract class DocumentHighlight with _$DocumentHighlight {
     /// The range this highlight applies to.
     required Range range,
 
-    /// The highlight kind, default is [text].
+    /// The highlight kind, default is `text`.
     DocumentHighlightKind? kind,
   }) = _DocumentHighlight;
 
@@ -876,6 +877,17 @@ abstract class SymbolInformation with _$SymbolInformation {
     /// The kind of this symbol.
     required SymbolKind kind,
 
+    /// The location of this symbol. The location's range is used by a tool to
+    /// reveal the location in the editor. If the symbol is selected in the tool
+    /// the range's start information is used to position the cursor. So the
+    /// range usually spans more than the actual symbol's name and does normally
+    /// include things like visibility modifiers.
+    ///
+    /// The range doesn't have to denote a node range in the sense of an
+    /// abstract syntax tree. It can therefore not be used to re-construct a
+    /// hierarchy of the symbols.
+    required Location location,
+
     /// Tags for this symbol.
     List<SymbolTag>? tags,
 
@@ -889,17 +901,6 @@ abstract class SymbolInformation with _$SymbolInformation {
     ///
     /// @deprecated Use tags instead
     @Deprecated('Use tags instead') bool? deprecated,
-
-    /// The location of this symbol. The location's range is used by a tool to
-    /// reveal the location in the editor. If the symbol is selected in the tool
-    /// the range's start information is used to position the cursor. So the
-    /// range usually spans more than the actual symbol's name and does normally
-    /// include things like visibility modifiers.
-    ///
-    /// The range doesn't have to denote a node range in the sense of an
-    /// abstract syntax tree. It can therefore not be used to re-construct a
-    /// hierarchy of the symbols.
-    required Location location,
   }) = _SymbolInformation;
 
   factory SymbolInformation.fromJson(Map<String, dynamic> json) =>
@@ -918,19 +919,8 @@ abstract class DocumentSymbol with _$DocumentSymbol {
     /// white spaces.
     required String name,
 
-    /// More detail for this symbol, e.g the signature of a function.
-    String? detail,
-
     /// The kind of this symbol.
     required SymbolKind kind,
-
-    /// Tags for this document symbol.
-    List<SymbolTag>? tags,
-
-    /// Indicates if this symbol is deprecated.
-    ///
-    /// @deprecated Use tags instead
-    @Deprecated('Use tags instead') bool? deprecated,
 
     /// The range enclosing this symbol not including leading/trailing
     /// whitespace but everything else like comments. This information is
@@ -941,6 +931,17 @@ abstract class DocumentSymbol with _$DocumentSymbol {
     /// The range that should be selected and revealed when this symbol is being
     /// picked, e.g the name of a function. Must be contained by the `range`.
     required Range selectionRange,
+
+    /// More detail for this symbol, e.g the signature of a function.
+    String? detail,
+
+    /// Tags for this document symbol.
+    List<SymbolTag>? tags,
+
+    /// Indicates if this symbol is deprecated.
+    ///
+    /// @deprecated Use tags instead
+    @Deprecated('Use tags instead') bool? deprecated,
 
     /// Children of this symbol, e.g. properties of a class.
     List<DocumentSymbol>? children,
@@ -1047,15 +1048,6 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     /// The kind of this symbol.
     required SymbolKind kind,
 
-    /// Tags for this symbol.
-    List<SymbolTag>? tags,
-
-    /// The name of the symbol containing this symbol. This information is for
-    /// user interface purposes (e.g. to render a qualifier in the user
-    /// interface if necessary). It can't be used to re-infer a hierarchy for
-    /// the document symbols.
-    String? containerName,
-
     /// The location of the symbol. Whether a server is allowed to return a
     /// location without a range depends on the client capability
     /// `workspace.symbol.resolveSupport`.
@@ -1066,6 +1058,15 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     @_WorkspaceSymbolLocationConverter()
     required WorkspaceSymbolLocation location,
 
+    /// Tags for this symbol.
+    List<SymbolTag>? tags,
+
+    /// The name of the symbol containing this symbol. This information is for
+    /// user interface purposes (e.g. to render a qualifier in the user
+    /// interface if necessary). It can't be used to re-infer a hierarchy for
+    /// the document symbols.
+    String? containerName,
+
     /// A data entry field that is preserved on a workspace symbol between a
     /// workspace symbol request and a workspace symbol resolve request.
     LSPAny? data,
@@ -1075,7 +1076,7 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
       _$WorkspaceSymbolFromJson(json);
 }
 
-/// A code lens represents a [command] that should be shown along with source
+/// A code lens represents a `command` that should be shown along with source
 /// text, like the number of references, a way to run tests, etc.
 ///
 /// A code lens is _unresolved_ when no command is associated to it. For
@@ -1092,7 +1093,7 @@ abstract class CodeLens with _$CodeLens {
     Command? command,
 
     /// A data entry field that is preserved on a code lens item between a
-    /// [CodeLensRequest] and a [CodeLensResolveRequest]
+    /// `CodeLensRequest` and a `CodeLensResolveRequest`
     LSPAny? data,
   }) = _CodeLens;
 
@@ -1237,16 +1238,10 @@ abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
 }
 
 /// Represents the connection of two locations. Provides additional metadata
-/// over normal [locations], including an origin range.
+/// over normal `locations`, including an origin range.
 @freezed
 abstract class LocationLink with _$LocationLink {
   const factory LocationLink({
-    /// Span of the origin of this link.
-    ///
-    /// Used as the underlined span for mouse interaction. Defaults to the word
-    /// range at the definition position.
-    Range? originSelectionRange,
-
     /// The target resource identifier of this link.
     required String targetUri,
 
@@ -1260,6 +1255,12 @@ abstract class LocationLink with _$LocationLink {
     /// followed, e.g the name of a function. Must be contained by the
     /// `targetRange`. See also `DocumentSymbol#range`
     required Range targetSelectionRange,
+
+    /// Span of the origin of this link.
+    ///
+    /// Used as the underlined span for mouse interaction. Defaults to the word
+    /// range at the definition position.
+    Range? originSelectionRange,
   }) = _LocationLink;
 
   factory LocationLink.fromJson(Map<String, dynamic> json) =>
@@ -1460,14 +1461,14 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
 @freezed
 abstract class CreateFile with _$CreateFile {
   const factory CreateFile({
-    /// An optional annotation identifier describing the operation.
-    ChangeAnnotationIdentifier? annotationId,
-
     /// A create
     required String kind,
 
     /// The resource to create.
     required String uri,
+
+    /// An optional annotation identifier describing the operation.
+    ChangeAnnotationIdentifier? annotationId,
 
     /// Additional options
     CreateFileOptions? options,
@@ -1481,9 +1482,6 @@ abstract class CreateFile with _$CreateFile {
 @freezed
 abstract class RenameFile with _$RenameFile {
   const factory RenameFile({
-    /// An optional annotation identifier describing the operation.
-    ChangeAnnotationIdentifier? annotationId,
-
     /// A rename
     required String kind,
 
@@ -1492,6 +1490,9 @@ abstract class RenameFile with _$RenameFile {
 
     /// The new location.
     required String newUri,
+
+    /// An optional annotation identifier describing the operation.
+    ChangeAnnotationIdentifier? annotationId,
 
     /// Rename options.
     RenameFileOptions? options,
@@ -1505,14 +1506,14 @@ abstract class RenameFile with _$RenameFile {
 @freezed
 abstract class DeleteFile with _$DeleteFile {
   const factory DeleteFile({
-    /// An optional annotation identifier describing the operation.
-    ChangeAnnotationIdentifier? annotationId,
-
     /// A delete
     required String kind,
 
     /// The file to delete.
     required String uri,
+
+    /// An optional annotation identifier describing the operation.
+    ChangeAnnotationIdentifier? annotationId,
 
     /// Delete options.
     DeleteFileOptions? options,
@@ -1552,11 +1553,11 @@ abstract class ChangeAnnotation with _$ChangeAnnotation {
 @freezed
 abstract class FileOperationFilter with _$FileOperationFilter {
   const factory FileOperationFilter({
-    /// A Uri scheme like `file` or `untitled`.
-    String? scheme,
-
     /// The actual file operation pattern.
     required FileOperationPattern pattern,
+
+    /// A Uri scheme like `file` or `untitled`.
+    String? scheme,
   }) = _FileOperationFilter;
 
   factory FileOperationFilter.fromJson(Map<String, dynamic> json) =>
@@ -1641,11 +1642,11 @@ abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
     /// to extract the variable name from the underlying document.
     required Range range,
 
-    /// If specified the name of the variable to look up.
-    String? variableName,
-
     /// How to perform the lookup.
     required bool caseSensitiveLookup,
+
+    /// If specified the name of the variable to look up.
+    String? variableName,
   }) = _InlineValueVariableLookup;
 
   factory InlineValueVariableLookup.fromJson(Map<String, dynamic> json) =>
@@ -1753,12 +1754,12 @@ abstract class RelatedFullDocumentDiagnosticReport
     /// A full document diagnostic report.
     required String kind,
 
+    /// The actual items.
+    required List<Diagnostic> items,
+
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
     String? resultId,
-
-    /// The actual items.
-    required List<Diagnostic> items,
 
     /// Diagnostics of related documents. This information is useful in
     /// programming languages where code in a file A can generate diagnostics in
@@ -1811,12 +1812,12 @@ abstract class FullDocumentDiagnosticReport
     /// A full document diagnostic report.
     required String kind,
 
+    /// The actual items.
+    required List<Diagnostic> items,
+
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
     String? resultId,
-
-    /// The actual items.
-    required List<Diagnostic> items,
   }) = _FullDocumentDiagnosticReport;
 
   factory FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) =>
@@ -1878,13 +1879,13 @@ abstract class NotebookDocument with _$NotebookDocument {
     /// including undo/redo).
     required int version,
 
+    /// The cells of a notebook.
+    required List<NotebookCell> cells,
+
     /// Additional metadata stored with the notebook document.
     ///
     /// Note: should always be an object literal (e.g. LSPObject)
     LSPObject? metadata,
-
-    /// The cells of a notebook.
-    required List<NotebookCell> cells,
   }) = _NotebookDocument;
 
   factory NotebookDocument.fromJson(Map<String, dynamic> json) =>
@@ -2087,7 +2088,7 @@ abstract class FileEvent with _$FileEvent {
 @freezed
 abstract class FileSystemWatcher with _$FileSystemWatcher {
   const factory FileSystemWatcher({
-    /// The glob pattern to watch. See [GlobPattern] for more detail.
+    /// The glob pattern to watch. See `GlobPattern` for more detail.
     ///
     /// support for relative patterns.
     required GlobPattern globPattern,
@@ -2109,6 +2110,9 @@ abstract class Diagnostic with _$Diagnostic {
     /// The range at which the message applies
     required Range range,
 
+    /// The diagnostic's message. It usually appears in the user interface
+    required String message,
+
     /// The diagnostic's severity. Can be omitted. If omitted it is up to the
     /// client to interpret diagnostics as error, warning, info or hint.
     DiagnosticSeverity? severity,
@@ -2125,9 +2129,6 @@ abstract class Diagnostic with _$Diagnostic {
     /// A human-readable string describing the source of this diagnostic, e.g.
     /// 'typescript' or 'super lint'. It usually appears in the user interface.
     String? source,
-
-    /// The diagnostic's message. It usually appears in the user interface
-    required String message,
 
     /// Additional metadata about the diagnostic.
     List<DiagnosticTag>? tags,
@@ -2171,12 +2172,12 @@ abstract class CompletionContext with _$CompletionContext {
 abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
   const factory CompletionItemLabelDetails({
     /// An optional string which is rendered less prominently directly after
-    /// [label], without any spacing. Should be used for function signatures and
+    /// `label`, without any spacing. Should be used for function signatures and
     /// type annotations.
     String? detail,
 
     /// An optional string which is rendered less prominently after
-    /// [CompletionItem.detail]. Should be used for fully qualified names and
+    /// `CompletionItem.detail`. Should be used for fully qualified names and
     /// file paths.
     String? description,
   }) = _CompletionItemLabelDetails;
@@ -2215,18 +2216,18 @@ abstract class SignatureHelpContext with _$SignatureHelpContext {
     /// Action that caused signature help to be triggered.
     required SignatureHelpTriggerKind triggerKind,
 
-    /// Character that caused signature help to be triggered.
-    ///
-    /// This is undefined when `triggerKind !==
-    /// SignatureHelpTriggerKind.TriggerCharacter`
-    String? triggerCharacter,
-
     /// `true` if signature help was already showing when it was triggered.
     ///
     /// Retriggers occurs when the signature help is already active and can be
     /// caused by actions such as typing a trigger character, a cursor move, or
     /// document content changes.
     required bool isRetrigger,
+
+    /// Character that caused signature help to be triggered.
+    ///
+    /// This is undefined when `triggerKind !==
+    /// SignatureHelpTriggerKind.TriggerCharacter`
+    String? triggerCharacter,
 
     /// The currently active `SignatureHelp`.
     ///
@@ -2305,7 +2306,7 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
 }
 
 /// Contains additional diagnostic information about the context in which a
-/// [CodeActionProvider] is run.
+/// `CodeActionProvider` is run.
 @freezed
 abstract class CodeActionContext with _$CodeActionContext {
   const factory CodeActionContext({
@@ -2447,10 +2448,6 @@ abstract class WorkspaceFullDocumentDiagnosticReport
     /// A full document diagnostic report.
     required String kind,
 
-    /// An optional result id. If provided it will be sent on the next
-    /// diagnostic request for the same document.
-    String? resultId,
-
     /// The actual items.
     required List<Diagnostic> items,
 
@@ -2460,6 +2457,10 @@ abstract class WorkspaceFullDocumentDiagnosticReport
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
     required int? version,
+
+    /// An optional result id. If provided it will be sent on the next
+    /// diagnostic request for the same document.
+    String? resultId,
   }) = _WorkspaceFullDocumentDiagnosticReport;
 
   factory WorkspaceFullDocumentDiagnosticReport.fromJson(

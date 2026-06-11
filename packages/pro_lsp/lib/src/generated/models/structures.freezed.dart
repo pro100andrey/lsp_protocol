@@ -3820,7 +3820,7 @@ mixin _$DidChangeWatchedFilesClientCapabilities {
 /// Did change watched files notification supports dynamic registration.
 /// Please note that the current protocol doesn't support static
 /// configuration for file changes from the server side.
- bool? get dynamicRegistration;/// Whether the client has support for [RelativePattern] or not.
+ bool? get dynamicRegistration;/// Whether the client has support for `RelativePattern` or not.
  bool? get relativePatternSupport;
 /// Create a copy of DidChangeWatchedFilesClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -3894,7 +3894,7 @@ class _DidChangeWatchedFilesClientCapabilities implements DidChangeWatchedFilesC
 /// Please note that the current protocol doesn't support static
 /// configuration for file changes from the server side.
 @override final  bool? dynamicRegistration;
-/// Whether the client has support for [RelativePattern] or not.
+/// Whether the client has support for `RelativePattern` or not.
 @override final  bool? relativePatternSupport;
 
 /// Create a copy of DidChangeWatchedFilesClientCapabilities
@@ -8755,11 +8755,7 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to
-/// `true` the client supports the new `(TextDocumentRegistrationOptions &
-/// StaticRegistrationOptions)` return value for the corresponding server
-/// capability as well.
- bool? get dynamicRegistration;/// Which requests the client supports and might send to the server
+/// Which requests the client supports and might send to the server
 /// depending on the server's capability. Please note that clients might not
 /// show semantic tokens or degrade some of the user experience if a range
 /// or full request is advertised by the client but not provided by the
@@ -8770,7 +8766,11 @@ mixin _$SemanticTokensClientCapabilities {
  ({Object? range, Object? full}) get requests;/// The token types that the client supports.
  List<String> get tokenTypes;/// The token modifiers that the client supports.
  List<String> get tokenModifiers;/// The token formats the clients supports.
- List<TokenFormat> get formats;/// Whether the client supports tokens that can overlap each other.
+ List<TokenFormat> get formats;/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
+ bool? get dynamicRegistration;/// Whether the client supports tokens that can overlap each other.
  bool? get overlappingTokenSupport;/// Whether the client supports tokens that can span multiple lines.
  bool? get multilineTokenSupport;/// Whether the client allows the server to actively cancel a semantic token
 /// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a
@@ -8794,16 +8794,16 @@ $SemanticTokensClientCapabilitiesCopyWith<SemanticTokensClientCapabilities> get 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.requests, requests) || other.requests == requests)&&const DeepCollectionEquality().equals(other.tokenTypes, tokenTypes)&&const DeepCollectionEquality().equals(other.tokenModifiers, tokenModifiers)&&const DeepCollectionEquality().equals(other.formats, formats)&&(identical(other.overlappingTokenSupport, overlappingTokenSupport) || other.overlappingTokenSupport == overlappingTokenSupport)&&(identical(other.multilineTokenSupport, multilineTokenSupport) || other.multilineTokenSupport == multilineTokenSupport)&&(identical(other.serverCancelSupport, serverCancelSupport) || other.serverCancelSupport == serverCancelSupport)&&(identical(other.augmentsSyntaxTokens, augmentsSyntaxTokens) || other.augmentsSyntaxTokens == augmentsSyntaxTokens));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensClientCapabilities&&(identical(other.requests, requests) || other.requests == requests)&&const DeepCollectionEquality().equals(other.tokenTypes, tokenTypes)&&const DeepCollectionEquality().equals(other.tokenModifiers, tokenModifiers)&&const DeepCollectionEquality().equals(other.formats, formats)&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.overlappingTokenSupport, overlappingTokenSupport) || other.overlappingTokenSupport == overlappingTokenSupport)&&(identical(other.multilineTokenSupport, multilineTokenSupport) || other.multilineTokenSupport == multilineTokenSupport)&&(identical(other.serverCancelSupport, serverCancelSupport) || other.serverCancelSupport == serverCancelSupport)&&(identical(other.augmentsSyntaxTokens, augmentsSyntaxTokens) || other.augmentsSyntaxTokens == augmentsSyntaxTokens));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dynamicRegistration,requests,const DeepCollectionEquality().hash(tokenTypes),const DeepCollectionEquality().hash(tokenModifiers),const DeepCollectionEquality().hash(formats),overlappingTokenSupport,multilineTokenSupport,serverCancelSupport,augmentsSyntaxTokens);
+int get hashCode => Object.hash(runtimeType,requests,const DeepCollectionEquality().hash(tokenTypes),const DeepCollectionEquality().hash(tokenModifiers),const DeepCollectionEquality().hash(formats),dynamicRegistration,overlappingTokenSupport,multilineTokenSupport,serverCancelSupport,augmentsSyntaxTokens);
 
 @override
 String toString() {
-  return 'SemanticTokensClientCapabilities(dynamicRegistration: $dynamicRegistration, requests: $requests, tokenTypes: $tokenTypes, tokenModifiers: $tokenModifiers, formats: $formats, overlappingTokenSupport: $overlappingTokenSupport, multilineTokenSupport: $multilineTokenSupport, serverCancelSupport: $serverCancelSupport, augmentsSyntaxTokens: $augmentsSyntaxTokens)';
+  return 'SemanticTokensClientCapabilities(requests: $requests, tokenTypes: $tokenTypes, tokenModifiers: $tokenModifiers, formats: $formats, dynamicRegistration: $dynamicRegistration, overlappingTokenSupport: $overlappingTokenSupport, multilineTokenSupport: $multilineTokenSupport, serverCancelSupport: $serverCancelSupport, augmentsSyntaxTokens: $augmentsSyntaxTokens)';
 }
 
 
@@ -8814,7 +8814,7 @@ abstract mixin class $SemanticTokensClientCapabilitiesCopyWith<$Res>  {
   factory $SemanticTokensClientCapabilitiesCopyWith(SemanticTokensClientCapabilities value, $Res Function(SemanticTokensClientCapabilities) _then) = _$SemanticTokensClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
+ ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? dynamicRegistration, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
 });
 
 
@@ -8831,14 +8831,14 @@ class _$SemanticTokensClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? dynamicRegistration = freezed,Object? requests = null,Object? tokenTypes = null,Object? tokenModifiers = null,Object? formats = null,Object? overlappingTokenSupport = freezed,Object? multilineTokenSupport = freezed,Object? serverCancelSupport = freezed,Object? augmentsSyntaxTokens = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? requests = null,Object? tokenTypes = null,Object? tokenModifiers = null,Object? formats = null,Object? dynamicRegistration = freezed,Object? overlappingTokenSupport = freezed,Object? multilineTokenSupport = freezed,Object? serverCancelSupport = freezed,Object? augmentsSyntaxTokens = freezed,}) {
   return _then(_self.copyWith(
-dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
-as bool?,requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
+requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
 as ({Object? range, Object? full}),tokenTypes: null == tokenTypes ? _self.tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self.tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self.formats : formats // ignore: cast_nullable_to_non_nullable
-as List<TokenFormat>,overlappingTokenSupport: freezed == overlappingTokenSupport ? _self.overlappingTokenSupport : overlappingTokenSupport // ignore: cast_nullable_to_non_nullable
+as List<TokenFormat>,dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
+as bool?,overlappingTokenSupport: freezed == overlappingTokenSupport ? _self.overlappingTokenSupport : overlappingTokenSupport // ignore: cast_nullable_to_non_nullable
 as bool?,multilineTokenSupport: freezed == multilineTokenSupport ? _self.multilineTokenSupport : multilineTokenSupport // ignore: cast_nullable_to_non_nullable
 as bool?,serverCancelSupport: freezed == serverCancelSupport ? _self.serverCancelSupport : serverCancelSupport // ignore: cast_nullable_to_non_nullable
 as bool?,augmentsSyntaxTokens: freezed == augmentsSyntaxTokens ? _self.augmentsSyntaxTokens : augmentsSyntaxTokens // ignore: cast_nullable_to_non_nullable
@@ -8854,14 +8854,9 @@ as bool?,
 @JsonSerializable()
 
 class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilities {
-  const _SemanticTokensClientCapabilities({this.dynamicRegistration, required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, required final  List<TokenFormat> formats, this.overlappingTokenSupport, this.multilineTokenSupport, this.serverCancelSupport, this.augmentsSyntaxTokens}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats;
+  const _SemanticTokensClientCapabilities({required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, required final  List<TokenFormat> formats, this.dynamicRegistration, this.overlappingTokenSupport, this.multilineTokenSupport, this.serverCancelSupport, this.augmentsSyntaxTokens}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats;
   factory _SemanticTokensClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to
-/// `true` the client supports the new `(TextDocumentRegistrationOptions &
-/// StaticRegistrationOptions)` return value for the corresponding server
-/// capability as well.
-@override final  bool? dynamicRegistration;
 /// Which requests the client supports and might send to the server
 /// depending on the server's capability. Please note that clients might not
 /// show semantic tokens or degrade some of the user experience if a range
@@ -8898,6 +8893,11 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
   return EqualUnmodifiableListView(_formats);
 }
 
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
+@override final  bool? dynamicRegistration;
 /// Whether the client supports tokens that can overlap each other.
 @override final  bool? overlappingTokenSupport;
 /// Whether the client supports tokens that can span multiple lines.
@@ -8927,16 +8927,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.requests, requests) || other.requests == requests)&&const DeepCollectionEquality().equals(other._tokenTypes, _tokenTypes)&&const DeepCollectionEquality().equals(other._tokenModifiers, _tokenModifiers)&&const DeepCollectionEquality().equals(other._formats, _formats)&&(identical(other.overlappingTokenSupport, overlappingTokenSupport) || other.overlappingTokenSupport == overlappingTokenSupport)&&(identical(other.multilineTokenSupport, multilineTokenSupport) || other.multilineTokenSupport == multilineTokenSupport)&&(identical(other.serverCancelSupport, serverCancelSupport) || other.serverCancelSupport == serverCancelSupport)&&(identical(other.augmentsSyntaxTokens, augmentsSyntaxTokens) || other.augmentsSyntaxTokens == augmentsSyntaxTokens));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensClientCapabilities&&(identical(other.requests, requests) || other.requests == requests)&&const DeepCollectionEquality().equals(other._tokenTypes, _tokenTypes)&&const DeepCollectionEquality().equals(other._tokenModifiers, _tokenModifiers)&&const DeepCollectionEquality().equals(other._formats, _formats)&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.overlappingTokenSupport, overlappingTokenSupport) || other.overlappingTokenSupport == overlappingTokenSupport)&&(identical(other.multilineTokenSupport, multilineTokenSupport) || other.multilineTokenSupport == multilineTokenSupport)&&(identical(other.serverCancelSupport, serverCancelSupport) || other.serverCancelSupport == serverCancelSupport)&&(identical(other.augmentsSyntaxTokens, augmentsSyntaxTokens) || other.augmentsSyntaxTokens == augmentsSyntaxTokens));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dynamicRegistration,requests,const DeepCollectionEquality().hash(_tokenTypes),const DeepCollectionEquality().hash(_tokenModifiers),const DeepCollectionEquality().hash(_formats),overlappingTokenSupport,multilineTokenSupport,serverCancelSupport,augmentsSyntaxTokens);
+int get hashCode => Object.hash(runtimeType,requests,const DeepCollectionEquality().hash(_tokenTypes),const DeepCollectionEquality().hash(_tokenModifiers),const DeepCollectionEquality().hash(_formats),dynamicRegistration,overlappingTokenSupport,multilineTokenSupport,serverCancelSupport,augmentsSyntaxTokens);
 
 @override
 String toString() {
-  return 'SemanticTokensClientCapabilities(dynamicRegistration: $dynamicRegistration, requests: $requests, tokenTypes: $tokenTypes, tokenModifiers: $tokenModifiers, formats: $formats, overlappingTokenSupport: $overlappingTokenSupport, multilineTokenSupport: $multilineTokenSupport, serverCancelSupport: $serverCancelSupport, augmentsSyntaxTokens: $augmentsSyntaxTokens)';
+  return 'SemanticTokensClientCapabilities(requests: $requests, tokenTypes: $tokenTypes, tokenModifiers: $tokenModifiers, formats: $formats, dynamicRegistration: $dynamicRegistration, overlappingTokenSupport: $overlappingTokenSupport, multilineTokenSupport: $multilineTokenSupport, serverCancelSupport: $serverCancelSupport, augmentsSyntaxTokens: $augmentsSyntaxTokens)';
 }
 
 
@@ -8947,7 +8947,7 @@ abstract mixin class _$SemanticTokensClientCapabilitiesCopyWith<$Res> implements
   factory _$SemanticTokensClientCapabilitiesCopyWith(_SemanticTokensClientCapabilities value, $Res Function(_SemanticTokensClientCapabilities) _then) = __$SemanticTokensClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
+ ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? dynamicRegistration, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
 });
 
 
@@ -8964,14 +8964,14 @@ class __$SemanticTokensClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? dynamicRegistration = freezed,Object? requests = null,Object? tokenTypes = null,Object? tokenModifiers = null,Object? formats = null,Object? overlappingTokenSupport = freezed,Object? multilineTokenSupport = freezed,Object? serverCancelSupport = freezed,Object? augmentsSyntaxTokens = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? requests = null,Object? tokenTypes = null,Object? tokenModifiers = null,Object? formats = null,Object? dynamicRegistration = freezed,Object? overlappingTokenSupport = freezed,Object? multilineTokenSupport = freezed,Object? serverCancelSupport = freezed,Object? augmentsSyntaxTokens = freezed,}) {
   return _then(_SemanticTokensClientCapabilities(
-dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
-as bool?,requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
+requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
 as ({Object? range, Object? full}),tokenTypes: null == tokenTypes ? _self._tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self._tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self._formats : formats // ignore: cast_nullable_to_non_nullable
-as List<TokenFormat>,overlappingTokenSupport: freezed == overlappingTokenSupport ? _self.overlappingTokenSupport : overlappingTokenSupport // ignore: cast_nullable_to_non_nullable
+as List<TokenFormat>,dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
+as bool?,overlappingTokenSupport: freezed == overlappingTokenSupport ? _self.overlappingTokenSupport : overlappingTokenSupport // ignore: cast_nullable_to_non_nullable
 as bool?,multilineTokenSupport: freezed == multilineTokenSupport ? _self.multilineTokenSupport : multilineTokenSupport // ignore: cast_nullable_to_non_nullable
 as bool?,serverCancelSupport: freezed == serverCancelSupport ? _self.serverCancelSupport : serverCancelSupport // ignore: cast_nullable_to_non_nullable
 as bool?,augmentsSyntaxTokens: freezed == augmentsSyntaxTokens ? _self.augmentsSyntaxTokens : augmentsSyntaxTokens // ignore: cast_nullable_to_non_nullable
@@ -11169,11 +11169,11 @@ mixin _$ColorPresentation {
 /// The label of this color presentation. It will be shown on the color
 /// picker header. By default this is also the text that is inserted when
 /// selecting this color presentation.
- String get label;/// An [edit] which is applied to a document when selecting this
-/// presentation for the color. When `falsy` the [label] is used.
- TextEdit? get textEdit;/// An optional array of additional [TextEdit] that are applied when
+ String get label;/// An `edit` which is applied to a document when selecting this
+/// presentation for the color. When `falsy` the `label` is used.
+ TextEdit? get textEdit;/// An optional array of additional `TextEdit` that are applied when
 /// selecting this color presentation. Edits must not overlap with the main
-/// [edit] nor with themselves.
+/// `edit` nor with themselves.
  List<TextEdit>? get additionalTextEdits;
 /// Create a copy of ColorPresentation
 /// with the given fields replaced by the non-null parameter values.
@@ -11260,16 +11260,16 @@ class _ColorPresentation implements ColorPresentation {
 /// picker header. By default this is also the text that is inserted when
 /// selecting this color presentation.
 @override final  String label;
-/// An [edit] which is applied to a document when selecting this
-/// presentation for the color. When `falsy` the [label] is used.
+/// An `edit` which is applied to a document when selecting this
+/// presentation for the color. When `falsy` the `label` is used.
 @override final  TextEdit? textEdit;
-/// An optional array of additional [TextEdit] that are applied when
+/// An optional array of additional `TextEdit` that are applied when
 /// selecting this color presentation. Edits must not overlap with the main
-/// [edit] nor with themselves.
+/// `edit` nor with themselves.
  final  List<TextEdit>? _additionalTextEdits;
-/// An optional array of additional [TextEdit] that are applied when
+/// An optional array of additional `TextEdit` that are applied when
 /// selecting this color presentation. Edits must not overlap with the main
-/// [edit] nor with themselves.
+/// `edit` nor with themselves.
 @override List<TextEdit>? get additionalTextEdits {
   final value = _additionalTextEdits;
   if (value == null) return null;
@@ -11360,16 +11360,16 @@ mixin _$FoldingRange {
 /// The zero-based start line of the range to fold. The folded area starts
 /// after the line's last character. To be valid, the end must be zero or
 /// larger and smaller than the number of lines in the document.
- int get startLine;/// The zero-based character offset from where the folded range starts. If
-/// not defined, defaults to the length of the start line.
- int? get startCharacter;/// The zero-based end line of the range to fold. The folded area ends with
+ int get startLine;/// The zero-based end line of the range to fold. The folded area ends with
 /// the line's last character. To be valid, the end must be zero or larger
 /// and smaller than the number of lines in the document.
- int get endLine;/// The zero-based character offset before the folded range ends. If not
+ int get endLine;/// The zero-based character offset from where the folded range starts. If
+/// not defined, defaults to the length of the start line.
+ int? get startCharacter;/// The zero-based character offset before the folded range ends. If not
 /// defined, defaults to the length of the end line.
  int? get endCharacter;/// Describes the kind of the folding range such as `comment' or 'region'.
 /// The kind is used to categorize folding ranges and used by commands like
-/// 'Fold all comments'. See [FoldingRangeKind] for an enumeration of
+/// 'Fold all comments'. See `FoldingRangeKind` for an enumeration of
 /// standardized kinds.
  FoldingRangeKind? get kind;/// The text that the client should show when the specified range is
 /// collapsed. If not defined or not supported by the client, a default will
@@ -11387,16 +11387,16 @@ $FoldingRangeCopyWith<FoldingRange> get copyWith => _$FoldingRangeCopyWithImpl<F
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FoldingRange&&(identical(other.startLine, startLine) || other.startLine == startLine)&&(identical(other.startCharacter, startCharacter) || other.startCharacter == startCharacter)&&(identical(other.endLine, endLine) || other.endLine == endLine)&&(identical(other.endCharacter, endCharacter) || other.endCharacter == endCharacter)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.collapsedText, collapsedText) || other.collapsedText == collapsedText));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FoldingRange&&(identical(other.startLine, startLine) || other.startLine == startLine)&&(identical(other.endLine, endLine) || other.endLine == endLine)&&(identical(other.startCharacter, startCharacter) || other.startCharacter == startCharacter)&&(identical(other.endCharacter, endCharacter) || other.endCharacter == endCharacter)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.collapsedText, collapsedText) || other.collapsedText == collapsedText));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,startLine,startCharacter,endLine,endCharacter,kind,collapsedText);
+int get hashCode => Object.hash(runtimeType,startLine,endLine,startCharacter,endCharacter,kind,collapsedText);
 
 @override
 String toString() {
-  return 'FoldingRange(startLine: $startLine, startCharacter: $startCharacter, endLine: $endLine, endCharacter: $endCharacter, kind: $kind, collapsedText: $collapsedText)';
+  return 'FoldingRange(startLine: $startLine, endLine: $endLine, startCharacter: $startCharacter, endCharacter: $endCharacter, kind: $kind, collapsedText: $collapsedText)';
 }
 
 
@@ -11407,7 +11407,7 @@ abstract mixin class $FoldingRangeCopyWith<$Res>  {
   factory $FoldingRangeCopyWith(FoldingRange value, $Res Function(FoldingRange) _then) = _$FoldingRangeCopyWithImpl;
 @useResult
 $Res call({
- int startLine, int? startCharacter, int endLine, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
+ int startLine, int endLine, int? startCharacter, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
 });
 
 
@@ -11424,12 +11424,12 @@ class _$FoldingRangeCopyWithImpl<$Res>
 
 /// Create a copy of FoldingRange
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? startLine = null,Object? startCharacter = freezed,Object? endLine = null,Object? endCharacter = freezed,Object? kind = freezed,Object? collapsedText = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? startLine = null,Object? endLine = null,Object? startCharacter = freezed,Object? endCharacter = freezed,Object? kind = freezed,Object? collapsedText = freezed,}) {
   return _then(_self.copyWith(
 startLine: null == startLine ? _self.startLine : startLine // ignore: cast_nullable_to_non_nullable
+as int,endLine: null == endLine ? _self.endLine : endLine // ignore: cast_nullable_to_non_nullable
 as int,startCharacter: freezed == startCharacter ? _self.startCharacter : startCharacter // ignore: cast_nullable_to_non_nullable
-as int?,endLine: null == endLine ? _self.endLine : endLine // ignore: cast_nullable_to_non_nullable
-as int,endCharacter: freezed == endCharacter ? _self.endCharacter : endCharacter // ignore: cast_nullable_to_non_nullable
+as int?,endCharacter: freezed == endCharacter ? _self.endCharacter : endCharacter // ignore: cast_nullable_to_non_nullable
 as int?,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as FoldingRangeKind?,collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -11444,26 +11444,26 @@ as String?,
 @JsonSerializable()
 
 class _FoldingRange implements FoldingRange {
-  const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, this.kind, this.collapsedText});
+  const _FoldingRange({required this.startLine, required this.endLine, this.startCharacter, this.endCharacter, this.kind, this.collapsedText});
   factory _FoldingRange.fromJson(Map<String, dynamic> json) => _$FoldingRangeFromJson(json);
 
 /// The zero-based start line of the range to fold. The folded area starts
 /// after the line's last character. To be valid, the end must be zero or
 /// larger and smaller than the number of lines in the document.
 @override final  int startLine;
-/// The zero-based character offset from where the folded range starts. If
-/// not defined, defaults to the length of the start line.
-@override final  int? startCharacter;
 /// The zero-based end line of the range to fold. The folded area ends with
 /// the line's last character. To be valid, the end must be zero or larger
 /// and smaller than the number of lines in the document.
 @override final  int endLine;
+/// The zero-based character offset from where the folded range starts. If
+/// not defined, defaults to the length of the start line.
+@override final  int? startCharacter;
 /// The zero-based character offset before the folded range ends. If not
 /// defined, defaults to the length of the end line.
 @override final  int? endCharacter;
 /// Describes the kind of the folding range such as `comment' or 'region'.
 /// The kind is used to categorize folding ranges and used by commands like
-/// 'Fold all comments'. See [FoldingRangeKind] for an enumeration of
+/// 'Fold all comments'. See `FoldingRangeKind` for an enumeration of
 /// standardized kinds.
 @override final  FoldingRangeKind? kind;
 /// The text that the client should show when the specified range is
@@ -11484,16 +11484,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FoldingRange&&(identical(other.startLine, startLine) || other.startLine == startLine)&&(identical(other.startCharacter, startCharacter) || other.startCharacter == startCharacter)&&(identical(other.endLine, endLine) || other.endLine == endLine)&&(identical(other.endCharacter, endCharacter) || other.endCharacter == endCharacter)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.collapsedText, collapsedText) || other.collapsedText == collapsedText));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FoldingRange&&(identical(other.startLine, startLine) || other.startLine == startLine)&&(identical(other.endLine, endLine) || other.endLine == endLine)&&(identical(other.startCharacter, startCharacter) || other.startCharacter == startCharacter)&&(identical(other.endCharacter, endCharacter) || other.endCharacter == endCharacter)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.collapsedText, collapsedText) || other.collapsedText == collapsedText));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,startLine,startCharacter,endLine,endCharacter,kind,collapsedText);
+int get hashCode => Object.hash(runtimeType,startLine,endLine,startCharacter,endCharacter,kind,collapsedText);
 
 @override
 String toString() {
-  return 'FoldingRange(startLine: $startLine, startCharacter: $startCharacter, endLine: $endLine, endCharacter: $endCharacter, kind: $kind, collapsedText: $collapsedText)';
+  return 'FoldingRange(startLine: $startLine, endLine: $endLine, startCharacter: $startCharacter, endCharacter: $endCharacter, kind: $kind, collapsedText: $collapsedText)';
 }
 
 
@@ -11504,7 +11504,7 @@ abstract mixin class _$FoldingRangeCopyWith<$Res> implements $FoldingRangeCopyWi
   factory _$FoldingRangeCopyWith(_FoldingRange value, $Res Function(_FoldingRange) _then) = __$FoldingRangeCopyWithImpl;
 @override @useResult
 $Res call({
- int startLine, int? startCharacter, int endLine, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
+ int startLine, int endLine, int? startCharacter, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
 });
 
 
@@ -11521,12 +11521,12 @@ class __$FoldingRangeCopyWithImpl<$Res>
 
 /// Create a copy of FoldingRange
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? startLine = null,Object? startCharacter = freezed,Object? endLine = null,Object? endCharacter = freezed,Object? kind = freezed,Object? collapsedText = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? startLine = null,Object? endLine = null,Object? startCharacter = freezed,Object? endCharacter = freezed,Object? kind = freezed,Object? collapsedText = freezed,}) {
   return _then(_FoldingRange(
 startLine: null == startLine ? _self.startLine : startLine // ignore: cast_nullable_to_non_nullable
+as int,endLine: null == endLine ? _self.endLine : endLine // ignore: cast_nullable_to_non_nullable
 as int,startCharacter: freezed == startCharacter ? _self.startCharacter : startCharacter // ignore: cast_nullable_to_non_nullable
-as int?,endLine: null == endLine ? _self.endLine : endLine // ignore: cast_nullable_to_non_nullable
-as int,endCharacter: freezed == endCharacter ? _self.endCharacter : endCharacter // ignore: cast_nullable_to_non_nullable
+as int?,endCharacter: freezed == endCharacter ? _self.endCharacter : endCharacter // ignore: cast_nullable_to_non_nullable
 as int?,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as FoldingRangeKind?,collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -11540,7 +11540,7 @@ as String?,
 /// @nodoc
 mixin _$SelectionRange {
 
-/// The [range] of this selection range.
+/// The `range` of this selection range.
  Range get range;/// The parent selection range containing this range. Therefore
 /// `parent.range` must contain `this.range`.
  SelectionRange? get parent;
@@ -11633,7 +11633,7 @@ class _SelectionRange implements SelectionRange {
   const _SelectionRange({required this.range, this.parent});
   factory _SelectionRange.fromJson(Map<String, dynamic> json) => _$SelectionRangeFromJson(json);
 
-/// The [range] of this selection range.
+/// The `range` of this selection range.
 @override final  Range range;
 /// The parent selection range containing this range. Therefore
 /// `parent.range` must contain `this.range`.
@@ -11727,14 +11727,14 @@ mixin _$CallHierarchyItem {
 
 /// The name of this item.
  String get name;/// The kind of this item.
- SymbolKind get kind;/// Tags for this item.
- List<SymbolTag>? get tags;/// More detail for this item, e.g. the signature of a function.
- String? get detail;/// The resource identifier of this item.
+ SymbolKind get kind;/// The resource identifier of this item.
  String get uri;/// The range enclosing this symbol not including leading/trailing
 /// whitespace but everything else, e.g. comments and code.
  Range get range;/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the [range].
- Range get selectionRange;/// A data entry field that is preserved between a call hierarchy prepare
+/// picked, e.g. the name of a function. Must be contained by the `range`.
+ Range get selectionRange;/// Tags for this item.
+ List<SymbolTag>? get tags;/// More detail for this item, e.g. the signature of a function.
+ String? get detail;/// A data entry field that is preserved between a call hierarchy prepare
 /// and incoming calls or outgoing calls requests.
  LSPAny? get data;
 /// Create a copy of CallHierarchyItem
@@ -11749,16 +11749,16 @@ $CallHierarchyItemCopyWith<CallHierarchyItem> get copyWith => _$CallHierarchyIte
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallHierarchyItem&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.detail, detail) || other.detail == detail)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallHierarchyItem&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.detail, detail) || other.detail == detail)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,kind,const DeepCollectionEquality().hash(tags),detail,uri,range,selectionRange,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,name,kind,uri,range,selectionRange,const DeepCollectionEquality().hash(tags),detail,const DeepCollectionEquality().hash(data));
 
 @override
 String toString() {
-  return 'CallHierarchyItem(name: $name, kind: $kind, tags: $tags, detail: $detail, uri: $uri, range: $range, selectionRange: $selectionRange, data: $data)';
+  return 'CallHierarchyItem(name: $name, kind: $kind, uri: $uri, range: $range, selectionRange: $selectionRange, tags: $tags, detail: $detail, data: $data)';
 }
 
 
@@ -11769,7 +11769,7 @@ abstract mixin class $CallHierarchyItemCopyWith<$Res>  {
   factory $CallHierarchyItemCopyWith(CallHierarchyItem value, $Res Function(CallHierarchyItem) _then) = _$CallHierarchyItemCopyWithImpl;
 @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
+ String name, SymbolKind kind, String uri, Range range, Range selectionRange, List<SymbolTag>? tags, String? detail, LSPAny? data
 });
 
 
@@ -11786,16 +11786,16 @@ class _$CallHierarchyItemCopyWithImpl<$Res>
 
 /// Create a copy of CallHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? tags = freezed,Object? detail = freezed,Object? uri = null,Object? range = null,Object? selectionRange = null,Object? data = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? uri = null,Object? range = null,Object? selectionRange = null,Object? tags = freezed,Object? detail = freezed,Object? data = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
-as String?,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as SymbolKind,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data ,
+as Range,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as List<SymbolTag>?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data ,
   ));
 }
 /// Create a copy of CallHierarchyItem
@@ -11825,13 +11825,21 @@ $RangeCopyWith<$Res> get selectionRange {
 @JsonSerializable()
 
 class _CallHierarchyItem implements CallHierarchyItem {
-  const _CallHierarchyItem({required this.name, required this.kind, final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags;
+  const _CallHierarchyItem({required this.name, required this.kind, required this.uri, required this.range, required this.selectionRange, final  List<SymbolTag>? tags, this.detail, this.data}): _tags = tags;
   factory _CallHierarchyItem.fromJson(Map<String, dynamic> json) => _$CallHierarchyItemFromJson(json);
 
 /// The name of this item.
 @override final  String name;
 /// The kind of this item.
 @override final  SymbolKind kind;
+/// The resource identifier of this item.
+@override final  String uri;
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
+@override final  Range range;
+/// The range that should be selected and revealed when this symbol is being
+/// picked, e.g. the name of a function. Must be contained by the `range`.
+@override final  Range selectionRange;
 /// Tags for this item.
  final  List<SymbolTag>? _tags;
 /// Tags for this item.
@@ -11845,14 +11853,6 @@ class _CallHierarchyItem implements CallHierarchyItem {
 
 /// More detail for this item, e.g. the signature of a function.
 @override final  String? detail;
-/// The resource identifier of this item.
-@override final  String uri;
-/// The range enclosing this symbol not including leading/trailing
-/// whitespace but everything else, e.g. comments and code.
-@override final  Range range;
-/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the [range].
-@override final  Range selectionRange;
 /// A data entry field that is preserved between a call hierarchy prepare
 /// and incoming calls or outgoing calls requests.
 @override final  LSPAny? data;
@@ -11870,16 +11870,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CallHierarchyItem&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.detail, detail) || other.detail == detail)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CallHierarchyItem&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.detail, detail) || other.detail == detail)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,kind,const DeepCollectionEquality().hash(_tags),detail,uri,range,selectionRange,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,name,kind,uri,range,selectionRange,const DeepCollectionEquality().hash(_tags),detail,const DeepCollectionEquality().hash(data));
 
 @override
 String toString() {
-  return 'CallHierarchyItem(name: $name, kind: $kind, tags: $tags, detail: $detail, uri: $uri, range: $range, selectionRange: $selectionRange, data: $data)';
+  return 'CallHierarchyItem(name: $name, kind: $kind, uri: $uri, range: $range, selectionRange: $selectionRange, tags: $tags, detail: $detail, data: $data)';
 }
 
 
@@ -11890,7 +11890,7 @@ abstract mixin class _$CallHierarchyItemCopyWith<$Res> implements $CallHierarchy
   factory _$CallHierarchyItemCopyWith(_CallHierarchyItem value, $Res Function(_CallHierarchyItem) _then) = __$CallHierarchyItemCopyWithImpl;
 @override @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
+ String name, SymbolKind kind, String uri, Range range, Range selectionRange, List<SymbolTag>? tags, String? detail, LSPAny? data
 });
 
 
@@ -11907,16 +11907,16 @@ class __$CallHierarchyItemCopyWithImpl<$Res>
 
 /// Create a copy of CallHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? tags = freezed,Object? detail = freezed,Object? uri = null,Object? range = null,Object? selectionRange = null,Object? data = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? uri = null,Object? range = null,Object? selectionRange = null,Object? tags = freezed,Object? detail = freezed,Object? data = freezed,}) {
   return _then(_CallHierarchyItem(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
-as String?,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as SymbolKind,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data ,
+as Range,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as List<SymbolTag>?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data ,
   ));
 }
 
@@ -11947,7 +11947,7 @@ mixin _$CallHierarchyIncomingCall {
 
 /// The item that makes the call.
  CallHierarchyItem get from;/// The ranges at which the calls appear. This is relative to the caller
-/// denoted by [CallHierarchyIncomingCall].
+/// denoted by `CallHierarchyIncomingCall`.
  List<Range> get fromRanges;
 /// Create a copy of CallHierarchyIncomingCall
 /// with the given fields replaced by the non-null parameter values.
@@ -12029,10 +12029,10 @@ class _CallHierarchyIncomingCall implements CallHierarchyIncomingCall {
 /// The item that makes the call.
 @override final  CallHierarchyItem from;
 /// The ranges at which the calls appear. This is relative to the caller
-/// denoted by [CallHierarchyIncomingCall].
+/// denoted by `CallHierarchyIncomingCall`.
  final  List<Range> _fromRanges;
 /// The ranges at which the calls appear. This is relative to the caller
-/// denoted by [CallHierarchyIncomingCall].
+/// denoted by `CallHierarchyIncomingCall`.
 @override List<Range> get fromRanges {
   if (_fromRanges is EqualUnmodifiableListView) return _fromRanges;
   // ignore: implicit_dynamic_type
@@ -12116,8 +12116,8 @@ mixin _$CallHierarchyOutgoingCall {
 
 /// The item that is called.
  CallHierarchyItem get to;/// The range at which this item is called. This is the range relative to
-/// the caller, e.g the item passed to [provideCallHierarchyOutgoingCalls]
-/// and not [CallHierarchyOutgoingCall].
+/// the caller, e.g the item passed to `provideCallHierarchyOutgoingCalls`
+/// and not `CallHierarchyOutgoingCall`.
  List<Range> get fromRanges;
 /// Create a copy of CallHierarchyOutgoingCall
 /// with the given fields replaced by the non-null parameter values.
@@ -12199,12 +12199,12 @@ class _CallHierarchyOutgoingCall implements CallHierarchyOutgoingCall {
 /// The item that is called.
 @override final  CallHierarchyItem to;
 /// The range at which this item is called. This is the range relative to
-/// the caller, e.g the item passed to [provideCallHierarchyOutgoingCalls]
-/// and not [CallHierarchyOutgoingCall].
+/// the caller, e.g the item passed to `provideCallHierarchyOutgoingCalls`
+/// and not `CallHierarchyOutgoingCall`.
  final  List<Range> _fromRanges;
 /// The range at which this item is called. This is the range relative to
-/// the caller, e.g the item passed to [provideCallHierarchyOutgoingCalls]
-/// and not [CallHierarchyOutgoingCall].
+/// the caller, e.g the item passed to `provideCallHierarchyOutgoingCalls`
+/// and not `CallHierarchyOutgoingCall`.
 @override List<Range> get fromRanges {
   if (_fromRanges is EqualUnmodifiableListView) return _fromRanges;
   // ignore: implicit_dynamic_type
@@ -12286,12 +12286,12 @@ $CallHierarchyItemCopyWith<$Res> get to {
 /// @nodoc
 mixin _$SemanticTokens {
 
-/// An optional result id. If provided and clients support delta updating
+/// The actual tokens.
+ List<int> get data;/// An optional result id. If provided and clients support delta updating
 /// the client will include the result id in the next semantic token
 /// request. A server can then instead of computing all semantic tokens
 /// again simply send a delta.
- String? get resultId;/// The actual tokens.
- List<int> get data;
+ String? get resultId;
 /// Create a copy of SemanticTokens
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -12304,16 +12304,16 @@ $SemanticTokensCopyWith<SemanticTokens> get copyWith => _$SemanticTokensCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokens&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokens&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,resultId,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),resultId);
 
 @override
 String toString() {
-  return 'SemanticTokens(resultId: $resultId, data: $data)';
+  return 'SemanticTokens(data: $data, resultId: $resultId)';
 }
 
 
@@ -12324,7 +12324,7 @@ abstract mixin class $SemanticTokensCopyWith<$Res>  {
   factory $SemanticTokensCopyWith(SemanticTokens value, $Res Function(SemanticTokens) _then) = _$SemanticTokensCopyWithImpl;
 @useResult
 $Res call({
- String? resultId, List<int> data
+ List<int> data, String? resultId
 });
 
 
@@ -12341,11 +12341,11 @@ class _$SemanticTokensCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokens
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? resultId = freezed,Object? data = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? data = null,Object? resultId = freezed,}) {
   return _then(_self.copyWith(
-resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<int>,
+data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as List<int>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -12357,14 +12357,9 @@ as List<int>,
 @JsonSerializable()
 
 class _SemanticTokens implements SemanticTokens {
-  const _SemanticTokens({this.resultId, required final  List<int> data}): _data = data;
+  const _SemanticTokens({required final  List<int> data, this.resultId}): _data = data;
   factory _SemanticTokens.fromJson(Map<String, dynamic> json) => _$SemanticTokensFromJson(json);
 
-/// An optional result id. If provided and clients support delta updating
-/// the client will include the result id in the next semantic token
-/// request. A server can then instead of computing all semantic tokens
-/// again simply send a delta.
-@override final  String? resultId;
 /// The actual tokens.
  final  List<int> _data;
 /// The actual tokens.
@@ -12374,6 +12369,11 @@ class _SemanticTokens implements SemanticTokens {
   return EqualUnmodifiableListView(_data);
 }
 
+/// An optional result id. If provided and clients support delta updating
+/// the client will include the result id in the next semantic token
+/// request. A server can then instead of computing all semantic tokens
+/// again simply send a delta.
+@override final  String? resultId;
 
 /// Create a copy of SemanticTokens
 /// with the given fields replaced by the non-null parameter values.
@@ -12388,16 +12388,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokens&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._data, _data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokens&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,resultId,const DeepCollectionEquality().hash(_data));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),resultId);
 
 @override
 String toString() {
-  return 'SemanticTokens(resultId: $resultId, data: $data)';
+  return 'SemanticTokens(data: $data, resultId: $resultId)';
 }
 
 
@@ -12408,7 +12408,7 @@ abstract mixin class _$SemanticTokensCopyWith<$Res> implements $SemanticTokensCo
   factory _$SemanticTokensCopyWith(_SemanticTokens value, $Res Function(_SemanticTokens) _then) = __$SemanticTokensCopyWithImpl;
 @override @useResult
 $Res call({
- String? resultId, List<int> data
+ List<int> data, String? resultId
 });
 
 
@@ -12425,11 +12425,11 @@ class __$SemanticTokensCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokens
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? resultId = freezed,Object? data = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? data = null,Object? resultId = freezed,}) {
   return _then(_SemanticTokens(
-resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<int>,
+data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
+as List<int>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -12580,9 +12580,9 @@ as List<int>,
 /// @nodoc
 mixin _$SemanticTokensDelta {
 
- String? get resultId;/// The semantic token edits to transform a previous result into a new
+/// The semantic token edits to transform a previous result into a new
 /// result.
- List<SemanticTokensEdit> get edits;
+ List<SemanticTokensEdit> get edits; String? get resultId;
 /// Create a copy of SemanticTokensDelta
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -12595,16 +12595,16 @@ $SemanticTokensDeltaCopyWith<SemanticTokensDelta> get copyWith => _$SemanticToke
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensDelta&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.edits, edits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensDelta&&const DeepCollectionEquality().equals(other.edits, edits)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,resultId,const DeepCollectionEquality().hash(edits));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(edits),resultId);
 
 @override
 String toString() {
-  return 'SemanticTokensDelta(resultId: $resultId, edits: $edits)';
+  return 'SemanticTokensDelta(edits: $edits, resultId: $resultId)';
 }
 
 
@@ -12615,7 +12615,7 @@ abstract mixin class $SemanticTokensDeltaCopyWith<$Res>  {
   factory $SemanticTokensDeltaCopyWith(SemanticTokensDelta value, $Res Function(SemanticTokensDelta) _then) = _$SemanticTokensDeltaCopyWithImpl;
 @useResult
 $Res call({
- String? resultId, List<SemanticTokensEdit> edits
+ List<SemanticTokensEdit> edits, String? resultId
 });
 
 
@@ -12632,11 +12632,11 @@ class _$SemanticTokensDeltaCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensDelta
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? resultId = freezed,Object? edits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? edits = null,Object? resultId = freezed,}) {
   return _then(_self.copyWith(
-resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,edits: null == edits ? _self.edits : edits // ignore: cast_nullable_to_non_nullable
-as List<SemanticTokensEdit>,
+edits: null == edits ? _self.edits : edits // ignore: cast_nullable_to_non_nullable
+as List<SemanticTokensEdit>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -12648,10 +12648,9 @@ as List<SemanticTokensEdit>,
 @JsonSerializable()
 
 class _SemanticTokensDelta implements SemanticTokensDelta {
-  const _SemanticTokensDelta({this.resultId, required final  List<SemanticTokensEdit> edits}): _edits = edits;
+  const _SemanticTokensDelta({required final  List<SemanticTokensEdit> edits, this.resultId}): _edits = edits;
   factory _SemanticTokensDelta.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaFromJson(json);
 
-@override final  String? resultId;
 /// The semantic token edits to transform a previous result into a new
 /// result.
  final  List<SemanticTokensEdit> _edits;
@@ -12663,6 +12662,7 @@ class _SemanticTokensDelta implements SemanticTokensDelta {
   return EqualUnmodifiableListView(_edits);
 }
 
+@override final  String? resultId;
 
 /// Create a copy of SemanticTokensDelta
 /// with the given fields replaced by the non-null parameter values.
@@ -12677,16 +12677,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensDelta&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._edits, _edits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensDelta&&const DeepCollectionEquality().equals(other._edits, _edits)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,resultId,const DeepCollectionEquality().hash(_edits));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_edits),resultId);
 
 @override
 String toString() {
-  return 'SemanticTokensDelta(resultId: $resultId, edits: $edits)';
+  return 'SemanticTokensDelta(edits: $edits, resultId: $resultId)';
 }
 
 
@@ -12697,7 +12697,7 @@ abstract mixin class _$SemanticTokensDeltaCopyWith<$Res> implements $SemanticTok
   factory _$SemanticTokensDeltaCopyWith(_SemanticTokensDelta value, $Res Function(_SemanticTokensDelta) _then) = __$SemanticTokensDeltaCopyWithImpl;
 @override @useResult
 $Res call({
- String? resultId, List<SemanticTokensEdit> edits
+ List<SemanticTokensEdit> edits, String? resultId
 });
 
 
@@ -12714,11 +12714,11 @@ class __$SemanticTokensDeltaCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensDelta
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? resultId = freezed,Object? edits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? edits = null,Object? resultId = freezed,}) {
   return _then(_SemanticTokensDelta(
-resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,edits: null == edits ? _self._edits : edits // ignore: cast_nullable_to_non_nullable
-as List<SemanticTokensEdit>,
+edits: null == edits ? _self._edits : edits // ignore: cast_nullable_to_non_nullable
+as List<SemanticTokensEdit>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -13542,14 +13542,14 @@ mixin _$TypeHierarchyItem {
 
 /// The name of this item.
  String get name;/// The kind of this item.
- SymbolKind get kind;/// Tags for this item.
- List<SymbolTag>? get tags;/// More detail for this item, e.g. the signature of a function.
- String? get detail;/// The resource identifier of this item.
+ SymbolKind get kind;/// The resource identifier of this item.
  String get uri;/// The range enclosing this symbol not including leading/trailing
 /// whitespace but everything else, e.g. comments and code.
  Range get range;/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the [range].
- Range get selectionRange;/// A data entry field that is preserved between a type hierarchy prepare
+/// picked, e.g. the name of a function. Must be contained by the `range`.
+ Range get selectionRange;/// Tags for this item.
+ List<SymbolTag>? get tags;/// More detail for this item, e.g. the signature of a function.
+ String? get detail;/// A data entry field that is preserved between a type hierarchy prepare
 /// and supertypes or subtypes requests. It could also be used to identify
 /// the type hierarchy in the server, helping improve the performance on
 /// resolving supertypes and subtypes.
@@ -13566,16 +13566,16 @@ $TypeHierarchyItemCopyWith<TypeHierarchyItem> get copyWith => _$TypeHierarchyIte
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TypeHierarchyItem&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.detail, detail) || other.detail == detail)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TypeHierarchyItem&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.detail, detail) || other.detail == detail)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,kind,const DeepCollectionEquality().hash(tags),detail,uri,range,selectionRange,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,name,kind,uri,range,selectionRange,const DeepCollectionEquality().hash(tags),detail,const DeepCollectionEquality().hash(data));
 
 @override
 String toString() {
-  return 'TypeHierarchyItem(name: $name, kind: $kind, tags: $tags, detail: $detail, uri: $uri, range: $range, selectionRange: $selectionRange, data: $data)';
+  return 'TypeHierarchyItem(name: $name, kind: $kind, uri: $uri, range: $range, selectionRange: $selectionRange, tags: $tags, detail: $detail, data: $data)';
 }
 
 
@@ -13586,7 +13586,7 @@ abstract mixin class $TypeHierarchyItemCopyWith<$Res>  {
   factory $TypeHierarchyItemCopyWith(TypeHierarchyItem value, $Res Function(TypeHierarchyItem) _then) = _$TypeHierarchyItemCopyWithImpl;
 @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
+ String name, SymbolKind kind, String uri, Range range, Range selectionRange, List<SymbolTag>? tags, String? detail, LSPAny? data
 });
 
 
@@ -13603,16 +13603,16 @@ class _$TypeHierarchyItemCopyWithImpl<$Res>
 
 /// Create a copy of TypeHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? tags = freezed,Object? detail = freezed,Object? uri = null,Object? range = null,Object? selectionRange = null,Object? data = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? uri = null,Object? range = null,Object? selectionRange = null,Object? tags = freezed,Object? detail = freezed,Object? data = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
-as String?,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as SymbolKind,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data ,
+as Range,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as List<SymbolTag>?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data ,
   ));
 }
 /// Create a copy of TypeHierarchyItem
@@ -13642,13 +13642,21 @@ $RangeCopyWith<$Res> get selectionRange {
 @JsonSerializable()
 
 class _TypeHierarchyItem implements TypeHierarchyItem {
-  const _TypeHierarchyItem({required this.name, required this.kind, final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags;
+  const _TypeHierarchyItem({required this.name, required this.kind, required this.uri, required this.range, required this.selectionRange, final  List<SymbolTag>? tags, this.detail, this.data}): _tags = tags;
   factory _TypeHierarchyItem.fromJson(Map<String, dynamic> json) => _$TypeHierarchyItemFromJson(json);
 
 /// The name of this item.
 @override final  String name;
 /// The kind of this item.
 @override final  SymbolKind kind;
+/// The resource identifier of this item.
+@override final  String uri;
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
+@override final  Range range;
+/// The range that should be selected and revealed when this symbol is being
+/// picked, e.g. the name of a function. Must be contained by the `range`.
+@override final  Range selectionRange;
 /// Tags for this item.
  final  List<SymbolTag>? _tags;
 /// Tags for this item.
@@ -13662,14 +13670,6 @@ class _TypeHierarchyItem implements TypeHierarchyItem {
 
 /// More detail for this item, e.g. the signature of a function.
 @override final  String? detail;
-/// The resource identifier of this item.
-@override final  String uri;
-/// The range enclosing this symbol not including leading/trailing
-/// whitespace but everything else, e.g. comments and code.
-@override final  Range range;
-/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the [range].
-@override final  Range selectionRange;
 /// A data entry field that is preserved between a type hierarchy prepare
 /// and supertypes or subtypes requests. It could also be used to identify
 /// the type hierarchy in the server, helping improve the performance on
@@ -13689,16 +13689,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TypeHierarchyItem&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.detail, detail) || other.detail == detail)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TypeHierarchyItem&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.detail, detail) || other.detail == detail)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,kind,const DeepCollectionEquality().hash(_tags),detail,uri,range,selectionRange,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,name,kind,uri,range,selectionRange,const DeepCollectionEquality().hash(_tags),detail,const DeepCollectionEquality().hash(data));
 
 @override
 String toString() {
-  return 'TypeHierarchyItem(name: $name, kind: $kind, tags: $tags, detail: $detail, uri: $uri, range: $range, selectionRange: $selectionRange, data: $data)';
+  return 'TypeHierarchyItem(name: $name, kind: $kind, uri: $uri, range: $range, selectionRange: $selectionRange, tags: $tags, detail: $detail, data: $data)';
 }
 
 
@@ -13709,7 +13709,7 @@ abstract mixin class _$TypeHierarchyItemCopyWith<$Res> implements $TypeHierarchy
   factory _$TypeHierarchyItemCopyWith(_TypeHierarchyItem value, $Res Function(_TypeHierarchyItem) _then) = __$TypeHierarchyItemCopyWithImpl;
 @override @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
+ String name, SymbolKind kind, String uri, Range range, Range selectionRange, List<SymbolTag>? tags, String? detail, LSPAny? data
 });
 
 
@@ -13726,16 +13726,16 @@ class __$TypeHierarchyItemCopyWithImpl<$Res>
 
 /// Create a copy of TypeHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? tags = freezed,Object? detail = freezed,Object? uri = null,Object? range = null,Object? selectionRange = null,Object? data = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? uri = null,Object? range = null,Object? selectionRange = null,Object? tags = freezed,Object? detail = freezed,Object? data = freezed,}) {
   return _then(_TypeHierarchyItem(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
-as String?,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as SymbolKind,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data ,
+as Range,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as List<SymbolTag>?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data ,
   ));
 }
 
@@ -14735,9 +14735,9 @@ mixin _$InlineCompletionItem {
 ///
 /// Type: String | StringValue
 @_InlineCompletionItemInsertTextConverter() InlineCompletionItemInsertText get insertText;/// A text that is used to decide if this inline completion should be shown.
-/// When `falsy` the [InlineCompletionItem.insertText] is used.
+/// When `falsy` the `InlineCompletionItem.insertText` is used.
  String? get filterText;/// The range to replace. Must begin and end on the same line.
- Range? get range;/// An optional [Command] that is executed *after* inserting this
+ Range? get range;/// An optional `Command` that is executed *after* inserting this
 /// completion.
  Command? get command;
 /// Create a copy of InlineCompletionItem
@@ -14848,11 +14848,11 @@ class _InlineCompletionItem implements InlineCompletionItem {
 /// Type: String | StringValue
 @override@_InlineCompletionItemInsertTextConverter() final  InlineCompletionItemInsertText insertText;
 /// A text that is used to decide if this inline completion should be shown.
-/// When `falsy` the [InlineCompletionItem.insertText] is used.
+/// When `falsy` the `InlineCompletionItem.insertText` is used.
 @override final  String? filterText;
 /// The range to replace. Must begin and end on the same line.
 @override final  Range? range;
-/// An optional [Command] that is executed *after* inserting this
+/// An optional `Command` that is executed *after* inserting this
 /// completion.
 @override final  Command? command;
 
@@ -15577,11 +15577,11 @@ mixin _$CompletionItem {
 /// client decides which item that is. The rule is that the *first* item of
 /// those that match best is selected.
  bool? get preselect;/// A string that should be used when comparing this item with other items.
-/// When `falsy` the [label] is used.
+/// When `falsy` the `label` is used.
  String? get sortText;/// A string that should be used when filtering a set of completion items.
-/// When `falsy` the [label] is used.
+/// When `falsy` the `label` is used.
  String? get filterText;/// A string that should be inserted into a document when selecting this
-/// completion. When `falsy` the [label] is used.
+/// completion. When `falsy` the `label` is used.
 ///
 /// The `insertText` is subject to interpretation by the client side. Some
 /// tools might not take the string literally. For example VS Code when code
@@ -15598,8 +15598,8 @@ mixin _$CompletionItem {
  InsertTextFormat? get insertTextFormat;/// How whitespace and indentation is handled during completion item
 /// insertion. If not provided the clients default value depends on the
 /// `textDocument.completion.insertTextMode` client capability.
- InsertTextMode? get insertTextMode;/// An [edit] which is applied to a document when selecting this completion.
-/// When an edit is provided the value of [insertText] is ignored.
+ InsertTextMode? get insertTextMode;/// An `edit` which is applied to a document when selecting this completion.
+/// When an edit is provided the value of `insertText` is ignored.
 ///
 /// Most editors support two different operations when accepting a
 /// completion item. One is to insert a completion text and the other is to
@@ -15627,9 +15627,9 @@ mixin _$CompletionItem {
 ///
 /// If not provided and a list's default range is provided the label
 /// property is used as a text.
- String? get textEditText;/// An optional array of additional [TextEdit] that are applied when
+ String? get textEditText;/// An optional array of additional `TextEdit` that are applied when
 /// selecting this completion. Edits must not overlap (including the same
-/// insert position) with the main [edit] nor with themselves.
+/// insert position) with the main `edit` nor with themselves.
 ///
 /// Additional text edits should be used to change text unrelated to the
 /// current cursor position (for example adding an import statement at the
@@ -15638,11 +15638,11 @@ mixin _$CompletionItem {
 /// active will accept it first and then type that character. *Note* that
 /// all commit characters should have `length=1` and that superfluous
 /// characters will be ignored.
- List<String>? get commitCharacters;/// An optional [command] that is executed *after* inserting this
+ List<String>? get commitCharacters;/// An optional `command` that is executed *after* inserting this
 /// completion. *Note* that additional modifications to the current document
-/// should be described with the [additionalTextEdits]-property.
+/// should be described with the `additionalTextEdits`-property.
  Command? get command;/// A data entry field that is preserved on a completion item between a
-/// [CompletionRequest] and a [CompletionResolveRequest].
+/// `CompletionRequest` and a `CompletionResolveRequest`.
  LSPAny? get data;
 /// Create a copy of CompletionItem
 /// with the given fields replaced by the non-null parameter values.
@@ -15816,13 +15816,13 @@ class _CompletionItem implements CompletionItem {
 /// those that match best is selected.
 @override final  bool? preselect;
 /// A string that should be used when comparing this item with other items.
-/// When `falsy` the [label] is used.
+/// When `falsy` the `label` is used.
 @override final  String? sortText;
 /// A string that should be used when filtering a set of completion items.
-/// When `falsy` the [label] is used.
+/// When `falsy` the `label` is used.
 @override final  String? filterText;
 /// A string that should be inserted into a document when selecting this
-/// completion. When `falsy` the [label] is used.
+/// completion. When `falsy` the `label` is used.
 ///
 /// The `insertText` is subject to interpretation by the client side. Some
 /// tools might not take the string literally. For example VS Code when code
@@ -15842,8 +15842,8 @@ class _CompletionItem implements CompletionItem {
 /// insertion. If not provided the clients default value depends on the
 /// `textDocument.completion.insertTextMode` client capability.
 @override final  InsertTextMode? insertTextMode;
-/// An [edit] which is applied to a document when selecting this completion.
-/// When an edit is provided the value of [insertText] is ignored.
+/// An `edit` which is applied to a document when selecting this completion.
+/// When an edit is provided the value of `insertText` is ignored.
 ///
 /// Most editors support two different operations when accepting a
 /// completion item. One is to insert a completion text and the other is to
@@ -15873,17 +15873,17 @@ class _CompletionItem implements CompletionItem {
 /// If not provided and a list's default range is provided the label
 /// property is used as a text.
 @override final  String? textEditText;
-/// An optional array of additional [TextEdit] that are applied when
+/// An optional array of additional `TextEdit` that are applied when
 /// selecting this completion. Edits must not overlap (including the same
-/// insert position) with the main [edit] nor with themselves.
+/// insert position) with the main `edit` nor with themselves.
 ///
 /// Additional text edits should be used to change text unrelated to the
 /// current cursor position (for example adding an import statement at the
 /// top of the file if the completion item will insert an unqualified type).
  final  List<TextEdit>? _additionalTextEdits;
-/// An optional array of additional [TextEdit] that are applied when
+/// An optional array of additional `TextEdit` that are applied when
 /// selecting this completion. Edits must not overlap (including the same
-/// insert position) with the main [edit] nor with themselves.
+/// insert position) with the main `edit` nor with themselves.
 ///
 /// Additional text edits should be used to change text unrelated to the
 /// current cursor position (for example adding an import statement at the
@@ -15913,12 +15913,12 @@ class _CompletionItem implements CompletionItem {
   return EqualUnmodifiableListView(value);
 }
 
-/// An optional [command] that is executed *after* inserting this
+/// An optional `command` that is executed *after* inserting this
 /// completion. *Note* that additional modifications to the current document
-/// should be described with the [additionalTextEdits]-property.
+/// should be described with the `additionalTextEdits`-property.
 @override final  Command? command;
 /// A data entry field that is preserved on a completion item between a
-/// [CompletionRequest] and a [CompletionResolveRequest].
+/// `CompletionRequest` and a `CompletionResolveRequest`.
 @override final  LSPAny? data;
 
 /// Create a copy of CompletionItem
@@ -16055,7 +16055,8 @@ mixin _$CompletionList {
 ///
 /// Recomputed lists have all their items replaced (not appended) in the
 /// incomplete completion sessions.
- bool get isIncomplete;/// In many cases the items of an actual completion result share the same
+ bool get isIncomplete;/// The completion items.
+ List<CompletionItem> get items;/// In many cases the items of an actual completion result share the same
 /// value for properties like `commitCharacters` or the range of a text
 /// edit. A completion list can therefore define item defaults which will be
 /// used if a completion item itself doesn't specify the value.
@@ -16065,8 +16066,7 @@ mixin _$CompletionList {
 ///
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
- ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? get itemDefaults;/// The completion items.
- List<CompletionItem> get items;
+ ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? get itemDefaults;
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -16079,16 +16079,16 @@ $CompletionListCopyWith<CompletionList> get copyWith => _$CompletionListCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionList&&(identical(other.isIncomplete, isIncomplete) || other.isIncomplete == isIncomplete)&&(identical(other.itemDefaults, itemDefaults) || other.itemDefaults == itemDefaults)&&const DeepCollectionEquality().equals(other.items, items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionList&&(identical(other.isIncomplete, isIncomplete) || other.isIncomplete == isIncomplete)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.itemDefaults, itemDefaults) || other.itemDefaults == itemDefaults));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,isIncomplete,itemDefaults,const DeepCollectionEquality().hash(items));
+int get hashCode => Object.hash(runtimeType,isIncomplete,const DeepCollectionEquality().hash(items),itemDefaults);
 
 @override
 String toString() {
-  return 'CompletionList(isIncomplete: $isIncomplete, itemDefaults: $itemDefaults, items: $items)';
+  return 'CompletionList(isIncomplete: $isIncomplete, items: $items, itemDefaults: $itemDefaults)';
 }
 
 
@@ -16099,7 +16099,7 @@ abstract mixin class $CompletionListCopyWith<$Res>  {
   factory $CompletionListCopyWith(CompletionList value, $Res Function(CompletionList) _then) = _$CompletionListCopyWithImpl;
 @useResult
 $Res call({
- bool isIncomplete, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults, List<CompletionItem> items
+ bool isIncomplete, List<CompletionItem> items, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults
 });
 
 
@@ -16116,12 +16116,12 @@ class _$CompletionListCopyWithImpl<$Res>
 
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isIncomplete = null,Object? itemDefaults = freezed,Object? items = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isIncomplete = null,Object? items = null,Object? itemDefaults = freezed,}) {
   return _then(_self.copyWith(
 isIncomplete: null == isIncomplete ? _self.isIncomplete : isIncomplete // ignore: cast_nullable_to_non_nullable
-as bool,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<CompletionItem>,
+as bool,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<CompletionItem>,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
+as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,
   ));
 }
 
@@ -16133,7 +16133,7 @@ as List<CompletionItem>,
 @JsonSerializable()
 
 class _CompletionList implements CompletionList {
-  const _CompletionList({required this.isIncomplete, this.itemDefaults, required final  List<CompletionItem> items}): _items = items;
+  const _CompletionList({required this.isIncomplete, required final  List<CompletionItem> items, this.itemDefaults}): _items = items;
   factory _CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFromJson(json);
 
 /// This list it not complete. Further typing results in recomputing this
@@ -16142,6 +16142,15 @@ class _CompletionList implements CompletionList {
 /// Recomputed lists have all their items replaced (not appended) in the
 /// incomplete completion sessions.
 @override final  bool isIncomplete;
+/// The completion items.
+ final  List<CompletionItem> _items;
+/// The completion items.
+@override List<CompletionItem> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_items);
+}
+
 /// In many cases the items of an actual completion result share the same
 /// value for properties like `commitCharacters` or the range of a text
 /// edit. A completion list can therefore define item defaults which will be
@@ -16153,15 +16162,6 @@ class _CompletionList implements CompletionList {
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
 @override final  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults;
-/// The completion items.
- final  List<CompletionItem> _items;
-/// The completion items.
-@override List<CompletionItem> get items {
-  if (_items is EqualUnmodifiableListView) return _items;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_items);
-}
-
 
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
@@ -16176,16 +16176,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionList&&(identical(other.isIncomplete, isIncomplete) || other.isIncomplete == isIncomplete)&&(identical(other.itemDefaults, itemDefaults) || other.itemDefaults == itemDefaults)&&const DeepCollectionEquality().equals(other._items, _items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionList&&(identical(other.isIncomplete, isIncomplete) || other.isIncomplete == isIncomplete)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.itemDefaults, itemDefaults) || other.itemDefaults == itemDefaults));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,isIncomplete,itemDefaults,const DeepCollectionEquality().hash(_items));
+int get hashCode => Object.hash(runtimeType,isIncomplete,const DeepCollectionEquality().hash(_items),itemDefaults);
 
 @override
 String toString() {
-  return 'CompletionList(isIncomplete: $isIncomplete, itemDefaults: $itemDefaults, items: $items)';
+  return 'CompletionList(isIncomplete: $isIncomplete, items: $items, itemDefaults: $itemDefaults)';
 }
 
 
@@ -16196,7 +16196,7 @@ abstract mixin class _$CompletionListCopyWith<$Res> implements $CompletionListCo
   factory _$CompletionListCopyWith(_CompletionList value, $Res Function(_CompletionList) _then) = __$CompletionListCopyWithImpl;
 @override @useResult
 $Res call({
- bool isIncomplete, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults, List<CompletionItem> items
+ bool isIncomplete, List<CompletionItem> items, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults
 });
 
 
@@ -16213,12 +16213,12 @@ class __$CompletionListCopyWithImpl<$Res>
 
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isIncomplete = null,Object? itemDefaults = freezed,Object? items = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isIncomplete = null,Object? items = null,Object? itemDefaults = freezed,}) {
   return _then(_CompletionList(
 isIncomplete: null == isIncomplete ? _self.isIncomplete : isIncomplete // ignore: cast_nullable_to_non_nullable
-as bool,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<CompletionItem>,
+as bool,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<CompletionItem>,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
+as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,
   ));
 }
 
@@ -16578,7 +16578,7 @@ as int?,
 mixin _$DocumentHighlight {
 
 /// The range this highlight applies to.
- Range get range;/// The highlight kind, default is [text].
+ Range get range;/// The highlight kind, default is `text`.
  DocumentHighlightKind? get kind;
 /// Create a copy of DocumentHighlight
 /// with the given fields replaced by the non-null parameter values.
@@ -16659,7 +16659,7 @@ class _DocumentHighlight implements DocumentHighlight {
 
 /// The range this highlight applies to.
 @override final  Range range;
-/// The highlight kind, default is [text].
+/// The highlight kind, default is `text`.
 @override final  DocumentHighlightKind? kind;
 
 /// Create a copy of DocumentHighlight
@@ -16738,15 +16738,7 @@ mixin _$SymbolInformation {
 
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
- SymbolKind get kind;/// Tags for this symbol.
- List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
-/// user interface purposes (e.g. to render a qualifier in the user
-/// interface if necessary). It can't be used to re-infer a hierarchy for
-/// the document symbols.
- String? get containerName;/// Indicates if this symbol is deprecated.
-///
-/// @deprecated Use tags instead
-@Deprecated('Use tags instead') bool? get deprecated;/// The location of this symbol. The location's range is used by a tool to
+ SymbolKind get kind;/// The location of this symbol. The location's range is used by a tool to
 /// reveal the location in the editor. If the symbol is selected in the tool
 /// the range's start information is used to position the cursor. So the
 /// range usually spans more than the actual symbol's name and does normally
@@ -16755,7 +16747,15 @@ mixin _$SymbolInformation {
 /// The range doesn't have to denote a node range in the sense of an
 /// abstract syntax tree. It can therefore not be used to re-construct a
 /// hierarchy of the symbols.
- Location get location;
+ Location get location;/// Tags for this symbol.
+ List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
+ String? get containerName;/// Indicates if this symbol is deprecated.
+///
+/// @deprecated Use tags instead
+@Deprecated('Use tags instead') bool? get deprecated;
 /// Create a copy of SymbolInformation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -16768,16 +16768,16 @@ $SymbolInformationCopyWith<SymbolInformation> get copyWith => _$SymbolInformatio
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SymbolInformation&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.containerName, containerName) || other.containerName == containerName)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&(identical(other.location, location) || other.location == location));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SymbolInformation&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.location, location) || other.location == location)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.containerName, containerName) || other.containerName == containerName)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,kind,const DeepCollectionEquality().hash(tags),containerName,deprecated,location);
+int get hashCode => Object.hash(runtimeType,name,kind,location,const DeepCollectionEquality().hash(tags),containerName,deprecated);
 
 @override
 String toString() {
-  return 'SymbolInformation(name: $name, kind: $kind, tags: $tags, containerName: $containerName, deprecated: $deprecated, location: $location)';
+  return 'SymbolInformation(name: $name, kind: $kind, location: $location, tags: $tags, containerName: $containerName, deprecated: $deprecated)';
 }
 
 
@@ -16788,7 +16788,7 @@ abstract mixin class $SymbolInformationCopyWith<$Res>  {
   factory $SymbolInformationCopyWith(SymbolInformation value, $Res Function(SymbolInformation) _then) = _$SymbolInformationCopyWithImpl;
 @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName,@Deprecated('Use tags instead') bool? deprecated, Location location
+ String name, SymbolKind kind, Location location, List<SymbolTag>? tags, String? containerName,@Deprecated('Use tags instead') bool? deprecated
 });
 
 
@@ -16805,15 +16805,15 @@ class _$SymbolInformationCopyWithImpl<$Res>
 
 /// Create a copy of SymbolInformation
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? tags = freezed,Object? containerName = freezed,Object? deprecated = freezed,Object? location = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? location = null,Object? tags = freezed,Object? containerName = freezed,Object? deprecated = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as SymbolKind,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as Location,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,containerName: freezed == containerName ? _self.containerName : containerName // ignore: cast_nullable_to_non_nullable
 as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
-as bool?,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as Location,
+as bool?,
   ));
 }
 /// Create a copy of SymbolInformation
@@ -16834,13 +16834,23 @@ $LocationCopyWith<$Res> get location {
 @JsonSerializable()
 
 class _SymbolInformation implements SymbolInformation {
-  const _SymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, @Deprecated('Use tags instead') this.deprecated, required this.location}): _tags = tags;
+  const _SymbolInformation({required this.name, required this.kind, required this.location, final  List<SymbolTag>? tags, this.containerName, @Deprecated('Use tags instead') this.deprecated}): _tags = tags;
   factory _SymbolInformation.fromJson(Map<String, dynamic> json) => _$SymbolInformationFromJson(json);
 
 /// The name of this symbol.
 @override final  String name;
 /// The kind of this symbol.
 @override final  SymbolKind kind;
+/// The location of this symbol. The location's range is used by a tool to
+/// reveal the location in the editor. If the symbol is selected in the tool
+/// the range's start information is used to position the cursor. So the
+/// range usually spans more than the actual symbol's name and does normally
+/// include things like visibility modifiers.
+///
+/// The range doesn't have to denote a node range in the sense of an
+/// abstract syntax tree. It can therefore not be used to re-construct a
+/// hierarchy of the symbols.
+@override final  Location location;
 /// Tags for this symbol.
  final  List<SymbolTag>? _tags;
 /// Tags for this symbol.
@@ -16861,16 +16871,6 @@ class _SymbolInformation implements SymbolInformation {
 ///
 /// @deprecated Use tags instead
 @override@Deprecated('Use tags instead') final  bool? deprecated;
-/// The location of this symbol. The location's range is used by a tool to
-/// reveal the location in the editor. If the symbol is selected in the tool
-/// the range's start information is used to position the cursor. So the
-/// range usually spans more than the actual symbol's name and does normally
-/// include things like visibility modifiers.
-///
-/// The range doesn't have to denote a node range in the sense of an
-/// abstract syntax tree. It can therefore not be used to re-construct a
-/// hierarchy of the symbols.
-@override final  Location location;
 
 /// Create a copy of SymbolInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -16885,16 +16885,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SymbolInformation&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.containerName, containerName) || other.containerName == containerName)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&(identical(other.location, location) || other.location == location));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SymbolInformation&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.location, location) || other.location == location)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.containerName, containerName) || other.containerName == containerName)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,kind,const DeepCollectionEquality().hash(_tags),containerName,deprecated,location);
+int get hashCode => Object.hash(runtimeType,name,kind,location,const DeepCollectionEquality().hash(_tags),containerName,deprecated);
 
 @override
 String toString() {
-  return 'SymbolInformation(name: $name, kind: $kind, tags: $tags, containerName: $containerName, deprecated: $deprecated, location: $location)';
+  return 'SymbolInformation(name: $name, kind: $kind, location: $location, tags: $tags, containerName: $containerName, deprecated: $deprecated)';
 }
 
 
@@ -16905,7 +16905,7 @@ abstract mixin class _$SymbolInformationCopyWith<$Res> implements $SymbolInforma
   factory _$SymbolInformationCopyWith(_SymbolInformation value, $Res Function(_SymbolInformation) _then) = __$SymbolInformationCopyWithImpl;
 @override @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName,@Deprecated('Use tags instead') bool? deprecated, Location location
+ String name, SymbolKind kind, Location location, List<SymbolTag>? tags, String? containerName,@Deprecated('Use tags instead') bool? deprecated
 });
 
 
@@ -16922,15 +16922,15 @@ class __$SymbolInformationCopyWithImpl<$Res>
 
 /// Create a copy of SymbolInformation
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? tags = freezed,Object? containerName = freezed,Object? deprecated = freezed,Object? location = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? location = null,Object? tags = freezed,Object? containerName = freezed,Object? deprecated = freezed,}) {
   return _then(_SymbolInformation(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as SymbolKind,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as Location,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,containerName: freezed == containerName ? _self.containerName : containerName // ignore: cast_nullable_to_non_nullable
 as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
-as bool?,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as Location,
+as bool?,
   ));
 }
 
@@ -16953,19 +16953,19 @@ mixin _$DocumentSymbol {
 /// The name of this symbol. Will be displayed in the user interface and
 /// therefore must not be an empty string or a string only consisting of
 /// white spaces.
- String get name;/// More detail for this symbol, e.g the signature of a function.
- String? get detail;/// The kind of this symbol.
- SymbolKind get kind;/// Tags for this document symbol.
- List<SymbolTag>? get tags;/// Indicates if this symbol is deprecated.
-///
-/// @deprecated Use tags instead
-@Deprecated('Use tags instead') bool? get deprecated;/// The range enclosing this symbol not including leading/trailing
+ String get name;/// The kind of this symbol.
+ SymbolKind get kind;/// The range enclosing this symbol not including leading/trailing
 /// whitespace but everything else like comments. This information is
 /// typically used to determine if the clients cursor is inside the symbol
 /// to reveal in the symbol in the UI.
  Range get range;/// The range that should be selected and revealed when this symbol is being
 /// picked, e.g the name of a function. Must be contained by the `range`.
- Range get selectionRange;/// Children of this symbol, e.g. properties of a class.
+ Range get selectionRange;/// More detail for this symbol, e.g the signature of a function.
+ String? get detail;/// Tags for this document symbol.
+ List<SymbolTag>? get tags;/// Indicates if this symbol is deprecated.
+///
+/// @deprecated Use tags instead
+@Deprecated('Use tags instead') bool? get deprecated;/// Children of this symbol, e.g. properties of a class.
  List<DocumentSymbol>? get children;
 /// Create a copy of DocumentSymbol
 /// with the given fields replaced by the non-null parameter values.
@@ -16979,16 +16979,16 @@ $DocumentSymbolCopyWith<DocumentSymbol> get copyWith => _$DocumentSymbolCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentSymbol&&(identical(other.name, name) || other.name == name)&&(identical(other.detail, detail) || other.detail == detail)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other.children, children));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentSymbol&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&(identical(other.detail, detail) || other.detail == detail)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&const DeepCollectionEquality().equals(other.children, children));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,detail,kind,const DeepCollectionEquality().hash(tags),deprecated,range,selectionRange,const DeepCollectionEquality().hash(children));
+int get hashCode => Object.hash(runtimeType,name,kind,range,selectionRange,detail,const DeepCollectionEquality().hash(tags),deprecated,const DeepCollectionEquality().hash(children));
 
 @override
 String toString() {
-  return 'DocumentSymbol(name: $name, detail: $detail, kind: $kind, tags: $tags, deprecated: $deprecated, range: $range, selectionRange: $selectionRange, children: $children)';
+  return 'DocumentSymbol(name: $name, kind: $kind, range: $range, selectionRange: $selectionRange, detail: $detail, tags: $tags, deprecated: $deprecated, children: $children)';
 }
 
 
@@ -16999,7 +16999,7 @@ abstract mixin class $DocumentSymbolCopyWith<$Res>  {
   factory $DocumentSymbolCopyWith(DocumentSymbol value, $Res Function(DocumentSymbol) _then) = _$DocumentSymbolCopyWithImpl;
 @useResult
 $Res call({
- String name, String? detail, SymbolKind kind, List<SymbolTag>? tags,@Deprecated('Use tags instead') bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
+ String name, SymbolKind kind, Range range, Range selectionRange, String? detail, List<SymbolTag>? tags,@Deprecated('Use tags instead') bool? deprecated, List<DocumentSymbol>? children
 });
 
 
@@ -17016,16 +17016,16 @@ class _$DocumentSymbolCopyWithImpl<$Res>
 
 /// Create a copy of DocumentSymbol
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? detail = freezed,Object? kind = null,Object? tags = freezed,Object? deprecated = freezed,Object? range = null,Object? selectionRange = null,Object? children = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? range = null,Object? selectionRange = null,Object? detail = freezed,Object? tags = freezed,Object? deprecated = freezed,Object? children = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
-as String?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
-as bool?,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as SymbolKind,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,children: freezed == children ? _self.children : children // ignore: cast_nullable_to_non_nullable
+as Range,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as List<SymbolTag>?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
+as bool?,children: freezed == children ? _self.children : children // ignore: cast_nullable_to_non_nullable
 as List<DocumentSymbol>?,
   ));
 }
@@ -17056,17 +17056,25 @@ $RangeCopyWith<$Res> get selectionRange {
 @JsonSerializable()
 
 class _DocumentSymbol implements DocumentSymbol {
-  const _DocumentSymbol({required this.name, this.detail, required this.kind, final  List<SymbolTag>? tags, @Deprecated('Use tags instead') this.deprecated, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children}): _tags = tags,_children = children;
+  const _DocumentSymbol({required this.name, required this.kind, required this.range, required this.selectionRange, this.detail, final  List<SymbolTag>? tags, @Deprecated('Use tags instead') this.deprecated, final  List<DocumentSymbol>? children}): _tags = tags,_children = children;
   factory _DocumentSymbol.fromJson(Map<String, dynamic> json) => _$DocumentSymbolFromJson(json);
 
 /// The name of this symbol. Will be displayed in the user interface and
 /// therefore must not be an empty string or a string only consisting of
 /// white spaces.
 @override final  String name;
-/// More detail for this symbol, e.g the signature of a function.
-@override final  String? detail;
 /// The kind of this symbol.
 @override final  SymbolKind kind;
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else like comments. This information is
+/// typically used to determine if the clients cursor is inside the symbol
+/// to reveal in the symbol in the UI.
+@override final  Range range;
+/// The range that should be selected and revealed when this symbol is being
+/// picked, e.g the name of a function. Must be contained by the `range`.
+@override final  Range selectionRange;
+/// More detail for this symbol, e.g the signature of a function.
+@override final  String? detail;
 /// Tags for this document symbol.
  final  List<SymbolTag>? _tags;
 /// Tags for this document symbol.
@@ -17082,14 +17090,6 @@ class _DocumentSymbol implements DocumentSymbol {
 ///
 /// @deprecated Use tags instead
 @override@Deprecated('Use tags instead') final  bool? deprecated;
-/// The range enclosing this symbol not including leading/trailing
-/// whitespace but everything else like comments. This information is
-/// typically used to determine if the clients cursor is inside the symbol
-/// to reveal in the symbol in the UI.
-@override final  Range range;
-/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g the name of a function. Must be contained by the `range`.
-@override final  Range selectionRange;
 /// Children of this symbol, e.g. properties of a class.
  final  List<DocumentSymbol>? _children;
 /// Children of this symbol, e.g. properties of a class.
@@ -17115,16 +17115,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentSymbol&&(identical(other.name, name) || other.name == name)&&(identical(other.detail, detail) || other.detail == detail)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&const DeepCollectionEquality().equals(other._children, _children));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentSymbol&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.range, range) || other.range == range)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&(identical(other.detail, detail) || other.detail == detail)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&const DeepCollectionEquality().equals(other._children, _children));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,detail,kind,const DeepCollectionEquality().hash(_tags),deprecated,range,selectionRange,const DeepCollectionEquality().hash(_children));
+int get hashCode => Object.hash(runtimeType,name,kind,range,selectionRange,detail,const DeepCollectionEquality().hash(_tags),deprecated,const DeepCollectionEquality().hash(_children));
 
 @override
 String toString() {
-  return 'DocumentSymbol(name: $name, detail: $detail, kind: $kind, tags: $tags, deprecated: $deprecated, range: $range, selectionRange: $selectionRange, children: $children)';
+  return 'DocumentSymbol(name: $name, kind: $kind, range: $range, selectionRange: $selectionRange, detail: $detail, tags: $tags, deprecated: $deprecated, children: $children)';
 }
 
 
@@ -17135,7 +17135,7 @@ abstract mixin class _$DocumentSymbolCopyWith<$Res> implements $DocumentSymbolCo
   factory _$DocumentSymbolCopyWith(_DocumentSymbol value, $Res Function(_DocumentSymbol) _then) = __$DocumentSymbolCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String? detail, SymbolKind kind, List<SymbolTag>? tags,@Deprecated('Use tags instead') bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
+ String name, SymbolKind kind, Range range, Range selectionRange, String? detail, List<SymbolTag>? tags,@Deprecated('Use tags instead') bool? deprecated, List<DocumentSymbol>? children
 });
 
 
@@ -17152,16 +17152,16 @@ class __$DocumentSymbolCopyWithImpl<$Res>
 
 /// Create a copy of DocumentSymbol
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? detail = freezed,Object? kind = null,Object? tags = freezed,Object? deprecated = freezed,Object? range = null,Object? selectionRange = null,Object? children = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? range = null,Object? selectionRange = null,Object? detail = freezed,Object? tags = freezed,Object? deprecated = freezed,Object? children = freezed,}) {
   return _then(_DocumentSymbol(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
-as String?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
-as bool?,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as SymbolKind,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,children: freezed == children ? _self._children : children // ignore: cast_nullable_to_non_nullable
+as Range,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as List<SymbolTag>?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
+as bool?,children: freezed == children ? _self._children : children // ignore: cast_nullable_to_non_nullable
 as List<DocumentSymbol>?,
   ));
 }
@@ -17626,19 +17626,19 @@ mixin _$WorkspaceSymbol {
 
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
- SymbolKind get kind;/// Tags for this symbol.
- List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
-/// user interface purposes (e.g. to render a qualifier in the user
-/// interface if necessary). It can't be used to re-infer a hierarchy for
-/// the document symbols.
- String? get containerName;/// The location of the symbol. Whether a server is allowed to return a
+ SymbolKind get kind;/// The location of the symbol. Whether a server is allowed to return a
 /// location without a range depends on the client capability
 /// `workspace.symbol.resolveSupport`.
 ///
 /// See SymbolInformation#location for more details.
 ///
 /// Type: Location | Object
-@_WorkspaceSymbolLocationConverter() WorkspaceSymbolLocation get location;/// A data entry field that is preserved on a workspace symbol between a
+@_WorkspaceSymbolLocationConverter() WorkspaceSymbolLocation get location;/// Tags for this symbol.
+ List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
+ String? get containerName;/// A data entry field that is preserved on a workspace symbol between a
 /// workspace symbol request and a workspace symbol resolve request.
  LSPAny? get data;
 /// Create a copy of WorkspaceSymbol
@@ -17653,16 +17653,16 @@ $WorkspaceSymbolCopyWith<WorkspaceSymbol> get copyWith => _$WorkspaceSymbolCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceSymbol&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.containerName, containerName) || other.containerName == containerName)&&(identical(other.location, location) || other.location == location)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceSymbol&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.location, location) || other.location == location)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.containerName, containerName) || other.containerName == containerName)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,kind,const DeepCollectionEquality().hash(tags),containerName,location,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,name,kind,location,const DeepCollectionEquality().hash(tags),containerName,const DeepCollectionEquality().hash(data));
 
 @override
 String toString() {
-  return 'WorkspaceSymbol(name: $name, kind: $kind, tags: $tags, containerName: $containerName, location: $location, data: $data)';
+  return 'WorkspaceSymbol(name: $name, kind: $kind, location: $location, tags: $tags, containerName: $containerName, data: $data)';
 }
 
 
@@ -17673,7 +17673,7 @@ abstract mixin class $WorkspaceSymbolCopyWith<$Res>  {
   factory $WorkspaceSymbolCopyWith(WorkspaceSymbol value, $Res Function(WorkspaceSymbol) _then) = _$WorkspaceSymbolCopyWithImpl;
 @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName,@_WorkspaceSymbolLocationConverter() WorkspaceSymbolLocation location, LSPAny? data
+ String name, SymbolKind kind,@_WorkspaceSymbolLocationConverter() WorkspaceSymbolLocation location, List<SymbolTag>? tags, String? containerName, LSPAny? data
 });
 
 
@@ -17690,14 +17690,14 @@ class _$WorkspaceSymbolCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceSymbol
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? tags = freezed,Object? containerName = freezed,Object? location = null,Object? data = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? location = null,Object? tags = freezed,Object? containerName = freezed,Object? data = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as SymbolKind,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as WorkspaceSymbolLocation,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,containerName: freezed == containerName ? _self.containerName : containerName // ignore: cast_nullable_to_non_nullable
-as String?,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as WorkspaceSymbolLocation,data: freezed == data ? _self.data : data ,
+as String?,data: freezed == data ? _self.data : data ,
   ));
 }
 /// Create a copy of WorkspaceSymbol
@@ -17718,13 +17718,21 @@ $WorkspaceSymbolLocationCopyWith<$Res> get location {
 @JsonSerializable()
 
 class _WorkspaceSymbol implements WorkspaceSymbol {
-  const _WorkspaceSymbol({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, @_WorkspaceSymbolLocationConverter() required this.location, this.data}): _tags = tags;
+  const _WorkspaceSymbol({required this.name, required this.kind, @_WorkspaceSymbolLocationConverter() required this.location, final  List<SymbolTag>? tags, this.containerName, this.data}): _tags = tags;
   factory _WorkspaceSymbol.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolFromJson(json);
 
 /// The name of this symbol.
 @override final  String name;
 /// The kind of this symbol.
 @override final  SymbolKind kind;
+/// The location of the symbol. Whether a server is allowed to return a
+/// location without a range depends on the client capability
+/// `workspace.symbol.resolveSupport`.
+///
+/// See SymbolInformation#location for more details.
+///
+/// Type: Location | Object
+@override@_WorkspaceSymbolLocationConverter() final  WorkspaceSymbolLocation location;
 /// Tags for this symbol.
  final  List<SymbolTag>? _tags;
 /// Tags for this symbol.
@@ -17741,14 +17749,6 @@ class _WorkspaceSymbol implements WorkspaceSymbol {
 /// interface if necessary). It can't be used to re-infer a hierarchy for
 /// the document symbols.
 @override final  String? containerName;
-/// The location of the symbol. Whether a server is allowed to return a
-/// location without a range depends on the client capability
-/// `workspace.symbol.resolveSupport`.
-///
-/// See SymbolInformation#location for more details.
-///
-/// Type: Location | Object
-@override@_WorkspaceSymbolLocationConverter() final  WorkspaceSymbolLocation location;
 /// A data entry field that is preserved on a workspace symbol between a
 /// workspace symbol request and a workspace symbol resolve request.
 @override final  LSPAny? data;
@@ -17766,16 +17766,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceSymbol&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.containerName, containerName) || other.containerName == containerName)&&(identical(other.location, location) || other.location == location)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceSymbol&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.location, location) || other.location == location)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.containerName, containerName) || other.containerName == containerName)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,kind,const DeepCollectionEquality().hash(_tags),containerName,location,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,name,kind,location,const DeepCollectionEquality().hash(_tags),containerName,const DeepCollectionEquality().hash(data));
 
 @override
 String toString() {
-  return 'WorkspaceSymbol(name: $name, kind: $kind, tags: $tags, containerName: $containerName, location: $location, data: $data)';
+  return 'WorkspaceSymbol(name: $name, kind: $kind, location: $location, tags: $tags, containerName: $containerName, data: $data)';
 }
 
 
@@ -17786,7 +17786,7 @@ abstract mixin class _$WorkspaceSymbolCopyWith<$Res> implements $WorkspaceSymbol
   factory _$WorkspaceSymbolCopyWith(_WorkspaceSymbol value, $Res Function(_WorkspaceSymbol) _then) = __$WorkspaceSymbolCopyWithImpl;
 @override @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName,@_WorkspaceSymbolLocationConverter() WorkspaceSymbolLocation location, LSPAny? data
+ String name, SymbolKind kind,@_WorkspaceSymbolLocationConverter() WorkspaceSymbolLocation location, List<SymbolTag>? tags, String? containerName, LSPAny? data
 });
 
 
@@ -17803,14 +17803,14 @@ class __$WorkspaceSymbolCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceSymbol
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? tags = freezed,Object? containerName = freezed,Object? location = null,Object? data = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? location = null,Object? tags = freezed,Object? containerName = freezed,Object? data = freezed,}) {
   return _then(_WorkspaceSymbol(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as SymbolKind,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as WorkspaceSymbolLocation,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,containerName: freezed == containerName ? _self.containerName : containerName // ignore: cast_nullable_to_non_nullable
-as String?,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as WorkspaceSymbolLocation,data: freezed == data ? _self.data : data ,
+as String?,data: freezed == data ? _self.data : data ,
   ));
 }
 
@@ -17834,7 +17834,7 @@ mixin _$CodeLens {
 /// line.
  Range get range;/// The command this code lens represents.
  Command? get command;/// A data entry field that is preserved on a code lens item between a
-/// [CodeLensRequest] and a [CodeLensResolveRequest]
+/// `CodeLensRequest` and a `CodeLensResolveRequest`
  LSPAny? get data;
 /// Create a copy of CodeLens
 /// with the given fields replaced by the non-null parameter values.
@@ -17931,7 +17931,7 @@ class _CodeLens implements CodeLens {
 /// The command this code lens represents.
 @override final  Command? command;
 /// A data entry field that is preserved on a code lens item between a
-/// [CodeLensRequest] and a [CodeLensResolveRequest]
+/// `CodeLensRequest` and a `CodeLensResolveRequest`
 @override final  LSPAny? data;
 
 /// Create a copy of CodeLens
@@ -18851,11 +18851,7 @@ as String?,
 /// @nodoc
 mixin _$LocationLink {
 
-/// Span of the origin of this link.
-///
-/// Used as the underlined span for mouse interaction. Defaults to the word
-/// range at the definition position.
- Range? get originSelectionRange;/// The target resource identifier of this link.
+/// The target resource identifier of this link.
  String get targetUri;/// The full target range of this link. If the target for example is a
 /// symbol then target range is the range enclosing this symbol not
 /// including leading/trailing whitespace but everything else like comments.
@@ -18863,7 +18859,11 @@ mixin _$LocationLink {
  Range get targetRange;/// The range that should be selected and revealed when this link is being
 /// followed, e.g the name of a function. Must be contained by the
 /// `targetRange`. See also `DocumentSymbol#range`
- Range get targetSelectionRange;
+ Range get targetSelectionRange;/// Span of the origin of this link.
+///
+/// Used as the underlined span for mouse interaction. Defaults to the word
+/// range at the definition position.
+ Range? get originSelectionRange;
 /// Create a copy of LocationLink
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -18876,16 +18876,16 @@ $LocationLinkCopyWith<LocationLink> get copyWith => _$LocationLinkCopyWithImpl<L
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationLink&&(identical(other.originSelectionRange, originSelectionRange) || other.originSelectionRange == originSelectionRange)&&(identical(other.targetUri, targetUri) || other.targetUri == targetUri)&&(identical(other.targetRange, targetRange) || other.targetRange == targetRange)&&(identical(other.targetSelectionRange, targetSelectionRange) || other.targetSelectionRange == targetSelectionRange));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationLink&&(identical(other.targetUri, targetUri) || other.targetUri == targetUri)&&(identical(other.targetRange, targetRange) || other.targetRange == targetRange)&&(identical(other.targetSelectionRange, targetSelectionRange) || other.targetSelectionRange == targetSelectionRange)&&(identical(other.originSelectionRange, originSelectionRange) || other.originSelectionRange == originSelectionRange));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,originSelectionRange,targetUri,targetRange,targetSelectionRange);
+int get hashCode => Object.hash(runtimeType,targetUri,targetRange,targetSelectionRange,originSelectionRange);
 
 @override
 String toString() {
-  return 'LocationLink(originSelectionRange: $originSelectionRange, targetUri: $targetUri, targetRange: $targetRange, targetSelectionRange: $targetSelectionRange)';
+  return 'LocationLink(targetUri: $targetUri, targetRange: $targetRange, targetSelectionRange: $targetSelectionRange, originSelectionRange: $originSelectionRange)';
 }
 
 
@@ -18896,11 +18896,11 @@ abstract mixin class $LocationLinkCopyWith<$Res>  {
   factory $LocationLinkCopyWith(LocationLink value, $Res Function(LocationLink) _then) = _$LocationLinkCopyWithImpl;
 @useResult
 $Res call({
- Range? originSelectionRange, String targetUri, Range targetRange, Range targetSelectionRange
+ String targetUri, Range targetRange, Range targetSelectionRange, Range? originSelectionRange
 });
 
 
-$RangeCopyWith<$Res>? get originSelectionRange;$RangeCopyWith<$Res> get targetRange;$RangeCopyWith<$Res> get targetSelectionRange;
+$RangeCopyWith<$Res> get targetRange;$RangeCopyWith<$Res> get targetSelectionRange;$RangeCopyWith<$Res>? get originSelectionRange;
 
 }
 /// @nodoc
@@ -18913,28 +18913,16 @@ class _$LocationLinkCopyWithImpl<$Res>
 
 /// Create a copy of LocationLink
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? originSelectionRange = freezed,Object? targetUri = null,Object? targetRange = null,Object? targetSelectionRange = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? targetUri = null,Object? targetRange = null,Object? targetSelectionRange = null,Object? originSelectionRange = freezed,}) {
   return _then(_self.copyWith(
-originSelectionRange: freezed == originSelectionRange ? _self.originSelectionRange : originSelectionRange // ignore: cast_nullable_to_non_nullable
-as Range?,targetUri: null == targetUri ? _self.targetUri : targetUri // ignore: cast_nullable_to_non_nullable
+targetUri: null == targetUri ? _self.targetUri : targetUri // ignore: cast_nullable_to_non_nullable
 as String,targetRange: null == targetRange ? _self.targetRange : targetRange // ignore: cast_nullable_to_non_nullable
 as Range,targetSelectionRange: null == targetSelectionRange ? _self.targetSelectionRange : targetSelectionRange // ignore: cast_nullable_to_non_nullable
-as Range,
+as Range,originSelectionRange: freezed == originSelectionRange ? _self.originSelectionRange : originSelectionRange // ignore: cast_nullable_to_non_nullable
+as Range?,
   ));
 }
 /// Create a copy of LocationLink
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res>? get originSelectionRange {
-    if (_self.originSelectionRange == null) {
-    return null;
-  }
-
-  return $RangeCopyWith<$Res>(_self.originSelectionRange!, (value) {
-    return _then(_self.copyWith(originSelectionRange: value));
-  });
-}/// Create a copy of LocationLink
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -18952,6 +18940,18 @@ $RangeCopyWith<$Res> get targetSelectionRange {
   return $RangeCopyWith<$Res>(_self.targetSelectionRange, (value) {
     return _then(_self.copyWith(targetSelectionRange: value));
   });
+}/// Create a copy of LocationLink
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res>? get originSelectionRange {
+    if (_self.originSelectionRange == null) {
+    return null;
+  }
+
+  return $RangeCopyWith<$Res>(_self.originSelectionRange!, (value) {
+    return _then(_self.copyWith(originSelectionRange: value));
+  });
 }
 }
 
@@ -18961,14 +18961,9 @@ $RangeCopyWith<$Res> get targetSelectionRange {
 @JsonSerializable()
 
 class _LocationLink implements LocationLink {
-  const _LocationLink({this.originSelectionRange, required this.targetUri, required this.targetRange, required this.targetSelectionRange});
+  const _LocationLink({required this.targetUri, required this.targetRange, required this.targetSelectionRange, this.originSelectionRange});
   factory _LocationLink.fromJson(Map<String, dynamic> json) => _$LocationLinkFromJson(json);
 
-/// Span of the origin of this link.
-///
-/// Used as the underlined span for mouse interaction. Defaults to the word
-/// range at the definition position.
-@override final  Range? originSelectionRange;
 /// The target resource identifier of this link.
 @override final  String targetUri;
 /// The full target range of this link. If the target for example is a
@@ -18980,6 +18975,11 @@ class _LocationLink implements LocationLink {
 /// followed, e.g the name of a function. Must be contained by the
 /// `targetRange`. See also `DocumentSymbol#range`
 @override final  Range targetSelectionRange;
+/// Span of the origin of this link.
+///
+/// Used as the underlined span for mouse interaction. Defaults to the word
+/// range at the definition position.
+@override final  Range? originSelectionRange;
 
 /// Create a copy of LocationLink
 /// with the given fields replaced by the non-null parameter values.
@@ -18994,16 +18994,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationLink&&(identical(other.originSelectionRange, originSelectionRange) || other.originSelectionRange == originSelectionRange)&&(identical(other.targetUri, targetUri) || other.targetUri == targetUri)&&(identical(other.targetRange, targetRange) || other.targetRange == targetRange)&&(identical(other.targetSelectionRange, targetSelectionRange) || other.targetSelectionRange == targetSelectionRange));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationLink&&(identical(other.targetUri, targetUri) || other.targetUri == targetUri)&&(identical(other.targetRange, targetRange) || other.targetRange == targetRange)&&(identical(other.targetSelectionRange, targetSelectionRange) || other.targetSelectionRange == targetSelectionRange)&&(identical(other.originSelectionRange, originSelectionRange) || other.originSelectionRange == originSelectionRange));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,originSelectionRange,targetUri,targetRange,targetSelectionRange);
+int get hashCode => Object.hash(runtimeType,targetUri,targetRange,targetSelectionRange,originSelectionRange);
 
 @override
 String toString() {
-  return 'LocationLink(originSelectionRange: $originSelectionRange, targetUri: $targetUri, targetRange: $targetRange, targetSelectionRange: $targetSelectionRange)';
+  return 'LocationLink(targetUri: $targetUri, targetRange: $targetRange, targetSelectionRange: $targetSelectionRange, originSelectionRange: $originSelectionRange)';
 }
 
 
@@ -19014,11 +19014,11 @@ abstract mixin class _$LocationLinkCopyWith<$Res> implements $LocationLinkCopyWi
   factory _$LocationLinkCopyWith(_LocationLink value, $Res Function(_LocationLink) _then) = __$LocationLinkCopyWithImpl;
 @override @useResult
 $Res call({
- Range? originSelectionRange, String targetUri, Range targetRange, Range targetSelectionRange
+ String targetUri, Range targetRange, Range targetSelectionRange, Range? originSelectionRange
 });
 
 
-@override $RangeCopyWith<$Res>? get originSelectionRange;@override $RangeCopyWith<$Res> get targetRange;@override $RangeCopyWith<$Res> get targetSelectionRange;
+@override $RangeCopyWith<$Res> get targetRange;@override $RangeCopyWith<$Res> get targetSelectionRange;@override $RangeCopyWith<$Res>? get originSelectionRange;
 
 }
 /// @nodoc
@@ -19031,29 +19031,17 @@ class __$LocationLinkCopyWithImpl<$Res>
 
 /// Create a copy of LocationLink
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? originSelectionRange = freezed,Object? targetUri = null,Object? targetRange = null,Object? targetSelectionRange = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? targetUri = null,Object? targetRange = null,Object? targetSelectionRange = null,Object? originSelectionRange = freezed,}) {
   return _then(_LocationLink(
-originSelectionRange: freezed == originSelectionRange ? _self.originSelectionRange : originSelectionRange // ignore: cast_nullable_to_non_nullable
-as Range?,targetUri: null == targetUri ? _self.targetUri : targetUri // ignore: cast_nullable_to_non_nullable
+targetUri: null == targetUri ? _self.targetUri : targetUri // ignore: cast_nullable_to_non_nullable
 as String,targetRange: null == targetRange ? _self.targetRange : targetRange // ignore: cast_nullable_to_non_nullable
 as Range,targetSelectionRange: null == targetSelectionRange ? _self.targetSelectionRange : targetSelectionRange // ignore: cast_nullable_to_non_nullable
-as Range,
+as Range,originSelectionRange: freezed == originSelectionRange ? _self.originSelectionRange : originSelectionRange // ignore: cast_nullable_to_non_nullable
+as Range?,
   ));
 }
 
 /// Create a copy of LocationLink
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res>? get originSelectionRange {
-    if (_self.originSelectionRange == null) {
-    return null;
-  }
-
-  return $RangeCopyWith<$Res>(_self.originSelectionRange!, (value) {
-    return _then(_self.copyWith(originSelectionRange: value));
-  });
-}/// Create a copy of LocationLink
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -19070,6 +19058,18 @@ $RangeCopyWith<$Res> get targetSelectionRange {
   
   return $RangeCopyWith<$Res>(_self.targetSelectionRange, (value) {
     return _then(_self.copyWith(targetSelectionRange: value));
+  });
+}/// Create a copy of LocationLink
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res>? get originSelectionRange {
+    if (_self.originSelectionRange == null) {
+    return null;
+  }
+
+  return $RangeCopyWith<$Res>(_self.originSelectionRange!, (value) {
+    return _then(_self.copyWith(originSelectionRange: value));
   });
 }
 }
@@ -20465,10 +20465,10 @@ $OptionalVersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$CreateFile {
 
-/// An optional annotation identifier describing the operation.
- ChangeAnnotationIdentifier? get annotationId;/// A create
+/// A create
  String get kind;/// The resource to create.
- String get uri;/// Additional options
+ String get uri;/// An optional annotation identifier describing the operation.
+ ChangeAnnotationIdentifier? get annotationId;/// Additional options
  CreateFileOptions? get options;
 /// Create a copy of CreateFile
 /// with the given fields replaced by the non-null parameter values.
@@ -20482,16 +20482,16 @@ $CreateFileCopyWith<CreateFile> get copyWith => _$CreateFileCopyWithImpl<CreateF
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateFile&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,annotationId,kind,uri,options);
+int get hashCode => Object.hash(runtimeType,kind,uri,annotationId,options);
 
 @override
 String toString() {
-  return 'CreateFile(annotationId: $annotationId, kind: $kind, uri: $uri, options: $options)';
+  return 'CreateFile(kind: $kind, uri: $uri, annotationId: $annotationId, options: $options)';
 }
 
 
@@ -20502,7 +20502,7 @@ abstract mixin class $CreateFileCopyWith<$Res>  {
   factory $CreateFileCopyWith(CreateFile value, $Res Function(CreateFile) _then) = _$CreateFileCopyWithImpl;
 @useResult
 $Res call({
- ChangeAnnotationIdentifier? annotationId, String kind, String uri, CreateFileOptions? options
+ String kind, String uri, ChangeAnnotationIdentifier? annotationId, CreateFileOptions? options
 });
 
 
@@ -20519,12 +20519,12 @@ class _$CreateFileCopyWithImpl<$Res>
 
 /// Create a copy of CreateFile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? annotationId = freezed,Object? kind = null,Object? uri = null,Object? options = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? uri = null,Object? annotationId = freezed,Object? options = freezed,}) {
   return _then(_self.copyWith(
-annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as CreateFileOptions?,
   ));
 }
@@ -20549,15 +20549,15 @@ $CreateFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _CreateFile implements CreateFile {
-  const _CreateFile({this.annotationId, required this.kind, required this.uri, this.options});
+  const _CreateFile({required this.kind, required this.uri, this.annotationId, this.options});
   factory _CreateFile.fromJson(Map<String, dynamic> json) => _$CreateFileFromJson(json);
 
-/// An optional annotation identifier describing the operation.
-@override final  ChangeAnnotationIdentifier? annotationId;
 /// A create
 @override final  String kind;
 /// The resource to create.
 @override final  String uri;
+/// An optional annotation identifier describing the operation.
+@override final  ChangeAnnotationIdentifier? annotationId;
 /// Additional options
 @override final  CreateFileOptions? options;
 
@@ -20574,16 +20574,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateFile&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,annotationId,kind,uri,options);
+int get hashCode => Object.hash(runtimeType,kind,uri,annotationId,options);
 
 @override
 String toString() {
-  return 'CreateFile(annotationId: $annotationId, kind: $kind, uri: $uri, options: $options)';
+  return 'CreateFile(kind: $kind, uri: $uri, annotationId: $annotationId, options: $options)';
 }
 
 
@@ -20594,7 +20594,7 @@ abstract mixin class _$CreateFileCopyWith<$Res> implements $CreateFileCopyWith<$
   factory _$CreateFileCopyWith(_CreateFile value, $Res Function(_CreateFile) _then) = __$CreateFileCopyWithImpl;
 @override @useResult
 $Res call({
- ChangeAnnotationIdentifier? annotationId, String kind, String uri, CreateFileOptions? options
+ String kind, String uri, ChangeAnnotationIdentifier? annotationId, CreateFileOptions? options
 });
 
 
@@ -20611,12 +20611,12 @@ class __$CreateFileCopyWithImpl<$Res>
 
 /// Create a copy of CreateFile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? annotationId = freezed,Object? kind = null,Object? uri = null,Object? options = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? uri = null,Object? annotationId = freezed,Object? options = freezed,}) {
   return _then(_CreateFile(
-annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as CreateFileOptions?,
   ));
 }
@@ -20640,11 +20640,11 @@ $CreateFileOptionsCopyWith<$Res>? get options {
 /// @nodoc
 mixin _$RenameFile {
 
-/// An optional annotation identifier describing the operation.
- ChangeAnnotationIdentifier? get annotationId;/// A rename
+/// A rename
  String get kind;/// The old (existing) location.
  String get oldUri;/// The new location.
- String get newUri;/// Rename options.
+ String get newUri;/// An optional annotation identifier describing the operation.
+ ChangeAnnotationIdentifier? get annotationId;/// Rename options.
  RenameFileOptions? get options;
 /// Create a copy of RenameFile
 /// with the given fields replaced by the non-null parameter values.
@@ -20658,16 +20658,16 @@ $RenameFileCopyWith<RenameFile> get copyWith => _$RenameFileCopyWithImpl<RenameF
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RenameFile&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.oldUri, oldUri) || other.oldUri == oldUri)&&(identical(other.newUri, newUri) || other.newUri == newUri)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RenameFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.oldUri, oldUri) || other.oldUri == oldUri)&&(identical(other.newUri, newUri) || other.newUri == newUri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,annotationId,kind,oldUri,newUri,options);
+int get hashCode => Object.hash(runtimeType,kind,oldUri,newUri,annotationId,options);
 
 @override
 String toString() {
-  return 'RenameFile(annotationId: $annotationId, kind: $kind, oldUri: $oldUri, newUri: $newUri, options: $options)';
+  return 'RenameFile(kind: $kind, oldUri: $oldUri, newUri: $newUri, annotationId: $annotationId, options: $options)';
 }
 
 
@@ -20678,7 +20678,7 @@ abstract mixin class $RenameFileCopyWith<$Res>  {
   factory $RenameFileCopyWith(RenameFile value, $Res Function(RenameFile) _then) = _$RenameFileCopyWithImpl;
 @useResult
 $Res call({
- ChangeAnnotationIdentifier? annotationId, String kind, String oldUri, String newUri, RenameFileOptions? options
+ String kind, String oldUri, String newUri, ChangeAnnotationIdentifier? annotationId, RenameFileOptions? options
 });
 
 
@@ -20695,13 +20695,13 @@ class _$RenameFileCopyWithImpl<$Res>
 
 /// Create a copy of RenameFile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? annotationId = freezed,Object? kind = null,Object? oldUri = null,Object? newUri = null,Object? options = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? oldUri = null,Object? newUri = null,Object? annotationId = freezed,Object? options = freezed,}) {
   return _then(_self.copyWith(
-annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,oldUri: null == oldUri ? _self.oldUri : oldUri // ignore: cast_nullable_to_non_nullable
 as String,newUri: null == newUri ? _self.newUri : newUri // ignore: cast_nullable_to_non_nullable
-as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as RenameFileOptions?,
   ));
 }
@@ -20726,17 +20726,17 @@ $RenameFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _RenameFile implements RenameFile {
-  const _RenameFile({this.annotationId, required this.kind, required this.oldUri, required this.newUri, this.options});
+  const _RenameFile({required this.kind, required this.oldUri, required this.newUri, this.annotationId, this.options});
   factory _RenameFile.fromJson(Map<String, dynamic> json) => _$RenameFileFromJson(json);
 
-/// An optional annotation identifier describing the operation.
-@override final  ChangeAnnotationIdentifier? annotationId;
 /// A rename
 @override final  String kind;
 /// The old (existing) location.
 @override final  String oldUri;
 /// The new location.
 @override final  String newUri;
+/// An optional annotation identifier describing the operation.
+@override final  ChangeAnnotationIdentifier? annotationId;
 /// Rename options.
 @override final  RenameFileOptions? options;
 
@@ -20753,16 +20753,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RenameFile&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.oldUri, oldUri) || other.oldUri == oldUri)&&(identical(other.newUri, newUri) || other.newUri == newUri)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RenameFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.oldUri, oldUri) || other.oldUri == oldUri)&&(identical(other.newUri, newUri) || other.newUri == newUri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,annotationId,kind,oldUri,newUri,options);
+int get hashCode => Object.hash(runtimeType,kind,oldUri,newUri,annotationId,options);
 
 @override
 String toString() {
-  return 'RenameFile(annotationId: $annotationId, kind: $kind, oldUri: $oldUri, newUri: $newUri, options: $options)';
+  return 'RenameFile(kind: $kind, oldUri: $oldUri, newUri: $newUri, annotationId: $annotationId, options: $options)';
 }
 
 
@@ -20773,7 +20773,7 @@ abstract mixin class _$RenameFileCopyWith<$Res> implements $RenameFileCopyWith<$
   factory _$RenameFileCopyWith(_RenameFile value, $Res Function(_RenameFile) _then) = __$RenameFileCopyWithImpl;
 @override @useResult
 $Res call({
- ChangeAnnotationIdentifier? annotationId, String kind, String oldUri, String newUri, RenameFileOptions? options
+ String kind, String oldUri, String newUri, ChangeAnnotationIdentifier? annotationId, RenameFileOptions? options
 });
 
 
@@ -20790,13 +20790,13 @@ class __$RenameFileCopyWithImpl<$Res>
 
 /// Create a copy of RenameFile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? annotationId = freezed,Object? kind = null,Object? oldUri = null,Object? newUri = null,Object? options = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? oldUri = null,Object? newUri = null,Object? annotationId = freezed,Object? options = freezed,}) {
   return _then(_RenameFile(
-annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,oldUri: null == oldUri ? _self.oldUri : oldUri // ignore: cast_nullable_to_non_nullable
 as String,newUri: null == newUri ? _self.newUri : newUri // ignore: cast_nullable_to_non_nullable
-as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as RenameFileOptions?,
   ));
 }
@@ -20820,10 +20820,10 @@ $RenameFileOptionsCopyWith<$Res>? get options {
 /// @nodoc
 mixin _$DeleteFile {
 
-/// An optional annotation identifier describing the operation.
- ChangeAnnotationIdentifier? get annotationId;/// A delete
+/// A delete
  String get kind;/// The file to delete.
- String get uri;/// Delete options.
+ String get uri;/// An optional annotation identifier describing the operation.
+ ChangeAnnotationIdentifier? get annotationId;/// Delete options.
  DeleteFileOptions? get options;
 /// Create a copy of DeleteFile
 /// with the given fields replaced by the non-null parameter values.
@@ -20837,16 +20837,16 @@ $DeleteFileCopyWith<DeleteFile> get copyWith => _$DeleteFileCopyWithImpl<DeleteF
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeleteFile&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeleteFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,annotationId,kind,uri,options);
+int get hashCode => Object.hash(runtimeType,kind,uri,annotationId,options);
 
 @override
 String toString() {
-  return 'DeleteFile(annotationId: $annotationId, kind: $kind, uri: $uri, options: $options)';
+  return 'DeleteFile(kind: $kind, uri: $uri, annotationId: $annotationId, options: $options)';
 }
 
 
@@ -20857,7 +20857,7 @@ abstract mixin class $DeleteFileCopyWith<$Res>  {
   factory $DeleteFileCopyWith(DeleteFile value, $Res Function(DeleteFile) _then) = _$DeleteFileCopyWithImpl;
 @useResult
 $Res call({
- ChangeAnnotationIdentifier? annotationId, String kind, String uri, DeleteFileOptions? options
+ String kind, String uri, ChangeAnnotationIdentifier? annotationId, DeleteFileOptions? options
 });
 
 
@@ -20874,12 +20874,12 @@ class _$DeleteFileCopyWithImpl<$Res>
 
 /// Create a copy of DeleteFile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? annotationId = freezed,Object? kind = null,Object? uri = null,Object? options = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? uri = null,Object? annotationId = freezed,Object? options = freezed,}) {
   return _then(_self.copyWith(
-annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as DeleteFileOptions?,
   ));
 }
@@ -20904,15 +20904,15 @@ $DeleteFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _DeleteFile implements DeleteFile {
-  const _DeleteFile({this.annotationId, required this.kind, required this.uri, this.options});
+  const _DeleteFile({required this.kind, required this.uri, this.annotationId, this.options});
   factory _DeleteFile.fromJson(Map<String, dynamic> json) => _$DeleteFileFromJson(json);
 
-/// An optional annotation identifier describing the operation.
-@override final  ChangeAnnotationIdentifier? annotationId;
 /// A delete
 @override final  String kind;
 /// The file to delete.
 @override final  String uri;
+/// An optional annotation identifier describing the operation.
+@override final  ChangeAnnotationIdentifier? annotationId;
 /// Delete options.
 @override final  DeleteFileOptions? options;
 
@@ -20929,16 +20929,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteFile&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,annotationId,kind,uri,options);
+int get hashCode => Object.hash(runtimeType,kind,uri,annotationId,options);
 
 @override
 String toString() {
-  return 'DeleteFile(annotationId: $annotationId, kind: $kind, uri: $uri, options: $options)';
+  return 'DeleteFile(kind: $kind, uri: $uri, annotationId: $annotationId, options: $options)';
 }
 
 
@@ -20949,7 +20949,7 @@ abstract mixin class _$DeleteFileCopyWith<$Res> implements $DeleteFileCopyWith<$
   factory _$DeleteFileCopyWith(_DeleteFile value, $Res Function(_DeleteFile) _then) = __$DeleteFileCopyWithImpl;
 @override @useResult
 $Res call({
- ChangeAnnotationIdentifier? annotationId, String kind, String uri, DeleteFileOptions? options
+ String kind, String uri, ChangeAnnotationIdentifier? annotationId, DeleteFileOptions? options
 });
 
 
@@ -20966,12 +20966,12 @@ class __$DeleteFileCopyWithImpl<$Res>
 
 /// Create a copy of DeleteFile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? annotationId = freezed,Object? kind = null,Object? uri = null,Object? options = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? uri = null,Object? annotationId = freezed,Object? options = freezed,}) {
   return _then(_DeleteFile(
-annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as DeleteFileOptions?,
   ));
 }
@@ -21147,9 +21147,9 @@ as String?,
 /// @nodoc
 mixin _$FileOperationFilter {
 
-/// A Uri scheme like `file` or `untitled`.
- String? get scheme;/// The actual file operation pattern.
- FileOperationPattern get pattern;
+/// The actual file operation pattern.
+ FileOperationPattern get pattern;/// A Uri scheme like `file` or `untitled`.
+ String? get scheme;
 /// Create a copy of FileOperationFilter
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -21162,16 +21162,16 @@ $FileOperationFilterCopyWith<FileOperationFilter> get copyWith => _$FileOperatio
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FileOperationFilter&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FileOperationFilter&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.scheme, scheme) || other.scheme == scheme));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,scheme,pattern);
+int get hashCode => Object.hash(runtimeType,pattern,scheme);
 
 @override
 String toString() {
-  return 'FileOperationFilter(scheme: $scheme, pattern: $pattern)';
+  return 'FileOperationFilter(pattern: $pattern, scheme: $scheme)';
 }
 
 
@@ -21182,7 +21182,7 @@ abstract mixin class $FileOperationFilterCopyWith<$Res>  {
   factory $FileOperationFilterCopyWith(FileOperationFilter value, $Res Function(FileOperationFilter) _then) = _$FileOperationFilterCopyWithImpl;
 @useResult
 $Res call({
- String? scheme, FileOperationPattern pattern
+ FileOperationPattern pattern, String? scheme
 });
 
 
@@ -21199,11 +21199,11 @@ class _$FileOperationFilterCopyWithImpl<$Res>
 
 /// Create a copy of FileOperationFilter
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? scheme = freezed,Object? pattern = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? pattern = null,Object? scheme = freezed,}) {
   return _then(_self.copyWith(
-scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
-as String?,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
-as FileOperationPattern,
+pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as FileOperationPattern,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of FileOperationFilter
@@ -21224,13 +21224,13 @@ $FileOperationPatternCopyWith<$Res> get pattern {
 @JsonSerializable()
 
 class _FileOperationFilter implements FileOperationFilter {
-  const _FileOperationFilter({this.scheme, required this.pattern});
+  const _FileOperationFilter({required this.pattern, this.scheme});
   factory _FileOperationFilter.fromJson(Map<String, dynamic> json) => _$FileOperationFilterFromJson(json);
 
-/// A Uri scheme like `file` or `untitled`.
-@override final  String? scheme;
 /// The actual file operation pattern.
 @override final  FileOperationPattern pattern;
+/// A Uri scheme like `file` or `untitled`.
+@override final  String? scheme;
 
 /// Create a copy of FileOperationFilter
 /// with the given fields replaced by the non-null parameter values.
@@ -21245,16 +21245,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FileOperationFilter&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FileOperationFilter&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.scheme, scheme) || other.scheme == scheme));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,scheme,pattern);
+int get hashCode => Object.hash(runtimeType,pattern,scheme);
 
 @override
 String toString() {
-  return 'FileOperationFilter(scheme: $scheme, pattern: $pattern)';
+  return 'FileOperationFilter(pattern: $pattern, scheme: $scheme)';
 }
 
 
@@ -21265,7 +21265,7 @@ abstract mixin class _$FileOperationFilterCopyWith<$Res> implements $FileOperati
   factory _$FileOperationFilterCopyWith(_FileOperationFilter value, $Res Function(_FileOperationFilter) _then) = __$FileOperationFilterCopyWithImpl;
 @override @useResult
 $Res call({
- String? scheme, FileOperationPattern pattern
+ FileOperationPattern pattern, String? scheme
 });
 
 
@@ -21282,11 +21282,11 @@ class __$FileOperationFilterCopyWithImpl<$Res>
 
 /// Create a copy of FileOperationFilter
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? scheme = freezed,Object? pattern = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? pattern = null,Object? scheme = freezed,}) {
   return _then(_FileOperationFilter(
-scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
-as String?,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
-as FileOperationPattern,
+pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as FileOperationPattern,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -21909,9 +21909,9 @@ mixin _$InlineValueVariableLookup {
 
 /// The document range for which the inline value applies. The range is used
 /// to extract the variable name from the underlying document.
- Range get range;/// If specified the name of the variable to look up.
- String? get variableName;/// How to perform the lookup.
- bool get caseSensitiveLookup;
+ Range get range;/// How to perform the lookup.
+ bool get caseSensitiveLookup;/// If specified the name of the variable to look up.
+ String? get variableName;
 /// Create a copy of InlineValueVariableLookup
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -21924,16 +21924,16 @@ $InlineValueVariableLookupCopyWith<InlineValueVariableLookup> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineValueVariableLookup&&(identical(other.range, range) || other.range == range)&&(identical(other.variableName, variableName) || other.variableName == variableName)&&(identical(other.caseSensitiveLookup, caseSensitiveLookup) || other.caseSensitiveLookup == caseSensitiveLookup));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineValueVariableLookup&&(identical(other.range, range) || other.range == range)&&(identical(other.caseSensitiveLookup, caseSensitiveLookup) || other.caseSensitiveLookup == caseSensitiveLookup)&&(identical(other.variableName, variableName) || other.variableName == variableName));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,range,variableName,caseSensitiveLookup);
+int get hashCode => Object.hash(runtimeType,range,caseSensitiveLookup,variableName);
 
 @override
 String toString() {
-  return 'InlineValueVariableLookup(range: $range, variableName: $variableName, caseSensitiveLookup: $caseSensitiveLookup)';
+  return 'InlineValueVariableLookup(range: $range, caseSensitiveLookup: $caseSensitiveLookup, variableName: $variableName)';
 }
 
 
@@ -21944,7 +21944,7 @@ abstract mixin class $InlineValueVariableLookupCopyWith<$Res>  {
   factory $InlineValueVariableLookupCopyWith(InlineValueVariableLookup value, $Res Function(InlineValueVariableLookup) _then) = _$InlineValueVariableLookupCopyWithImpl;
 @useResult
 $Res call({
- Range range, String? variableName, bool caseSensitiveLookup
+ Range range, bool caseSensitiveLookup, String? variableName
 });
 
 
@@ -21961,12 +21961,12 @@ class _$InlineValueVariableLookupCopyWithImpl<$Res>
 
 /// Create a copy of InlineValueVariableLookup
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? variableName = freezed,Object? caseSensitiveLookup = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? caseSensitiveLookup = null,Object? variableName = freezed,}) {
   return _then(_self.copyWith(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,variableName: freezed == variableName ? _self.variableName : variableName // ignore: cast_nullable_to_non_nullable
-as String?,caseSensitiveLookup: null == caseSensitiveLookup ? _self.caseSensitiveLookup : caseSensitiveLookup // ignore: cast_nullable_to_non_nullable
-as bool,
+as Range,caseSensitiveLookup: null == caseSensitiveLookup ? _self.caseSensitiveLookup : caseSensitiveLookup // ignore: cast_nullable_to_non_nullable
+as bool,variableName: freezed == variableName ? _self.variableName : variableName // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of InlineValueVariableLookup
@@ -21987,16 +21987,16 @@ $RangeCopyWith<$Res> get range {
 @JsonSerializable()
 
 class _InlineValueVariableLookup implements InlineValueVariableLookup {
-  const _InlineValueVariableLookup({required this.range, this.variableName, required this.caseSensitiveLookup});
+  const _InlineValueVariableLookup({required this.range, required this.caseSensitiveLookup, this.variableName});
   factory _InlineValueVariableLookup.fromJson(Map<String, dynamic> json) => _$InlineValueVariableLookupFromJson(json);
 
 /// The document range for which the inline value applies. The range is used
 /// to extract the variable name from the underlying document.
 @override final  Range range;
-/// If specified the name of the variable to look up.
-@override final  String? variableName;
 /// How to perform the lookup.
 @override final  bool caseSensitiveLookup;
+/// If specified the name of the variable to look up.
+@override final  String? variableName;
 
 /// Create a copy of InlineValueVariableLookup
 /// with the given fields replaced by the non-null parameter values.
@@ -22011,16 +22011,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineValueVariableLookup&&(identical(other.range, range) || other.range == range)&&(identical(other.variableName, variableName) || other.variableName == variableName)&&(identical(other.caseSensitiveLookup, caseSensitiveLookup) || other.caseSensitiveLookup == caseSensitiveLookup));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineValueVariableLookup&&(identical(other.range, range) || other.range == range)&&(identical(other.caseSensitiveLookup, caseSensitiveLookup) || other.caseSensitiveLookup == caseSensitiveLookup)&&(identical(other.variableName, variableName) || other.variableName == variableName));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,range,variableName,caseSensitiveLookup);
+int get hashCode => Object.hash(runtimeType,range,caseSensitiveLookup,variableName);
 
 @override
 String toString() {
-  return 'InlineValueVariableLookup(range: $range, variableName: $variableName, caseSensitiveLookup: $caseSensitiveLookup)';
+  return 'InlineValueVariableLookup(range: $range, caseSensitiveLookup: $caseSensitiveLookup, variableName: $variableName)';
 }
 
 
@@ -22031,7 +22031,7 @@ abstract mixin class _$InlineValueVariableLookupCopyWith<$Res> implements $Inlin
   factory _$InlineValueVariableLookupCopyWith(_InlineValueVariableLookup value, $Res Function(_InlineValueVariableLookup) _then) = __$InlineValueVariableLookupCopyWithImpl;
 @override @useResult
 $Res call({
- Range range, String? variableName, bool caseSensitiveLookup
+ Range range, bool caseSensitiveLookup, String? variableName
 });
 
 
@@ -22048,12 +22048,12 @@ class __$InlineValueVariableLookupCopyWithImpl<$Res>
 
 /// Create a copy of InlineValueVariableLookup
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? variableName = freezed,Object? caseSensitiveLookup = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? caseSensitiveLookup = null,Object? variableName = freezed,}) {
   return _then(_InlineValueVariableLookup(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,variableName: freezed == variableName ? _self.variableName : variableName // ignore: cast_nullable_to_non_nullable
-as String?,caseSensitiveLookup: null == caseSensitiveLookup ? _self.caseSensitiveLookup : caseSensitiveLookup // ignore: cast_nullable_to_non_nullable
-as bool,
+as Range,caseSensitiveLookup: null == caseSensitiveLookup ? _self.caseSensitiveLookup : caseSensitiveLookup // ignore: cast_nullable_to_non_nullable
+as bool,variableName: freezed == variableName ? _self.variableName : variableName // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -22631,10 +22631,10 @@ as String,
 mixin _$RelatedFullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will be sent on the next
+ String get kind;/// The actual items.
+ List<Diagnostic> get items;/// An optional result id. If provided it will be sent on the next
 /// diagnostic request for the same document.
- String? get resultId;/// The actual items.
- List<Diagnostic> get items;/// Diagnostics of related documents. This information is useful in
+ String? get resultId;/// Diagnostics of related documents. This information is useful in
 /// programming languages where code in a file A can generate diagnostics in
 /// a file B which A depends on. An example of such a language is C/C++
 /// where marco definitions in a file a.cpp and result in errors in a header
@@ -22652,16 +22652,16 @@ $RelatedFullDocumentDiagnosticReportCopyWith<RelatedFullDocumentDiagnosticReport
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RelatedFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.items, items)&&const DeepCollectionEquality().equals(other.relatedDocuments, relatedDocuments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RelatedFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.relatedDocuments, relatedDocuments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,const DeepCollectionEquality().hash(items),const DeepCollectionEquality().hash(relatedDocuments));
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(items),resultId,const DeepCollectionEquality().hash(relatedDocuments));
 
 @override
 String toString() {
-  return 'RelatedFullDocumentDiagnosticReport(kind: $kind, resultId: $resultId, items: $items, relatedDocuments: $relatedDocuments)';
+  return 'RelatedFullDocumentDiagnosticReport(kind: $kind, items: $items, resultId: $resultId, relatedDocuments: $relatedDocuments)';
 }
 
 
@@ -22672,7 +22672,7 @@ abstract mixin class $RelatedFullDocumentDiagnosticReportCopyWith<$Res>  {
   factory $RelatedFullDocumentDiagnosticReportCopyWith(RelatedFullDocumentDiagnosticReport value, $Res Function(RelatedFullDocumentDiagnosticReport) _then) = _$RelatedFullDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, String? resultId, List<Diagnostic> items, Map<String, Object>? relatedDocuments
+ String kind, List<Diagnostic> items, String? resultId, Map<String, Object>? relatedDocuments
 });
 
 
@@ -22689,12 +22689,12 @@ class _$RelatedFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of RelatedFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? resultId = freezed,Object? items = null,Object? relatedDocuments = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? items = null,Object? resultId = freezed,Object? relatedDocuments = freezed,}) {
   return _then(_self.copyWith(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,relatedDocuments: freezed == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
+as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,relatedDocuments: freezed == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
 as Map<String, Object>?,
   ));
 }
@@ -22707,14 +22707,11 @@ as Map<String, Object>?,
 @JsonSerializable()
 
 class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnosticReport {
-  const _RelatedFullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items, final  Map<String, Object>? relatedDocuments}): _items = items,_relatedDocuments = relatedDocuments;
+  const _RelatedFullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, this.resultId, final  Map<String, Object>? relatedDocuments}): _items = items,_relatedDocuments = relatedDocuments;
   factory _RelatedFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will be sent on the next
-/// diagnostic request for the same document.
-@override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -22724,6 +22721,9 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
   return EqualUnmodifiableListView(_items);
 }
 
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
+@override final  String? resultId;
 /// Diagnostics of related documents. This information is useful in
 /// programming languages where code in a file A can generate diagnostics in
 /// a file B which A depends on. An example of such a language is C/C++
@@ -22757,16 +22757,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RelatedFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._items, _items)&&const DeepCollectionEquality().equals(other._relatedDocuments, _relatedDocuments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RelatedFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._relatedDocuments, _relatedDocuments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,const DeepCollectionEquality().hash(_items),const DeepCollectionEquality().hash(_relatedDocuments));
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items),resultId,const DeepCollectionEquality().hash(_relatedDocuments));
 
 @override
 String toString() {
-  return 'RelatedFullDocumentDiagnosticReport(kind: $kind, resultId: $resultId, items: $items, relatedDocuments: $relatedDocuments)';
+  return 'RelatedFullDocumentDiagnosticReport(kind: $kind, items: $items, resultId: $resultId, relatedDocuments: $relatedDocuments)';
 }
 
 
@@ -22777,7 +22777,7 @@ abstract mixin class _$RelatedFullDocumentDiagnosticReportCopyWith<$Res> impleme
   factory _$RelatedFullDocumentDiagnosticReportCopyWith(_RelatedFullDocumentDiagnosticReport value, $Res Function(_RelatedFullDocumentDiagnosticReport) _then) = __$RelatedFullDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String? resultId, List<Diagnostic> items, Map<String, Object>? relatedDocuments
+ String kind, List<Diagnostic> items, String? resultId, Map<String, Object>? relatedDocuments
 });
 
 
@@ -22794,12 +22794,12 @@ class __$RelatedFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of RelatedFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? resultId = freezed,Object? items = null,Object? relatedDocuments = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,Object? resultId = freezed,Object? relatedDocuments = freezed,}) {
   return _then(_RelatedFullDocumentDiagnosticReport(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,relatedDocuments: freezed == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
+as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,relatedDocuments: freezed == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
 as Map<String, Object>?,
   ));
 }
@@ -22983,10 +22983,10 @@ as Map<String, Object>?,
 mixin _$FullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will be sent on the next
+ String get kind;/// The actual items.
+ List<Diagnostic> get items;/// An optional result id. If provided it will be sent on the next
 /// diagnostic request for the same document.
- String? get resultId;/// The actual items.
- List<Diagnostic> get items;
+ String? get resultId;
 /// Create a copy of FullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -22999,16 +22999,16 @@ $FullDocumentDiagnosticReportCopyWith<FullDocumentDiagnosticReport> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.items, items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,const DeepCollectionEquality().hash(items));
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(items),resultId);
 
 @override
 String toString() {
-  return 'FullDocumentDiagnosticReport(kind: $kind, resultId: $resultId, items: $items)';
+  return 'FullDocumentDiagnosticReport(kind: $kind, items: $items, resultId: $resultId)';
 }
 
 
@@ -23019,7 +23019,7 @@ abstract mixin class $FullDocumentDiagnosticReportCopyWith<$Res>  {
   factory $FullDocumentDiagnosticReportCopyWith(FullDocumentDiagnosticReport value, $Res Function(FullDocumentDiagnosticReport) _then) = _$FullDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, String? resultId, List<Diagnostic> items
+ String kind, List<Diagnostic> items, String? resultId
 });
 
 
@@ -23036,12 +23036,12 @@ class _$FullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of FullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? resultId = freezed,Object? items = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? items = null,Object? resultId = freezed,}) {
   return _then(_self.copyWith(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,
+as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -23053,14 +23053,11 @@ as List<Diagnostic>,
 @JsonSerializable()
 
 class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
-  const _FullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items}): _items = items;
+  const _FullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, this.resultId}): _items = items;
   factory _FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$FullDocumentDiagnosticReportFromJson(json);
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will be sent on the next
-/// diagnostic request for the same document.
-@override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -23070,6 +23067,9 @@ class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
   return EqualUnmodifiableListView(_items);
 }
 
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
+@override final  String? resultId;
 
 /// Create a copy of FullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -23084,16 +23084,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._items, _items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,const DeepCollectionEquality().hash(_items));
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items),resultId);
 
 @override
 String toString() {
-  return 'FullDocumentDiagnosticReport(kind: $kind, resultId: $resultId, items: $items)';
+  return 'FullDocumentDiagnosticReport(kind: $kind, items: $items, resultId: $resultId)';
 }
 
 
@@ -23104,7 +23104,7 @@ abstract mixin class _$FullDocumentDiagnosticReportCopyWith<$Res> implements $Fu
   factory _$FullDocumentDiagnosticReportCopyWith(_FullDocumentDiagnosticReport value, $Res Function(_FullDocumentDiagnosticReport) _then) = __$FullDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String? resultId, List<Diagnostic> items
+ String kind, List<Diagnostic> items, String? resultId
 });
 
 
@@ -23121,12 +23121,12 @@ class __$FullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of FullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? resultId = freezed,Object? items = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,Object? resultId = freezed,}) {
   return _then(_FullDocumentDiagnosticReport(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,
+as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -23427,11 +23427,11 @@ mixin _$NotebookDocument {
  String get uri;/// The type of the notebook.
  String get notebookType;/// The version number of this document (it will increase after each change,
 /// including undo/redo).
- int get version;/// Additional metadata stored with the notebook document.
+ int get version;/// The cells of a notebook.
+ List<NotebookCell> get cells;/// Additional metadata stored with the notebook document.
 ///
 /// Note: should always be an object literal (e.g. LSPObject)
- LSPObject? get metadata;/// The cells of a notebook.
- List<NotebookCell> get cells;
+ LSPObject? get metadata;
 /// Create a copy of NotebookDocument
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -23444,16 +23444,16 @@ $NotebookDocumentCopyWith<NotebookDocument> get copyWith => _$NotebookDocumentCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocument&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.version, version) || other.version == version)&&const DeepCollectionEquality().equals(other.metadata, metadata)&&const DeepCollectionEquality().equals(other.cells, cells));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocument&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.version, version) || other.version == version)&&const DeepCollectionEquality().equals(other.cells, cells)&&const DeepCollectionEquality().equals(other.metadata, metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uri,notebookType,version,const DeepCollectionEquality().hash(metadata),const DeepCollectionEquality().hash(cells));
+int get hashCode => Object.hash(runtimeType,uri,notebookType,version,const DeepCollectionEquality().hash(cells),const DeepCollectionEquality().hash(metadata));
 
 @override
 String toString() {
-  return 'NotebookDocument(uri: $uri, notebookType: $notebookType, version: $version, metadata: $metadata, cells: $cells)';
+  return 'NotebookDocument(uri: $uri, notebookType: $notebookType, version: $version, cells: $cells, metadata: $metadata)';
 }
 
 
@@ -23464,7 +23464,7 @@ abstract mixin class $NotebookDocumentCopyWith<$Res>  {
   factory $NotebookDocumentCopyWith(NotebookDocument value, $Res Function(NotebookDocument) _then) = _$NotebookDocumentCopyWithImpl;
 @useResult
 $Res call({
- String uri, String notebookType, int version, LSPObject? metadata, List<NotebookCell> cells
+ String uri, String notebookType, int version, List<NotebookCell> cells, LSPObject? metadata
 });
 
 
@@ -23481,14 +23481,14 @@ class _$NotebookDocumentCopyWithImpl<$Res>
 
 /// Create a copy of NotebookDocument
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,Object? notebookType = null,Object? version = null,Object? metadata = freezed,Object? cells = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,Object? notebookType = null,Object? version = null,Object? cells = null,Object? metadata = freezed,}) {
   return _then(_self.copyWith(
 uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,notebookType: null == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
 as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
-as LSPObject?,cells: null == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
-as List<NotebookCell>,
+as int,cells: null == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
+as List<NotebookCell>,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as LSPObject?,
   ));
 }
 
@@ -23500,7 +23500,7 @@ as List<NotebookCell>,
 @JsonSerializable()
 
 class _NotebookDocument implements NotebookDocument {
-  const _NotebookDocument({required this.uri, required this.notebookType, required this.version, final  LSPObject? metadata, required final  List<NotebookCell> cells}): _metadata = metadata,_cells = cells;
+  const _NotebookDocument({required this.uri, required this.notebookType, required this.version, required final  List<NotebookCell> cells, final  LSPObject? metadata}): _cells = cells,_metadata = metadata;
   factory _NotebookDocument.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFromJson(json);
 
 /// The notebook document's uri.
@@ -23510,6 +23510,15 @@ class _NotebookDocument implements NotebookDocument {
 /// The version number of this document (it will increase after each change,
 /// including undo/redo).
 @override final  int version;
+/// The cells of a notebook.
+ final  List<NotebookCell> _cells;
+/// The cells of a notebook.
+@override List<NotebookCell> get cells {
+  if (_cells is EqualUnmodifiableListView) return _cells;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_cells);
+}
+
 /// Additional metadata stored with the notebook document.
 ///
 /// Note: should always be an object literal (e.g. LSPObject)
@@ -23523,15 +23532,6 @@ class _NotebookDocument implements NotebookDocument {
   if (_metadata is EqualUnmodifiableMapView) return _metadata;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableMapView(value);
-}
-
-/// The cells of a notebook.
- final  List<NotebookCell> _cells;
-/// The cells of a notebook.
-@override List<NotebookCell> get cells {
-  if (_cells is EqualUnmodifiableListView) return _cells;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_cells);
 }
 
 
@@ -23548,16 +23548,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocument&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.version, version) || other.version == version)&&const DeepCollectionEquality().equals(other._metadata, _metadata)&&const DeepCollectionEquality().equals(other._cells, _cells));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocument&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.version, version) || other.version == version)&&const DeepCollectionEquality().equals(other._cells, _cells)&&const DeepCollectionEquality().equals(other._metadata, _metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uri,notebookType,version,const DeepCollectionEquality().hash(_metadata),const DeepCollectionEquality().hash(_cells));
+int get hashCode => Object.hash(runtimeType,uri,notebookType,version,const DeepCollectionEquality().hash(_cells),const DeepCollectionEquality().hash(_metadata));
 
 @override
 String toString() {
-  return 'NotebookDocument(uri: $uri, notebookType: $notebookType, version: $version, metadata: $metadata, cells: $cells)';
+  return 'NotebookDocument(uri: $uri, notebookType: $notebookType, version: $version, cells: $cells, metadata: $metadata)';
 }
 
 
@@ -23568,7 +23568,7 @@ abstract mixin class _$NotebookDocumentCopyWith<$Res> implements $NotebookDocume
   factory _$NotebookDocumentCopyWith(_NotebookDocument value, $Res Function(_NotebookDocument) _then) = __$NotebookDocumentCopyWithImpl;
 @override @useResult
 $Res call({
- String uri, String notebookType, int version, LSPObject? metadata, List<NotebookCell> cells
+ String uri, String notebookType, int version, List<NotebookCell> cells, LSPObject? metadata
 });
 
 
@@ -23585,14 +23585,14 @@ class __$NotebookDocumentCopyWithImpl<$Res>
 
 /// Create a copy of NotebookDocument
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,Object? notebookType = null,Object? version = null,Object? metadata = freezed,Object? cells = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,Object? notebookType = null,Object? version = null,Object? cells = null,Object? metadata = freezed,}) {
   return _then(_NotebookDocument(
 uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,notebookType: null == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
 as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int,metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
-as LSPObject?,cells: null == cells ? _self._cells : cells // ignore: cast_nullable_to_non_nullable
-as List<NotebookCell>,
+as int,cells: null == cells ? _self._cells : cells // ignore: cast_nullable_to_non_nullable
+as List<NotebookCell>,metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
+as LSPObject?,
   ));
 }
 
@@ -25068,7 +25068,7 @@ as FileChangeType,
 /// @nodoc
 mixin _$FileSystemWatcher {
 
-/// The glob pattern to watch. See [GlobPattern] for more detail.
+/// The glob pattern to watch. See `GlobPattern` for more detail.
 ///
 /// support for relative patterns.
  GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to
@@ -25141,7 +25141,7 @@ class _FileSystemWatcher implements FileSystemWatcher {
   const _FileSystemWatcher({required this.globPattern, this.kind});
   factory _FileSystemWatcher.fromJson(Map<String, dynamic> json) => _$FileSystemWatcherFromJson(json);
 
-/// The glob pattern to watch. See [GlobPattern] for more detail.
+/// The glob pattern to watch. See `GlobPattern` for more detail.
 ///
 /// support for relative patterns.
 @override final  GlobPattern globPattern;
@@ -25214,7 +25214,8 @@ as WatchKind?,
 mixin _$Diagnostic {
 
 /// The range at which the message applies
- Range get range;/// The diagnostic's severity. Can be omitted. If omitted it is up to the
+ Range get range;/// The diagnostic's message. It usually appears in the user interface
+ String get message;/// The diagnostic's severity. Can be omitted. If omitted it is up to the
 /// client to interpret diagnostics as error, warning, info or hint.
  DiagnosticSeverity? get severity;/// The diagnostic's code, which usually appear in the user interface.
 ///
@@ -25223,8 +25224,7 @@ mixin _$Diagnostic {
 /// (above) to be present/not null.
  CodeDescription? get codeDescription;/// A human-readable string describing the source of this diagnostic, e.g.
 /// 'typescript' or 'super lint'. It usually appears in the user interface.
- String? get source;/// The diagnostic's message. It usually appears in the user interface
- String get message;/// Additional metadata about the diagnostic.
+ String? get source;/// Additional metadata about the diagnostic.
  List<DiagnosticTag>? get tags;/// An array of related diagnostic information, e.g. when symbol-names
 /// within a scope collide all definitions can be marked via this property.
  List<DiagnosticRelatedInformation>? get relatedInformation;/// A data entry field that is preserved between a
@@ -25243,16 +25243,16 @@ $DiagnosticCopyWith<Diagnostic> get copyWith => _$DiagnosticCopyWithImpl<Diagnos
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Diagnostic&&(identical(other.range, range) || other.range == range)&&(identical(other.severity, severity) || other.severity == severity)&&(identical(other.code, code) || other.code == code)&&(identical(other.codeDescription, codeDescription) || other.codeDescription == codeDescription)&&(identical(other.source, source) || other.source == source)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.relatedInformation, relatedInformation)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Diagnostic&&(identical(other.range, range) || other.range == range)&&(identical(other.message, message) || other.message == message)&&(identical(other.severity, severity) || other.severity == severity)&&(identical(other.code, code) || other.code == code)&&(identical(other.codeDescription, codeDescription) || other.codeDescription == codeDescription)&&(identical(other.source, source) || other.source == source)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.relatedInformation, relatedInformation)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,range,severity,code,codeDescription,source,message,const DeepCollectionEquality().hash(tags),const DeepCollectionEquality().hash(relatedInformation),const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,range,message,severity,code,codeDescription,source,const DeepCollectionEquality().hash(tags),const DeepCollectionEquality().hash(relatedInformation),const DeepCollectionEquality().hash(data));
 
 @override
 String toString() {
-  return 'Diagnostic(range: $range, severity: $severity, code: $code, codeDescription: $codeDescription, source: $source, message: $message, tags: $tags, relatedInformation: $relatedInformation, data: $data)';
+  return 'Diagnostic(range: $range, message: $message, severity: $severity, code: $code, codeDescription: $codeDescription, source: $source, tags: $tags, relatedInformation: $relatedInformation, data: $data)';
 }
 
 
@@ -25263,7 +25263,7 @@ abstract mixin class $DiagnosticCopyWith<$Res>  {
   factory $DiagnosticCopyWith(Diagnostic value, $Res Function(Diagnostic) _then) = _$DiagnosticCopyWithImpl;
 @useResult
 $Res call({
- Range range, DiagnosticSeverity? severity,@_DiagnosticCodeConverter() DiagnosticCode? code, CodeDescription? codeDescription, String? source, String message, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
+ Range range, String message, DiagnosticSeverity? severity,@_DiagnosticCodeConverter() DiagnosticCode? code, CodeDescription? codeDescription, String? source, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
 });
 
 
@@ -25280,15 +25280,15 @@ class _$DiagnosticCopyWithImpl<$Res>
 
 /// Create a copy of Diagnostic
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? severity = freezed,Object? code = freezed,Object? codeDescription = freezed,Object? source = freezed,Object? message = null,Object? tags = freezed,Object? relatedInformation = freezed,Object? data = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? message = null,Object? severity = freezed,Object? code = freezed,Object? codeDescription = freezed,Object? source = freezed,Object? tags = freezed,Object? relatedInformation = freezed,Object? data = freezed,}) {
   return _then(_self.copyWith(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
+as Range,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
 as DiagnosticSeverity?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as DiagnosticCode?,codeDescription: freezed == codeDescription ? _self.codeDescription : codeDescription // ignore: cast_nullable_to_non_nullable
 as CodeDescription?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String?,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as String?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<DiagnosticTag>?,relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
 as List<DiagnosticRelatedInformation>?,data: freezed == data ? _self.data : data ,
   ));
@@ -25335,11 +25335,13 @@ $CodeDescriptionCopyWith<$Res>? get codeDescription {
 @JsonSerializable()
 
 class _Diagnostic implements Diagnostic {
-  const _Diagnostic({required this.range, this.severity, @_DiagnosticCodeConverter() this.code, this.codeDescription, this.source, required this.message, final  List<DiagnosticTag>? tags, final  List<DiagnosticRelatedInformation>? relatedInformation, this.data}): _tags = tags,_relatedInformation = relatedInformation;
+  const _Diagnostic({required this.range, required this.message, this.severity, @_DiagnosticCodeConverter() this.code, this.codeDescription, this.source, final  List<DiagnosticTag>? tags, final  List<DiagnosticRelatedInformation>? relatedInformation, this.data}): _tags = tags,_relatedInformation = relatedInformation;
   factory _Diagnostic.fromJson(Map<String, dynamic> json) => _$DiagnosticFromJson(json);
 
 /// The range at which the message applies
 @override final  Range range;
+/// The diagnostic's message. It usually appears in the user interface
+@override final  String message;
 /// The diagnostic's severity. Can be omitted. If omitted it is up to the
 /// client to interpret diagnostics as error, warning, info or hint.
 @override final  DiagnosticSeverity? severity;
@@ -25353,8 +25355,6 @@ class _Diagnostic implements Diagnostic {
 /// A human-readable string describing the source of this diagnostic, e.g.
 /// 'typescript' or 'super lint'. It usually appears in the user interface.
 @override final  String? source;
-/// The diagnostic's message. It usually appears in the user interface
-@override final  String message;
 /// Additional metadata about the diagnostic.
  final  List<DiagnosticTag>? _tags;
 /// Additional metadata about the diagnostic.
@@ -25397,16 +25397,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Diagnostic&&(identical(other.range, range) || other.range == range)&&(identical(other.severity, severity) || other.severity == severity)&&(identical(other.code, code) || other.code == code)&&(identical(other.codeDescription, codeDescription) || other.codeDescription == codeDescription)&&(identical(other.source, source) || other.source == source)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other._tags, _tags)&&const DeepCollectionEquality().equals(other._relatedInformation, _relatedInformation)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Diagnostic&&(identical(other.range, range) || other.range == range)&&(identical(other.message, message) || other.message == message)&&(identical(other.severity, severity) || other.severity == severity)&&(identical(other.code, code) || other.code == code)&&(identical(other.codeDescription, codeDescription) || other.codeDescription == codeDescription)&&(identical(other.source, source) || other.source == source)&&const DeepCollectionEquality().equals(other._tags, _tags)&&const DeepCollectionEquality().equals(other._relatedInformation, _relatedInformation)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,range,severity,code,codeDescription,source,message,const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_relatedInformation),const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,range,message,severity,code,codeDescription,source,const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_relatedInformation),const DeepCollectionEquality().hash(data));
 
 @override
 String toString() {
-  return 'Diagnostic(range: $range, severity: $severity, code: $code, codeDescription: $codeDescription, source: $source, message: $message, tags: $tags, relatedInformation: $relatedInformation, data: $data)';
+  return 'Diagnostic(range: $range, message: $message, severity: $severity, code: $code, codeDescription: $codeDescription, source: $source, tags: $tags, relatedInformation: $relatedInformation, data: $data)';
 }
 
 
@@ -25417,7 +25417,7 @@ abstract mixin class _$DiagnosticCopyWith<$Res> implements $DiagnosticCopyWith<$
   factory _$DiagnosticCopyWith(_Diagnostic value, $Res Function(_Diagnostic) _then) = __$DiagnosticCopyWithImpl;
 @override @useResult
 $Res call({
- Range range, DiagnosticSeverity? severity,@_DiagnosticCodeConverter() DiagnosticCode? code, CodeDescription? codeDescription, String? source, String message, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
+ Range range, String message, DiagnosticSeverity? severity,@_DiagnosticCodeConverter() DiagnosticCode? code, CodeDescription? codeDescription, String? source, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
 });
 
 
@@ -25434,15 +25434,15 @@ class __$DiagnosticCopyWithImpl<$Res>
 
 /// Create a copy of Diagnostic
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? severity = freezed,Object? code = freezed,Object? codeDescription = freezed,Object? source = freezed,Object? message = null,Object? tags = freezed,Object? relatedInformation = freezed,Object? data = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? message = null,Object? severity = freezed,Object? code = freezed,Object? codeDescription = freezed,Object? source = freezed,Object? tags = freezed,Object? relatedInformation = freezed,Object? data = freezed,}) {
   return _then(_Diagnostic(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
+as Range,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
 as DiagnosticSeverity?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as DiagnosticCode?,codeDescription: freezed == codeDescription ? _self.codeDescription : codeDescription // ignore: cast_nullable_to_non_nullable
 as CodeDescription?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String?,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<DiagnosticTag>?,relatedInformation: freezed == relatedInformation ? _self._relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
 as List<DiagnosticRelatedInformation>?,data: freezed == data ? _self.data : data ,
   ));
@@ -25634,10 +25634,10 @@ as String?,
 mixin _$CompletionItemLabelDetails {
 
 /// An optional string which is rendered less prominently directly after
-/// [label], without any spacing. Should be used for function signatures and
+/// `label`, without any spacing. Should be used for function signatures and
 /// type annotations.
  String? get detail;/// An optional string which is rendered less prominently after
-/// [CompletionItem.detail]. Should be used for fully qualified names and
+/// `CompletionItem.detail`. Should be used for fully qualified names and
 /// file paths.
  String? get description;
 /// Create a copy of CompletionItemLabelDetails
@@ -25709,11 +25709,11 @@ class _CompletionItemLabelDetails implements CompletionItemLabelDetails {
   factory _CompletionItemLabelDetails.fromJson(Map<String, dynamic> json) => _$CompletionItemLabelDetailsFromJson(json);
 
 /// An optional string which is rendered less prominently directly after
-/// [label], without any spacing. Should be used for function signatures and
+/// `label`, without any spacing. Should be used for function signatures and
 /// type annotations.
 @override final  String? detail;
 /// An optional string which is rendered less prominently after
-/// [CompletionItem.detail]. Should be used for fully qualified names and
+/// `CompletionItem.detail`. Should be used for fully qualified names and
 /// file paths.
 @override final  String? description;
 
@@ -25965,16 +25965,16 @@ $RangeCopyWith<$Res> get replace {
 mixin _$SignatureHelpContext {
 
 /// Action that caused signature help to be triggered.
- SignatureHelpTriggerKind get triggerKind;/// Character that caused signature help to be triggered.
-///
-/// This is undefined when `triggerKind !==
-/// SignatureHelpTriggerKind.TriggerCharacter`
- String? get triggerCharacter;/// `true` if signature help was already showing when it was triggered.
+ SignatureHelpTriggerKind get triggerKind;/// `true` if signature help was already showing when it was triggered.
 ///
 /// Retriggers occurs when the signature help is already active and can be
 /// caused by actions such as typing a trigger character, a cursor move, or
 /// document content changes.
- bool get isRetrigger;/// The currently active `SignatureHelp`.
+ bool get isRetrigger;/// Character that caused signature help to be triggered.
+///
+/// This is undefined when `triggerKind !==
+/// SignatureHelpTriggerKind.TriggerCharacter`
+ String? get triggerCharacter;/// The currently active `SignatureHelp`.
 ///
 /// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
 /// updated based on the user navigating through available signatures.
@@ -25991,16 +25991,16 @@ $SignatureHelpContextCopyWith<SignatureHelpContext> get copyWith => _$SignatureH
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignatureHelpContext&&(identical(other.triggerKind, triggerKind) || other.triggerKind == triggerKind)&&(identical(other.triggerCharacter, triggerCharacter) || other.triggerCharacter == triggerCharacter)&&(identical(other.isRetrigger, isRetrigger) || other.isRetrigger == isRetrigger)&&(identical(other.activeSignatureHelp, activeSignatureHelp) || other.activeSignatureHelp == activeSignatureHelp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignatureHelpContext&&(identical(other.triggerKind, triggerKind) || other.triggerKind == triggerKind)&&(identical(other.isRetrigger, isRetrigger) || other.isRetrigger == isRetrigger)&&(identical(other.triggerCharacter, triggerCharacter) || other.triggerCharacter == triggerCharacter)&&(identical(other.activeSignatureHelp, activeSignatureHelp) || other.activeSignatureHelp == activeSignatureHelp));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,triggerKind,triggerCharacter,isRetrigger,activeSignatureHelp);
+int get hashCode => Object.hash(runtimeType,triggerKind,isRetrigger,triggerCharacter,activeSignatureHelp);
 
 @override
 String toString() {
-  return 'SignatureHelpContext(triggerKind: $triggerKind, triggerCharacter: $triggerCharacter, isRetrigger: $isRetrigger, activeSignatureHelp: $activeSignatureHelp)';
+  return 'SignatureHelpContext(triggerKind: $triggerKind, isRetrigger: $isRetrigger, triggerCharacter: $triggerCharacter, activeSignatureHelp: $activeSignatureHelp)';
 }
 
 
@@ -26011,7 +26011,7 @@ abstract mixin class $SignatureHelpContextCopyWith<$Res>  {
   factory $SignatureHelpContextCopyWith(SignatureHelpContext value, $Res Function(SignatureHelpContext) _then) = _$SignatureHelpContextCopyWithImpl;
 @useResult
 $Res call({
- SignatureHelpTriggerKind triggerKind, String? triggerCharacter, bool isRetrigger, SignatureHelp? activeSignatureHelp
+ SignatureHelpTriggerKind triggerKind, bool isRetrigger, String? triggerCharacter, SignatureHelp? activeSignatureHelp
 });
 
 
@@ -26028,12 +26028,12 @@ class _$SignatureHelpContextCopyWithImpl<$Res>
 
 /// Create a copy of SignatureHelpContext
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? triggerKind = null,Object? triggerCharacter = freezed,Object? isRetrigger = null,Object? activeSignatureHelp = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? triggerKind = null,Object? isRetrigger = null,Object? triggerCharacter = freezed,Object? activeSignatureHelp = freezed,}) {
   return _then(_self.copyWith(
 triggerKind: null == triggerKind ? _self.triggerKind : triggerKind // ignore: cast_nullable_to_non_nullable
-as SignatureHelpTriggerKind,triggerCharacter: freezed == triggerCharacter ? _self.triggerCharacter : triggerCharacter // ignore: cast_nullable_to_non_nullable
-as String?,isRetrigger: null == isRetrigger ? _self.isRetrigger : isRetrigger // ignore: cast_nullable_to_non_nullable
-as bool,activeSignatureHelp: freezed == activeSignatureHelp ? _self.activeSignatureHelp : activeSignatureHelp // ignore: cast_nullable_to_non_nullable
+as SignatureHelpTriggerKind,isRetrigger: null == isRetrigger ? _self.isRetrigger : isRetrigger // ignore: cast_nullable_to_non_nullable
+as bool,triggerCharacter: freezed == triggerCharacter ? _self.triggerCharacter : triggerCharacter // ignore: cast_nullable_to_non_nullable
+as String?,activeSignatureHelp: freezed == activeSignatureHelp ? _self.activeSignatureHelp : activeSignatureHelp // ignore: cast_nullable_to_non_nullable
 as SignatureHelp?,
   ));
 }
@@ -26058,22 +26058,22 @@ $SignatureHelpCopyWith<$Res>? get activeSignatureHelp {
 @JsonSerializable()
 
 class _SignatureHelpContext implements SignatureHelpContext {
-  const _SignatureHelpContext({required this.triggerKind, this.triggerCharacter, required this.isRetrigger, this.activeSignatureHelp});
+  const _SignatureHelpContext({required this.triggerKind, required this.isRetrigger, this.triggerCharacter, this.activeSignatureHelp});
   factory _SignatureHelpContext.fromJson(Map<String, dynamic> json) => _$SignatureHelpContextFromJson(json);
 
 /// Action that caused signature help to be triggered.
 @override final  SignatureHelpTriggerKind triggerKind;
-/// Character that caused signature help to be triggered.
-///
-/// This is undefined when `triggerKind !==
-/// SignatureHelpTriggerKind.TriggerCharacter`
-@override final  String? triggerCharacter;
 /// `true` if signature help was already showing when it was triggered.
 ///
 /// Retriggers occurs when the signature help is already active and can be
 /// caused by actions such as typing a trigger character, a cursor move, or
 /// document content changes.
 @override final  bool isRetrigger;
+/// Character that caused signature help to be triggered.
+///
+/// This is undefined when `triggerKind !==
+/// SignatureHelpTriggerKind.TriggerCharacter`
+@override final  String? triggerCharacter;
 /// The currently active `SignatureHelp`.
 ///
 /// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
@@ -26093,16 +26093,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignatureHelpContext&&(identical(other.triggerKind, triggerKind) || other.triggerKind == triggerKind)&&(identical(other.triggerCharacter, triggerCharacter) || other.triggerCharacter == triggerCharacter)&&(identical(other.isRetrigger, isRetrigger) || other.isRetrigger == isRetrigger)&&(identical(other.activeSignatureHelp, activeSignatureHelp) || other.activeSignatureHelp == activeSignatureHelp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignatureHelpContext&&(identical(other.triggerKind, triggerKind) || other.triggerKind == triggerKind)&&(identical(other.isRetrigger, isRetrigger) || other.isRetrigger == isRetrigger)&&(identical(other.triggerCharacter, triggerCharacter) || other.triggerCharacter == triggerCharacter)&&(identical(other.activeSignatureHelp, activeSignatureHelp) || other.activeSignatureHelp == activeSignatureHelp));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,triggerKind,triggerCharacter,isRetrigger,activeSignatureHelp);
+int get hashCode => Object.hash(runtimeType,triggerKind,isRetrigger,triggerCharacter,activeSignatureHelp);
 
 @override
 String toString() {
-  return 'SignatureHelpContext(triggerKind: $triggerKind, triggerCharacter: $triggerCharacter, isRetrigger: $isRetrigger, activeSignatureHelp: $activeSignatureHelp)';
+  return 'SignatureHelpContext(triggerKind: $triggerKind, isRetrigger: $isRetrigger, triggerCharacter: $triggerCharacter, activeSignatureHelp: $activeSignatureHelp)';
 }
 
 
@@ -26113,7 +26113,7 @@ abstract mixin class _$SignatureHelpContextCopyWith<$Res> implements $SignatureH
   factory _$SignatureHelpContextCopyWith(_SignatureHelpContext value, $Res Function(_SignatureHelpContext) _then) = __$SignatureHelpContextCopyWithImpl;
 @override @useResult
 $Res call({
- SignatureHelpTriggerKind triggerKind, String? triggerCharacter, bool isRetrigger, SignatureHelp? activeSignatureHelp
+ SignatureHelpTriggerKind triggerKind, bool isRetrigger, String? triggerCharacter, SignatureHelp? activeSignatureHelp
 });
 
 
@@ -26130,12 +26130,12 @@ class __$SignatureHelpContextCopyWithImpl<$Res>
 
 /// Create a copy of SignatureHelpContext
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? triggerKind = null,Object? triggerCharacter = freezed,Object? isRetrigger = null,Object? activeSignatureHelp = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? triggerKind = null,Object? isRetrigger = null,Object? triggerCharacter = freezed,Object? activeSignatureHelp = freezed,}) {
   return _then(_SignatureHelpContext(
 triggerKind: null == triggerKind ? _self.triggerKind : triggerKind // ignore: cast_nullable_to_non_nullable
-as SignatureHelpTriggerKind,triggerCharacter: freezed == triggerCharacter ? _self.triggerCharacter : triggerCharacter // ignore: cast_nullable_to_non_nullable
-as String?,isRetrigger: null == isRetrigger ? _self.isRetrigger : isRetrigger // ignore: cast_nullable_to_non_nullable
-as bool,activeSignatureHelp: freezed == activeSignatureHelp ? _self.activeSignatureHelp : activeSignatureHelp // ignore: cast_nullable_to_non_nullable
+as SignatureHelpTriggerKind,isRetrigger: null == isRetrigger ? _self.isRetrigger : isRetrigger // ignore: cast_nullable_to_non_nullable
+as bool,triggerCharacter: freezed == triggerCharacter ? _self.triggerCharacter : triggerCharacter // ignore: cast_nullable_to_non_nullable
+as String?,activeSignatureHelp: freezed == activeSignatureHelp ? _self.activeSignatureHelp : activeSignatureHelp // ignore: cast_nullable_to_non_nullable
 as SignatureHelp?,
   ));
 }
@@ -27647,13 +27647,13 @@ $FileOperationPatternOptionsCopyWith<$Res>? get options {
 mixin _$WorkspaceFullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will be sent on the next
-/// diagnostic request for the same document.
- String? get resultId;/// The actual items.
+ String get kind;/// The actual items.
  List<Diagnostic> get items;/// The URI for which diagnostic information is reported.
  String get uri;/// The version number for which the diagnostics are reported. If the
 /// document is not marked as open `null` can be provided.
- int? get version;
+ int? get version;/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
+ String? get resultId;
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27666,16 +27666,16 @@ $WorkspaceFullDocumentDiagnosticReportCopyWith<WorkspaceFullDocumentDiagnosticRe
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,const DeepCollectionEquality().hash(items),uri,version);
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(items),uri,version,resultId);
 
 @override
 String toString() {
-  return 'WorkspaceFullDocumentDiagnosticReport(kind: $kind, resultId: $resultId, items: $items, uri: $uri, version: $version)';
+  return 'WorkspaceFullDocumentDiagnosticReport(kind: $kind, items: $items, uri: $uri, version: $version, resultId: $resultId)';
 }
 
 
@@ -27686,7 +27686,7 @@ abstract mixin class $WorkspaceFullDocumentDiagnosticReportCopyWith<$Res>  {
   factory $WorkspaceFullDocumentDiagnosticReportCopyWith(WorkspaceFullDocumentDiagnosticReport value, $Res Function(WorkspaceFullDocumentDiagnosticReport) _then) = _$WorkspaceFullDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, String? resultId, List<Diagnostic> items, String uri, int? version
+ String kind, List<Diagnostic> items, String uri, int? version, String? resultId
 });
 
 
@@ -27703,14 +27703,14 @@ class _$WorkspaceFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? resultId = freezed,Object? items = null,Object? uri = null,Object? version = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? items = null,Object? uri = null,Object? version = freezed,Object? resultId = freezed,}) {
   return _then(_self.copyWith(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -27722,14 +27722,11 @@ as int?,
 @JsonSerializable()
 
 class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDiagnosticReport {
-  const _WorkspaceFullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items, required this.uri, required this.version}): _items = items;
+  const _WorkspaceFullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, required this.uri, required this.version, this.resultId}): _items = items;
   factory _WorkspaceFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceFullDocumentDiagnosticReportFromJson(json);
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will be sent on the next
-/// diagnostic request for the same document.
-@override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -27744,6 +27741,9 @@ class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDia
 /// The version number for which the diagnostics are reported. If the
 /// document is not marked as open `null` can be provided.
 @override final  int? version;
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
+@override final  String? resultId;
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -27758,16 +27758,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,const DeepCollectionEquality().hash(_items),uri,version);
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items),uri,version,resultId);
 
 @override
 String toString() {
-  return 'WorkspaceFullDocumentDiagnosticReport(kind: $kind, resultId: $resultId, items: $items, uri: $uri, version: $version)';
+  return 'WorkspaceFullDocumentDiagnosticReport(kind: $kind, items: $items, uri: $uri, version: $version, resultId: $resultId)';
 }
 
 
@@ -27778,7 +27778,7 @@ abstract mixin class _$WorkspaceFullDocumentDiagnosticReportCopyWith<$Res> imple
   factory _$WorkspaceFullDocumentDiagnosticReportCopyWith(_WorkspaceFullDocumentDiagnosticReport value, $Res Function(_WorkspaceFullDocumentDiagnosticReport) _then) = __$WorkspaceFullDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String? resultId, List<Diagnostic> items, String uri, int? version
+ String kind, List<Diagnostic> items, String uri, int? version, String? resultId
 });
 
 
@@ -27795,14 +27795,14 @@ class __$WorkspaceFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? resultId = freezed,Object? items = null,Object? uri = null,Object? version = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,Object? uri = null,Object? version = freezed,Object? resultId = freezed,}) {
   return _then(_WorkspaceFullDocumentDiagnosticReport(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -30525,11 +30525,11 @@ as List<ConfigurationItem>,
 /// @nodoc
 mixin _$DocumentColorParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The text document.
+ TextDocumentIdentifier get textDocument;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of DocumentColorParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30542,16 +30542,16 @@ $DocumentColorParamsCopyWith<DocumentColorParams> get copyWith => _$DocumentColo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentColorParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentColorParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'DocumentColorParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'DocumentColorParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -30562,11 +30562,11 @@ abstract mixin class $DocumentColorParamsCopyWith<$Res>  {
   factory $DocumentColorParamsCopyWith(DocumentColorParams value, $Res Function(DocumentColorParams) _then) = _$DocumentColorParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -30579,15 +30579,24 @@ class _$DocumentColorParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentColorParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 /// Create a copy of DocumentColorParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of DocumentColorParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -30611,15 +30620,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of DocumentColorParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -30629,16 +30629,16 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _DocumentColorParams implements DocumentColorParams {
-  const _DocumentColorParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
+  const _DocumentColorParams({required this.textDocument, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _DocumentColorParams.fromJson(Map<String, dynamic> json) => _$DocumentColorParamsFromJson(json);
 
+/// The text document.
+@override final  TextDocumentIdentifier textDocument;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The text document.
-@override final  TextDocumentIdentifier textDocument;
 
 /// Create a copy of DocumentColorParams
 /// with the given fields replaced by the non-null parameter values.
@@ -30653,16 +30653,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentColorParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentColorParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'DocumentColorParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'DocumentColorParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -30673,11 +30673,11 @@ abstract mixin class _$DocumentColorParamsCopyWith<$Res> implements $DocumentCol
   factory _$DocumentColorParamsCopyWith(_DocumentColorParams value, $Res Function(_DocumentColorParams) _then) = __$DocumentColorParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -30690,16 +30690,25 @@ class __$DocumentColorParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentColorParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_DocumentColorParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of DocumentColorParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of DocumentColorParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -30722,15 +30731,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of DocumentColorParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
   });
 }
 }
@@ -30897,13 +30897,13 @@ as String?,
 /// @nodoc
 mixin _$ColorPresentationParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
-/// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
+/// The text document.
  TextDocumentIdentifier get textDocument;/// The color to request presentations for.
  Color get color;/// The range where the color would be inserted. Serves as a context.
- Range get range;
+ Range get range;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of ColorPresentationParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30916,16 +30916,16 @@ $ColorPresentationParamsCopyWith<ColorPresentationParams> get copyWith => _$Colo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ColorPresentationParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.color, color) || other.color == color)&&(identical(other.range, range) || other.range == range));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ColorPresentationParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.color, color) || other.color == color)&&(identical(other.range, range) || other.range == range)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,color,range);
+int get hashCode => Object.hash(runtimeType,textDocument,color,range,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'ColorPresentationParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, color: $color, range: $range)';
+  return 'ColorPresentationParams(textDocument: $textDocument, color: $color, range: $range, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -30936,11 +30936,11 @@ abstract mixin class $ColorPresentationParamsCopyWith<$Res>  {
   factory $ColorPresentationParamsCopyWith(ColorPresentationParams value, $Res Function(ColorPresentationParams) _then) = _$ColorPresentationParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, Color color, Range range
+ TextDocumentIdentifier textDocument, Color color, Range range,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ColorCopyWith<$Res> get color;$RangeCopyWith<$Res> get range;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ColorCopyWith<$Res> get color;$RangeCopyWith<$Res> get range;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -30953,41 +30953,17 @@ class _$ColorPresentationParamsCopyWithImpl<$Res>
 
 /// Create a copy of ColorPresentationParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? color = null,Object? range = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? color = null,Object? range = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as Color,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,
+as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of ColorPresentationParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of ColorPresentationParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get partialResultToken {
-    if (_self.partialResultToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
-    return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of ColorPresentationParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -31014,6 +30990,30 @@ $RangeCopyWith<$Res> get range {
   return $RangeCopyWith<$Res>(_self.range, (value) {
     return _then(_self.copyWith(range: value));
   });
+}/// Create a copy of ColorPresentationParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
+}/// Create a copy of ColorPresentationParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get partialResultToken {
+    if (_self.partialResultToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
+    return _then(_self.copyWith(partialResultToken: value));
+  });
 }
 }
 
@@ -31023,20 +31023,20 @@ $RangeCopyWith<$Res> get range {
 @JsonSerializable()
 
 class _ColorPresentationParams implements ColorPresentationParams {
-  const _ColorPresentationParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.color, required this.range});
+  const _ColorPresentationParams({required this.textDocument, required this.color, required this.range, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _ColorPresentationParams.fromJson(Map<String, dynamic> json) => _$ColorPresentationParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g.
-/// streaming) to the client.
-@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
 /// The color to request presentations for.
 @override final  Color color;
 /// The range where the color would be inserted. Serves as a context.
 @override final  Range range;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of ColorPresentationParams
 /// with the given fields replaced by the non-null parameter values.
@@ -31051,16 +31051,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ColorPresentationParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.color, color) || other.color == color)&&(identical(other.range, range) || other.range == range));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ColorPresentationParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.color, color) || other.color == color)&&(identical(other.range, range) || other.range == range)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,color,range);
+int get hashCode => Object.hash(runtimeType,textDocument,color,range,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'ColorPresentationParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, color: $color, range: $range)';
+  return 'ColorPresentationParams(textDocument: $textDocument, color: $color, range: $range, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -31071,11 +31071,11 @@ abstract mixin class _$ColorPresentationParamsCopyWith<$Res> implements $ColorPr
   factory _$ColorPresentationParamsCopyWith(_ColorPresentationParams value, $Res Function(_ColorPresentationParams) _then) = __$ColorPresentationParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, Color color, Range range
+ TextDocumentIdentifier textDocument, Color color, Range range,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ColorCopyWith<$Res> get color;@override $RangeCopyWith<$Res> get range;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ColorCopyWith<$Res> get color;@override $RangeCopyWith<$Res> get range;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -31088,42 +31088,18 @@ class __$ColorPresentationParamsCopyWithImpl<$Res>
 
 /// Create a copy of ColorPresentationParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? color = null,Object? range = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? color = null,Object? range = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_ColorPresentationParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as Color,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,
+as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of ColorPresentationParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of ColorPresentationParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get partialResultToken {
-    if (_self.partialResultToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
-    return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of ColorPresentationParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -31149,6 +31125,30 @@ $RangeCopyWith<$Res> get range {
   
   return $RangeCopyWith<$Res>(_self.range, (value) {
     return _then(_self.copyWith(range: value));
+  });
+}/// Create a copy of ColorPresentationParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
+}/// Create a copy of ColorPresentationParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get partialResultToken {
+    if (_self.partialResultToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
+    return _then(_self.copyWith(partialResultToken: value));
   });
 }
 }
@@ -31439,11 +31439,11 @@ as DocumentSelector?,
 /// @nodoc
 mixin _$FoldingRangeParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The text document.
+ TextDocumentIdentifier get textDocument;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of FoldingRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -31456,16 +31456,16 @@ $FoldingRangeParamsCopyWith<FoldingRangeParams> get copyWith => _$FoldingRangePa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FoldingRangeParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FoldingRangeParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'FoldingRangeParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'FoldingRangeParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -31476,11 +31476,11 @@ abstract mixin class $FoldingRangeParamsCopyWith<$Res>  {
   factory $FoldingRangeParamsCopyWith(FoldingRangeParams value, $Res Function(FoldingRangeParams) _then) = _$FoldingRangeParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -31493,15 +31493,24 @@ class _$FoldingRangeParamsCopyWithImpl<$Res>
 
 /// Create a copy of FoldingRangeParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 /// Create a copy of FoldingRangeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of FoldingRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -31525,15 +31534,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of FoldingRangeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -31543,16 +31543,16 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _FoldingRangeParams implements FoldingRangeParams {
-  const _FoldingRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
+  const _FoldingRangeParams({required this.textDocument, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _FoldingRangeParams.fromJson(Map<String, dynamic> json) => _$FoldingRangeParamsFromJson(json);
 
+/// The text document.
+@override final  TextDocumentIdentifier textDocument;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The text document.
-@override final  TextDocumentIdentifier textDocument;
 
 /// Create a copy of FoldingRangeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -31567,16 +31567,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FoldingRangeParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FoldingRangeParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'FoldingRangeParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'FoldingRangeParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -31587,11 +31587,11 @@ abstract mixin class _$FoldingRangeParamsCopyWith<$Res> implements $FoldingRange
   factory _$FoldingRangeParamsCopyWith(_FoldingRangeParams value, $Res Function(_FoldingRangeParams) _then) = __$FoldingRangeParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -31604,16 +31604,25 @@ class __$FoldingRangeParamsCopyWithImpl<$Res>
 
 /// Create a copy of FoldingRangeParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_FoldingRangeParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of FoldingRangeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of FoldingRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -31636,15 +31645,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of FoldingRangeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
   });
 }
 }
@@ -32048,9 +32048,9 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 /// @nodoc
 mixin _$DeclarationRegistrationOptions {
 
- bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
+/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of DeclarationRegistrationOptions
@@ -32065,16 +32065,16 @@ $DeclarationRegistrationOptionsCopyWith<DeclarationRegistrationOptions> get copy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeclarationRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeclarationRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,id);
 
 @override
 String toString() {
-  return 'DeclarationRegistrationOptions(workDoneProgress: $workDoneProgress, documentSelector: $documentSelector, id: $id)';
+  return 'DeclarationRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, id: $id)';
 }
 
 
@@ -32085,7 +32085,7 @@ abstract mixin class $DeclarationRegistrationOptionsCopyWith<$Res>  {
   factory $DeclarationRegistrationOptionsCopyWith(DeclarationRegistrationOptions value, $Res Function(DeclarationRegistrationOptions) _then) = _$DeclarationRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, String? id
 });
 
 
@@ -32102,11 +32102,11 @@ class _$DeclarationRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DeclarationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -32119,10 +32119,9 @@ as String?,
 @JsonSerializable()
 
 class _DeclarationRegistrationOptions implements DeclarationRegistrationOptions {
-  const _DeclarationRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
+  const _DeclarationRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _DeclarationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DeclarationRegistrationOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
@@ -32136,6 +32135,7 @@ class _DeclarationRegistrationOptions implements DeclarationRegistrationOptions 
   return EqualUnmodifiableListView(value);
 }
 
+@override final  bool? workDoneProgress;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
 @override final  String? id;
@@ -32153,16 +32153,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeclarationRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeclarationRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(_documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,id);
 
 @override
 String toString() {
-  return 'DeclarationRegistrationOptions(workDoneProgress: $workDoneProgress, documentSelector: $documentSelector, id: $id)';
+  return 'DeclarationRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, id: $id)';
 }
 
 
@@ -32173,7 +32173,7 @@ abstract mixin class _$DeclarationRegistrationOptionsCopyWith<$Res> implements $
   factory _$DeclarationRegistrationOptionsCopyWith(_DeclarationRegistrationOptions value, $Res Function(_DeclarationRegistrationOptions) _then) = __$DeclarationRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, String? id
 });
 
 
@@ -32190,11 +32190,11 @@ class __$DeclarationRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DeclarationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? id = freezed,}) {
   return _then(_DeclarationRegistrationOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -32206,12 +32206,12 @@ as String?,
 /// @nodoc
 mixin _$SelectionRangeParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The text document.
+ TextDocumentIdentifier get textDocument;/// The positions inside the text document.
+ List<Position> get positions;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;/// The positions inside the text document.
- List<Position> get positions;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of SelectionRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -32224,16 +32224,16 @@ $SelectionRangeParamsCopyWith<SelectionRangeParams> get copyWith => _$SelectionR
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectionRangeParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&const DeepCollectionEquality().equals(other.positions, positions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectionRangeParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&const DeepCollectionEquality().equals(other.positions, positions)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,const DeepCollectionEquality().hash(positions));
+int get hashCode => Object.hash(runtimeType,textDocument,const DeepCollectionEquality().hash(positions),workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'SelectionRangeParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, positions: $positions)';
+  return 'SelectionRangeParams(textDocument: $textDocument, positions: $positions, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -32244,11 +32244,11 @@ abstract mixin class $SelectionRangeParamsCopyWith<$Res>  {
   factory $SelectionRangeParamsCopyWith(SelectionRangeParams value, $Res Function(SelectionRangeParams) _then) = _$SelectionRangeParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, List<Position> positions
+ TextDocumentIdentifier textDocument, List<Position> positions,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -32261,16 +32261,25 @@ class _$SelectionRangeParamsCopyWithImpl<$Res>
 
 /// Create a copy of SelectionRangeParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? positions = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? positions = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,positions: null == positions ? _self.positions : positions // ignore: cast_nullable_to_non_nullable
-as List<Position>,
+as List<Position>,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of SelectionRangeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of SelectionRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -32294,15 +32303,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of SelectionRangeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -32312,14 +32312,9 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _SelectionRangeParams implements SelectionRangeParams {
-  const _SelectionRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required final  List<Position> positions}): _positions = positions;
+  const _SelectionRangeParams({required this.textDocument, required final  List<Position> positions, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken}): _positions = positions;
   factory _SelectionRangeParams.fromJson(Map<String, dynamic> json) => _$SelectionRangeParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g.
-/// streaming) to the client.
-@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
 /// The positions inside the text document.
@@ -32331,6 +32326,11 @@ class _SelectionRangeParams implements SelectionRangeParams {
   return EqualUnmodifiableListView(_positions);
 }
 
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of SelectionRangeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -32345,16 +32345,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectionRangeParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&const DeepCollectionEquality().equals(other._positions, _positions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectionRangeParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&const DeepCollectionEquality().equals(other._positions, _positions)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,const DeepCollectionEquality().hash(_positions));
+int get hashCode => Object.hash(runtimeType,textDocument,const DeepCollectionEquality().hash(_positions),workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'SelectionRangeParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, positions: $positions)';
+  return 'SelectionRangeParams(textDocument: $textDocument, positions: $positions, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -32365,11 +32365,11 @@ abstract mixin class _$SelectionRangeParamsCopyWith<$Res> implements $SelectionR
   factory _$SelectionRangeParamsCopyWith(_SelectionRangeParams value, $Res Function(_SelectionRangeParams) _then) = __$SelectionRangeParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, List<Position> positions
+ TextDocumentIdentifier textDocument, List<Position> positions,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -32382,17 +32382,26 @@ class __$SelectionRangeParamsCopyWithImpl<$Res>
 
 /// Create a copy of SelectionRangeParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? positions = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? positions = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_SelectionRangeParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,positions: null == positions ? _self._positions : positions // ignore: cast_nullable_to_non_nullable
-as List<Position>,
+as List<Position>,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of SelectionRangeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of SelectionRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -32416,15 +32425,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of SelectionRangeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -32432,9 +32432,9 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$SelectionRangeRegistrationOptions {
 
- bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
+/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of SelectionRangeRegistrationOptions
@@ -32449,16 +32449,16 @@ $SelectionRangeRegistrationOptionsCopyWith<SelectionRangeRegistrationOptions> ge
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectionRangeRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectionRangeRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,id);
 
 @override
 String toString() {
-  return 'SelectionRangeRegistrationOptions(workDoneProgress: $workDoneProgress, documentSelector: $documentSelector, id: $id)';
+  return 'SelectionRangeRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, id: $id)';
 }
 
 
@@ -32469,7 +32469,7 @@ abstract mixin class $SelectionRangeRegistrationOptionsCopyWith<$Res>  {
   factory $SelectionRangeRegistrationOptionsCopyWith(SelectionRangeRegistrationOptions value, $Res Function(SelectionRangeRegistrationOptions) _then) = _$SelectionRangeRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, String? id
 });
 
 
@@ -32486,11 +32486,11 @@ class _$SelectionRangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SelectionRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -32503,10 +32503,9 @@ as String?,
 @JsonSerializable()
 
 class _SelectionRangeRegistrationOptions implements SelectionRangeRegistrationOptions {
-  const _SelectionRangeRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
+  const _SelectionRangeRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _SelectionRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SelectionRangeRegistrationOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
@@ -32520,6 +32519,7 @@ class _SelectionRangeRegistrationOptions implements SelectionRangeRegistrationOp
   return EqualUnmodifiableListView(value);
 }
 
+@override final  bool? workDoneProgress;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
 @override final  String? id;
@@ -32537,16 +32537,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectionRangeRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectionRangeRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(_documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,id);
 
 @override
 String toString() {
-  return 'SelectionRangeRegistrationOptions(workDoneProgress: $workDoneProgress, documentSelector: $documentSelector, id: $id)';
+  return 'SelectionRangeRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, id: $id)';
 }
 
 
@@ -32557,7 +32557,7 @@ abstract mixin class _$SelectionRangeRegistrationOptionsCopyWith<$Res> implement
   factory _$SelectionRangeRegistrationOptionsCopyWith(_SelectionRangeRegistrationOptions value, $Res Function(_SelectionRangeRegistrationOptions) _then) = __$SelectionRangeRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, String? id
 });
 
 
@@ -32574,11 +32574,11 @@ class __$SelectionRangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SelectionRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? id = freezed,}) {
   return _then(_SelectionRangeRegistrationOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -33262,10 +33262,10 @@ as String?,
 /// @nodoc
 mixin _$CallHierarchyIncomingCallsParams {
 
-/// An optional token that a server can use to report work done progress.
+ CallHierarchyItem get item;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken; CallHierarchyItem get item;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of CallHierarchyIncomingCallsParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -33278,16 +33278,16 @@ $CallHierarchyIncomingCallsParamsCopyWith<CallHierarchyIncomingCallsParams> get 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallHierarchyIncomingCallsParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.item, item) || other.item == item));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallHierarchyIncomingCallsParams&&(identical(other.item, item) || other.item == item)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,item);
+int get hashCode => Object.hash(runtimeType,item,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'CallHierarchyIncomingCallsParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, item: $item)';
+  return 'CallHierarchyIncomingCallsParams(item: $item, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -33298,11 +33298,11 @@ abstract mixin class $CallHierarchyIncomingCallsParamsCopyWith<$Res>  {
   factory $CallHierarchyIncomingCallsParamsCopyWith(CallHierarchyIncomingCallsParams value, $Res Function(CallHierarchyIncomingCallsParams) _then) = _$CallHierarchyIncomingCallsParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, CallHierarchyItem item
+ CallHierarchyItem item,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$CallHierarchyItemCopyWith<$Res> get item;
+$CallHierarchyItemCopyWith<$Res> get item;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -33315,15 +33315,24 @@ class _$CallHierarchyIncomingCallsParamsCopyWithImpl<$Res>
 
 /// Create a copy of CallHierarchyIncomingCallsParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? item = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? item = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as CallHierarchyItem,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as CallHierarchyItem,
+as ProgressToken?,
   ));
 }
 /// Create a copy of CallHierarchyIncomingCallsParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CallHierarchyItemCopyWith<$Res> get item {
+  
+  return $CallHierarchyItemCopyWith<$Res>(_self.item, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}/// Create a copy of CallHierarchyIncomingCallsParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -33347,15 +33356,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of CallHierarchyIncomingCallsParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CallHierarchyItemCopyWith<$Res> get item {
-  
-  return $CallHierarchyItemCopyWith<$Res>(_self.item, (value) {
-    return _then(_self.copyWith(item: value));
-  });
 }
 }
 
@@ -33365,15 +33365,15 @@ $CallHierarchyItemCopyWith<$Res> get item {
 @JsonSerializable()
 
 class _CallHierarchyIncomingCallsParams implements CallHierarchyIncomingCallsParams {
-  const _CallHierarchyIncomingCallsParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item});
+  const _CallHierarchyIncomingCallsParams({required this.item, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _CallHierarchyIncomingCallsParams.fromJson(Map<String, dynamic> json) => _$CallHierarchyIncomingCallsParamsFromJson(json);
 
+@override final  CallHierarchyItem item;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-@override final  CallHierarchyItem item;
 
 /// Create a copy of CallHierarchyIncomingCallsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -33388,16 +33388,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CallHierarchyIncomingCallsParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.item, item) || other.item == item));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CallHierarchyIncomingCallsParams&&(identical(other.item, item) || other.item == item)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,item);
+int get hashCode => Object.hash(runtimeType,item,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'CallHierarchyIncomingCallsParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, item: $item)';
+  return 'CallHierarchyIncomingCallsParams(item: $item, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -33408,11 +33408,11 @@ abstract mixin class _$CallHierarchyIncomingCallsParamsCopyWith<$Res> implements
   factory _$CallHierarchyIncomingCallsParamsCopyWith(_CallHierarchyIncomingCallsParams value, $Res Function(_CallHierarchyIncomingCallsParams) _then) = __$CallHierarchyIncomingCallsParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, CallHierarchyItem item
+ CallHierarchyItem item,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $CallHierarchyItemCopyWith<$Res> get item;
+@override $CallHierarchyItemCopyWith<$Res> get item;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -33425,16 +33425,25 @@ class __$CallHierarchyIncomingCallsParamsCopyWithImpl<$Res>
 
 /// Create a copy of CallHierarchyIncomingCallsParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? item = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_CallHierarchyIncomingCallsParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as CallHierarchyItem,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as CallHierarchyItem,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of CallHierarchyIncomingCallsParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CallHierarchyItemCopyWith<$Res> get item {
+  
+  return $CallHierarchyItemCopyWith<$Res>(_self.item, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}/// Create a copy of CallHierarchyIncomingCallsParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -33458,15 +33467,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of CallHierarchyIncomingCallsParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CallHierarchyItemCopyWith<$Res> get item {
-  
-  return $CallHierarchyItemCopyWith<$Res>(_self.item, (value) {
-    return _then(_self.copyWith(item: value));
-  });
 }
 }
 
@@ -33474,10 +33474,10 @@ $CallHierarchyItemCopyWith<$Res> get item {
 /// @nodoc
 mixin _$CallHierarchyOutgoingCallsParams {
 
-/// An optional token that a server can use to report work done progress.
+ CallHierarchyItem get item;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken; CallHierarchyItem get item;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of CallHierarchyOutgoingCallsParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -33490,16 +33490,16 @@ $CallHierarchyOutgoingCallsParamsCopyWith<CallHierarchyOutgoingCallsParams> get 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallHierarchyOutgoingCallsParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.item, item) || other.item == item));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallHierarchyOutgoingCallsParams&&(identical(other.item, item) || other.item == item)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,item);
+int get hashCode => Object.hash(runtimeType,item,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'CallHierarchyOutgoingCallsParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, item: $item)';
+  return 'CallHierarchyOutgoingCallsParams(item: $item, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -33510,11 +33510,11 @@ abstract mixin class $CallHierarchyOutgoingCallsParamsCopyWith<$Res>  {
   factory $CallHierarchyOutgoingCallsParamsCopyWith(CallHierarchyOutgoingCallsParams value, $Res Function(CallHierarchyOutgoingCallsParams) _then) = _$CallHierarchyOutgoingCallsParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, CallHierarchyItem item
+ CallHierarchyItem item,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$CallHierarchyItemCopyWith<$Res> get item;
+$CallHierarchyItemCopyWith<$Res> get item;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -33527,15 +33527,24 @@ class _$CallHierarchyOutgoingCallsParamsCopyWithImpl<$Res>
 
 /// Create a copy of CallHierarchyOutgoingCallsParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? item = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? item = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as CallHierarchyItem,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as CallHierarchyItem,
+as ProgressToken?,
   ));
 }
 /// Create a copy of CallHierarchyOutgoingCallsParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CallHierarchyItemCopyWith<$Res> get item {
+  
+  return $CallHierarchyItemCopyWith<$Res>(_self.item, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}/// Create a copy of CallHierarchyOutgoingCallsParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -33559,15 +33568,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of CallHierarchyOutgoingCallsParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CallHierarchyItemCopyWith<$Res> get item {
-  
-  return $CallHierarchyItemCopyWith<$Res>(_self.item, (value) {
-    return _then(_self.copyWith(item: value));
-  });
 }
 }
 
@@ -33577,15 +33577,15 @@ $CallHierarchyItemCopyWith<$Res> get item {
 @JsonSerializable()
 
 class _CallHierarchyOutgoingCallsParams implements CallHierarchyOutgoingCallsParams {
-  const _CallHierarchyOutgoingCallsParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item});
+  const _CallHierarchyOutgoingCallsParams({required this.item, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _CallHierarchyOutgoingCallsParams.fromJson(Map<String, dynamic> json) => _$CallHierarchyOutgoingCallsParamsFromJson(json);
 
+@override final  CallHierarchyItem item;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-@override final  CallHierarchyItem item;
 
 /// Create a copy of CallHierarchyOutgoingCallsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -33600,16 +33600,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CallHierarchyOutgoingCallsParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.item, item) || other.item == item));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CallHierarchyOutgoingCallsParams&&(identical(other.item, item) || other.item == item)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,item);
+int get hashCode => Object.hash(runtimeType,item,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'CallHierarchyOutgoingCallsParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, item: $item)';
+  return 'CallHierarchyOutgoingCallsParams(item: $item, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -33620,11 +33620,11 @@ abstract mixin class _$CallHierarchyOutgoingCallsParamsCopyWith<$Res> implements
   factory _$CallHierarchyOutgoingCallsParamsCopyWith(_CallHierarchyOutgoingCallsParams value, $Res Function(_CallHierarchyOutgoingCallsParams) _then) = __$CallHierarchyOutgoingCallsParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, CallHierarchyItem item
+ CallHierarchyItem item,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $CallHierarchyItemCopyWith<$Res> get item;
+@override $CallHierarchyItemCopyWith<$Res> get item;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -33637,16 +33637,25 @@ class __$CallHierarchyOutgoingCallsParamsCopyWithImpl<$Res>
 
 /// Create a copy of CallHierarchyOutgoingCallsParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? item = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_CallHierarchyOutgoingCallsParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as CallHierarchyItem,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as CallHierarchyItem,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of CallHierarchyOutgoingCallsParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CallHierarchyItemCopyWith<$Res> get item {
+  
+  return $CallHierarchyItemCopyWith<$Res>(_self.item, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}/// Create a copy of CallHierarchyOutgoingCallsParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -33670,15 +33679,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of CallHierarchyOutgoingCallsParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CallHierarchyItemCopyWith<$Res> get item {
-  
-  return $CallHierarchyItemCopyWith<$Res>(_self.item, (value) {
-    return _then(_self.copyWith(item: value));
-  });
 }
 }
 
@@ -33686,11 +33686,11 @@ $CallHierarchyItemCopyWith<$Res> get item {
 /// @nodoc
 mixin _$SemanticTokensParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The text document.
+ TextDocumentIdentifier get textDocument;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of SemanticTokensParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -33703,16 +33703,16 @@ $SemanticTokensParamsCopyWith<SemanticTokensParams> get copyWith => _$SemanticTo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'SemanticTokensParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'SemanticTokensParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -33723,11 +33723,11 @@ abstract mixin class $SemanticTokensParamsCopyWith<$Res>  {
   factory $SemanticTokensParamsCopyWith(SemanticTokensParams value, $Res Function(SemanticTokensParams) _then) = _$SemanticTokensParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -33740,15 +33740,24 @@ class _$SemanticTokensParamsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 /// Create a copy of SemanticTokensParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of SemanticTokensParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -33772,15 +33781,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of SemanticTokensParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -33790,16 +33790,16 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _SemanticTokensParams implements SemanticTokensParams {
-  const _SemanticTokensParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
+  const _SemanticTokensParams({required this.textDocument, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _SemanticTokensParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensParamsFromJson(json);
 
+/// The text document.
+@override final  TextDocumentIdentifier textDocument;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The text document.
-@override final  TextDocumentIdentifier textDocument;
 
 /// Create a copy of SemanticTokensParams
 /// with the given fields replaced by the non-null parameter values.
@@ -33814,16 +33814,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'SemanticTokensParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'SemanticTokensParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -33834,11 +33834,11 @@ abstract mixin class _$SemanticTokensParamsCopyWith<$Res> implements $SemanticTo
   factory _$SemanticTokensParamsCopyWith(_SemanticTokensParams value, $Res Function(_SemanticTokensParams) _then) = __$SemanticTokensParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -33851,16 +33851,25 @@ class __$SemanticTokensParamsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_SemanticTokensParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of SemanticTokensParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of SemanticTokensParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -33884,15 +33893,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of SemanticTokensParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -33902,8 +33902,8 @@ mixin _$SemanticTokensRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The legend used by the server
- SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range of a
+ DocumentSelector? get documentSelector;/// The legend used by the server
+ SemanticTokensLegend get legend; bool? get workDoneProgress;/// Server supports providing semantic tokens for a specific range of a
 /// document.
 ///
 /// Type: bool | Object
@@ -33925,16 +33925,16 @@ $SemanticTokensRegistrationOptionsCopyWith<SemanticTokensRegistrationOptions> ge
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.legend, legend) || other.legend == legend)&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.legend, legend) || other.legend == legend)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,legend,range,full,id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),legend,workDoneProgress,range,full,id);
 
 @override
 String toString() {
-  return 'SemanticTokensRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, legend: $legend, range: $range, full: $full, id: $id)';
+  return 'SemanticTokensRegistrationOptions(documentSelector: $documentSelector, legend: $legend, workDoneProgress: $workDoneProgress, range: $range, full: $full, id: $id)';
 }
 
 
@@ -33945,7 +33945,7 @@ abstract mixin class $SemanticTokensRegistrationOptionsCopyWith<$Res>  {
   factory $SemanticTokensRegistrationOptionsCopyWith(SemanticTokensRegistrationOptions value, $Res Function(SemanticTokensRegistrationOptions) _then) = _$SemanticTokensRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, SemanticTokensLegend legend,@_SemanticTokensRegistrationOptionsRangeConverter() SemanticTokensRegistrationOptionsRange? range,@_SemanticTokensRegistrationOptionsFullConverter() SemanticTokensRegistrationOptionsFull? full, String? id
+ DocumentSelector? documentSelector, SemanticTokensLegend legend, bool? workDoneProgress,@_SemanticTokensRegistrationOptionsRangeConverter() SemanticTokensRegistrationOptionsRange? range,@_SemanticTokensRegistrationOptionsFullConverter() SemanticTokensRegistrationOptionsFull? full, String? id
 });
 
 
@@ -33962,12 +33962,12 @@ class _$SemanticTokensRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? legend = null,Object? range = freezed,Object? full = freezed,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? legend = null,Object? workDoneProgress = freezed,Object? range = freezed,Object? full = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
 documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
-as SemanticTokensLegend,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
+as SemanticTokensLegend,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as SemanticTokensRegistrationOptionsRange?,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
 as SemanticTokensRegistrationOptionsFull?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -34015,7 +34015,7 @@ $SemanticTokensRegistrationOptionsFullCopyWith<$Res>? get full {
 @JsonSerializable()
 
 class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOptions {
-  const _SemanticTokensRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, required this.legend, @_SemanticTokensRegistrationOptionsRangeConverter() this.range, @_SemanticTokensRegistrationOptionsFullConverter() this.full, this.id}): _documentSelector = documentSelector;
+  const _SemanticTokensRegistrationOptions({required final  DocumentSelector? documentSelector, required this.legend, this.workDoneProgress, @_SemanticTokensRegistrationOptionsRangeConverter() this.range, @_SemanticTokensRegistrationOptionsFullConverter() this.full, this.id}): _documentSelector = documentSelector;
   factory _SemanticTokensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SemanticTokensRegistrationOptionsFromJson(json);
 
 /// A document selector to identify the scope of the registration. If set to
@@ -34031,9 +34031,9 @@ class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOp
   return EqualUnmodifiableListView(value);
 }
 
-@override final  bool? workDoneProgress;
 /// The legend used by the server
 @override final  SemanticTokensLegend legend;
+@override final  bool? workDoneProgress;
 /// Server supports providing semantic tokens for a specific range of a
 /// document.
 ///
@@ -34060,16 +34060,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.legend, legend) || other.legend == legend)&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.legend, legend) || other.legend == legend)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,legend,range,full,id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),legend,workDoneProgress,range,full,id);
 
 @override
 String toString() {
-  return 'SemanticTokensRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, legend: $legend, range: $range, full: $full, id: $id)';
+  return 'SemanticTokensRegistrationOptions(documentSelector: $documentSelector, legend: $legend, workDoneProgress: $workDoneProgress, range: $range, full: $full, id: $id)';
 }
 
 
@@ -34080,7 +34080,7 @@ abstract mixin class _$SemanticTokensRegistrationOptionsCopyWith<$Res> implement
   factory _$SemanticTokensRegistrationOptionsCopyWith(_SemanticTokensRegistrationOptions value, $Res Function(_SemanticTokensRegistrationOptions) _then) = __$SemanticTokensRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, SemanticTokensLegend legend,@_SemanticTokensRegistrationOptionsRangeConverter() SemanticTokensRegistrationOptionsRange? range,@_SemanticTokensRegistrationOptionsFullConverter() SemanticTokensRegistrationOptionsFull? full, String? id
+ DocumentSelector? documentSelector, SemanticTokensLegend legend, bool? workDoneProgress,@_SemanticTokensRegistrationOptionsRangeConverter() SemanticTokensRegistrationOptionsRange? range,@_SemanticTokensRegistrationOptionsFullConverter() SemanticTokensRegistrationOptionsFull? full, String? id
 });
 
 
@@ -34097,12 +34097,12 @@ class __$SemanticTokensRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? legend = null,Object? range = freezed,Object? full = freezed,Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? legend = null,Object? workDoneProgress = freezed,Object? range = freezed,Object? full = freezed,Object? id = freezed,}) {
   return _then(_SemanticTokensRegistrationOptions(
 documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
-as SemanticTokensLegend,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
+as SemanticTokensLegend,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as SemanticTokensRegistrationOptionsRange?,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
 as SemanticTokensRegistrationOptionsFull?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -34149,13 +34149,13 @@ $SemanticTokensRegistrationOptionsFullCopyWith<$Res>? get full {
 /// @nodoc
 mixin _$SemanticTokensDeltaParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
-/// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
+/// The text document.
  TextDocumentIdentifier get textDocument;/// The result id of a previous response. The result Id can either point to
 /// a full response or a delta response depending on what was received last.
- String get previousResultId;
+ String get previousResultId;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of SemanticTokensDeltaParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -34168,16 +34168,16 @@ $SemanticTokensDeltaParamsCopyWith<SemanticTokensDeltaParams> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensDeltaParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.previousResultId, previousResultId) || other.previousResultId == previousResultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensDeltaParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.previousResultId, previousResultId) || other.previousResultId == previousResultId)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,previousResultId);
+int get hashCode => Object.hash(runtimeType,textDocument,previousResultId,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'SemanticTokensDeltaParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, previousResultId: $previousResultId)';
+  return 'SemanticTokensDeltaParams(textDocument: $textDocument, previousResultId: $previousResultId, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -34188,11 +34188,11 @@ abstract mixin class $SemanticTokensDeltaParamsCopyWith<$Res>  {
   factory $SemanticTokensDeltaParamsCopyWith(SemanticTokensDeltaParams value, $Res Function(SemanticTokensDeltaParams) _then) = _$SemanticTokensDeltaParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, String previousResultId
+ TextDocumentIdentifier textDocument, String previousResultId,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -34205,16 +34205,25 @@ class _$SemanticTokensDeltaParamsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensDeltaParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? previousResultId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? previousResultId = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,previousResultId: null == previousResultId ? _self.previousResultId : previousResultId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of SemanticTokensDeltaParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of SemanticTokensDeltaParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -34238,15 +34247,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of SemanticTokensDeltaParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -34256,19 +34256,19 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _SemanticTokensDeltaParams implements SemanticTokensDeltaParams {
-  const _SemanticTokensDeltaParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.previousResultId});
+  const _SemanticTokensDeltaParams({required this.textDocument, required this.previousResultId, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _SemanticTokensDeltaParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g.
-/// streaming) to the client.
-@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
 /// The result id of a previous response. The result Id can either point to
 /// a full response or a delta response depending on what was received last.
 @override final  String previousResultId;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of SemanticTokensDeltaParams
 /// with the given fields replaced by the non-null parameter values.
@@ -34283,16 +34283,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensDeltaParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.previousResultId, previousResultId) || other.previousResultId == previousResultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensDeltaParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.previousResultId, previousResultId) || other.previousResultId == previousResultId)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,previousResultId);
+int get hashCode => Object.hash(runtimeType,textDocument,previousResultId,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'SemanticTokensDeltaParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, previousResultId: $previousResultId)';
+  return 'SemanticTokensDeltaParams(textDocument: $textDocument, previousResultId: $previousResultId, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -34303,11 +34303,11 @@ abstract mixin class _$SemanticTokensDeltaParamsCopyWith<$Res> implements $Seman
   factory _$SemanticTokensDeltaParamsCopyWith(_SemanticTokensDeltaParams value, $Res Function(_SemanticTokensDeltaParams) _then) = __$SemanticTokensDeltaParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, String previousResultId
+ TextDocumentIdentifier textDocument, String previousResultId,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -34320,17 +34320,26 @@ class __$SemanticTokensDeltaParamsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensDeltaParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? previousResultId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? previousResultId = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_SemanticTokensDeltaParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,previousResultId: null == previousResultId ? _self.previousResultId : previousResultId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of SemanticTokensDeltaParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of SemanticTokensDeltaParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -34354,15 +34363,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of SemanticTokensDeltaParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -34370,12 +34370,12 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$SemanticTokensRangeParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The text document.
+ TextDocumentIdentifier get textDocument;/// The range the semantic tokens are requested for.
+ Range get range;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;/// The range the semantic tokens are requested for.
- Range get range;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of SemanticTokensRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -34388,16 +34388,16 @@ $SemanticTokensRangeParamsCopyWith<SemanticTokensRangeParams> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensRangeParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensRangeParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,range);
+int get hashCode => Object.hash(runtimeType,textDocument,range,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'SemanticTokensRangeParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, range: $range)';
+  return 'SemanticTokensRangeParams(textDocument: $textDocument, range: $range, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -34408,11 +34408,11 @@ abstract mixin class $SemanticTokensRangeParamsCopyWith<$Res>  {
   factory $SemanticTokensRangeParamsCopyWith(SemanticTokensRangeParams value, $Res Function(SemanticTokensRangeParams) _then) = _$SemanticTokensRangeParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, Range range
+ TextDocumentIdentifier textDocument, Range range,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -34425,40 +34425,16 @@ class _$SemanticTokensRangeParamsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensRangeParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? range = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? range = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,
+as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of SemanticTokensRangeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of SemanticTokensRangeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get partialResultToken {
-    if (_self.partialResultToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
-    return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of SemanticTokensRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -34476,6 +34452,30 @@ $RangeCopyWith<$Res> get range {
   return $RangeCopyWith<$Res>(_self.range, (value) {
     return _then(_self.copyWith(range: value));
   });
+}/// Create a copy of SemanticTokensRangeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
+}/// Create a copy of SemanticTokensRangeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get partialResultToken {
+    if (_self.partialResultToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
+    return _then(_self.copyWith(partialResultToken: value));
+  });
 }
 }
 
@@ -34485,18 +34485,18 @@ $RangeCopyWith<$Res> get range {
 @JsonSerializable()
 
 class _SemanticTokensRangeParams implements SemanticTokensRangeParams {
-  const _SemanticTokensRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.range});
+  const _SemanticTokensRangeParams({required this.textDocument, required this.range, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _SemanticTokensRangeParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensRangeParamsFromJson(json);
 
+/// The text document.
+@override final  TextDocumentIdentifier textDocument;
+/// The range the semantic tokens are requested for.
+@override final  Range range;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The text document.
-@override final  TextDocumentIdentifier textDocument;
-/// The range the semantic tokens are requested for.
-@override final  Range range;
 
 /// Create a copy of SemanticTokensRangeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -34511,16 +34511,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensRangeParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensRangeParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,range);
+int get hashCode => Object.hash(runtimeType,textDocument,range,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'SemanticTokensRangeParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, range: $range)';
+  return 'SemanticTokensRangeParams(textDocument: $textDocument, range: $range, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -34531,11 +34531,11 @@ abstract mixin class _$SemanticTokensRangeParamsCopyWith<$Res> implements $Seman
   factory _$SemanticTokensRangeParamsCopyWith(_SemanticTokensRangeParams value, $Res Function(_SemanticTokensRangeParams) _then) = __$SemanticTokensRangeParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, Range range
+ TextDocumentIdentifier textDocument, Range range,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -34548,17 +34548,35 @@ class __$SemanticTokensRangeParamsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensRangeParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? range = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? range = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_SemanticTokensRangeParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,
+as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of SemanticTokensRangeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of SemanticTokensRangeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get range {
+  
+  return $RangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}/// Create a copy of SemanticTokensRangeParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -34581,24 +34599,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of SemanticTokensRangeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
-}/// Create a copy of SemanticTokensRangeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get range {
-  
-  return $RangeCopyWith<$Res>(_self.range, (value) {
-    return _then(_self.copyWith(range: value));
   });
 }
 }
@@ -36485,10 +36485,10 @@ as String?,
 /// @nodoc
 mixin _$TypeHierarchySupertypesParams {
 
-/// An optional token that a server can use to report work done progress.
+ TypeHierarchyItem get item;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken; TypeHierarchyItem get item;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of TypeHierarchySupertypesParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -36501,16 +36501,16 @@ $TypeHierarchySupertypesParamsCopyWith<TypeHierarchySupertypesParams> get copyWi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TypeHierarchySupertypesParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.item, item) || other.item == item));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TypeHierarchySupertypesParams&&(identical(other.item, item) || other.item == item)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,item);
+int get hashCode => Object.hash(runtimeType,item,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'TypeHierarchySupertypesParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, item: $item)';
+  return 'TypeHierarchySupertypesParams(item: $item, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -36521,11 +36521,11 @@ abstract mixin class $TypeHierarchySupertypesParamsCopyWith<$Res>  {
   factory $TypeHierarchySupertypesParamsCopyWith(TypeHierarchySupertypesParams value, $Res Function(TypeHierarchySupertypesParams) _then) = _$TypeHierarchySupertypesParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TypeHierarchyItem item
+ TypeHierarchyItem item,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TypeHierarchyItemCopyWith<$Res> get item;
+$TypeHierarchyItemCopyWith<$Res> get item;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -36538,15 +36538,24 @@ class _$TypeHierarchySupertypesParamsCopyWithImpl<$Res>
 
 /// Create a copy of TypeHierarchySupertypesParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? item = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? item = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as TypeHierarchyItem,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as TypeHierarchyItem,
+as ProgressToken?,
   ));
 }
 /// Create a copy of TypeHierarchySupertypesParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TypeHierarchyItemCopyWith<$Res> get item {
+  
+  return $TypeHierarchyItemCopyWith<$Res>(_self.item, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}/// Create a copy of TypeHierarchySupertypesParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -36570,15 +36579,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of TypeHierarchySupertypesParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TypeHierarchyItemCopyWith<$Res> get item {
-  
-  return $TypeHierarchyItemCopyWith<$Res>(_self.item, (value) {
-    return _then(_self.copyWith(item: value));
-  });
 }
 }
 
@@ -36588,15 +36588,15 @@ $TypeHierarchyItemCopyWith<$Res> get item {
 @JsonSerializable()
 
 class _TypeHierarchySupertypesParams implements TypeHierarchySupertypesParams {
-  const _TypeHierarchySupertypesParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item});
+  const _TypeHierarchySupertypesParams({required this.item, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _TypeHierarchySupertypesParams.fromJson(Map<String, dynamic> json) => _$TypeHierarchySupertypesParamsFromJson(json);
 
+@override final  TypeHierarchyItem item;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-@override final  TypeHierarchyItem item;
 
 /// Create a copy of TypeHierarchySupertypesParams
 /// with the given fields replaced by the non-null parameter values.
@@ -36611,16 +36611,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TypeHierarchySupertypesParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.item, item) || other.item == item));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TypeHierarchySupertypesParams&&(identical(other.item, item) || other.item == item)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,item);
+int get hashCode => Object.hash(runtimeType,item,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'TypeHierarchySupertypesParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, item: $item)';
+  return 'TypeHierarchySupertypesParams(item: $item, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -36631,11 +36631,11 @@ abstract mixin class _$TypeHierarchySupertypesParamsCopyWith<$Res> implements $T
   factory _$TypeHierarchySupertypesParamsCopyWith(_TypeHierarchySupertypesParams value, $Res Function(_TypeHierarchySupertypesParams) _then) = __$TypeHierarchySupertypesParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TypeHierarchyItem item
+ TypeHierarchyItem item,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TypeHierarchyItemCopyWith<$Res> get item;
+@override $TypeHierarchyItemCopyWith<$Res> get item;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -36648,16 +36648,25 @@ class __$TypeHierarchySupertypesParamsCopyWithImpl<$Res>
 
 /// Create a copy of TypeHierarchySupertypesParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? item = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_TypeHierarchySupertypesParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as TypeHierarchyItem,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as TypeHierarchyItem,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of TypeHierarchySupertypesParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TypeHierarchyItemCopyWith<$Res> get item {
+  
+  return $TypeHierarchyItemCopyWith<$Res>(_self.item, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}/// Create a copy of TypeHierarchySupertypesParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -36681,15 +36690,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of TypeHierarchySupertypesParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TypeHierarchyItemCopyWith<$Res> get item {
-  
-  return $TypeHierarchyItemCopyWith<$Res>(_self.item, (value) {
-    return _then(_self.copyWith(item: value));
-  });
 }
 }
 
@@ -36697,10 +36697,10 @@ $TypeHierarchyItemCopyWith<$Res> get item {
 /// @nodoc
 mixin _$TypeHierarchySubtypesParams {
 
-/// An optional token that a server can use to report work done progress.
+ TypeHierarchyItem get item;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken; TypeHierarchyItem get item;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of TypeHierarchySubtypesParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -36713,16 +36713,16 @@ $TypeHierarchySubtypesParamsCopyWith<TypeHierarchySubtypesParams> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TypeHierarchySubtypesParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.item, item) || other.item == item));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TypeHierarchySubtypesParams&&(identical(other.item, item) || other.item == item)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,item);
+int get hashCode => Object.hash(runtimeType,item,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'TypeHierarchySubtypesParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, item: $item)';
+  return 'TypeHierarchySubtypesParams(item: $item, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -36733,11 +36733,11 @@ abstract mixin class $TypeHierarchySubtypesParamsCopyWith<$Res>  {
   factory $TypeHierarchySubtypesParamsCopyWith(TypeHierarchySubtypesParams value, $Res Function(TypeHierarchySubtypesParams) _then) = _$TypeHierarchySubtypesParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TypeHierarchyItem item
+ TypeHierarchyItem item,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TypeHierarchyItemCopyWith<$Res> get item;
+$TypeHierarchyItemCopyWith<$Res> get item;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -36750,15 +36750,24 @@ class _$TypeHierarchySubtypesParamsCopyWithImpl<$Res>
 
 /// Create a copy of TypeHierarchySubtypesParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? item = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? item = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as TypeHierarchyItem,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as TypeHierarchyItem,
+as ProgressToken?,
   ));
 }
 /// Create a copy of TypeHierarchySubtypesParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TypeHierarchyItemCopyWith<$Res> get item {
+  
+  return $TypeHierarchyItemCopyWith<$Res>(_self.item, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}/// Create a copy of TypeHierarchySubtypesParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -36782,15 +36791,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of TypeHierarchySubtypesParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TypeHierarchyItemCopyWith<$Res> get item {
-  
-  return $TypeHierarchyItemCopyWith<$Res>(_self.item, (value) {
-    return _then(_self.copyWith(item: value));
-  });
 }
 }
 
@@ -36800,15 +36800,15 @@ $TypeHierarchyItemCopyWith<$Res> get item {
 @JsonSerializable()
 
 class _TypeHierarchySubtypesParams implements TypeHierarchySubtypesParams {
-  const _TypeHierarchySubtypesParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item});
+  const _TypeHierarchySubtypesParams({required this.item, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _TypeHierarchySubtypesParams.fromJson(Map<String, dynamic> json) => _$TypeHierarchySubtypesParamsFromJson(json);
 
+@override final  TypeHierarchyItem item;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-@override final  TypeHierarchyItem item;
 
 /// Create a copy of TypeHierarchySubtypesParams
 /// with the given fields replaced by the non-null parameter values.
@@ -36823,16 +36823,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TypeHierarchySubtypesParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.item, item) || other.item == item));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TypeHierarchySubtypesParams&&(identical(other.item, item) || other.item == item)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,item);
+int get hashCode => Object.hash(runtimeType,item,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'TypeHierarchySubtypesParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, item: $item)';
+  return 'TypeHierarchySubtypesParams(item: $item, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -36843,11 +36843,11 @@ abstract mixin class _$TypeHierarchySubtypesParamsCopyWith<$Res> implements $Typ
   factory _$TypeHierarchySubtypesParamsCopyWith(_TypeHierarchySubtypesParams value, $Res Function(_TypeHierarchySubtypesParams) _then) = __$TypeHierarchySubtypesParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TypeHierarchyItem item
+ TypeHierarchyItem item,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TypeHierarchyItemCopyWith<$Res> get item;
+@override $TypeHierarchyItemCopyWith<$Res> get item;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -36860,16 +36860,25 @@ class __$TypeHierarchySubtypesParamsCopyWithImpl<$Res>
 
 /// Create a copy of TypeHierarchySubtypesParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? item = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_TypeHierarchySubtypesParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as TypeHierarchyItem,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as TypeHierarchyItem,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of TypeHierarchySubtypesParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TypeHierarchyItemCopyWith<$Res> get item {
+  
+  return $TypeHierarchyItemCopyWith<$Res>(_self.item, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}/// Create a copy of TypeHierarchySubtypesParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -36893,15 +36902,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of TypeHierarchySubtypesParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TypeHierarchyItemCopyWith<$Res> get item {
-  
-  return $TypeHierarchyItemCopyWith<$Res>(_self.item, (value) {
-    return _then(_self.copyWith(item: value));
-  });
 }
 }
 
@@ -36909,12 +36909,12 @@ $TypeHierarchyItemCopyWith<$Res> get item {
 /// @nodoc
 mixin _$InlineValueParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The text document.
+/// The text document.
  TextDocumentIdentifier get textDocument;/// The document range for which inline values should be computed.
  Range get range;/// Additional information about the context in which inline values were
 /// requested.
- InlineValueContext get context;
+ InlineValueContext get context;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;
 /// Create a copy of InlineValueParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -36927,16 +36927,16 @@ $InlineValueParamsCopyWith<InlineValueParams> get copyWith => _$InlineValueParam
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineValueParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineValueParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.context, context) || other.context == context)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,range,context);
+int get hashCode => Object.hash(runtimeType,textDocument,range,context,workDoneToken);
 
 @override
 String toString() {
-  return 'InlineValueParams(workDoneToken: $workDoneToken, textDocument: $textDocument, range: $range, context: $context)';
+  return 'InlineValueParams(textDocument: $textDocument, range: $range, context: $context, workDoneToken: $workDoneToken)';
 }
 
 
@@ -36947,11 +36947,11 @@ abstract mixin class $InlineValueParamsCopyWith<$Res>  {
   factory $InlineValueParamsCopyWith(InlineValueParams value, $Res Function(InlineValueParams) _then) = _$InlineValueParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, Range range, InlineValueContext context
+ TextDocumentIdentifier textDocument, Range range, InlineValueContext context,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;$InlineValueContextCopyWith<$Res> get context;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;$InlineValueContextCopyWith<$Res> get context;$ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -36964,28 +36964,16 @@ class _$InlineValueParamsCopyWithImpl<$Res>
 
 /// Create a copy of InlineValueParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? range = null,Object? context = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? range = null,Object? context = null,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as InlineValueContext,
+as InlineValueContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of InlineValueParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of InlineValueParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -37012,6 +37000,18 @@ $InlineValueContextCopyWith<$Res> get context {
   return $InlineValueContextCopyWith<$Res>(_self.context, (value) {
     return _then(_self.copyWith(context: value));
   });
+}/// Create a copy of InlineValueParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
 }
 }
 
@@ -37021,11 +37021,9 @@ $InlineValueContextCopyWith<$Res> get context {
 @JsonSerializable()
 
 class _InlineValueParams implements InlineValueParams {
-  const _InlineValueParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range, required this.context});
+  const _InlineValueParams({required this.textDocument, required this.range, required this.context, @_ProgressTokenConverter() this.workDoneToken});
   factory _InlineValueParams.fromJson(Map<String, dynamic> json) => _$InlineValueParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
 /// The document range for which inline values should be computed.
@@ -37033,6 +37031,8 @@ class _InlineValueParams implements InlineValueParams {
 /// Additional information about the context in which inline values were
 /// requested.
 @override final  InlineValueContext context;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 
 /// Create a copy of InlineValueParams
 /// with the given fields replaced by the non-null parameter values.
@@ -37047,16 +37047,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineValueParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineValueParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.context, context) || other.context == context)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,range,context);
+int get hashCode => Object.hash(runtimeType,textDocument,range,context,workDoneToken);
 
 @override
 String toString() {
-  return 'InlineValueParams(workDoneToken: $workDoneToken, textDocument: $textDocument, range: $range, context: $context)';
+  return 'InlineValueParams(textDocument: $textDocument, range: $range, context: $context, workDoneToken: $workDoneToken)';
 }
 
 
@@ -37067,11 +37067,11 @@ abstract mixin class _$InlineValueParamsCopyWith<$Res> implements $InlineValuePa
   factory _$InlineValueParamsCopyWith(_InlineValueParams value, $Res Function(_InlineValueParams) _then) = __$InlineValueParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, Range range, InlineValueContext context
+ TextDocumentIdentifier textDocument, Range range, InlineValueContext context,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;@override $InlineValueContextCopyWith<$Res> get context;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;@override $InlineValueContextCopyWith<$Res> get context;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -37084,29 +37084,17 @@ class __$InlineValueParamsCopyWithImpl<$Res>
 
 /// Create a copy of InlineValueParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? range = null,Object? context = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? range = null,Object? context = null,Object? workDoneToken = freezed,}) {
   return _then(_InlineValueParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as InlineValueContext,
+as InlineValueContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of InlineValueParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of InlineValueParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -37133,6 +37121,18 @@ $InlineValueContextCopyWith<$Res> get context {
   return $InlineValueContextCopyWith<$Res>(_self.context, (value) {
     return _then(_self.copyWith(context: value));
   });
+}/// Create a copy of InlineValueParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
 }
 }
 
@@ -37140,9 +37140,9 @@ $InlineValueContextCopyWith<$Res> get context {
 /// @nodoc
 mixin _$InlineValueRegistrationOptions {
 
- bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
+/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlineValueRegistrationOptions
@@ -37157,16 +37157,16 @@ $InlineValueRegistrationOptionsCopyWith<InlineValueRegistrationOptions> get copy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineValueRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineValueRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,id);
 
 @override
 String toString() {
-  return 'InlineValueRegistrationOptions(workDoneProgress: $workDoneProgress, documentSelector: $documentSelector, id: $id)';
+  return 'InlineValueRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, id: $id)';
 }
 
 
@@ -37177,7 +37177,7 @@ abstract mixin class $InlineValueRegistrationOptionsCopyWith<$Res>  {
   factory $InlineValueRegistrationOptionsCopyWith(InlineValueRegistrationOptions value, $Res Function(InlineValueRegistrationOptions) _then) = _$InlineValueRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, String? id
 });
 
 
@@ -37194,11 +37194,11 @@ class _$InlineValueRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlineValueRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -37211,10 +37211,9 @@ as String?,
 @JsonSerializable()
 
 class _InlineValueRegistrationOptions implements InlineValueRegistrationOptions {
-  const _InlineValueRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
+  const _InlineValueRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _InlineValueRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineValueRegistrationOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
@@ -37228,6 +37227,7 @@ class _InlineValueRegistrationOptions implements InlineValueRegistrationOptions 
   return EqualUnmodifiableListView(value);
 }
 
+@override final  bool? workDoneProgress;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
 @override final  String? id;
@@ -37245,16 +37245,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineValueRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineValueRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(_documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,id);
 
 @override
 String toString() {
-  return 'InlineValueRegistrationOptions(workDoneProgress: $workDoneProgress, documentSelector: $documentSelector, id: $id)';
+  return 'InlineValueRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, id: $id)';
 }
 
 
@@ -37265,7 +37265,7 @@ abstract mixin class _$InlineValueRegistrationOptionsCopyWith<$Res> implements $
   factory _$InlineValueRegistrationOptionsCopyWith(_InlineValueRegistrationOptions value, $Res Function(_InlineValueRegistrationOptions) _then) = __$InlineValueRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, String? id
 });
 
 
@@ -37282,11 +37282,11 @@ class __$InlineValueRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlineValueRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? id = freezed,}) {
   return _then(_InlineValueRegistrationOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -37298,10 +37298,10 @@ as String?,
 /// @nodoc
 mixin _$InlayHintParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The text document.
+/// The text document.
  TextDocumentIdentifier get textDocument;/// The document range for which inlay hints should be computed.
- Range get range;
+ Range get range;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;
 /// Create a copy of InlayHintParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37314,16 +37314,16 @@ $InlayHintParamsCopyWith<InlayHintParams> get copyWith => _$InlayHintParamsCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlayHintParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlayHintParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,range);
+int get hashCode => Object.hash(runtimeType,textDocument,range,workDoneToken);
 
 @override
 String toString() {
-  return 'InlayHintParams(workDoneToken: $workDoneToken, textDocument: $textDocument, range: $range)';
+  return 'InlayHintParams(textDocument: $textDocument, range: $range, workDoneToken: $workDoneToken)';
 }
 
 
@@ -37334,11 +37334,11 @@ abstract mixin class $InlayHintParamsCopyWith<$Res>  {
   factory $InlayHintParamsCopyWith(InlayHintParams value, $Res Function(InlayHintParams) _then) = _$InlayHintParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, Range range
+ TextDocumentIdentifier textDocument, Range range,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;$ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -37351,27 +37351,15 @@ class _$InlayHintParamsCopyWithImpl<$Res>
 
 /// Create a copy of InlayHintParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? range = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? range = null,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,
+as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of InlayHintParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of InlayHintParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -37389,6 +37377,18 @@ $RangeCopyWith<$Res> get range {
   return $RangeCopyWith<$Res>(_self.range, (value) {
     return _then(_self.copyWith(range: value));
   });
+}/// Create a copy of InlayHintParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
 }
 }
 
@@ -37398,15 +37398,15 @@ $RangeCopyWith<$Res> get range {
 @JsonSerializable()
 
 class _InlayHintParams implements InlayHintParams {
-  const _InlayHintParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range});
+  const _InlayHintParams({required this.textDocument, required this.range, @_ProgressTokenConverter() this.workDoneToken});
   factory _InlayHintParams.fromJson(Map<String, dynamic> json) => _$InlayHintParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
 /// The document range for which inlay hints should be computed.
 @override final  Range range;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 
 /// Create a copy of InlayHintParams
 /// with the given fields replaced by the non-null parameter values.
@@ -37421,16 +37421,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlayHintParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlayHintParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,range);
+int get hashCode => Object.hash(runtimeType,textDocument,range,workDoneToken);
 
 @override
 String toString() {
-  return 'InlayHintParams(workDoneToken: $workDoneToken, textDocument: $textDocument, range: $range)';
+  return 'InlayHintParams(textDocument: $textDocument, range: $range, workDoneToken: $workDoneToken)';
 }
 
 
@@ -37441,11 +37441,11 @@ abstract mixin class _$InlayHintParamsCopyWith<$Res> implements $InlayHintParams
   factory _$InlayHintParamsCopyWith(_InlayHintParams value, $Res Function(_InlayHintParams) _then) = __$InlayHintParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, Range range
+ TextDocumentIdentifier textDocument, Range range,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -37458,28 +37458,16 @@ class __$InlayHintParamsCopyWithImpl<$Res>
 
 /// Create a copy of InlayHintParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? range = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? range = null,Object? workDoneToken = freezed,}) {
   return _then(_InlayHintParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,
+as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of InlayHintParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of InlayHintParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -37497,6 +37485,18 @@ $RangeCopyWith<$Res> get range {
   return $RangeCopyWith<$Res>(_self.range, (value) {
     return _then(_self.copyWith(range: value));
   });
+}/// Create a copy of InlayHintParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
 }
 }
 
@@ -37504,11 +37504,11 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlayHintRegistrationOptions {
 
- bool? get workDoneProgress;/// The server provides support to resolve additional information for an
-/// inlay hint item.
- bool? get resolveProvider;/// A document selector to identify the scope of the registration. If set to
+/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The server provides support to resolve additional information for an
+/// inlay hint item.
+ bool? get resolveProvider;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlayHintRegistrationOptions
@@ -37523,16 +37523,16 @@ $InlayHintRegistrationOptionsCopyWith<InlayHintRegistrationOptions> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlayHintRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider)&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlayHintRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,resolveProvider,const DeepCollectionEquality().hash(documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,resolveProvider,id);
 
 @override
 String toString() {
-  return 'InlayHintRegistrationOptions(workDoneProgress: $workDoneProgress, resolveProvider: $resolveProvider, documentSelector: $documentSelector, id: $id)';
+  return 'InlayHintRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, resolveProvider: $resolveProvider, id: $id)';
 }
 
 
@@ -37543,7 +37543,7 @@ abstract mixin class $InlayHintRegistrationOptionsCopyWith<$Res>  {
   factory $InlayHintRegistrationOptionsCopyWith(InlayHintRegistrationOptions value, $Res Function(InlayHintRegistrationOptions) _then) = _$InlayHintRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, bool? resolveProvider, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, bool? resolveProvider, String? id
 });
 
 
@@ -37560,12 +37560,12 @@ class _$InlayHintRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlayHintRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? resolveProvider = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? resolveProvider = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -37578,13 +37578,9 @@ as String?,
 @JsonSerializable()
 
 class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
-  const _InlayHintRegistrationOptions({this.workDoneProgress, this.resolveProvider, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
+  const _InlayHintRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.resolveProvider, this.id}): _documentSelector = documentSelector;
   factory _InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlayHintRegistrationOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
-/// The server provides support to resolve additional information for an
-/// inlay hint item.
-@override final  bool? resolveProvider;
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
@@ -37598,6 +37594,10 @@ class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
+@override final  bool? workDoneProgress;
+/// The server provides support to resolve additional information for an
+/// inlay hint item.
+@override final  bool? resolveProvider;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
 @override final  String? id;
@@ -37615,16 +37615,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlayHintRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider)&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlayHintRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,resolveProvider,const DeepCollectionEquality().hash(_documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,resolveProvider,id);
 
 @override
 String toString() {
-  return 'InlayHintRegistrationOptions(workDoneProgress: $workDoneProgress, resolveProvider: $resolveProvider, documentSelector: $documentSelector, id: $id)';
+  return 'InlayHintRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, resolveProvider: $resolveProvider, id: $id)';
 }
 
 
@@ -37635,7 +37635,7 @@ abstract mixin class _$InlayHintRegistrationOptionsCopyWith<$Res> implements $In
   factory _$InlayHintRegistrationOptionsCopyWith(_InlayHintRegistrationOptions value, $Res Function(_InlayHintRegistrationOptions) _then) = __$InlayHintRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, bool? resolveProvider, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, bool? resolveProvider, String? id
 });
 
 
@@ -37652,12 +37652,12 @@ class __$InlayHintRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlayHintRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? resolveProvider = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? resolveProvider = freezed,Object? id = freezed,}) {
   return _then(_InlayHintRegistrationOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -37669,11 +37669,11 @@ as String?,
 /// @nodoc
 mixin _$DocumentDiagnosticParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The text document.
+ TextDocumentIdentifier get textDocument;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;/// The additional identifier provided during registration.
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The additional identifier provided during registration.
  String? get identifier;/// The result id of a previous response if provided.
  String? get previousResultId;
 /// Create a copy of DocumentDiagnosticParams
@@ -37688,16 +37688,16 @@ $DocumentDiagnosticParamsCopyWith<DocumentDiagnosticParams> get copyWith => _$Do
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentDiagnosticParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.previousResultId, previousResultId) || other.previousResultId == previousResultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentDiagnosticParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.previousResultId, previousResultId) || other.previousResultId == previousResultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,identifier,previousResultId);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken,identifier,previousResultId);
 
 @override
 String toString() {
-  return 'DocumentDiagnosticParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, identifier: $identifier, previousResultId: $previousResultId)';
+  return 'DocumentDiagnosticParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, identifier: $identifier, previousResultId: $previousResultId)';
 }
 
 
@@ -37708,11 +37708,11 @@ abstract mixin class $DocumentDiagnosticParamsCopyWith<$Res>  {
   factory $DocumentDiagnosticParamsCopyWith(DocumentDiagnosticParams value, $Res Function(DocumentDiagnosticParams) _then) = _$DocumentDiagnosticParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, String? identifier, String? previousResultId
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, String? identifier, String? previousResultId
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -37725,17 +37725,26 @@ class _$DocumentDiagnosticParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? identifier = freezed,Object? previousResultId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? identifier = freezed,Object? previousResultId = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
 as String?,previousResultId: freezed == previousResultId ? _self.previousResultId : previousResultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
 /// Create a copy of DocumentDiagnosticParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of DocumentDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -37759,15 +37768,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of DocumentDiagnosticParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -37777,16 +37777,16 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _DocumentDiagnosticParams implements DocumentDiagnosticParams {
-  const _DocumentDiagnosticParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, this.identifier, this.previousResultId});
+  const _DocumentDiagnosticParams({required this.textDocument, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, this.identifier, this.previousResultId});
   factory _DocumentDiagnosticParams.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticParamsFromJson(json);
 
+/// The text document.
+@override final  TextDocumentIdentifier textDocument;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The text document.
-@override final  TextDocumentIdentifier textDocument;
 /// The additional identifier provided during registration.
 @override final  String? identifier;
 /// The result id of a previous response if provided.
@@ -37805,16 +37805,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentDiagnosticParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.previousResultId, previousResultId) || other.previousResultId == previousResultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentDiagnosticParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.previousResultId, previousResultId) || other.previousResultId == previousResultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,identifier,previousResultId);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken,identifier,previousResultId);
 
 @override
 String toString() {
-  return 'DocumentDiagnosticParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, identifier: $identifier, previousResultId: $previousResultId)';
+  return 'DocumentDiagnosticParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, identifier: $identifier, previousResultId: $previousResultId)';
 }
 
 
@@ -37825,11 +37825,11 @@ abstract mixin class _$DocumentDiagnosticParamsCopyWith<$Res> implements $Docume
   factory _$DocumentDiagnosticParamsCopyWith(_DocumentDiagnosticParams value, $Res Function(_DocumentDiagnosticParams) _then) = __$DocumentDiagnosticParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, String? identifier, String? previousResultId
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, String? identifier, String? previousResultId
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -37842,18 +37842,27 @@ class __$DocumentDiagnosticParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? identifier = freezed,Object? previousResultId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? identifier = freezed,Object? previousResultId = freezed,}) {
   return _then(_DocumentDiagnosticParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
 as String?,previousResultId: freezed == previousResultId ? _self.previousResultId : previousResultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
 
 /// Create a copy of DocumentDiagnosticParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of DocumentDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -37877,15 +37886,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of DocumentDiagnosticParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -37895,14 +37895,14 @@ mixin _$DiagnosticRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// An optional identifier under which the diagnostics are managed by the
-/// client.
- String? get identifier;/// Whether the language has inter file dependencies meaning that editing
+ DocumentSelector? get documentSelector;/// Whether the language has inter file dependencies meaning that editing
 /// code in one file can result in a different diagnostic set in another
 /// file. Inter file dependencies are common for most programming languages
 /// and typically uncommon for linters.
  bool get interFileDependencies;/// The server provides support for workspace diagnostics as well.
- bool get workspaceDiagnostics;/// The id used to register the request. The id can be used to deregister
+ bool get workspaceDiagnostics; bool? get workDoneProgress;/// An optional identifier under which the diagnostics are managed by the
+/// client.
+ String? get identifier;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of DiagnosticRegistrationOptions
@@ -37917,16 +37917,16 @@ $DiagnosticRegistrationOptionsCopyWith<DiagnosticRegistrationOptions> get copyWi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiagnosticRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.interFileDependencies, interFileDependencies) || other.interFileDependencies == interFileDependencies)&&(identical(other.workspaceDiagnostics, workspaceDiagnostics) || other.workspaceDiagnostics == workspaceDiagnostics)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiagnosticRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.interFileDependencies, interFileDependencies) || other.interFileDependencies == interFileDependencies)&&(identical(other.workspaceDiagnostics, workspaceDiagnostics) || other.workspaceDiagnostics == workspaceDiagnostics)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,identifier,interFileDependencies,workspaceDiagnostics,id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),interFileDependencies,workspaceDiagnostics,workDoneProgress,identifier,id);
 
 @override
 String toString() {
-  return 'DiagnosticRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, identifier: $identifier, interFileDependencies: $interFileDependencies, workspaceDiagnostics: $workspaceDiagnostics, id: $id)';
+  return 'DiagnosticRegistrationOptions(documentSelector: $documentSelector, interFileDependencies: $interFileDependencies, workspaceDiagnostics: $workspaceDiagnostics, workDoneProgress: $workDoneProgress, identifier: $identifier, id: $id)';
 }
 
 
@@ -37937,7 +37937,7 @@ abstract mixin class $DiagnosticRegistrationOptionsCopyWith<$Res>  {
   factory $DiagnosticRegistrationOptionsCopyWith(DiagnosticRegistrationOptions value, $Res Function(DiagnosticRegistrationOptions) _then) = _$DiagnosticRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, String? identifier, bool interFileDependencies, bool workspaceDiagnostics, String? id
+ DocumentSelector? documentSelector, bool interFileDependencies, bool workspaceDiagnostics, bool? workDoneProgress, String? identifier, String? id
 });
 
 
@@ -37954,14 +37954,14 @@ class _$DiagnosticRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DiagnosticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? identifier = freezed,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? workDoneProgress = freezed,Object? identifier = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
 documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
 as bool,workspaceDiagnostics: null == workspaceDiagnostics ? _self.workspaceDiagnostics : workspaceDiagnostics // ignore: cast_nullable_to_non_nullable
-as bool,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as bool,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
+as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -37974,7 +37974,7 @@ as String?,
 @JsonSerializable()
 
 class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
-  const _DiagnosticRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.identifier, required this.interFileDependencies, required this.workspaceDiagnostics, this.id}): _documentSelector = documentSelector;
+  const _DiagnosticRegistrationOptions({required final  DocumentSelector? documentSelector, required this.interFileDependencies, required this.workspaceDiagnostics, this.workDoneProgress, this.identifier, this.id}): _documentSelector = documentSelector;
   factory _DiagnosticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticRegistrationOptionsFromJson(json);
 
 /// A document selector to identify the scope of the registration. If set to
@@ -37990,10 +37990,6 @@ class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
-@override final  bool? workDoneProgress;
-/// An optional identifier under which the diagnostics are managed by the
-/// client.
-@override final  String? identifier;
 /// Whether the language has inter file dependencies meaning that editing
 /// code in one file can result in a different diagnostic set in another
 /// file. Inter file dependencies are common for most programming languages
@@ -38001,6 +37997,10 @@ class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
 @override final  bool interFileDependencies;
 /// The server provides support for workspace diagnostics as well.
 @override final  bool workspaceDiagnostics;
+@override final  bool? workDoneProgress;
+/// An optional identifier under which the diagnostics are managed by the
+/// client.
+@override final  String? identifier;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
 @override final  String? id;
@@ -38018,16 +38018,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiagnosticRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.interFileDependencies, interFileDependencies) || other.interFileDependencies == interFileDependencies)&&(identical(other.workspaceDiagnostics, workspaceDiagnostics) || other.workspaceDiagnostics == workspaceDiagnostics)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiagnosticRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.interFileDependencies, interFileDependencies) || other.interFileDependencies == interFileDependencies)&&(identical(other.workspaceDiagnostics, workspaceDiagnostics) || other.workspaceDiagnostics == workspaceDiagnostics)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,identifier,interFileDependencies,workspaceDiagnostics,id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),interFileDependencies,workspaceDiagnostics,workDoneProgress,identifier,id);
 
 @override
 String toString() {
-  return 'DiagnosticRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, identifier: $identifier, interFileDependencies: $interFileDependencies, workspaceDiagnostics: $workspaceDiagnostics, id: $id)';
+  return 'DiagnosticRegistrationOptions(documentSelector: $documentSelector, interFileDependencies: $interFileDependencies, workspaceDiagnostics: $workspaceDiagnostics, workDoneProgress: $workDoneProgress, identifier: $identifier, id: $id)';
 }
 
 
@@ -38038,7 +38038,7 @@ abstract mixin class _$DiagnosticRegistrationOptionsCopyWith<$Res> implements $D
   factory _$DiagnosticRegistrationOptionsCopyWith(_DiagnosticRegistrationOptions value, $Res Function(_DiagnosticRegistrationOptions) _then) = __$DiagnosticRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, String? identifier, bool interFileDependencies, bool workspaceDiagnostics, String? id
+ DocumentSelector? documentSelector, bool interFileDependencies, bool workspaceDiagnostics, bool? workDoneProgress, String? identifier, String? id
 });
 
 
@@ -38055,14 +38055,14 @@ class __$DiagnosticRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DiagnosticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? identifier = freezed,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? workDoneProgress = freezed,Object? identifier = freezed,Object? id = freezed,}) {
   return _then(_DiagnosticRegistrationOptions(
 documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
 as bool,workspaceDiagnostics: null == workspaceDiagnostics ? _self.workspaceDiagnostics : workspaceDiagnostics // ignore: cast_nullable_to_non_nullable
-as bool,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as bool,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
+as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -38074,12 +38074,12 @@ as String?,
 /// @nodoc
 mixin _$WorkspaceDiagnosticParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The currently known diagnostic reports with their previous result ids.
+ List<PreviousResultId> get previousResultIds;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The additional identifier provided during registration.
- String? get identifier;/// The currently known diagnostic reports with their previous result ids.
- List<PreviousResultId> get previousResultIds;
+ String? get identifier;
 /// Create a copy of WorkspaceDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38092,16 +38092,16 @@ $WorkspaceDiagnosticParamsCopyWith<WorkspaceDiagnosticParams> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceDiagnosticParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&const DeepCollectionEquality().equals(other.previousResultIds, previousResultIds));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceDiagnosticParams&&const DeepCollectionEquality().equals(other.previousResultIds, previousResultIds)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.identifier, identifier) || other.identifier == identifier));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,identifier,const DeepCollectionEquality().hash(previousResultIds));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(previousResultIds),workDoneToken,partialResultToken,identifier);
 
 @override
 String toString() {
-  return 'WorkspaceDiagnosticParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, identifier: $identifier, previousResultIds: $previousResultIds)';
+  return 'WorkspaceDiagnosticParams(previousResultIds: $previousResultIds, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, identifier: $identifier)';
 }
 
 
@@ -38112,7 +38112,7 @@ abstract mixin class $WorkspaceDiagnosticParamsCopyWith<$Res>  {
   factory $WorkspaceDiagnosticParamsCopyWith(WorkspaceDiagnosticParams value, $Res Function(WorkspaceDiagnosticParams) _then) = _$WorkspaceDiagnosticParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, String? identifier, List<PreviousResultId> previousResultIds
+ List<PreviousResultId> previousResultIds,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, String? identifier
 });
 
 
@@ -38129,13 +38129,13 @@ class _$WorkspaceDiagnosticParamsCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? identifier = freezed,Object? previousResultIds = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? previousResultIds = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? identifier = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+previousResultIds: null == previousResultIds ? _self.previousResultIds : previousResultIds // ignore: cast_nullable_to_non_nullable
+as List<PreviousResultId>,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,previousResultIds: null == previousResultIds ? _self.previousResultIds : previousResultIds // ignore: cast_nullable_to_non_nullable
-as List<PreviousResultId>,
+as String?,
   ));
 }
 /// Create a copy of WorkspaceDiagnosticParams
@@ -38171,16 +38171,9 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 @JsonSerializable()
 
 class _WorkspaceDiagnosticParams implements WorkspaceDiagnosticParams {
-  const _WorkspaceDiagnosticParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, this.identifier, required final  List<PreviousResultId> previousResultIds}): _previousResultIds = previousResultIds;
+  const _WorkspaceDiagnosticParams({required final  List<PreviousResultId> previousResultIds, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, this.identifier}): _previousResultIds = previousResultIds;
   factory _WorkspaceDiagnosticParams.fromJson(Map<String, dynamic> json) => _$WorkspaceDiagnosticParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g.
-/// streaming) to the client.
-@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The additional identifier provided during registration.
-@override final  String? identifier;
 /// The currently known diagnostic reports with their previous result ids.
  final  List<PreviousResultId> _previousResultIds;
 /// The currently known diagnostic reports with their previous result ids.
@@ -38190,6 +38183,13 @@ class _WorkspaceDiagnosticParams implements WorkspaceDiagnosticParams {
   return EqualUnmodifiableListView(_previousResultIds);
 }
 
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
+/// The additional identifier provided during registration.
+@override final  String? identifier;
 
 /// Create a copy of WorkspaceDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
@@ -38204,16 +38204,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceDiagnosticParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&const DeepCollectionEquality().equals(other._previousResultIds, _previousResultIds));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceDiagnosticParams&&const DeepCollectionEquality().equals(other._previousResultIds, _previousResultIds)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.identifier, identifier) || other.identifier == identifier));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,identifier,const DeepCollectionEquality().hash(_previousResultIds));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_previousResultIds),workDoneToken,partialResultToken,identifier);
 
 @override
 String toString() {
-  return 'WorkspaceDiagnosticParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, identifier: $identifier, previousResultIds: $previousResultIds)';
+  return 'WorkspaceDiagnosticParams(previousResultIds: $previousResultIds, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, identifier: $identifier)';
 }
 
 
@@ -38224,7 +38224,7 @@ abstract mixin class _$WorkspaceDiagnosticParamsCopyWith<$Res> implements $Works
   factory _$WorkspaceDiagnosticParamsCopyWith(_WorkspaceDiagnosticParams value, $Res Function(_WorkspaceDiagnosticParams) _then) = __$WorkspaceDiagnosticParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, String? identifier, List<PreviousResultId> previousResultIds
+ List<PreviousResultId> previousResultIds,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, String? identifier
 });
 
 
@@ -38241,13 +38241,13 @@ class __$WorkspaceDiagnosticParamsCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? identifier = freezed,Object? previousResultIds = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? previousResultIds = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? identifier = freezed,}) {
   return _then(_WorkspaceDiagnosticParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+previousResultIds: null == previousResultIds ? _self._previousResultIds : previousResultIds // ignore: cast_nullable_to_non_nullable
+as List<PreviousResultId>,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,previousResultIds: null == previousResultIds ? _self._previousResultIds : previousResultIds // ignore: cast_nullable_to_non_nullable
-as List<PreviousResultId>,
+as String?,
   ));
 }
 
@@ -38980,10 +38980,10 @@ mixin _$InlineCompletionParams {
 
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
- Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// Additional information about the context in which inline completions
+ Position get position;/// Additional information about the context in which inline completions
 /// were requested.
- InlineCompletionContext get context;
+ InlineCompletionContext get context;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;
 /// Create a copy of InlineCompletionParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38996,16 +38996,16 @@ $InlineCompletionParamsCopyWith<InlineCompletionParams> get copyWith => _$Inline
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineCompletionParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineCompletionParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.context, context) || other.context == context)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,textDocument,position,workDoneToken,context);
+int get hashCode => Object.hash(runtimeType,textDocument,position,context,workDoneToken);
 
 @override
 String toString() {
-  return 'InlineCompletionParams(textDocument: $textDocument, position: $position, workDoneToken: $workDoneToken, context: $context)';
+  return 'InlineCompletionParams(textDocument: $textDocument, position: $position, context: $context, workDoneToken: $workDoneToken)';
 }
 
 
@@ -39016,11 +39016,11 @@ abstract mixin class $InlineCompletionParamsCopyWith<$Res>  {
   factory $InlineCompletionParamsCopyWith(InlineCompletionParams value, $Res Function(InlineCompletionParams) _then) = _$InlineCompletionParamsCopyWithImpl;
 @useResult
 $Res call({
- TextDocumentIdentifier textDocument, Position position,@_ProgressTokenConverter() ProgressToken? workDoneToken, InlineCompletionContext context
+ TextDocumentIdentifier textDocument, Position position, InlineCompletionContext context,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-$TextDocumentIdentifierCopyWith<$Res> get textDocument;$PositionCopyWith<$Res> get position;$ProgressTokenCopyWith<$Res>? get workDoneToken;$InlineCompletionContextCopyWith<$Res> get context;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$PositionCopyWith<$Res> get position;$InlineCompletionContextCopyWith<$Res> get context;$ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -39033,13 +39033,13 @@ class _$InlineCompletionParamsCopyWithImpl<$Res>
 
 /// Create a copy of InlineCompletionParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? position = null,Object? workDoneToken = freezed,Object? context = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? position = null,Object? context = null,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as InlineCompletionContext,
+as Position,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
+as InlineCompletionContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of InlineCompletionParams
@@ -39064,6 +39064,15 @@ $PositionCopyWith<$Res> get position {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
+$InlineCompletionContextCopyWith<$Res> get context {
+  
+  return $InlineCompletionContextCopyWith<$Res>(_self.context, (value) {
+    return _then(_self.copyWith(context: value));
+  });
+}/// Create a copy of InlineCompletionParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
 $ProgressTokenCopyWith<$Res>? get workDoneToken {
     if (_self.workDoneToken == null) {
     return null;
@@ -39071,15 +39080,6 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
     return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of InlineCompletionParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$InlineCompletionContextCopyWith<$Res> get context {
-  
-  return $InlineCompletionContextCopyWith<$Res>(_self.context, (value) {
-    return _then(_self.copyWith(context: value));
   });
 }
 }
@@ -39090,18 +39090,18 @@ $InlineCompletionContextCopyWith<$Res> get context {
 @JsonSerializable()
 
 class _InlineCompletionParams implements InlineCompletionParams {
-  const _InlineCompletionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, required this.context});
+  const _InlineCompletionParams({required this.textDocument, required this.position, required this.context, @_ProgressTokenConverter() this.workDoneToken});
   factory _InlineCompletionParams.fromJson(Map<String, dynamic> json) => _$InlineCompletionParamsFromJson(json);
 
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
 /// The position inside the text document.
 @override final  Position position;
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// Additional information about the context in which inline completions
 /// were requested.
 @override final  InlineCompletionContext context;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 
 /// Create a copy of InlineCompletionParams
 /// with the given fields replaced by the non-null parameter values.
@@ -39116,16 +39116,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineCompletionParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineCompletionParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.context, context) || other.context == context)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,textDocument,position,workDoneToken,context);
+int get hashCode => Object.hash(runtimeType,textDocument,position,context,workDoneToken);
 
 @override
 String toString() {
-  return 'InlineCompletionParams(textDocument: $textDocument, position: $position, workDoneToken: $workDoneToken, context: $context)';
+  return 'InlineCompletionParams(textDocument: $textDocument, position: $position, context: $context, workDoneToken: $workDoneToken)';
 }
 
 
@@ -39136,11 +39136,11 @@ abstract mixin class _$InlineCompletionParamsCopyWith<$Res> implements $InlineCo
   factory _$InlineCompletionParamsCopyWith(_InlineCompletionParams value, $Res Function(_InlineCompletionParams) _then) = __$InlineCompletionParamsCopyWithImpl;
 @override @useResult
 $Res call({
- TextDocumentIdentifier textDocument, Position position,@_ProgressTokenConverter() ProgressToken? workDoneToken, InlineCompletionContext context
+ TextDocumentIdentifier textDocument, Position position, InlineCompletionContext context,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $PositionCopyWith<$Res> get position;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $InlineCompletionContextCopyWith<$Res> get context;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $PositionCopyWith<$Res> get position;@override $InlineCompletionContextCopyWith<$Res> get context;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -39153,13 +39153,13 @@ class __$InlineCompletionParamsCopyWithImpl<$Res>
 
 /// Create a copy of InlineCompletionParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? position = null,Object? workDoneToken = freezed,Object? context = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? position = null,Object? context = null,Object? workDoneToken = freezed,}) {
   return _then(_InlineCompletionParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as InlineCompletionContext,
+as Position,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
+as InlineCompletionContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
@@ -39185,6 +39185,15 @@ $PositionCopyWith<$Res> get position {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
+$InlineCompletionContextCopyWith<$Res> get context {
+  
+  return $InlineCompletionContextCopyWith<$Res>(_self.context, (value) {
+    return _then(_self.copyWith(context: value));
+  });
+}/// Create a copy of InlineCompletionParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
 $ProgressTokenCopyWith<$Res>? get workDoneToken {
     if (_self.workDoneToken == null) {
     return null;
@@ -39193,15 +39202,6 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
   return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
     return _then(_self.copyWith(workDoneToken: value));
   });
-}/// Create a copy of InlineCompletionParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$InlineCompletionContextCopyWith<$Res> get context {
-  
-  return $InlineCompletionContextCopyWith<$Res>(_self.context, (value) {
-    return _then(_self.copyWith(context: value));
-  });
 }
 }
 
@@ -39209,9 +39209,9 @@ $InlineCompletionContextCopyWith<$Res> get context {
 /// @nodoc
 mixin _$InlineCompletionRegistrationOptions {
 
- bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
+/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlineCompletionRegistrationOptions
@@ -39226,16 +39226,16 @@ $InlineCompletionRegistrationOptionsCopyWith<InlineCompletionRegistrationOptions
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineCompletionRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineCompletionRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,id);
 
 @override
 String toString() {
-  return 'InlineCompletionRegistrationOptions(workDoneProgress: $workDoneProgress, documentSelector: $documentSelector, id: $id)';
+  return 'InlineCompletionRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, id: $id)';
 }
 
 
@@ -39246,7 +39246,7 @@ abstract mixin class $InlineCompletionRegistrationOptionsCopyWith<$Res>  {
   factory $InlineCompletionRegistrationOptionsCopyWith(InlineCompletionRegistrationOptions value, $Res Function(InlineCompletionRegistrationOptions) _then) = _$InlineCompletionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, String? id
 });
 
 
@@ -39263,11 +39263,11 @@ class _$InlineCompletionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlineCompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -39280,10 +39280,9 @@ as String?,
 @JsonSerializable()
 
 class _InlineCompletionRegistrationOptions implements InlineCompletionRegistrationOptions {
-  const _InlineCompletionRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
+  const _InlineCompletionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _InlineCompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineCompletionRegistrationOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
@@ -39297,6 +39296,7 @@ class _InlineCompletionRegistrationOptions implements InlineCompletionRegistrati
   return EqualUnmodifiableListView(value);
 }
 
+@override final  bool? workDoneProgress;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
 @override final  String? id;
@@ -39314,16 +39314,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineCompletionRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlineCompletionRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(_documentSelector),id);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,id);
 
 @override
 String toString() {
-  return 'InlineCompletionRegistrationOptions(workDoneProgress: $workDoneProgress, documentSelector: $documentSelector, id: $id)';
+  return 'InlineCompletionRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, id: $id)';
 }
 
 
@@ -39334,7 +39334,7 @@ abstract mixin class _$InlineCompletionRegistrationOptionsCopyWith<$Res> impleme
   factory _$InlineCompletionRegistrationOptionsCopyWith(_InlineCompletionRegistrationOptions value, $Res Function(_InlineCompletionRegistrationOptions) _then) = __$InlineCompletionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, DocumentSelector? documentSelector, String? id
+ DocumentSelector? documentSelector, bool? workDoneProgress, String? id
 });
 
 
@@ -39351,11 +39351,11 @@ class __$InlineCompletionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlineCompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? documentSelector = freezed,Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? id = freezed,}) {
   return _then(_InlineCompletionRegistrationOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as DocumentSelector?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
+as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -39647,12 +39647,17 @@ as List<Unregistration>,
 /// @nodoc
 mixin _$InitializeParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The process Id of the parent process that started the server.
+/// The process Id of the parent process that started the server.
 ///
 /// Is `null` if the process has not been started by another process. If the
 /// parent process is not alive then the server should exit.
- int? get processId;/// Information about the client
+ int? get processId;/// The rootUri of the workspace. Is null if no folder is open. If both
+/// `rootPath` and `rootUri` are set `rootUri` wins.
+///
+/// @deprecated in favour of workspaceFolders.
+@Deprecated('in favour of workspaceFolders.') String? get rootUri;/// The capabilities provided by the client (editor or tool)
+ ClientCapabilities get capabilities;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// Information about the client
  ({String name, String? version})? get clientInfo;/// The locale the client is currently showing the user interface in. This
 /// must not necessarily be the locale of the operating system.
 ///
@@ -39661,12 +39666,7 @@ mixin _$InitializeParams {
  String? get locale;/// The rootPath of the workspace. Is null if no folder is open.
 ///
 /// @deprecated in favour of rootUri.
-@Deprecated('in favour of rootUri.') String? get rootPath;/// The rootUri of the workspace. Is null if no folder is open. If both
-/// `rootPath` and `rootUri` are set `rootUri` wins.
-///
-/// @deprecated in favour of workspaceFolders.
-@Deprecated('in favour of workspaceFolders.') String? get rootUri;/// The capabilities provided by the client (editor or tool)
- ClientCapabilities get capabilities;/// User provided initialization options.
+@Deprecated('in favour of rootUri.') String? get rootPath;/// User provided initialization options.
  LSPAny? get initializationOptions;/// The initial trace setting. If omitted trace is disabled ('off').
  TraceValues? get trace;/// The workspace folders configured in the client when the server starts.
 ///
@@ -39686,16 +39686,16 @@ $InitializeParamsCopyWith<InitializeParams> get copyWith => _$InitializeParamsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InitializeParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.processId, processId) || other.processId == processId)&&(identical(other.clientInfo, clientInfo) || other.clientInfo == clientInfo)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.rootPath, rootPath) || other.rootPath == rootPath)&&(identical(other.rootUri, rootUri) || other.rootUri == rootUri)&&(identical(other.capabilities, capabilities) || other.capabilities == capabilities)&&const DeepCollectionEquality().equals(other.initializationOptions, initializationOptions)&&(identical(other.trace, trace) || other.trace == trace)&&const DeepCollectionEquality().equals(other.workspaceFolders, workspaceFolders));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InitializeParams&&(identical(other.processId, processId) || other.processId == processId)&&(identical(other.rootUri, rootUri) || other.rootUri == rootUri)&&(identical(other.capabilities, capabilities) || other.capabilities == capabilities)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.clientInfo, clientInfo) || other.clientInfo == clientInfo)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.rootPath, rootPath) || other.rootPath == rootPath)&&const DeepCollectionEquality().equals(other.initializationOptions, initializationOptions)&&(identical(other.trace, trace) || other.trace == trace)&&const DeepCollectionEquality().equals(other.workspaceFolders, workspaceFolders));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,processId,clientInfo,locale,rootPath,rootUri,capabilities,const DeepCollectionEquality().hash(initializationOptions),trace,const DeepCollectionEquality().hash(workspaceFolders));
+int get hashCode => Object.hash(runtimeType,processId,rootUri,capabilities,workDoneToken,clientInfo,locale,rootPath,const DeepCollectionEquality().hash(initializationOptions),trace,const DeepCollectionEquality().hash(workspaceFolders));
 
 @override
 String toString() {
-  return 'InitializeParams(workDoneToken: $workDoneToken, processId: $processId, clientInfo: $clientInfo, locale: $locale, rootPath: $rootPath, rootUri: $rootUri, capabilities: $capabilities, initializationOptions: $initializationOptions, trace: $trace, workspaceFolders: $workspaceFolders)';
+  return 'InitializeParams(processId: $processId, rootUri: $rootUri, capabilities: $capabilities, workDoneToken: $workDoneToken, clientInfo: $clientInfo, locale: $locale, rootPath: $rootPath, initializationOptions: $initializationOptions, trace: $trace, workspaceFolders: $workspaceFolders)';
 }
 
 
@@ -39706,11 +39706,11 @@ abstract mixin class $InitializeParamsCopyWith<$Res>  {
   factory $InitializeParamsCopyWith(InitializeParams value, $Res Function(InitializeParams) _then) = _$InitializeParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, ({String name, String? version})? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+ int? processId,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities,@_ProgressTokenConverter() ProgressToken? workDoneToken, ({String name, String? version})? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ClientCapabilitiesCopyWith<$Res> get capabilities;
+$ClientCapabilitiesCopyWith<$Res> get capabilities;$ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -39723,21 +39723,30 @@ class _$InitializeParamsCopyWithImpl<$Res>
 
 /// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? processId = freezed,Object? clientInfo = freezed,Object? locale = freezed,Object? rootPath = freezed,Object? rootUri = freezed,Object? capabilities = null,Object? initializationOptions = freezed,Object? trace = freezed,Object? workspaceFolders = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? processId = freezed,Object? rootUri = freezed,Object? capabilities = null,Object? workDoneToken = freezed,Object? clientInfo = freezed,Object? locale = freezed,Object? rootPath = freezed,Object? initializationOptions = freezed,Object? trace = freezed,Object? workspaceFolders = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
-as int?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
+processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
+as int?,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
+as String?,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
+as ClientCapabilities,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
 as ({String name, String? version})?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
-as String?,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
-as String?,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
-as ClientCapabilities,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions ,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
+as String?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions ,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
 as TraceValues?,workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
 as List<WorkspaceFolder>?,
   ));
 }
 /// Create a copy of InitializeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCapabilitiesCopyWith<$Res> get capabilities {
+  
+  return $ClientCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
+    return _then(_self.copyWith(capabilities: value));
+  });
+}/// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -39749,15 +39758,6 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
   return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
     return _then(_self.copyWith(workDoneToken: value));
   });
-}/// Create a copy of InitializeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ClientCapabilitiesCopyWith<$Res> get capabilities {
-  
-  return $ClientCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
-    return _then(_self.copyWith(capabilities: value));
-  });
 }
 }
 
@@ -39767,16 +39767,23 @@ $ClientCapabilitiesCopyWith<$Res> get capabilities {
 @JsonSerializable()
 
 class _InitializeParams implements InitializeParams {
-  const _InitializeParams({@_ProgressTokenConverter() this.workDoneToken, required this.processId, this.clientInfo, this.locale, @Deprecated('in favour of rootUri.') this.rootPath, @Deprecated('in favour of workspaceFolders.') required this.rootUri, required this.capabilities, this.initializationOptions, this.trace, final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders;
+  const _InitializeParams({required this.processId, @Deprecated('in favour of workspaceFolders.') required this.rootUri, required this.capabilities, @_ProgressTokenConverter() this.workDoneToken, this.clientInfo, this.locale, @Deprecated('in favour of rootUri.') this.rootPath, this.initializationOptions, this.trace, final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders;
   factory _InitializeParams.fromJson(Map<String, dynamic> json) => _$InitializeParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The process Id of the parent process that started the server.
 ///
 /// Is `null` if the process has not been started by another process. If the
 /// parent process is not alive then the server should exit.
 @override final  int? processId;
+/// The rootUri of the workspace. Is null if no folder is open. If both
+/// `rootPath` and `rootUri` are set `rootUri` wins.
+///
+/// @deprecated in favour of workspaceFolders.
+@override@Deprecated('in favour of workspaceFolders.') final  String? rootUri;
+/// The capabilities provided by the client (editor or tool)
+@override final  ClientCapabilities capabilities;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// Information about the client
 @override final  ({String name, String? version})? clientInfo;
 /// The locale the client is currently showing the user interface in. This
@@ -39789,13 +39796,6 @@ class _InitializeParams implements InitializeParams {
 ///
 /// @deprecated in favour of rootUri.
 @override@Deprecated('in favour of rootUri.') final  String? rootPath;
-/// The rootUri of the workspace. Is null if no folder is open. If both
-/// `rootPath` and `rootUri` are set `rootUri` wins.
-///
-/// @deprecated in favour of workspaceFolders.
-@override@Deprecated('in favour of workspaceFolders.') final  String? rootUri;
-/// The capabilities provided by the client (editor or tool)
-@override final  ClientCapabilities capabilities;
 /// User provided initialization options.
 @override final  LSPAny? initializationOptions;
 /// The initial trace setting. If omitted trace is disabled ('off').
@@ -39833,16 +39833,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InitializeParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.processId, processId) || other.processId == processId)&&(identical(other.clientInfo, clientInfo) || other.clientInfo == clientInfo)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.rootPath, rootPath) || other.rootPath == rootPath)&&(identical(other.rootUri, rootUri) || other.rootUri == rootUri)&&(identical(other.capabilities, capabilities) || other.capabilities == capabilities)&&const DeepCollectionEquality().equals(other.initializationOptions, initializationOptions)&&(identical(other.trace, trace) || other.trace == trace)&&const DeepCollectionEquality().equals(other._workspaceFolders, _workspaceFolders));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InitializeParams&&(identical(other.processId, processId) || other.processId == processId)&&(identical(other.rootUri, rootUri) || other.rootUri == rootUri)&&(identical(other.capabilities, capabilities) || other.capabilities == capabilities)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.clientInfo, clientInfo) || other.clientInfo == clientInfo)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.rootPath, rootPath) || other.rootPath == rootPath)&&const DeepCollectionEquality().equals(other.initializationOptions, initializationOptions)&&(identical(other.trace, trace) || other.trace == trace)&&const DeepCollectionEquality().equals(other._workspaceFolders, _workspaceFolders));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,processId,clientInfo,locale,rootPath,rootUri,capabilities,const DeepCollectionEquality().hash(initializationOptions),trace,const DeepCollectionEquality().hash(_workspaceFolders));
+int get hashCode => Object.hash(runtimeType,processId,rootUri,capabilities,workDoneToken,clientInfo,locale,rootPath,const DeepCollectionEquality().hash(initializationOptions),trace,const DeepCollectionEquality().hash(_workspaceFolders));
 
 @override
 String toString() {
-  return 'InitializeParams(workDoneToken: $workDoneToken, processId: $processId, clientInfo: $clientInfo, locale: $locale, rootPath: $rootPath, rootUri: $rootUri, capabilities: $capabilities, initializationOptions: $initializationOptions, trace: $trace, workspaceFolders: $workspaceFolders)';
+  return 'InitializeParams(processId: $processId, rootUri: $rootUri, capabilities: $capabilities, workDoneToken: $workDoneToken, clientInfo: $clientInfo, locale: $locale, rootPath: $rootPath, initializationOptions: $initializationOptions, trace: $trace, workspaceFolders: $workspaceFolders)';
 }
 
 
@@ -39853,11 +39853,11 @@ abstract mixin class _$InitializeParamsCopyWith<$Res> implements $InitializePara
   factory _$InitializeParamsCopyWith(_InitializeParams value, $Res Function(_InitializeParams) _then) = __$InitializeParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, ({String name, String? version})? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+ int? processId,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities,@_ProgressTokenConverter() ProgressToken? workDoneToken, ({String name, String? version})? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ClientCapabilitiesCopyWith<$Res> get capabilities;
+@override $ClientCapabilitiesCopyWith<$Res> get capabilities;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -39870,22 +39870,31 @@ class __$InitializeParamsCopyWithImpl<$Res>
 
 /// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? processId = freezed,Object? clientInfo = freezed,Object? locale = freezed,Object? rootPath = freezed,Object? rootUri = freezed,Object? capabilities = null,Object? initializationOptions = freezed,Object? trace = freezed,Object? workspaceFolders = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? processId = freezed,Object? rootUri = freezed,Object? capabilities = null,Object? workDoneToken = freezed,Object? clientInfo = freezed,Object? locale = freezed,Object? rootPath = freezed,Object? initializationOptions = freezed,Object? trace = freezed,Object? workspaceFolders = freezed,}) {
   return _then(_InitializeParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
-as int?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
+processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
+as int?,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
+as String?,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
+as ClientCapabilities,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
 as ({String name, String? version})?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
-as String?,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
-as String?,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
-as ClientCapabilities,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions ,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
+as String?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions ,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
 as TraceValues?,workspaceFolders: freezed == workspaceFolders ? _self._workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
 as List<WorkspaceFolder>?,
   ));
 }
 
 /// Create a copy of InitializeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCapabilitiesCopyWith<$Res> get capabilities {
+  
+  return $ClientCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
+    return _then(_self.copyWith(capabilities: value));
+  });
+}/// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -39896,15 +39905,6 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
     return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of InitializeParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ClientCapabilitiesCopyWith<$Res> get capabilities {
-  
-  return $ClientCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
-    return _then(_self.copyWith(capabilities: value));
   });
 }
 }
@@ -40248,7 +40248,7 @@ section: freezed == section ? _self.section : section ,
 /// @nodoc
 mixin _$ShowMessageParams {
 
-/// The message type. See [MessageType]
+/// The message type. See `MessageType`
  MessageType get type;/// The actual message.
  String get message;
 /// Create a copy of ShowMessageParams
@@ -40319,7 +40319,7 @@ class _ShowMessageParams implements ShowMessageParams {
   const _ShowMessageParams({required this.type, required this.message});
   factory _ShowMessageParams.fromJson(Map<String, dynamic> json) => _$ShowMessageParamsFromJson(json);
 
-/// The message type. See [MessageType]
+/// The message type. See `MessageType`
 @override final  MessageType type;
 /// The actual message.
 @override final  String message;
@@ -40389,7 +40389,7 @@ as String,
 /// @nodoc
 mixin _$ShowMessageRequestParams {
 
-/// The message type. See [MessageType]
+/// The message type. See `MessageType`
  MessageType get type;/// The actual message.
  String get message;/// The message action items to present.
  List<MessageActionItem>? get actions;
@@ -40462,7 +40462,7 @@ class _ShowMessageRequestParams implements ShowMessageRequestParams {
   const _ShowMessageRequestParams({required this.type, required this.message, final  List<MessageActionItem>? actions}): _actions = actions;
   factory _ShowMessageRequestParams.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestParamsFromJson(json);
 
-/// The message type. See [MessageType]
+/// The message type. See `MessageType`
 @override final  MessageType type;
 /// The actual message.
 @override final  String message;
@@ -40544,7 +40544,7 @@ as List<MessageActionItem>?,
 /// @nodoc
 mixin _$LogMessageParams {
 
-/// The message type. See [MessageType]
+/// The message type. See `MessageType`
  MessageType get type;/// The actual message.
  String get message;
 /// Create a copy of LogMessageParams
@@ -40615,7 +40615,7 @@ class _LogMessageParams implements LogMessageParams {
   const _LogMessageParams({required this.type, required this.message});
   factory _LogMessageParams.fromJson(Map<String, dynamic> json) => _$LogMessageParamsFromJson(json);
 
-/// The message type. See [MessageType]
+/// The message type. See `MessageType`
 @override final  MessageType type;
 /// The actual message.
 @override final  String message;
@@ -42104,10 +42104,10 @@ as List<FileSystemWatcher>,
 mixin _$PublishDiagnosticsParams {
 
 /// The URI for which diagnostic information is reported.
- String get uri;/// Optional the version number of the document the diagnostics are
+ String get uri;/// An array of diagnostic information items.
+ List<Diagnostic> get diagnostics;/// Optional the version number of the document the diagnostics are
 /// published for.
- int? get version;/// An array of diagnostic information items.
- List<Diagnostic> get diagnostics;
+ int? get version;
 /// Create a copy of PublishDiagnosticsParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -42120,16 +42120,16 @@ $PublishDiagnosticsParamsCopyWith<PublishDiagnosticsParams> get copyWith => _$Pu
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PublishDiagnosticsParams&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&const DeepCollectionEquality().equals(other.diagnostics, diagnostics));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PublishDiagnosticsParams&&(identical(other.uri, uri) || other.uri == uri)&&const DeepCollectionEquality().equals(other.diagnostics, diagnostics)&&(identical(other.version, version) || other.version == version));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uri,version,const DeepCollectionEquality().hash(diagnostics));
+int get hashCode => Object.hash(runtimeType,uri,const DeepCollectionEquality().hash(diagnostics),version);
 
 @override
 String toString() {
-  return 'PublishDiagnosticsParams(uri: $uri, version: $version, diagnostics: $diagnostics)';
+  return 'PublishDiagnosticsParams(uri: $uri, diagnostics: $diagnostics, version: $version)';
 }
 
 
@@ -42140,7 +42140,7 @@ abstract mixin class $PublishDiagnosticsParamsCopyWith<$Res>  {
   factory $PublishDiagnosticsParamsCopyWith(PublishDiagnosticsParams value, $Res Function(PublishDiagnosticsParams) _then) = _$PublishDiagnosticsParamsCopyWithImpl;
 @useResult
 $Res call({
- String uri, int? version, List<Diagnostic> diagnostics
+ String uri, List<Diagnostic> diagnostics, int? version
 });
 
 
@@ -42157,12 +42157,12 @@ class _$PublishDiagnosticsParamsCopyWithImpl<$Res>
 
 /// Create a copy of PublishDiagnosticsParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,Object? version = freezed,Object? diagnostics = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,Object? diagnostics = null,Object? version = freezed,}) {
   return _then(_self.copyWith(
 uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int?,diagnostics: null == diagnostics ? _self.diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,
+as String,diagnostics: null == diagnostics ? _self.diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -42174,14 +42174,11 @@ as List<Diagnostic>,
 @JsonSerializable()
 
 class _PublishDiagnosticsParams implements PublishDiagnosticsParams {
-  const _PublishDiagnosticsParams({required this.uri, this.version, required final  List<Diagnostic> diagnostics}): _diagnostics = diagnostics;
+  const _PublishDiagnosticsParams({required this.uri, required final  List<Diagnostic> diagnostics, this.version}): _diagnostics = diagnostics;
   factory _PublishDiagnosticsParams.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsParamsFromJson(json);
 
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// Optional the version number of the document the diagnostics are
-/// published for.
-@override final  int? version;
 /// An array of diagnostic information items.
  final  List<Diagnostic> _diagnostics;
 /// An array of diagnostic information items.
@@ -42191,6 +42188,9 @@ class _PublishDiagnosticsParams implements PublishDiagnosticsParams {
   return EqualUnmodifiableListView(_diagnostics);
 }
 
+/// Optional the version number of the document the diagnostics are
+/// published for.
+@override final  int? version;
 
 /// Create a copy of PublishDiagnosticsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -42205,16 +42205,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PublishDiagnosticsParams&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&const DeepCollectionEquality().equals(other._diagnostics, _diagnostics));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PublishDiagnosticsParams&&(identical(other.uri, uri) || other.uri == uri)&&const DeepCollectionEquality().equals(other._diagnostics, _diagnostics)&&(identical(other.version, version) || other.version == version));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uri,version,const DeepCollectionEquality().hash(_diagnostics));
+int get hashCode => Object.hash(runtimeType,uri,const DeepCollectionEquality().hash(_diagnostics),version);
 
 @override
 String toString() {
-  return 'PublishDiagnosticsParams(uri: $uri, version: $version, diagnostics: $diagnostics)';
+  return 'PublishDiagnosticsParams(uri: $uri, diagnostics: $diagnostics, version: $version)';
 }
 
 
@@ -42225,7 +42225,7 @@ abstract mixin class _$PublishDiagnosticsParamsCopyWith<$Res> implements $Publis
   factory _$PublishDiagnosticsParamsCopyWith(_PublishDiagnosticsParams value, $Res Function(_PublishDiagnosticsParams) _then) = __$PublishDiagnosticsParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String uri, int? version, List<Diagnostic> diagnostics
+ String uri, List<Diagnostic> diagnostics, int? version
 });
 
 
@@ -42242,12 +42242,12 @@ class __$PublishDiagnosticsParamsCopyWithImpl<$Res>
 
 /// Create a copy of PublishDiagnosticsParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,Object? version = freezed,Object? diagnostics = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,Object? diagnostics = null,Object? version = freezed,}) {
   return _then(_PublishDiagnosticsParams(
 uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int?,diagnostics: null == diagnostics ? _self._diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,
+as String,diagnostics: null == diagnostics ? _self._diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -43943,10 +43943,10 @@ mixin _$ReferenceParams {
 
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
- Position get position;/// An optional token that a server can use to report work done progress.
+ Position get position; ReferenceContext get context;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken; ReferenceContext get context;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of ReferenceParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -43959,16 +43959,16 @@ $ReferenceParamsCopyWith<ReferenceParams> get copyWith => _$ReferenceParamsCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReferenceParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReferenceParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.context, context) || other.context == context)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,textDocument,position,workDoneToken,partialResultToken,context);
+int get hashCode => Object.hash(runtimeType,textDocument,position,context,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'ReferenceParams(textDocument: $textDocument, position: $position, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, context: $context)';
+  return 'ReferenceParams(textDocument: $textDocument, position: $position, context: $context, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -43979,11 +43979,11 @@ abstract mixin class $ReferenceParamsCopyWith<$Res>  {
   factory $ReferenceParamsCopyWith(ReferenceParams value, $Res Function(ReferenceParams) _then) = _$ReferenceParamsCopyWithImpl;
 @useResult
 $Res call({
- TextDocumentIdentifier textDocument, Position position,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, ReferenceContext context
+ TextDocumentIdentifier textDocument, Position position, ReferenceContext context,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$TextDocumentIdentifierCopyWith<$Res> get textDocument;$PositionCopyWith<$Res> get position;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$ReferenceContextCopyWith<$Res> get context;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$PositionCopyWith<$Res> get position;$ReferenceContextCopyWith<$Res> get context;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -43996,14 +43996,14 @@ class _$ReferenceParamsCopyWithImpl<$Res>
 
 /// Create a copy of ReferenceParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? position = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? context = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? position = null,Object? context = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as Position,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
+as ReferenceContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as ReferenceContext,
+as ProgressToken?,
   ));
 }
 /// Create a copy of ReferenceParams
@@ -44023,6 +44023,15 @@ $PositionCopyWith<$Res> get position {
   
   return $PositionCopyWith<$Res>(_self.position, (value) {
     return _then(_self.copyWith(position: value));
+  });
+}/// Create a copy of ReferenceParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ReferenceContextCopyWith<$Res> get context {
+  
+  return $ReferenceContextCopyWith<$Res>(_self.context, (value) {
+    return _then(_self.copyWith(context: value));
   });
 }/// Create a copy of ReferenceParams
 /// with the given fields replaced by the non-null parameter values.
@@ -44048,15 +44057,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of ReferenceParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ReferenceContextCopyWith<$Res> get context {
-  
-  return $ReferenceContextCopyWith<$Res>(_self.context, (value) {
-    return _then(_self.copyWith(context: value));
-  });
 }
 }
 
@@ -44066,19 +44066,19 @@ $ReferenceContextCopyWith<$Res> get context {
 @JsonSerializable()
 
 class _ReferenceParams implements ReferenceParams {
-  const _ReferenceParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.context});
+  const _ReferenceParams({required this.textDocument, required this.position, required this.context, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _ReferenceParams.fromJson(Map<String, dynamic> json) => _$ReferenceParamsFromJson(json);
 
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
 /// The position inside the text document.
 @override final  Position position;
+@override final  ReferenceContext context;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-@override final  ReferenceContext context;
 
 /// Create a copy of ReferenceParams
 /// with the given fields replaced by the non-null parameter values.
@@ -44093,16 +44093,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReferenceParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReferenceParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.context, context) || other.context == context)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,textDocument,position,workDoneToken,partialResultToken,context);
+int get hashCode => Object.hash(runtimeType,textDocument,position,context,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'ReferenceParams(textDocument: $textDocument, position: $position, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, context: $context)';
+  return 'ReferenceParams(textDocument: $textDocument, position: $position, context: $context, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -44113,11 +44113,11 @@ abstract mixin class _$ReferenceParamsCopyWith<$Res> implements $ReferenceParams
   factory _$ReferenceParamsCopyWith(_ReferenceParams value, $Res Function(_ReferenceParams) _then) = __$ReferenceParamsCopyWithImpl;
 @override @useResult
 $Res call({
- TextDocumentIdentifier textDocument, Position position,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, ReferenceContext context
+ TextDocumentIdentifier textDocument, Position position, ReferenceContext context,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $PositionCopyWith<$Res> get position;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $ReferenceContextCopyWith<$Res> get context;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $PositionCopyWith<$Res> get position;@override $ReferenceContextCopyWith<$Res> get context;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -44130,14 +44130,14 @@ class __$ReferenceParamsCopyWithImpl<$Res>
 
 /// Create a copy of ReferenceParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? position = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? context = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? position = null,Object? context = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_ReferenceParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as Position,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
+as ReferenceContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as ReferenceContext,
+as ProgressToken?,
   ));
 }
 
@@ -44163,6 +44163,15 @@ $PositionCopyWith<$Res> get position {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
+$ReferenceContextCopyWith<$Res> get context {
+  
+  return $ReferenceContextCopyWith<$Res>(_self.context, (value) {
+    return _then(_self.copyWith(context: value));
+  });
+}/// Create a copy of ReferenceParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
 $ProgressTokenCopyWith<$Res>? get workDoneToken {
     if (_self.workDoneToken == null) {
     return null;
@@ -44182,15 +44191,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of ReferenceParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ReferenceContextCopyWith<$Res> get context {
-  
-  return $ReferenceContextCopyWith<$Res>(_self.context, (value) {
-    return _then(_self.copyWith(context: value));
   });
 }
 }
@@ -44738,11 +44738,11 @@ as bool?,
 /// @nodoc
 mixin _$DocumentSymbolParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The text document.
+ TextDocumentIdentifier get textDocument;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of DocumentSymbolParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -44755,16 +44755,16 @@ $DocumentSymbolParamsCopyWith<DocumentSymbolParams> get copyWith => _$DocumentSy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentSymbolParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentSymbolParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'DocumentSymbolParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'DocumentSymbolParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -44775,11 +44775,11 @@ abstract mixin class $DocumentSymbolParamsCopyWith<$Res>  {
   factory $DocumentSymbolParamsCopyWith(DocumentSymbolParams value, $Res Function(DocumentSymbolParams) _then) = _$DocumentSymbolParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -44792,15 +44792,24 @@ class _$DocumentSymbolParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentSymbolParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 /// Create a copy of DocumentSymbolParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of DocumentSymbolParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -44824,15 +44833,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of DocumentSymbolParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -44842,16 +44842,16 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _DocumentSymbolParams implements DocumentSymbolParams {
-  const _DocumentSymbolParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
+  const _DocumentSymbolParams({required this.textDocument, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _DocumentSymbolParams.fromJson(Map<String, dynamic> json) => _$DocumentSymbolParamsFromJson(json);
 
+/// The text document.
+@override final  TextDocumentIdentifier textDocument;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The text document.
-@override final  TextDocumentIdentifier textDocument;
 
 /// Create a copy of DocumentSymbolParams
 /// with the given fields replaced by the non-null parameter values.
@@ -44866,16 +44866,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentSymbolParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentSymbolParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'DocumentSymbolParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'DocumentSymbolParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -44886,11 +44886,11 @@ abstract mixin class _$DocumentSymbolParamsCopyWith<$Res> implements $DocumentSy
   factory _$DocumentSymbolParamsCopyWith(_DocumentSymbolParams value, $Res Function(_DocumentSymbolParams) _then) = __$DocumentSymbolParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -44903,16 +44903,25 @@ class __$DocumentSymbolParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentSymbolParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_DocumentSymbolParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of DocumentSymbolParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of DocumentSymbolParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -44935,15 +44944,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of DocumentSymbolParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
   });
 }
 }
@@ -45110,13 +45110,13 @@ as String?,
 /// @nodoc
 mixin _$CodeActionParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
-/// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The document in which the command was invoked.
+/// The document in which the command was invoked.
  TextDocumentIdentifier get textDocument;/// The range for which the command was invoked.
  Range get range;/// Context carrying additional information.
- CodeActionContext get context;
+ CodeActionContext get context;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of CodeActionParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45129,16 +45129,16 @@ $CodeActionParamsCopyWith<CodeActionParams> get copyWith => _$CodeActionParamsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.context, context) || other.context == context)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,range,context);
+int get hashCode => Object.hash(runtimeType,textDocument,range,context,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'CodeActionParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, range: $range, context: $context)';
+  return 'CodeActionParams(textDocument: $textDocument, range: $range, context: $context, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -45149,11 +45149,11 @@ abstract mixin class $CodeActionParamsCopyWith<$Res>  {
   factory $CodeActionParamsCopyWith(CodeActionParams value, $Res Function(CodeActionParams) _then) = _$CodeActionParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, Range range, CodeActionContext context
+ TextDocumentIdentifier textDocument, Range range, CodeActionContext context,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;$CodeActionContextCopyWith<$Res> get context;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;$CodeActionContextCopyWith<$Res> get context;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -45166,41 +45166,17 @@ class _$CodeActionParamsCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? range = null,Object? context = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? range = null,Object? context = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as CodeActionContext,
+as CodeActionContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of CodeActionParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of CodeActionParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get partialResultToken {
-    if (_self.partialResultToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
-    return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of CodeActionParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -45227,6 +45203,30 @@ $CodeActionContextCopyWith<$Res> get context {
   return $CodeActionContextCopyWith<$Res>(_self.context, (value) {
     return _then(_self.copyWith(context: value));
   });
+}/// Create a copy of CodeActionParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
+}/// Create a copy of CodeActionParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get partialResultToken {
+    if (_self.partialResultToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
+    return _then(_self.copyWith(partialResultToken: value));
+  });
 }
 }
 
@@ -45236,20 +45236,20 @@ $CodeActionContextCopyWith<$Res> get context {
 @JsonSerializable()
 
 class _CodeActionParams implements CodeActionParams {
-  const _CodeActionParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.range, required this.context});
+  const _CodeActionParams({required this.textDocument, required this.range, required this.context, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _CodeActionParams.fromJson(Map<String, dynamic> json) => _$CodeActionParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g.
-/// streaming) to the client.
-@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The document in which the command was invoked.
 @override final  TextDocumentIdentifier textDocument;
 /// The range for which the command was invoked.
 @override final  Range range;
 /// Context carrying additional information.
 @override final  CodeActionContext context;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of CodeActionParams
 /// with the given fields replaced by the non-null parameter values.
@@ -45264,16 +45264,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.context, context) || other.context == context)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument,range,context);
+int get hashCode => Object.hash(runtimeType,textDocument,range,context,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'CodeActionParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument, range: $range, context: $context)';
+  return 'CodeActionParams(textDocument: $textDocument, range: $range, context: $context, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -45284,11 +45284,11 @@ abstract mixin class _$CodeActionParamsCopyWith<$Res> implements $CodeActionPara
   factory _$CodeActionParamsCopyWith(_CodeActionParams value, $Res Function(_CodeActionParams) _then) = __$CodeActionParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument, Range range, CodeActionContext context
+ TextDocumentIdentifier textDocument, Range range, CodeActionContext context,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;@override $CodeActionContextCopyWith<$Res> get context;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;@override $CodeActionContextCopyWith<$Res> get context;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -45301,42 +45301,18 @@ class __$CodeActionParamsCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,Object? range = null,Object? context = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? range = null,Object? context = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_CodeActionParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as CodeActionContext,
+as CodeActionContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of CodeActionParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of CodeActionParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get partialResultToken {
-    if (_self.partialResultToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
-    return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of CodeActionParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -45362,6 +45338,30 @@ $CodeActionContextCopyWith<$Res> get context {
   
   return $CodeActionContextCopyWith<$Res>(_self.context, (value) {
     return _then(_self.copyWith(context: value));
+  });
+}/// Create a copy of CodeActionParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
+}/// Create a copy of CodeActionParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get partialResultToken {
+    if (_self.partialResultToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
+    return _then(_self.copyWith(partialResultToken: value));
   });
 }
 }
@@ -45551,12 +45551,12 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceSymbolParams {
 
-/// An optional token that a server can use to report work done progress.
+/// A query string to filter symbols by. Clients may send an empty string
+/// here to request all symbols.
+ String get query;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// A query string to filter symbols by. Clients may send an empty string
-/// here to request all symbols.
- String get query;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of WorkspaceSymbolParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45569,16 +45569,16 @@ $WorkspaceSymbolParamsCopyWith<WorkspaceSymbolParams> get copyWith => _$Workspac
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceSymbolParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.query, query) || other.query == query));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceSymbolParams&&(identical(other.query, query) || other.query == query)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,query);
+int get hashCode => Object.hash(runtimeType,query,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'WorkspaceSymbolParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, query: $query)';
+  return 'WorkspaceSymbolParams(query: $query, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -45589,7 +45589,7 @@ abstract mixin class $WorkspaceSymbolParamsCopyWith<$Res>  {
   factory $WorkspaceSymbolParamsCopyWith(WorkspaceSymbolParams value, $Res Function(WorkspaceSymbolParams) _then) = _$WorkspaceSymbolParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, String query
+ String query,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
@@ -45606,12 +45606,12 @@ class _$WorkspaceSymbolParamsCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceSymbolParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? query = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,
+as ProgressToken?,
   ));
 }
 /// Create a copy of WorkspaceSymbolParams
@@ -45647,17 +45647,17 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 @JsonSerializable()
 
 class _WorkspaceSymbolParams implements WorkspaceSymbolParams {
-  const _WorkspaceSymbolParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.query});
+  const _WorkspaceSymbolParams({required this.query, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _WorkspaceSymbolParams.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolParamsFromJson(json);
 
+/// A query string to filter symbols by. Clients may send an empty string
+/// here to request all symbols.
+@override final  String query;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// A query string to filter symbols by. Clients may send an empty string
-/// here to request all symbols.
-@override final  String query;
 
 /// Create a copy of WorkspaceSymbolParams
 /// with the given fields replaced by the non-null parameter values.
@@ -45672,16 +45672,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceSymbolParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.query, query) || other.query == query));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceSymbolParams&&(identical(other.query, query) || other.query == query)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,query);
+int get hashCode => Object.hash(runtimeType,query,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'WorkspaceSymbolParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, query: $query)';
+  return 'WorkspaceSymbolParams(query: $query, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -45692,7 +45692,7 @@ abstract mixin class _$WorkspaceSymbolParamsCopyWith<$Res> implements $Workspace
   factory _$WorkspaceSymbolParamsCopyWith(_WorkspaceSymbolParams value, $Res Function(_WorkspaceSymbolParams) _then) = __$WorkspaceSymbolParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, String query
+ String query,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
@@ -45709,12 +45709,12 @@ class __$WorkspaceSymbolParamsCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceSymbolParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? query = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_WorkspaceSymbolParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,
+as ProgressToken?,
   ));
 }
 
@@ -45890,11 +45890,11 @@ as bool?,
 /// @nodoc
 mixin _$CodeLensParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The document to request code lens for.
+ TextDocumentIdentifier get textDocument;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The document to request code lens for.
- TextDocumentIdentifier get textDocument;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of CodeLensParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45907,16 +45907,16 @@ $CodeLensParamsCopyWith<CodeLensParams> get copyWith => _$CodeLensParamsCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeLensParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeLensParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'CodeLensParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'CodeLensParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -45927,11 +45927,11 @@ abstract mixin class $CodeLensParamsCopyWith<$Res>  {
   factory $CodeLensParamsCopyWith(CodeLensParams value, $Res Function(CodeLensParams) _then) = _$CodeLensParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -45944,15 +45944,24 @@ class _$CodeLensParamsCopyWithImpl<$Res>
 
 /// Create a copy of CodeLensParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 /// Create a copy of CodeLensParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of CodeLensParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -45976,15 +45985,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of CodeLensParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -45994,16 +45994,16 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _CodeLensParams implements CodeLensParams {
-  const _CodeLensParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
+  const _CodeLensParams({required this.textDocument, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _CodeLensParams.fromJson(Map<String, dynamic> json) => _$CodeLensParamsFromJson(json);
 
+/// The document to request code lens for.
+@override final  TextDocumentIdentifier textDocument;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The document to request code lens for.
-@override final  TextDocumentIdentifier textDocument;
 
 /// Create a copy of CodeLensParams
 /// with the given fields replaced by the non-null parameter values.
@@ -46018,16 +46018,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeLensParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeLensParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'CodeLensParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'CodeLensParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -46038,11 +46038,11 @@ abstract mixin class _$CodeLensParamsCopyWith<$Res> implements $CodeLensParamsCo
   factory _$CodeLensParamsCopyWith(_CodeLensParams value, $Res Function(_CodeLensParams) _then) = __$CodeLensParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -46055,16 +46055,25 @@ class __$CodeLensParamsCopyWithImpl<$Res>
 
 /// Create a copy of CodeLensParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_CodeLensParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of CodeLensParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of CodeLensParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -46087,15 +46096,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of CodeLensParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
   });
 }
 }
@@ -46260,11 +46260,11 @@ as bool?,
 /// @nodoc
 mixin _$DocumentLinkParams {
 
-/// An optional token that a server can use to report work done progress.
+/// The document to provide document links for.
+ TextDocumentIdentifier get textDocument;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The document to provide document links for.
- TextDocumentIdentifier get textDocument;
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of DocumentLinkParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46277,16 +46277,16 @@ $DocumentLinkParamsCopyWith<DocumentLinkParams> get copyWith => _$DocumentLinkPa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentLinkParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentLinkParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'DocumentLinkParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'DocumentLinkParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -46297,11 +46297,11 @@ abstract mixin class $DocumentLinkParamsCopyWith<$Res>  {
   factory $DocumentLinkParamsCopyWith(DocumentLinkParams value, $Res Function(DocumentLinkParams) _then) = _$DocumentLinkParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$ProgressTokenCopyWith<$Res>? get workDoneToken;$ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -46314,15 +46314,24 @@ class _$DocumentLinkParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentLinkParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 /// Create a copy of DocumentLinkParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of DocumentLinkParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -46346,15 +46355,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
   });
-}/// Create a copy of DocumentLinkParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
-  });
 }
 }
 
@@ -46364,16 +46364,16 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 @JsonSerializable()
 
 class _DocumentLinkParams implements DocumentLinkParams {
-  const _DocumentLinkParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
+  const _DocumentLinkParams({required this.textDocument, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _DocumentLinkParams.fromJson(Map<String, dynamic> json) => _$DocumentLinkParamsFromJson(json);
 
+/// The document to provide document links for.
+@override final  TextDocumentIdentifier textDocument;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The document to provide document links for.
-@override final  TextDocumentIdentifier textDocument;
 
 /// Create a copy of DocumentLinkParams
 /// with the given fields replaced by the non-null parameter values.
@@ -46388,16 +46388,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentLinkParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentLinkParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.partialResultToken, partialResultToken) || other.partialResultToken == partialResultToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,partialResultToken,textDocument);
+int get hashCode => Object.hash(runtimeType,textDocument,workDoneToken,partialResultToken);
 
 @override
 String toString() {
-  return 'DocumentLinkParams(workDoneToken: $workDoneToken, partialResultToken: $partialResultToken, textDocument: $textDocument)';
+  return 'DocumentLinkParams(textDocument: $textDocument, workDoneToken: $workDoneToken, partialResultToken: $partialResultToken)';
 }
 
 
@@ -46408,11 +46408,11 @@ abstract mixin class _$DocumentLinkParamsCopyWith<$Res> implements $DocumentLink
   factory _$DocumentLinkParamsCopyWith(_DocumentLinkParams value, $Res Function(_DocumentLinkParams) _then) = __$DocumentLinkParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken, TextDocumentIdentifier textDocument
+ TextDocumentIdentifier textDocument,@_ProgressTokenConverter() ProgressToken? workDoneToken,@_ProgressTokenConverter() ProgressToken? partialResultToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $ProgressTokenCopyWith<$Res>? get partialResultToken;
 
 }
 /// @nodoc
@@ -46425,16 +46425,25 @@ class __$DocumentLinkParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentLinkParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? partialResultToken = freezed,Object? textDocument = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? workDoneToken = freezed,Object? partialResultToken = freezed,}) {
   return _then(_DocumentLinkParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+as TextDocumentIdentifier,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of DocumentLinkParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentIdentifierCopyWith<$Res> get textDocument {
+  
+  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
+    return _then(_self.copyWith(textDocument: value));
+  });
+}/// Create a copy of DocumentLinkParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -46457,15 +46466,6 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 
   return $ProgressTokenCopyWith<$Res>(_self.partialResultToken!, (value) {
     return _then(_self.copyWith(partialResultToken: value));
-  });
-}/// Create a copy of DocumentLinkParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TextDocumentIdentifierCopyWith<$Res> get textDocument {
-  
-  return $TextDocumentIdentifierCopyWith<$Res>(_self.textDocument, (value) {
-    return _then(_self.copyWith(textDocument: value));
   });
 }
 }
@@ -46630,10 +46630,10 @@ as bool?,
 /// @nodoc
 mixin _$DocumentFormattingParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The document to format.
+/// The document to format.
  TextDocumentIdentifier get textDocument;/// The format options.
- FormattingOptions get options;
+ FormattingOptions get options;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;
 /// Create a copy of DocumentFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46646,16 +46646,16 @@ $DocumentFormattingParamsCopyWith<DocumentFormattingParams> get copyWith => _$Do
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentFormattingParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentFormattingParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.options, options) || other.options == options)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,options);
+int get hashCode => Object.hash(runtimeType,textDocument,options,workDoneToken);
 
 @override
 String toString() {
-  return 'DocumentFormattingParams(workDoneToken: $workDoneToken, textDocument: $textDocument, options: $options)';
+  return 'DocumentFormattingParams(textDocument: $textDocument, options: $options, workDoneToken: $workDoneToken)';
 }
 
 
@@ -46666,11 +46666,11 @@ abstract mixin class $DocumentFormattingParamsCopyWith<$Res>  {
   factory $DocumentFormattingParamsCopyWith(DocumentFormattingParams value, $Res Function(DocumentFormattingParams) _then) = _$DocumentFormattingParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, FormattingOptions options
+ TextDocumentIdentifier textDocument, FormattingOptions options,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$FormattingOptionsCopyWith<$Res> get options;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$FormattingOptionsCopyWith<$Res> get options;$ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -46683,27 +46683,15 @@ class _$DocumentFormattingParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentFormattingParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? options = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? options = null,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of DocumentFormattingParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of DocumentFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -46721,6 +46709,18 @@ $FormattingOptionsCopyWith<$Res> get options {
   return $FormattingOptionsCopyWith<$Res>(_self.options, (value) {
     return _then(_self.copyWith(options: value));
   });
+}/// Create a copy of DocumentFormattingParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
 }
 }
 
@@ -46730,15 +46730,15 @@ $FormattingOptionsCopyWith<$Res> get options {
 @JsonSerializable()
 
 class _DocumentFormattingParams implements DocumentFormattingParams {
-  const _DocumentFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.options});
+  const _DocumentFormattingParams({required this.textDocument, required this.options, @_ProgressTokenConverter() this.workDoneToken});
   factory _DocumentFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentFormattingParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The document to format.
 @override final  TextDocumentIdentifier textDocument;
 /// The format options.
 @override final  FormattingOptions options;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 
 /// Create a copy of DocumentFormattingParams
 /// with the given fields replaced by the non-null parameter values.
@@ -46753,16 +46753,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentFormattingParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentFormattingParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.options, options) || other.options == options)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,options);
+int get hashCode => Object.hash(runtimeType,textDocument,options,workDoneToken);
 
 @override
 String toString() {
-  return 'DocumentFormattingParams(workDoneToken: $workDoneToken, textDocument: $textDocument, options: $options)';
+  return 'DocumentFormattingParams(textDocument: $textDocument, options: $options, workDoneToken: $workDoneToken)';
 }
 
 
@@ -46773,11 +46773,11 @@ abstract mixin class _$DocumentFormattingParamsCopyWith<$Res> implements $Docume
   factory _$DocumentFormattingParamsCopyWith(_DocumentFormattingParams value, $Res Function(_DocumentFormattingParams) _then) = __$DocumentFormattingParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, FormattingOptions options
+ TextDocumentIdentifier textDocument, FormattingOptions options,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $FormattingOptionsCopyWith<$Res> get options;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $FormattingOptionsCopyWith<$Res> get options;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -46790,28 +46790,16 @@ class __$DocumentFormattingParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentFormattingParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? options = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? options = null,Object? workDoneToken = freezed,}) {
   return _then(_DocumentFormattingParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of DocumentFormattingParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of DocumentFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -46828,6 +46816,18 @@ $FormattingOptionsCopyWith<$Res> get options {
   
   return $FormattingOptionsCopyWith<$Res>(_self.options, (value) {
     return _then(_self.copyWith(options: value));
+  });
+}/// Create a copy of DocumentFormattingParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
   });
 }
 }
@@ -46987,11 +46987,11 @@ as bool?,
 /// @nodoc
 mixin _$DocumentRangeFormattingParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The document to format.
+/// The document to format.
  TextDocumentIdentifier get textDocument;/// The range to format
  Range get range;/// The format options
- FormattingOptions get options;
+ FormattingOptions get options;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;
 /// Create a copy of DocumentRangeFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -47004,16 +47004,16 @@ $DocumentRangeFormattingParamsCopyWith<DocumentRangeFormattingParams> get copyWi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentRangeFormattingParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentRangeFormattingParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.options, options) || other.options == options)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,range,options);
+int get hashCode => Object.hash(runtimeType,textDocument,range,options,workDoneToken);
 
 @override
 String toString() {
-  return 'DocumentRangeFormattingParams(workDoneToken: $workDoneToken, textDocument: $textDocument, range: $range, options: $options)';
+  return 'DocumentRangeFormattingParams(textDocument: $textDocument, range: $range, options: $options, workDoneToken: $workDoneToken)';
 }
 
 
@@ -47024,11 +47024,11 @@ abstract mixin class $DocumentRangeFormattingParamsCopyWith<$Res>  {
   factory $DocumentRangeFormattingParamsCopyWith(DocumentRangeFormattingParams value, $Res Function(DocumentRangeFormattingParams) _then) = _$DocumentRangeFormattingParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, Range range, FormattingOptions options
+ TextDocumentIdentifier textDocument, Range range, FormattingOptions options,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;$FormattingOptionsCopyWith<$Res> get options;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$RangeCopyWith<$Res> get range;$FormattingOptionsCopyWith<$Res> get options;$ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -47041,28 +47041,16 @@ class _$DocumentRangeFormattingParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentRangeFormattingParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? range = null,Object? options = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? range = null,Object? options = null,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of DocumentRangeFormattingParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of DocumentRangeFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -47089,6 +47077,18 @@ $FormattingOptionsCopyWith<$Res> get options {
   return $FormattingOptionsCopyWith<$Res>(_self.options, (value) {
     return _then(_self.copyWith(options: value));
   });
+}/// Create a copy of DocumentRangeFormattingParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
 }
 }
 
@@ -47098,17 +47098,17 @@ $FormattingOptionsCopyWith<$Res> get options {
 @JsonSerializable()
 
 class _DocumentRangeFormattingParams implements DocumentRangeFormattingParams {
-  const _DocumentRangeFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range, required this.options});
+  const _DocumentRangeFormattingParams({required this.textDocument, required this.range, required this.options, @_ProgressTokenConverter() this.workDoneToken});
   factory _DocumentRangeFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The document to format.
 @override final  TextDocumentIdentifier textDocument;
 /// The range to format
 @override final  Range range;
 /// The format options
 @override final  FormattingOptions options;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 
 /// Create a copy of DocumentRangeFormattingParams
 /// with the given fields replaced by the non-null parameter values.
@@ -47123,16 +47123,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentRangeFormattingParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentRangeFormattingParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.range, range) || other.range == range)&&(identical(other.options, options) || other.options == options)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,range,options);
+int get hashCode => Object.hash(runtimeType,textDocument,range,options,workDoneToken);
 
 @override
 String toString() {
-  return 'DocumentRangeFormattingParams(workDoneToken: $workDoneToken, textDocument: $textDocument, range: $range, options: $options)';
+  return 'DocumentRangeFormattingParams(textDocument: $textDocument, range: $range, options: $options, workDoneToken: $workDoneToken)';
 }
 
 
@@ -47143,11 +47143,11 @@ abstract mixin class _$DocumentRangeFormattingParamsCopyWith<$Res> implements $D
   factory _$DocumentRangeFormattingParamsCopyWith(_DocumentRangeFormattingParams value, $Res Function(_DocumentRangeFormattingParams) _then) = __$DocumentRangeFormattingParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, Range range, FormattingOptions options
+ TextDocumentIdentifier textDocument, Range range, FormattingOptions options,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;@override $FormattingOptionsCopyWith<$Res> get options;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $RangeCopyWith<$Res> get range;@override $FormattingOptionsCopyWith<$Res> get options;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -47160,29 +47160,17 @@ class __$DocumentRangeFormattingParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentRangeFormattingParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? range = null,Object? options = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? range = null,Object? options = null,Object? workDoneToken = freezed,}) {
   return _then(_DocumentRangeFormattingParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of DocumentRangeFormattingParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of DocumentRangeFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -47208,6 +47196,18 @@ $FormattingOptionsCopyWith<$Res> get options {
   
   return $FormattingOptionsCopyWith<$Res>(_self.options, (value) {
     return _then(_self.copyWith(options: value));
+  });
+}/// Create a copy of DocumentRangeFormattingParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
   });
 }
 }
@@ -47372,11 +47372,11 @@ as bool?,
 /// @nodoc
 mixin _$DocumentRangesFormattingParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The document to format.
+/// The document to format.
  TextDocumentIdentifier get textDocument;/// The ranges to format
  List<Range> get ranges;/// The format options
- FormattingOptions get options;
+ FormattingOptions get options;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;
 /// Create a copy of DocumentRangesFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -47389,16 +47389,16 @@ $DocumentRangesFormattingParamsCopyWith<DocumentRangesFormattingParams> get copy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentRangesFormattingParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&const DeepCollectionEquality().equals(other.ranges, ranges)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentRangesFormattingParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&const DeepCollectionEquality().equals(other.ranges, ranges)&&(identical(other.options, options) || other.options == options)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,const DeepCollectionEquality().hash(ranges),options);
+int get hashCode => Object.hash(runtimeType,textDocument,const DeepCollectionEquality().hash(ranges),options,workDoneToken);
 
 @override
 String toString() {
-  return 'DocumentRangesFormattingParams(workDoneToken: $workDoneToken, textDocument: $textDocument, ranges: $ranges, options: $options)';
+  return 'DocumentRangesFormattingParams(textDocument: $textDocument, ranges: $ranges, options: $options, workDoneToken: $workDoneToken)';
 }
 
 
@@ -47409,11 +47409,11 @@ abstract mixin class $DocumentRangesFormattingParamsCopyWith<$Res>  {
   factory $DocumentRangesFormattingParamsCopyWith(DocumentRangesFormattingParams value, $Res Function(DocumentRangesFormattingParams) _then) = _$DocumentRangesFormattingParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, List<Range> ranges, FormattingOptions options
+ TextDocumentIdentifier textDocument, List<Range> ranges, FormattingOptions options,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$FormattingOptionsCopyWith<$Res> get options;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$FormattingOptionsCopyWith<$Res> get options;$ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -47426,28 +47426,16 @@ class _$DocumentRangesFormattingParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentRangesFormattingParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? ranges = null,Object? options = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? ranges = null,Object? options = null,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,ranges: null == ranges ? _self.ranges : ranges // ignore: cast_nullable_to_non_nullable
 as List<Range>,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of DocumentRangesFormattingParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of DocumentRangesFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -47465,6 +47453,18 @@ $FormattingOptionsCopyWith<$Res> get options {
   return $FormattingOptionsCopyWith<$Res>(_self.options, (value) {
     return _then(_self.copyWith(options: value));
   });
+}/// Create a copy of DocumentRangesFormattingParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
 }
 }
 
@@ -47474,11 +47474,9 @@ $FormattingOptionsCopyWith<$Res> get options {
 @JsonSerializable()
 
 class _DocumentRangesFormattingParams implements DocumentRangesFormattingParams {
-  const _DocumentRangesFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required final  List<Range> ranges, required this.options}): _ranges = ranges;
+  const _DocumentRangesFormattingParams({required this.textDocument, required final  List<Range> ranges, required this.options, @_ProgressTokenConverter() this.workDoneToken}): _ranges = ranges;
   factory _DocumentRangesFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentRangesFormattingParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The document to format.
 @override final  TextDocumentIdentifier textDocument;
 /// The ranges to format
@@ -47492,6 +47490,8 @@ class _DocumentRangesFormattingParams implements DocumentRangesFormattingParams 
 
 /// The format options
 @override final  FormattingOptions options;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 
 /// Create a copy of DocumentRangesFormattingParams
 /// with the given fields replaced by the non-null parameter values.
@@ -47506,16 +47506,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentRangesFormattingParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&const DeepCollectionEquality().equals(other._ranges, _ranges)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentRangesFormattingParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&const DeepCollectionEquality().equals(other._ranges, _ranges)&&(identical(other.options, options) || other.options == options)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,const DeepCollectionEquality().hash(_ranges),options);
+int get hashCode => Object.hash(runtimeType,textDocument,const DeepCollectionEquality().hash(_ranges),options,workDoneToken);
 
 @override
 String toString() {
-  return 'DocumentRangesFormattingParams(workDoneToken: $workDoneToken, textDocument: $textDocument, ranges: $ranges, options: $options)';
+  return 'DocumentRangesFormattingParams(textDocument: $textDocument, ranges: $ranges, options: $options, workDoneToken: $workDoneToken)';
 }
 
 
@@ -47526,11 +47526,11 @@ abstract mixin class _$DocumentRangesFormattingParamsCopyWith<$Res> implements $
   factory _$DocumentRangesFormattingParamsCopyWith(_DocumentRangesFormattingParams value, $Res Function(_DocumentRangesFormattingParams) _then) = __$DocumentRangesFormattingParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, List<Range> ranges, FormattingOptions options
+ TextDocumentIdentifier textDocument, List<Range> ranges, FormattingOptions options,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $FormattingOptionsCopyWith<$Res> get options;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $FormattingOptionsCopyWith<$Res> get options;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -47543,29 +47543,17 @@ class __$DocumentRangesFormattingParamsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentRangesFormattingParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? ranges = null,Object? options = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? ranges = null,Object? options = null,Object? workDoneToken = freezed,}) {
   return _then(_DocumentRangesFormattingParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,ranges: null == ranges ? _self._ranges : ranges // ignore: cast_nullable_to_non_nullable
 as List<Range>,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of DocumentRangesFormattingParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of DocumentRangesFormattingParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -47582,6 +47570,18 @@ $FormattingOptionsCopyWith<$Res> get options {
   
   return $FormattingOptionsCopyWith<$Res>(_self.options, (value) {
     return _then(_self.copyWith(options: value));
+  });
+}/// Create a copy of DocumentRangesFormattingParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
   });
 }
 }
@@ -47972,12 +47972,12 @@ as List<String>?,
 /// @nodoc
 mixin _$RenameParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The document to rename.
+/// The document to rename.
  TextDocumentIdentifier get textDocument;/// The position at which this request was sent.
  Position get position;/// The new name of the symbol. If the given name is not valid the request
-/// must return a [ResponseError] with an appropriate message set.
- String get newName;
+/// must return a `ResponseError` with an appropriate message set.
+ String get newName;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;
 /// Create a copy of RenameParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -47990,16 +47990,16 @@ $RenameParamsCopyWith<RenameParams> get copyWith => _$RenameParamsCopyWithImpl<R
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RenameParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.newName, newName) || other.newName == newName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RenameParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.newName, newName) || other.newName == newName)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,position,newName);
+int get hashCode => Object.hash(runtimeType,textDocument,position,newName,workDoneToken);
 
 @override
 String toString() {
-  return 'RenameParams(workDoneToken: $workDoneToken, textDocument: $textDocument, position: $position, newName: $newName)';
+  return 'RenameParams(textDocument: $textDocument, position: $position, newName: $newName, workDoneToken: $workDoneToken)';
 }
 
 
@@ -48010,11 +48010,11 @@ abstract mixin class $RenameParamsCopyWith<$Res>  {
   factory $RenameParamsCopyWith(RenameParams value, $Res Function(RenameParams) _then) = _$RenameParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, Position position, String newName
+ TextDocumentIdentifier textDocument, Position position, String newName,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-$ProgressTokenCopyWith<$Res>? get workDoneToken;$TextDocumentIdentifierCopyWith<$Res> get textDocument;$PositionCopyWith<$Res> get position;
+$TextDocumentIdentifierCopyWith<$Res> get textDocument;$PositionCopyWith<$Res> get position;$ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -48027,28 +48027,16 @@ class _$RenameParamsCopyWithImpl<$Res>
 
 /// Create a copy of RenameParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? position = null,Object? newName = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? position = null,Object? newName = null,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,newName: null == newName ? _self.newName : newName // ignore: cast_nullable_to_non_nullable
-as String,
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 /// Create a copy of RenameParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of RenameParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -48066,6 +48054,18 @@ $PositionCopyWith<$Res> get position {
   return $PositionCopyWith<$Res>(_self.position, (value) {
     return _then(_self.copyWith(position: value));
   });
+}/// Create a copy of RenameParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
+  });
 }
 }
 
@@ -48075,18 +48075,18 @@ $PositionCopyWith<$Res> get position {
 @JsonSerializable()
 
 class _RenameParams implements RenameParams {
-  const _RenameParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.position, required this.newName});
+  const _RenameParams({required this.textDocument, required this.position, required this.newName, @_ProgressTokenConverter() this.workDoneToken});
   factory _RenameParams.fromJson(Map<String, dynamic> json) => _$RenameParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The document to rename.
 @override final  TextDocumentIdentifier textDocument;
 /// The position at which this request was sent.
 @override final  Position position;
 /// The new name of the symbol. If the given name is not valid the request
-/// must return a [ResponseError] with an appropriate message set.
+/// must return a `ResponseError` with an appropriate message set.
 @override final  String newName;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 
 /// Create a copy of RenameParams
 /// with the given fields replaced by the non-null parameter values.
@@ -48101,16 +48101,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RenameParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.newName, newName) || other.newName == newName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RenameParams&&(identical(other.textDocument, textDocument) || other.textDocument == textDocument)&&(identical(other.position, position) || other.position == position)&&(identical(other.newName, newName) || other.newName == newName)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,textDocument,position,newName);
+int get hashCode => Object.hash(runtimeType,textDocument,position,newName,workDoneToken);
 
 @override
 String toString() {
-  return 'RenameParams(workDoneToken: $workDoneToken, textDocument: $textDocument, position: $position, newName: $newName)';
+  return 'RenameParams(textDocument: $textDocument, position: $position, newName: $newName, workDoneToken: $workDoneToken)';
 }
 
 
@@ -48121,11 +48121,11 @@ abstract mixin class _$RenameParamsCopyWith<$Res> implements $RenameParamsCopyWi
   factory _$RenameParamsCopyWith(_RenameParams value, $Res Function(_RenameParams) _then) = __$RenameParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, TextDocumentIdentifier textDocument, Position position, String newName
+ TextDocumentIdentifier textDocument, Position position, String newName,@_ProgressTokenConverter() ProgressToken? workDoneToken
 });
 
 
-@override $ProgressTokenCopyWith<$Res>? get workDoneToken;@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $PositionCopyWith<$Res> get position;
+@override $TextDocumentIdentifierCopyWith<$Res> get textDocument;@override $PositionCopyWith<$Res> get position;@override $ProgressTokenCopyWith<$Res>? get workDoneToken;
 
 }
 /// @nodoc
@@ -48138,29 +48138,17 @@ class __$RenameParamsCopyWithImpl<$Res>
 
 /// Create a copy of RenameParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? textDocument = null,Object? position = null,Object? newName = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? position = null,Object? newName = null,Object? workDoneToken = freezed,}) {
   return _then(_RenameParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
+textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,newName: null == newName ? _self.newName : newName // ignore: cast_nullable_to_non_nullable
-as String,
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,
   ));
 }
 
 /// Create a copy of RenameParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ProgressTokenCopyWith<$Res>? get workDoneToken {
-    if (_self.workDoneToken == null) {
-    return null;
-  }
-
-  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
-    return _then(_self.copyWith(workDoneToken: value));
-  });
-}/// Create a copy of RenameParams
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -48177,6 +48165,18 @@ $PositionCopyWith<$Res> get position {
   
   return $PositionCopyWith<$Res>(_self.position, (value) {
     return _then(_self.copyWith(position: value));
+  });
+}/// Create a copy of RenameParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProgressTokenCopyWith<$Res>? get workDoneToken {
+    if (_self.workDoneToken == null) {
+    return null;
+  }
+
+  return $ProgressTokenCopyWith<$Res>(_self.workDoneToken!, (value) {
+    return _then(_self.copyWith(workDoneToken: value));
   });
 }
 }
@@ -48551,9 +48551,9 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 /// @nodoc
 mixin _$ExecuteCommandParams {
 
-/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The identifier of the actual command handler.
- String get command;/// Arguments that the command should be invoked with.
+/// The identifier of the actual command handler.
+ String get command;/// An optional token that a server can use to report work done progress.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// Arguments that the command should be invoked with.
  List<LSPAny>? get arguments;
 /// Create a copy of ExecuteCommandParams
 /// with the given fields replaced by the non-null parameter values.
@@ -48567,16 +48567,16 @@ $ExecuteCommandParamsCopyWith<ExecuteCommandParams> get copyWith => _$ExecuteCom
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExecuteCommandParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.command, command) || other.command == command)&&const DeepCollectionEquality().equals(other.arguments, arguments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExecuteCommandParams&&(identical(other.command, command) || other.command == command)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&const DeepCollectionEquality().equals(other.arguments, arguments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,command,const DeepCollectionEquality().hash(arguments));
+int get hashCode => Object.hash(runtimeType,command,workDoneToken,const DeepCollectionEquality().hash(arguments));
 
 @override
 String toString() {
-  return 'ExecuteCommandParams(workDoneToken: $workDoneToken, command: $command, arguments: $arguments)';
+  return 'ExecuteCommandParams(command: $command, workDoneToken: $workDoneToken, arguments: $arguments)';
 }
 
 
@@ -48587,7 +48587,7 @@ abstract mixin class $ExecuteCommandParamsCopyWith<$Res>  {
   factory $ExecuteCommandParamsCopyWith(ExecuteCommandParams value, $Res Function(ExecuteCommandParams) _then) = _$ExecuteCommandParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, String command, List<LSPAny>? arguments
+ String command,@_ProgressTokenConverter() ProgressToken? workDoneToken, List<LSPAny>? arguments
 });
 
 
@@ -48604,11 +48604,11 @@ class _$ExecuteCommandParamsCopyWithImpl<$Res>
 
 /// Create a copy of ExecuteCommandParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,Object? command = null,Object? arguments = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? command = null,Object? workDoneToken = freezed,Object? arguments = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
-as String,arguments: freezed == arguments ? _self.arguments : arguments // ignore: cast_nullable_to_non_nullable
+command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,arguments: freezed == arguments ? _self.arguments : arguments // ignore: cast_nullable_to_non_nullable
 as List<LSPAny>?,
   ));
 }
@@ -48633,13 +48633,13 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 @JsonSerializable()
 
 class _ExecuteCommandParams implements ExecuteCommandParams {
-  const _ExecuteCommandParams({@_ProgressTokenConverter() this.workDoneToken, required this.command, final  List<LSPAny>? arguments}): _arguments = arguments;
+  const _ExecuteCommandParams({required this.command, @_ProgressTokenConverter() this.workDoneToken, final  List<LSPAny>? arguments}): _arguments = arguments;
   factory _ExecuteCommandParams.fromJson(Map<String, dynamic> json) => _$ExecuteCommandParamsFromJson(json);
 
-/// An optional token that a server can use to report work done progress.
-@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The identifier of the actual command handler.
 @override final  String command;
+/// An optional token that a server can use to report work done progress.
+@override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// Arguments that the command should be invoked with.
  final  List<LSPAny>? _arguments;
 /// Arguments that the command should be invoked with.
@@ -48665,16 +48665,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExecuteCommandParams&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&(identical(other.command, command) || other.command == command)&&const DeepCollectionEquality().equals(other._arguments, _arguments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExecuteCommandParams&&(identical(other.command, command) || other.command == command)&&(identical(other.workDoneToken, workDoneToken) || other.workDoneToken == workDoneToken)&&const DeepCollectionEquality().equals(other._arguments, _arguments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneToken,command,const DeepCollectionEquality().hash(_arguments));
+int get hashCode => Object.hash(runtimeType,command,workDoneToken,const DeepCollectionEquality().hash(_arguments));
 
 @override
 String toString() {
-  return 'ExecuteCommandParams(workDoneToken: $workDoneToken, command: $command, arguments: $arguments)';
+  return 'ExecuteCommandParams(command: $command, workDoneToken: $workDoneToken, arguments: $arguments)';
 }
 
 
@@ -48685,7 +48685,7 @@ abstract mixin class _$ExecuteCommandParamsCopyWith<$Res> implements $ExecuteCom
   factory _$ExecuteCommandParamsCopyWith(_ExecuteCommandParams value, $Res Function(_ExecuteCommandParams) _then) = __$ExecuteCommandParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, String command, List<LSPAny>? arguments
+ String command,@_ProgressTokenConverter() ProgressToken? workDoneToken, List<LSPAny>? arguments
 });
 
 
@@ -48702,11 +48702,11 @@ class __$ExecuteCommandParamsCopyWithImpl<$Res>
 
 /// Create a copy of ExecuteCommandParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,Object? command = null,Object? arguments = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? command = null,Object? workDoneToken = freezed,Object? arguments = freezed,}) {
   return _then(_ExecuteCommandParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
-as String,arguments: freezed == arguments ? _self._arguments : arguments // ignore: cast_nullable_to_non_nullable
+command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
+as ProgressToken?,arguments: freezed == arguments ? _self._arguments : arguments // ignore: cast_nullable_to_non_nullable
 as List<LSPAny>?,
   ));
 }
@@ -48730,8 +48730,8 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 /// @nodoc
 mixin _$ExecuteCommandRegistrationOptions {
 
- bool? get workDoneProgress;/// The commands to be executed on the server
- List<String> get commands;
+/// The commands to be executed on the server
+ List<String> get commands; bool? get workDoneProgress;
 /// Create a copy of ExecuteCommandRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48744,16 +48744,16 @@ $ExecuteCommandRegistrationOptionsCopyWith<ExecuteCommandRegistrationOptions> ge
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExecuteCommandRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.commands, commands));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExecuteCommandRegistrationOptions&&const DeepCollectionEquality().equals(other.commands, commands)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(commands));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(commands),workDoneProgress);
 
 @override
 String toString() {
-  return 'ExecuteCommandRegistrationOptions(workDoneProgress: $workDoneProgress, commands: $commands)';
+  return 'ExecuteCommandRegistrationOptions(commands: $commands, workDoneProgress: $workDoneProgress)';
 }
 
 
@@ -48764,7 +48764,7 @@ abstract mixin class $ExecuteCommandRegistrationOptionsCopyWith<$Res>  {
   factory $ExecuteCommandRegistrationOptionsCopyWith(ExecuteCommandRegistrationOptions value, $Res Function(ExecuteCommandRegistrationOptions) _then) = _$ExecuteCommandRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, List<String> commands
+ List<String> commands, bool? workDoneProgress
 });
 
 
@@ -48781,11 +48781,11 @@ class _$ExecuteCommandRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ExecuteCommandRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? commands = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? commands = null,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,commands: null == commands ? _self.commands : commands // ignore: cast_nullable_to_non_nullable
-as List<String>,
+commands: null == commands ? _self.commands : commands // ignore: cast_nullable_to_non_nullable
+as List<String>,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -48797,10 +48797,9 @@ as List<String>,
 @JsonSerializable()
 
 class _ExecuteCommandRegistrationOptions implements ExecuteCommandRegistrationOptions {
-  const _ExecuteCommandRegistrationOptions({this.workDoneProgress, required final  List<String> commands}): _commands = commands;
+  const _ExecuteCommandRegistrationOptions({required final  List<String> commands, this.workDoneProgress}): _commands = commands;
   factory _ExecuteCommandRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ExecuteCommandRegistrationOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
 /// The commands to be executed on the server
  final  List<String> _commands;
 /// The commands to be executed on the server
@@ -48810,6 +48809,7 @@ class _ExecuteCommandRegistrationOptions implements ExecuteCommandRegistrationOp
   return EqualUnmodifiableListView(_commands);
 }
 
+@override final  bool? workDoneProgress;
 
 /// Create a copy of ExecuteCommandRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -48824,16 +48824,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExecuteCommandRegistrationOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._commands, _commands));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExecuteCommandRegistrationOptions&&const DeepCollectionEquality().equals(other._commands, _commands)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(_commands));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_commands),workDoneProgress);
 
 @override
 String toString() {
-  return 'ExecuteCommandRegistrationOptions(workDoneProgress: $workDoneProgress, commands: $commands)';
+  return 'ExecuteCommandRegistrationOptions(commands: $commands, workDoneProgress: $workDoneProgress)';
 }
 
 
@@ -48844,7 +48844,7 @@ abstract mixin class _$ExecuteCommandRegistrationOptionsCopyWith<$Res> implement
   factory _$ExecuteCommandRegistrationOptionsCopyWith(_ExecuteCommandRegistrationOptions value, $Res Function(_ExecuteCommandRegistrationOptions) _then) = __$ExecuteCommandRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, List<String> commands
+ List<String> commands, bool? workDoneProgress
 });
 
 
@@ -48861,11 +48861,11 @@ class __$ExecuteCommandRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ExecuteCommandRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? commands = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? commands = null,Object? workDoneProgress = freezed,}) {
   return _then(_ExecuteCommandRegistrationOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,commands: null == commands ? _self._commands : commands // ignore: cast_nullable_to_non_nullable
-as List<String>,
+commands: null == commands ? _self._commands : commands // ignore: cast_nullable_to_non_nullable
+as List<String>,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -48876,10 +48876,10 @@ as List<String>,
 /// @nodoc
 mixin _$ApplyWorkspaceEditParams {
 
-/// An optional label of the workspace edit. This label is presented in the
+/// The edits to apply.
+ WorkspaceEdit get edit;/// An optional label of the workspace edit. This label is presented in the
 /// user interface for example on an undo stack to undo the workspace edit.
- String? get label;/// The edits to apply.
- WorkspaceEdit get edit;
+ String? get label;
 /// Create a copy of ApplyWorkspaceEditParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48892,16 +48892,16 @@ $ApplyWorkspaceEditParamsCopyWith<ApplyWorkspaceEditParams> get copyWith => _$Ap
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApplyWorkspaceEditParams&&(identical(other.label, label) || other.label == label)&&(identical(other.edit, edit) || other.edit == edit));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApplyWorkspaceEditParams&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.label, label) || other.label == label));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,label,edit);
+int get hashCode => Object.hash(runtimeType,edit,label);
 
 @override
 String toString() {
-  return 'ApplyWorkspaceEditParams(label: $label, edit: $edit)';
+  return 'ApplyWorkspaceEditParams(edit: $edit, label: $label)';
 }
 
 
@@ -48912,7 +48912,7 @@ abstract mixin class $ApplyWorkspaceEditParamsCopyWith<$Res>  {
   factory $ApplyWorkspaceEditParamsCopyWith(ApplyWorkspaceEditParams value, $Res Function(ApplyWorkspaceEditParams) _then) = _$ApplyWorkspaceEditParamsCopyWithImpl;
 @useResult
 $Res call({
- String? label, WorkspaceEdit edit
+ WorkspaceEdit edit, String? label
 });
 
 
@@ -48929,11 +48929,11 @@ class _$ApplyWorkspaceEditParamsCopyWithImpl<$Res>
 
 /// Create a copy of ApplyWorkspaceEditParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? label = freezed,Object? edit = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? edit = null,Object? label = freezed,}) {
   return _then(_self.copyWith(
-label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String?,edit: null == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
-as WorkspaceEdit,
+edit: null == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
+as WorkspaceEdit,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of ApplyWorkspaceEditParams
@@ -48954,14 +48954,14 @@ $WorkspaceEditCopyWith<$Res> get edit {
 @JsonSerializable()
 
 class _ApplyWorkspaceEditParams implements ApplyWorkspaceEditParams {
-  const _ApplyWorkspaceEditParams({this.label, required this.edit});
+  const _ApplyWorkspaceEditParams({required this.edit, this.label});
   factory _ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) => _$ApplyWorkspaceEditParamsFromJson(json);
 
+/// The edits to apply.
+@override final  WorkspaceEdit edit;
 /// An optional label of the workspace edit. This label is presented in the
 /// user interface for example on an undo stack to undo the workspace edit.
 @override final  String? label;
-/// The edits to apply.
-@override final  WorkspaceEdit edit;
 
 /// Create a copy of ApplyWorkspaceEditParams
 /// with the given fields replaced by the non-null parameter values.
@@ -48976,16 +48976,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApplyWorkspaceEditParams&&(identical(other.label, label) || other.label == label)&&(identical(other.edit, edit) || other.edit == edit));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApplyWorkspaceEditParams&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.label, label) || other.label == label));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,label,edit);
+int get hashCode => Object.hash(runtimeType,edit,label);
 
 @override
 String toString() {
-  return 'ApplyWorkspaceEditParams(label: $label, edit: $edit)';
+  return 'ApplyWorkspaceEditParams(edit: $edit, label: $label)';
 }
 
 
@@ -48996,7 +48996,7 @@ abstract mixin class _$ApplyWorkspaceEditParamsCopyWith<$Res> implements $ApplyW
   factory _$ApplyWorkspaceEditParamsCopyWith(_ApplyWorkspaceEditParams value, $Res Function(_ApplyWorkspaceEditParams) _then) = __$ApplyWorkspaceEditParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String? label, WorkspaceEdit edit
+ WorkspaceEdit edit, String? label
 });
 
 
@@ -49013,11 +49013,11 @@ class __$ApplyWorkspaceEditParamsCopyWithImpl<$Res>
 
 /// Create a copy of ApplyWorkspaceEditParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? label = freezed,Object? edit = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? edit = null,Object? label = freezed,}) {
   return _then(_ApplyWorkspaceEditParams(
-label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String?,edit: null == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
-as WorkspaceEdit,
+edit: null == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
+as WorkspaceEdit,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -51198,8 +51198,8 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensOptions {
 
- bool? get workDoneProgress;/// The legend used by the server
- SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range of a
+/// The legend used by the server
+ SemanticTokensLegend get legend; bool? get workDoneProgress;/// Server supports providing semantic tokens for a specific range of a
 /// document.
 ///
 /// Type: bool | Object
@@ -51219,16 +51219,16 @@ $SemanticTokensOptionsCopyWith<SemanticTokensOptions> get copyWith => _$Semantic
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.legend, legend) || other.legend == legend)&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensOptions&&(identical(other.legend, legend) || other.legend == legend)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,legend,range,full);
+int get hashCode => Object.hash(runtimeType,legend,workDoneProgress,range,full);
 
 @override
 String toString() {
-  return 'SemanticTokensOptions(workDoneProgress: $workDoneProgress, legend: $legend, range: $range, full: $full)';
+  return 'SemanticTokensOptions(legend: $legend, workDoneProgress: $workDoneProgress, range: $range, full: $full)';
 }
 
 
@@ -51239,7 +51239,7 @@ abstract mixin class $SemanticTokensOptionsCopyWith<$Res>  {
   factory $SemanticTokensOptionsCopyWith(SemanticTokensOptions value, $Res Function(SemanticTokensOptions) _then) = _$SemanticTokensOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, SemanticTokensLegend legend,@_SemanticTokensOptionsRangeConverter() SemanticTokensOptionsRange? range,@_SemanticTokensOptionsFullConverter() SemanticTokensOptionsFull? full
+ SemanticTokensLegend legend, bool? workDoneProgress,@_SemanticTokensOptionsRangeConverter() SemanticTokensOptionsRange? range,@_SemanticTokensOptionsFullConverter() SemanticTokensOptionsFull? full
 });
 
 
@@ -51256,11 +51256,11 @@ class _$SemanticTokensOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? legend = null,Object? range = freezed,Object? full = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? legend = null,Object? workDoneProgress = freezed,Object? range = freezed,Object? full = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
-as SemanticTokensLegend,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
+as SemanticTokensLegend,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as SemanticTokensOptionsRange?,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
 as SemanticTokensOptionsFull?,
   ));
@@ -51307,12 +51307,12 @@ $SemanticTokensOptionsFullCopyWith<$Res>? get full {
 @JsonSerializable()
 
 class _SemanticTokensOptions implements SemanticTokensOptions {
-  const _SemanticTokensOptions({this.workDoneProgress, required this.legend, @_SemanticTokensOptionsRangeConverter() this.range, @_SemanticTokensOptionsFullConverter() this.full});
+  const _SemanticTokensOptions({required this.legend, this.workDoneProgress, @_SemanticTokensOptionsRangeConverter() this.range, @_SemanticTokensOptionsFullConverter() this.full});
   factory _SemanticTokensOptions.fromJson(Map<String, dynamic> json) => _$SemanticTokensOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
 /// The legend used by the server
 @override final  SemanticTokensLegend legend;
+@override final  bool? workDoneProgress;
 /// Server supports providing semantic tokens for a specific range of a
 /// document.
 ///
@@ -51336,16 +51336,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.legend, legend) || other.legend == legend)&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensOptions&&(identical(other.legend, legend) || other.legend == legend)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,legend,range,full);
+int get hashCode => Object.hash(runtimeType,legend,workDoneProgress,range,full);
 
 @override
 String toString() {
-  return 'SemanticTokensOptions(workDoneProgress: $workDoneProgress, legend: $legend, range: $range, full: $full)';
+  return 'SemanticTokensOptions(legend: $legend, workDoneProgress: $workDoneProgress, range: $range, full: $full)';
 }
 
 
@@ -51356,7 +51356,7 @@ abstract mixin class _$SemanticTokensOptionsCopyWith<$Res> implements $SemanticT
   factory _$SemanticTokensOptionsCopyWith(_SemanticTokensOptions value, $Res Function(_SemanticTokensOptions) _then) = __$SemanticTokensOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, SemanticTokensLegend legend,@_SemanticTokensOptionsRangeConverter() SemanticTokensOptionsRange? range,@_SemanticTokensOptionsFullConverter() SemanticTokensOptionsFull? full
+ SemanticTokensLegend legend, bool? workDoneProgress,@_SemanticTokensOptionsRangeConverter() SemanticTokensOptionsRange? range,@_SemanticTokensOptionsFullConverter() SemanticTokensOptionsFull? full
 });
 
 
@@ -51373,11 +51373,11 @@ class __$SemanticTokensOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? legend = null,Object? range = freezed,Object? full = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? legend = null,Object? workDoneProgress = freezed,Object? range = freezed,Object? full = freezed,}) {
   return _then(_SemanticTokensOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
-as SemanticTokensLegend,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
+as SemanticTokensLegend,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as SemanticTokensOptionsRange?,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
 as SemanticTokensOptionsFull?,
   ));
@@ -52100,14 +52100,14 @@ as bool?,
 /// @nodoc
 mixin _$DiagnosticOptions {
 
- bool? get workDoneProgress;/// An optional identifier under which the diagnostics are managed by the
-/// client.
- String? get identifier;/// Whether the language has inter file dependencies meaning that editing
+/// Whether the language has inter file dependencies meaning that editing
 /// code in one file can result in a different diagnostic set in another
 /// file. Inter file dependencies are common for most programming languages
 /// and typically uncommon for linters.
  bool get interFileDependencies;/// The server provides support for workspace diagnostics as well.
- bool get workspaceDiagnostics;
+ bool get workspaceDiagnostics; bool? get workDoneProgress;/// An optional identifier under which the diagnostics are managed by the
+/// client.
+ String? get identifier;
 /// Create a copy of DiagnosticOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -52120,16 +52120,16 @@ $DiagnosticOptionsCopyWith<DiagnosticOptions> get copyWith => _$DiagnosticOption
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiagnosticOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.interFileDependencies, interFileDependencies) || other.interFileDependencies == interFileDependencies)&&(identical(other.workspaceDiagnostics, workspaceDiagnostics) || other.workspaceDiagnostics == workspaceDiagnostics));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiagnosticOptions&&(identical(other.interFileDependencies, interFileDependencies) || other.interFileDependencies == interFileDependencies)&&(identical(other.workspaceDiagnostics, workspaceDiagnostics) || other.workspaceDiagnostics == workspaceDiagnostics)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.identifier, identifier) || other.identifier == identifier));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,identifier,interFileDependencies,workspaceDiagnostics);
+int get hashCode => Object.hash(runtimeType,interFileDependencies,workspaceDiagnostics,workDoneProgress,identifier);
 
 @override
 String toString() {
-  return 'DiagnosticOptions(workDoneProgress: $workDoneProgress, identifier: $identifier, interFileDependencies: $interFileDependencies, workspaceDiagnostics: $workspaceDiagnostics)';
+  return 'DiagnosticOptions(interFileDependencies: $interFileDependencies, workspaceDiagnostics: $workspaceDiagnostics, workDoneProgress: $workDoneProgress, identifier: $identifier)';
 }
 
 
@@ -52140,7 +52140,7 @@ abstract mixin class $DiagnosticOptionsCopyWith<$Res>  {
   factory $DiagnosticOptionsCopyWith(DiagnosticOptions value, $Res Function(DiagnosticOptions) _then) = _$DiagnosticOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, String? identifier, bool interFileDependencies, bool workspaceDiagnostics
+ bool interFileDependencies, bool workspaceDiagnostics, bool? workDoneProgress, String? identifier
 });
 
 
@@ -52157,13 +52157,13 @@ class _$DiagnosticOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DiagnosticOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? identifier = freezed,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? workDoneProgress = freezed,Object? identifier = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
+interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
 as bool,workspaceDiagnostics: null == workspaceDiagnostics ? _self.workspaceDiagnostics : workspaceDiagnostics // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -52175,13 +52175,9 @@ as bool,
 @JsonSerializable()
 
 class _DiagnosticOptions implements DiagnosticOptions {
-  const _DiagnosticOptions({this.workDoneProgress, this.identifier, required this.interFileDependencies, required this.workspaceDiagnostics});
+  const _DiagnosticOptions({required this.interFileDependencies, required this.workspaceDiagnostics, this.workDoneProgress, this.identifier});
   factory _DiagnosticOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
-/// An optional identifier under which the diagnostics are managed by the
-/// client.
-@override final  String? identifier;
 /// Whether the language has inter file dependencies meaning that editing
 /// code in one file can result in a different diagnostic set in another
 /// file. Inter file dependencies are common for most programming languages
@@ -52189,6 +52185,10 @@ class _DiagnosticOptions implements DiagnosticOptions {
 @override final  bool interFileDependencies;
 /// The server provides support for workspace diagnostics as well.
 @override final  bool workspaceDiagnostics;
+@override final  bool? workDoneProgress;
+/// An optional identifier under which the diagnostics are managed by the
+/// client.
+@override final  String? identifier;
 
 /// Create a copy of DiagnosticOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -52203,16 +52203,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiagnosticOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.interFileDependencies, interFileDependencies) || other.interFileDependencies == interFileDependencies)&&(identical(other.workspaceDiagnostics, workspaceDiagnostics) || other.workspaceDiagnostics == workspaceDiagnostics));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiagnosticOptions&&(identical(other.interFileDependencies, interFileDependencies) || other.interFileDependencies == interFileDependencies)&&(identical(other.workspaceDiagnostics, workspaceDiagnostics) || other.workspaceDiagnostics == workspaceDiagnostics)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&(identical(other.identifier, identifier) || other.identifier == identifier));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,identifier,interFileDependencies,workspaceDiagnostics);
+int get hashCode => Object.hash(runtimeType,interFileDependencies,workspaceDiagnostics,workDoneProgress,identifier);
 
 @override
 String toString() {
-  return 'DiagnosticOptions(workDoneProgress: $workDoneProgress, identifier: $identifier, interFileDependencies: $interFileDependencies, workspaceDiagnostics: $workspaceDiagnostics)';
+  return 'DiagnosticOptions(interFileDependencies: $interFileDependencies, workspaceDiagnostics: $workspaceDiagnostics, workDoneProgress: $workDoneProgress, identifier: $identifier)';
 }
 
 
@@ -52223,7 +52223,7 @@ abstract mixin class _$DiagnosticOptionsCopyWith<$Res> implements $DiagnosticOpt
   factory _$DiagnosticOptionsCopyWith(_DiagnosticOptions value, $Res Function(_DiagnosticOptions) _then) = __$DiagnosticOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, String? identifier, bool interFileDependencies, bool workspaceDiagnostics
+ bool interFileDependencies, bool workspaceDiagnostics, bool? workDoneProgress, String? identifier
 });
 
 
@@ -52240,13 +52240,13 @@ class __$DiagnosticOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DiagnosticOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? identifier = freezed,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? workDoneProgress = freezed,Object? identifier = freezed,}) {
   return _then(_DiagnosticOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
+interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
 as bool,workspaceDiagnostics: null == workspaceDiagnostics ? _self.workspaceDiagnostics : workspaceDiagnostics // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -55061,8 +55061,8 @@ as bool?,
 /// @nodoc
 mixin _$ExecuteCommandOptions {
 
- bool? get workDoneProgress;/// The commands to be executed on the server
- List<String> get commands;
+/// The commands to be executed on the server
+ List<String> get commands; bool? get workDoneProgress;
 /// Create a copy of ExecuteCommandOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55075,16 +55075,16 @@ $ExecuteCommandOptionsCopyWith<ExecuteCommandOptions> get copyWith => _$ExecuteC
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExecuteCommandOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.commands, commands));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExecuteCommandOptions&&const DeepCollectionEquality().equals(other.commands, commands)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(commands));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(commands),workDoneProgress);
 
 @override
 String toString() {
-  return 'ExecuteCommandOptions(workDoneProgress: $workDoneProgress, commands: $commands)';
+  return 'ExecuteCommandOptions(commands: $commands, workDoneProgress: $workDoneProgress)';
 }
 
 
@@ -55095,7 +55095,7 @@ abstract mixin class $ExecuteCommandOptionsCopyWith<$Res>  {
   factory $ExecuteCommandOptionsCopyWith(ExecuteCommandOptions value, $Res Function(ExecuteCommandOptions) _then) = _$ExecuteCommandOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, List<String> commands
+ List<String> commands, bool? workDoneProgress
 });
 
 
@@ -55112,11 +55112,11 @@ class _$ExecuteCommandOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ExecuteCommandOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? commands = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? commands = null,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,commands: null == commands ? _self.commands : commands // ignore: cast_nullable_to_non_nullable
-as List<String>,
+commands: null == commands ? _self.commands : commands // ignore: cast_nullable_to_non_nullable
+as List<String>,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -55128,10 +55128,9 @@ as List<String>,
 @JsonSerializable()
 
 class _ExecuteCommandOptions implements ExecuteCommandOptions {
-  const _ExecuteCommandOptions({this.workDoneProgress, required final  List<String> commands}): _commands = commands;
+  const _ExecuteCommandOptions({required final  List<String> commands, this.workDoneProgress}): _commands = commands;
   factory _ExecuteCommandOptions.fromJson(Map<String, dynamic> json) => _$ExecuteCommandOptionsFromJson(json);
 
-@override final  bool? workDoneProgress;
 /// The commands to be executed on the server
  final  List<String> _commands;
 /// The commands to be executed on the server
@@ -55141,6 +55140,7 @@ class _ExecuteCommandOptions implements ExecuteCommandOptions {
   return EqualUnmodifiableListView(_commands);
 }
 
+@override final  bool? workDoneProgress;
 
 /// Create a copy of ExecuteCommandOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -55155,16 +55155,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExecuteCommandOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._commands, _commands));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExecuteCommandOptions&&const DeepCollectionEquality().equals(other._commands, _commands)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(_commands));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_commands),workDoneProgress);
 
 @override
 String toString() {
-  return 'ExecuteCommandOptions(workDoneProgress: $workDoneProgress, commands: $commands)';
+  return 'ExecuteCommandOptions(commands: $commands, workDoneProgress: $workDoneProgress)';
 }
 
 
@@ -55175,7 +55175,7 @@ abstract mixin class _$ExecuteCommandOptionsCopyWith<$Res> implements $ExecuteCo
   factory _$ExecuteCommandOptionsCopyWith(_ExecuteCommandOptions value, $Res Function(_ExecuteCommandOptions) _then) = __$ExecuteCommandOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, List<String> commands
+ List<String> commands, bool? workDoneProgress
 });
 
 
@@ -55192,11 +55192,11 @@ class __$ExecuteCommandOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ExecuteCommandOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? commands = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? commands = null,Object? workDoneProgress = freezed,}) {
   return _then(_ExecuteCommandOptions(
-workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
-as bool?,commands: null == commands ? _self._commands : commands // ignore: cast_nullable_to_non_nullable
-as List<String>,
+commands: null == commands ? _self._commands : commands // ignore: cast_nullable_to_non_nullable
+as List<String>,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 

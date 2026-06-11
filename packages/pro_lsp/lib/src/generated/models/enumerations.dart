@@ -1,3 +1,5 @@
+// ignore_for_file: type=lint
+
 // GENERATED — do not edit.
 
 import 'package:json_annotation/json_annotation.dart';
@@ -9,8 +11,8 @@ part 'enumerations.g.dart';
 ///
 /// @since 3.16.0
 extension type const SemanticTokenTypes(String value) {
-  factory SemanticTokenTypes.fromJson(Object? json) =>
-      SemanticTokenTypes((json as String));
+  factory SemanticTokenTypes.fromJson(dynamic json) =>
+      SemanticTokenTypes(json as String);
 
   static const namespace = SemanticTokenTypes('namespace');
 
@@ -69,8 +71,8 @@ extension type const SemanticTokenTypes(String value) {
 ///
 /// @since 3.16.0
 extension type const SemanticTokenModifiers(String value) {
-  factory SemanticTokenModifiers.fromJson(Object? json) =>
-      SemanticTokenModifiers((json as String));
+  factory SemanticTokenModifiers.fromJson(dynamic json) =>
+      SemanticTokenModifiers(json as String);
 
   static const declaration = SemanticTokenModifiers('declaration');
 
@@ -116,7 +118,7 @@ enum DocumentDiagnosticReportKind {
 
 /// Predefined error codes.
 extension type const ErrorCodes(int value) {
-  factory ErrorCodes.fromJson(Object? json) => ErrorCodes((json as int));
+  factory ErrorCodes.fromJson(dynamic json) => ErrorCodes(json as int);
 
   static const parseError = ErrorCodes(-32700);
 
@@ -137,7 +139,7 @@ extension type const ErrorCodes(int value) {
   int toJson() => value;
 }
 extension type const LSPErrorCodes(int value) {
-  factory LSPErrorCodes.fromJson(Object? json) => LSPErrorCodes((json as int));
+  factory LSPErrorCodes.fromJson(dynamic json) => LSPErrorCodes(json as int);
 
   /// A request failed but it was syntactically correct, e.g the method name was
   /// known and the parameters were valid. The error message should contain
@@ -169,8 +171,8 @@ extension type const LSPErrorCodes(int value) {
 
 /// A set of predefined range kinds.
 extension type const FoldingRangeKind(String value) {
-  factory FoldingRangeKind.fromJson(Object? json) =>
-      FoldingRangeKind((json as String));
+  factory FoldingRangeKind.fromJson(dynamic json) =>
+      FoldingRangeKind(json as String);
 
   /// Folding range for a comment
   static const comment = FoldingRangeKind('comment');
@@ -508,8 +510,8 @@ enum DocumentHighlightKind {
 
 /// A set of predefined code action kinds
 extension type const CodeActionKind(String value) {
-  factory CodeActionKind.fromJson(Object? json) =>
-      CodeActionKind((json as String));
+  factory CodeActionKind.fromJson(dynamic json) =>
+      CodeActionKind(json as String);
 
   /// Empty kind.
   static const empty = CodeActionKind('');
@@ -603,7 +605,7 @@ enum MarkupKind {
       $enumDecodeNullable(_$MarkupKindEnumMap, json);
 }
 
-/// Describes how an [InlineCompletionItemProvider] was triggered.
+/// Describes how an `InlineCompletionItemProvider` was triggered.
 ///
 /// @since 3.18.0
 /// @proposed
@@ -627,8 +629,8 @@ enum InlineCompletionTriggerKind {
 ///
 /// @since 3.17.0
 extension type const PositionEncodingKind(String value) {
-  factory PositionEncodingKind.fromJson(Object? json) =>
-      PositionEncodingKind((json as String));
+  factory PositionEncodingKind.fromJson(dynamic json) =>
+      PositionEncodingKind(json as String);
 
   /// Character offsets count UTF-8 code units (e.g. bytes).
   static const uTF8 = PositionEncodingKind('utf-8');
@@ -669,7 +671,7 @@ enum FileChangeType {
 }
 
 extension type const WatchKind(int value) {
-  factory WatchKind.fromJson(Object? json) => WatchKind((json as int));
+  factory WatchKind.fromJson(dynamic json) => WatchKind(json as int);
 
   /// Interested in create events.
   static const create = WatchKind(1);

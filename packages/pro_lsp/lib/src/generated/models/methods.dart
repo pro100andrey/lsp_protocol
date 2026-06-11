@@ -1,3 +1,5 @@
+// ignore_for_file: type=lint
+
 // GENERATED — do not edit.
 
 import 'package:json_annotation/json_annotation.dart';
@@ -130,13 +132,13 @@ enum NotificationMethod {
 enum RequestMethod {
   /// A request to resolve the implementation locations of a symbol at a given
   /// text document position. The request's parameter is of type
-  /// [TextDocumentPositionParams] the response is of type [Definition] or a
+  /// `TextDocumentPositionParams` the response is of type `Definition` or a
   /// Thenable that resolves to such.
   implementation('textDocument/implementation'),
 
   /// A request to resolve the type definition locations of a symbol at a given
   /// text document position. The request's parameter is of type
-  /// [TextDocumentPositionParams] the response is of type [Definition] or a
+  /// `TextDocumentPositionParams` the response is of type `Definition` or a
   /// Thenable that resolves to such.
   typeDefinition('textDocument/typeDefinition'),
 
@@ -156,30 +158,30 @@ enum RequestMethod {
   configuration('workspace/configuration'),
 
   /// A request to list all color symbols found in a given text document. The
-  /// request's parameter is of type [DocumentColorParams] the response is of
-  /// type [ColorInformation] or a Thenable that resolves to such.
+  /// request's parameter is of type `DocumentColorParams` the response is of
+  /// type `ColorInformation` or a Thenable that resolves to such.
   documentColor('textDocument/documentColor'),
 
   /// A request to list all presentation for a color. The request's parameter is
-  /// of type [ColorPresentationParams] the response is of type
-  /// [ColorInformation] or a Thenable that resolves to such.
+  /// of type `ColorPresentationParams` the response is of type
+  /// `ColorInformation` or a Thenable that resolves to such.
   colorPresentation('textDocument/colorPresentation'),
 
   /// A request to provide folding ranges in a document. The request's parameter
-  /// is of type [FoldingRangeParams], the response is of type
-  /// [FoldingRangeList] or a Thenable that resolves to such.
+  /// is of type `FoldingRangeParams`, the response is of type
+  /// `FoldingRangeList` or a Thenable that resolves to such.
   foldingRange('textDocument/foldingRange'),
   workspaceFoldingRangeRefresh('workspace/foldingRange/refresh'),
 
   /// A request to resolve the type definition locations of a symbol at a given
   /// text document position. The request's parameter is of type
-  /// [TextDocumentPositionParams] the response is of type [Declaration] or a
-  /// typed array of [DeclarationLink] or a Thenable that resolves to such.
+  /// `TextDocumentPositionParams` the response is of type `Declaration` or a
+  /// typed array of `DeclarationLink` or a Thenable that resolves to such.
   declaration('textDocument/declaration'),
 
   /// A request to provide selection ranges in a document. The request's
-  /// parameter is of type [SelectionRangeParams], the response is of type
-  /// [SelectionRange] or a Thenable that resolves to such.
+  /// parameter is of type `SelectionRangeParams`, the response is of type
+  /// `SelectionRange` or a Thenable that resolves to such.
   selectionRange('textDocument/selectionRange'),
 
   /// The `window/workDoneProgress/create` request is sent from the server to
@@ -229,8 +231,8 @@ enum RequestMethod {
   willDeleteFiles('workspace/willDeleteFiles'),
 
   /// A request to get the moniker of a symbol at a given text document
-  /// position. The request parameter is of type [TextDocumentPositionParams].
-  /// The response is of type [Moniker] or `null`.
+  /// position. The request parameter is of type `TextDocumentPositionParams`.
+  /// The response is of type `Moniker` or `null`.
   moniker('textDocument/moniker'),
 
   /// A request to result a `TypeHierarchyItem` in a document at a given
@@ -245,19 +247,19 @@ enum RequestMethod {
   subtypes('typeHierarchy/subtypes'),
 
   /// A request to provide inline values in a document. The request's parameter
-  /// is of type [InlineValueParams], the response is of type [InlineValue] or a
+  /// is of type `InlineValueParams`, the response is of type `InlineValue` or a
   /// Thenable that resolves to such.
   inlineValue('textDocument/inlineValue'),
   workspaceInlineValueRefresh('workspace/inlineValue/refresh'),
 
   /// A request to provide inlay hints in a document. The request's parameter is
-  /// of type [InlayHintsParams], the response is of type [InlayHint] or a
+  /// of type `InlayHintsParams`, the response is of type `InlayHint` or a
   /// Thenable that resolves to such.
   inlayHint('textDocument/inlayHint'),
 
   /// A request to resolve additional properties for an inlay hint. The
-  /// request's parameter is of type [InlayHint], the response is of type
-  /// [InlayHint] or a Thenable that resolves to such.
+  /// request's parameter is of type `InlayHint`, the response is of type
+  /// `InlayHint` or a Thenable that resolves to such.
   inlayHintResolve('inlayHint/resolve'),
   workspaceInlayHintRefresh('workspace/inlayHint/refresh'),
 
@@ -271,8 +273,8 @@ enum RequestMethod {
   workspaceDiagnosticRefresh('workspace/diagnostic/refresh'),
 
   /// A request to provide inline completions in a document. The request's
-  /// parameter is of type [InlineCompletionParams], the response is of type
-  /// [InlineCompletion] or a Thenable that resolves to such.
+  /// parameter is of type `InlineCompletionParams`, the response is of type
+  /// `InlineCompletion` or a Thenable that resolves to such.
   inlineCompletion('textDocument/inlineCompletion'),
 
   /// The `client/registerCapability` request is sent from the server to the
@@ -286,7 +288,7 @@ enum RequestMethod {
 
   /// The initialize request is sent from the client to the server. It is sent
   /// once as the request after starting up the server. The requests parameter
-  /// is of type [InitializeParams] the response if of type [InitializeResult]
+  /// is of type `InitializeParams` the response if of type `InitializeResult`
   /// of a Thenable that resolves to such.
   initialize('initialize'),
 
@@ -308,11 +310,11 @@ enum RequestMethod {
   willSaveWaitUntil('textDocument/willSaveWaitUntil'),
 
   /// Request to request completion at a given text document position. The
-  /// request's parameter is of type [TextDocumentPosition] the response is of
-  /// type [CompletionItem] or [CompletionList] or a Thenable that resolves to
+  /// request's parameter is of type `TextDocumentPosition` the response is of
+  /// type `CompletionItem` or `CompletionList` or a Thenable that resolves to
   /// such.
   ///
-  /// The request can delay the computation of the [detail] and [documentation]
+  /// The request can delay the computation of the `detail` and `documentation`
   /// properties to the `completionItem/resolve` request. However, properties
   /// that are needed for the initial sorting and filtering, like `sortText`,
   /// `filterText`, `insertText`, and `textEdit`, must not be changed during
@@ -320,13 +322,13 @@ enum RequestMethod {
   completion('textDocument/completion'),
 
   /// Request to resolve additional information for a given completion item.The
-  /// request's parameter is of type [CompletionItem] the response is of type
-  /// [CompletionItem] or a Thenable that resolves to such.
+  /// request's parameter is of type `CompletionItem` the response is of type
+  /// `CompletionItem` or a Thenable that resolves to such.
   completionItemResolve('completionItem/resolve'),
 
   /// Request to request hover information at a given text document position.
-  /// The request's parameter is of type [TextDocumentPosition] the response is
-  /// of type [Hover] or a Thenable that resolves to such.
+  /// The request's parameter is of type `TextDocumentPosition` the response is
+  /// of type `Hover` or a Thenable that resolves to such.
   hover('textDocument/hover'),
 
   /// LSP request `textDocument/signatureHelp` (client to server).
@@ -334,37 +336,37 @@ enum RequestMethod {
 
   /// A request to resolve the definition location of a symbol at a given text
   /// document position. The request's parameter is of type
-  /// [TextDocumentPosition] the response is of either type [Definition] or a
-  /// typed array of [DefinitionLink] or a Thenable that resolves to such.
+  /// `TextDocumentPosition` the response is of either type `Definition` or a
+  /// typed array of `DefinitionLink` or a Thenable that resolves to such.
   definition('textDocument/definition'),
 
   /// A request to resolve project-wide references for the symbol denoted by the
   /// given text document position. The request's parameter is of type
-  /// [ReferenceParams] the response is of type [Location] or a Thenable that
+  /// `ReferenceParams` the response is of type `Location` or a Thenable that
   /// resolves to such.
   references('textDocument/references'),
 
-  /// Request to resolve a [DocumentHighlight] for a given text document
-  /// position. The request's parameter is of type [TextDocumentPosition] the
-  /// request response is an array of type [DocumentHighlight] or a Thenable
+  /// Request to resolve a `DocumentHighlight` for a given text document
+  /// position. The request's parameter is of type `TextDocumentPosition` the
+  /// request response is an array of type `DocumentHighlight` or a Thenable
   /// that resolves to such.
   documentHighlight('textDocument/documentHighlight'),
 
   /// A request to list all symbols found in a given text document. The
-  /// request's parameter is of type [TextDocumentIdentifier] the response is of
-  /// type [SymbolInformation] or a Thenable that resolves to such.
+  /// request's parameter is of type `TextDocumentIdentifier` the response is of
+  /// type `SymbolInformation` or a Thenable that resolves to such.
   documentSymbol('textDocument/documentSymbol'),
 
   /// A request to provide commands for the given text document and range.
   codeAction('textDocument/codeAction'),
 
   /// Request to resolve additional information for a given code action.The
-  /// request's parameter is of type [CodeAction] the response is of type
-  /// [CodeAction] or a Thenable that resolves to such.
+  /// request's parameter is of type `CodeAction` the response is of type
+  /// `CodeAction` or a Thenable that resolves to such.
   codeActionResolve('codeAction/resolve'),
 
   /// A request to list project-wide symbols matching the query string given by
-  /// the [WorkspaceSymbolParams]. The response is of type [SymbolInformation]
+  /// the `WorkspaceSymbolParams`. The response is of type `SymbolInformation`
   /// or a Thenable that resolves to such.
   ///
   /// - support for WorkspaceSymbol in the returned data. Clients need to
@@ -388,8 +390,8 @@ enum RequestMethod {
   documentLink('textDocument/documentLink'),
 
   /// Request to resolve additional information for a given document link. The
-  /// request's parameter is of type [DocumentLink] the response is of type
-  /// [DocumentLink] or a Thenable that resolves to such.
+  /// request's parameter is of type `DocumentLink` the response is of type
+  /// `DocumentLink` or a Thenable that resolves to such.
   documentLinkResolve('documentLink/resolve'),
 
   /// A request to format a whole document.
