@@ -424,39 +424,22 @@ final class EmitterVisitor {
     // inherited properties into the class so it stands alone.
     final allProps = _allProperties(cls);
 
-    // After the early return above, cls.name never starts with '_'.
-    final publicPart = cls.name;
-
-    // Private constructor is required by freezed only when the class has
-    // custom instance methods (i.e. open-enum getters).
-    final hasEnumGetters = allProps.any((p) => _openEnumInfo(p.type) != null);
-
     return Class((b) {
       b
         ..name = cls.name
         ..abstract = true
         ..annotations.add(tFreezed);
 
-      b.mixins.add(refer('_\$$publicPart'));
+      b.mixins.add(refer('_\$${cls.name}'));
 
       b.docs.addAll(
         _docLines(cls.documentation, since: cls.since, proposed: cls.proposed),
       );
 
-      if (hasEnumGetters) {
-        b.constructors.add(
-          Constructor(
-            (b) => b
-              ..constant = true
-              ..name = '_',
-          ),
-        );
-      }
-
       // Redirecting factory — freezed generates getters, copyWith, ==,
       // hashCode.
       b.constructors.add(
-        _buildRedirectingFactory(cls.name, allProps, publicPart),
+        _buildRedirectingFactory(cls.name, allProps),
       );
 
       // Standard json_serializable fromJson factory — freezed generates toJson
@@ -478,45 +461,10 @@ final class EmitterVisitor {
               ),
             )
             ..body = refer(
-              '_\$${publicPart}FromJson',
+              '_\$${cls.name}FromJson',
             ).call([eJson]).code,
         ),
       );
-
-      // Getters for open-enum properties (stored as raw primitives on the
-      // wire).
-      for (final p in allProps) {
-        final info = _openEnumInfo(p.type);
-        if (info == null) {
-          continue;
-        }
-
-        final isNullableField = p.optional || p.type is NullableType;
-        final bodyExpr = isNullableField
-            ? refer(p.name)
-                  .notEqualTo(literalNull)
-                  .conditional(
-                    refer(
-                      info.ref.name,
-                    ).property('decode').call([refer(p.name).nullChecked]),
-                    literalNull,
-                  )
-            : refer(info.ref.name).property('decode').call([refer(p.name)]);
-        b.methods.add(
-          Method(
-            (b) => b
-              ..type = MethodType.getter
-              ..returns = TypeReference(
-                (b) => b
-                  ..symbol = info.ref.name
-                  ..isNullable = true,
-              )
-              ..name = '${p.name}Enum'
-              ..lambda = true
-              ..body = bodyExpr.code,
-          ),
-        );
-      }
     });
   }
 
@@ -585,7 +533,11 @@ final class EmitterVisitor {
               ..modifier = FieldModifier.final$
               ..name = p.name
               ..type = _propertyTypeRef(cls.name, p);
-            _annotationsForParam(cls.name, p).forEach(b.annotations.add);
+            if (p.deprecated != null) {
+              b.annotations.add(
+                tDeprecated.call([literalString(p.deprecated!)]),
+              );
+            }
             b.docs.addAll(_docLines(p.documentation, indent: 2));
           }),
         );
@@ -660,7 +612,6 @@ final class EmitterVisitor {
   Constructor _buildRedirectingFactory(
     String className,
     List<ResolvedProperty> props,
-    String publicPart,
   ) => Constructor(
     (b) => b
       ..constant = true
@@ -679,7 +630,11 @@ final class EmitterVisitor {
               ..type = typeRef
               ..named = true
               ..required = !p.optional;
-            _annotationsForParam(className, p).forEach(b.annotations.add);
+            if (p.deprecated != null) {
+              b.annotations.add(
+                tDeprecated.call([literalString(p.deprecated!)]),
+              );
+            }
             b.docs.addAll(
               _docLines(
                 p.documentation,
@@ -691,20 +646,6 @@ final class EmitterVisitor {
         }),
       ),
   );
-
-  // ---------------------------------------------------------------------------
-  // Annotations
-  // ---------------------------------------------------------------------------
-
-  /// Returns the list of annotations for factory/field parameter [p].
-  List<Expression> _annotationsForParam(String className, ResolvedProperty p) {
-    final deprecated = p.deprecated != null
-        ? tDeprecated.call([literalString(p.deprecated!)])
-        : null;
-    return [
-      ?deprecated,
-    ];
-  }
 
   // ---------------------------------------------------------------------------
   // Enum builder
@@ -851,12 +792,9 @@ final class EmitterVisitor {
   // Private: standard enums
   // ---------------------------------------------------------------------------
 
-  /// `decode` method returns `null` for unknown values, which makes it safe
-  /// for both open and closed enums without needing a sentinel member.
-  ///
-  /// Open enums (`supportsCustomValues = true`) are handled on the struct side:
-  /// the property is stored as a raw `String`/`int` and a getter exposes the
-  /// decoded enum (see [_buildClass]).
+  /// Generates a standard Dart enum for closed enums, or a Dart
+  /// `extension type` wrapping the underlying primitive value for open
+  /// enums (`supportsCustomValues = true`).
   Spec _buildEnum(ResolvedEnum en) {
     final isInt = en.valueType == 'int';
     final valueTypeName = isInt ? 'int' : 'String';
@@ -1104,7 +1042,7 @@ final class EmitterVisitor {
     }
 
     if (lists.isEmpty && scalars.isNotEmpty && structs.isNotEmpty) {
-      final uniqueStructs = _structKey(structs).toSet();
+      final uniqueStructs = structs.map(_singleStructKey).toSet();
       return uniqueStructs.length == 1
           ? _UnionKind.scalarStruct
           : _UnionKind.mixed;
@@ -1115,7 +1053,7 @@ final class EmitterVisitor {
     }
 
     if (scalars.isEmpty && lists.isEmpty && structs.length >= 2) {
-      final uniqueStructs = _structKey(structs).toSet();
+      final uniqueStructs = structs.map(_singleStructKey).toSet();
       return uniqueStructs.length >= 2
           ? _UnionKind.structStruct
           : _UnionKind.mixed;
@@ -1129,9 +1067,6 @@ final class EmitterVisitor {
           'Record(${fields.map((f) => f.name).join(',')})',
         _ => t.toString(),
       };
-
-  Iterable<String> _structKey(Iterable<ResolvedType> items) =>
-      items.map(_singleStructKey);
 
   /// Returns a list of discriminator checks (last entry = else branch) or
   /// `null` if no reliable discriminator can be found.
@@ -1224,14 +1159,12 @@ final class EmitterVisitor {
   /// ([ClassType] or [InlineRecord]).
   Map<String, ResolvedProperty> _variantPropertiesMap(ResolvedType variant) =>
       switch (variant) {
-        ClassType(:final ref) => _allPropertiesMap(ref),
+        ClassType(:final ref) => {
+            for (final p in _allProperties(ref)) p.name: p,
+          },
         InlineRecord(:final fields) => {for (final f in fields) f.name: f},
         _ => {},
       };
-
-  Map<String, ResolvedProperty> _allPropertiesMap(ResolvedClass cls) => {
-    for (final p in _allProperties(cls)) p.name: p,
-  };
 
   // ---------------------------------------------------------------------------
   // Union spec builders (code_builder Class / Constructor / Method)
@@ -1774,9 +1707,7 @@ final class EmitterVisitor {
     }
   }
 
-  /// Returns the Dart type name string for a resolved type, used in string
-  /// interpolation contexts (e.g. inside `Code('...')` bodies for union specs).
-  String _dartTypeName(ResolvedType type) => switch (type) {
+  static String _dartTypeName(ResolvedType type) => switch (type) {
     DartCoreType(:final dartName) => dartName,
     ClassType(:final ref) => ref.name,
     EnumType(:final ref) => ref.name,
@@ -1876,7 +1807,7 @@ final class EmitterVisitor {
         '${ref.name}.fromJson($jsonExpr)',
       ),
       EnumType(:final ref) => orNull(
-        '${ref.name}.decode($jsonExpr as ${_enumPrimitiveName(ref)})!',
+        '${ref.name}.decode($jsonExpr as ${ref.valueType})!',
       ),
       _ => jsonExpr,
     };
@@ -1911,21 +1842,6 @@ final class EmitterVisitor {
       _ => fieldExpr,
     };
   }
-
-  // ---------------------------------------------------------------------------
-  // Helpers
-  // ---------------------------------------------------------------------------
-
-  /// Returns the Dart primitive name for an enum's value type (`'int'` or
-  /// `'String'`).
-  static String _enumPrimitiveName(ResolvedEnum ref) =>
-      ref.valueType == 'int' ? 'int' : 'String';
-
-  /// If [type] (unwrapping [NullableType]) is an open enum
-  /// (`supportsCustomValues`), returns the Dart primitive name (`'String'` or
-  /// `'int'`) and the enum ref. Otherwise returns `null`.
-  ({String primitive, ResolvedEnum ref})? _openEnumInfo(ResolvedType type) =>
-      null;
 
   // ---------------------------------------------------------------------------
   // Documentation helpers
@@ -2045,16 +1961,6 @@ final class EmitterVisitor {
     return lines;
   }
 
-  static String _typeName(ResolvedType type) => switch (type) {
-    ClassType(:final ref) => ref.name,
-    EnumType(:final ref) => ref.name,
-    AliasType(:final ref) => ref.name,
-    DartCoreType(:final dartName) => dartName,
-    TupleType(:final items) => '(${items.map(_typeName).join(', ')})',
-    ListType(:final element) => 'List<${_typeName(element)}>',
-    _ => 'Object',
-  };
-
   /// If [type] is an inline [UnionType] (i.e. not a named alias), returns a
   /// one-line note listing the variant names, e.g.
   /// `['Type: TextDocumentSyncOptions | TextDocumentSyncKind']`.
@@ -2062,7 +1968,7 @@ final class EmitterVisitor {
   static List<String> _inlineUnionNote(ResolvedType type) {
     final inner = type is NullableType ? type.inner : type;
     if (inner case UnionType(:final items)) {
-      return ['Type: ${items.map(_typeName).join(' | ')}'];
+      return ['Type: ${items.map(_dartTypeName).join(' | ')}'];
     }
     return const [];
   }
@@ -2095,10 +2001,7 @@ final class EmitterVisitor {
   static String _capitalize(String s) =>
       s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
 
-  bool _isSupportedInlineUnion(UnionType ut) => true;
-
   Reference _propertyTypeRef(String className, ResolvedProperty p) {
-    final openEnum = _openEnumInfo(p.type);
     final inlineUnionName = _getInlineUnionName(className, p.name, p.type);
     if (inlineUnionName != null) {
       final actualType = p.type is NullableType
@@ -2120,15 +2023,6 @@ final class EmitterVisitor {
         );
       }
     }
-    if (openEnum != null) {
-      return p.optional
-          ? TypeReference(
-              (b) => b
-                ..symbol = openEnum.primitive
-                ..isNullable = true,
-            )
-          : refer(openEnum.primitive);
-    }
     return toRef(p.type, nullable: p.optional);
   }
 
@@ -2141,12 +2035,10 @@ final class EmitterVisitor {
   ) {
     final inner = type is NullableType ? type.inner : type;
     return switch (inner) {
-      UnionType() when _isSupportedInlineUnion(inner) =>
-        '$className${_capitalize(propName)}',
+      UnionType() => '$className${_capitalize(propName)}',
       ListType(:final element) => switch (
           element is NullableType ? element.inner : element) {
-        final UnionType elUnion when _isSupportedInlineUnion(elUnion) =>
-          '$className${_capitalize(propName)}Item',
+        UnionType() => '$className${_capitalize(propName)}Item',
         _ => null,
       },
       _ => null,
