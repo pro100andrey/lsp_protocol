@@ -45,7 +45,11 @@ final class ClientApiVisitor {
   /// wire method → `NotificationMethod` enum member name.
   late final Map<String, String> _notificationMethods;
 
-  static const _header = 'GENERATED — do not edit.';
+  static const _header = [
+    'ignore_for_file: unused_import',
+    '',
+    'GENERATED — do not edit.',
+  ];
 
   // -------------------------------------------------------------------------
   // Build
@@ -66,10 +70,17 @@ final class ClientApiVisitor {
 
     return Library(
       (b) => b
-        ..comments.add(_header)
+        ..comments.addAll(_header)
         ..directives.addAll([
           Directive.import('dart:async'),
-          Directive.import('../../../pro_lsp.dart'),
+          Directive.import('../../connection/lsp_connection.dart'),
+          Directive.import('../../server/lsp_request.dart'),
+          Directive.import('../models/enumerations.dart'),
+          Directive.import('../models/methods.dart'),
+          Directive.import('../models/scalar_unions.dart'),
+          Directive.import('../models/structures.dart'),
+          Directive.import('../models/type_aliases.dart'),
+          Directive.import('../models/unions.dart'),
         ])
         ..body.addAll(specs),
     );
@@ -246,8 +257,8 @@ final class ClientApiVisitor {
             : _fromJsonAssign(paramsType, 'p', 'json'),
     ];
     final handlerExpr = hasParams
-        ? refer('handler').call([refer('p')])
-        : refer('handler').call([]);
+        ? refer('handler').call([refer('p'), refer('context')])
+        : refer('handler').call([refer('context')]);
 
     if (isVoidResult) {
       statements
@@ -263,13 +274,18 @@ final class ClientApiVisitor {
     final closure = Method(
       (b) => b
         ..modifier = needsAsync ? MethodModifier.async : null
-        ..requiredParameters.add(
+        ..requiredParameters.addAll([
           Parameter(
             (b) => b
               ..name = 'json'
               ..type = tDynamic,
           ),
-        )
+          Parameter(
+            (b) => b
+              ..name = 'context'
+              ..type = refer('LspRequest'),
+          ),
+        ])
         ..body = Block.of(statements),
     ).closure;
 
@@ -290,20 +306,25 @@ final class ClientApiVisitor {
             : _fromJsonAssign(paramsType, 'p', 'json'),
     ];
     final handlerExpr = hasParams
-        ? refer('handler').call([refer('p')]).awaited
-        : refer('handler').call([]).awaited;
+        ? refer('handler').call([refer('p'), refer('context')]).awaited
+        : refer('handler').call([refer('context')]).awaited;
     statements.add(handlerExpr.statement);
 
     final closure = Method(
       (b) => b
         ..modifier = MethodModifier.async
-        ..requiredParameters.add(
+        ..requiredParameters.addAll([
           Parameter(
             (b) => b
               ..name = 'json'
               ..type = tDynamic,
           ),
-        )
+          Parameter(
+            (b) => b
+              ..name = 'context'
+              ..type = refer('LspRequest'),
+          ),
+        ])
         ..body = Block.of(statements),
     ).closure;
 
@@ -538,7 +559,8 @@ final class ClientApiVisitor {
   }) {
     final returnType = isNotification ? 'Future<void>' : 'Future<$resultType>';
     final param = paramsType.isNotEmpty ? '$paramsType params' : '';
-    return '$returnType Function($param)';
+    final comma = param.isNotEmpty ? ', ' : '';
+    return '$returnType Function($param${comma}LspRequest context)';
   }
 
   /// Returns code_builder [Code] statements that serialize [handlerExpr]

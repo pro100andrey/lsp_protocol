@@ -36,7 +36,7 @@ final class TextDocumentManager {
 
   /// Binds listeners to the server's textDocument handlers to capture updates.
   void bind(LspServer server) {
-    server.textDocument.onDidOpen((params) async {
+    server.textDocument.onDidOpen((params, context) async {
       final item = params.textDocument;
       _documents[item.uri] = LspDocument(
         uri: item.uri,
@@ -46,7 +46,7 @@ final class TextDocumentManager {
       );
     });
 
-    server.textDocument.onDidChange((params) async {
+    server.textDocument.onDidChange((params, context) async {
       final uri = params.textDocument.uri;
       final changes = params.contentChanges;
       if (changes.isEmpty) {
@@ -73,7 +73,7 @@ final class TextDocumentManager {
       }
     });
 
-    server.textDocument.onDidClose((params) async {
+    server.textDocument.onDidClose((params, context) async {
       _documents.remove(params.textDocument.uri);
     });
   }

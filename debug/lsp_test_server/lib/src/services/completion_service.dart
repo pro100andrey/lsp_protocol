@@ -4,7 +4,7 @@ class CompletionService {
   List<CompletionItem> getCompletions(CompletionParams params) => [
     const CompletionItem(
       label: 'hello',
-      kind: .keyword,
+      kind: CompletionItemKind.keyword,
       detail: 'LSP test completion',
       documentation: CompletionItemDocumentation(
         MarkupContent(
@@ -15,12 +15,12 @@ class CompletionService {
     ),
     const CompletionItem(
       label: 'world',
-      kind: .text,
+      kind: CompletionItemKind.text,
       detail: 'LSP test completion',
     ),
     const CompletionItem(
       label: 'lsp_test_server',
-      kind: .module,
+      kind: CompletionItemKind.module,
       detail: 'This server package',
     ),
   ];

@@ -48,70 +48,88 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
     // General
     // -------------------------------------------------------------------------
-    _server.general.onInitialize((params) async {
+    _server.general.onInitialize((params, context) async {
       logInfo('Received initialize request');
 
-      return const .new(
-        capabilities: .new(
-          positionEncoding: .uTF16,
-          hoverProvider: .new(true),
-          completionProvider: .new(
+      return const InitializeResult(
+        capabilities: ServerCapabilities(
+          positionEncoding: PositionEncodingKind.uTF16,
+          hoverProvider: ServerCapabilitiesHoverProvider(true),
+          completionProvider: CompletionOptions(
             triggerCharacters: ['.', ':'],
           ),
           textDocumentSync: ServerCapabilitiesTextDocumentSync(
             TextDocumentSyncOptions(
-              change: .full,
+              change: TextDocumentSyncKind.full,
               openClose: true,
             ),
           ),
           workspace: (
-            workspaceFolders: .new(
+            workspaceFolders: WorkspaceFoldersServerCapabilities(
               supported: true,
               changeNotifications:
                   WorkspaceFoldersServerCapabilitiesChangeNotifications(
                     true,
                   ),
             ),
-            fileOperations: .new(
-              willCreate: .new(
+            fileOperations: FileOperationOptions(
+              willCreate: FileOperationRegistrationOptions(
                 filters: [
-                  .new(
-                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  FileOperationFilter(
+                    pattern: FileOperationPattern(
+                      glob: '**/*.txt',
+                      matches: FileOperationPatternKind.file,
+                    ),
                   ),
                 ],
               ),
-              willRename: .new(
+              willRename: FileOperationRegistrationOptions(
                 filters: [
-                  .new(
-                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  FileOperationFilter(
+                    pattern: FileOperationPattern(
+                      glob: '**/*.txt',
+                      matches: FileOperationPatternKind.file,
+                    ),
                   ),
                 ],
               ),
-              willDelete: .new(
+              willDelete: FileOperationRegistrationOptions(
                 filters: [
-                  .new(
-                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  FileOperationFilter(
+                    pattern: FileOperationPattern(
+                      glob: '**/*.txt',
+                      matches: FileOperationPatternKind.file,
+                    ),
                   ),
                 ],
               ),
-              didCreate: .new(
+              didCreate: FileOperationRegistrationOptions(
                 filters: [
-                  .new(
-                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  FileOperationFilter(
+                    pattern: FileOperationPattern(
+                      glob: '**/*.txt',
+                      matches: FileOperationPatternKind.file,
+                    ),
                   ),
                 ],
               ),
-              didRename: .new(
+              didRename: FileOperationRegistrationOptions(
                 filters: [
-                  .new(
-                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  FileOperationFilter(
+                    pattern: FileOperationPattern(
+                      glob: '**/*.txt',
+                      matches: FileOperationPatternKind.file,
+                    ),
                   ),
                 ],
               ),
-              didDelete: .new(
+              didDelete: FileOperationRegistrationOptions(
                 filters: [
-                  .new(
-                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  FileOperationFilter(
+                    pattern: FileOperationPattern(
+                      glob: '**/*.txt',
+                      matches: FileOperationPatternKind.file,
+                    ),
                   ),
                 ],
               ),
@@ -122,15 +140,15 @@ final class ServerRunner {
       );
     });
 
-    _server.general.onInitialized((_) async {
+    _server.general.onInitialized((_, context) async {
       logInfo('Received initialized notification');
     });
 
-    _server.general.onShutdown(() async {
+    _server.general.onShutdown((context) async {
       logInfo('Received shutdown request');
     });
 
-    _server.general.onExit(() async {
+    _server.general.onExit((context) async {
       logInfo('Received exit notification');
     });
 
@@ -138,12 +156,12 @@ final class ServerRunner {
     // Text Document Sync
     // -------------------------------------------------------------------------
 
-    _server.textDocument.onDidOpen((params) async {
+    _server.textDocument.onDidOpen((params, context) async {
       logInfo('Document opened: ${params.textDocument.uri}');
       _docService.open(params.textDocument.uri, params.textDocument.text);
     });
 
-    _server.textDocument.onDidChange((params) async {
+    _server.textDocument.onDidChange((params, context) async {
       logInfo('Document changed: ${params.textDocument.uri}');
 
       final lastChange = params.contentChanges.lastOrNull;
@@ -155,7 +173,7 @@ final class ServerRunner {
       }
     });
 
-    _server.textDocument.onDidClose((params) async {
+    _server.textDocument.onDidClose((params, context) async {
       logInfo('Document closed: ${params.textDocument.uri}');
       _docService.close(params.textDocument.uri);
     });
@@ -164,7 +182,7 @@ final class ServerRunner {
     // textDocument/hover
     // -------------------------------------------------------------------------
 
-    _server.textDocument.onHover((params) async {
+    _server.textDocument.onHover((params, context) async {
       logInfo(
         'Hover request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
@@ -176,7 +194,7 @@ final class ServerRunner {
     // textDocument/completion
     // -------------------------------------------------------------------------
 
-    _server.textDocument.onCompletion((params) async {
+    _server.textDocument.onCompletion((params, context) async {
       logInfo('Completion request: ${params.textDocument.uri}');
       return _completionService.getCompletions(params);
     });
@@ -185,13 +203,13 @@ final class ServerRunner {
     // Workspace file operations
     // -------------------------------------------------------------------------
 
-    _server.workspace.onDidCreateFiles((params) async {
+    _server.workspace.onDidCreateFiles((params, context) async {
       logInfo(
         'Files created: ${params.files.map((f) => f.uri).join(', ')}',
       );
     });
 
-    _server.workspace.onDidRenameFiles((params) async {
+    _server.workspace.onDidRenameFiles((params, context) async {
       logInfo(
         'Files renamed: '
         '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
@@ -201,7 +219,10 @@ final class ServerRunner {
 
   void logInfo(String message) {
     _server.client.window.logMessage(
-      .new(type: .log, message: '[ServerRunner] $message'),
+      LogMessageParams(
+        type: MessageType.log,
+        message: '[ServerRunner] $message',
+      ),
     );
 
     stdout.writeln('[ServerRunner] $message');

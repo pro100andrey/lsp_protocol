@@ -18,7 +18,7 @@ final class LspConfigurationManager {
   /// Binds configuration change listener to the server's workspace
   /// notifications.
   void bind() {
-    _server.workspace.onDidChangeConfiguration((params) async {
+    _server.workspace.onDidChangeConfiguration((params, context) async {
       // Configuration changed on the client: invalidate cache and notify
       // listeners
       _cache.clear();

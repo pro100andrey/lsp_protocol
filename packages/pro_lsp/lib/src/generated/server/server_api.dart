@@ -1,10 +1,19 @@
 // ignore_for_file: type=lint
 
+// ignore_for_file: unused_import
+//
 // GENERATED — do not edit.
 
 import 'dart:async';
 
-import '../../../pro_lsp.dart';
+import '../../connection/lsp_connection.dart';
+import '../../server/lsp_request.dart';
+import '../models/enumerations.dart';
+import '../models/methods.dart';
+import '../models/scalar_unions.dart';
+import '../models/structures.dart';
+import '../models/type_aliases.dart';
+import '../models/unions.dart';
 
 /// Registers incoming LSP handlers for the `textDocument` namespace.
 class TextDocumentHandlers {
@@ -14,105 +23,133 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/implementation`.
   void onImplementation(
-    Future<Object?> Function(ImplementationParams params) handler,
+    Future<Object?> Function(ImplementationParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.implementation.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = ImplementationParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `textDocument/typeDefinition`.
   void onTypeDefinition(
-    Future<Object?> Function(TypeDefinitionParams params) handler,
+    Future<Object?> Function(TypeDefinitionParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.typeDefinition.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = TypeDefinitionParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `textDocument/documentColor`.
   void onDocumentColor(
-    Future<List<ColorInformation>> Function(DocumentColorParams params) handler,
+    Future<List<ColorInformation>> Function(
+      DocumentColorParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.documentColor.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = DocumentColorParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/colorPresentation`.
   void onColorPresentation(
-    Future<List<ColorPresentation>> Function(ColorPresentationParams params)
+    Future<List<ColorPresentation>> Function(
+      ColorPresentationParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.colorPresentation.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = ColorPresentationParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/foldingRange`.
   void onFoldingRange(
-    Future<List<FoldingRange>?> Function(FoldingRangeParams params) handler,
+    Future<List<FoldingRange>?> Function(
+      FoldingRangeParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.foldingRange.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = FoldingRangeParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/declaration`.
   void onDeclaration(
-    Future<Object?> Function(DeclarationParams params) handler,
+    Future<Object?> Function(DeclarationParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.declaration.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = DeclarationParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `textDocument/selectionRange`.
   void onSelectionRange(
-    Future<List<SelectionRange>?> Function(SelectionRangeParams params) handler,
+    Future<List<SelectionRange>?> Function(
+      SelectionRangeParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.selectionRange.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = SelectionRangeParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/prepareCallHierarchy`.
   void onPrepareCallHierarchy(
-    Future<List<CallHierarchyItem>?> Function(CallHierarchyPrepareParams params)
+    Future<List<CallHierarchyItem>?> Function(
+      CallHierarchyPrepareParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(
       RequestMethod.prepareCallHierarchy.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = CallHierarchyPrepareParams.fromJson(
           json as Map<String, dynamic>,
         );
-        final r = await handler(p);
+        final r = await handler(p, context);
         return r?.map((e) => e.toJson()).toList();
       },
     );
@@ -120,85 +157,109 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/semanticTokens/full`.
   void onSemanticTokensFull(
-    Future<SemanticTokens?> Function(SemanticTokensParams params) handler,
+    Future<SemanticTokens?> Function(
+      SemanticTokensParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.full.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = SemanticTokensParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `textDocument/semanticTokens/full/delta`.
   void onSemanticTokensFullDelta(
-    Future<Object?> Function(SemanticTokensDeltaParams params) handler,
+    Future<Object?> Function(
+      SemanticTokensDeltaParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.delta.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = SemanticTokensDeltaParams.fromJson(
         json as Map<String, dynamic>,
       );
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `textDocument/semanticTokens/range`.
   void onSemanticTokensRange(
-    Future<SemanticTokens?> Function(SemanticTokensRangeParams params) handler,
+    Future<SemanticTokens?> Function(
+      SemanticTokensRangeParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.range.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = SemanticTokensRangeParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `textDocument/linkedEditingRange`.
   void onLinkedEditingRange(
-    Future<LinkedEditingRanges?> Function(LinkedEditingRangeParams params)
+    Future<LinkedEditingRanges?> Function(
+      LinkedEditingRangeParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.linkedEditingRange.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = LinkedEditingRangeParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `textDocument/moniker`.
   void onMoniker(
-    Future<List<Moniker>?> Function(MonikerParams params) handler,
+    Future<List<Moniker>?> Function(MonikerParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.moniker.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = MonikerParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/prepareTypeHierarchy`.
   void onPrepareTypeHierarchy(
-    Future<List<TypeHierarchyItem>?> Function(TypeHierarchyPrepareParams params)
+    Future<List<TypeHierarchyItem>?> Function(
+      TypeHierarchyPrepareParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(
       RequestMethod.prepareTypeHierarchy.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = TypeHierarchyPrepareParams.fromJson(
           json as Map<String, dynamic>,
         );
-        final r = await handler(p);
+        final r = await handler(p, context);
         return r?.map((e) => e.toJson()).toList();
       },
     );
@@ -206,42 +267,55 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/inlineValue`.
   void onInlineValue(
-    Future<List<InlineValue>?> Function(InlineValueParams params) handler,
+    Future<List<InlineValue>?> Function(
+      InlineValueParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.inlineValue.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = InlineValueParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/inlayHint`.
   void onInlayHint(
-    Future<List<InlayHint>?> Function(InlayHintParams params) handler,
+    Future<List<InlayHint>?> Function(
+      InlayHintParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.inlayHint.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = InlayHintParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/diagnostic`.
   void onDiagnostic(
-    Future<DocumentDiagnosticReport> Function(DocumentDiagnosticParams params)
+    Future<DocumentDiagnosticReport> Function(
+      DocumentDiagnosticParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(
       RequestMethod.textDocumentDiagnostic.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DocumentDiagnosticParams.fromJson(
           json as Map<String, dynamic>,
         );
-        final r = await handler(p);
+        final r = await handler(p, context);
         return r.toJson();
       },
     );
@@ -249,309 +323,384 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/inlineCompletion`.
   void onInlineCompletion(
-    Future<Object?> Function(InlineCompletionParams params) handler,
+    Future<Object?> Function(InlineCompletionParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.inlineCompletion.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = InlineCompletionParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `textDocument/willSaveWaitUntil`.
   void onWillSaveWaitUntil(
-    Future<List<TextEdit>?> Function(WillSaveTextDocumentParams params) handler,
+    Future<List<TextEdit>?> Function(
+      WillSaveTextDocumentParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.willSaveWaitUntil.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = WillSaveTextDocumentParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/completion`.
-  void onCompletion(Future<Object?> Function(CompletionParams params) handler) {
+  void onCompletion(
+    Future<Object?> Function(CompletionParams params, LspRequest context)
+    handler,
+  ) {
     _connection.registerRequestHandler(RequestMethod.completion.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = CompletionParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `textDocument/hover`.
-  void onHover(Future<Hover?> Function(HoverParams params) handler) {
+  void onHover(
+    Future<Hover?> Function(HoverParams params, LspRequest context) handler,
+  ) {
     _connection.registerRequestHandler(RequestMethod.hover.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = HoverParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `textDocument/signatureHelp`.
   void onSignatureHelp(
-    Future<SignatureHelp?> Function(SignatureHelpParams params) handler,
+    Future<SignatureHelp?> Function(
+      SignatureHelpParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.signatureHelp.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = SignatureHelpParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `textDocument/definition`.
-  void onDefinition(Future<Object?> Function(DefinitionParams params) handler) {
+  void onDefinition(
+    Future<Object?> Function(DefinitionParams params, LspRequest context)
+    handler,
+  ) {
     _connection.registerRequestHandler(RequestMethod.definition.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = DefinitionParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `textDocument/references`.
   void onReferences(
-    Future<List<Location>?> Function(ReferenceParams params) handler,
+    Future<List<Location>?> Function(ReferenceParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.references.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = ReferenceParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/documentHighlight`.
   void onDocumentHighlight(
-    Future<List<DocumentHighlight>?> Function(DocumentHighlightParams params)
+    Future<List<DocumentHighlight>?> Function(
+      DocumentHighlightParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.documentHighlight.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = DocumentHighlightParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/documentSymbol`.
   void onDocumentSymbol(
-    Future<Object?> Function(DocumentSymbolParams params) handler,
+    Future<Object?> Function(DocumentSymbolParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.documentSymbol.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = DocumentSymbolParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `textDocument/codeAction`.
   void onCodeAction(
-    Future<List<Object>?> Function(CodeActionParams params) handler,
+    Future<List<Object>?> Function(CodeActionParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.codeAction.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = CodeActionParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => (e as dynamic).toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/codeLens`.
   void onCodeLens(
-    Future<List<CodeLens>?> Function(CodeLensParams params) handler,
+    Future<List<CodeLens>?> Function(CodeLensParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.codeLens.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = CodeLensParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/documentLink`.
   void onDocumentLink(
-    Future<List<DocumentLink>?> Function(DocumentLinkParams params) handler,
+    Future<List<DocumentLink>?> Function(
+      DocumentLinkParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.documentLink.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = DocumentLinkParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/formatting`.
   void onFormatting(
-    Future<List<TextEdit>?> Function(DocumentFormattingParams params) handler,
+    Future<List<TextEdit>?> Function(
+      DocumentFormattingParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.formatting.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = DocumentFormattingParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/rangeFormatting`.
   void onRangeFormatting(
-    Future<List<TextEdit>?> Function(DocumentRangeFormattingParams params)
+    Future<List<TextEdit>?> Function(
+      DocumentRangeFormattingParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.rangeFormatting.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = DocumentRangeFormattingParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/rangesFormatting`.
   void onRangesFormatting(
-    Future<List<TextEdit>?> Function(DocumentRangesFormattingParams params)
+    Future<List<TextEdit>?> Function(
+      DocumentRangesFormattingParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.rangesFormatting.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = DocumentRangesFormattingParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/onTypeFormatting`.
   void onOnTypeFormatting(
-    Future<List<TextEdit>?> Function(DocumentOnTypeFormattingParams params)
+    Future<List<TextEdit>?> Function(
+      DocumentOnTypeFormattingParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.onTypeFormatting.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = DocumentOnTypeFormattingParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
 
   /// Registers handler for `textDocument/rename`.
-  void onRename(Future<WorkspaceEdit?> Function(RenameParams params) handler) {
+  void onRename(
+    Future<WorkspaceEdit?> Function(RenameParams params, LspRequest context)
+    handler,
+  ) {
     _connection.registerRequestHandler(RequestMethod.rename.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = RenameParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `textDocument/prepareRename`.
   void onPrepareRename(
-    Future<PrepareRenameResult?> Function(PrepareRenameParams params) handler,
+    Future<PrepareRenameResult?> Function(
+      PrepareRenameParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.prepareRename.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = PrepareRenameParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `textDocument/didOpen`.
   void onDidOpen(
-    Future<void> Function(DidOpenTextDocumentParams params) handler,
+    Future<void> Function(DidOpenTextDocumentParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.textDocumentDidOpen.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidOpenTextDocumentParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `textDocument/didChange`.
   void onDidChange(
-    Future<void> Function(DidChangeTextDocumentParams params) handler,
+    Future<void> Function(
+      DidChangeTextDocumentParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.textDocumentDidChange.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidChangeTextDocumentParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `textDocument/didClose`.
   void onDidClose(
-    Future<void> Function(DidCloseTextDocumentParams params) handler,
+    Future<void> Function(DidCloseTextDocumentParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.textDocumentDidClose.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidCloseTextDocumentParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `textDocument/didSave`.
   void onDidSave(
-    Future<void> Function(DidSaveTextDocumentParams params) handler,
+    Future<void> Function(DidSaveTextDocumentParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.textDocumentDidSave.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidSaveTextDocumentParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `textDocument/willSave`.
   void onWillSave(
-    Future<void> Function(WillSaveTextDocumentParams params) handler,
+    Future<void> Function(WillSaveTextDocumentParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerNotificationHandler(NotificationMethod.willSave.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = WillSaveTextDocumentParams.fromJson(
         json as Map<String, dynamic>,
       );
-      await handler(p);
+      await handler(p, context);
     });
   }
 }
@@ -566,16 +715,18 @@ class CallHierarchyHandlers {
   void onIncomingCalls(
     Future<List<CallHierarchyIncomingCall>?> Function(
       CallHierarchyIncomingCallsParams params,
+      LspRequest context,
     )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.incomingCalls.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = CallHierarchyIncomingCallsParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
@@ -584,16 +735,18 @@ class CallHierarchyHandlers {
   void onOutgoingCalls(
     Future<List<CallHierarchyOutgoingCall>?> Function(
       CallHierarchyOutgoingCallsParams params,
+      LspRequest context,
     )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.outgoingCalls.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = CallHierarchyOutgoingCallsParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
@@ -607,55 +760,73 @@ class WorkspaceHandlers {
 
   /// Registers handler for `workspace/willCreateFiles`.
   void onWillCreateFiles(
-    Future<WorkspaceEdit?> Function(CreateFilesParams params) handler,
+    Future<WorkspaceEdit?> Function(
+      CreateFilesParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.willCreateFiles.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = CreateFilesParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `workspace/willRenameFiles`.
   void onWillRenameFiles(
-    Future<WorkspaceEdit?> Function(RenameFilesParams params) handler,
+    Future<WorkspaceEdit?> Function(
+      RenameFilesParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.willRenameFiles.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = RenameFilesParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `workspace/willDeleteFiles`.
   void onWillDeleteFiles(
-    Future<WorkspaceEdit?> Function(DeleteFilesParams params) handler,
+    Future<WorkspaceEdit?> Function(
+      DeleteFilesParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.willDeleteFiles.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = DeleteFilesParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.toJson();
     });
   }
 
   /// Registers handler for `workspace/diagnostic`.
   void onDiagnostic(
-    Future<WorkspaceDiagnosticReport> Function(WorkspaceDiagnosticParams params)
+    Future<WorkspaceDiagnosticReport> Function(
+      WorkspaceDiagnosticParams params,
+      LspRequest context,
+    )
     handler,
   ) {
     _connection.registerRequestHandler(
       RequestMethod.workspaceDiagnostic.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = WorkspaceDiagnosticParams.fromJson(
           json as Map<String, dynamic>,
         );
-        final r = await handler(p);
+        final r = await handler(p, context);
         return r.toJson();
       },
     );
@@ -663,108 +834,124 @@ class WorkspaceHandlers {
 
   /// Registers handler for `workspace/symbol`.
   void onSymbol(
-    Future<Object?> Function(WorkspaceSymbolParams params) handler,
+    Future<Object?> Function(WorkspaceSymbolParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.symbol.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = WorkspaceSymbolParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `workspace/executeCommand`.
   void onExecuteCommand(
-    Future<Object?> Function(ExecuteCommandParams params) handler,
+    Future<Object?> Function(ExecuteCommandParams params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.executeCommand.value, (
       dynamic json,
+      LspRequest context,
     ) {
       final p = ExecuteCommandParams.fromJson(json as Map<String, dynamic>);
-      return handler(p);
+      return handler(p, context);
     });
   }
 
   /// Registers handler for `workspace/didChangeWorkspaceFolders`.
   void onDidChangeWorkspaceFolders(
-    Future<void> Function(DidChangeWorkspaceFoldersParams params) handler,
+    Future<void> Function(
+      DidChangeWorkspaceFoldersParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.didChangeWorkspaceFolders.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidChangeWorkspaceFoldersParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `workspace/didCreateFiles`.
   void onDidCreateFiles(
-    Future<void> Function(CreateFilesParams params) handler,
+    Future<void> Function(CreateFilesParams params, LspRequest context) handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.didCreateFiles.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = CreateFilesParams.fromJson(json as Map<String, dynamic>);
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `workspace/didRenameFiles`.
   void onDidRenameFiles(
-    Future<void> Function(RenameFilesParams params) handler,
+    Future<void> Function(RenameFilesParams params, LspRequest context) handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.didRenameFiles.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = RenameFilesParams.fromJson(json as Map<String, dynamic>);
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `workspace/didDeleteFiles`.
   void onDidDeleteFiles(
-    Future<void> Function(DeleteFilesParams params) handler,
+    Future<void> Function(DeleteFilesParams params, LspRequest context) handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.didDeleteFiles.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DeleteFilesParams.fromJson(json as Map<String, dynamic>);
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `workspace/didChangeConfiguration`.
   void onDidChangeConfiguration(
-    Future<void> Function(DidChangeConfigurationParams params) handler,
+    Future<void> Function(
+      DidChangeConfigurationParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.didChangeConfiguration.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidChangeConfigurationParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `workspace/didChangeWatchedFiles`.
   void onDidChangeWatchedFiles(
-    Future<void> Function(DidChangeWatchedFilesParams params) handler,
+    Future<void> Function(
+      DidChangeWatchedFilesParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.didChangeWatchedFiles.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidChangeWatchedFilesParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
@@ -780,16 +967,18 @@ class TypeHierarchyHandlers {
   void onSupertypes(
     Future<List<TypeHierarchyItem>?> Function(
       TypeHierarchySupertypesParams params,
+      LspRequest context,
     )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.supertypes.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = TypeHierarchySupertypesParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
@@ -798,16 +987,18 @@ class TypeHierarchyHandlers {
   void onSubtypes(
     Future<List<TypeHierarchyItem>?> Function(
       TypeHierarchySubtypesParams params,
+      LspRequest context,
     )
     handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.subtypes.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = TypeHierarchySubtypesParams.fromJson(
         json as Map<String, dynamic>,
       );
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r?.map((e) => e.toJson()).toList();
     });
   }
@@ -820,12 +1011,15 @@ class InlayHintHandlers {
   final LspConnection _connection;
 
   /// Registers handler for `inlayHint/resolve`.
-  void onResolve(Future<InlayHint> Function(InlayHint params) handler) {
+  void onResolve(
+    Future<InlayHint> Function(InlayHint params, LspRequest context) handler,
+  ) {
     _connection.registerRequestHandler(RequestMethod.inlayHintResolve.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = InlayHint.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r.toJson();
     });
   }
@@ -839,75 +1033,92 @@ class GeneralHandlers {
 
   /// Registers handler for `initialize`.
   void onInitialize(
-    Future<InitializeResult> Function(InitializeParams params) handler,
+    Future<InitializeResult> Function(
+      InitializeParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.initialize.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = InitializeParams.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r.toJson();
     });
   }
 
   /// Registers handler for `shutdown`.
-  void onShutdown(Future<void> Function() handler) {
+  void onShutdown(Future<void> Function(LspRequest context) handler) {
     _connection.registerRequestHandler(RequestMethod.shutdown.value, (
       dynamic json,
+      LspRequest context,
     ) async {
-      await handler();
+      await handler(context);
       return null;
     });
   }
 
   /// Registers handler for `initialized`.
-  void onInitialized(Future<void> Function(InitializedParams params) handler) {
+  void onInitialized(
+    Future<void> Function(InitializedParams params, LspRequest context) handler,
+  ) {
     _connection.registerNotificationHandler(
       NotificationMethod.initialized.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = InitializedParams.fromJson(json as Map<String, dynamic>);
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `exit`.
-  void onExit(Future<void> Function() handler) {
+  void onExit(Future<void> Function(LspRequest context) handler) {
     _connection.registerNotificationHandler(NotificationMethod.exit.value, (
       dynamic json,
+      LspRequest context,
     ) async {
-      await handler();
+      await handler(context);
     });
   }
 
   /// Registers handler for `$/setTrace`.
-  void onSetTrace(Future<void> Function(SetTraceParams params) handler) {
+  void onSetTrace(
+    Future<void> Function(SetTraceParams params, LspRequest context) handler,
+  ) {
     _connection.registerNotificationHandler(NotificationMethod.setTrace.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = SetTraceParams.fromJson(json as Map<String, dynamic>);
-      await handler(p);
+      await handler(p, context);
     });
   }
 
   /// Registers handler for `$/cancelRequest`.
-  void onCancelRequest(Future<void> Function(CancelParams params) handler) {
+  void onCancelRequest(
+    Future<void> Function(CancelParams params, LspRequest context) handler,
+  ) {
     _connection.registerNotificationHandler(
       NotificationMethod.cancelRequest.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = CancelParams.fromJson(json as Map<String, dynamic>);
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `$/progress`.
-  void onProgress(Future<void> Function(ProgressParams params) handler) {
+  void onProgress(
+    Future<void> Function(ProgressParams params, LspRequest context) handler,
+  ) {
     _connection.registerNotificationHandler(NotificationMethod.progress.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = ProgressParams.fromJson(json as Map<String, dynamic>);
-      await handler(p);
+      await handler(p, context);
     });
   }
 }
@@ -920,13 +1131,14 @@ class CompletionItemHandlers {
 
   /// Registers handler for `completionItem/resolve`.
   void onResolve(
-    Future<CompletionItem> Function(CompletionItem params) handler,
+    Future<CompletionItem> Function(CompletionItem params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(
       RequestMethod.completionItemResolve.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = CompletionItem.fromJson(json as Map<String, dynamic>);
-        final r = await handler(p);
+        final r = await handler(p, context);
         return r.toJson();
       },
     );
@@ -940,12 +1152,15 @@ class CodeActionHandlers {
   final LspConnection _connection;
 
   /// Registers handler for `codeAction/resolve`.
-  void onResolve(Future<CodeAction> Function(CodeAction params) handler) {
+  void onResolve(
+    Future<CodeAction> Function(CodeAction params, LspRequest context) handler,
+  ) {
     _connection.registerRequestHandler(RequestMethod.codeActionResolve.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = CodeAction.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r.toJson();
     });
   }
@@ -959,13 +1174,14 @@ class WorkspaceSymbolHandlers {
 
   /// Registers handler for `workspaceSymbol/resolve`.
   void onResolve(
-    Future<WorkspaceSymbol> Function(WorkspaceSymbol params) handler,
+    Future<WorkspaceSymbol> Function(WorkspaceSymbol params, LspRequest context)
+    handler,
   ) {
     _connection.registerRequestHandler(
       RequestMethod.workspaceSymbolResolve.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = WorkspaceSymbol.fromJson(json as Map<String, dynamic>);
-        final r = await handler(p);
+        final r = await handler(p, context);
         return r.toJson();
       },
     );
@@ -979,12 +1195,15 @@ class CodeLensHandlers {
   final LspConnection _connection;
 
   /// Registers handler for `codeLens/resolve`.
-  void onResolve(Future<CodeLens> Function(CodeLens params) handler) {
+  void onResolve(
+    Future<CodeLens> Function(CodeLens params, LspRequest context) handler,
+  ) {
     _connection.registerRequestHandler(RequestMethod.codeLensResolve.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = CodeLens.fromJson(json as Map<String, dynamic>);
-      final r = await handler(p);
+      final r = await handler(p, context);
       return r.toJson();
     });
   }
@@ -997,12 +1216,15 @@ class DocumentLinkHandlers {
   final LspConnection _connection;
 
   /// Registers handler for `documentLink/resolve`.
-  void onResolve(Future<DocumentLink> Function(DocumentLink params) handler) {
+  void onResolve(
+    Future<DocumentLink> Function(DocumentLink params, LspRequest context)
+    handler,
+  ) {
     _connection.registerRequestHandler(
       RequestMethod.documentLinkResolve.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DocumentLink.fromJson(json as Map<String, dynamic>);
-        final r = await handler(p);
+        final r = await handler(p, context);
         return r.toJson();
       },
     );
@@ -1017,15 +1239,20 @@ class WindowHandlers {
 
   /// Registers handler for `window/workDoneProgress/cancel`.
   void onWorkDoneProgressCancel(
-    Future<void> Function(WorkDoneProgressCancelParams params) handler,
+    Future<void> Function(
+      WorkDoneProgressCancelParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(NotificationMethod.cancel.value, (
       dynamic json,
+      LspRequest context,
     ) async {
       final p = WorkDoneProgressCancelParams.fromJson(
         json as Map<String, dynamic>,
       );
-      await handler(p);
+      await handler(p, context);
     });
   }
 }
@@ -1038,60 +1265,76 @@ class NotebookDocumentHandlers {
 
   /// Registers handler for `notebookDocument/didOpen`.
   void onDidOpen(
-    Future<void> Function(DidOpenNotebookDocumentParams params) handler,
+    Future<void> Function(
+      DidOpenNotebookDocumentParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.notebookDocumentDidOpen.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidOpenNotebookDocumentParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `notebookDocument/didChange`.
   void onDidChange(
-    Future<void> Function(DidChangeNotebookDocumentParams params) handler,
+    Future<void> Function(
+      DidChangeNotebookDocumentParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.notebookDocumentDidChange.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidChangeNotebookDocumentParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `notebookDocument/didSave`.
   void onDidSave(
-    Future<void> Function(DidSaveNotebookDocumentParams params) handler,
+    Future<void> Function(
+      DidSaveNotebookDocumentParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.notebookDocumentDidSave.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidSaveNotebookDocumentParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }
 
   /// Registers handler for `notebookDocument/didClose`.
   void onDidClose(
-    Future<void> Function(DidCloseNotebookDocumentParams params) handler,
+    Future<void> Function(
+      DidCloseNotebookDocumentParams params,
+      LspRequest context,
+    )
+    handler,
   ) {
     _connection.registerNotificationHandler(
       NotificationMethod.notebookDocumentDidClose.value,
-      (dynamic json) async {
+      (dynamic json, LspRequest context) async {
         final p = DidCloseNotebookDocumentParams.fromJson(
           json as Map<String, dynamic>,
         );
-        await handler(p);
+        await handler(p, context);
       },
     );
   }

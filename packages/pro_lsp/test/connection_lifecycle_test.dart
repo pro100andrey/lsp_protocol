@@ -33,7 +33,7 @@ void main() {
         var handlerCalled = false;
         connection.registerRequestHandler(
           'textDocument/hover',
-          (params) async {
+          (params, _) async {
             handlerCalled = true;
             return null;
           },
@@ -69,13 +69,13 @@ void main() {
         connection
           ..registerRequestHandler(
             'initialize',
-            (params) async => <String, dynamic>{
+            (params, _) async => <String, dynamic>{
               'capabilities': <String, dynamic>{},
             },
           )
           ..registerRequestHandler(
             'textDocument/hover',
-            (params) async => <String, dynamic>{'contents': 'Hover result'},
+            (params, _) async => <String, dynamic>{'contents': 'Hover result'},
           );
 
         final listenFuture = connection.listen();
@@ -123,14 +123,14 @@ void main() {
         connection
           ..registerRequestHandler(
             'initialize',
-            (params) async => <String, dynamic>{
+            (params, _) async => <String, dynamic>{
               'capabilities': <String, dynamic>{},
             },
           )
-          ..registerRequestHandler('shutdown', (params) async => null)
+          ..registerRequestHandler('shutdown', (params, _) async => null)
           ..registerRequestHandler(
             'textDocument/hover',
-            (params) async => null,
+            (params, _) async => null,
           );
 
         final listenFuture = connection.listen();
@@ -183,79 +183,95 @@ void main() {
     });
 
     group('Cancellation', () {
-      test('correctly cancels token inside zone', () async {
-        final handlerCompleter = Completer<Object?>();
-        CancellationToken? capturedToken;
+      test(
+        'correctly cancels token and provides metadata in context',
+        () async {
+          final handlerCompleter = Completer<Object?>();
+          CancellationToken? capturedToken;
+          Object? capturedId;
+          String? capturedMethod;
 
-        connection
-          ..registerRequestHandler(
-            'initialize',
-            (params) async => <String, dynamic>{},
-          )
-          ..registerRequestHandler('textDocument/hover', (params) async {
-            capturedToken = CancellationToken.current;
-            // Wait for cancellation
-            await handlerCompleter.future;
-            capturedToken?.throwIfCancelled();
-            return 'Hover Success';
-          });
+          connection
+            ..registerRequestHandler(
+              'initialize',
+              (params, _) async => <String, dynamic>{},
+            )
+            ..registerRequestHandler('textDocument/hover', (
+              params,
+              context,
+            ) async {
+              capturedToken = context.cancellationToken;
+              capturedId = context.id;
+              capturedMethod = context.method;
 
-        final listenFuture = connection.listen();
-        final responses = <String>[];
-        clientOutgoing.stream.listen(responses.add);
+              // Verify context matches static CancellationToken.current
+              expect(capturedToken, same(CancellationToken.current));
 
-        // Initialize first
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 1,
-            'method': 'initialize',
-            'params': <String, dynamic>{},
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+              // Wait for cancellation
+              await handlerCompleter.future;
+              capturedToken?.throwIfCancelled();
+              return 'Hover Success';
+            });
 
-        // Send hover request
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 42,
-            'method': 'textDocument/hover',
-            'params': <String, dynamic>{},
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+          final listenFuture = connection.listen();
+          final responses = <String>[];
+          clientOutgoing.stream.listen(responses.add);
 
-        expect(capturedToken, isNotNull);
-        expect(capturedToken!.isCancelled, isFalse);
+          // Initialize first
+          clientIncoming.add(
+            jsonEncode(<String, dynamic>{
+              'jsonrpc': '2.0',
+              'id': 1,
+              'method': 'initialize',
+              'params': <String, dynamic>{},
+            }),
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        // Send cancel request
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'method': r'$/cancelRequest',
-            'params': <String, dynamic>{'id': 42},
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+          // Send hover request
+          clientIncoming.add(
+            jsonEncode(<String, dynamic>{
+              'jsonrpc': '2.0',
+              'id': 42,
+              'method': 'textDocument/hover',
+              'params': <String, dynamic>{},
+            }),
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        expect(capturedToken!.isCancelled, isTrue);
+          expect(capturedToken, isNotNull);
+          expect(capturedToken!.isCancelled, isFalse);
+          expect(capturedId, 42);
+          expect(capturedMethod, 'textDocument/hover');
 
-        // Complete the handler
-        handlerCompleter.complete(null);
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+          // Send cancel request
+          clientIncoming.add(
+            jsonEncode(<String, dynamic>{
+              'jsonrpc': '2.0',
+              'method': r'$/cancelRequest',
+              'params': <String, dynamic>{'id': 42},
+            }),
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
 
-        expect(
-          responses,
-          hasLength(2),
-        ); // Initialize response + Hover error response
-        final hoverResp = jsonDecode(responses[1]) as Map<String, dynamic>;
-        final error = hoverResp['error'] as Map<String, dynamic>;
-        expect(error['code'], -32800); // RequestCancelled
+          expect(capturedToken!.isCancelled, isTrue);
 
-        await connection.close();
-        await listenFuture;
-      });
+          // Complete the handler
+          handlerCompleter.complete(null);
+          await Future<void>.delayed(const Duration(milliseconds: 50));
+
+          expect(
+            responses,
+            hasLength(2),
+          ); // Initialize response + Hover error response
+          final hoverResp = jsonDecode(responses[1]) as Map<String, dynamic>;
+          final error = hoverResp['error'] as Map<String, dynamic>;
+          expect(error['code'], -32800); // RequestCancelled
+
+          await connection.close();
+          await listenFuture;
+        },
+      );
     });
 
     group('Middleware', () {
@@ -279,11 +295,13 @@ void main() {
         connection
           ..registerRequestHandler(
             'initialize',
-            (params) async => <String, dynamic>{},
+            (params, _) async => <String, dynamic>{},
           )
           ..registerRequestHandler(
             'textDocument/hover',
-            (params) async => <String, dynamic>{'contents': 'Original Hover'},
+            (params, _) async => <String, dynamic>{
+              'contents': 'Original Hover',
+            },
           );
 
         final listenFuture = connection.listen();
@@ -334,10 +352,11 @@ void main() {
             }
             ..registerRequestHandler(
               'initialize',
-              (params) async => <String, dynamic>{},
+              (params, _) async => <String, dynamic>{},
             )
             ..registerRequestHandler('textDocument/hover', (
               params,
+              _,
             ) {
               throw StateError('Simulated crash in handler');
             });
@@ -422,7 +441,7 @@ void main() {
 
       Future<void> performInitialization() async {
         server.general.onInitialize(
-          (params) async =>
+          (params, _) async =>
               const InitializeResult(capabilities: ServerCapabilities()),
         );
 

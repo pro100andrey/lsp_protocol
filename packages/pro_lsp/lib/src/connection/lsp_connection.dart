@@ -7,6 +7,7 @@ import 'package:stream_channel/stream_channel.dart';
 import '../../pro_lsp.dart' show LspServer;
 import '../generated/models/methods.dart';
 import '../server/cancellation_token.dart';
+import '../server/lsp_request.dart';
 import '../server/lsp_server.dart' show LspServer;
 import '../server/lsp_state.dart';
 import '../server/middleware.dart';
@@ -59,7 +60,7 @@ final class LspConnection {
     // Register $/cancelRequest handler so json_rpc_2 doesn't treat it as unknown
     registerNotificationHandler(
       NotificationMethod.cancelRequest.value,
-      (params) async {},
+      (params, context) async {},
     );
   }
 
@@ -129,7 +130,7 @@ final class LspConnection {
   /// a structured error response to the client.
   void registerRequestHandler(
     String method,
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(Object? params, LspRequest context) handler,
   ) {
     _peer.registerMethod(method, (rpc.Parameters params) async {
       final rawVal = params.value;
@@ -142,6 +143,12 @@ final class LspConnection {
       if (requestId != null) {
         _activeCancellations[requestId] = token;
       }
+
+      final context = LspRequest(
+        method: method,
+        cancellationToken: token,
+        id: requestId,
+      );
 
       try {
         // 1. Verify state permissions
@@ -163,7 +170,7 @@ final class LspConnection {
         final response = await composeMiddlewares(
           _middlewares,
           (req) => runZoned(
-            () => handler(req.params),
+            () => handler(req.params, context),
             zoneValues: {#cancellationToken: token},
           ),
         )(request);
@@ -205,10 +212,15 @@ final class LspConnection {
   /// propagate as an RpcException (visible in logs on the sender side).
   void registerNotificationHandler(
     String method,
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(Object? params, LspRequest context) handler,
   ) {
     _peer.registerMethod(method, (rpc.Parameters params) async {
       final rawVal = params.value;
+
+      final context = LspRequest(
+        method: method,
+        cancellationToken: CancellationToken(),
+      );
 
       try {
         // 1. Verify state permissions
@@ -224,7 +236,7 @@ final class LspConnection {
         );
 
         await composeMiddlewares(_middlewares, (req) async {
-          await handler(req.params);
+          await handler(req.params, context);
           return null;
         })(request);
 
