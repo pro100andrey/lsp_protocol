@@ -2,6 +2,19 @@ import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:meta/meta.dart';
 
+/// Adds helpers that complement [Expression] from `code_builder`.
+extension ExpressionX on Expression {
+  /// Returns `this as [type]` **without** wrapping parentheses.
+  ///
+  /// Use instead of [Expression.asA] when the cast is a terminal expression
+  /// (record field, return value, argument) and parentheses are unnecessary.
+  /// Keep using [Expression.asA] when chaining further (`.property()`, etc.).
+  Expression bareAsA(Expression type) {
+    final e = DartEmitter();
+    return CodeExpression(Code('${accept(e)} as ${type.accept(e)}'));
+  }
+}
+
 /// Generates an if-else statement as code.
 ///
 /// Creates a code block with the given [condition], executing [ifBlock] when

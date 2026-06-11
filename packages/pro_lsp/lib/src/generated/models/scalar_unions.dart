@@ -10,13 +10,13 @@ extension type const ProgressToken(Object value) {
   bool get isInt => value is int;
 
   int? get asInt {
-    return value is int ? (value as int) : null;
+    return value is int ? value as int : null;
   }
 
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 }
 
@@ -29,13 +29,13 @@ extension type const CancelParamsId(Object value) {
   bool get isInt => value is int;
 
   int? get asInt {
-    return value is int ? (value as int) : null;
+    return value is int ? value as int : null;
   }
 
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 }
 
@@ -48,13 +48,13 @@ extension type const DiagnosticCode(Object value) {
   bool get isInt => value is int;
 
   int? get asInt {
-    return value is int ? (value as int) : null;
+    return value is int ? value as int : null;
   }
 
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 }
 
@@ -71,13 +71,13 @@ extension type const WorkspaceFoldersServerCapabilitiesChangeNotifications(
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 }
 
@@ -91,7 +91,7 @@ extension type const ParameterInformationLabel(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isTuple => value is List && (value as List).length == 2;

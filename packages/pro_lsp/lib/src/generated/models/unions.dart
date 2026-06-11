@@ -25,10 +25,10 @@ extension type const Definition(Object value) {
 
   Location? get asLocation {
     if (value is Location) {
-      return (value as Location);
+      return value as Location;
     }
     if (isLocation) {
-      return Location.fromJson((value as Map<String, dynamic>));
+      return Location.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -37,14 +37,14 @@ extension type const Definition(Object value) {
 
   List<Location>? get asList {
     if (value is List<Location>) {
-      return (value as List<Location>);
+      return value as List<Location>;
     }
     if (isList) {
       return (value as List)
           .map(
             (e) => e is Location
                 ? e
-                : Location.fromJson((e as Map<String, dynamic>)),
+                : Location.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     }
@@ -66,37 +66,37 @@ extension type const LSPAny(Object value) {
   bool get isLSPObject => value is Map<String, dynamic>;
 
   LSPObject? get asLSPObject {
-    return value is LSPObject ? (value as LSPObject) : null;
+    return value is LSPObject ? value as LSPObject : null;
   }
 
   bool get isLSPArray => value is List;
 
   LSPArray? get asLSPArray {
-    return value is LSPArray ? (value as LSPArray) : null;
+    return value is LSPArray ? value as LSPArray : null;
   }
 
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isInt => value is int;
 
   int? get asInt {
-    return value is int ? (value as int) : null;
+    return value is int ? value as int : null;
   }
 
   bool get isDouble => value is double;
 
   double? get asDouble {
-    return value is double ? (value as double) : null;
+    return value is double ? value as double : null;
   }
 
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isNull => (value as Object?) == null;
@@ -120,10 +120,10 @@ extension type const Declaration(Object value) {
 
   Location? get asLocation {
     if (value is Location) {
-      return (value as Location);
+      return value as Location;
     }
     if (isLocation) {
-      return Location.fromJson((value as Map<String, dynamic>));
+      return Location.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -132,14 +132,14 @@ extension type const Declaration(Object value) {
 
   List<Location>? get asList {
     if (value is List<Location>) {
-      return (value as List<Location>);
+      return value as List<Location>;
     }
     if (isList) {
       return (value as List)
           .map(
             (e) => e is Location
                 ? e
-                : Location.fromJson((e as Map<String, dynamic>)),
+                : Location.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     }
@@ -166,10 +166,10 @@ extension type const InlineValue(Object value) {
 
   InlineValueText? get asText {
     if (value is InlineValueText) {
-      return (value as InlineValueText);
+      return value as InlineValueText;
     }
     if (isText) {
-      return InlineValueText.fromJson((value as Map<String, dynamic>));
+      return InlineValueText.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -181,12 +181,10 @@ extension type const InlineValue(Object value) {
 
   InlineValueVariableLookup? get asVariableLookup {
     if (value is InlineValueVariableLookup) {
-      return (value as InlineValueVariableLookup);
+      return value as InlineValueVariableLookup;
     }
     if (isVariableLookup) {
-      return InlineValueVariableLookup.fromJson(
-        (value as Map<String, dynamic>),
-      );
+      return InlineValueVariableLookup.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -199,11 +197,11 @@ extension type const InlineValue(Object value) {
 
   InlineValueEvaluatableExpression? get asEvaluatableExpression {
     if (value is InlineValueEvaluatableExpression) {
-      return (value as InlineValueEvaluatableExpression);
+      return value as InlineValueEvaluatableExpression;
     }
     if (isEvaluatableExpression) {
       return InlineValueEvaluatableExpression.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -230,11 +228,11 @@ extension type const DocumentDiagnosticReport(Object value) {
   RelatedFullDocumentDiagnosticReport?
   get asRelatedFullDocumentDiagnosticReport {
     if (value is RelatedFullDocumentDiagnosticReport) {
-      return (value as RelatedFullDocumentDiagnosticReport);
+      return value as RelatedFullDocumentDiagnosticReport;
     }
     if (isRelatedFullDocumentDiagnosticReport) {
       return RelatedFullDocumentDiagnosticReport.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -248,11 +246,11 @@ extension type const DocumentDiagnosticReport(Object value) {
   RelatedUnchangedDocumentDiagnosticReport?
   get asRelatedUnchangedDocumentDiagnosticReport {
     if (value is RelatedUnchangedDocumentDiagnosticReport) {
-      return (value as RelatedUnchangedDocumentDiagnosticReport);
+      return value as RelatedUnchangedDocumentDiagnosticReport;
     }
     if (isRelatedUnchangedDocumentDiagnosticReport) {
       return RelatedUnchangedDocumentDiagnosticReport.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -271,10 +269,10 @@ extension type const PrepareRenameResult(Object value) {
 
   Range? get asRange {
     if (value is Range) {
-      return (value as Range);
+      return value as Range;
     }
     if (isRange) {
-      return Range.fromJson((value as Map<String, dynamic>));
+      return Range.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -326,11 +324,11 @@ extension type const WorkspaceDocumentDiagnosticReport(Object value) {
   WorkspaceFullDocumentDiagnosticReport?
   get asWorkspaceFullDocumentDiagnosticReport {
     if (value is WorkspaceFullDocumentDiagnosticReport) {
-      return (value as WorkspaceFullDocumentDiagnosticReport);
+      return value as WorkspaceFullDocumentDiagnosticReport;
     }
     if (isWorkspaceFullDocumentDiagnosticReport) {
       return WorkspaceFullDocumentDiagnosticReport.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -344,11 +342,11 @@ extension type const WorkspaceDocumentDiagnosticReport(Object value) {
   WorkspaceUnchangedDocumentDiagnosticReport?
   get asWorkspaceUnchangedDocumentDiagnosticReport {
     if (value is WorkspaceUnchangedDocumentDiagnosticReport) {
-      return (value as WorkspaceUnchangedDocumentDiagnosticReport);
+      return value as WorkspaceUnchangedDocumentDiagnosticReport;
     }
     if (isWorkspaceUnchangedDocumentDiagnosticReport) {
       return WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -414,7 +412,7 @@ extension type const MarkedString(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isLanguageValue =>
@@ -455,7 +453,7 @@ extension type const DocumentFilter(Object value) {
 
   TextDocumentFilter? get asTextDocumentFilter {
     if (value is TextDocumentFilter) {
-      return (value as TextDocumentFilter);
+      return value as TextDocumentFilter;
     }
     if (isTextDocumentFilter) {
       return TextDocumentFilter.fromJson(value);
@@ -470,11 +468,11 @@ extension type const DocumentFilter(Object value) {
 
   NotebookCellTextDocumentFilter? get asNotebookCellTextDocumentFilter {
     if (value is NotebookCellTextDocumentFilter) {
-      return (value as NotebookCellTextDocumentFilter);
+      return value as NotebookCellTextDocumentFilter;
     }
     if (isNotebookCellTextDocumentFilter) {
       return NotebookCellTextDocumentFilter.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -492,7 +490,7 @@ extension type const GlobPattern(Object value) {
   bool get isPattern => value is String;
 
   Pattern? get asPattern {
-    return value is Pattern ? (value as Pattern) : null;
+    return value is Pattern ? value as Pattern : null;
   }
 
   bool get isRelativePattern =>
@@ -503,10 +501,10 @@ extension type const GlobPattern(Object value) {
 
   RelativePattern? get asRelativePattern {
     if (value is RelativePattern) {
-      return (value as RelativePattern);
+      return value as RelativePattern;
     }
     if (isRelativePattern) {
-      return RelativePattern.fromJson((value as Map<String, dynamic>));
+      return RelativePattern.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -594,7 +592,7 @@ extension type const SemanticTokensRegistrationOptionsRange(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isEmpty => value is Map<String, dynamic>;
@@ -617,7 +615,7 @@ extension type const SemanticTokensRegistrationOptionsFull(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDelta => value is Map<String, dynamic>;
@@ -646,10 +644,10 @@ extension type const WorkspaceEditDocumentChangesItem(Object value) {
 
   TextDocumentEdit? get asTextDocumentEdit {
     if (value is TextDocumentEdit) {
-      return (value as TextDocumentEdit);
+      return value as TextDocumentEdit;
     }
     if (isTextDocumentEdit) {
-      return TextDocumentEdit.fromJson((value as Map<String, dynamic>));
+      return TextDocumentEdit.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -662,10 +660,10 @@ extension type const WorkspaceEditDocumentChangesItem(Object value) {
 
   CreateFile? get asCreateFile {
     if (value is CreateFile) {
-      return (value as CreateFile);
+      return value as CreateFile;
     }
     if (isCreateFile) {
-      return CreateFile.fromJson((value as Map<String, dynamic>));
+      return CreateFile.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -679,10 +677,10 @@ extension type const WorkspaceEditDocumentChangesItem(Object value) {
 
   RenameFile? get asRenameFile {
     if (value is RenameFile) {
-      return (value as RenameFile);
+      return value as RenameFile;
     }
     if (isRenameFile) {
-      return RenameFile.fromJson((value as Map<String, dynamic>));
+      return RenameFile.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -695,10 +693,10 @@ extension type const WorkspaceEditDocumentChangesItem(Object value) {
 
   DeleteFile? get asDeleteFile {
     if (value is DeleteFile) {
-      return (value as DeleteFile);
+      return value as DeleteFile;
     }
     if (isDeleteFile) {
-      return DeleteFile.fromJson((value as Map<String, dynamic>));
+      return DeleteFile.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -713,21 +711,21 @@ extension type const InlayHintLabel(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isList => value is List;
 
   List<InlayHintLabelPart>? get asList {
     if (value is List<InlayHintLabelPart>) {
-      return (value as List<InlayHintLabelPart>);
+      return value as List<InlayHintLabelPart>;
     }
     if (isList) {
       return (value as List)
           .map(
             (e) => e is InlayHintLabelPart
                 ? e
-                : InlayHintLabelPart.fromJson((e as Map<String, dynamic>)),
+                : InlayHintLabelPart.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     }
@@ -744,7 +742,7 @@ extension type const InlayHintTooltip(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isMarkupContent =>
@@ -755,10 +753,10 @@ extension type const InlayHintTooltip(Object value) {
 
   MarkupContent? get asMarkupContent {
     if (value is MarkupContent) {
-      return (value as MarkupContent);
+      return value as MarkupContent;
     }
     if (isMarkupContent) {
-      return MarkupContent.fromJson((value as Map<String, dynamic>));
+      return MarkupContent.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -774,7 +772,7 @@ extension type const InlineCompletionItemInsertText(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isStringValue =>
@@ -785,10 +783,10 @@ extension type const InlineCompletionItemInsertText(Object value) {
 
   StringValue? get asStringValue {
     if (value is StringValue) {
-      return (value as StringValue);
+      return value as StringValue;
     }
     if (isStringValue) {
-      return StringValue.fromJson((value as Map<String, dynamic>));
+      return StringValue.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -807,7 +805,7 @@ extension type const DidChangeConfigurationRegistrationOptionsSection(
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isList => value is List;
@@ -827,7 +825,7 @@ extension type const CompletionItemDocumentation(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isMarkupContent =>
@@ -838,10 +836,10 @@ extension type const CompletionItemDocumentation(Object value) {
 
   MarkupContent? get asMarkupContent {
     if (value is MarkupContent) {
-      return (value as MarkupContent);
+      return value as MarkupContent;
     }
     if (isMarkupContent) {
-      return MarkupContent.fromJson((value as Map<String, dynamic>));
+      return MarkupContent.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -861,10 +859,10 @@ extension type const CompletionItemTextEdit(Object value) {
 
   TextEdit? get asTextEdit {
     if (value is TextEdit) {
-      return (value as TextEdit);
+      return value as TextEdit;
     }
     if (isTextEdit) {
-      return TextEdit.fromJson((value as Map<String, dynamic>));
+      return TextEdit.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -876,10 +874,10 @@ extension type const CompletionItemTextEdit(Object value) {
 
   InsertReplaceEdit? get asInsertReplaceEdit {
     if (value is InsertReplaceEdit) {
-      return (value as InsertReplaceEdit);
+      return value as InsertReplaceEdit;
     }
     if (isInsertReplaceEdit) {
-      return InsertReplaceEdit.fromJson((value as Map<String, dynamic>));
+      return InsertReplaceEdit.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -899,10 +897,10 @@ extension type const HoverContents(Object value) {
 
   MarkupContent? get asMarkupContent {
     if (value is MarkupContent) {
-      return (value as MarkupContent);
+      return value as MarkupContent;
     }
     if (isMarkupContent) {
-      return MarkupContent.fromJson((value as Map<String, dynamic>));
+      return MarkupContent.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -915,7 +913,7 @@ extension type const HoverContents(Object value) {
 
   MarkedString? get asMarkedString {
     if (value is MarkedString) {
-      return (value as MarkedString);
+      return value as MarkedString;
     }
     if (isMarkedString) {
       return MarkedString.fromJson(value);
@@ -927,12 +925,12 @@ extension type const HoverContents(Object value) {
 
   List<MarkedString>? get asList {
     if (value is List<MarkedString>) {
-      return (value as List<MarkedString>);
+      return value as List<MarkedString>;
     }
     if (isList) {
       return (value as List)
           .map(
-            (e) => e is MarkedString ? e : MarkedString.fromJson((e as Object)),
+            (e) => e is MarkedString ? e : MarkedString.fromJson(e as Object),
           )
           .toList();
     }
@@ -954,10 +952,10 @@ extension type const WorkspaceSymbolLocation(Object value) {
 
   Location? get asLocation {
     if (value is Location) {
-      return (value as Location);
+      return value as Location;
     }
     if (isLocation) {
-      return Location.fromJson((value as Map<String, dynamic>));
+      return Location.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -985,7 +983,7 @@ extension type const SemanticTokensOptionsRange(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isEmpty => value is Map<String, dynamic>;
@@ -1008,7 +1006,7 @@ extension type const SemanticTokensOptionsFull(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDelta => value is Map<String, dynamic>;
@@ -1036,10 +1034,10 @@ extension type const TextDocumentEditEditsItem(Object value) {
 
   TextEdit? get asTextEdit {
     if (value is TextEdit) {
-      return (value as TextEdit);
+      return value as TextEdit;
     }
     if (isTextEdit) {
-      return TextEdit.fromJson((value as Map<String, dynamic>));
+      return TextEdit.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1051,10 +1049,10 @@ extension type const TextDocumentEditEditsItem(Object value) {
 
   AnnotatedTextEdit? get asAnnotatedTextEdit {
     if (value is AnnotatedTextEdit) {
-      return (value as AnnotatedTextEdit);
+      return value as AnnotatedTextEdit;
     }
     if (isAnnotatedTextEdit) {
-      return AnnotatedTextEdit.fromJson((value as Map<String, dynamic>));
+      return AnnotatedTextEdit.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1070,7 +1068,7 @@ extension type const InlayHintLabelPartTooltip(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isMarkupContent =>
@@ -1081,10 +1079,10 @@ extension type const InlayHintLabelPartTooltip(Object value) {
 
   MarkupContent? get asMarkupContent {
     if (value is MarkupContent) {
-      return (value as MarkupContent);
+      return value as MarkupContent;
     }
     if (isMarkupContent) {
-      return MarkupContent.fromJson((value as Map<String, dynamic>));
+      return MarkupContent.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1102,10 +1100,10 @@ extension type const ServerCapabilitiesTextDocumentSync(Object value) {
 
   TextDocumentSyncOptions? get asTextDocumentSyncOptions {
     if (value is TextDocumentSyncOptions) {
-      return (value as TextDocumentSyncOptions);
+      return value as TextDocumentSyncOptions;
     }
     if (isTextDocumentSyncOptions) {
-      return TextDocumentSyncOptions.fromJson((value as Map<String, dynamic>));
+      return TextDocumentSyncOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1115,10 +1113,10 @@ extension type const ServerCapabilitiesTextDocumentSync(Object value) {
 
   TextDocumentSyncKind? get asTextDocumentSyncKind {
     if (value is TextDocumentSyncKind) {
-      return (value as TextDocumentSyncKind);
+      return value as TextDocumentSyncKind;
     }
     if (isTextDocumentSyncKind) {
-      return TextDocumentSyncKind.decode((value as int));
+      return TextDocumentSyncKind.decode(value as int);
     }
     return null;
   }
@@ -1138,11 +1136,11 @@ extension type const ServerCapabilitiesNotebookDocumentSync(Object value) {
 
   NotebookDocumentSyncOptions? get asNotebookDocumentSyncOptions {
     if (value is NotebookDocumentSyncOptions) {
-      return (value as NotebookDocumentSyncOptions);
+      return value as NotebookDocumentSyncOptions;
     }
     if (isNotebookDocumentSyncOptions) {
       return NotebookDocumentSyncOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1155,11 +1153,11 @@ extension type const ServerCapabilitiesNotebookDocumentSync(Object value) {
   NotebookDocumentSyncRegistrationOptions?
   get asNotebookDocumentSyncRegistrationOptions {
     if (value is NotebookDocumentSyncRegistrationOptions) {
-      return (value as NotebookDocumentSyncRegistrationOptions);
+      return value as NotebookDocumentSyncRegistrationOptions;
     }
     if (isNotebookDocumentSyncRegistrationOptions) {
       return NotebookDocumentSyncRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1176,7 +1174,7 @@ extension type const ServerCapabilitiesHoverProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isHoverOptions =>
@@ -1184,10 +1182,10 @@ extension type const ServerCapabilitiesHoverProvider(Object value) {
 
   HoverOptions? get asHoverOptions {
     if (value is HoverOptions) {
-      return (value as HoverOptions);
+      return value as HoverOptions;
     }
     if (isHoverOptions) {
-      return HoverOptions.fromJson((value as Map<String, dynamic>));
+      return HoverOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1203,7 +1201,7 @@ extension type const ServerCapabilitiesDeclarationProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDeclarationOptions =>
@@ -1213,10 +1211,10 @@ extension type const ServerCapabilitiesDeclarationProvider(Object value) {
 
   DeclarationOptions? get asDeclarationOptions {
     if (value is DeclarationOptions) {
-      return (value as DeclarationOptions);
+      return value as DeclarationOptions;
     }
     if (isDeclarationOptions) {
-      return DeclarationOptions.fromJson((value as Map<String, dynamic>));
+      return DeclarationOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1228,11 +1226,11 @@ extension type const ServerCapabilitiesDeclarationProvider(Object value) {
 
   DeclarationRegistrationOptions? get asDeclarationRegistrationOptions {
     if (value is DeclarationRegistrationOptions) {
-      return (value as DeclarationRegistrationOptions);
+      return value as DeclarationRegistrationOptions;
     }
     if (isDeclarationRegistrationOptions) {
       return DeclarationRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1249,7 +1247,7 @@ extension type const ServerCapabilitiesDefinitionProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDefinitionOptions =>
@@ -1257,10 +1255,10 @@ extension type const ServerCapabilitiesDefinitionProvider(Object value) {
 
   DefinitionOptions? get asDefinitionOptions {
     if (value is DefinitionOptions) {
-      return (value as DefinitionOptions);
+      return value as DefinitionOptions;
     }
     if (isDefinitionOptions) {
-      return DefinitionOptions.fromJson((value as Map<String, dynamic>));
+      return DefinitionOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1276,7 +1274,7 @@ extension type const ServerCapabilitiesTypeDefinitionProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isTypeDefinitionOptions =>
@@ -1286,10 +1284,10 @@ extension type const ServerCapabilitiesTypeDefinitionProvider(Object value) {
 
   TypeDefinitionOptions? get asTypeDefinitionOptions {
     if (value is TypeDefinitionOptions) {
-      return (value as TypeDefinitionOptions);
+      return value as TypeDefinitionOptions;
     }
     if (isTypeDefinitionOptions) {
-      return TypeDefinitionOptions.fromJson((value as Map<String, dynamic>));
+      return TypeDefinitionOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1301,11 +1299,11 @@ extension type const ServerCapabilitiesTypeDefinitionProvider(Object value) {
 
   TypeDefinitionRegistrationOptions? get asTypeDefinitionRegistrationOptions {
     if (value is TypeDefinitionRegistrationOptions) {
-      return (value as TypeDefinitionRegistrationOptions);
+      return value as TypeDefinitionRegistrationOptions;
     }
     if (isTypeDefinitionRegistrationOptions) {
       return TypeDefinitionRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1322,7 +1320,7 @@ extension type const ServerCapabilitiesImplementationProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isImplementationOptions =>
@@ -1332,10 +1330,10 @@ extension type const ServerCapabilitiesImplementationProvider(Object value) {
 
   ImplementationOptions? get asImplementationOptions {
     if (value is ImplementationOptions) {
-      return (value as ImplementationOptions);
+      return value as ImplementationOptions;
     }
     if (isImplementationOptions) {
-      return ImplementationOptions.fromJson((value as Map<String, dynamic>));
+      return ImplementationOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1347,11 +1345,11 @@ extension type const ServerCapabilitiesImplementationProvider(Object value) {
 
   ImplementationRegistrationOptions? get asImplementationRegistrationOptions {
     if (value is ImplementationRegistrationOptions) {
-      return (value as ImplementationRegistrationOptions);
+      return value as ImplementationRegistrationOptions;
     }
     if (isImplementationRegistrationOptions) {
       return ImplementationRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1368,7 +1366,7 @@ extension type const ServerCapabilitiesReferencesProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isReferenceOptions =>
@@ -1376,10 +1374,10 @@ extension type const ServerCapabilitiesReferencesProvider(Object value) {
 
   ReferenceOptions? get asReferenceOptions {
     if (value is ReferenceOptions) {
-      return (value as ReferenceOptions);
+      return value as ReferenceOptions;
     }
     if (isReferenceOptions) {
-      return ReferenceOptions.fromJson((value as Map<String, dynamic>));
+      return ReferenceOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1395,7 +1393,7 @@ extension type const ServerCapabilitiesDocumentHighlightProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDocumentHighlightOptions =>
@@ -1403,10 +1401,10 @@ extension type const ServerCapabilitiesDocumentHighlightProvider(Object value) {
 
   DocumentHighlightOptions? get asDocumentHighlightOptions {
     if (value is DocumentHighlightOptions) {
-      return (value as DocumentHighlightOptions);
+      return value as DocumentHighlightOptions;
     }
     if (isDocumentHighlightOptions) {
-      return DocumentHighlightOptions.fromJson((value as Map<String, dynamic>));
+      return DocumentHighlightOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1422,7 +1420,7 @@ extension type const ServerCapabilitiesDocumentSymbolProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDocumentSymbolOptions =>
@@ -1430,10 +1428,10 @@ extension type const ServerCapabilitiesDocumentSymbolProvider(Object value) {
 
   DocumentSymbolOptions? get asDocumentSymbolOptions {
     if (value is DocumentSymbolOptions) {
-      return (value as DocumentSymbolOptions);
+      return value as DocumentSymbolOptions;
     }
     if (isDocumentSymbolOptions) {
-      return DocumentSymbolOptions.fromJson((value as Map<String, dynamic>));
+      return DocumentSymbolOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1449,7 +1447,7 @@ extension type const ServerCapabilitiesCodeActionProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isCodeActionOptions =>
@@ -1457,10 +1455,10 @@ extension type const ServerCapabilitiesCodeActionProvider(Object value) {
 
   CodeActionOptions? get asCodeActionOptions {
     if (value is CodeActionOptions) {
-      return (value as CodeActionOptions);
+      return value as CodeActionOptions;
     }
     if (isCodeActionOptions) {
-      return CodeActionOptions.fromJson((value as Map<String, dynamic>));
+      return CodeActionOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1476,7 +1474,7 @@ extension type const ServerCapabilitiesColorProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDocumentColorOptions =>
@@ -1486,10 +1484,10 @@ extension type const ServerCapabilitiesColorProvider(Object value) {
 
   DocumentColorOptions? get asDocumentColorOptions {
     if (value is DocumentColorOptions) {
-      return (value as DocumentColorOptions);
+      return value as DocumentColorOptions;
     }
     if (isDocumentColorOptions) {
-      return DocumentColorOptions.fromJson((value as Map<String, dynamic>));
+      return DocumentColorOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1501,11 +1499,11 @@ extension type const ServerCapabilitiesColorProvider(Object value) {
 
   DocumentColorRegistrationOptions? get asDocumentColorRegistrationOptions {
     if (value is DocumentColorRegistrationOptions) {
-      return (value as DocumentColorRegistrationOptions);
+      return value as DocumentColorRegistrationOptions;
     }
     if (isDocumentColorRegistrationOptions) {
       return DocumentColorRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1522,7 +1520,7 @@ extension type const ServerCapabilitiesWorkspaceSymbolProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isWorkspaceSymbolOptions =>
@@ -1530,10 +1528,10 @@ extension type const ServerCapabilitiesWorkspaceSymbolProvider(Object value) {
 
   WorkspaceSymbolOptions? get asWorkspaceSymbolOptions {
     if (value is WorkspaceSymbolOptions) {
-      return (value as WorkspaceSymbolOptions);
+      return value as WorkspaceSymbolOptions;
     }
     if (isWorkspaceSymbolOptions) {
-      return WorkspaceSymbolOptions.fromJson((value as Map<String, dynamic>));
+      return WorkspaceSymbolOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1551,7 +1549,7 @@ extension type const ServerCapabilitiesDocumentFormattingProvider(
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDocumentFormattingOptions =>
@@ -1559,12 +1557,10 @@ extension type const ServerCapabilitiesDocumentFormattingProvider(
 
   DocumentFormattingOptions? get asDocumentFormattingOptions {
     if (value is DocumentFormattingOptions) {
-      return (value as DocumentFormattingOptions);
+      return value as DocumentFormattingOptions;
     }
     if (isDocumentFormattingOptions) {
-      return DocumentFormattingOptions.fromJson(
-        (value as Map<String, dynamic>),
-      );
+      return DocumentFormattingOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1583,7 +1579,7 @@ extension type const ServerCapabilitiesDocumentRangeFormattingProvider(
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isDocumentRangeFormattingOptions =>
@@ -1591,11 +1587,11 @@ extension type const ServerCapabilitiesDocumentRangeFormattingProvider(
 
   DocumentRangeFormattingOptions? get asDocumentRangeFormattingOptions {
     if (value is DocumentRangeFormattingOptions) {
-      return (value as DocumentRangeFormattingOptions);
+      return value as DocumentRangeFormattingOptions;
     }
     if (isDocumentRangeFormattingOptions) {
       return DocumentRangeFormattingOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1612,7 +1608,7 @@ extension type const ServerCapabilitiesRenameProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isRenameOptions =>
@@ -1620,10 +1616,10 @@ extension type const ServerCapabilitiesRenameProvider(Object value) {
 
   RenameOptions? get asRenameOptions {
     if (value is RenameOptions) {
-      return (value as RenameOptions);
+      return value as RenameOptions;
     }
     if (isRenameOptions) {
-      return RenameOptions.fromJson((value as Map<String, dynamic>));
+      return RenameOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1639,7 +1635,7 @@ extension type const ServerCapabilitiesFoldingRangeProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isFoldingRangeOptions =>
@@ -1649,10 +1645,10 @@ extension type const ServerCapabilitiesFoldingRangeProvider(Object value) {
 
   FoldingRangeOptions? get asFoldingRangeOptions {
     if (value is FoldingRangeOptions) {
-      return (value as FoldingRangeOptions);
+      return value as FoldingRangeOptions;
     }
     if (isFoldingRangeOptions) {
-      return FoldingRangeOptions.fromJson((value as Map<String, dynamic>));
+      return FoldingRangeOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1664,11 +1660,11 @@ extension type const ServerCapabilitiesFoldingRangeProvider(Object value) {
 
   FoldingRangeRegistrationOptions? get asFoldingRangeRegistrationOptions {
     if (value is FoldingRangeRegistrationOptions) {
-      return (value as FoldingRangeRegistrationOptions);
+      return value as FoldingRangeRegistrationOptions;
     }
     if (isFoldingRangeRegistrationOptions) {
       return FoldingRangeRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1685,7 +1681,7 @@ extension type const ServerCapabilitiesSelectionRangeProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isSelectionRangeOptions =>
@@ -1695,10 +1691,10 @@ extension type const ServerCapabilitiesSelectionRangeProvider(Object value) {
 
   SelectionRangeOptions? get asSelectionRangeOptions {
     if (value is SelectionRangeOptions) {
-      return (value as SelectionRangeOptions);
+      return value as SelectionRangeOptions;
     }
     if (isSelectionRangeOptions) {
-      return SelectionRangeOptions.fromJson((value as Map<String, dynamic>));
+      return SelectionRangeOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1710,11 +1706,11 @@ extension type const ServerCapabilitiesSelectionRangeProvider(Object value) {
 
   SelectionRangeRegistrationOptions? get asSelectionRangeRegistrationOptions {
     if (value is SelectionRangeRegistrationOptions) {
-      return (value as SelectionRangeRegistrationOptions);
+      return value as SelectionRangeRegistrationOptions;
     }
     if (isSelectionRangeRegistrationOptions) {
       return SelectionRangeRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1731,7 +1727,7 @@ extension type const ServerCapabilitiesCallHierarchyProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isCallHierarchyOptions =>
@@ -1741,10 +1737,10 @@ extension type const ServerCapabilitiesCallHierarchyProvider(Object value) {
 
   CallHierarchyOptions? get asCallHierarchyOptions {
     if (value is CallHierarchyOptions) {
-      return (value as CallHierarchyOptions);
+      return value as CallHierarchyOptions;
     }
     if (isCallHierarchyOptions) {
-      return CallHierarchyOptions.fromJson((value as Map<String, dynamic>));
+      return CallHierarchyOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1756,11 +1752,11 @@ extension type const ServerCapabilitiesCallHierarchyProvider(Object value) {
 
   CallHierarchyRegistrationOptions? get asCallHierarchyRegistrationOptions {
     if (value is CallHierarchyRegistrationOptions) {
-      return (value as CallHierarchyRegistrationOptions);
+      return value as CallHierarchyRegistrationOptions;
     }
     if (isCallHierarchyRegistrationOptions) {
       return CallHierarchyRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1779,7 +1775,7 @@ extension type const ServerCapabilitiesLinkedEditingRangeProvider(
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isLinkedEditingRangeOptions =>
@@ -1789,12 +1785,10 @@ extension type const ServerCapabilitiesLinkedEditingRangeProvider(
 
   LinkedEditingRangeOptions? get asLinkedEditingRangeOptions {
     if (value is LinkedEditingRangeOptions) {
-      return (value as LinkedEditingRangeOptions);
+      return value as LinkedEditingRangeOptions;
     }
     if (isLinkedEditingRangeOptions) {
-      return LinkedEditingRangeOptions.fromJson(
-        (value as Map<String, dynamic>),
-      );
+      return LinkedEditingRangeOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1807,11 +1801,11 @@ extension type const ServerCapabilitiesLinkedEditingRangeProvider(
   LinkedEditingRangeRegistrationOptions?
   get asLinkedEditingRangeRegistrationOptions {
     if (value is LinkedEditingRangeRegistrationOptions) {
-      return (value as LinkedEditingRangeRegistrationOptions);
+      return value as LinkedEditingRangeRegistrationOptions;
     }
     if (isLinkedEditingRangeRegistrationOptions) {
       return LinkedEditingRangeRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1832,10 +1826,10 @@ extension type const ServerCapabilitiesSemanticTokensProvider(Object value) {
 
   SemanticTokensOptions? get asSemanticTokensOptions {
     if (value is SemanticTokensOptions) {
-      return (value as SemanticTokensOptions);
+      return value as SemanticTokensOptions;
     }
     if (isSemanticTokensOptions) {
-      return SemanticTokensOptions.fromJson((value as Map<String, dynamic>));
+      return SemanticTokensOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1847,11 +1841,11 @@ extension type const ServerCapabilitiesSemanticTokensProvider(Object value) {
 
   SemanticTokensRegistrationOptions? get asSemanticTokensRegistrationOptions {
     if (value is SemanticTokensRegistrationOptions) {
-      return (value as SemanticTokensRegistrationOptions);
+      return value as SemanticTokensRegistrationOptions;
     }
     if (isSemanticTokensRegistrationOptions) {
       return SemanticTokensRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1868,7 +1862,7 @@ extension type const ServerCapabilitiesMonikerProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isMonikerOptions =>
@@ -1878,10 +1872,10 @@ extension type const ServerCapabilitiesMonikerProvider(Object value) {
 
   MonikerOptions? get asMonikerOptions {
     if (value is MonikerOptions) {
-      return (value as MonikerOptions);
+      return value as MonikerOptions;
     }
     if (isMonikerOptions) {
-      return MonikerOptions.fromJson((value as Map<String, dynamic>));
+      return MonikerOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1893,12 +1887,10 @@ extension type const ServerCapabilitiesMonikerProvider(Object value) {
 
   MonikerRegistrationOptions? get asMonikerRegistrationOptions {
     if (value is MonikerRegistrationOptions) {
-      return (value as MonikerRegistrationOptions);
+      return value as MonikerRegistrationOptions;
     }
     if (isMonikerRegistrationOptions) {
-      return MonikerRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
-      );
+      return MonikerRegistrationOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1914,7 +1906,7 @@ extension type const ServerCapabilitiesTypeHierarchyProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isTypeHierarchyOptions =>
@@ -1924,10 +1916,10 @@ extension type const ServerCapabilitiesTypeHierarchyProvider(Object value) {
 
   TypeHierarchyOptions? get asTypeHierarchyOptions {
     if (value is TypeHierarchyOptions) {
-      return (value as TypeHierarchyOptions);
+      return value as TypeHierarchyOptions;
     }
     if (isTypeHierarchyOptions) {
-      return TypeHierarchyOptions.fromJson((value as Map<String, dynamic>));
+      return TypeHierarchyOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1939,11 +1931,11 @@ extension type const ServerCapabilitiesTypeHierarchyProvider(Object value) {
 
   TypeHierarchyRegistrationOptions? get asTypeHierarchyRegistrationOptions {
     if (value is TypeHierarchyRegistrationOptions) {
-      return (value as TypeHierarchyRegistrationOptions);
+      return value as TypeHierarchyRegistrationOptions;
     }
     if (isTypeHierarchyRegistrationOptions) {
       return TypeHierarchyRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -1960,7 +1952,7 @@ extension type const ServerCapabilitiesInlineValueProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isInlineValueOptions =>
@@ -1970,10 +1962,10 @@ extension type const ServerCapabilitiesInlineValueProvider(Object value) {
 
   InlineValueOptions? get asInlineValueOptions {
     if (value is InlineValueOptions) {
-      return (value as InlineValueOptions);
+      return value as InlineValueOptions;
     }
     if (isInlineValueOptions) {
-      return InlineValueOptions.fromJson((value as Map<String, dynamic>));
+      return InlineValueOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -1985,11 +1977,11 @@ extension type const ServerCapabilitiesInlineValueProvider(Object value) {
 
   InlineValueRegistrationOptions? get asInlineValueRegistrationOptions {
     if (value is InlineValueRegistrationOptions) {
-      return (value as InlineValueRegistrationOptions);
+      return value as InlineValueRegistrationOptions;
     }
     if (isInlineValueRegistrationOptions) {
       return InlineValueRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -2006,7 +1998,7 @@ extension type const ServerCapabilitiesInlayHintProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isInlayHintOptions =>
@@ -2016,10 +2008,10 @@ extension type const ServerCapabilitiesInlayHintProvider(Object value) {
 
   InlayHintOptions? get asInlayHintOptions {
     if (value is InlayHintOptions) {
-      return (value as InlayHintOptions);
+      return value as InlayHintOptions;
     }
     if (isInlayHintOptions) {
-      return InlayHintOptions.fromJson((value as Map<String, dynamic>));
+      return InlayHintOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -2031,11 +2023,11 @@ extension type const ServerCapabilitiesInlayHintProvider(Object value) {
 
   InlayHintRegistrationOptions? get asInlayHintRegistrationOptions {
     if (value is InlayHintRegistrationOptions) {
-      return (value as InlayHintRegistrationOptions);
+      return value as InlayHintRegistrationOptions;
     }
     if (isInlayHintRegistrationOptions) {
       return InlayHintRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -2056,10 +2048,10 @@ extension type const ServerCapabilitiesDiagnosticProvider(Object value) {
 
   DiagnosticOptions? get asDiagnosticOptions {
     if (value is DiagnosticOptions) {
-      return (value as DiagnosticOptions);
+      return value as DiagnosticOptions;
     }
     if (isDiagnosticOptions) {
-      return DiagnosticOptions.fromJson((value as Map<String, dynamic>));
+      return DiagnosticOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -2071,11 +2063,11 @@ extension type const ServerCapabilitiesDiagnosticProvider(Object value) {
 
   DiagnosticRegistrationOptions? get asDiagnosticRegistrationOptions {
     if (value is DiagnosticRegistrationOptions) {
-      return (value as DiagnosticRegistrationOptions);
+      return value as DiagnosticRegistrationOptions;
     }
     if (isDiagnosticRegistrationOptions) {
       return DiagnosticRegistrationOptions.fromJson(
-        (value as Map<String, dynamic>),
+        value as Map<String, dynamic>,
       );
     }
     return null;
@@ -2092,7 +2084,7 @@ extension type const ServerCapabilitiesInlineCompletionProvider(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isInlineCompletionOptions =>
@@ -2100,10 +2092,10 @@ extension type const ServerCapabilitiesInlineCompletionProvider(Object value) {
 
   InlineCompletionOptions? get asInlineCompletionOptions {
     if (value is InlineCompletionOptions) {
-      return (value as InlineCompletionOptions);
+      return value as InlineCompletionOptions;
     }
     if (isInlineCompletionOptions) {
-      return InlineCompletionOptions.fromJson((value as Map<String, dynamic>));
+      return InlineCompletionOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -2119,7 +2111,7 @@ extension type const SignatureInformationDocumentation(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isMarkupContent =>
@@ -2130,10 +2122,10 @@ extension type const SignatureInformationDocumentation(Object value) {
 
   MarkupContent? get asMarkupContent {
     if (value is MarkupContent) {
-      return (value as MarkupContent);
+      return value as MarkupContent;
     }
     if (isMarkupContent) {
-      return MarkupContent.fromJson((value as Map<String, dynamic>));
+      return MarkupContent.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -2149,7 +2141,7 @@ extension type const TextDocumentSyncOptionsSave(Object value) {
   bool get isBool => value is bool;
 
   bool? get asBool {
-    return value is bool ? (value as bool) : null;
+    return value is bool ? value as bool : null;
   }
 
   bool get isSaveOptions =>
@@ -2157,10 +2149,10 @@ extension type const TextDocumentSyncOptionsSave(Object value) {
 
   SaveOptions? get asSaveOptions {
     if (value is SaveOptions) {
-      return (value as SaveOptions);
+      return value as SaveOptions;
     }
     if (isSaveOptions) {
-      return SaveOptions.fromJson((value as Map<String, dynamic>));
+      return SaveOptions.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -2228,7 +2220,7 @@ extension type const ParameterInformationDocumentation(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isMarkupContent =>
@@ -2239,10 +2231,10 @@ extension type const ParameterInformationDocumentation(Object value) {
 
   MarkupContent? get asMarkupContent {
     if (value is MarkupContent) {
-      return (value as MarkupContent);
+      return value as MarkupContent;
     }
     if (isMarkupContent) {
-      return MarkupContent.fromJson((value as Map<String, dynamic>));
+      return MarkupContent.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -2258,7 +2250,7 @@ extension type const NotebookCellTextDocumentFilterNotebook(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 
   bool get isNotebookDocumentFilter =>
@@ -2271,7 +2263,7 @@ extension type const NotebookCellTextDocumentFilterNotebook(Object value) {
 
   NotebookDocumentFilter? get asNotebookDocumentFilter {
     if (value is NotebookDocumentFilter) {
-      return (value as NotebookDocumentFilter);
+      return value as NotebookDocumentFilter;
     }
     if (isNotebookDocumentFilter) {
       return NotebookDocumentFilter.fromJson(value);
@@ -2295,10 +2287,10 @@ extension type const RelativePatternBaseUri(Object value) {
 
   WorkspaceFolder? get asWorkspaceFolder {
     if (value is WorkspaceFolder) {
-      return (value as WorkspaceFolder);
+      return value as WorkspaceFolder;
     }
     if (isWorkspaceFolder) {
-      return WorkspaceFolder.fromJson((value as Map<String, dynamic>));
+      return WorkspaceFolder.fromJson(value as Map<String, dynamic>);
     }
     return null;
   }
@@ -2306,6 +2298,6 @@ extension type const RelativePatternBaseUri(Object value) {
   bool get isString => value is String;
 
   String? get asString {
-    return value is String ? (value as String) : null;
+    return value is String ? value as String : null;
   }
 }

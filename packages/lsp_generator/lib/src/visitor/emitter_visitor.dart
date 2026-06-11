@@ -1421,7 +1421,7 @@ final class EmitterVisitor {
         final typeRef = refer(typeName);
         return val
             .isA(typeRef)
-            .conditional(val.asA(typeRef), literalNull)
+            .conditional(val.bareAsA(typeRef), literalNull)
             .returned
             .statement;
 
@@ -1430,14 +1430,14 @@ final class EmitterVisitor {
         return Block.of([
           ifStatement(
             val.isA(classRef),
-            Block.of([val.asA(classRef).returned.statement]),
+            Block.of([val.bareAsA(classRef).returned.statement]),
           ),
           ifStatement(
             refer('is$capSuffix'),
             Block.of([
               classRef
                   .newInstanceNamed('fromJson', [
-                    val.asA(refer('Map<String, dynamic>')),
+                    val.bareAsA(refer('Map<String, dynamic>')),
                   ])
                   .returned
                   .statement,
@@ -1452,7 +1452,7 @@ final class EmitterVisitor {
         return Block.of([
           ifStatement(
             val.isA(enumRef),
-            Block.of([val.asA(enumRef).returned.statement]),
+            Block.of([val.bareAsA(enumRef).returned.statement]),
           ),
           ifStatement(
             refer('is$capSuffix'),
@@ -1460,7 +1460,7 @@ final class EmitterVisitor {
               enumRef
                   .property('decode')
                   .call([
-                    val.asA(valueType),
+                    val.bareAsA(valueType),
                   ])
                   .returned
                   .statement,
@@ -1476,7 +1476,7 @@ final class EmitterVisitor {
           return Block.of([
             ifStatement(
               val.isA(aliasRef),
-              Block.of([val.asA(aliasRef).returned.statement]),
+              Block.of([val.bareAsA(aliasRef).returned.statement]),
             ),
             ifStatement(
               refer('is$capSuffix'),
@@ -1489,7 +1489,7 @@ final class EmitterVisitor {
         }
         return val
             .isA(aliasRef)
-            .conditional(val.asA(aliasRef), literalNull)
+            .conditional(val.bareAsA(aliasRef), literalNull)
             .returned
             .statement;
 
@@ -1518,7 +1518,7 @@ final class EmitterVisitor {
                         .conditional(
                           refer('e'),
                           elClassRef.newInstanceNamed('fromJson', [
-                            refer('e').asA(refer('Map<String, dynamic>')),
+                            refer('e').bareAsA(refer('Map<String, dynamic>')),
                           ]),
                         )
                         .code,
@@ -1530,7 +1530,7 @@ final class EmitterVisitor {
           return Block.of([
             ifStatement(
               val.isA(listClass),
-              Block.of([val.asA(listClass).returned.statement]),
+              Block.of([val.bareAsA(listClass).returned.statement]),
             ),
             ifStatement(
               refer('is$capSuffix'),
@@ -1561,7 +1561,7 @@ final class EmitterVisitor {
                         .conditional(
                           refer('e'),
                           elAliasRef.newInstanceNamed('fromJson', [
-                            refer('e').asA(refer('Object')),
+                            refer('e').bareAsA(refer('Object')),
                           ]),
                         )
                         .code,
@@ -1573,7 +1573,7 @@ final class EmitterVisitor {
           return Block.of([
             ifStatement(
               val.isA(listAlias),
-              Block.of([val.asA(listAlias).returned.statement]),
+              Block.of([val.bareAsA(listAlias).returned.statement]),
             ),
             ifStatement(
               refer('is$capSuffix'),
@@ -1594,73 +1594,79 @@ final class EmitterVisitor {
       case MapType():
         final mapType = refer('Map<String, dynamic>');
         return refer('is$capSuffix')
-            .conditional(val.asA(mapType), literalNull)
+            .conditional(val.bareAsA(mapType), literalNull)
             .returned
             .statement;
 
       case InlineRecord(:final fields):
-        final buffer = StringBuffer();
-        if (fields.isNotEmpty) {
-          buffer.write('  final map = value as Map<String, dynamic>;\n');
-        }
-        buffer.write('  return (\n');
+        final emitter = DartEmitter();
+        final mapVar = refer('map');
+        final mapDecl = fields.isNotEmpty
+            ? declareFinal('map')
+                .assign(val.bareAsA(refer('Map<String, dynamic>')))
+                .statement
+            : null;
+
+        final fieldExprs = <String>[];
         for (final f in fields) {
-          final fName = f.name;
-          final fActual = f.type is NullableType
-              ? (f.type as NullableType).inner
-              : f.type;
+          final fActual =
+              f.type is NullableType ? (f.type as NullableType).inner : f.type;
+          final mapAccess = mapVar.index(literalString(f.name));
+
+          final Expression fieldExpr;
           if (fActual is ClassType) {
-            final fClass = fActual.ref.name;
-            if (f.optional) {
-              buffer.write(
-                "    $fName: map['$fName'] != null ? "
-                "(map['$fName'] is $fClass ? map['$fName'] as $fClass : "
-                "$fClass.fromJson(map['$fName'] as Map<String, dynamic>)) "
-                ': null,\n',
-              );
-            } else {
-              buffer.write(
-                "    $fName: map['$fName'] is $fClass ? "
-                "map['$fName'] as $fClass : "
-                "$fClass.fromJson(map['$fName'] as Map<String, dynamic>),\n",
-              );
-            }
+            final fClassRef = refer(fActual.ref.name);
+            final fromJson = fClassRef.newInstanceNamed('fromJson', [
+              mapAccess.bareAsA(refer('Map<String, dynamic>')),
+            ]);
+            final castOrCreate = mapAccess
+                .isA(fClassRef)
+                .conditional(mapAccess.bareAsA(fClassRef), fromJson);
+            fieldExpr = f.optional
+                ? mapAccess.notEqualTo(literalNull).conditional(
+                    castOrCreate,
+                    literalNull,
+                  )
+                : castOrCreate;
           } else {
             final fTypeName = f.optional || f.type is NullableType
                 ? '${_dartTypeName(fActual)}?'
                 : _dartTypeName(fActual);
-            buffer.write("    $fName: map['$fName'] as $fTypeName,\n");
+            fieldExpr = mapAccess.bareAsA(refer(fTypeName));
           }
+
+          fieldExprs.add('${f.name}: ${fieldExpr.accept(emitter)}');
         }
-        buffer.write('  );');
+
+        final recordCode = Code('return (${fieldExprs.join(', ')});');
 
         return Block.of([
           ifStatement(
             refer('is$capSuffix'),
-            Block(
-              (b) => b.statements.add(Code(buffer.toString())),
-            ),
+            Block.of([?mapDecl, recordCode]),
           ),
           literalNull.returned.statement,
         ]);
 
       case TupleType(:final items):
-        final buffer = StringBuffer();
-        buffer.write('  final list = value as List;\n');
-        buffer.write('  return (\n');
+        final listVar = refer('list');
+        final listDecl =
+            declareFinal('list').assign(val.bareAsA(refer('List'))).statement;
+        final emitter = DartEmitter();
+
+        final positionalExprs = <String>[];
         for (var i = 0; i < items.length; i++) {
-          final item = items[i];
-          final typeName = _dartTypeName(item);
-          buffer.write('    list[$i] as $typeName,\n');
+          final typeName = _dartTypeName(items[i]);
+          final expr = listVar.index(literalNum(i)).bareAsA(refer(typeName));
+          positionalExprs.add(expr.accept(emitter).toString());
         }
-        buffer.write('  );');
+
+        final recordCode = Code('return (${positionalExprs.join(', ')});');
 
         return Block.of([
           ifStatement(
             refer('is$capSuffix'),
-            Block(
-              (b) => b.statements.add(Code(buffer.toString())),
-            ),
+            Block.of([listDecl, recordCode]),
           ),
           literalNull.returned.statement,
         ]);
@@ -1668,7 +1674,7 @@ final class EmitterVisitor {
       default:
         final typeRef = refer(typeName);
         return refer('is$capSuffix')
-            .conditional(val.asA(typeRef), literalNull)
+            .conditional(val.bareAsA(typeRef), literalNull)
             .returned
             .statement;
     }
