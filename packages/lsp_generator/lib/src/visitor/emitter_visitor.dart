@@ -188,8 +188,8 @@ final class EmitterVisitor {
   Library buildNotificationMethods() {
     final notifications = _resolved.notifications;
     final requests = _resolved.requests;
-    final notifNames = _dartNames(notifications, (n) => n.method);
-    final requestNames = _dartNames(requests, (r) => r.method);
+    final notifNames = dartNames(notifications, (n) => n.method);
+    final requestNames = dartNames(requests, (r) => r.method);
     return Library(
       (b) => b
         ..comments.add(_header)
@@ -670,39 +670,6 @@ final class EmitterVisitor {
   /// The last path segment is used when unique across all notifications.
   /// Collisions (e.g. `textDocument/didOpen` vs `notebookDocument/didOpen`)
   /// fall back to the full camelCase path.
-  /// Maps each item in [items] to a unique Dart identifier derived from its
-  /// LSP method string (e.g. `textDocument/didOpen` → `didOpen`).
-  ///
-  /// Uses the last path segment when it is unique across all items; falls back
-  /// to the full camelCase path on collisions.
-  Map<T, String> _dartNames<T>(List<T> items, String Function(T) getMethod) {
-    String clean(String m) => m.startsWith(r'$/')
-        ? m.substring(2)
-        : m.startsWith(r'$')
-        ? m.substring(1)
-        : m;
-    String lastSeg(String m) => clean(m).split('/').last;
-    String camelCase(String m) {
-      final parts = clean(m).split('/');
-      return [
-        parts.first,
-        ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
-      ].join();
-    }
-
-    final lastSegs = {for (final x in items) x: lastSeg(getMethod(x))};
-    final counts = <String, int>{};
-    for (final s in lastSegs.values) {
-      counts[s] = (counts[s] ?? 0) + 1;
-    }
-    return {
-      for (final x in items)
-        x: _safeIdentifier(
-          counts[lastSegs[x]!]! > 1 ? camelCase(getMethod(x)) : lastSegs[x]!,
-        ),
-    };
-  }
-
   /// Builds a method-identifier enum (e.g. `NotificationMethod` or
   /// `RequestMethod`) from a sequence of [{memberName, method, doc}] records.
   ///
@@ -821,7 +788,7 @@ final class EmitterVisitor {
               (b) => b
                 ..static = true
                 ..modifier = FieldModifier.constant
-                ..name = _safeIdentifier(_toLowerCamelCase(member.name))
+                ..name = safeIdentifier(_toLowerCamelCase(member.name))
                 ..assignment = refer(en.name).call([
                   if (isInt)
                     literalNum(int.parse(member.value))
@@ -887,7 +854,7 @@ final class EmitterVisitor {
       for (final member in en.members) {
         b.values.add(
           EnumValue((b) {
-            b.name = _safeIdentifier(_toLowerCamelCase(member.name));
+            b.name = safeIdentifier(_toLowerCamelCase(member.name));
             b.arguments.add(
               isInt
                   ? literalNum(int.parse(member.value))
@@ -1973,23 +1940,6 @@ final class EmitterVisitor {
     return const [];
   }
 
-  /// Ensures an identifier is valid Dart (e.g. avoids reserved words).
-  static String _safeIdentifier(String name) {
-    const reserved = {
-      'class',
-      'enum',
-      'value',
-      'macro',
-      'null',
-      'interface',
-      'operator',
-      'static',
-      'abstract',
-      'async',
-    };
-
-    return reserved.contains(name) ? '${name}_' : name;
-  }
 
   /// Converts the first character of [name] to lowercase.
   ///

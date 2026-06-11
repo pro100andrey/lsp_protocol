@@ -126,3 +126,57 @@ String emitLibrary(Library lib) {
     return '// ignore_for_file: type=lint\n\n${lib.accept(emitter)}';
   }
 }
+
+/// Ensures an identifier is valid Dart (avoids reserved words).
+String safeIdentifier(String name) {
+  const reserved = {
+    'class',
+    'enum',
+    'null',
+    'void',
+    'async',
+    'await',
+    'yield',
+    'abstract',
+    'interface',
+    'operator',
+    'static',
+    'macro',
+    'value',
+  };
+
+  return reserved.contains(name) ? '${name}_' : name;
+}
+
+/// Maps each item in [items] to a unique Dart identifier derived from its
+/// LSP method string (e.g. `textDocument/didOpen` → `didOpen`).
+///
+/// Uses the last path segment when it is unique across all items; falls back
+/// to the full camelCase path on collisions.
+Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
+  String clean(String m) => m.startsWith(r'$/')
+      ? m.substring(2)
+      : m.startsWith(r'$')
+      ? m.substring(1)
+      : m;
+  String lastSeg(String m) => clean(m).split('/').last;
+  String camelCase(String m) {
+    final parts = clean(m).split('/');
+    return [
+      parts.first,
+      ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
+    ].join();
+  }
+
+  final lastSegs = {for (final x in items) x: lastSeg(getMethod(x))};
+  final counts = <String, int>{};
+  for (final s in lastSegs.values) {
+    counts[s] = (counts[s] ?? 0) + 1;
+  }
+  return {
+    for (final x in items)
+      x: safeIdentifier(
+        counts[lastSegs[x]!]! > 1 ? camelCase(getMethod(x)) : lastSegs[x]!,
+      ),
+  };
+}

@@ -21,14 +21,20 @@ import 'emitter_helpers.dart';
 /// ```
 final class ServerApiVisitor {
   ServerApiVisitor(this._resolved) {
-    _requestMethods = _dartNames(
-      _resolved.requests,
-      (r) => r.method,
-    );
-    _notificationMethods = _dartNames(
-      _resolved.notifications,
-      (n) => n.method,
-    );
+    _requestMethods = {
+      for (final e in dartNames(
+        _resolved.requests,
+        (r) => r.method,
+      ).entries)
+        e.key.method: e.value,
+    };
+    _notificationMethods = {
+      for (final e in dartNames(
+        _resolved.notifications,
+        (n) => n.method,
+      ).entries)
+        e.key.method: e.value,
+    };
   }
 
   final ResolvedState _resolved;
@@ -739,7 +745,7 @@ final class ServerApiVisitor {
 
     final slashIdx = clean.indexOf('/');
     if (slashIdx == -1) {
-      return ('general', _safeIdentifier(clean));
+      return ('general', safeIdentifier(clean));
     }
 
     final ns = clean.substring(0, slashIdx);
@@ -750,7 +756,7 @@ final class ServerApiVisitor {
       ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
     ].join();
 
-    return (ns, _safeIdentifier(camel));
+    return (ns, safeIdentifier(camel));
   }
 
   static String _handlerClassName(String namespace) =>
@@ -807,62 +813,7 @@ final class ServerApiVisitor {
     return literalString(wireMethod, raw: wireMethod.contains(r'$'));
   }
 
-  /// Maps each item in [items] to a unique Dart enum member name derived from
-  /// its LSP method string (e.g. `textDocument/didOpen` → `didOpen`).
-  ///
-  /// Uses the last path segment when it is unique; falls back to full
-  /// camelCase on collisions. Mirrors `EmitterVisitor._dartNames`.
-  static Map<String, String> _dartNames<T>(
-    List<T> items,
-    String Function(T) getMethod,
-  ) {
-    String clean(String m) => m.startsWith(r'$/')
-        ? m.substring(2)
-        : m.startsWith(r'$')
-        ? m.substring(1)
-        : m;
-    String lastSeg(String m) => clean(m).split('/').last;
-    String camelCase(String m) {
-      final parts = clean(m).split('/');
-      return [
-        parts.first,
-        ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
-      ].join();
-    }
 
-    final methods = {for (final x in items) x: getMethod(x)};
-    final lastSegs = {for (final e in methods.entries) e.key: lastSeg(e.value)};
-    final counts = <String, int>{};
-    for (final s in lastSegs.values) {
-      counts[s] = (counts[s] ?? 0) + 1;
-    }
-    return {
-      for (final e in methods.entries)
-        e.value: _safeIdentifier(
-          counts[lastSegs[e.key]!]! > 1 ? camelCase(e.value) : lastSegs[e.key]!,
-        ),
-    };
-  }
-
-  static String _safeIdentifier(String name) {
-    const reserved = {
-      'class',
-      'enum',
-      'null',
-      'void',
-      'async',
-      'await',
-      'yield',
-      'abstract',
-      'interface',
-      'operator',
-      'static',
-      'macro',
-      'value',
-    };
-
-    return reserved.contains(name) ? '${name}_' : name;
-  }
 }
 
 // ---------------------------------------------------------------------------
