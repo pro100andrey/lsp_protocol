@@ -77,17 +77,12 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
 
   /// Builds a [Library] containing all resolved classes (anonymous first).
-  _ClassCategory _classifyClass(ResolvedClass cls) {
-    if (cls.name.contains('Capabilities')) {
-      return _ClassCategory.capabilities;
-    }
-
-    if (cls.name.endsWith('Params') || cls.name.endsWith('Options')) {
-      return .params;
-    }
-
-    return .common;
-  }
+  _ClassCategory _classifyClass(ResolvedClass cls) => switch (cls.name) {
+        final s when s.contains('Capabilities') => _ClassCategory.capabilities,
+        final s when s.endsWith('Params') || s.endsWith('Options') =>
+          _ClassCategory.params,
+        _ => _ClassCategory.common,
+      };
 
   Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) {
     final filtered = _resolved.classes.where((c) {
@@ -372,16 +367,12 @@ final class EmitterVisitor {
           needed.add(_structuresFile);
         case EnumType():
           needed.add(_enumerationsFile);
-        case AliasType(:final ref):
-          // Sealed union aliases live in their own files,
-          // not type_aliases.dart.
-          if (_scalarUnionNames.contains(ref.name)) {
-            needed.add(_scalarUnionsFile);
-          } else if (_sealedUnionNames.contains(ref.name)) {
-            needed.add(_unionsFile);
-          } else {
-            needed.add(_aliasesFile);
-          }
+        case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
+          needed.add(_scalarUnionsFile);
+        case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
+          needed.add(_unionsFile);
+        case AliasType():
+          needed.add(_aliasesFile);
         case ListType(:final element):
           walk(element);
         case MapType(:final key, :final value):
@@ -1391,68 +1382,46 @@ final class EmitterVisitor {
     final actual = type is NullableType ? type.inner : type;
     final val = eValue;
 
-    switch (actual) {
-      case DartCoreType(:final dartName):
-        if (dartName == 'Object?') {
-          return literalTrue;
-        }
-        if (dartName == 'Null') {
-          return val.asA(tObjectNullable).equalTo(literalNull);
-        }
-        return val.isA(refer(dartName));
-
-      case ClassType(:final ref):
-        final classRef = refer(ref.name);
-        final isClass = val.isA(classRef);
-        final mapCheck = _buildStructCheck(
-          actual,
+    return switch (actual) {
+      DartCoreType(dartName: 'Object?') => literalTrue,
+      DartCoreType(dartName: 'Null') =>
+        val.asA(tObjectNullable).equalTo(literalNull),
+      DartCoreType(:final dartName) => val.isA(refer(dartName)),
+      ClassType(:final ref) => val.isA(refer(ref.name)).or(
+            _buildStructCheck(
+              actual,
+              structChecks,
+              val,
+              val.isA(tMapStringDynamic),
+            ),
+          ),
+      EnumType(:final ref) =>
+        val.isA(refer(ref.name)).or(val.isA(refer(ref.valueType))),
+      AliasType(:final ref) => _variantCheckExpression(
+          _resolved.aliases.firstWhere((a) => a.name == ref.name).type,
           structChecks,
-          val,
-          val.isA(tMapStringDynamic),
-        );
-        return isClass.or(mapCheck);
-
-      case EnumType(:final ref):
-        return val.isA(refer(ref.name)).or(val.isA(refer(ref.valueType)));
-
-      case AliasType(:final ref):
-        final alias = _resolved.aliases.firstWhere((a) => a.name == ref.name);
-        return _variantCheckExpression(alias.type, structChecks);
-
-      case UnionType(:final items):
-        var cond = _variantCheckExpression(items.first, structChecks);
-        for (final item in items.skip(1)) {
-          cond = cond.or(_variantCheckExpression(item, structChecks));
-        }
-        return cond;
-
-      case ListType():
-        return val.isA(tList);
-
-      case MapType():
-        return val.isA(tMapStringDynamic);
-
-      case InlineRecord():
-        return _buildStructCheck(
-          actual,
-          structChecks,
-          val,
-          val.isA(tMapStringDynamic),
-        );
-
-      case TupleType(:final items):
-        return val.isA(tList).and(
-              val.asA(tList).property('length').equalTo(
-                    literalNum(items.length),
-                  ),
-            );
-
-      case StringLiteralType():
-        return val.isA(tString);
-
-      default:
-        return val.isA(tObject);
-    }
+        ),
+      UnionType(:final items) => items.skip(1).fold(
+            _variantCheckExpression(items.first, structChecks),
+            (cond, item) =>
+                cond.or(_variantCheckExpression(item, structChecks)),
+          ),
+      ListType() => val.isA(tList),
+      MapType() => val.isA(tMapStringDynamic),
+      InlineRecord() => _buildStructCheck(
+            actual,
+            structChecks,
+            val,
+            val.isA(tMapStringDynamic),
+          ),
+      TupleType(:final items) => val.isA(tList).and(
+            val.asA(tList).property('length').equalTo(
+                  literalNum(items.length),
+                ),
+          ),
+      StringLiteralType() => val.isA(tString),
+      _ => val.isA(tObject),
+    };
   }
 
   Expression _buildStructCheck(
@@ -2092,11 +2061,10 @@ final class EmitterVisitor {
   /// Returns an empty list for all other types.
   static List<String> _inlineUnionNote(ResolvedType type) {
     final inner = type is NullableType ? type.inner : type;
-    if (inner is! UnionType) {
-      return const [];
+    if (inner case UnionType(:final items)) {
+      return ['Type: ${items.map(_typeName).join(' | ')}'];
     }
-    final names = inner.items.map(_typeName);
-    return ['Type: ${names.join(' | ')}'];
+    return const [];
   }
 
   /// Ensures an identifier is valid Dart (e.g. avoids reserved words).
@@ -2172,22 +2140,17 @@ final class EmitterVisitor {
     ResolvedType type,
   ) {
     final inner = type is NullableType ? type.inner : type;
-    if (inner is UnionType) {
-      if (_isSupportedInlineUnion(inner)) {
-        return '$className${_capitalize(propName)}';
-      }
-    }
-    if (inner is ListType) {
-      final el = inner.element is NullableType
-          ? (inner.element as NullableType).inner
-          : inner.element;
-      if (el is UnionType) {
-        if (_isSupportedInlineUnion(el)) {
-          return '$className${_capitalize(propName)}Item';
-        }
-      }
-    }
-    return null;
+    return switch (inner) {
+      UnionType() when _isSupportedInlineUnion(inner) =>
+        '$className${_capitalize(propName)}',
+      ListType(:final element) => switch (
+          element is NullableType ? element.inner : element) {
+        final UnionType elUnion when _isSupportedInlineUnion(elUnion) =>
+          '$className${_capitalize(propName)}Item',
+        _ => null,
+      },
+      _ => null,
+    };
   }
 
   /// Traverse all classes and collect all unique inline union types.
