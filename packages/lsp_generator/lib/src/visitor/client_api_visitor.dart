@@ -8,19 +8,19 @@ import 'emitter_helpers.dart';
 // Public API
 // ---------------------------------------------------------------------------
 
-/// Generates the typed LSP server API from a fully resolved [ResolvedState].
+/// Generates the typed LSP client API from a fully resolved [ResolvedState].
 ///
 /// Produces a single [Library] containing:
-/// - One handler class per namespace for clientToServer requests/notifications.
-/// - One sender class per namespace for serverToClient requests/notifications.
-/// - A `ServerToClientProxy` aggregating all sender classes.
+/// - One handler class per namespace for serverToClient requests/notifications.
+/// - One sender class per namespace for clientToServer requests/notifications.
+/// - A `ClientToServerProxy` aggregating all sender classes.
 ///
 /// Usage:
 /// ```dart
-/// final lib = ServerApiVisitor(resolvedState).buildServerApi();
+/// final lib = ClientApiVisitor(resolvedState).buildClientApi();
 /// ```
-final class ServerApiVisitor {
-  ServerApiVisitor(this._resolved) {
+final class ClientApiVisitor {
+  ClientApiVisitor(this._resolved) {
     _requestMethods = {
       for (final e in dartNames(
         _resolved.requests,
@@ -51,7 +51,7 @@ final class ServerApiVisitor {
   // Build
   // -------------------------------------------------------------------------
 
-  Library buildServerApi() {
+  Library buildClientApi() {
     final groups = _groupByNamespace();
 
     final specs = <Spec>[
@@ -80,9 +80,9 @@ final class ServerApiVisitor {
   // -------------------------------------------------------------------------
 
   _Grouped _groupByNamespace() {
-    // namespace → list of entries for handler classes (clientToServer)
+    // namespace → list of entries for handler classes (serverToClient)
     final handlerGroups = <String, List<_MethodEntry>>{};
-    // namespace → list of entries for sender classes (serverToClient)
+    // namespace → list of entries for sender classes (clientToServer)
     final senderGroups = <String, List<_MethodEntry>>{};
 
     void addTo(
@@ -108,7 +108,9 @@ final class ServerApiVisitor {
 
     for (final req in _resolved.requests) {
       final dir = req.messageDirection;
-      if (dir == .clientToServer || dir == .both) {
+      // CLIENT: Handles serverToClient, Sends clientToServer
+      if (dir == .serverToClient ||
+          dir == .both) {
         addTo(
           handlerGroups,
           req.method,
@@ -117,7 +119,8 @@ final class ServerApiVisitor {
           isNotification: false,
         );
       }
-      if (dir == .serverToClient || dir == .both) {
+      if (dir == .clientToServer ||
+          dir == .both) {
         addTo(
           senderGroups,
           req.method,
@@ -130,7 +133,9 @@ final class ServerApiVisitor {
 
     for (final notif in _resolved.notifications) {
       final dir = notif.messageDirection;
-      if (dir == .clientToServer || dir == .both) {
+      // CLIENT: Handles serverToClient, Sends clientToServer
+      if (dir == .serverToClient ||
+          dir == .both) {
         addTo(
           handlerGroups,
           notif.method,
@@ -139,7 +144,8 @@ final class ServerApiVisitor {
           isNotification: true,
         );
       }
-      if (dir == .serverToClient || dir == .both) {
+      if (dir == .clientToServer ||
+          dir == .both) {
         addTo(
           senderGroups,
           notif.method,
@@ -182,7 +188,7 @@ final class ServerApiVisitor {
           Field(
             (b) => b
               ..name = '_connection'
-              ..modifier = FieldModifier.final$
+              ..modifier = .final$
               ..type = tLspConnection,
           ),
         )
@@ -317,7 +323,7 @@ final class ServerApiVisitor {
       (b) => b
         ..name = className
         ..docs.add(
-          '/// Sends LSP messages to the client for the '
+          '/// Sends LSP messages to the server for the '
           '`$namespace` namespace.',
         )
         ..constructors.add(
@@ -393,7 +399,7 @@ final class ServerApiVisitor {
       (b) => b
         ..name = dartName
         ..returns = refer('void')
-        ..docs.add('/// Sends the `$wireMethod` notification to the client.')
+        ..docs.add('/// Sends the `$wireMethod` notification to the server.')
         ..requiredParameters.addAll([
           if (hasParams)
             Parameter(
@@ -449,7 +455,7 @@ final class ServerApiVisitor {
         ..name = dartName
         ..modifier = MethodModifier.async
         ..returns = returnRef
-        ..docs.add('/// Sends the `$wireMethod` request to the client.')
+        ..docs.add('/// Sends the `$wireMethod` request to the server.')
         ..requiredParameters.addAll([
           if (hasParams)
             Parameter(
@@ -463,20 +469,20 @@ final class ServerApiVisitor {
   }
 
   // -------------------------------------------------------------------------
-  // ServerToClientProxy
+  // ClientToServerProxy
   // -------------------------------------------------------------------------
 
   Class _buildProxy(Iterable<String> senderNamespaces) {
     final namespaces = senderNamespaces.toList();
     return Class(
       (b) => b
-        ..name = 'ServerToClientProxy'
+        ..name = 'ClientToServerProxy'
         ..docs.add(
           '/// Aggregates all outgoing sender classes.\n'
           '///\n'
-          '/// Access via [LspServer.client]:\n'
+          '/// Access via [LspClient.server]:\n'
           '/// ```dart\n'
-          '/// server.client.window.logMessage(LogMessageParams(...));\n'
+          '/// client.server.textDocument.completion(CompletionParams(...));\n'
           '/// ```',
         )
         ..constructors.add(
@@ -495,7 +501,7 @@ final class ServerApiVisitor {
           Field(
             (b) => b
               ..name = '_connection'
-              ..modifier = .final$
+              ..modifier = FieldModifier.final$
               ..type = tLspConnection,
           ),
         )
@@ -509,7 +515,7 @@ final class ServerApiVisitor {
                     ? 'general'
                     : ns
                 ..late = true
-                ..modifier = .final$
+                ..modifier = FieldModifier.final$
                 ..assignment = Code(
                   '${_senderClassName(ns)}(_connection)',
                 ),
@@ -849,9 +855,9 @@ final class _Grouped {
     required this.senderGroups,
   });
 
-  /// namespace → handler entries (clientToServer)
+  /// namespace → handler entries (serverToClient)
   final Map<String, List<_MethodEntry>> handlerGroups;
 
-  /// namespace → sender entries (serverToClient)
+  /// namespace → sender entries (clientToServer)
   final Map<String, List<_MethodEntry>> senderGroups;
 }

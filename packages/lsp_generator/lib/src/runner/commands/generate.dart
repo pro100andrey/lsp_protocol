@@ -1,6 +1,7 @@
 import 'package:args/command_runner.dart';
 import 'package:mason_logger/mason_logger.dart';
 
+import '../../emitter/generate_client_api.dart';
 import '../../emitter/generate_code.dart';
 import '../../emitter/generate_server_api.dart';
 import '../../emitter/run_analyzer.dart';
@@ -38,6 +39,7 @@ final class GenerateCommand extends Command<dynamic> {
         final resolvedModel = resolveModel(metaProtocol);
         generateCode(resolvedModel, outputPath);
         generateServerApi(resolvedModel, outputPath);
+        generateClientApi(resolvedModel, outputPath);
       }),
       fetchLSPLicense(lspVersion, outputPath, logger),
     ]);

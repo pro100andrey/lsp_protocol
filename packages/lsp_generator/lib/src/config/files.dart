@@ -32,6 +32,12 @@ class Files {
   // ---------------------------------------------------------------------------
 
   static const serverApi = 'server_api.dart';
+
+  // ---------------------------------------------------------------------------
+  // Client API
+  // ---------------------------------------------------------------------------
+
+  static const clientApi = 'client_api.dart';
 }
 
 /// Extension on [Directory] that provides paths to generated output files.
@@ -55,6 +61,9 @@ extension GeneratedPaths on Directory {
   Directory get serverDir =>
       Directory(p.join(libDir.path, 'src', 'generated', 'server'));
 
+  Directory get clientDir =>
+      Directory(p.join(libDir.path, 'src', 'generated', 'client'));
+
   // ---------------------------------------------------------------------------
   // Model files
   // ---------------------------------------------------------------------------
@@ -77,6 +86,12 @@ extension GeneratedPaths on Directory {
   // ---------------------------------------------------------------------------
 
   File get serverApiFile => File(p.join(serverDir.path, Files.serverApi));
+
+  // ---------------------------------------------------------------------------
+  // Client API
+  // ---------------------------------------------------------------------------
+
+  File get clientApiFile => File(p.join(clientDir.path, Files.clientApi));
 
   // ---------------------------------------------------------------------------
   // Barrel file
