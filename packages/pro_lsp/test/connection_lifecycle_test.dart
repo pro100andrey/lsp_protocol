@@ -6,7 +6,7 @@ import 'package:stream_channel/stream_channel.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('LSP Server Improvements', () {
+  group('LspConnection', () {
     late StreamController<String> clientIncoming;
     late StreamController<String> clientOutgoing;
     late StreamChannel<String> serverChannel;
@@ -27,7 +27,7 @@ void main() {
       await clientOutgoing.close();
     });
 
-    group('Lifecycle State Machine', () {
+    group('Lifecycle', () {
       test('rejects requests before initialization', () async {
         final listenFuture = connection.listen();
         var handlerCalled = false;
@@ -182,7 +182,7 @@ void main() {
       });
     });
 
-    group('Request Cancellation', () {
+    group('Cancellation', () {
       test('correctly cancels token inside zone', () async {
         final handlerCompleter = Completer<Object?>();
         CancellationToken? capturedToken;
@@ -258,7 +258,7 @@ void main() {
       });
     });
 
-    group('Middleware Stack', () {
+    group('Middleware', () {
       test('intercepts requests and can modify or measure execution', () async {
         final methodsCalled = <String>[];
 
@@ -323,7 +323,7 @@ void main() {
       });
     });
 
-    group('Error Boundary', () {
+    group('Error Handling', () {
       test(
         'triggers onError and returns InternalError on unhandled crashes',
         () async {
@@ -381,7 +381,7 @@ void main() {
       );
     });
 
-    group('LspServer High-Level Features', () {
+    group('LspServer', () {
       late StreamController<List<int>> clientIncoming;
       late StreamController<List<int>> clientOutgoing;
       late StreamChannel<List<int>> serverChannel;
@@ -447,8 +447,9 @@ void main() {
         await clientLspStream.first;
       }
 
-      test('TextDocumentManager synchronizes documents', () async {
-        await performInitialization();
+     group('Documents', () {
+        test('synchronizes documents', () async {
+          await performInitialization();
 
         expect(server.documents.all, isEmpty);
 
@@ -512,11 +513,11 @@ void main() {
         await Future<void>.delayed(const Duration(milliseconds: 50));
 
         expect(server.documents.get('file:///test.dart'), null);
+        });
       });
 
-      test(
-        'DiagnosticsManager publishes diagnostics with debouncing',
-        () async {
+     group('Diagnostics', () {
+        test('publishes diagnostics with debouncing', () async {
           await performInitialization();
 
           server.diagnostics.debounceDuration = const Duration(
@@ -561,11 +562,12 @@ void main() {
           final clearParamsParams =
               clearParams['params'] as Map<String, dynamic>;
           expect(clearParamsParams['diagnostics'] as List, isEmpty);
-        },
-      );
+        });
+      });
 
-      test('LspConfigurationManager queries and caches configs', () async {
-        await performInitialization();
+     group('Configuration', () {
+        test('queries and caches configs', () async {
+          await performInitialization();
 
         var configResponse = <String, dynamic>{'editor.tabSize': 4};
 
@@ -608,10 +610,12 @@ void main() {
         final tabSize3 = await server.config
             .getSection<Map<String, dynamic>>('editor');
         expect(tabSize3, equals({'editor.tabSize': 2}));
+        });
       });
 
-      test('CapabilityManager registers and unregisters dynamically', () async {
-        await performInitialization();
+     group('Capabilities', () {
+        test('registers and unregisters dynamically', () async {
+          await performInitialization();
 
         final receivedMessages = <String>[];
         clientLspStream.listen((msg) {
@@ -661,6 +665,7 @@ void main() {
             unregParams['unregisterations'] as List<dynamic>;
         final firstUnreg = unregistrations.first as Map<String, dynamic>;
         expect(firstUnreg['id'], regId);
+        });
       });
     });
   });
