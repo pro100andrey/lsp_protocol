@@ -38,7 +38,7 @@ final class GenerateCommand extends Command<dynamic> {
       fetchLSPModel(lspVersion, outputPath, logger).then((metaProtocol) {
         final resolvedModel = resolveModel(metaProtocol);
         generateCode(resolvedModel, outputPath);
-        generateServerApi(resolvedModel);
+        generateServerApi(resolvedModel, outputPath);
       }),
       fetchLSPLicense(lspVersion, outputPath, logger),
     ]);

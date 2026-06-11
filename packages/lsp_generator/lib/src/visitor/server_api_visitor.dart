@@ -2,6 +2,7 @@ import 'package:code_builder/code_builder.dart';
 
 import '../models/protocol.dart';
 import '../resolver/resolved_state.dart';
+import 'emitter_helpers.dart';
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -176,7 +177,7 @@ final class ServerApiVisitor {
             (b) => b
               ..name = '_connection'
               ..modifier = FieldModifier.final$
-              ..type = refer('LspConnection'),
+              ..type = tLspConnection,
           ),
         )
         ..methods.addAll(entries.map(_buildHandlerMethod)),
@@ -204,7 +205,7 @@ final class ServerApiVisitor {
             '${entry.isNotification ? 'on' : 'on'}${_capitalize(
               entry.dartName,
             )}'
-        ..returns = refer('void')
+        ..returns = tVoid
         ..docs.add('/// Registers handler for `${entry.wireMethod}`.')
         ..requiredParameters.add(
           Parameter(
@@ -250,13 +251,13 @@ final class ServerApiVisitor {
           Parameter(
             (b) => b
               ..name = 'json'
-              ..type = refer('dynamic'),
+              ..type = tDynamic,
           ),
         )
         ..body = Block.of(statements),
     ).closure;
 
-    return refer('_connection').property('registerRequestHandler').call([
+    return eConnection.property('registerRequestHandler').call([
       _methodRef('RequestMethod', wireMethod),
       closure,
     ]).statement;
@@ -280,13 +281,13 @@ final class ServerApiVisitor {
           Parameter(
             (b) => b
               ..name = 'json'
-              ..type = refer('dynamic'),
+              ..type = tDynamic,
           ),
         )
         ..body = Block.of(statements),
     ).closure;
 
-    return refer('_connection').property('registerNotificationHandler').call([
+    return eConnection.property('registerNotificationHandler').call([
       _methodRef('NotificationMethod', wireMethod),
       closure,
     ]).statement;
@@ -322,7 +323,7 @@ final class ServerApiVisitor {
             (b) => b
               ..name = '_connection'
               ..modifier = FieldModifier.final$
-              ..type = refer('LspConnection'),
+              ..type = tLspConnection,
           ),
         )
         ..methods.addAll(entries.map(_buildSenderMethod)),
@@ -363,14 +364,14 @@ final class ServerApiVisitor {
   ) {
     // Object?/Object (LSPAny) params are already raw JSON — pass through directly.
     final paramsExpr = (paramsType == 'Object?' || paramsType == 'Object')
-        ? refer('params')
-        : refer('params').property('toJson').call([]);
+        ? eParams
+        : eParams.property('toJson').call([]);
     final sendCall = hasParams
-        ? refer('_connection').property('sendNotification').call([
+        ? eConnection.property('sendNotification').call([
             _methodRef('NotificationMethod', wireMethod),
             paramsExpr,
           ])
-        : refer('_connection').property('sendNotification').call([
+        : eConnection.property('sendNotification').call([
             _methodRef('NotificationMethod', wireMethod),
           ]);
 
@@ -409,13 +410,11 @@ final class ServerApiVisitor {
           );
 
     final sendCallExpr = hasParams
-        ? refer('_connection').property('sendRequest').call([
+        ? eConnection.property('sendRequest').call([
             _methodRef('RequestMethod', wireMethod),
-            refer('params').property('toJson').call([]),
+            eParams.property('toJson').call([]),
           ])
-        : refer(
-            '_connection',
-          ).property('sendRequest').call([
+        : eConnection.property('sendRequest').call([
             _methodRef('RequestMethod', wireMethod),
           ]);
 
@@ -423,7 +422,7 @@ final class ServerApiVisitor {
       if (isVoidResult)
         sendCallExpr.awaited.statement
       else ...[
-        declareFinal('raw', type: refer('dynamic'))
+        declareFinal('raw', type: tDynamic)
             .assign(sendCallExpr.awaited)
             .statement,
         ..._senderDecodeStatements(resultType),
@@ -482,7 +481,7 @@ final class ServerApiVisitor {
             (b) => b
               ..name = '_connection'
               ..modifier = .final$
-              ..type = refer('LspConnection'),
+              ..type = tLspConnection,
           ),
         )
         ..fields.addAll(
@@ -548,7 +547,7 @@ final class ServerApiVisitor {
               (isRawObject
                       ? refer(
                           'e',
-                        ).asA(refer('dynamic')).property('toJson').call([])
+                        ).asA(tDynamic).property('toJson').call([])
                       : refer('e').property('toJson').call([]))
                   .code,
       ).closure;
@@ -598,9 +597,9 @@ final class ServerApiVisitor {
         // LSPAny list — values are already raw JSON, no deserialization needed.
         return [
           refer('raw')
-              .asA(refer('List'))
+              .asA(tList)
               .property('cast')
-              .call([], {}, [refer('Object')])
+              .call([], {}, [tObject])
               .property('toList')
               .call([])
               .returned
@@ -610,7 +609,7 @@ final class ServerApiVisitor {
       // (raw as List).cast<Map<String, Object?>>().map(T.fromJson).toList()
       return [
         refer('raw')
-            .asA(refer('List'))
+            .asA(tList)
             .property('cast')
             .call([], {}, [_jsonMapRef()])
             .property('map')
@@ -775,10 +774,7 @@ final class ServerApiVisitor {
   static TypeReference _jsonMapRef() => TypeReference(
     (b) => b
       ..symbol = 'Map'
-      ..types.addAll([
-        refer('String'),
-        refer('dynamic'),
-      ]),
+      ..types.addAll([tString, tDynamic]),
   );
 
   /// Emits `final [varName] =

@@ -444,7 +444,7 @@ final class EmitterVisitor {
       b
         ..name = cls.name
         ..abstract = true
-        ..annotations.add(refer('freezed'));
+        ..annotations.add(tFreezed);
 
       b.mixins.add(refer('_\$$publicPart'));
 
@@ -482,13 +482,13 @@ final class EmitterVisitor {
                   ..type = TypeReference(
                     (b) => b
                       ..symbol = 'Map'
-                      ..types.addAll([refer('String'), refer('dynamic')]),
+                      ..types.addAll([tString, tDynamic]),
                   ),
               ),
             )
             ..body = refer(
               '_\$${publicPart}FromJson',
-            ).call([refer('json')]).code,
+            ).call([eJson]).code,
         ),
       );
 
@@ -581,7 +581,7 @@ final class EmitterVisitor {
 
     return Class((b) {
       b.name = cls.name;
-      b.annotations.add(refer('JsonSerializable').call([]));
+      b.annotations.add(tJsonSerializable.call([]));
       b.docs.addAll(
         _docLines(cls.documentation, since: cls.since, proposed: cls.proposed),
       );
@@ -635,11 +635,11 @@ final class EmitterVisitor {
                   ..type = TypeReference(
                     (b) => b
                       ..symbol = 'Map'
-                      ..types.addAll([refer('String'), refer('dynamic')]),
+                      ..types.addAll([tString, tDynamic]),
                   ),
               ),
             )
-            ..body = refer('_\$${baseName}FromJson').call([refer('json')]).code,
+            ..body = refer('_\$${baseName}FromJson').call([eJson]).code,
         ),
       );
 
@@ -651,7 +651,7 @@ final class EmitterVisitor {
             ..returns = TypeReference(
               (b) => b
                 ..symbol = 'Map'
-                ..types.addAll([refer('String'), refer('dynamic')]),
+                ..types.addAll([tString, tDynamic]),
             )
             ..body = refer('_\$${baseName}ToJson').call([refer('this')]).code,
         ),
@@ -708,7 +708,7 @@ final class EmitterVisitor {
   /// Returns the list of annotations for factory/field parameter [p].
   List<Expression> _annotationsForParam(String className, ResolvedProperty p) {
     final deprecated = p.deprecated != null
-        ? refer('Deprecated').call([literalString(p.deprecated!)])
+        ? tDeprecated.call([literalString(p.deprecated!)])
         : null;
     return [
       ?deprecated,
@@ -786,7 +786,7 @@ final class EmitterVisitor {
       '/// LSP ${enumName.startsWith('Notification') ? 'notification' : 'request'} method identifiers, as sent over the wire.',
     );
     b.annotations.add(
-      refer('JsonEnum').call([], {
+      tJsonEnum.call([], {
         'valueField': literalString('value'),
         'alwaysCreate': literalTrue,
       }),
@@ -809,7 +809,7 @@ final class EmitterVisitor {
         (b) => b
           ..modifier = FieldModifier.final$
           ..name = 'value'
-          ..type = refer('String'),
+          ..type = tString,
       ),
     );
 
@@ -841,7 +841,7 @@ final class EmitterVisitor {
             Parameter(
               (b) => b
                 ..name = 'json'
-                ..type = refer('String'),
+                ..type = tString,
             ),
           )
           ..lambda = true
@@ -850,7 +850,7 @@ final class EmitterVisitor {
               '_\$$enumName'
               'EnumMap',
             ),
-            refer('json'),
+            eJson,
           ]).code,
       ),
     );
@@ -891,7 +891,7 @@ final class EmitterVisitor {
             Field(
               (b) => b
                 ..static = true
-                ..modifier = .constant
+                ..modifier = FieldModifier.constant
                 ..name = _safeIdentifier(_toLowerCamelCase(member.name))
                 ..assignment = refer(en.name).call([
                   if (isInt)
@@ -920,7 +920,7 @@ final class EmitterVisitor {
                 Parameter(
                   (b) => b
                     ..name = 'json'
-                    ..type = refer('dynamic'),
+                    ..type = tDynamic,
                 ),
               )
               ..body = refer(en.name).call([
@@ -936,7 +936,7 @@ final class EmitterVisitor {
               ..name = 'toJson'
               ..returns = refer(valueTypeName)
               ..lambda = true
-              ..body = refer('value').code,
+              ..body = eValue.code,
           ),
         );
       });
@@ -945,7 +945,7 @@ final class EmitterVisitor {
     return Enum((b) {
       b.name = en.name;
       b.annotations.add(
-        refer('JsonEnum').call([], {
+        tJsonEnum.call([], {
           'valueField': literalString('value'),
           'alwaysCreate': literalTrue,
         }),
@@ -966,7 +966,7 @@ final class EmitterVisitor {
             );
             if (member.deprecated != null) {
               b.annotations.add(
-                refer('Deprecated').call([literalString(member.deprecated!)]),
+                tDeprecated.call([literalString(member.deprecated!)]),
               );
             }
             b.docs.addAll(
@@ -1026,7 +1026,7 @@ final class EmitterVisitor {
             ..lambda = true
             ..body = refer(r'$enumDecodeNullable').call([
               refer('_\$${en.name}EnumMap'),
-              refer('json'),
+              eJson,
             ]).code,
         ),
       );
@@ -1044,7 +1044,7 @@ final class EmitterVisitor {
         ..definition = toTypeRef(alias.type);
       if (alias.deprecated != null) {
         b.annotations.add(
-          refer('Deprecated').call([literalString(alias.deprecated!)]),
+          tDeprecated.call([literalString(alias.deprecated!)]),
         );
       }
       b.docs.addAll(
@@ -1109,24 +1109,28 @@ final class EmitterVisitor {
     }
 
     if (structs.isEmpty && lists.isEmpty) {
-      return .scalar;
+      return _UnionKind.scalar;
     }
 
     if (lists.isEmpty && scalars.isNotEmpty && structs.isNotEmpty) {
       final uniqueStructs = _structKey(structs).toSet();
-      return uniqueStructs.length == 1 ? .scalarStruct : .mixed;
+      return uniqueStructs.length == 1
+          ? _UnionKind.scalarStruct
+          : _UnionKind.mixed;
     }
 
     if (scalars.isEmpty && lists.isNotEmpty && structs.isNotEmpty) {
-      return .structList;
+      return _UnionKind.structList;
     }
 
     if (scalars.isEmpty && lists.isEmpty && structs.length >= 2) {
       final uniqueStructs = _structKey(structs).toSet();
-      return uniqueStructs.length >= 2 ? .structStruct : .mixed;
+      return uniqueStructs.length >= 2
+          ? _UnionKind.structStruct
+          : _UnionKind.mixed;
     }
 
-    return .mixed;
+    return _UnionKind.mixed;
   }
   String _singleStructKey(ResolvedType t) => switch (t) {
         ClassType(:final ref) => ref.name,
@@ -1254,12 +1258,12 @@ final class EmitterVisitor {
       ..representationDeclaration = RepresentationDeclaration(
         (r) => r
           ..name = 'value'
-          ..declaredRepresentationType = refer('Object'),
+          ..declaredRepresentationType = tObject,
       );
 
     b.docs.addAll(docs);
     if (deprecated != null) {
-      b.annotations.add(refer('Deprecated').call([literalString(deprecated)]));
+      b.annotations.add(tDeprecated.call([literalString(deprecated)]));
     }
 
     // fromJson constructor
@@ -1272,10 +1276,10 @@ final class EmitterVisitor {
             Parameter(
               (b) => b
                 ..name = 'json'
-                ..type = refer('Object'),
+                ..type = tObject,
             ),
           )
-          ..body = refer(name).call([refer('json')]).code,
+          ..body = refer(name).call([eJson]).code,
       ),
     );
 
@@ -1284,9 +1288,9 @@ final class EmitterVisitor {
       Method(
         (b) => b
           ..name = 'toJson'
-          ..returns = refer('Object')
+          ..returns = tObject
           ..lambda = true
-          ..body = refer('value').code,
+          ..body = eValue.code,
       ),
     );
 
@@ -1320,7 +1324,7 @@ final class EmitterVisitor {
         Method(
           (b) => b
             ..name = 'is$capSuffix'
-            ..returns = refer('bool')
+            ..returns = tBool
             ..type = MethodType.getter
             ..lambda = true
             ..body = checkExpr.code,
@@ -1385,7 +1389,7 @@ final class EmitterVisitor {
     List<_UnionCheck>? structChecks,
   ]) {
     final actual = type is NullableType ? type.inner : type;
-    final val = refer('value');
+    final val = eValue;
 
     switch (actual) {
       case DartCoreType(:final dartName):
@@ -1393,7 +1397,7 @@ final class EmitterVisitor {
           return literalTrue;
         }
         if (dartName == 'Null') {
-          return val.asA(refer('Object?')).equalTo(literalNull);
+          return val.asA(tObjectNullable).equalTo(literalNull);
         }
         return val.isA(refer(dartName));
 
@@ -1404,7 +1408,7 @@ final class EmitterVisitor {
           actual,
           structChecks,
           val,
-          val.isA(refer('Map<String, dynamic>')),
+          val.isA(tMapStringDynamic),
         );
         return isClass.or(mapCheck);
 
@@ -1423,31 +1427,31 @@ final class EmitterVisitor {
         return cond;
 
       case ListType():
-        return val.isA(refer('List'));
+        return val.isA(tList);
 
       case MapType():
-        return val.isA(refer('Map<String, dynamic>'));
+        return val.isA(tMapStringDynamic);
 
       case InlineRecord():
         return _buildStructCheck(
           actual,
           structChecks,
           val,
-          val.isA(refer('Map<String, dynamic>')),
+          val.isA(tMapStringDynamic),
         );
 
       case TupleType(:final items):
-        return val.isA(refer('List')).and(
-              val.asA(refer('List')).property('length').equalTo(
+        return val.isA(tList).and(
+              val.asA(tList).property('length').equalTo(
                     literalNum(items.length),
                   ),
             );
 
       case StringLiteralType():
-        return val.isA(refer('String'));
+        return val.isA(tString);
 
       default:
-        return val.isA(refer('Object'));
+        return val.isA(tObject);
     }
   }
 
@@ -1463,7 +1467,7 @@ final class EmitterVisitor {
         (c) => _singleStructKey(c.variant) == key,
       );
       if (check != null) {
-        final mapRef = refer('Map<String, dynamic>');
+        final mapRef = tMapStringDynamic;
         final isMap = val.isA(mapRef);
 
         if (check.fieldName.isNotEmpty) {

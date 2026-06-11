@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:dart_style/dart_style.dart';
 import 'package:meta/meta.dart';
 
 /// Generates an if-else statement as code.
@@ -74,10 +75,54 @@ extension ExpressionExtensions on Expression {
       (nullSafe ? nullSafeProperty(name) : property(name)) as BinaryExpression;
 }
 
-/// Extension providing utility methods for building code blocks.
-extension BlockBuilderExtensions on BlockBuilder {
-  /// Adds an empty line to the code block for better readability.
-  ///
-  /// This is useful for separating logical sections of generated code.
-  void addEmptyLine() => statements.add(const Code(''));
+// ---------------------------------------------------------------------------
+// Common Type and Expression References
+// ---------------------------------------------------------------------------
+
+/// Common type references.
+final tString = refer('String');
+final tDynamic = refer('dynamic');
+final tObject = refer('Object');
+final tObjectNullable = refer('Object?');
+final tBool = refer('bool');
+final tVoid = refer('void');
+final tNull = refer('Null');
+final tList = refer('List');
+final tLspConnection = refer('LspConnection');
+final tMapStringDynamic = refer('Map<String, dynamic>');
+final tJsonSerializable = refer('JsonSerializable');
+final tJsonEnum = refer('JsonEnum');
+final tDeprecated = refer('Deprecated');
+final tFreezed = refer('freezed');
+
+/// Common expression references.
+final eJson = refer('json');
+final eValue = refer('value');
+final eConnection = refer('_connection');
+final eParams = refer('params');
+
+/// Formats and emits a [Library] as a string.
+String formatLibrary(Library lib) {
+  final emitter = DartEmitter.scoped(
+    orderDirectives: true,
+    useNullSafetySyntax: true,
+  );
+  final formatter = DartFormatter(
+    languageVersion: DartFormatter.latestLanguageVersion,
+  );
+  return formatter.format(lib.accept(emitter).toString());
+}
+
+/// Formats and emits a [Library] as a string with standard
+/// ignore_for_file header.
+String emitLibrary(Library lib) {
+  try {
+    return '// ignore_for_file: type=lint\n\n${formatLibrary(lib)}';
+  } on Object catch (_) {
+    final emitter = DartEmitter.scoped(
+      orderDirectives: true,
+      useNullSafetySyntax: true,
+    );
+    return '// ignore_for_file: type=lint\n\n${lib.accept(emitter)}';
+  }
 }

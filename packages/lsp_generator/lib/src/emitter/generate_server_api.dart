@@ -1,39 +1,20 @@
 import 'dart:io';
 
-import 'package:code_builder/code_builder.dart';
-import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
 import '../resolver/resolved_state.dart';
+import '../visitor/emitter_helpers.dart';
 import '../visitor/server_api_visitor.dart';
 
-/// Generates `packages/pro_lsp/lib/src/generated/server/server_api.dart` from
-/// the resolved LSP model.
-void generateServerApi(ResolvedState resolved) {
+/// Generates the typed LSP server API from the resolved LSP model and writes
+/// it to the output directory.
+void generateServerApi(ResolvedState resolved, String outputDir) {
   final visitor = ServerApiVisitor(resolved);
-
-  final dartEmitter = DartEmitter.scoped(
-    orderDirectives: true,
-    useNullSafetySyntax: true,
-  );
-
-  final formatter = DartFormatter(
-    languageVersion: DartFormatter.latestLanguageVersion,
-  );
-
   final lib = visitor.buildServerApi();
-  final raw = lib.accept(dartEmitter).toString();
-  final source = () {
-    try {
-      return '// ignore_for_file: type=lint\n\n${formatter.format(raw)}';
-    } on Object catch (_) {
-      return '// ignore_for_file: type=lint\n\n$raw';
-    }
-  }();
+  final source = emitLibrary(lib);
 
   final generatedPath = p.join(
-    'packages',
-    'pro_lsp',
+    outputDir,
     'lib',
     'src',
     'generated',
@@ -46,6 +27,5 @@ void generateServerApi(ResolvedState resolved) {
   }
 
   final outputPath = p.join(generatedPath, 'server_api.dart');
-
   File(outputPath).writeAsStringSync(source);
 }

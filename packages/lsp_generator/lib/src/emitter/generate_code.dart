@@ -1,44 +1,25 @@
 import 'dart:io';
 
 import 'package:code_builder/code_builder.dart';
-import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
 import '../resolver/resolved_state.dart';
+import '../visitor/emitter_helpers.dart';
 import '../visitor/emitter_visitor.dart';
 
 void generateCode(ResolvedState resolved, String outputDir) {
   final visitor = EmitterVisitor(resolved);
 
-  final dartEmitter = DartEmitter.scoped(
-    orderDirectives: true,
-    useNullSafetySyntax: true,
-  );
-
-  final formatter = DartFormatter(
-    languageVersion: DartFormatter.latestLanguageVersion,
-  );
-
-  String emit(Library lib) {
-    final raw = lib.accept(dartEmitter).toString();
-    try {
-      return '// ignore_for_file: type=lint\n\n${formatter.format(raw)}';
-    } on Object catch (_) {
-      // Return unformatted if the formatter fails (e.g. syntax error in
-      // generated code).
-      return '// ignore_for_file: type=lint\n\n$raw';
-    }
-  }
-
-  final structures = emit(visitor.buildStructures());
-  final structuresCapabilities = emit(visitor.buildStructuresCapabilities());
-  final structuresParams = emit(visitor.buildStructuresParams());
-  final structuresCommon = emit(visitor.buildStructuresCommon());
-  final enumerations = emit(visitor.buildEnumerations());
-  final aliases = emit(visitor.buildAliases());
-  final scalarUnions = emit(visitor.buildScalarUnions());
-  final unions = emit(visitor.buildUnions());
-  final methods = emit(visitor.buildNotificationMethods());
+  final structures = emitLibrary(visitor.buildStructures());
+  final structuresCapabilities =
+      emitLibrary(visitor.buildStructuresCapabilities());
+  final structuresParams = emitLibrary(visitor.buildStructuresParams());
+  final structuresCommon = emitLibrary(visitor.buildStructuresCommon());
+  final enumerations = emitLibrary(visitor.buildEnumerations());
+  final aliases = emitLibrary(visitor.buildAliases());
+  final scalarUnions = emitLibrary(visitor.buildScalarUnions());
+  final unions = emitLibrary(visitor.buildUnions());
+  final methods = emitLibrary(visitor.buildNotificationMethods());
 
   final srcDir = Directory(
     p.join(outputDir, 'lib', 'src', 'generated', 'models'),
@@ -91,7 +72,7 @@ void generateCode(ResolvedState resolved, String outputDir) {
       ]),
   );
 
-  final barrel = formatter.format(barrelLib.accept(dartEmitter).toString());
+  final barrel = formatLibrary(barrelLib);
   
   File(p.join(libDir.path, '$packageName.dart')).writeAsStringSync(barrel);
 }
