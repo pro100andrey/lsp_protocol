@@ -2,7 +2,7 @@ import 'package:pro_lsp/pro_lsp.dart';
 
 class HoverService {
   Hover getHover(HoverParams params) => Hover(
-    contents: HoverContents(
+    contents: HoverContents.markupContent(
       MarkupContent(
         kind: MarkupKind.markdown,
         value:

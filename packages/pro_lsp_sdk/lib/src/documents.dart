@@ -155,7 +155,7 @@ final class ClientDocumentManager {
           version: newVersion,
         ),
         contentChanges: [
-          TextDocumentContentChangeEvent({'text': text}),
+          .text(text: text),
         ],
       ),
     );

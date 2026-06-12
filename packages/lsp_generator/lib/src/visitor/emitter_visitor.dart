@@ -1173,13 +1173,19 @@ final class EmitterVisitor {
     String? deprecated,
     List<String> docs = const [],
   }) => ExtensionType((b) {
+    final hasNull = ut.items.any(
+      (item) => item is DartCoreType && item.dartName == 'Null',
+    );
+    final representationType = hasNull ? tObjectNullable : tObject;
+
     b
       ..name = name
       ..constant = true
+      ..primaryConstructorName = '_'
       ..representationDeclaration = RepresentationDeclaration(
         (r) => r
           ..name = 'value'
-          ..declaredRepresentationType = tObject,
+          ..declaredRepresentationType = representationType,
       );
 
     b.docs.addAll(docs);
@@ -1192,30 +1198,20 @@ final class EmitterVisitor {
       Constructor(
         (b) => b
           ..factory = true
+          ..constant = true
           ..name = 'fromJson'
           ..requiredParameters.add(
             Parameter(
               (b) => b
                 ..name = 'json'
-                ..type = tObject,
+                ..type = representationType,
             ),
           )
-          ..body = refer(name).call([eJson]).code,
+          ..redirect = refer('$name._'),
       ),
     );
 
-    // toJson method
-    b.methods.add(
-      Method(
-        (b) => b
-          ..name = 'toJson'
-          ..returns = tObject
-          ..lambda = true
-          ..body = eValue.code,
-      ),
-    );
-
-    // For each variant in the union, add getters
+    // Variant factory constructors
     final uniqueItems = <ResolvedType>[];
     final seenSuffixes = <String>{};
     for (final item in ut.items) {
@@ -1225,6 +1221,151 @@ final class EmitterVisitor {
         uniqueItems.add(item);
       }
     }
+
+    for (final item in uniqueItems) {
+      final suffix = _variantSuffix(item, name);
+      var constructorName = _toLowerCamelCase(suffix);
+      final reserved = {
+        'null',
+        'default',
+        'void',
+        'dynamic',
+        'class',
+        'enum',
+        'switch',
+        'case',
+        'break',
+        'continue',
+        'return',
+        'if',
+        'else',
+        'for',
+        'in',
+        'while',
+        'do',
+        'try',
+        'catch',
+        'finally',
+        'throw',
+        'rethrow',
+        'assert',
+        'this',
+        'super',
+        'extends',
+        'with',
+        'implements',
+        'mixin',
+        'import',
+        'export',
+        'part',
+        'library',
+        'typedef',
+        'operator',
+        'get',
+        'set',
+        'static',
+        'final',
+        'const',
+        'late',
+        'required',
+        'covariant',
+        'as',
+        'is',
+        'var',
+        'new',
+      };
+      if (reserved.contains(constructorName)) {
+        constructorName = '${constructorName}Value';
+      }
+
+      final isNullType = item is DartCoreType && item.dartName == 'Null';
+
+      if (item case InlineRecord(:final fields)) {
+        b.constructors.add(
+          Constructor((b) {
+            b
+              ..factory = true
+              ..name = constructorName;
+
+            // Add named parameters
+            for (final f in fields) {
+              b.optionalParameters.add(
+                Parameter(
+                  (p) => p
+                    ..name = f.name
+                    ..type = toRef(f.type, nullable: f.optional)
+                    ..named = true
+                    ..required = !f.optional,
+                ),
+              );
+            }
+
+            final mapEntries = <String>[];
+            for (final f in fields) {
+              final wireExpr = _toWireExpression(
+                refer(f.name),
+                f.type,
+              ).accept(DartEmitter()).toString();
+              if (f.optional) {
+                mapEntries.add("if (${f.name} != null) '${f.name}': $wireExpr");
+              } else {
+                mapEntries.add("'${f.name}': $wireExpr");
+              }
+            }
+            b.body = Code("return $name._({\n${mapEntries.join(',\n')}\n});");
+          }),
+        );
+      } else {
+        final wireExpr = isNullType
+            ? null
+            : _toWireExpression(refer('value'), item);
+        final isSimpleRedirect = !isNullType &&
+            wireExpr is Reference &&
+            wireExpr.symbol == 'value';
+
+        b.constructors.add(
+          Constructor((b) {
+            b
+              ..factory = true
+              ..name = constructorName;
+
+            if (!isNullType) {
+              b.requiredParameters.add(
+                Parameter(
+                  (p) => p
+                    ..name = 'value'
+                    ..type = toRef(item),
+                ),
+              );
+            }
+
+            if (isSimpleRedirect) {
+              b
+                ..constant = true
+                ..redirect = refer('$name._');
+            } else {
+              final wireExprStr = isNullType
+                  ? 'null'
+                  : wireExpr!.accept(DartEmitter()).toString();
+              b.body = Code('return $name._($wireExprStr);');
+            }
+          }),
+        );
+      }
+    }
+
+    // toJson method
+    b.methods.add(
+      Method(
+        (b) => b
+          ..name = 'toJson'
+          ..returns = representationType
+          ..lambda = true
+          ..body = eValue.code,
+      ),
+    );
+
+    // For each variant in the union, add getters
 
     final structs = uniqueItems
         .where((t) => t is ClassType || t is InlineRecord)
@@ -1238,7 +1379,7 @@ final class EmitterVisitor {
       // Get the Dart type reference for the variant
       final typeRef = toRef(item);
 
-      final checkExpr = _variantCheckExpression(item, structChecks);
+      final checkExpr = _variantCheckExpression(item, eValue, structChecks, ut);
       final castExpr = _variantCastExpression(item, typeRef, capSuffix);
 
       b.methods.add(
@@ -1273,49 +1414,52 @@ final class EmitterVisitor {
     }
   });
 
-  String _variantSuffix(ResolvedType item, String aliasName) => switch (item) {
-    DartCoreType(:final dartName) => switch (dartName) {
-      'int' => 'Int',
-      'String' => 'String',
-      'bool' => 'Bool',
-      'double' => 'Double',
-      _ => dartName,
-    },
-    ClassType(:final ref) =>
-      ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
-          ? ref.name.substring(aliasName.length)
-          : ref.name,
-    AliasType(:final ref) =>
-      ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
-          ? ref.name.substring(aliasName.length)
-          : ref.name,
-    EnumType(:final ref) =>
-      ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
-          ? ref.name.substring(aliasName.length)
-          : ref.name,
-    ListType() => 'List',
-    MapType() => 'Map',
-    InlineRecord(:final fields) =>
-      fields.isEmpty
-          ? 'Empty'
-          : fields
-                .map((f) => f.name[0].toUpperCase() + f.name.substring(1))
-                .join(),
-    TupleType() => 'Tuple',
-    _ => 'Unknown',
-  };
+  String _variantSuffix(ResolvedType item, String aliasName) {
+    final actual = item is NullableType ? item.inner : item;
+    return switch (actual) {
+      DartCoreType(:final dartName) => switch (dartName) {
+        'int' => 'Int',
+        'String' => 'String',
+        'bool' => 'Bool',
+        'double' => 'Double',
+        _ => dartName,
+      },
+      ClassType(:final ref) =>
+        ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
+            ? ref.name.substring(aliasName.length)
+            : ref.name,
+      AliasType(:final ref) =>
+        ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
+            ? ref.name.substring(aliasName.length)
+            : ref.name,
+      EnumType(:final ref) =>
+        ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
+            ? ref.name.substring(aliasName.length)
+            : ref.name,
+      ListType(:final element) => '${_variantSuffix(element, aliasName)}List',
+      MapType() => 'Map',
+      InlineRecord(:final fields) =>
+        fields.isEmpty
+            ? 'Empty'
+            : fields
+                  .map((f) => f.name[0].toUpperCase() + f.name.substring(1))
+                  .join(),
+      TupleType() => 'Tuple',
+      _ => 'Unknown',
+    };
+  }
 
   Expression _variantCheckExpression(
-    ResolvedType type, [
+    ResolvedType type,
+    Expression val, [
     List<_UnionCheck>? structChecks,
+    UnionType? parentUnion,
   ]) {
     final actual = type is NullableType ? type.inner : type;
-    final val = eValue;
 
     return switch (actual) {
       DartCoreType(dartName: 'Object?') => literalTrue,
-      DartCoreType(dartName: 'Null') =>
-        val.asA(tObjectNullable).equalTo(literalNull),
+      DartCoreType(dartName: 'Null') => val.equalTo(literalNull),
       DartCoreType(:final dartName) => val.isA(refer(dartName)),
       ClassType(:final ref) =>
         val
@@ -1332,17 +1476,53 @@ final class EmitterVisitor {
         val.isA(refer(ref.name)).or(val.isA(refer(ref.valueType))),
       AliasType(:final ref) => _variantCheckExpression(
         _resolved.aliases.firstWhere((a) => a.name == ref.name).type,
+        val,
         structChecks,
+        parentUnion,
       ),
       UnionType(:final items) =>
         items
             .skip(1)
             .fold(
-              _variantCheckExpression(items.first, structChecks),
-              (cond, item) =>
-                  cond.or(_variantCheckExpression(item, structChecks)),
+              _variantCheckExpression(
+                items.first,
+                val,
+                structChecks,
+                parentUnion,
+              ),
+              (cond, item) => cond.or(
+                _variantCheckExpression(item, val, structChecks, parentUnion),
+              ),
             ),
-      ListType() => val.isA(tList),
+      ListType(:final element) => (() {
+        final hasMultipleLists =
+            parentUnion != null &&
+            parentUnion.items.where((t) {
+                  final actual = t is NullableType ? t.inner : t;
+                  final resolved = actual is AliasType
+                      ? _resolved.aliases
+                            .firstWhereOrNull((a) => a.name == actual.ref.name)
+                            ?.type
+                      : actual;
+                  return resolved is ListType;
+                }).length >
+                1;
+
+        if (hasMultipleLists) {
+          final isList = val.isA(tList);
+          final isEmpty = val.asA(tList).property('isEmpty');
+          final firstItem = val.asA(tList).property('first');
+          final elementCheck = _variantCheckExpression(
+            element,
+            firstItem,
+            structChecks,
+            parentUnion,
+          );
+          return isList.and(isEmpty.or(elementCheck));
+        } else {
+          return val.isA(tList);
+        }
+      })(),
       MapType() => val.isA(tMapStringDynamic),
       InlineRecord() => _buildStructCheck(
         actual,
@@ -2095,5 +2275,87 @@ final class EmitterVisitor {
     }
 
     return result;
+  }
+
+  bool _hasToJson(ResolvedType type) {
+    final actual = type is NullableType ? type.inner : type;
+    return switch (actual) {
+      ClassType() => true,
+      AliasType(:final ref) =>
+        ref.name == 'LSPAny' ||
+            _classNames.contains(ref.name) ||
+            _sealedUnionNames.contains(ref.name) ||
+            _scalarUnionNames.contains(ref.name) ||
+            _resolved.enumerations.any(
+              (e) => e.name == ref.name && e.supportsCustomValues,
+            ),
+      EnumType(:final ref) => ref.supportsCustomValues,
+      _ => false,
+    };
+  }
+
+  bool _isClosedEnum(ResolvedType type) {
+    final actual = type is NullableType ? type.inner : type;
+    return switch (actual) {
+      EnumType(:final ref) => !ref.supportsCustomValues,
+      AliasType(:final ref) => _resolved.enumerations.any(
+        (e) => e.name == ref.name && !e.supportsCustomValues,
+      ),
+      _ => false,
+    };
+  }
+
+  Expression _toWireExpression(Expression expr, ResolvedType type) {
+    final actual = type is NullableType ? type.inner : type;
+    final isNullable = type is NullableType;
+
+    if (_hasToJson(actual)) {
+      return isNullable
+          ? expr.nullSafeProperty('toJson').call([])
+          : expr.property('toJson').call([]);
+    }
+
+    if (_isClosedEnum(actual)) {
+      return isNullable
+          ? expr.nullSafeProperty('value')
+          : expr.property('value');
+    }
+
+    return switch (actual) {
+      DartCoreType() => expr,
+      StringLiteralType() => expr,
+      ClassType() || AliasType() || EnumType() || UnionType() => expr,
+      ListType(:final element) => (() {
+        final innerActual = element is NullableType ? element.inner : element;
+        if (_hasToJson(innerActual) || _isClosedEnum(innerActual)) {
+          final closure = _hasToJson(innerActual)
+              ? refer('(e) => e.toJson()')
+              : refer('(e) => e.value');
+          return isNullable
+              ? expr
+                    .nullSafeProperty('map')
+                    .call([closure])
+                    .property('toList')
+                    .call([])
+              : expr
+                    .property('map')
+                    .call([closure])
+                    .property('toList')
+                    .call([]);
+        }
+        return expr;
+      })(),
+      MapType() => expr,
+      TupleType(:final items) => (() {
+        final listExprs = <Expression>[];
+        for (var i = 0; i < items.length; i++) {
+          final member = expr.property('\$${i + 1}');
+          listExprs.add(_toWireExpression(member, items[i]));
+        }
+        return literalList(listExprs);
+      })(),
+      InlineRecord() => expr,
+      NullableType(:final inner) => _toWireExpression(expr, inner),
+    };
   }
 }

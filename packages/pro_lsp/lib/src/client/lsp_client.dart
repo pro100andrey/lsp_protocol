@@ -87,7 +87,7 @@ final class LspClient {
           rootUri: rootUri,
           workspaceFolders: workspaceFolders,
           initializationOptions: initializationOptions != null
-              ? LSPAny(initializationOptions)
+              ? LSPAny.fromJson(initializationOptions)
               : null,
           clientInfo: clientInfo != null
               ? (

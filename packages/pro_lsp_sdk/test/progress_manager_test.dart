@@ -44,7 +44,7 @@ void main() {
     test('begin sends correct notification', () async {
       final progress = LspProgress(
         connection,
-        const ProgressToken('token-1'),
+        const ProgressToken.string('token-1'),
       );
       await progress.begin(
         title: 'Building',
@@ -76,7 +76,7 @@ void main() {
     test('report sends correct notification', () async {
       final _ = LspProgress(
         connection,
-        const ProgressToken('token-1'),
+        const ProgressToken.string('token-1'),
       )..report(message: 'Still working...', percentage: 75);
 
       await Future<void>.delayed(const Duration(milliseconds: 100));
@@ -100,7 +100,7 @@ void main() {
     test('end sends correct notification', () async {
       final _ = LspProgress(
         connection,
-        const ProgressToken('token-1'),
+        const ProgressToken.string('token-1'),
       )..end(message: 'Done!');
 
       final messages = <String>[];
@@ -121,7 +121,7 @@ void main() {
     test('begin without optional fields omits them', () async {
       final progress = LspProgress(
         connection,
-        const ProgressToken('simple-token'),
+        const ProgressToken.string('simple-token'),
       );
       await progress.begin(title: 'Simple');
 

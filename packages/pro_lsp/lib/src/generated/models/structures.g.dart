@@ -195,7 +195,7 @@ _ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) =>
       ),
       experimental: json['experimental'] == null
           ? null
-          : LSPAny.fromJson(json['experimental'] as Object),
+          : LSPAny.fromJson(json['experimental']),
     );
 
 Map<String, dynamic> _$ServerCapabilitiesToJson(
@@ -280,7 +280,7 @@ _ClientCapabilities _$ClientCapabilitiesFromJson(Map<String, dynamic> json) =>
             ),
       experimental: json['experimental'] == null
           ? null
-          : LSPAny.fromJson(json['experimental'] as Object),
+          : LSPAny.fromJson(json['experimental']),
     );
 
 Map<String, dynamic> _$ClientCapabilitiesToJson(_ClientCapabilities instance) =>
@@ -1849,9 +1849,7 @@ _CallHierarchyItem _$CallHierarchyItemFromJson(Map<String, dynamic> json) =>
           ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
           .toList(),
       detail: json['detail'] as String?,
-      data: json['data'] == null
-          ? null
-          : LSPAny.fromJson(json['data'] as Object),
+      data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
     );
 
 Map<String, dynamic> _$CallHierarchyItemToJson(_CallHierarchyItem instance) =>
@@ -2039,9 +2037,7 @@ _TypeHierarchyItem _$TypeHierarchyItemFromJson(Map<String, dynamic> json) =>
           ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
           .toList(),
       detail: json['detail'] as String?,
-      data: json['data'] == null
-          ? null
-          : LSPAny.fromJson(json['data'] as Object),
+      data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
     );
 
 Map<String, dynamic> _$TypeHierarchyItemToJson(_TypeHierarchyItem instance) =>
@@ -2068,7 +2064,7 @@ _InlayHint _$InlayHintFromJson(Map<String, dynamic> json) => _InlayHint(
       : InlayHintTooltip.fromJson(json['tooltip'] as Object),
   paddingLeft: json['paddingLeft'] as bool?,
   paddingRight: json['paddingRight'] as bool?,
-  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
 );
 
 Map<String, dynamic> _$InlayHintToJson(_InlayHint instance) =>
@@ -2217,51 +2213,52 @@ Map<String, dynamic> _$TextEditToJson(_TextEdit instance) => <String, dynamic>{
   'newText': instance.newText,
 };
 
-_CompletionItem _$CompletionItemFromJson(
-  Map<String, dynamic> json,
-) => _CompletionItem(
-  label: json['label'] as String,
-  labelDetails: json['labelDetails'] == null
-      ? null
-      : CompletionItemLabelDetails.fromJson(
-          json['labelDetails'] as Map<String, dynamic>,
-        ),
-  kind: $enumDecodeNullable(_$CompletionItemKindEnumMap, json['kind']),
-  tags: (json['tags'] as List<dynamic>?)
-      ?.map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
-      .toList(),
-  detail: json['detail'] as String?,
-  documentation: json['documentation'] == null
-      ? null
-      : CompletionItemDocumentation.fromJson(json['documentation'] as Object),
-  deprecated: json['deprecated'] as bool?,
-  preselect: json['preselect'] as bool?,
-  sortText: json['sortText'] as String?,
-  filterText: json['filterText'] as String?,
-  insertText: json['insertText'] as String?,
-  insertTextFormat: $enumDecodeNullable(
-    _$InsertTextFormatEnumMap,
-    json['insertTextFormat'],
-  ),
-  insertTextMode: $enumDecodeNullable(
-    _$InsertTextModeEnumMap,
-    json['insertTextMode'],
-  ),
-  textEdit: json['textEdit'] == null
-      ? null
-      : CompletionItemTextEdit.fromJson(json['textEdit'] as Object),
-  textEditText: json['textEditText'] as String?,
-  additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
-      ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  commitCharacters: (json['commitCharacters'] as List<dynamic>?)
-      ?.map((e) => e as String)
-      .toList(),
-  command: json['command'] == null
-      ? null
-      : Command.fromJson(json['command'] as Map<String, dynamic>),
-  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
-);
+_CompletionItem _$CompletionItemFromJson(Map<String, dynamic> json) =>
+    _CompletionItem(
+      label: json['label'] as String,
+      labelDetails: json['labelDetails'] == null
+          ? null
+          : CompletionItemLabelDetails.fromJson(
+              json['labelDetails'] as Map<String, dynamic>,
+            ),
+      kind: $enumDecodeNullable(_$CompletionItemKindEnumMap, json['kind']),
+      tags: (json['tags'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
+          .toList(),
+      detail: json['detail'] as String?,
+      documentation: json['documentation'] == null
+          ? null
+          : CompletionItemDocumentation.fromJson(
+              json['documentation'] as Object,
+            ),
+      deprecated: json['deprecated'] as bool?,
+      preselect: json['preselect'] as bool?,
+      sortText: json['sortText'] as String?,
+      filterText: json['filterText'] as String?,
+      insertText: json['insertText'] as String?,
+      insertTextFormat: $enumDecodeNullable(
+        _$InsertTextFormatEnumMap,
+        json['insertTextFormat'],
+      ),
+      insertTextMode: $enumDecodeNullable(
+        _$InsertTextModeEnumMap,
+        json['insertTextMode'],
+      ),
+      textEdit: json['textEdit'] == null
+          ? null
+          : CompletionItemTextEdit.fromJson(json['textEdit'] as Object),
+      textEditText: json['textEditText'] as String?,
+      additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
+          ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      commitCharacters: (json['commitCharacters'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      command: json['command'] == null
+          ? null
+          : Command.fromJson(json['command'] as Map<String, dynamic>),
+      data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
+    );
 
 Map<String, dynamic> _$CompletionItemToJson(
   _CompletionItem instance,
@@ -2308,7 +2305,7 @@ _CompletionList _$CompletionListFromJson(Map<String, dynamic> json) =>
               .toList(),
           data: $jsonValue['data'] == null
               ? null
-              : LSPAny.fromJson($jsonValue['data'] as Object),
+              : LSPAny.fromJson($jsonValue['data']),
           editRange: $jsonValue['editRange'],
           insertTextFormat: $enumDecodeNullable(
             _$InsertTextFormatEnumMap,
@@ -2444,7 +2441,7 @@ _Command _$CommandFromJson(Map<String, dynamic> json) => _Command(
   title: json['title'] as String,
   command: json['command'] as String,
   arguments: (json['arguments'] as List<dynamic>?)
-      ?.map((e) => LSPAny.fromJson(e as Object))
+      ?.map(LSPAny.fromJson)
       .toList(),
 );
 
@@ -2471,7 +2468,7 @@ _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) => _CodeAction(
   command: json['command'] == null
       ? null
       : Command.fromJson(json['command'] as Map<String, dynamic>),
-  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
 );
 
 Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
@@ -2497,9 +2494,7 @@ _WorkspaceSymbol _$WorkspaceSymbolFromJson(Map<String, dynamic> json) =>
           ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
           .toList(),
       containerName: json['containerName'] as String?,
-      data: json['data'] == null
-          ? null
-          : LSPAny.fromJson(json['data'] as Object),
+      data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
     );
 
 Map<String, dynamic> _$WorkspaceSymbolToJson(_WorkspaceSymbol instance) =>
@@ -2517,7 +2512,7 @@ _CodeLens _$CodeLensFromJson(Map<String, dynamic> json) => _CodeLens(
   command: json['command'] == null
       ? null
       : Command.fromJson(json['command'] as Map<String, dynamic>),
-  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
 );
 
 Map<String, dynamic> _$CodeLensToJson(_CodeLens instance) => <String, dynamic>{
@@ -2531,9 +2526,7 @@ _DocumentLink _$DocumentLinkFromJson(Map<String, dynamic> json) =>
       range: Range.fromJson(json['range'] as Map<String, dynamic>),
       target: json['target'] as String?,
       tooltip: json['tooltip'] as String?,
-      data: json['data'] == null
-          ? null
-          : LSPAny.fromJson(json['data'] as Object),
+      data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
     );
 
 Map<String, dynamic> _$DocumentLinkToJson(_DocumentLink instance) =>
@@ -3008,7 +3001,7 @@ _NotebookDocument _$NotebookDocumentFromJson(Map<String, dynamic> json) =>
           .map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
           .toList(),
       metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, LSPAny.fromJson(e as Object)),
+        (k, e) => MapEntry(k, LSPAny.fromJson(e)),
       ),
     );
 
@@ -3052,7 +3045,7 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
   Map<String, dynamic> json,
 ) => _NotebookDocumentChangeEvent(
   metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
-    (k, e) => MapEntry(k, LSPAny.fromJson(e as Object)),
+    (k, e) => MapEntry(k, LSPAny.fromJson(e)),
   ),
   cells: _$recordConvertNullable(
     json['cells'],
@@ -3155,7 +3148,7 @@ _Registration _$RegistrationFromJson(Map<String, dynamic> json) =>
       method: json['method'] as String,
       registerOptions: json['registerOptions'] == null
           ? null
-          : LSPAny.fromJson(json['registerOptions'] as Object),
+          : LSPAny.fromJson(json['registerOptions']),
     );
 
 Map<String, dynamic> _$RegistrationToJson(_Registration instance) =>
@@ -3232,7 +3225,7 @@ _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) => _Diagnostic(
         (e) => DiagnosticRelatedInformation.fromJson(e as Map<String, dynamic>),
       )
       .toList(),
-  data: json['data'] == null ? null : LSPAny.fromJson(json['data'] as Object),
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
 );
 
 Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
@@ -3542,7 +3535,7 @@ _NotebookCell _$NotebookCellFromJson(Map<String, dynamic> json) =>
       kind: $enumDecode(_$NotebookCellKindEnumMap, json['kind']),
       document: json['document'] as String,
       metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, LSPAny.fromJson(e as Object)),
+        (k, e) => MapEntry(k, LSPAny.fromJson(e)),
       ),
       executionSummary: json['executionSummary'] == null
           ? null
@@ -4748,7 +4741,7 @@ _InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) =>
       rootPath: json['rootPath'] as String?,
       initializationOptions: json['initializationOptions'] == null
           ? null
-          : LSPAny.fromJson(json['initializationOptions'] as Object),
+          : LSPAny.fromJson(json['initializationOptions']),
       trace: $enumDecodeNullable(_$TraceValuesEnumMap, json['trace']),
       workspaceFolders: (json['workspaceFolders'] as List<dynamic>?)
           ?.map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
@@ -4790,9 +4783,7 @@ Map<String, dynamic> _$InitializedParamsToJson(_InitializedParams instance) =>
 
 _DidChangeConfigurationParams _$DidChangeConfigurationParamsFromJson(
   Map<String, dynamic> json,
-) => _DidChangeConfigurationParams(
-  settings: LSPAny.fromJson(json['settings'] as Object),
-);
+) => _DidChangeConfigurationParams(settings: LSPAny.fromJson(json['settings']));
 
 Map<String, dynamic> _$DidChangeConfigurationParamsToJson(
   _DidChangeConfigurationParams instance,
@@ -5728,7 +5719,7 @@ _ExecuteCommandParams _$ExecuteCommandParamsFromJson(
       ? null
       : ProgressToken.fromJson(json['workDoneToken'] as Object),
   arguments: (json['arguments'] as List<dynamic>?)
-      ?.map((e) => LSPAny.fromJson(e as Object))
+      ?.map(LSPAny.fromJson)
       .toList(),
 );
 
@@ -5797,7 +5788,7 @@ Map<String, dynamic> _$CancelParamsToJson(_CancelParams instance) =>
 _ProgressParams _$ProgressParamsFromJson(Map<String, dynamic> json) =>
     _ProgressParams(
       token: ProgressToken.fromJson(json['token'] as Object),
-      value: LSPAny.fromJson(json['value'] as Object),
+      value: LSPAny.fromJson(json['value']),
     );
 
 Map<String, dynamic> _$ProgressParamsToJson(_ProgressParams instance) =>

@@ -12,8 +12,16 @@ import 'type_aliases.dart';
 ///
 /// Servers should prefer returning `DefinitionLink` over `Definition` if
 /// supported by the client.
-extension type const Definition(Object value) {
-  factory Definition.fromJson(Object json) => Definition(json);
+extension type const Definition._(Object value) {
+  const factory Definition.fromJson(Object json) = Definition._;
+
+  factory Definition.location(Location value) {
+    return Definition._(value.toJson());
+  }
+
+  factory Definition.locationList(List<Location> value) {
+    return Definition._(value.map((e) => e.toJson()).toList());
+  }
 
   Object toJson() => value;
 
@@ -33,13 +41,13 @@ extension type const Definition(Object value) {
     return null;
   }
 
-  bool get isList => value is List;
+  bool get isLocationList => value is List;
 
-  List<Location>? get asList {
+  List<Location>? get asLocationList {
     if (value is List<Location>) {
       return value as List<Location>;
     }
-    if (isList) {
+    if (isLocationList) {
       return (value as List)
           .map(
             (e) => e is Location
@@ -58,10 +66,26 @@ extension type const Definition(Object value) {
 /// are optional as well.
 ///
 /// @since 3.17.0
-extension type const LSPAny(Object value) {
-  factory LSPAny.fromJson(Object json) => LSPAny(json);
+extension type const LSPAny._(Object? value) {
+  const factory LSPAny.fromJson(Object? json) = LSPAny._;
 
-  Object toJson() => value;
+  const factory LSPAny.lSPObject(LSPObject value) = LSPAny._;
+
+  const factory LSPAny.lSPArray(LSPArray value) = LSPAny._;
+
+  const factory LSPAny.string(String value) = LSPAny._;
+
+  const factory LSPAny.int(int value) = LSPAny._;
+
+  const factory LSPAny.double(double value) = LSPAny._;
+
+  const factory LSPAny.bool(bool value) = LSPAny._;
+
+  factory LSPAny.nullValue() {
+    return LSPAny._(null);
+  }
+
+  Object? toJson() => value;
 
   bool get isLSPObject => value is Map<String, dynamic>;
 
@@ -99,7 +123,7 @@ extension type const LSPAny(Object value) {
     return value is bool ? value as bool : null;
   }
 
-  bool get isNull => (value as Object?) == null;
+  bool get isNull => value == null;
 
   Null get asNull {
     return null;
@@ -107,8 +131,16 @@ extension type const LSPAny(Object value) {
 }
 
 /// The declaration of a symbol representation as one or many `locations`.
-extension type const Declaration(Object value) {
-  factory Declaration.fromJson(Object json) => Declaration(json);
+extension type const Declaration._(Object value) {
+  const factory Declaration.fromJson(Object json) = Declaration._;
+
+  factory Declaration.location(Location value) {
+    return Declaration._(value.toJson());
+  }
+
+  factory Declaration.locationList(List<Location> value) {
+    return Declaration._(value.map((e) => e.toJson()).toList());
+  }
 
   Object toJson() => value;
 
@@ -128,13 +160,13 @@ extension type const Declaration(Object value) {
     return null;
   }
 
-  bool get isList => value is List;
+  bool get isLocationList => value is List;
 
-  List<Location>? get asList {
+  List<Location>? get asLocationList {
     if (value is List<Location>) {
       return value as List<Location>;
     }
-    if (isList) {
+    if (isLocationList) {
       return (value as List)
           .map(
             (e) => e is Location
@@ -154,8 +186,22 @@ extension type const Declaration(Object value) {
 /// value types into one type.
 ///
 /// @since 3.17.0
-extension type const InlineValue(Object value) {
-  factory InlineValue.fromJson(Object json) => InlineValue(json);
+extension type const InlineValue._(Object value) {
+  const factory InlineValue.fromJson(Object json) = InlineValue._;
+
+  factory InlineValue.text(InlineValueText value) {
+    return InlineValue._(value.toJson());
+  }
+
+  factory InlineValue.variableLookup(InlineValueVariableLookup value) {
+    return InlineValue._(value.toJson());
+  }
+
+  factory InlineValue.evaluatableExpression(
+    InlineValueEvaluatableExpression value,
+  ) {
+    return InlineValue._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -214,9 +260,21 @@ extension type const InlineValue(Object value) {
 /// in comparison to the last pull request.
 ///
 /// @since 3.17.0
-extension type const DocumentDiagnosticReport(Object value) {
-  factory DocumentDiagnosticReport.fromJson(Object json) =>
-      DocumentDiagnosticReport(json);
+extension type const DocumentDiagnosticReport._(Object value) {
+  const factory DocumentDiagnosticReport.fromJson(Object json) =
+      DocumentDiagnosticReport._;
+
+  factory DocumentDiagnosticReport.relatedFullDocumentDiagnosticReport(
+    RelatedFullDocumentDiagnosticReport value,
+  ) {
+    return DocumentDiagnosticReport._(value.toJson());
+  }
+
+  factory DocumentDiagnosticReport.relatedUnchangedDocumentDiagnosticReport(
+    RelatedUnchangedDocumentDiagnosticReport value,
+  ) {
+    return DocumentDiagnosticReport._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -256,9 +314,27 @@ extension type const DocumentDiagnosticReport(Object value) {
     return null;
   }
 }
-extension type const PrepareRenameResult(Object value) {
-  factory PrepareRenameResult.fromJson(Object json) =>
-      PrepareRenameResult(json);
+extension type const PrepareRenameResult._(Object value) {
+  const factory PrepareRenameResult.fromJson(Object json) =
+      PrepareRenameResult._;
+
+  factory PrepareRenameResult.range(Range value) {
+    return PrepareRenameResult._(value.toJson());
+  }
+
+  factory PrepareRenameResult.rangePlaceholder({
+    required Range range,
+    required String placeholder,
+  }) {
+    return PrepareRenameResult._({
+      'range': range.toJson(),
+      'placeholder': placeholder,
+    });
+  }
+
+  factory PrepareRenameResult.defaultBehavior({required bool defaultBehavior}) {
+    return PrepareRenameResult._({'defaultBehavior': defaultBehavior});
+  }
 
   Object toJson() => value;
 
@@ -310,9 +386,21 @@ extension type const PrepareRenameResult(Object value) {
 /// A workspace diagnostic document report.
 ///
 /// @since 3.17.0
-extension type const WorkspaceDocumentDiagnosticReport(Object value) {
-  factory WorkspaceDocumentDiagnosticReport.fromJson(Object json) =>
-      WorkspaceDocumentDiagnosticReport(json);
+extension type const WorkspaceDocumentDiagnosticReport._(Object value) {
+  const factory WorkspaceDocumentDiagnosticReport.fromJson(Object json) =
+      WorkspaceDocumentDiagnosticReport._;
+
+  factory WorkspaceDocumentDiagnosticReport.workspaceFullDocumentDiagnosticReport(
+    WorkspaceFullDocumentDiagnosticReport value,
+  ) {
+    return WorkspaceDocumentDiagnosticReport._(value.toJson());
+  }
+
+  factory WorkspaceDocumentDiagnosticReport.workspaceUnchangedDocumentDiagnosticReport(
+    WorkspaceUnchangedDocumentDiagnosticReport value,
+  ) {
+    return WorkspaceDocumentDiagnosticReport._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -355,9 +443,25 @@ extension type const WorkspaceDocumentDiagnosticReport(Object value) {
 
 /// An event describing a change to a text document. If only a text is provided
 /// it is considered to be the full content of the document.
-extension type const TextDocumentContentChangeEvent(Object value) {
-  factory TextDocumentContentChangeEvent.fromJson(Object json) =>
-      TextDocumentContentChangeEvent(json);
+extension type const TextDocumentContentChangeEvent._(Object value) {
+  const factory TextDocumentContentChangeEvent.fromJson(Object json) =
+      TextDocumentContentChangeEvent._;
+
+  factory TextDocumentContentChangeEvent.rangeRangeLengthText({
+    required Range range,
+    int? rangeLength,
+    required String text,
+  }) {
+    return TextDocumentContentChangeEvent._({
+      'range': range.toJson(),
+      if (rangeLength != null) 'rangeLength': rangeLength,
+      'text': text,
+    });
+  }
+
+  factory TextDocumentContentChangeEvent.text({required String text}) {
+    return TextDocumentContentChangeEvent._({'text': text});
+  }
 
   Object toJson() => value;
 
@@ -404,8 +508,17 @@ extension type const TextDocumentContentChangeEvent(Object value) {
 /// Note that markdown strings will be sanitized - that means html will be
 /// escaped. @deprecated use MarkupContent instead.
 @Deprecated('use MarkupContent instead.')
-extension type const MarkedString(Object value) {
-  factory MarkedString.fromJson(Object json) => MarkedString(json);
+extension type const MarkedString._(Object value) {
+  const factory MarkedString.fromJson(Object json) = MarkedString._;
+
+  const factory MarkedString.string(String value) = MarkedString._;
+
+  factory MarkedString.languageValue({
+    required String language,
+    required String value,
+  }) {
+    return MarkedString._({'language': language, 'value': value});
+  }
 
   Object toJson() => value;
 
@@ -438,8 +551,18 @@ extension type const MarkedString(Object value) {
 /// - proposed support for NotebookCellTextDocumentFilter.
 ///
 /// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
-extension type const DocumentFilter(Object value) {
-  factory DocumentFilter.fromJson(Object json) => DocumentFilter(json);
+extension type const DocumentFilter._(Object value) {
+  const factory DocumentFilter.fromJson(Object json) = DocumentFilter._;
+
+  factory DocumentFilter.textDocumentFilter(TextDocumentFilter value) {
+    return DocumentFilter._(value.toJson());
+  }
+
+  factory DocumentFilter.notebookCellTextDocumentFilter(
+    NotebookCellTextDocumentFilter value,
+  ) {
+    return DocumentFilter._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -482,8 +605,14 @@ extension type const DocumentFilter(Object value) {
 /// The glob pattern. Either a string pattern or a relative pattern.
 ///
 /// @since 3.17.0
-extension type const GlobPattern(Object value) {
-  factory GlobPattern.fromJson(Object json) => GlobPattern(json);
+extension type const GlobPattern._(Object value) {
+  const factory GlobPattern.fromJson(Object json) = GlobPattern._;
+
+  const factory GlobPattern.pattern(Pattern value) = GlobPattern._;
+
+  factory GlobPattern.relativePattern(RelativePattern value) {
+    return GlobPattern._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -530,8 +659,20 @@ extension type const GlobPattern(Object value) {
 /// '**package.json' }`
 ///
 /// @since 3.17.0
-extension type const TextDocumentFilter(Object value) {
-  factory TextDocumentFilter.fromJson(Object json) => TextDocumentFilter(json);
+extension type const TextDocumentFilter._(Object value) {
+  const factory TextDocumentFilter.fromJson(Object json) = TextDocumentFilter._;
+
+  factory TextDocumentFilter.languageSchemePattern({
+    required String language,
+    String? scheme,
+    String? pattern,
+  }) {
+    return TextDocumentFilter._({
+      'language': language,
+      if (scheme != null) 'scheme': scheme,
+      if (pattern != null) 'pattern': pattern,
+    });
+  }
 
   Object toJson() => value;
 
@@ -558,9 +699,21 @@ extension type const TextDocumentFilter(Object value) {
 /// with documents)
 ///
 /// @since 3.17.0
-extension type const NotebookDocumentFilter(Object value) {
-  factory NotebookDocumentFilter.fromJson(Object json) =>
-      NotebookDocumentFilter(json);
+extension type const NotebookDocumentFilter._(Object value) {
+  const factory NotebookDocumentFilter.fromJson(Object json) =
+      NotebookDocumentFilter._;
+
+  factory NotebookDocumentFilter.notebookTypeSchemePattern({
+    required String notebookType,
+    String? scheme,
+    String? pattern,
+  }) {
+    return NotebookDocumentFilter._({
+      'notebookType': notebookType,
+      if (scheme != null) 'scheme': scheme,
+      if (pattern != null) 'pattern': pattern,
+    });
+  }
 
   Object toJson() => value;
 
@@ -583,9 +736,16 @@ extension type const NotebookDocumentFilter(Object value) {
 }
 
 /// Inline union: SemanticTokensRegistrationOptionsRange.
-extension type const SemanticTokensRegistrationOptionsRange(Object value) {
-  factory SemanticTokensRegistrationOptionsRange.fromJson(Object json) =>
-      SemanticTokensRegistrationOptionsRange(json);
+extension type const SemanticTokensRegistrationOptionsRange._(Object value) {
+  const factory SemanticTokensRegistrationOptionsRange.fromJson(Object json) =
+      SemanticTokensRegistrationOptionsRange._;
+
+  const factory SemanticTokensRegistrationOptionsRange.bool(bool value) =
+      SemanticTokensRegistrationOptionsRange._;
+
+  factory SemanticTokensRegistrationOptionsRange.empty() {
+    return SemanticTokensRegistrationOptionsRange._({});
+  }
 
   Object toJson() => value;
 
@@ -606,9 +766,18 @@ extension type const SemanticTokensRegistrationOptionsRange(Object value) {
 }
 
 /// Inline union: SemanticTokensRegistrationOptionsFull.
-extension type const SemanticTokensRegistrationOptionsFull(Object value) {
-  factory SemanticTokensRegistrationOptionsFull.fromJson(Object json) =>
-      SemanticTokensRegistrationOptionsFull(json);
+extension type const SemanticTokensRegistrationOptionsFull._(Object value) {
+  const factory SemanticTokensRegistrationOptionsFull.fromJson(Object json) =
+      SemanticTokensRegistrationOptionsFull._;
+
+  const factory SemanticTokensRegistrationOptionsFull.bool(bool value) =
+      SemanticTokensRegistrationOptionsFull._;
+
+  factory SemanticTokensRegistrationOptionsFull.delta({bool? delta}) {
+    return SemanticTokensRegistrationOptionsFull._({
+      if (delta != null) 'delta': delta,
+    });
+  }
 
   Object toJson() => value;
 
@@ -630,9 +799,27 @@ extension type const SemanticTokensRegistrationOptionsFull(Object value) {
 }
 
 /// Inline union: WorkspaceEditDocumentChangesItem.
-extension type const WorkspaceEditDocumentChangesItem(Object value) {
-  factory WorkspaceEditDocumentChangesItem.fromJson(Object json) =>
-      WorkspaceEditDocumentChangesItem(json);
+extension type const WorkspaceEditDocumentChangesItem._(Object value) {
+  const factory WorkspaceEditDocumentChangesItem.fromJson(Object json) =
+      WorkspaceEditDocumentChangesItem._;
+
+  factory WorkspaceEditDocumentChangesItem.textDocumentEdit(
+    TextDocumentEdit value,
+  ) {
+    return WorkspaceEditDocumentChangesItem._(value.toJson());
+  }
+
+  factory WorkspaceEditDocumentChangesItem.createFile(CreateFile value) {
+    return WorkspaceEditDocumentChangesItem._(value.toJson());
+  }
+
+  factory WorkspaceEditDocumentChangesItem.renameFile(RenameFile value) {
+    return WorkspaceEditDocumentChangesItem._(value.toJson());
+  }
+
+  factory WorkspaceEditDocumentChangesItem.deleteFile(DeleteFile value) {
+    return WorkspaceEditDocumentChangesItem._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -703,8 +890,14 @@ extension type const WorkspaceEditDocumentChangesItem(Object value) {
 }
 
 /// Inline union: InlayHintLabel.
-extension type const InlayHintLabel(Object value) {
-  factory InlayHintLabel.fromJson(Object json) => InlayHintLabel(json);
+extension type const InlayHintLabel._(Object value) {
+  const factory InlayHintLabel.fromJson(Object json) = InlayHintLabel._;
+
+  const factory InlayHintLabel.string(String value) = InlayHintLabel._;
+
+  factory InlayHintLabel.partList(List<InlayHintLabelPart> value) {
+    return InlayHintLabel._(value.map((e) => e.toJson()).toList());
+  }
 
   Object toJson() => value;
 
@@ -714,13 +907,13 @@ extension type const InlayHintLabel(Object value) {
     return value is String ? value as String : null;
   }
 
-  bool get isList => value is List;
+  bool get isPartList => value is List;
 
-  List<InlayHintLabelPart>? get asList {
+  List<InlayHintLabelPart>? get asPartList {
     if (value is List<InlayHintLabelPart>) {
       return value as List<InlayHintLabelPart>;
     }
-    if (isList) {
+    if (isPartList) {
       return (value as List)
           .map(
             (e) => e is InlayHintLabelPart
@@ -734,8 +927,14 @@ extension type const InlayHintLabel(Object value) {
 }
 
 /// Inline union: InlayHintTooltip.
-extension type const InlayHintTooltip(Object value) {
-  factory InlayHintTooltip.fromJson(Object json) => InlayHintTooltip(json);
+extension type const InlayHintTooltip._(Object value) {
+  const factory InlayHintTooltip.fromJson(Object json) = InlayHintTooltip._;
+
+  const factory InlayHintTooltip.string(String value) = InlayHintTooltip._;
+
+  factory InlayHintTooltip.markupContent(MarkupContent value) {
+    return InlayHintTooltip._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -763,9 +962,16 @@ extension type const InlayHintTooltip(Object value) {
 }
 
 /// Inline union: InlineCompletionItemInsertText.
-extension type const InlineCompletionItemInsertText(Object value) {
-  factory InlineCompletionItemInsertText.fromJson(Object json) =>
-      InlineCompletionItemInsertText(json);
+extension type const InlineCompletionItemInsertText._(Object value) {
+  const factory InlineCompletionItemInsertText.fromJson(Object json) =
+      InlineCompletionItemInsertText._;
+
+  const factory InlineCompletionItemInsertText.string(String value) =
+      InlineCompletionItemInsertText._;
+
+  factory InlineCompletionItemInsertText.stringValue(StringValue value) {
+    return InlineCompletionItemInsertText._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -793,12 +999,20 @@ extension type const InlineCompletionItemInsertText(Object value) {
 }
 
 /// Inline union: DidChangeConfigurationRegistrationOptionsSection.
-extension type const DidChangeConfigurationRegistrationOptionsSection(
+extension type const DidChangeConfigurationRegistrationOptionsSection._(
   Object value
 ) {
-  factory DidChangeConfigurationRegistrationOptionsSection.fromJson(
+  const factory DidChangeConfigurationRegistrationOptionsSection.fromJson(
     Object json,
-  ) => DidChangeConfigurationRegistrationOptionsSection(json);
+  ) = DidChangeConfigurationRegistrationOptionsSection._;
+
+  const factory DidChangeConfigurationRegistrationOptionsSection.string(
+    String value,
+  ) = DidChangeConfigurationRegistrationOptionsSection._;
+
+  const factory DidChangeConfigurationRegistrationOptionsSection.stringList(
+    List<String> value,
+  ) = DidChangeConfigurationRegistrationOptionsSection._;
 
   Object toJson() => value;
 
@@ -808,17 +1022,24 @@ extension type const DidChangeConfigurationRegistrationOptionsSection(
     return value is String ? value as String : null;
   }
 
-  bool get isList => value is List;
+  bool get isStringList => value is List;
 
-  List<String>? get asList {
-    return isList ? (value as List).cast<String>() : null;
+  List<String>? get asStringList {
+    return isStringList ? (value as List).cast<String>() : null;
   }
 }
 
 /// Inline union: CompletionItemDocumentation.
-extension type const CompletionItemDocumentation(Object value) {
-  factory CompletionItemDocumentation.fromJson(Object json) =>
-      CompletionItemDocumentation(json);
+extension type const CompletionItemDocumentation._(Object value) {
+  const factory CompletionItemDocumentation.fromJson(Object json) =
+      CompletionItemDocumentation._;
+
+  const factory CompletionItemDocumentation.string(String value) =
+      CompletionItemDocumentation._;
+
+  factory CompletionItemDocumentation.markupContent(MarkupContent value) {
+    return CompletionItemDocumentation._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -846,9 +1067,17 @@ extension type const CompletionItemDocumentation(Object value) {
 }
 
 /// Inline union: CompletionItemTextEdit.
-extension type const CompletionItemTextEdit(Object value) {
-  factory CompletionItemTextEdit.fromJson(Object json) =>
-      CompletionItemTextEdit(json);
+extension type const CompletionItemTextEdit._(Object value) {
+  const factory CompletionItemTextEdit.fromJson(Object json) =
+      CompletionItemTextEdit._;
+
+  factory CompletionItemTextEdit.textEdit(TextEdit value) {
+    return CompletionItemTextEdit._(value.toJson());
+  }
+
+  factory CompletionItemTextEdit.insertReplaceEdit(InsertReplaceEdit value) {
+    return CompletionItemTextEdit._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -884,8 +1113,20 @@ extension type const CompletionItemTextEdit(Object value) {
 }
 
 /// Inline union: HoverContents.
-extension type const HoverContents(Object value) {
-  factory HoverContents.fromJson(Object json) => HoverContents(json);
+extension type const HoverContents._(Object value) {
+  const factory HoverContents.fromJson(Object json) = HoverContents._;
+
+  factory HoverContents.markupContent(MarkupContent value) {
+    return HoverContents._(value.toJson());
+  }
+
+  factory HoverContents.markedString(MarkedString value) {
+    return HoverContents._(value.toJson());
+  }
+
+  factory HoverContents.markedStringList(List<MarkedString> value) {
+    return HoverContents._(value.map((e) => e.toJson()).toList());
+  }
 
   Object toJson() => value;
 
@@ -921,13 +1162,13 @@ extension type const HoverContents(Object value) {
     return null;
   }
 
-  bool get isList => value is List;
+  bool get isMarkedStringList => value is List;
 
-  List<MarkedString>? get asList {
+  List<MarkedString>? get asMarkedStringList {
     if (value is List<MarkedString>) {
       return value as List<MarkedString>;
     }
-    if (isList) {
+    if (isMarkedStringList) {
       return (value as List)
           .map(
             (e) => e is MarkedString ? e : MarkedString.fromJson(e as Object),
@@ -939,9 +1180,17 @@ extension type const HoverContents(Object value) {
 }
 
 /// Inline union: WorkspaceSymbolLocation.
-extension type const WorkspaceSymbolLocation(Object value) {
-  factory WorkspaceSymbolLocation.fromJson(Object json) =>
-      WorkspaceSymbolLocation(json);
+extension type const WorkspaceSymbolLocation._(Object value) {
+  const factory WorkspaceSymbolLocation.fromJson(Object json) =
+      WorkspaceSymbolLocation._;
+
+  factory WorkspaceSymbolLocation.location(Location value) {
+    return WorkspaceSymbolLocation._(value.toJson());
+  }
+
+  factory WorkspaceSymbolLocation.uri({required String uri}) {
+    return WorkspaceSymbolLocation._({'uri': uri});
+  }
 
   Object toJson() => value;
 
@@ -974,9 +1223,16 @@ extension type const WorkspaceSymbolLocation(Object value) {
 }
 
 /// Inline union: SemanticTokensOptionsRange.
-extension type const SemanticTokensOptionsRange(Object value) {
-  factory SemanticTokensOptionsRange.fromJson(Object json) =>
-      SemanticTokensOptionsRange(json);
+extension type const SemanticTokensOptionsRange._(Object value) {
+  const factory SemanticTokensOptionsRange.fromJson(Object json) =
+      SemanticTokensOptionsRange._;
+
+  const factory SemanticTokensOptionsRange.bool(bool value) =
+      SemanticTokensOptionsRange._;
+
+  factory SemanticTokensOptionsRange.empty() {
+    return SemanticTokensOptionsRange._({});
+  }
 
   Object toJson() => value;
 
@@ -997,9 +1253,16 @@ extension type const SemanticTokensOptionsRange(Object value) {
 }
 
 /// Inline union: SemanticTokensOptionsFull.
-extension type const SemanticTokensOptionsFull(Object value) {
-  factory SemanticTokensOptionsFull.fromJson(Object json) =>
-      SemanticTokensOptionsFull(json);
+extension type const SemanticTokensOptionsFull._(Object value) {
+  const factory SemanticTokensOptionsFull.fromJson(Object json) =
+      SemanticTokensOptionsFull._;
+
+  const factory SemanticTokensOptionsFull.bool(bool value) =
+      SemanticTokensOptionsFull._;
+
+  factory SemanticTokensOptionsFull.delta({bool? delta}) {
+    return SemanticTokensOptionsFull._({if (delta != null) 'delta': delta});
+  }
 
   Object toJson() => value;
 
@@ -1021,9 +1284,17 @@ extension type const SemanticTokensOptionsFull(Object value) {
 }
 
 /// Inline union: TextDocumentEditEditsItem.
-extension type const TextDocumentEditEditsItem(Object value) {
-  factory TextDocumentEditEditsItem.fromJson(Object json) =>
-      TextDocumentEditEditsItem(json);
+extension type const TextDocumentEditEditsItem._(Object value) {
+  const factory TextDocumentEditEditsItem.fromJson(Object json) =
+      TextDocumentEditEditsItem._;
+
+  factory TextDocumentEditEditsItem.textEdit(TextEdit value) {
+    return TextDocumentEditEditsItem._(value.toJson());
+  }
+
+  factory TextDocumentEditEditsItem.annotatedTextEdit(AnnotatedTextEdit value) {
+    return TextDocumentEditEditsItem._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1059,9 +1330,16 @@ extension type const TextDocumentEditEditsItem(Object value) {
 }
 
 /// Inline union: InlayHintLabelPartTooltip.
-extension type const InlayHintLabelPartTooltip(Object value) {
-  factory InlayHintLabelPartTooltip.fromJson(Object json) =>
-      InlayHintLabelPartTooltip(json);
+extension type const InlayHintLabelPartTooltip._(Object value) {
+  const factory InlayHintLabelPartTooltip.fromJson(Object json) =
+      InlayHintLabelPartTooltip._;
+
+  const factory InlayHintLabelPartTooltip.string(String value) =
+      InlayHintLabelPartTooltip._;
+
+  factory InlayHintLabelPartTooltip.markupContent(MarkupContent value) {
+    return InlayHintLabelPartTooltip._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1089,9 +1367,21 @@ extension type const InlayHintLabelPartTooltip(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesTextDocumentSync.
-extension type const ServerCapabilitiesTextDocumentSync(Object value) {
-  factory ServerCapabilitiesTextDocumentSync.fromJson(Object json) =>
-      ServerCapabilitiesTextDocumentSync(json);
+extension type const ServerCapabilitiesTextDocumentSync._(Object value) {
+  const factory ServerCapabilitiesTextDocumentSync.fromJson(Object json) =
+      ServerCapabilitiesTextDocumentSync._;
+
+  factory ServerCapabilitiesTextDocumentSync.textDocumentSyncOptions(
+    TextDocumentSyncOptions value,
+  ) {
+    return ServerCapabilitiesTextDocumentSync._(value.toJson());
+  }
+
+  factory ServerCapabilitiesTextDocumentSync.textDocumentSyncKind(
+    TextDocumentSyncKind value,
+  ) {
+    return ServerCapabilitiesTextDocumentSync._(value.value);
+  }
 
   Object toJson() => value;
 
@@ -1123,9 +1413,21 @@ extension type const ServerCapabilitiesTextDocumentSync(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesNotebookDocumentSync.
-extension type const ServerCapabilitiesNotebookDocumentSync(Object value) {
-  factory ServerCapabilitiesNotebookDocumentSync.fromJson(Object json) =>
-      ServerCapabilitiesNotebookDocumentSync(json);
+extension type const ServerCapabilitiesNotebookDocumentSync._(Object value) {
+  const factory ServerCapabilitiesNotebookDocumentSync.fromJson(Object json) =
+      ServerCapabilitiesNotebookDocumentSync._;
+
+  factory ServerCapabilitiesNotebookDocumentSync.notebookDocumentSyncOptions(
+    NotebookDocumentSyncOptions value,
+  ) {
+    return ServerCapabilitiesNotebookDocumentSync._(value.toJson());
+  }
+
+  factory ServerCapabilitiesNotebookDocumentSync.notebookDocumentSyncRegistrationOptions(
+    NotebookDocumentSyncRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesNotebookDocumentSync._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1165,9 +1467,16 @@ extension type const ServerCapabilitiesNotebookDocumentSync(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesHoverProvider.
-extension type const ServerCapabilitiesHoverProvider(Object value) {
-  factory ServerCapabilitiesHoverProvider.fromJson(Object json) =>
-      ServerCapabilitiesHoverProvider(json);
+extension type const ServerCapabilitiesHoverProvider._(Object value) {
+  const factory ServerCapabilitiesHoverProvider.fromJson(Object json) =
+      ServerCapabilitiesHoverProvider._;
+
+  const factory ServerCapabilitiesHoverProvider.bool(bool value) =
+      ServerCapabilitiesHoverProvider._;
+
+  factory ServerCapabilitiesHoverProvider.hoverOptions(HoverOptions value) {
+    return ServerCapabilitiesHoverProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1192,9 +1501,24 @@ extension type const ServerCapabilitiesHoverProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesDeclarationProvider.
-extension type const ServerCapabilitiesDeclarationProvider(Object value) {
-  factory ServerCapabilitiesDeclarationProvider.fromJson(Object json) =>
-      ServerCapabilitiesDeclarationProvider(json);
+extension type const ServerCapabilitiesDeclarationProvider._(Object value) {
+  const factory ServerCapabilitiesDeclarationProvider.fromJson(Object json) =
+      ServerCapabilitiesDeclarationProvider._;
+
+  const factory ServerCapabilitiesDeclarationProvider.bool(bool value) =
+      ServerCapabilitiesDeclarationProvider._;
+
+  factory ServerCapabilitiesDeclarationProvider.declarationOptions(
+    DeclarationOptions value,
+  ) {
+    return ServerCapabilitiesDeclarationProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesDeclarationProvider.declarationRegistrationOptions(
+    DeclarationRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesDeclarationProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1238,9 +1562,18 @@ extension type const ServerCapabilitiesDeclarationProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesDefinitionProvider.
-extension type const ServerCapabilitiesDefinitionProvider(Object value) {
-  factory ServerCapabilitiesDefinitionProvider.fromJson(Object json) =>
-      ServerCapabilitiesDefinitionProvider(json);
+extension type const ServerCapabilitiesDefinitionProvider._(Object value) {
+  const factory ServerCapabilitiesDefinitionProvider.fromJson(Object json) =
+      ServerCapabilitiesDefinitionProvider._;
+
+  const factory ServerCapabilitiesDefinitionProvider.bool(bool value) =
+      ServerCapabilitiesDefinitionProvider._;
+
+  factory ServerCapabilitiesDefinitionProvider.definitionOptions(
+    DefinitionOptions value,
+  ) {
+    return ServerCapabilitiesDefinitionProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1265,9 +1598,24 @@ extension type const ServerCapabilitiesDefinitionProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesTypeDefinitionProvider.
-extension type const ServerCapabilitiesTypeDefinitionProvider(Object value) {
-  factory ServerCapabilitiesTypeDefinitionProvider.fromJson(Object json) =>
-      ServerCapabilitiesTypeDefinitionProvider(json);
+extension type const ServerCapabilitiesTypeDefinitionProvider._(Object value) {
+  const factory ServerCapabilitiesTypeDefinitionProvider.fromJson(Object json) =
+      ServerCapabilitiesTypeDefinitionProvider._;
+
+  const factory ServerCapabilitiesTypeDefinitionProvider.bool(bool value) =
+      ServerCapabilitiesTypeDefinitionProvider._;
+
+  factory ServerCapabilitiesTypeDefinitionProvider.typeDefinitionOptions(
+    TypeDefinitionOptions value,
+  ) {
+    return ServerCapabilitiesTypeDefinitionProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesTypeDefinitionProvider.typeDefinitionRegistrationOptions(
+    TypeDefinitionRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesTypeDefinitionProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1311,9 +1659,24 @@ extension type const ServerCapabilitiesTypeDefinitionProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesImplementationProvider.
-extension type const ServerCapabilitiesImplementationProvider(Object value) {
-  factory ServerCapabilitiesImplementationProvider.fromJson(Object json) =>
-      ServerCapabilitiesImplementationProvider(json);
+extension type const ServerCapabilitiesImplementationProvider._(Object value) {
+  const factory ServerCapabilitiesImplementationProvider.fromJson(Object json) =
+      ServerCapabilitiesImplementationProvider._;
+
+  const factory ServerCapabilitiesImplementationProvider.bool(bool value) =
+      ServerCapabilitiesImplementationProvider._;
+
+  factory ServerCapabilitiesImplementationProvider.implementationOptions(
+    ImplementationOptions value,
+  ) {
+    return ServerCapabilitiesImplementationProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesImplementationProvider.implementationRegistrationOptions(
+    ImplementationRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesImplementationProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1357,9 +1720,18 @@ extension type const ServerCapabilitiesImplementationProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesReferencesProvider.
-extension type const ServerCapabilitiesReferencesProvider(Object value) {
-  factory ServerCapabilitiesReferencesProvider.fromJson(Object json) =>
-      ServerCapabilitiesReferencesProvider(json);
+extension type const ServerCapabilitiesReferencesProvider._(Object value) {
+  const factory ServerCapabilitiesReferencesProvider.fromJson(Object json) =
+      ServerCapabilitiesReferencesProvider._;
+
+  const factory ServerCapabilitiesReferencesProvider.bool(bool value) =
+      ServerCapabilitiesReferencesProvider._;
+
+  factory ServerCapabilitiesReferencesProvider.referenceOptions(
+    ReferenceOptions value,
+  ) {
+    return ServerCapabilitiesReferencesProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1384,9 +1756,21 @@ extension type const ServerCapabilitiesReferencesProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesDocumentHighlightProvider.
-extension type const ServerCapabilitiesDocumentHighlightProvider(Object value) {
-  factory ServerCapabilitiesDocumentHighlightProvider.fromJson(Object json) =>
-      ServerCapabilitiesDocumentHighlightProvider(json);
+extension type const ServerCapabilitiesDocumentHighlightProvider._(
+  Object value
+) {
+  const factory ServerCapabilitiesDocumentHighlightProvider.fromJson(
+    Object json,
+  ) = ServerCapabilitiesDocumentHighlightProvider._;
+
+  const factory ServerCapabilitiesDocumentHighlightProvider.bool(bool value) =
+      ServerCapabilitiesDocumentHighlightProvider._;
+
+  factory ServerCapabilitiesDocumentHighlightProvider.documentHighlightOptions(
+    DocumentHighlightOptions value,
+  ) {
+    return ServerCapabilitiesDocumentHighlightProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1411,9 +1795,18 @@ extension type const ServerCapabilitiesDocumentHighlightProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesDocumentSymbolProvider.
-extension type const ServerCapabilitiesDocumentSymbolProvider(Object value) {
-  factory ServerCapabilitiesDocumentSymbolProvider.fromJson(Object json) =>
-      ServerCapabilitiesDocumentSymbolProvider(json);
+extension type const ServerCapabilitiesDocumentSymbolProvider._(Object value) {
+  const factory ServerCapabilitiesDocumentSymbolProvider.fromJson(Object json) =
+      ServerCapabilitiesDocumentSymbolProvider._;
+
+  const factory ServerCapabilitiesDocumentSymbolProvider.bool(bool value) =
+      ServerCapabilitiesDocumentSymbolProvider._;
+
+  factory ServerCapabilitiesDocumentSymbolProvider.documentSymbolOptions(
+    DocumentSymbolOptions value,
+  ) {
+    return ServerCapabilitiesDocumentSymbolProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1438,9 +1831,18 @@ extension type const ServerCapabilitiesDocumentSymbolProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesCodeActionProvider.
-extension type const ServerCapabilitiesCodeActionProvider(Object value) {
-  factory ServerCapabilitiesCodeActionProvider.fromJson(Object json) =>
-      ServerCapabilitiesCodeActionProvider(json);
+extension type const ServerCapabilitiesCodeActionProvider._(Object value) {
+  const factory ServerCapabilitiesCodeActionProvider.fromJson(Object json) =
+      ServerCapabilitiesCodeActionProvider._;
+
+  const factory ServerCapabilitiesCodeActionProvider.bool(bool value) =
+      ServerCapabilitiesCodeActionProvider._;
+
+  factory ServerCapabilitiesCodeActionProvider.codeActionOptions(
+    CodeActionOptions value,
+  ) {
+    return ServerCapabilitiesCodeActionProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1465,9 +1867,24 @@ extension type const ServerCapabilitiesCodeActionProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesColorProvider.
-extension type const ServerCapabilitiesColorProvider(Object value) {
-  factory ServerCapabilitiesColorProvider.fromJson(Object json) =>
-      ServerCapabilitiesColorProvider(json);
+extension type const ServerCapabilitiesColorProvider._(Object value) {
+  const factory ServerCapabilitiesColorProvider.fromJson(Object json) =
+      ServerCapabilitiesColorProvider._;
+
+  const factory ServerCapabilitiesColorProvider.bool(bool value) =
+      ServerCapabilitiesColorProvider._;
+
+  factory ServerCapabilitiesColorProvider.documentColorOptions(
+    DocumentColorOptions value,
+  ) {
+    return ServerCapabilitiesColorProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesColorProvider.documentColorRegistrationOptions(
+    DocumentColorRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesColorProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1511,9 +1928,19 @@ extension type const ServerCapabilitiesColorProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesWorkspaceSymbolProvider.
-extension type const ServerCapabilitiesWorkspaceSymbolProvider(Object value) {
-  factory ServerCapabilitiesWorkspaceSymbolProvider.fromJson(Object json) =>
-      ServerCapabilitiesWorkspaceSymbolProvider(json);
+extension type const ServerCapabilitiesWorkspaceSymbolProvider._(Object value) {
+  const factory ServerCapabilitiesWorkspaceSymbolProvider.fromJson(
+    Object json,
+  ) = ServerCapabilitiesWorkspaceSymbolProvider._;
+
+  const factory ServerCapabilitiesWorkspaceSymbolProvider.bool(bool value) =
+      ServerCapabilitiesWorkspaceSymbolProvider._;
+
+  factory ServerCapabilitiesWorkspaceSymbolProvider.workspaceSymbolOptions(
+    WorkspaceSymbolOptions value,
+  ) {
+    return ServerCapabilitiesWorkspaceSymbolProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1538,11 +1965,21 @@ extension type const ServerCapabilitiesWorkspaceSymbolProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesDocumentFormattingProvider.
-extension type const ServerCapabilitiesDocumentFormattingProvider(
+extension type const ServerCapabilitiesDocumentFormattingProvider._(
   Object value
 ) {
-  factory ServerCapabilitiesDocumentFormattingProvider.fromJson(Object json) =>
-      ServerCapabilitiesDocumentFormattingProvider(json);
+  const factory ServerCapabilitiesDocumentFormattingProvider.fromJson(
+    Object json,
+  ) = ServerCapabilitiesDocumentFormattingProvider._;
+
+  const factory ServerCapabilitiesDocumentFormattingProvider.bool(bool value) =
+      ServerCapabilitiesDocumentFormattingProvider._;
+
+  factory ServerCapabilitiesDocumentFormattingProvider.documentFormattingOptions(
+    DocumentFormattingOptions value,
+  ) {
+    return ServerCapabilitiesDocumentFormattingProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1567,12 +2004,22 @@ extension type const ServerCapabilitiesDocumentFormattingProvider(
 }
 
 /// Inline union: ServerCapabilitiesDocumentRangeFormattingProvider.
-extension type const ServerCapabilitiesDocumentRangeFormattingProvider(
+extension type const ServerCapabilitiesDocumentRangeFormattingProvider._(
   Object value
 ) {
-  factory ServerCapabilitiesDocumentRangeFormattingProvider.fromJson(
+  const factory ServerCapabilitiesDocumentRangeFormattingProvider.fromJson(
     Object json,
-  ) => ServerCapabilitiesDocumentRangeFormattingProvider(json);
+  ) = ServerCapabilitiesDocumentRangeFormattingProvider._;
+
+  const factory ServerCapabilitiesDocumentRangeFormattingProvider.bool(
+    bool value,
+  ) = ServerCapabilitiesDocumentRangeFormattingProvider._;
+
+  factory ServerCapabilitiesDocumentRangeFormattingProvider.documentRangeFormattingOptions(
+    DocumentRangeFormattingOptions value,
+  ) {
+    return ServerCapabilitiesDocumentRangeFormattingProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1599,9 +2046,16 @@ extension type const ServerCapabilitiesDocumentRangeFormattingProvider(
 }
 
 /// Inline union: ServerCapabilitiesRenameProvider.
-extension type const ServerCapabilitiesRenameProvider(Object value) {
-  factory ServerCapabilitiesRenameProvider.fromJson(Object json) =>
-      ServerCapabilitiesRenameProvider(json);
+extension type const ServerCapabilitiesRenameProvider._(Object value) {
+  const factory ServerCapabilitiesRenameProvider.fromJson(Object json) =
+      ServerCapabilitiesRenameProvider._;
+
+  const factory ServerCapabilitiesRenameProvider.bool(bool value) =
+      ServerCapabilitiesRenameProvider._;
+
+  factory ServerCapabilitiesRenameProvider.renameOptions(RenameOptions value) {
+    return ServerCapabilitiesRenameProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1626,9 +2080,24 @@ extension type const ServerCapabilitiesRenameProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesFoldingRangeProvider.
-extension type const ServerCapabilitiesFoldingRangeProvider(Object value) {
-  factory ServerCapabilitiesFoldingRangeProvider.fromJson(Object json) =>
-      ServerCapabilitiesFoldingRangeProvider(json);
+extension type const ServerCapabilitiesFoldingRangeProvider._(Object value) {
+  const factory ServerCapabilitiesFoldingRangeProvider.fromJson(Object json) =
+      ServerCapabilitiesFoldingRangeProvider._;
+
+  const factory ServerCapabilitiesFoldingRangeProvider.bool(bool value) =
+      ServerCapabilitiesFoldingRangeProvider._;
+
+  factory ServerCapabilitiesFoldingRangeProvider.foldingRangeOptions(
+    FoldingRangeOptions value,
+  ) {
+    return ServerCapabilitiesFoldingRangeProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesFoldingRangeProvider.foldingRangeRegistrationOptions(
+    FoldingRangeRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesFoldingRangeProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1672,9 +2141,24 @@ extension type const ServerCapabilitiesFoldingRangeProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesSelectionRangeProvider.
-extension type const ServerCapabilitiesSelectionRangeProvider(Object value) {
-  factory ServerCapabilitiesSelectionRangeProvider.fromJson(Object json) =>
-      ServerCapabilitiesSelectionRangeProvider(json);
+extension type const ServerCapabilitiesSelectionRangeProvider._(Object value) {
+  const factory ServerCapabilitiesSelectionRangeProvider.fromJson(Object json) =
+      ServerCapabilitiesSelectionRangeProvider._;
+
+  const factory ServerCapabilitiesSelectionRangeProvider.bool(bool value) =
+      ServerCapabilitiesSelectionRangeProvider._;
+
+  factory ServerCapabilitiesSelectionRangeProvider.selectionRangeOptions(
+    SelectionRangeOptions value,
+  ) {
+    return ServerCapabilitiesSelectionRangeProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesSelectionRangeProvider.selectionRangeRegistrationOptions(
+    SelectionRangeRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesSelectionRangeProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1718,9 +2202,24 @@ extension type const ServerCapabilitiesSelectionRangeProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesCallHierarchyProvider.
-extension type const ServerCapabilitiesCallHierarchyProvider(Object value) {
-  factory ServerCapabilitiesCallHierarchyProvider.fromJson(Object json) =>
-      ServerCapabilitiesCallHierarchyProvider(json);
+extension type const ServerCapabilitiesCallHierarchyProvider._(Object value) {
+  const factory ServerCapabilitiesCallHierarchyProvider.fromJson(Object json) =
+      ServerCapabilitiesCallHierarchyProvider._;
+
+  const factory ServerCapabilitiesCallHierarchyProvider.bool(bool value) =
+      ServerCapabilitiesCallHierarchyProvider._;
+
+  factory ServerCapabilitiesCallHierarchyProvider.callHierarchyOptions(
+    CallHierarchyOptions value,
+  ) {
+    return ServerCapabilitiesCallHierarchyProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesCallHierarchyProvider.callHierarchyRegistrationOptions(
+    CallHierarchyRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesCallHierarchyProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1764,11 +2263,27 @@ extension type const ServerCapabilitiesCallHierarchyProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesLinkedEditingRangeProvider.
-extension type const ServerCapabilitiesLinkedEditingRangeProvider(
+extension type const ServerCapabilitiesLinkedEditingRangeProvider._(
   Object value
 ) {
-  factory ServerCapabilitiesLinkedEditingRangeProvider.fromJson(Object json) =>
-      ServerCapabilitiesLinkedEditingRangeProvider(json);
+  const factory ServerCapabilitiesLinkedEditingRangeProvider.fromJson(
+    Object json,
+  ) = ServerCapabilitiesLinkedEditingRangeProvider._;
+
+  const factory ServerCapabilitiesLinkedEditingRangeProvider.bool(bool value) =
+      ServerCapabilitiesLinkedEditingRangeProvider._;
+
+  factory ServerCapabilitiesLinkedEditingRangeProvider.linkedEditingRangeOptions(
+    LinkedEditingRangeOptions value,
+  ) {
+    return ServerCapabilitiesLinkedEditingRangeProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesLinkedEditingRangeProvider.linkedEditingRangeRegistrationOptions(
+    LinkedEditingRangeRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesLinkedEditingRangeProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1813,9 +2328,21 @@ extension type const ServerCapabilitiesLinkedEditingRangeProvider(
 }
 
 /// Inline union: ServerCapabilitiesSemanticTokensProvider.
-extension type const ServerCapabilitiesSemanticTokensProvider(Object value) {
-  factory ServerCapabilitiesSemanticTokensProvider.fromJson(Object json) =>
-      ServerCapabilitiesSemanticTokensProvider(json);
+extension type const ServerCapabilitiesSemanticTokensProvider._(Object value) {
+  const factory ServerCapabilitiesSemanticTokensProvider.fromJson(Object json) =
+      ServerCapabilitiesSemanticTokensProvider._;
+
+  factory ServerCapabilitiesSemanticTokensProvider.semanticTokensOptions(
+    SemanticTokensOptions value,
+  ) {
+    return ServerCapabilitiesSemanticTokensProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesSemanticTokensProvider.semanticTokensRegistrationOptions(
+    SemanticTokensRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesSemanticTokensProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1853,9 +2380,24 @@ extension type const ServerCapabilitiesSemanticTokensProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesMonikerProvider.
-extension type const ServerCapabilitiesMonikerProvider(Object value) {
-  factory ServerCapabilitiesMonikerProvider.fromJson(Object json) =>
-      ServerCapabilitiesMonikerProvider(json);
+extension type const ServerCapabilitiesMonikerProvider._(Object value) {
+  const factory ServerCapabilitiesMonikerProvider.fromJson(Object json) =
+      ServerCapabilitiesMonikerProvider._;
+
+  const factory ServerCapabilitiesMonikerProvider.bool(bool value) =
+      ServerCapabilitiesMonikerProvider._;
+
+  factory ServerCapabilitiesMonikerProvider.monikerOptions(
+    MonikerOptions value,
+  ) {
+    return ServerCapabilitiesMonikerProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesMonikerProvider.monikerRegistrationOptions(
+    MonikerRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesMonikerProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1897,9 +2439,24 @@ extension type const ServerCapabilitiesMonikerProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesTypeHierarchyProvider.
-extension type const ServerCapabilitiesTypeHierarchyProvider(Object value) {
-  factory ServerCapabilitiesTypeHierarchyProvider.fromJson(Object json) =>
-      ServerCapabilitiesTypeHierarchyProvider(json);
+extension type const ServerCapabilitiesTypeHierarchyProvider._(Object value) {
+  const factory ServerCapabilitiesTypeHierarchyProvider.fromJson(Object json) =
+      ServerCapabilitiesTypeHierarchyProvider._;
+
+  const factory ServerCapabilitiesTypeHierarchyProvider.bool(bool value) =
+      ServerCapabilitiesTypeHierarchyProvider._;
+
+  factory ServerCapabilitiesTypeHierarchyProvider.typeHierarchyOptions(
+    TypeHierarchyOptions value,
+  ) {
+    return ServerCapabilitiesTypeHierarchyProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesTypeHierarchyProvider.typeHierarchyRegistrationOptions(
+    TypeHierarchyRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesTypeHierarchyProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1943,9 +2500,24 @@ extension type const ServerCapabilitiesTypeHierarchyProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesInlineValueProvider.
-extension type const ServerCapabilitiesInlineValueProvider(Object value) {
-  factory ServerCapabilitiesInlineValueProvider.fromJson(Object json) =>
-      ServerCapabilitiesInlineValueProvider(json);
+extension type const ServerCapabilitiesInlineValueProvider._(Object value) {
+  const factory ServerCapabilitiesInlineValueProvider.fromJson(Object json) =
+      ServerCapabilitiesInlineValueProvider._;
+
+  const factory ServerCapabilitiesInlineValueProvider.bool(bool value) =
+      ServerCapabilitiesInlineValueProvider._;
+
+  factory ServerCapabilitiesInlineValueProvider.inlineValueOptions(
+    InlineValueOptions value,
+  ) {
+    return ServerCapabilitiesInlineValueProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesInlineValueProvider.inlineValueRegistrationOptions(
+    InlineValueRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesInlineValueProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -1989,9 +2561,24 @@ extension type const ServerCapabilitiesInlineValueProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesInlayHintProvider.
-extension type const ServerCapabilitiesInlayHintProvider(Object value) {
-  factory ServerCapabilitiesInlayHintProvider.fromJson(Object json) =>
-      ServerCapabilitiesInlayHintProvider(json);
+extension type const ServerCapabilitiesInlayHintProvider._(Object value) {
+  const factory ServerCapabilitiesInlayHintProvider.fromJson(Object json) =
+      ServerCapabilitiesInlayHintProvider._;
+
+  const factory ServerCapabilitiesInlayHintProvider.bool(bool value) =
+      ServerCapabilitiesInlayHintProvider._;
+
+  factory ServerCapabilitiesInlayHintProvider.inlayHintOptions(
+    InlayHintOptions value,
+  ) {
+    return ServerCapabilitiesInlayHintProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesInlayHintProvider.inlayHintRegistrationOptions(
+    InlayHintRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesInlayHintProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -2035,9 +2622,21 @@ extension type const ServerCapabilitiesInlayHintProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesDiagnosticProvider.
-extension type const ServerCapabilitiesDiagnosticProvider(Object value) {
-  factory ServerCapabilitiesDiagnosticProvider.fromJson(Object json) =>
-      ServerCapabilitiesDiagnosticProvider(json);
+extension type const ServerCapabilitiesDiagnosticProvider._(Object value) {
+  const factory ServerCapabilitiesDiagnosticProvider.fromJson(Object json) =
+      ServerCapabilitiesDiagnosticProvider._;
+
+  factory ServerCapabilitiesDiagnosticProvider.diagnosticOptions(
+    DiagnosticOptions value,
+  ) {
+    return ServerCapabilitiesDiagnosticProvider._(value.toJson());
+  }
+
+  factory ServerCapabilitiesDiagnosticProvider.diagnosticRegistrationOptions(
+    DiagnosticRegistrationOptions value,
+  ) {
+    return ServerCapabilitiesDiagnosticProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -2075,9 +2674,21 @@ extension type const ServerCapabilitiesDiagnosticProvider(Object value) {
 }
 
 /// Inline union: ServerCapabilitiesInlineCompletionProvider.
-extension type const ServerCapabilitiesInlineCompletionProvider(Object value) {
-  factory ServerCapabilitiesInlineCompletionProvider.fromJson(Object json) =>
-      ServerCapabilitiesInlineCompletionProvider(json);
+extension type const ServerCapabilitiesInlineCompletionProvider._(
+  Object value
+) {
+  const factory ServerCapabilitiesInlineCompletionProvider.fromJson(
+    Object json,
+  ) = ServerCapabilitiesInlineCompletionProvider._;
+
+  const factory ServerCapabilitiesInlineCompletionProvider.bool(bool value) =
+      ServerCapabilitiesInlineCompletionProvider._;
+
+  factory ServerCapabilitiesInlineCompletionProvider.inlineCompletionOptions(
+    InlineCompletionOptions value,
+  ) {
+    return ServerCapabilitiesInlineCompletionProvider._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -2102,9 +2713,16 @@ extension type const ServerCapabilitiesInlineCompletionProvider(Object value) {
 }
 
 /// Inline union: SignatureInformationDocumentation.
-extension type const SignatureInformationDocumentation(Object value) {
-  factory SignatureInformationDocumentation.fromJson(Object json) =>
-      SignatureInformationDocumentation(json);
+extension type const SignatureInformationDocumentation._(Object value) {
+  const factory SignatureInformationDocumentation.fromJson(Object json) =
+      SignatureInformationDocumentation._;
+
+  const factory SignatureInformationDocumentation.string(String value) =
+      SignatureInformationDocumentation._;
+
+  factory SignatureInformationDocumentation.markupContent(MarkupContent value) {
+    return SignatureInformationDocumentation._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -2132,9 +2750,16 @@ extension type const SignatureInformationDocumentation(Object value) {
 }
 
 /// Inline union: TextDocumentSyncOptionsSave.
-extension type const TextDocumentSyncOptionsSave(Object value) {
-  factory TextDocumentSyncOptionsSave.fromJson(Object json) =>
-      TextDocumentSyncOptionsSave(json);
+extension type const TextDocumentSyncOptionsSave._(Object value) {
+  const factory TextDocumentSyncOptionsSave.fromJson(Object json) =
+      TextDocumentSyncOptionsSave._;
+
+  const factory TextDocumentSyncOptionsSave.bool(bool value) =
+      TextDocumentSyncOptionsSave._;
+
+  factory TextDocumentSyncOptionsSave.saveOptions(SaveOptions value) {
+    return TextDocumentSyncOptionsSave._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -2159,12 +2784,22 @@ extension type const TextDocumentSyncOptionsSave(Object value) {
 }
 
 /// Inline union: NotebookDocumentSyncOptionsNotebookSelectorItem.
-extension type const NotebookDocumentSyncOptionsNotebookSelectorItem(
+extension type const NotebookDocumentSyncOptionsNotebookSelectorItem._(
   Object value
 ) {
-  factory NotebookDocumentSyncOptionsNotebookSelectorItem.fromJson(
+  const factory NotebookDocumentSyncOptionsNotebookSelectorItem.fromJson(
     Object json,
-  ) => NotebookDocumentSyncOptionsNotebookSelectorItem(json);
+  ) = NotebookDocumentSyncOptionsNotebookSelectorItem._;
+
+  factory NotebookDocumentSyncOptionsNotebookSelectorItem.notebookCells({
+    required Object notebook,
+    List<Object>? cells,
+  }) {
+    return NotebookDocumentSyncOptionsNotebookSelectorItem._({
+      'notebook': notebook,
+      if (cells != null) 'cells': cells,
+    });
+  }
 
   Object toJson() => value;
 
@@ -2185,12 +2820,22 @@ extension type const NotebookDocumentSyncOptionsNotebookSelectorItem(
 }
 
 /// Inline union: NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.
-extension type const NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem(
+extension type const NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._(
   Object value
 ) {
-  factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.fromJson(
+  const factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.fromJson(
     Object json,
-  ) => NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem(json);
+  ) = NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._;
+
+  factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.notebookCells({
+    required Object notebook,
+    List<Object>? cells,
+  }) {
+    return NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._({
+      'notebook': notebook,
+      if (cells != null) 'cells': cells,
+    });
+  }
 
   Object toJson() => value;
 
@@ -2211,9 +2856,16 @@ extension type const NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem
 }
 
 /// Inline union: ParameterInformationDocumentation.
-extension type const ParameterInformationDocumentation(Object value) {
-  factory ParameterInformationDocumentation.fromJson(Object json) =>
-      ParameterInformationDocumentation(json);
+extension type const ParameterInformationDocumentation._(Object value) {
+  const factory ParameterInformationDocumentation.fromJson(Object json) =
+      ParameterInformationDocumentation._;
+
+  const factory ParameterInformationDocumentation.string(String value) =
+      ParameterInformationDocumentation._;
+
+  factory ParameterInformationDocumentation.markupContent(MarkupContent value) {
+    return ParameterInformationDocumentation._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -2241,9 +2893,18 @@ extension type const ParameterInformationDocumentation(Object value) {
 }
 
 /// Inline union: NotebookCellTextDocumentFilterNotebook.
-extension type const NotebookCellTextDocumentFilterNotebook(Object value) {
-  factory NotebookCellTextDocumentFilterNotebook.fromJson(Object json) =>
-      NotebookCellTextDocumentFilterNotebook(json);
+extension type const NotebookCellTextDocumentFilterNotebook._(Object value) {
+  const factory NotebookCellTextDocumentFilterNotebook.fromJson(Object json) =
+      NotebookCellTextDocumentFilterNotebook._;
+
+  const factory NotebookCellTextDocumentFilterNotebook.string(String value) =
+      NotebookCellTextDocumentFilterNotebook._;
+
+  factory NotebookCellTextDocumentFilterNotebook.notebookDocumentFilter(
+    NotebookDocumentFilter value,
+  ) {
+    return NotebookCellTextDocumentFilterNotebook._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -2273,9 +2934,16 @@ extension type const NotebookCellTextDocumentFilterNotebook(Object value) {
 }
 
 /// Inline union: RelativePatternBaseUri.
-extension type const RelativePatternBaseUri(Object value) {
-  factory RelativePatternBaseUri.fromJson(Object json) =>
-      RelativePatternBaseUri(json);
+extension type const RelativePatternBaseUri._(Object value) {
+  const factory RelativePatternBaseUri.fromJson(Object json) =
+      RelativePatternBaseUri._;
+
+  factory RelativePatternBaseUri.workspaceFolder(WorkspaceFolder value) {
+    return RelativePatternBaseUri._(value.toJson());
+  }
+
+  const factory RelativePatternBaseUri.string(String value) =
+      RelativePatternBaseUri._;
 
   Object toJson() => value;
 
@@ -2303,9 +2971,17 @@ extension type const RelativePatternBaseUri(Object value) {
 }
 
 /// Inline union: ImplementationResult.
-extension type const ImplementationResult(Object value) {
-  factory ImplementationResult.fromJson(Object json) =>
-      ImplementationResult(json);
+extension type const ImplementationResult._(Object value) {
+  const factory ImplementationResult.fromJson(Object json) =
+      ImplementationResult._;
+
+  factory ImplementationResult.definition(Definition value) {
+    return ImplementationResult._(value.toJson());
+  }
+
+  const factory ImplementationResult.definitionLinkList(
+    List<DefinitionLink> value,
+  ) = ImplementationResult._;
 
   Object toJson() => value;
 
@@ -2326,17 +3002,25 @@ extension type const ImplementationResult(Object value) {
     return null;
   }
 
-  bool get isList => value is List;
+  bool get isDefinitionLinkList => value is List;
 
-  List<DefinitionLink>? get asList {
-    return isList ? (value as List).cast<DefinitionLink>() : null;
+  List<DefinitionLink>? get asDefinitionLinkList {
+    return isDefinitionLinkList ? (value as List).cast<DefinitionLink>() : null;
   }
 }
 
 /// Inline union: TypeDefinitionResult.
-extension type const TypeDefinitionResult(Object value) {
-  factory TypeDefinitionResult.fromJson(Object json) =>
-      TypeDefinitionResult(json);
+extension type const TypeDefinitionResult._(Object value) {
+  const factory TypeDefinitionResult.fromJson(Object json) =
+      TypeDefinitionResult._;
+
+  factory TypeDefinitionResult.definition(Definition value) {
+    return TypeDefinitionResult._(value.toJson());
+  }
+
+  const factory TypeDefinitionResult.definitionLinkList(
+    List<DefinitionLink> value,
+  ) = TypeDefinitionResult._;
 
   Object toJson() => value;
 
@@ -2357,16 +3041,24 @@ extension type const TypeDefinitionResult(Object value) {
     return null;
   }
 
-  bool get isList => value is List;
+  bool get isDefinitionLinkList => value is List;
 
-  List<DefinitionLink>? get asList {
-    return isList ? (value as List).cast<DefinitionLink>() : null;
+  List<DefinitionLink>? get asDefinitionLinkList {
+    return isDefinitionLinkList ? (value as List).cast<DefinitionLink>() : null;
   }
 }
 
 /// Inline union: DeclarationResult.
-extension type const DeclarationResult(Object value) {
-  factory DeclarationResult.fromJson(Object json) => DeclarationResult(json);
+extension type const DeclarationResult._(Object value) {
+  const factory DeclarationResult.fromJson(Object json) = DeclarationResult._;
+
+  factory DeclarationResult.declaration(Declaration value) {
+    return DeclarationResult._(value.toJson());
+  }
+
+  const factory DeclarationResult.declarationLinkList(
+    List<DeclarationLink> value,
+  ) = DeclarationResult._;
 
   Object toJson() => value;
 
@@ -2387,17 +3079,29 @@ extension type const DeclarationResult(Object value) {
     return null;
   }
 
-  bool get isList => value is List;
+  bool get isDeclarationLinkList => value is List;
 
-  List<DeclarationLink>? get asList {
-    return isList ? (value as List).cast<DeclarationLink>() : null;
+  List<DeclarationLink>? get asDeclarationLinkList {
+    return isDeclarationLinkList
+        ? (value as List).cast<DeclarationLink>()
+        : null;
   }
 }
 
 /// Inline union: SemanticTokensFullDeltaResult.
-extension type const SemanticTokensFullDeltaResult(Object value) {
-  factory SemanticTokensFullDeltaResult.fromJson(Object json) =>
-      SemanticTokensFullDeltaResult(json);
+extension type const SemanticTokensFullDeltaResult._(Object value) {
+  const factory SemanticTokensFullDeltaResult.fromJson(Object json) =
+      SemanticTokensFullDeltaResult._;
+
+  factory SemanticTokensFullDeltaResult.semanticTokens(SemanticTokens value) {
+    return SemanticTokensFullDeltaResult._(value.toJson());
+  }
+
+  factory SemanticTokensFullDeltaResult.semanticTokensDelta(
+    SemanticTokensDelta value,
+  ) {
+    return SemanticTokensFullDeltaResult._(value.toJson());
+  }
 
   Object toJson() => value;
 
@@ -2433,9 +3137,21 @@ extension type const SemanticTokensFullDeltaResult(Object value) {
 }
 
 /// Inline union: InlineCompletionResult.
-extension type const InlineCompletionResult(Object value) {
-  factory InlineCompletionResult.fromJson(Object json) =>
-      InlineCompletionResult(json);
+extension type const InlineCompletionResult._(Object value) {
+  const factory InlineCompletionResult.fromJson(Object json) =
+      InlineCompletionResult._;
+
+  factory InlineCompletionResult.inlineCompletionList(
+    InlineCompletionList value,
+  ) {
+    return InlineCompletionResult._(value.toJson());
+  }
+
+  factory InlineCompletionResult.inlineCompletionItemList(
+    List<InlineCompletionItem> value,
+  ) {
+    return InlineCompletionResult._(value.map((e) => e.toJson()).toList());
+  }
 
   Object toJson() => value;
 
@@ -2454,13 +3170,13 @@ extension type const InlineCompletionResult(Object value) {
     return null;
   }
 
-  bool get isList => value is List;
+  bool get isInlineCompletionItemList => value is List;
 
-  List<InlineCompletionItem>? get asList {
+  List<InlineCompletionItem>? get asInlineCompletionItemList {
     if (value is List<InlineCompletionItem>) {
       return value as List<InlineCompletionItem>;
     }
-    if (isList) {
+    if (isInlineCompletionItemList) {
       return (value as List)
           .map(
             (e) => e is InlineCompletionItem
@@ -2474,18 +3190,26 @@ extension type const InlineCompletionResult(Object value) {
 }
 
 /// Inline union: CompletionResult.
-extension type const CompletionResult(Object value) {
-  factory CompletionResult.fromJson(Object json) => CompletionResult(json);
+extension type const CompletionResult._(Object value) {
+  const factory CompletionResult.fromJson(Object json) = CompletionResult._;
+
+  factory CompletionResult.completionItemList(List<CompletionItem> value) {
+    return CompletionResult._(value.map((e) => e.toJson()).toList());
+  }
+
+  factory CompletionResult.completionList(CompletionList value) {
+    return CompletionResult._(value.toJson());
+  }
 
   Object toJson() => value;
 
-  bool get isList => value is List;
+  bool get isCompletionItemList => value is List;
 
-  List<CompletionItem>? get asList {
+  List<CompletionItem>? get asCompletionItemList {
     if (value is List<CompletionItem>) {
       return value as List<CompletionItem>;
     }
-    if (isList) {
+    if (isCompletionItemList) {
       return (value as List)
           .map(
             (e) => e is CompletionItem
@@ -2515,8 +3239,16 @@ extension type const CompletionResult(Object value) {
 }
 
 /// Inline union: DefinitionResult.
-extension type const DefinitionResult(Object value) {
-  factory DefinitionResult.fromJson(Object json) => DefinitionResult(json);
+extension type const DefinitionResult._(Object value) {
+  const factory DefinitionResult.fromJson(Object json) = DefinitionResult._;
+
+  factory DefinitionResult.definition(Definition value) {
+    return DefinitionResult._(value.toJson());
+  }
+
+  const factory DefinitionResult.definitionLinkList(
+    List<DefinitionLink> value,
+  ) = DefinitionResult._;
 
   Object toJson() => value;
 
@@ -2537,27 +3269,43 @@ extension type const DefinitionResult(Object value) {
     return null;
   }
 
-  bool get isList => value is List;
+  bool get isDefinitionLinkList => value is List;
 
-  List<DefinitionLink>? get asList {
-    return isList ? (value as List).cast<DefinitionLink>() : null;
+  List<DefinitionLink>? get asDefinitionLinkList {
+    return isDefinitionLinkList ? (value as List).cast<DefinitionLink>() : null;
   }
 }
 
 /// Inline union: DocumentSymbolResult.
-extension type const DocumentSymbolResult(Object value) {
-  factory DocumentSymbolResult.fromJson(Object json) =>
-      DocumentSymbolResult(json);
+extension type const DocumentSymbolResult._(Object value) {
+  const factory DocumentSymbolResult.fromJson(Object json) =
+      DocumentSymbolResult._;
+
+  factory DocumentSymbolResult.symbolInformationList(
+    List<SymbolInformation> value,
+  ) {
+    return DocumentSymbolResult._(value.map((e) => e.toJson()).toList());
+  }
+
+  factory DocumentSymbolResult.documentSymbolList(List<DocumentSymbol> value) {
+    return DocumentSymbolResult._(value.map((e) => e.toJson()).toList());
+  }
 
   Object toJson() => value;
 
-  bool get isList => value is List;
+  bool get isSymbolInformationList =>
+      value is List && (value as List).isEmpty ||
+      (value as List).first is SymbolInformation ||
+      (value as List).first is Map<String, dynamic> &&
+          ((value as List).first as Map<String, dynamic>).containsKey(
+            'location',
+          );
 
-  List<SymbolInformation>? get asList {
+  List<SymbolInformation>? get asSymbolInformationList {
     if (value is List<SymbolInformation>) {
       return value as List<SymbolInformation>;
     }
-    if (isList) {
+    if (isSymbolInformationList) {
       return (value as List)
           .map(
             (e) => e is SymbolInformation
@@ -2568,26 +3316,93 @@ extension type const DocumentSymbolResult(Object value) {
     }
     return null;
   }
+
+  bool get isDocumentSymbolList =>
+      value is List && (value as List).isEmpty ||
+      (value as List).first is DocumentSymbol ||
+      (value as List).first is Map<String, dynamic> &&
+          ((value as List).first as Map<String, dynamic>).containsKey('name') &&
+          ((value as List).first as Map<String, dynamic>).containsKey('kind') &&
+          ((value as List).first as Map<String, dynamic>).containsKey(
+            'range',
+          ) &&
+          ((value as List).first as Map<String, dynamic>).containsKey(
+            'selectionRange',
+          );
+
+  List<DocumentSymbol>? get asDocumentSymbolList {
+    if (value is List<DocumentSymbol>) {
+      return value as List<DocumentSymbol>;
+    }
+    if (isDocumentSymbolList) {
+      return (value as List)
+          .map(
+            (e) => e is DocumentSymbol
+                ? e
+                : DocumentSymbol.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    }
+    return null;
+  }
 }
 
 /// Inline union: SymbolResult.
-extension type const SymbolResult(Object value) {
-  factory SymbolResult.fromJson(Object json) => SymbolResult(json);
+extension type const SymbolResult._(Object value) {
+  const factory SymbolResult.fromJson(Object json) = SymbolResult._;
+
+  factory SymbolResult.symbolInformationList(List<SymbolInformation> value) {
+    return SymbolResult._(value.map((e) => e.toJson()).toList());
+  }
+
+  factory SymbolResult.workspaceSymbolList(List<WorkspaceSymbol> value) {
+    return SymbolResult._(value.map((e) => e.toJson()).toList());
+  }
 
   Object toJson() => value;
 
-  bool get isList => value is List;
+  bool get isSymbolInformationList =>
+      value is List && (value as List).isEmpty ||
+      (value as List).first is SymbolInformation ||
+      (value as List).first is Map<String, dynamic> &&
+          ((value as List).first as Map<String, dynamic>).containsKey(
+            'location',
+          );
 
-  List<SymbolInformation>? get asList {
+  List<SymbolInformation>? get asSymbolInformationList {
     if (value is List<SymbolInformation>) {
       return value as List<SymbolInformation>;
     }
-    if (isList) {
+    if (isSymbolInformationList) {
       return (value as List)
           .map(
             (e) => e is SymbolInformation
                 ? e
                 : SymbolInformation.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    }
+    return null;
+  }
+
+  bool get isWorkspaceSymbolList =>
+      value is List && (value as List).isEmpty ||
+      (value as List).first is WorkspaceSymbol ||
+      (value as List).first is Map<String, dynamic> &&
+          ((value as List).first as Map<String, dynamic>).containsKey(
+            'location',
+          );
+
+  List<WorkspaceSymbol>? get asWorkspaceSymbolList {
+    if (value is List<WorkspaceSymbol>) {
+      return value as List<WorkspaceSymbol>;
+    }
+    if (isWorkspaceSymbolList) {
+      return (value as List)
+          .map(
+            (e) => e is WorkspaceSymbol
+                ? e
+                : WorkspaceSymbol.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     }

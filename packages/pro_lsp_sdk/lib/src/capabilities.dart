@@ -17,9 +17,9 @@ final class CapabilityManager {
   }) async {
     final registrationId = 'dynamic-registration-${_registrationIdCounter++}';
     await _server.client.client.registerCapability(
-      RegistrationParams(
+      .new(
         registrations: [
-          Registration(
+          .new(
             id: registrationId,
             method: method,
             registerOptions: registerOptions,
@@ -36,12 +36,9 @@ final class CapabilityManager {
     required String method,
   }) async {
     await _server.client.client.unregisterCapability(
-      UnregistrationParams(
+      .new(
         unregisterations: [
-          Unregistration(
-            id: registrationId,
-            method: method,
-          ),
+          .new(id: registrationId, method: method),
         ],
       ),
     );
@@ -79,80 +76,47 @@ final class CapabilitiesInferer {
           m == NotificationMethod.didDeleteFiles,
     );
 
+    final request = registeredMethods.whereType<RequestMethod>().toList(
+      growable: false,
+    );
+    
+    bool allow(RequestMethod m) => request.contains(m);
+
     return ServerCapabilities(
-      positionEncoding: PositionEncodingKind.uTF16,
-      hoverProvider: registeredMethods.contains(RequestMethod.hover)
-          ? const ServerCapabilitiesHoverProvider(true)
+      positionEncoding: .uTF16,
+      hoverProvider: allow(.hover) ? const .bool(true) : null,
+      completionProvider: allow(.completion)
+          ? .new(triggerCharacters: completionTriggerCharacters)
           : null,
-      completionProvider: registeredMethods.contains(RequestMethod.completion)
-          ? CompletionOptions(
-              triggerCharacters: completionTriggerCharacters,
-            )
+      definitionProvider: allow(.definition) ? const .bool(true) : null,
+      typeDefinitionProvider: allow(.typeDefinition) ? const .bool(true) : null,
+      implementationProvider: allow(.implementation) ? const .bool(true) : null,
+      referencesProvider: allow(.references) ? const .bool(true) : null,
+      documentHighlightProvider: allow(.documentHighlight)
+          ? const .bool(true)
           : null,
-      definitionProvider: registeredMethods.contains(RequestMethod.definition)
-          ? const ServerCapabilitiesDefinitionProvider(true)
+      documentSymbolProvider: allow(.documentSymbol) ? const .bool(true) : null,
+      codeActionProvider: allow(.codeAction)
+          ? .codeActionOptions(const .new(codeActionKinds: []))
           : null,
-      typeDefinitionProvider:
-          registeredMethods.contains(RequestMethod.typeDefinition)
-          ? const ServerCapabilitiesTypeDefinitionProvider(true)
+      documentFormattingProvider: allow(.formatting) ? const .bool(true) : null,
+      documentRangeFormattingProvider: allow(.rangeFormatting)
+          ? const .bool(true)
           : null,
-      implementationProvider:
-          registeredMethods.contains(RequestMethod.implementation)
-          ? const ServerCapabilitiesImplementationProvider(true)
+      renameProvider: allow(.rename) ? const .bool(true) : null,
+      foldingRangeProvider: allow(.foldingRange) ? const .bool(true) : null,
+      selectionRangeProvider: allow(.selectionRange) ? const .bool(true) : null,
+      callHierarchyProvider: allow(.prepareCallHierarchy)
+          ? const .bool(true)
           : null,
-      referencesProvider: registeredMethods.contains(RequestMethod.references)
-          ? const ServerCapabilitiesReferencesProvider(true)
+      typeHierarchyProvider: allow(.prepareTypeHierarchy)
+          ? const .bool(true)
           : null,
-      documentHighlightProvider:
-          registeredMethods.contains(RequestMethod.documentHighlight)
-          ? const ServerCapabilitiesDocumentHighlightProvider(true)
-          : null,
-      documentSymbolProvider:
-          registeredMethods.contains(RequestMethod.documentSymbol)
-          ? const ServerCapabilitiesDocumentSymbolProvider(true)
-          : null,
-      codeActionProvider: registeredMethods.contains(RequestMethod.codeAction)
-          ? const ServerCapabilitiesCodeActionProvider(
-              CodeActionOptions(codeActionKinds: []),
-            )
-          : null,
-      documentFormattingProvider:
-          registeredMethods.contains(RequestMethod.formatting)
-          ? const ServerCapabilitiesDocumentFormattingProvider(true)
-          : null,
-      documentRangeFormattingProvider:
-          registeredMethods.contains(RequestMethod.rangeFormatting)
-          ? const ServerCapabilitiesDocumentRangeFormattingProvider(true)
-          : null,
-      renameProvider: registeredMethods.contains(RequestMethod.rename)
-          ? const ServerCapabilitiesRenameProvider(true)
-          : null,
-      foldingRangeProvider:
-          registeredMethods.contains(RequestMethod.foldingRange)
-          ? const ServerCapabilitiesFoldingRangeProvider(true)
-          : null,
-      selectionRangeProvider:
-          registeredMethods.contains(RequestMethod.selectionRange)
-          ? const ServerCapabilitiesSelectionRangeProvider(true)
-          : null,
-      callHierarchyProvider:
-          registeredMethods.contains(RequestMethod.prepareCallHierarchy)
-          ? const ServerCapabilitiesCallHierarchyProvider(true)
-          : null,
-      typeHierarchyProvider:
-          registeredMethods.contains(RequestMethod.prepareTypeHierarchy)
-          ? const ServerCapabilitiesTypeHierarchyProvider(true)
-          : null,
-      inlineValueProvider: registeredMethods.contains(RequestMethod.inlineValue)
-          ? const ServerCapabilitiesInlineValueProvider(true)
-          : null,
-      inlayHintProvider: registeredMethods.contains(RequestMethod.inlayHint)
-          ? const ServerCapabilitiesInlayHintProvider(true)
-          : null,
-      diagnosticProvider:
-          registeredMethods.contains(RequestMethod.textDocumentDiagnostic)
-          ? ServerCapabilitiesDiagnosticProvider(
-              DiagnosticOptions(
+      inlineValueProvider: allow(.inlineValue) ? const .bool(true) : null,
+      inlayHintProvider: allow(.inlayHint) ? const .bool(true) : null,
+      diagnosticProvider: allow(.textDocumentDiagnostic)
+          ? .diagnosticOptions(
+              .new(
                 interFileDependencies: interFileDependencies,
                 workspaceDiagnostics: workspaceDiagnostics,
               ),
@@ -161,11 +125,9 @@ final class CapabilitiesInferer {
 
       workspace: hasWorkspaceMethods
           ? (
-              workspaceFolders: const WorkspaceFoldersServerCapabilities(
-                supported: true,
-              ),
+              workspaceFolders: const .new(supported: true),
               fileOperations: hasFileOps
-                  ? FileOperationOptions(
+                  ? .new(
                       didCreate: _fileOpRegistration('**/*'),
                       didRename: _fileOpRegistration('**/*'),
                       didDelete: _fileOpRegistration('**/*'),
@@ -176,17 +138,13 @@ final class CapabilitiesInferer {
     );
   }
 
-  FileOperationRegistrationOptions _fileOpRegistration(String glob) =>
-      FileOperationRegistrationOptions(
-        filters: [
-          FileOperationFilter(
-            pattern: FileOperationPattern(
-              glob: glob,
-              matches: FileOperationPatternKind.file,
-            ),
-          ),
-        ],
-      );
+  FileOperationRegistrationOptions _fileOpRegistration(String glob) => .new(
+    filters: [
+      .new(
+        pattern: .new(glob: glob, matches: .file),
+      ),
+    ],
+  );
 }
 
 extension LspServerCapabilities on LspServer {

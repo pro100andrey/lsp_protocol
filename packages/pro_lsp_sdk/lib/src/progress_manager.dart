@@ -24,7 +24,10 @@ final class LspProgress {
     );
     _connection.sendNotification(
       NotificationMethod.progress,
-      ProgressParams(token: _token, value: LSPAny(beginValue)).toJson(),
+      ProgressParams(
+        token: _token,
+        value: LSPAny.fromJson(beginValue.toJson()),
+      ).toJson(),
     );
   }
 
@@ -41,7 +44,10 @@ final class LspProgress {
     );
     _connection.sendNotification(
       NotificationMethod.progress,
-      ProgressParams(token: _token, value: LSPAny(reportValue)).toJson(),
+      ProgressParams(
+        token: _token,
+        value: LSPAny.fromJson(reportValue.toJson()),
+      ).toJson(),
     );
   }
 
@@ -52,7 +58,10 @@ final class LspProgress {
     );
     _connection.sendNotification(
       NotificationMethod.progress,
-      ProgressParams(token: _token, value: LSPAny(endValue)).toJson(),
+      ProgressParams(
+        token: _token,
+        value: LSPAny.fromJson(endValue.toJson()),
+      ).toJson(),
     );
   }
 }
@@ -72,7 +81,7 @@ final class WorkDoneProgressManager {
     int? percentage,
     bool? cancellable,
   }) async {
-    final token = ProgressToken('progress-${_nextProgressId++}');
+    final token = ProgressToken.string('progress-${_nextProgressId++}');
 
     await _connection.sendRequest(
       RequestMethod.create,

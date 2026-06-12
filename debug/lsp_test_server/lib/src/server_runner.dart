@@ -51,28 +51,28 @@ final class ServerRunner {
     _server.general.onInitialize((params, context) async {
       logInfo('Received initialize request');
 
-      return const InitializeResult(
+      return InitializeResult(
         capabilities: ServerCapabilities(
-          positionEncoding: PositionEncodingKind.uTF16,
-          hoverProvider: ServerCapabilitiesHoverProvider(true),
-          completionProvider: CompletionOptions(
+          positionEncoding: .uTF16,
+          hoverProvider: const .bool(true),
+          completionProvider: const CompletionOptions(
             triggerCharacters: ['.', ':'],
           ),
-          textDocumentSync: ServerCapabilitiesTextDocumentSync(
-            TextDocumentSyncOptions(
-              change: TextDocumentSyncKind.full,
+          textDocumentSync: .textDocumentSyncOptions(
+            const TextDocumentSyncOptions(
+              change: .full,
               openClose: true,
             ),
           ),
           workspace: (
-            workspaceFolders: WorkspaceFoldersServerCapabilities(
+            workspaceFolders: const WorkspaceFoldersServerCapabilities(
               supported: true,
               changeNotifications:
-                  WorkspaceFoldersServerCapabilitiesChangeNotifications(
+                  WorkspaceFoldersServerCapabilitiesChangeNotifications.bool(
                     true,
                   ),
             ),
-            fileOperations: FileOperationOptions(
+            fileOperations: const FileOperationOptions(
               willCreate: FileOperationRegistrationOptions(
                 filters: [
                   FileOperationFilter(
@@ -198,7 +198,7 @@ final class ServerRunner {
       logInfo('Completion request: ${params.textDocument.uri}');
 
       final items = _completionService.getCompletions(params);
-      return CompletionResult(items);
+      return CompletionResult.completionItemList(items);
     });
 
     // -------------------------------------------------------------------------

@@ -2,8 +2,12 @@
 
 // GENERATED — do not edit.
 
-extension type const ProgressToken(Object value) {
-  factory ProgressToken.fromJson(Object json) => ProgressToken(json);
+extension type const ProgressToken._(Object value) {
+  const factory ProgressToken.fromJson(Object json) = ProgressToken._;
+
+  const factory ProgressToken.int(int value) = ProgressToken._;
+
+  const factory ProgressToken.string(String value) = ProgressToken._;
 
   Object toJson() => value;
 
@@ -21,8 +25,12 @@ extension type const ProgressToken(Object value) {
 }
 
 /// Inline union: CancelParamsId.
-extension type const CancelParamsId(Object value) {
-  factory CancelParamsId.fromJson(Object json) => CancelParamsId(json);
+extension type const CancelParamsId._(Object value) {
+  const factory CancelParamsId.fromJson(Object json) = CancelParamsId._;
+
+  const factory CancelParamsId.int(int value) = CancelParamsId._;
+
+  const factory CancelParamsId.string(String value) = CancelParamsId._;
 
   Object toJson() => value;
 
@@ -40,8 +48,12 @@ extension type const CancelParamsId(Object value) {
 }
 
 /// Inline union: DiagnosticCode.
-extension type const DiagnosticCode(Object value) {
-  factory DiagnosticCode.fromJson(Object json) => DiagnosticCode(json);
+extension type const DiagnosticCode._(Object value) {
+  const factory DiagnosticCode.fromJson(Object json) = DiagnosticCode._;
+
+  const factory DiagnosticCode.int(int value) = DiagnosticCode._;
+
+  const factory DiagnosticCode.string(String value) = DiagnosticCode._;
 
   Object toJson() => value;
 
@@ -59,12 +71,20 @@ extension type const DiagnosticCode(Object value) {
 }
 
 /// Inline union: WorkspaceFoldersServerCapabilitiesChangeNotifications.
-extension type const WorkspaceFoldersServerCapabilitiesChangeNotifications(
+extension type const WorkspaceFoldersServerCapabilitiesChangeNotifications._(
   Object value
 ) {
-  factory WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
+  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
     Object json,
-  ) => WorkspaceFoldersServerCapabilitiesChangeNotifications(json);
+  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
+
+  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.string(
+    String value,
+  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
+
+  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.bool(
+    bool value,
+  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
 
   Object toJson() => value;
 
@@ -82,9 +102,16 @@ extension type const WorkspaceFoldersServerCapabilitiesChangeNotifications(
 }
 
 /// Inline union: ParameterInformationLabel.
-extension type const ParameterInformationLabel(Object value) {
-  factory ParameterInformationLabel.fromJson(Object json) =>
-      ParameterInformationLabel(json);
+extension type const ParameterInformationLabel._(Object value) {
+  const factory ParameterInformationLabel.fromJson(Object json) =
+      ParameterInformationLabel._;
+
+  const factory ParameterInformationLabel.string(String value) =
+      ParameterInformationLabel._;
+
+  factory ParameterInformationLabel.tuple((int, int) value) {
+    return ParameterInformationLabel._([value.$1, value.$2]);
+  }
 
   Object toJson() => value;
 

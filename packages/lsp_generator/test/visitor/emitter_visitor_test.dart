@@ -519,7 +519,10 @@ void main() {
       );
       // Scalar unions go to buildScalarUnions(), not buildUnions().
       final src = _format(EmitterVisitor(state).buildScalarUnions());
-      expect(src, contains('extension type const ProgressToken(Object value)'));
+      expect(
+        src,
+        contains('extension type const ProgressToken._(Object value)'),
+      );
       expect(src, contains('bool get isInt => value is int;'));
       expect(src, contains('int? get asInt'));
       expect(src, contains('bool get isString => value is String;'));
@@ -547,7 +550,7 @@ void main() {
       expect(
         src,
         contains(
-          'factory ProgressToken.fromJson(Object json) => ProgressToken(json);',
+          'const factory ProgressToken.fromJson(Object json) = ProgressToken._;',
         ),
       );
     });
@@ -589,7 +592,7 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildUnions());
-      expect(src, contains('extension type const LSPAny(Object value)'));
+      expect(src, contains('extension type const LSPAny._(Object value)'));
     });
 
     test('inline scalar union is generated in buildScalarUnions()', () {
@@ -618,7 +621,7 @@ void main() {
       expect(
         unionsSrc,
         contains(
-          'extension type const TextDocumentEditEditsItem(Object value)',
+          'extension type const TextDocumentEditEditsItem._(Object value)',
         ),
       );
       expect(unionsSrc, contains('bool get isInt => value is int;'));
@@ -634,6 +637,55 @@ void main() {
         isNot(contains('@_TextDocumentEditEditsItemListConverter()')),
       );
     });
+
+    test(
+      'union with multiple list variants generates unique suffixes '
+      'and element checks',
+      () {
+        final symInfo = _cls(
+          'SymbolInformation',
+          properties: [
+            _prop('location', const DartCoreType(dartName: 'String')),
+          ],
+        );
+        final workSym = _cls(
+          'WorkspaceSymbol',
+          properties: [
+            _prop('workspaceKey', const DartCoreType(dartName: 'String')),
+          ],
+        );
+        final state = _stateWith(
+          classes: [symInfo, workSym],
+          aliases: [
+            _alias(
+              'SymbolResult',
+              UnionType(
+                items: [
+                  ListType(element: ClassType(ref: symInfo)),
+                  ListType(element: ClassType(ref: workSym)),
+                ],
+              ),
+            ),
+          ],
+        );
+        final src = _format(EmitterVisitor(state).buildUnions());
+        expect(src, contains('factory SymbolResult.symbolInformationList('));
+        expect(src, contains('factory SymbolResult.workspaceSymbolList('));
+        expect(src, contains('bool get isSymbolInformationList =>'));
+        expect(src, contains('bool get isWorkspaceSymbolList =>'));
+        expect(
+          src,
+          contains('List<SymbolInformation>? get asSymbolInformationList'),
+        );
+        expect(
+          src,
+          contains('List<WorkspaceSymbol>? get asWorkspaceSymbolList'),
+        );
+        expect(src, contains('containsKey'));
+        expect(src, contains("'location'"));
+        expect(src, contains("'workspaceKey'"));
+      },
+    );
 
     test('buildUnions() integration emits valid Dart', () {
       final file = File('../pro_lsp/metaModel.json');
@@ -666,7 +718,7 @@ void main() {
       final scalarSrc = _format(EmitterVisitor(resolved).buildScalarUnions());
       expect(
         scalarSrc,
-        contains('extension type const ProgressToken(Object value)'),
+        contains('extension type const ProgressToken._(Object value)'),
       );
     });
   });
