@@ -114,3 +114,9 @@ extension _ReferenceExt on Reference {
     _ => this,
   };
 }
+
+/// Unwraps one layer of [NullableType].
+extension ResolvedTypeX on ResolvedType {
+  ResolvedType get nonNull =>
+      this is NullableType ? (this as NullableType).inner : this;
+}

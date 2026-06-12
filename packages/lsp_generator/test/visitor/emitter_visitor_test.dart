@@ -550,7 +550,8 @@ void main() {
       expect(
         src,
         contains(
-          'const factory ProgressToken.fromJson(Object json) = ProgressToken._;',
+          'const factory ProgressToken.fromJson(Object json) = '
+          'ProgressToken._;',
         ),
       );
     });

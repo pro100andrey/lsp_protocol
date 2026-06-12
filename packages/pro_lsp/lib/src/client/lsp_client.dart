@@ -79,7 +79,7 @@ final class LspClient {
 
     // 1. Send initialize
     InitializeResult result;
-   try {
+    try {
       result = await server.general.initialize(
         InitializeParams(
           processId: clientInfo?['processId'] as int? ?? pid,

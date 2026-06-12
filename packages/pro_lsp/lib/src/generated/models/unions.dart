@@ -49,11 +49,7 @@ extension type const Definition._(Object value) {
     }
     if (isLocationList) {
       return (value as List)
-          .map(
-            (e) => e is Location
-                ? e
-                : Location.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => Location.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;
@@ -90,13 +86,13 @@ extension type const LSPAny._(Object? value) {
   bool get isLSPObject => value is Map<String, dynamic>;
 
   LSPObject? get asLSPObject {
-    return value is LSPObject ? value as LSPObject : null;
+    return isLSPObject ? value as LSPObject : null;
   }
 
   bool get isLSPArray => value is List;
 
   LSPArray? get asLSPArray {
-    return value is LSPArray ? value as LSPArray : null;
+    return isLSPArray ? value as LSPArray : null;
   }
 
   bool get isString => value is String;
@@ -168,11 +164,7 @@ extension type const Declaration._(Object value) {
     }
     if (isLocationList) {
       return (value as List)
-          .map(
-            (e) => e is Location
-                ? e
-                : Location.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => Location.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;
@@ -619,7 +611,7 @@ extension type const GlobPattern._(Object value) {
   bool get isPattern => value is String;
 
   Pattern? get asPattern {
-    return value is Pattern ? value as Pattern : null;
+    return isPattern ? value as Pattern : null;
   }
 
   bool get isRelativePattern =>
@@ -915,11 +907,7 @@ extension type const InlayHintLabel._(Object value) {
     }
     if (isPartList) {
       return (value as List)
-          .map(
-            (e) => e is InlayHintLabelPart
-                ? e
-                : InlayHintLabelPart.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => InlayHintLabelPart.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;
@@ -1025,7 +1013,7 @@ extension type const DidChangeConfigurationRegistrationOptionsSection._(
   bool get isStringList => value is List;
 
   List<String>? get asStringList {
-    return isStringList ? (value as List).cast<String>() : null;
+    return isStringList ? value as List<String> : null;
   }
 }
 
@@ -1170,9 +1158,7 @@ extension type const HoverContents._(Object value) {
     }
     if (isMarkedStringList) {
       return (value as List)
-          .map(
-            (e) => e is MarkedString ? e : MarkedString.fromJson(e as Object),
-          )
+          .map((e) => MarkedString.fromJson(e as Object))
           .toList();
     }
     return null;
@@ -3005,7 +2991,7 @@ extension type const ImplementationResult._(Object value) {
   bool get isDefinitionLinkList => value is List;
 
   List<DefinitionLink>? get asDefinitionLinkList {
-    return isDefinitionLinkList ? (value as List).cast<DefinitionLink>() : null;
+    return isDefinitionLinkList ? value as List<DefinitionLink> : null;
   }
 }
 
@@ -3044,7 +3030,7 @@ extension type const TypeDefinitionResult._(Object value) {
   bool get isDefinitionLinkList => value is List;
 
   List<DefinitionLink>? get asDefinitionLinkList {
-    return isDefinitionLinkList ? (value as List).cast<DefinitionLink>() : null;
+    return isDefinitionLinkList ? value as List<DefinitionLink> : null;
   }
 }
 
@@ -3082,9 +3068,7 @@ extension type const DeclarationResult._(Object value) {
   bool get isDeclarationLinkList => value is List;
 
   List<DeclarationLink>? get asDeclarationLinkList {
-    return isDeclarationLinkList
-        ? (value as List).cast<DeclarationLink>()
-        : null;
+    return isDeclarationLinkList ? value as List<DeclarationLink> : null;
   }
 }
 
@@ -3178,11 +3162,7 @@ extension type const InlineCompletionResult._(Object value) {
     }
     if (isInlineCompletionItemList) {
       return (value as List)
-          .map(
-            (e) => e is InlineCompletionItem
-                ? e
-                : InlineCompletionItem.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => InlineCompletionItem.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;
@@ -3211,11 +3191,7 @@ extension type const CompletionResult._(Object value) {
     }
     if (isCompletionItemList) {
       return (value as List)
-          .map(
-            (e) => e is CompletionItem
-                ? e
-                : CompletionItem.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => CompletionItem.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;
@@ -3272,7 +3248,7 @@ extension type const DefinitionResult._(Object value) {
   bool get isDefinitionLinkList => value is List;
 
   List<DefinitionLink>? get asDefinitionLinkList {
-    return isDefinitionLinkList ? (value as List).cast<DefinitionLink>() : null;
+    return isDefinitionLinkList ? value as List<DefinitionLink> : null;
   }
 }
 
@@ -3307,11 +3283,7 @@ extension type const DocumentSymbolResult._(Object value) {
     }
     if (isSymbolInformationList) {
       return (value as List)
-          .map(
-            (e) => e is SymbolInformation
-                ? e
-                : SymbolInformation.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => SymbolInformation.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;
@@ -3336,11 +3308,7 @@ extension type const DocumentSymbolResult._(Object value) {
     }
     if (isDocumentSymbolList) {
       return (value as List)
-          .map(
-            (e) => e is DocumentSymbol
-                ? e
-                : DocumentSymbol.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => DocumentSymbol.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;
@@ -3375,11 +3343,7 @@ extension type const SymbolResult._(Object value) {
     }
     if (isSymbolInformationList) {
       return (value as List)
-          .map(
-            (e) => e is SymbolInformation
-                ? e
-                : SymbolInformation.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => SymbolInformation.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;
@@ -3399,11 +3363,7 @@ extension type const SymbolResult._(Object value) {
     }
     if (isWorkspaceSymbolList) {
       return (value as List)
-          .map(
-            (e) => e is WorkspaceSymbol
-                ? e
-                : WorkspaceSymbol.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => WorkspaceSymbol.fromJson(e as Map<String, dynamic>))
           .toList();
     }
     return null;

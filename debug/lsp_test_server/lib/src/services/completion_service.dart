@@ -2,25 +2,25 @@ import 'package:pro_lsp/pro_lsp.dart';
 
 class CompletionService {
   List<CompletionItem> getCompletions(CompletionParams params) => [
-    CompletionItem(
+    .new(
       label: 'hello',
-      kind: CompletionItemKind.keyword,
+      kind: .keyword,
       detail: 'LSP test completion',
-      documentation: CompletionItemDocumentation.markupContent(
-        const MarkupContent(
-          kind: MarkupKind.plainText,
+      documentation: .markupContent(
+        const .new(
+          kind: .plainText,
           value: 'A test completion item from lsp_test_server',
         ),
       ),
     ),
-    const CompletionItem(
+    const .new(
       label: 'world',
-      kind: CompletionItemKind.text,
+      kind: .text,
       detail: 'LSP test completion',
     ),
-    const CompletionItem(
+    const .new(
       label: 'lsp_test_server',
-      kind: CompletionItemKind.module,
+      kind: .module,
       detail: 'This server package',
     ),
   ];

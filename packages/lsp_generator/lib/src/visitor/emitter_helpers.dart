@@ -103,6 +103,11 @@ final tNull = refer('Null');
 final tList = refer('List');
 final tLspConnection = refer('LspConnection');
 final tMapStringDynamic = refer('Map<String, dynamic>');
+final tMapSD = TypeReference(
+  (b) => b
+    ..symbol = 'Map'
+    ..types.addAll([tString, tDynamic]),
+);
 final tJsonSerializable = refer('JsonSerializable');
 final tJsonEnum = refer('JsonEnum');
 final tDeprecated = refer('Deprecated');

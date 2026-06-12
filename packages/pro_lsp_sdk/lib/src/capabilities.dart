@@ -79,7 +79,7 @@ final class CapabilitiesInferer {
     final request = registeredMethods.whereType<RequestMethod>().toList(
       growable: false,
     );
-    
+
     bool allow(RequestMethod m) => request.contains(m);
 
     return ServerCapabilities(

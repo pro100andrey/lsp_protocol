@@ -567,7 +567,6 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
 /// The result returned from an initialize request.
 @freezed
 abstract class InitializeResult with _$InitializeResult {
-
   const factory InitializeResult({
     /// The capabilities the language server provides.
     required ServerCapabilities capabilities,

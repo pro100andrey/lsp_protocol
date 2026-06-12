@@ -164,7 +164,7 @@ final class _Parser {
                   ? headerStr.substring(start)
                   : headerStr.substring(start, end))
               .trim();
-              
+
       final length = int.tryParse(valueStr);
       if (length != null) {
         return length;

@@ -98,8 +98,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
 
     for (final req in resolved.requests) {
       final dir = req.messageDirection;
-      if (dir == MessageDirection.clientToServer ||
-          dir == MessageDirection.both) {
+      if (dir == .clientToServer || dir == .both) {
         addTo(
           handlerGroups,
           req.method,
@@ -108,8 +107,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
           isNotification: false,
         );
       }
-      if (dir == MessageDirection.serverToClient ||
-          dir == MessageDirection.both) {
+      if (dir == .serverToClient || dir == .both) {
         addTo(
           senderGroups,
           req.method,
@@ -122,8 +120,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
 
     for (final notif in resolved.notifications) {
       final dir = notif.messageDirection;
-      if (dir == MessageDirection.clientToServer ||
-          dir == MessageDirection.both) {
+      if (dir == .clientToServer || dir == .both) {
         addTo(
           handlerGroups,
           notif.method,
@@ -132,8 +129,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
           isNotification: true,
         );
       }
-      if (dir == MessageDirection.serverToClient ||
-          dir == MessageDirection.both) {
+      if (dir == .serverToClient || dir == .both) {
         addTo(
           senderGroups,
           notif.method,
@@ -176,7 +172,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
           Field(
             (b) => b
               ..name = '_connection'
-              ..modifier = FieldModifier.final$
+              ..modifier = .final$
               ..type = tLspConnection,
           ),
         )
@@ -250,7 +246,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
 
     final closure = Method(
       (b) => b
-        ..modifier = needsAsync ? MethodModifier.async : null
+        ..modifier = needsAsync ? .async : null
         ..requiredParameters.addAll([
           Parameter(
             (b) => b
@@ -289,7 +285,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
 
     final closure = Method(
       (b) => b
-        ..modifier = MethodModifier.async
+        ..modifier = .async
         ..requiredParameters.addAll([
           Parameter(
             (b) => b
@@ -340,7 +336,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
           Field(
             (b) => b
               ..name = '_connection'
-              ..modifier = FieldModifier.final$
+              ..modifier = .final$
               ..type = tLspConnection,
           ),
         )
@@ -451,7 +447,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
     return Method(
       (b) => b
         ..name = dartName
-        ..modifier = MethodModifier.async
+        ..modifier = .async
         ..returns = returnRef
         ..docs.add('/// Sends the `$wireMethod` request to the client.')
         ..requiredParameters.addAll([
