@@ -48,57 +48,130 @@ final class LspByteStreamChannel {
 /// decoded [String].
 final class _Parser {
   _Parser(Stream<List<int>> stream) {
-    _subscription = stream
-        .expand((bytes) => bytes)
-        .listen(
-          _handleByte,
-          onDone: _streamCtl.close,
-          onError: _streamCtl.addError,
-        );
+    _subscription = stream.listen(
+      _handleChunk,
+      onDone: _streamCtl.close,
+      onError: _streamCtl.addError,
+    );
   }
 
   final _streamCtl = StreamController<String>();
   Stream<String> get stream => _streamCtl.stream;
 
-  final _buffer = <int>[];
+  var _buffer = Uint8List(4096);
+  var _readIndex = 0;
+  var _writeIndex = 0;
+
   var _headerMode = true;
   var _contentLength = -1;
 
-  late StreamSubscription<int> _subscription;
+  late StreamSubscription<List<int>> _subscription;
 
   Future<void> close() => _subscription.cancel();
 
-  void _handleByte(int byte) {
-    _buffer.add(byte);
-    if (_headerMode && _headerComplete) {
-      _contentLength = _parseContentLength();
-      _buffer.clear();
-      _headerMode = false;
-    } else if (!_headerMode && _messageComplete) {
-      _streamCtl.add(utf8.decode(_buffer));
-      _buffer.clear();
-      _headerMode = true;
+  void _handleChunk(List<int> chunk) {
+    if (chunk.isEmpty) {
+      return;
+    }
+
+    // Reset indices to start of buffer if it is empty to avoid compaction/grow
+    if (_readIndex == _writeIndex) {
+      _readIndex = 0;
+      _writeIndex = 0;
+    }
+
+    final neededCapacity = _writeIndex + chunk.length;
+    if (neededCapacity > _buffer.length) {
+      final activeLength = _writeIndex - _readIndex;
+      if (_readIndex > 0 && activeLength + chunk.length <= _buffer.length) {
+        // Compact: shift remaining active bytes to start
+        _buffer.setRange(0, activeLength, _buffer, _readIndex);
+        _readIndex = 0;
+        _writeIndex = activeLength;
+      } else {
+        // Grow: double capacity or resize to fit active bytes + new chunk
+        var newSize = _buffer.length * 2;
+        while (newSize < activeLength + chunk.length) {
+          newSize *= 2;
+        }
+        final newBuffer = Uint8List(newSize);
+        if (activeLength > 0) {
+          newBuffer.setRange(0, activeLength, _buffer, _readIndex);
+        }
+        _buffer = newBuffer;
+        _readIndex = 0;
+        _writeIndex = activeLength;
+      }
+    }
+
+    _buffer.setAll(_writeIndex, chunk);
+    _writeIndex += chunk.length;
+
+    while (true) {
+      final available = _writeIndex - _readIndex;
+      if (_headerMode) {
+        final headerEnd = _findHeaderEnd();
+        if (headerEnd == -1) {
+          break; // Header is not yet complete
+        }
+
+        _contentLength = _parseContentLengthFromBytes(headerEnd);
+        _readIndex = headerEnd;
+        _headerMode = false;
+      } else {
+        if (available < _contentLength) {
+          break; // Message body is not yet complete
+        }
+
+        final bodyStr = utf8.decoder.convert(
+          _buffer,
+          _readIndex,
+          _readIndex + _contentLength,
+        );
+
+        _streamCtl.add(bodyStr);
+
+        _readIndex += _contentLength;
+        _headerMode = true;
+        _contentLength = -1;
+      }
     }
   }
 
-  bool get _messageComplete => _buffer.length >= _contentLength;
-
-  int _parseContentLength() {
-    final asString = ascii.decode(_buffer);
-    final headers = asString.split('\r\n');
-    final lengthHeader = headers.firstWhere(
-      (h) => h.toLowerCase().startsWith('content-length'),
-    );
-    return int.parse(lengthHeader.split(':').last.trim());
+  int _findHeaderEnd() {
+    final limit = _writeIndex - 3;
+    for (var i = _readIndex; i < limit; i++) {
+      if (_buffer[i] == 13 && // \r
+          _buffer[i + 1] == 10 && // \n
+          _buffer[i + 2] == 13 && // \r
+          _buffer[i + 3] == 10) {
+        // \n
+        return i + 4;
+      }
+    }
+    return -1;
   }
 
-  bool get _headerComplete {
-    final l = _buffer.length;
-    return l >= 4 &&
-        _buffer[l - 1] == 10 &&
-        _buffer[l - 2] == 13 &&
-        _buffer[l - 3] == 10 &&
-        _buffer[l - 4] == 13;
+  int _parseContentLengthFromBytes(int headerEnd) {
+    final headerStr = String.fromCharCodes(_buffer, _readIndex, headerEnd);
+    const prefix = 'content-length:';
+    final index = headerStr.toLowerCase().indexOf(prefix);
+    if (index != -1) {
+      final start = index + prefix.length;
+      final end = headerStr.indexOf('\r\n', start);
+      final valueStr =
+          (end == -1
+                  ? headerStr.substring(start)
+                  : headerStr.substring(start, end))
+              .trim();
+              
+      final length = int.tryParse(valueStr);
+      if (length != null) {
+        return length;
+      }
+    }
+
+    throw const FormatException('Content-Length header missing or malformed');
   }
 }
 
@@ -114,10 +187,13 @@ final class _LspMessageSink implements StreamSink<String> {
   @override
   void add(String event) {
     final body = utf8.encode(event);
-    final header = ascii.encode('Content-Length: ${body.length}\r\n\r\n');
-    final frame = Uint8List(header.length + body.length)
-      ..setAll(0, header)
-      ..setAll(header.length, body);
+    final headerStr = 'Content-Length: ${body.length}\r\n\r\n';
+    final headerLen = headerStr.length;
+    final frame = Uint8List(headerLen + body.length);
+    for (var i = 0; i < headerLen; i++) {
+      frame[i] = headerStr.codeUnitAt(i);
+    }
+    frame.setAll(headerLen, body);
     _byteSink.add(frame);
   }
 

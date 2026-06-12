@@ -24,7 +24,7 @@ import 'lsp_exception.dart';
 final class LspConnection {
   LspConnection(StreamChannel<String> channel) {
     // Intercept incoming stream to extract request IDs and handle cancelRequest
-    final mappedStream = channel.stream.map((event) {
+    final decodedStream = channel.stream.map((event) {
       try {
         final decoded = jsonDecode(event);
         if (decoded case {'id': final Object id, 'method': String _}) {
@@ -35,19 +35,32 @@ final class LspConnection {
           } else if (params == null) {
             decoded['params'] = <String, Object?>{'_requestId': id};
           }
-          return jsonEncode(decoded);
         } else if (decoded case {
           'method': final String method,
           'params': {'id': final Object cancelId},
         } when method == NotificationMethod.cancelRequest.value) {
           _cancelRequest(cancelId);
         }
-      } on Object catch (_) {}
+        return decoded;
+      } on Object catch (e) {
+        // Send Parse Error response directly back to the client
+        channel.sink.add(
+          jsonEncode({
+            'jsonrpc': '2.0',
+            'error': {
+              'code': LspErrorCodes.parseError,
+              'message': 'Parse error: $e',
+            },
+            'id': null,
+          }),
+        );
+        return null;
+      }
+    }).where((event) => event != null);
 
-      return event;
-    });
-
-    _peer = rpc.Peer(StreamChannel<String>(mappedStream, channel.sink));
+    _peer = rpc.Peer.withoutJson(
+      StreamChannel<Object?>(decodedStream, _JsonSink(channel.sink)),
+    );
     _peer.registerFallback(_handleUnknownMethod);
 
     // Register $/cancelRequest handler so json_rpc_2 doesn't treat it as unknown
@@ -178,19 +191,26 @@ final class LspConnection {
           _state = LspState.shuttingDown;
         }
 
-        final request = LspIncomingRequest(
-          method: method.value,
-          params: rawVal,
-          requestId: requestId,
-        );
-
-        final response = await runZoned(
-          () => composeMiddlewares(
-            _middlewares,
-            (req) => handler(req.params, context),
-          )(request),
-          zoneValues: {#cancellationToken: token},
-        );
+        final Object? response;
+        if (_middlewares.isEmpty) {
+          response = await runZoned(
+            () => handler(rawVal, context),
+            zoneValues: {#cancellationToken: token},
+          );
+        } else {
+          final request = LspIncomingRequest(
+            method: method.value,
+            params: rawVal,
+            requestId: requestId,
+          );
+          response = await runZoned(
+            () => composeMiddlewares(
+              _middlewares,
+              (req) => handler(req.params, context),
+            )(request),
+            zoneValues: {#cancellationToken: token},
+          );
+        }
 
         if (method == RequestMethod.initialize) {
           _state = LspState.initialized;
@@ -249,15 +269,18 @@ final class LspConnection {
           _state = LspState.exited;
         }
 
-        final request = LspIncomingRequest(
-          method: method.value,
-          params: rawVal,
-        );
-
-        await composeMiddlewares(_middlewares, (req) async {
-          await handler(req.params, context);
-          return null;
-        })(request);
+        if (_middlewares.isEmpty) {
+          await handler(rawVal, context);
+        } else {
+          final request = LspIncomingRequest(
+            method: method.value,
+            params: rawVal,
+          );
+          await composeMiddlewares(_middlewares, (req) async {
+            await handler(req.params, context);
+            return null;
+          })(request);
+        }
 
         if (method == NotificationMethod.exit) {
           await close();
@@ -308,4 +331,27 @@ final class LspConnection {
       'Method not found: ${params.method}',
     );
   }
+}
+
+/// A custom sink that encodes outgoing objects as JSON strings.
+final class _JsonSink implements StreamSink<Object?> {
+  _JsonSink(this._stringSink);
+  final StreamSink<String> _stringSink;
+
+  @override
+  void add(Object? event) => _stringSink.add(jsonEncode(event));
+
+  @override
+  void addError(Object error, [StackTrace? stackTrace]) =>
+      _stringSink.addError(error, stackTrace);
+
+  @override
+  Future<void> addStream(Stream<Object?> stream) =>
+      _stringSink.addStream(stream.map(jsonEncode));
+
+  @override
+  Future<void> close() => _stringSink.close();
+
+  @override
+  Future<void> get done => _stringSink.done;
 }
