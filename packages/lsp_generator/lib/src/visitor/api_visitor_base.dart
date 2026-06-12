@@ -302,8 +302,9 @@ abstract class ApiVisitorBase {
         : notificationMethods;
     final member = map[wireMethod];
     if (member != null) {
-      return refer(enumType).property(member);
+      return refer('').property(member);
     }
+    
     return literalString(wireMethod, raw: wireMethod.contains(r'$'));
   }
 

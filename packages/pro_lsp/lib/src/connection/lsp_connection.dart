@@ -261,7 +261,7 @@ final class LspConnection {
   /// must return a JSON-encodable value or null.  Throw [LspException] to send
   /// a structured error response to the client.
   void registerRequestHandler(
-    LSPMethod method,
+    RequestMethod method,
     Future<Object?> Function(Object? params, LspRequest context) handler,
   ) => _registerHandler(method, isRequest: true, handler: handler);
 
@@ -271,7 +271,7 @@ final class LspConnection {
   /// Return value is ignored by the protocol.  Throw [LspException] to
   /// propagate as an RpcException (visible in logs on the sender side).
   void registerNotificationHandler(
-    LSPMethod method,
+    NotificationMethod method,
     Future<void> Function(Object? params, LspRequest context) handler,
   ) => _registerHandler(
     method,
@@ -287,11 +287,11 @@ final class LspConnection {
   // ---------------------------------------------------------------------------
 
   /// Sends a notification to the client (no response expected).
-  void sendNotification(LSPMethod method, [Object? params]) =>
+  void sendNotification(NotificationMethod method, [Object? params]) =>
       _peer.sendNotification(method.value, params);
 
   /// Sends a request to the client and returns the decoded response value.
-  Future<Object?> sendRequest(LSPMethod method, [Object? params]) =>
+  Future<Object?> sendRequest(RequestMethod method, [Object? params]) =>
       _peer.sendRequest(method.value, params);
 
   // ---------------------------------------------------------------------------

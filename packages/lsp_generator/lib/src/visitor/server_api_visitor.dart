@@ -278,9 +278,11 @@ final class ServerApiVisitor extends ApiVisitorBase {
             ? declareFinal('p').assign(refer('json')).statement
             : ApiVisitorBase.fromJsonAssign(paramsType, 'p', 'json'),
     ];
+
     final handlerExpr = hasParams
         ? refer('handler').call([refer('p'), refer('context')]).awaited
         : refer('handler').call([refer('context')]).awaited;
+        
     statements.add(handlerExpr.statement);
 
     final closure = Method(
