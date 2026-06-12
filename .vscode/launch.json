@@ -4,25 +4,21 @@
         {
             "name": "Generate",
             "request": "launch",
-            "program": "bin/lsp_generator.dart",
+            "program": "${workspaceFolder}/packages/lsp_generator/bin/lsp_generator.dart",
             "type": "dart",
             "console": "terminal",
             "cwd": "${workspaceFolder}/packages/lsp_generator",
             "args": [
                 "generate",
-                "--verbose",
+                "--verbose"
             ]
         },
         {
-            // Run the LSP test server standalone for debugging.
-            // Set breakpoints in any action or server_runner.dart and hit F5.
-            // The server listens on TCP port 2087; the VS Code extension
-            // connects to it instead of spawning a child process.
             "name": "Run LSP Server",
             "type": "dart",
             "request": "launch",
-            "program": "${workspaceFolder}/packages/lsp_test_server/bin/lsp_test_server.dart",
-            "cwd": "${workspaceFolder}/packages/lsp_test_server",
+            "program": "${workspaceFolder}/debug/lsp_test_server/bin/lsp_test_server.dart",
+            "cwd": "${workspaceFolder}/debug/lsp_test_server",
             "console": "terminal",
             "args": [
                 "--socket",
@@ -30,16 +26,14 @@
             ]
         },
         {
-            // Run the VS Code extension in a new Extension Development Host window.
-            // The extension will start the LSP server automatically via `dart run`.
             "name": "Run LSP Extension",
             "type": "extensionHost",
             "request": "launch",
             "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}/vscode-lsp-tester"
+                "--extensionDevelopmentPath=${workspaceFolder}/debug/vscode-lsp-tester"
             ],
             "outFiles": [
-                "${workspaceFolder}/vscode-lsp-tester/out/**/*.js"
+                "${workspaceFolder}/debug/vscode-lsp-tester/out/**/*.js"
             ],
             "preLaunchTask": "npm: compile - vscode-lsp-tester"
         }

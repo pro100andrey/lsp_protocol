@@ -5,5 +5,15 @@ Type a dot . to trigger textDocument/completion.
 
 This file is used to verify all LSP features implemented in lsp_test_server.
 
-hello
+void main() {
+    print('Hello world');
+    final a = sum(10, 2);
+    final b = sum(13, 2);
+    final c = sum(a, b);
 
+    print(c);
+}
+
+int sum(int a, int b) {
+    return a + b;
+}

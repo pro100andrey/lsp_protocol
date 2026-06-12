@@ -164,6 +164,7 @@ final class LspConnection {
     _peer.registerMethod(method.value, (rpc.Parameters params) async {
       final rawVal = params.value;
       Object? requestId;
+      
       if (isRequest && rawVal is Map) {
         requestId = rawVal['_requestId'];
       }
