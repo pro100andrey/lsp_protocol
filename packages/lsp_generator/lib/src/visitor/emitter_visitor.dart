@@ -645,14 +645,22 @@ final class EmitterVisitor {
         ].map((p) {
           final typeRef = _propertyTypeRef(className, p);
           return Parameter((b) {
+            final innerType = p.type is NullableType
+                ? (p.type as NullableType).inner
+                : p.type;
             b
               ..name = p.name
               ..type = typeRef
               ..named = true
-              ..required = !p.optional;
+              ..required = !p.optional && innerType is! StringLiteralType;
             if (p.deprecated != null) {
               b.annotations.add(
                 tDeprecated.call([literalString(p.deprecated!)]),
+              );
+            }
+            if (innerType is StringLiteralType) {
+              b.annotations.add(
+                refer('Default').call([literalString(innerType.value)]),
               );
             }
             b.docs.addAll(
@@ -2073,8 +2081,11 @@ final class EmitterVisitor {
             .toList();
         if (nonNullItems.length > 1) {
           final cleanOrRef = OrRef(kind: resRef.kind, items: nonNullItems);
-          final resolvedType = resolver.resolveRef(cleanOrRef,
-              parentName: req.method, fieldName: 'result');
+          final resolvedType = resolver.resolveRef(
+            cleanOrRef,
+            parentName: req.method,
+            fieldName: 'result',
+          );
           if (resolvedType is UnionType) {
             final unionName = requestResultUnionName(req.method);
             result[unionName] = resolvedType;

@@ -1154,7 +1154,7 @@ abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
 @freezed
 abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
   const factory WorkDoneProgressBegin({
-    required String kind,
+    @Default('begin') String kind,
 
     /// Mandatory title of the progress operation. Used to briefly inform about
     /// the kind of operation being performed.
@@ -1190,7 +1190,7 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
 @freezed
 abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
   const factory WorkDoneProgressReport({
-    required String kind,
+    @Default('report') String kind,
 
     /// Controls enablement state of a cancel button.
     ///
@@ -1221,7 +1221,7 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
 @freezed
 abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
   const factory WorkDoneProgressEnd({
-    required String kind,
+    @Default('end') String kind,
 
     /// Optional, a final message indicating to for example indicate the outcome
     /// of the operation.
@@ -1456,7 +1456,7 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
 abstract class CreateFile with _$CreateFile {
   const factory CreateFile({
     /// A create
-    required String kind,
+    @Default('create') String kind,
 
     /// The resource to create.
     required String uri,
@@ -1477,7 +1477,7 @@ abstract class CreateFile with _$CreateFile {
 abstract class RenameFile with _$RenameFile {
   const factory RenameFile({
     /// A rename
-    required String kind,
+    @Default('rename') String kind,
 
     /// The old (existing) location.
     required String oldUri,
@@ -1501,7 +1501,7 @@ abstract class RenameFile with _$RenameFile {
 abstract class DeleteFile with _$DeleteFile {
   const factory DeleteFile({
     /// A delete
-    required String kind,
+    @Default('delete') String kind,
 
     /// The file to delete.
     required String uri,
@@ -1746,7 +1746,7 @@ abstract class RelatedFullDocumentDiagnosticReport
     with _$RelatedFullDocumentDiagnosticReport {
   const factory RelatedFullDocumentDiagnosticReport({
     /// A full document diagnostic report.
-    required String kind,
+    @Default('full') String kind,
 
     /// The actual items.
     required List<Diagnostic> items,
@@ -1777,7 +1777,7 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
   const factory RelatedUnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result. A
     /// server can only return `unchanged` if result ids are provided.
-    required String kind,
+    @Default('unchanged') String kind,
 
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.
@@ -1804,7 +1804,7 @@ abstract class FullDocumentDiagnosticReport
     with _$FullDocumentDiagnosticReport {
   const factory FullDocumentDiagnosticReport({
     /// A full document diagnostic report.
-    required String kind,
+    @Default('full') String kind,
 
     /// The actual items.
     required List<Diagnostic> items,
@@ -1828,7 +1828,7 @@ abstract class UnchangedDocumentDiagnosticReport
   const factory UnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result. A
     /// server can only return `unchanged` if result ids are provided.
-    required String kind,
+    @Default('unchanged') String kind,
 
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.
@@ -2003,7 +2003,7 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
 abstract class StringValue with _$StringValue {
   const factory StringValue({
     /// The kind of string value.
-    required String kind,
+    @Default('snippet') String kind,
 
     /// The snippet string.
     required String value,
@@ -2439,7 +2439,7 @@ abstract class WorkspaceFullDocumentDiagnosticReport
     with _$WorkspaceFullDocumentDiagnosticReport {
   const factory WorkspaceFullDocumentDiagnosticReport({
     /// A full document diagnostic report.
-    required String kind,
+    @Default('full') String kind,
 
     /// The actual items.
     required List<Diagnostic> items,
@@ -2470,7 +2470,7 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
   const factory WorkspaceUnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result. A
     /// server can only return `unchanged` if result ids are provided.
-    required String kind,
+    @Default('unchanged') String kind,
 
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.

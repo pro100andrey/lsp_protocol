@@ -48,12 +48,12 @@ final class CapabilityManager {
   }
 }
 
-extension LspServerCapabilities on LspServer {
-  /// Infers [ServerCapabilities] based on the handlers currently registered
-  /// on the server.
-  ///
-  /// This is useful during `initialize` to automatically announce supported
-  /// features to the client without manual synchronization of capabilities.
+/// Pure utility class to infer [ServerCapabilities] based on a set of
+/// registered methods.
+final class CapabilitiesInferer {
+  const CapabilitiesInferer();
+
+  /// Infers [ServerCapabilities] based on the provided [registeredMethods].
   ///
   /// [completionTriggerCharacters] controls which characters automatically
   /// trigger completion requests. Defaults to `['.', ':', ' ']`.
@@ -61,18 +61,18 @@ extension LspServerCapabilities on LspServer {
   /// can affect diagnostics in other files. Defaults to `true`.
   /// [workspaceDiagnostics] tells the client the server supports workspace-wide
   /// diagnostics. Defaults to `false`.
-  ServerCapabilities inferCapabilities({
+  ServerCapabilities infer(
+    Set<LSPMethod> registeredMethods, {
     List<String> completionTriggerCharacters = const ['.', ':', ' '],
     bool interFileDependencies = true,
     bool workspaceDiagnostics = false,
   }) {
-    final methods = connection.registeredMethods;
-    final hasWorkspaceMethods = methods.any(
+    final hasWorkspaceMethods = registeredMethods.any(
       (m) =>
           (m is NotificationMethod && m.value.startsWith('workspace/')) ||
           (m is RequestMethod && m.value.startsWith('workspace/')),
     );
-    final hasFileOps = methods.any(
+    final hasFileOps = registeredMethods.any(
       (m) =>
           m == NotificationMethod.didCreateFiles ||
           m == NotificationMethod.didRenameFiles ||
@@ -81,75 +81,76 @@ extension LspServerCapabilities on LspServer {
 
     return ServerCapabilities(
       positionEncoding: PositionEncodingKind.uTF16,
-      hoverProvider: methods.contains(RequestMethod.hover)
+      hoverProvider: registeredMethods.contains(RequestMethod.hover)
           ? const ServerCapabilitiesHoverProvider(true)
           : null,
-      completionProvider: methods.contains(RequestMethod.completion)
+      completionProvider: registeredMethods.contains(RequestMethod.completion)
           ? CompletionOptions(
               triggerCharacters: completionTriggerCharacters,
             )
           : null,
-      definitionProvider: methods.contains(RequestMethod.definition)
+      definitionProvider: registeredMethods.contains(RequestMethod.definition)
           ? const ServerCapabilitiesDefinitionProvider(true)
           : null,
       typeDefinitionProvider:
-          methods.contains(RequestMethod.typeDefinition)
+          registeredMethods.contains(RequestMethod.typeDefinition)
           ? const ServerCapabilitiesTypeDefinitionProvider(true)
           : null,
       implementationProvider:
-          methods.contains(RequestMethod.implementation)
+          registeredMethods.contains(RequestMethod.implementation)
           ? const ServerCapabilitiesImplementationProvider(true)
           : null,
-      referencesProvider: methods.contains(RequestMethod.references)
+      referencesProvider: registeredMethods.contains(RequestMethod.references)
           ? const ServerCapabilitiesReferencesProvider(true)
           : null,
       documentHighlightProvider:
-          methods.contains(RequestMethod.documentHighlight)
+          registeredMethods.contains(RequestMethod.documentHighlight)
           ? const ServerCapabilitiesDocumentHighlightProvider(true)
           : null,
       documentSymbolProvider:
-          methods.contains(RequestMethod.documentSymbol)
+          registeredMethods.contains(RequestMethod.documentSymbol)
           ? const ServerCapabilitiesDocumentSymbolProvider(true)
           : null,
-      codeActionProvider: methods.contains(RequestMethod.codeAction)
+      codeActionProvider: registeredMethods.contains(RequestMethod.codeAction)
           ? const ServerCapabilitiesCodeActionProvider(
               CodeActionOptions(codeActionKinds: []),
             )
           : null,
       documentFormattingProvider:
-          methods.contains(RequestMethod.formatting)
+          registeredMethods.contains(RequestMethod.formatting)
           ? const ServerCapabilitiesDocumentFormattingProvider(true)
           : null,
       documentRangeFormattingProvider:
-          methods.contains(RequestMethod.rangeFormatting)
+          registeredMethods.contains(RequestMethod.rangeFormatting)
           ? const ServerCapabilitiesDocumentRangeFormattingProvider(true)
           : null,
-      renameProvider: methods.contains(RequestMethod.rename)
+      renameProvider: registeredMethods.contains(RequestMethod.rename)
           ? const ServerCapabilitiesRenameProvider(true)
           : null,
-      foldingRangeProvider: methods.contains(RequestMethod.foldingRange)
+      foldingRangeProvider:
+          registeredMethods.contains(RequestMethod.foldingRange)
           ? const ServerCapabilitiesFoldingRangeProvider(true)
           : null,
       selectionRangeProvider:
-          methods.contains(RequestMethod.selectionRange)
+          registeredMethods.contains(RequestMethod.selectionRange)
           ? const ServerCapabilitiesSelectionRangeProvider(true)
           : null,
       callHierarchyProvider:
-          methods.contains(RequestMethod.prepareCallHierarchy)
+          registeredMethods.contains(RequestMethod.prepareCallHierarchy)
           ? const ServerCapabilitiesCallHierarchyProvider(true)
           : null,
       typeHierarchyProvider:
-          methods.contains(RequestMethod.prepareTypeHierarchy)
+          registeredMethods.contains(RequestMethod.prepareTypeHierarchy)
           ? const ServerCapabilitiesTypeHierarchyProvider(true)
           : null,
-      inlineValueProvider: methods.contains(RequestMethod.inlineValue)
+      inlineValueProvider: registeredMethods.contains(RequestMethod.inlineValue)
           ? const ServerCapabilitiesInlineValueProvider(true)
           : null,
-      inlayHintProvider: methods.contains(RequestMethod.inlayHint)
+      inlayHintProvider: registeredMethods.contains(RequestMethod.inlayHint)
           ? const ServerCapabilitiesInlayHintProvider(true)
           : null,
       diagnosticProvider:
-          methods.contains(RequestMethod.textDocumentDiagnostic)
+          registeredMethods.contains(RequestMethod.textDocumentDiagnostic)
           ? ServerCapabilitiesDiagnosticProvider(
               DiagnosticOptions(
                 interFileDependencies: interFileDependencies,
@@ -186,4 +187,29 @@ extension LspServerCapabilities on LspServer {
           ),
         ],
       );
+}
+
+extension LspServerCapabilities on LspServer {
+  /// Infers [ServerCapabilities] based on the handlers currently registered
+  /// on the server.
+  ///
+  /// This is useful during `initialize` to automatically announce supported
+  /// features to the client without manual synchronization of capabilities.
+  ///
+  /// [completionTriggerCharacters] controls which characters automatically
+  /// trigger completion requests. Defaults to `['.', ':', ' ']`.
+  /// [interFileDependencies] tells the client whether diagnostics in one file
+  /// can affect diagnostics in other files. Defaults to `true`.
+  /// [workspaceDiagnostics] tells the client the server supports workspace-wide
+  /// diagnostics. Defaults to `false`.
+  ServerCapabilities inferCapabilities({
+    List<String> completionTriggerCharacters = const ['.', ':', ' '],
+    bool interFileDependencies = true,
+    bool workspaceDiagnostics = false,
+  }) => const CapabilitiesInferer().infer(
+    connection.registeredMethods,
+    completionTriggerCharacters: completionTriggerCharacters,
+    interFileDependencies: interFileDependencies,
+    workspaceDiagnostics: workspaceDiagnostics,
+  );
 }

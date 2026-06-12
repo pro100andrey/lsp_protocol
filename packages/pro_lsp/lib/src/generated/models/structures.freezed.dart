@@ -18050,10 +18050,10 @@ as int?,
 @JsonSerializable()
 
 class _WorkDoneProgressBegin implements WorkDoneProgressBegin {
-  const _WorkDoneProgressBegin({required this.kind, required this.title, this.cancellable, this.message, this.percentage});
+  const _WorkDoneProgressBegin({this.kind = 'begin', required this.title, this.cancellable, this.message, this.percentage});
   factory _WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressBeginFromJson(json);
 
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// Mandatory title of the progress operation. Used to briefly inform about
 /// the kind of operation being performed.
 ///
@@ -18228,10 +18228,10 @@ as int?,
 @JsonSerializable()
 
 class _WorkDoneProgressReport implements WorkDoneProgressReport {
-  const _WorkDoneProgressReport({required this.kind, this.cancellable, this.message, this.percentage});
+  const _WorkDoneProgressReport({this.kind = 'report', this.cancellable, this.message, this.percentage});
   factory _WorkDoneProgressReport.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressReportFromJson(json);
 
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// Controls enablement state of a cancel button.
 ///
 /// Clients that don't support cancellation or don't support controlling the
@@ -18386,10 +18386,10 @@ as String?,
 @JsonSerializable()
 
 class _WorkDoneProgressEnd implements WorkDoneProgressEnd {
-  const _WorkDoneProgressEnd({required this.kind, this.message});
+  const _WorkDoneProgressEnd({this.kind = 'end', this.message});
   factory _WorkDoneProgressEnd.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressEndFromJson(json);
 
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// Optional, a final message indicating to for example indicate the outcome
 /// of the operation.
 @override final  String? message;
@@ -20157,11 +20157,11 @@ $CreateFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _CreateFile implements CreateFile {
-  const _CreateFile({required this.kind, required this.uri, this.annotationId, this.options});
+  const _CreateFile({this.kind = 'create', required this.uri, this.annotationId, this.options});
   factory _CreateFile.fromJson(Map<String, dynamic> json) => _$CreateFileFromJson(json);
 
 /// A create
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// The resource to create.
 @override final  String uri;
 /// An optional annotation identifier describing the operation.
@@ -20334,11 +20334,11 @@ $RenameFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _RenameFile implements RenameFile {
-  const _RenameFile({required this.kind, required this.oldUri, required this.newUri, this.annotationId, this.options});
+  const _RenameFile({this.kind = 'rename', required this.oldUri, required this.newUri, this.annotationId, this.options});
   factory _RenameFile.fromJson(Map<String, dynamic> json) => _$RenameFileFromJson(json);
 
 /// A rename
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// The old (existing) location.
 @override final  String oldUri;
 /// The new location.
@@ -20512,11 +20512,11 @@ $DeleteFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _DeleteFile implements DeleteFile {
-  const _DeleteFile({required this.kind, required this.uri, this.annotationId, this.options});
+  const _DeleteFile({this.kind = 'delete', required this.uri, this.annotationId, this.options});
   factory _DeleteFile.fromJson(Map<String, dynamic> json) => _$DeleteFileFromJson(json);
 
 /// A delete
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// The file to delete.
 @override final  String uri;
 /// An optional annotation identifier describing the operation.
@@ -22291,11 +22291,11 @@ as Map<String, Object>?,
 @JsonSerializable()
 
 class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnosticReport {
-  const _RelatedFullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, this.resultId, final  Map<String, Object>? relatedDocuments}): _items = items,_relatedDocuments = relatedDocuments;
+  const _RelatedFullDocumentDiagnosticReport({this.kind = 'full', required final  List<Diagnostic> items, this.resultId, final  Map<String, Object>? relatedDocuments}): _items = items,_relatedDocuments = relatedDocuments;
   factory _RelatedFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
 
 /// A full document diagnostic report.
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -22471,12 +22471,12 @@ as Map<String, Object>?,
 @JsonSerializable()
 
 class _RelatedUnchangedDocumentDiagnosticReport implements RelatedUnchangedDocumentDiagnosticReport {
-  const _RelatedUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, final  Map<String, Object>? relatedDocuments}): _relatedDocuments = relatedDocuments;
+  const _RelatedUnchangedDocumentDiagnosticReport({this.kind = 'unchanged', required this.resultId, final  Map<String, Object>? relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _RelatedUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// A result id which will be sent on the next diagnostic request for the
 /// same document.
 @override final  String resultId;
@@ -22637,11 +22637,11 @@ as String?,
 @JsonSerializable()
 
 class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
-  const _FullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, this.resultId}): _items = items;
+  const _FullDocumentDiagnosticReport({this.kind = 'full', required final  List<Diagnostic> items, this.resultId}): _items = items;
   factory _FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$FullDocumentDiagnosticReportFromJson(json);
 
 /// A full document diagnostic report.
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -22791,12 +22791,12 @@ as String,
 @JsonSerializable()
 
 class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticReport {
-  const _UnchangedDocumentDiagnosticReport({required this.kind, required this.resultId});
+  const _UnchangedDocumentDiagnosticReport({this.kind = 'unchanged', required this.resultId});
   factory _UnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// A result id which will be sent on the next diagnostic request for the
 /// same document.
 @override final  String resultId;
@@ -24008,11 +24008,11 @@ as String,
 @JsonSerializable()
 
 class _StringValue implements StringValue {
-  const _StringValue({required this.kind, required this.value});
+  const _StringValue({this.kind = 'snippet', required this.value});
   factory _StringValue.fromJson(Map<String, dynamic> json) => _$StringValueFromJson(json);
 
 /// The kind of string value.
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// The snippet string.
 @override final  String value;
 
@@ -27264,11 +27264,11 @@ as String?,
 @JsonSerializable()
 
 class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDiagnosticReport {
-  const _WorkspaceFullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, required this.uri, required this.version, this.resultId}): _items = items;
+  const _WorkspaceFullDocumentDiagnosticReport({this.kind = 'full', required final  List<Diagnostic> items, required this.uri, required this.version, this.resultId}): _items = items;
   factory _WorkspaceFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceFullDocumentDiagnosticReportFromJson(json);
 
 /// A full document diagnostic report.
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -27430,12 +27430,12 @@ as int?,
 @JsonSerializable()
 
 class _WorkspaceUnchangedDocumentDiagnosticReport implements WorkspaceUnchangedDocumentDiagnosticReport {
-  const _WorkspaceUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, required this.uri, required this.version});
+  const _WorkspaceUnchangedDocumentDiagnosticReport({this.kind = 'unchanged', required this.resultId, required this.uri, required this.version});
   factory _WorkspaceUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
 
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
-@override final  String kind;
+@override@JsonKey() final  String kind;
 /// A result id which will be sent on the next diagnostic request for the
 /// same document.
 @override final  String resultId;

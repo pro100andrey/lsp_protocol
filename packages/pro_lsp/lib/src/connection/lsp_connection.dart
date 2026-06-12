@@ -24,39 +24,42 @@ import 'lsp_exception.dart';
 final class LspConnection {
   LspConnection(StreamChannel<String> channel) {
     // Intercept incoming stream to extract request IDs and handle cancelRequest
-    final decodedStream = channel.stream.map((event) {
-      try {
-        final decoded = jsonDecode(event);
-        if (decoded case {'id': final Object id, 'method': String _}) {
-          // Request: Inject request ID so handlers can map it to cancellation
-          final params = decoded['params'];
-          if (params is Map) {
-            params['_requestId'] = id;
-          } else if (params == null) {
-            decoded['params'] = <String, Object?>{'_requestId': id};
+    final decodedStream = channel.stream
+        .map((event) {
+          try {
+            final decoded = jsonDecode(event);
+            if (decoded case {'id': final Object id, 'method': String _}) {
+              // Request: Inject request ID so handlers can map it to
+              // cancellation
+              final params = decoded['params'];
+              if (params is Map) {
+                params['_requestId'] = id;
+              } else if (params == null) {
+                decoded['params'] = <String, Object?>{'_requestId': id};
+              }
+            } else if (decoded case {
+              'method': final String method,
+              'params': {'id': final Object cancelId},
+            } when method == NotificationMethod.cancelRequest.value) {
+              _cancelRequest(cancelId);
+            }
+            return decoded;
+          } on Object catch (e) {
+            // Send Parse Error response directly back to the client
+            channel.sink.add(
+              jsonEncode({
+                'jsonrpc': '2.0',
+                'error': {
+                  'code': LspErrorCodes.parseError,
+                  'message': 'Parse error: $e',
+                },
+                'id': null,
+              }),
+            );
+            return null;
           }
-        } else if (decoded case {
-          'method': final String method,
-          'params': {'id': final Object cancelId},
-        } when method == NotificationMethod.cancelRequest.value) {
-          _cancelRequest(cancelId);
-        }
-        return decoded;
-      } on Object catch (e) {
-        // Send Parse Error response directly back to the client
-        channel.sink.add(
-          jsonEncode({
-            'jsonrpc': '2.0',
-            'error': {
-              'code': LspErrorCodes.parseError,
-              'message': 'Parse error: $e',
-            },
-            'id': null,
-          }),
-        );
-        return null;
-      }
-    }).where((event) => event != null);
+        })
+        .where((event) => event != null);
 
     _peer = rpc.Peer.withoutJson(
       StreamChannel<Object?>(decodedStream, _JsonSink(channel.sink)),
@@ -151,27 +154,23 @@ final class LspConnection {
   // Handler registration
   // ---------------------------------------------------------------------------
 
-  /// Registers a handler for an LSP *request* (client → server).
-  ///
-  /// [handler] receives the raw JSON value of the params field ([Object?]) and
-  /// must return a JSON-encodable value or null.  Throw [LspException] to send
-  /// a structured error response to the client.
-  void registerRequestHandler(
-    LSPMethod method,
-    Future<Object?> Function(Object? params, LspRequest context) handler,
-  ) {
+  void _registerHandler(
+    LSPMethod method, {
+    required bool isRequest,
+    required Future<Object?> Function(Object? params, LspRequest context)
+    handler,
+  }) {
     registeredMethods.add(method);
     _peer.registerMethod(method.value, (rpc.Parameters params) async {
       final rawVal = params.value;
       Object? requestId;
-      if (rawVal is Map) {
+      if (isRequest && rawVal is Map) {
         requestId = rawVal['_requestId'];
       }
 
-      final token = CancellationToken();
-      if (requestId != null) {
-        _activeCancellations[requestId] = token;
-      }
+      final token = isRequest && requestId != null
+          ? (_activeCancellations[requestId] = CancellationToken())
+          : CancellationToken();
 
       final context = LspRequest(
         method: method.value,
@@ -182,13 +181,19 @@ final class LspConnection {
 
       try {
         // 1. Verify state permissions
-        _verifyState(method, isNotification: false);
+        _verifyState(method, isNotification: !isRequest);
 
-        // 2. Lifecycle state changes
-        if (method == RequestMethod.initialize) {
-          _state = LspState.initializing;
-        } else if (method == RequestMethod.shutdown) {
-          _state = LspState.shuttingDown;
+        // 2. Pre-handler state changes
+        if (isRequest) {
+          if (method == RequestMethod.initialize) {
+            _state = LspState.initializing;
+          } else if (method == RequestMethod.shutdown) {
+            _state = LspState.shuttingDown;
+          }
+        } else {
+          if (method == NotificationMethod.exit) {
+            _state = LspState.exited;
+          }
         }
 
         final Object? response;
@@ -212,26 +217,34 @@ final class LspConnection {
           );
         }
 
-        if (method == RequestMethod.initialize) {
-          _state = LspState.initialized;
+        // 3. Post-handler state changes / actions
+        if (isRequest) {
+          if (method == RequestMethod.initialize) {
+            _state = LspState.initialized;
+          }
+        } else {
+          if (method == NotificationMethod.exit) {
+            await close();
+          }
         }
 
         return response;
       } on LspException catch (e) {
-        if (method == RequestMethod.initialize) {
-          _state = LspState.uninitialized; // Reset on initialization failure
+        if (isRequest && method == RequestMethod.initialize) {
+          _state = LspState.uninitialized;
         }
         throw e.toRpcException();
       } catch (e, stackTrace) {
-        if (method == RequestMethod.initialize) {
-          _state = LspState.uninitialized; // Reset on initialization failure
+        if (isRequest && method == RequestMethod.initialize) {
+          _state = LspState.uninitialized;
         }
 
         onError?.call(e, stackTrace);
 
         throw rpc.RpcException(
           LspErrorCodes.internalError,
-          'Internal error processing request: $e',
+          'Internal error processing '
+          '${isRequest ? "request" : "notification"}: $e',
           data: {'stackTrace': stackTrace.toString()},
         );
       } finally {
@@ -242,6 +255,16 @@ final class LspConnection {
     });
   }
 
+  /// Registers a handler for an LSP *request* (client → server).
+  ///
+  /// [handler] receives the raw JSON value of the params field ([Object?]) and
+  /// must return a JSON-encodable value or null.  Throw [LspException] to send
+  /// a structured error response to the client.
+  void registerRequestHandler(
+    LSPMethod method,
+    Future<Object?> Function(Object? params, LspRequest context) handler,
+  ) => _registerHandler(method, isRequest: true, handler: handler);
+
   /// Registers a handler for an LSP *notification* (client → server).
   ///
   /// [handler] receives the raw JSON value of the params field ([Object?]).
@@ -250,54 +273,14 @@ final class LspConnection {
   void registerNotificationHandler(
     LSPMethod method,
     Future<void> Function(Object? params, LspRequest context) handler,
-  ) {
-    registeredMethods.add(method);
-    _peer.registerMethod(method.value, (rpc.Parameters params) async {
-      final rawVal = params.value;
-
-      final context = LspRequest(
-        method: method.value,
-        cancellationToken: CancellationToken(),
-        connection: this,
-      );
-
-      try {
-        // 1. Verify state permissions
-        _verifyState(method, isNotification: true);
-
-        if (method == NotificationMethod.exit) {
-          _state = LspState.exited;
-        }
-
-        if (_middlewares.isEmpty) {
-          await handler(rawVal, context);
-        } else {
-          final request = LspIncomingRequest(
-            method: method.value,
-            params: rawVal,
-          );
-          await composeMiddlewares(_middlewares, (req) async {
-            await handler(req.params, context);
-            return null;
-          })(request);
-        }
-
-        if (method == NotificationMethod.exit) {
-          await close();
-        }
-      } on LspException catch (e) {
-        throw e.toRpcException();
-      } catch (e, stackTrace) {
-        onError?.call(e, stackTrace);
-
-        throw rpc.RpcException(
-          LspErrorCodes.internalError,
-          'Internal error processing notification: $e',
-          data: {'stackTrace': stackTrace.toString()},
-        );
-      }
-    });
-  }
+  ) => _registerHandler(
+    method,
+    isRequest: false,
+    handler: (params, context) async {
+      await handler(params, context);
+      return null;
+    },
+  );
 
   // ---------------------------------------------------------------------------
   // Outgoing

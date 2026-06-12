@@ -2563,7 +2563,7 @@ Map<String, dynamic> _$ApplyWorkspaceEditResultToJson(
 _WorkDoneProgressBegin _$WorkDoneProgressBeginFromJson(
   Map<String, dynamic> json,
 ) => _WorkDoneProgressBegin(
-  kind: json['kind'] as String,
+  kind: json['kind'] as String? ?? 'begin',
   title: json['title'] as String,
   cancellable: json['cancellable'] as bool?,
   message: json['message'] as String?,
@@ -2583,7 +2583,7 @@ Map<String, dynamic> _$WorkDoneProgressBeginToJson(
 _WorkDoneProgressReport _$WorkDoneProgressReportFromJson(
   Map<String, dynamic> json,
 ) => _WorkDoneProgressReport(
-  kind: json['kind'] as String,
+  kind: json['kind'] as String? ?? 'report',
   cancellable: json['cancellable'] as bool?,
   message: json['message'] as String?,
   percentage: (json['percentage'] as num?)?.toInt(),
@@ -2600,7 +2600,7 @@ Map<String, dynamic> _$WorkDoneProgressReportToJson(
 
 _WorkDoneProgressEnd _$WorkDoneProgressEndFromJson(Map<String, dynamic> json) =>
     _WorkDoneProgressEnd(
-      kind: json['kind'] as String,
+      kind: json['kind'] as String? ?? 'end',
       message: json['message'] as String?,
     );
 
@@ -2741,7 +2741,7 @@ Map<String, dynamic> _$TextDocumentEditToJson(_TextDocumentEdit instance) =>
     };
 
 _CreateFile _$CreateFileFromJson(Map<String, dynamic> json) => _CreateFile(
-  kind: json['kind'] as String,
+  kind: json['kind'] as String? ?? 'create',
   uri: json['uri'] as String,
   annotationId: json['annotationId'] as String?,
   options: json['options'] == null
@@ -2758,7 +2758,7 @@ Map<String, dynamic> _$CreateFileToJson(_CreateFile instance) =>
     };
 
 _RenameFile _$RenameFileFromJson(Map<String, dynamic> json) => _RenameFile(
-  kind: json['kind'] as String,
+  kind: json['kind'] as String? ?? 'rename',
   oldUri: json['oldUri'] as String,
   newUri: json['newUri'] as String,
   annotationId: json['annotationId'] as String?,
@@ -2777,7 +2777,7 @@ Map<String, dynamic> _$RenameFileToJson(_RenameFile instance) =>
     };
 
 _DeleteFile _$DeleteFileFromJson(Map<String, dynamic> json) => _DeleteFile(
-  kind: json['kind'] as String,
+  kind: json['kind'] as String? ?? 'delete',
   uri: json['uri'] as String,
   annotationId: json['annotationId'] as String?,
   options: json['options'] == null
@@ -2926,7 +2926,7 @@ Map<String, dynamic> _$MarkupContentToJson(_MarkupContent instance) =>
 _RelatedFullDocumentDiagnosticReport
 _$RelatedFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
     _RelatedFullDocumentDiagnosticReport(
-      kind: json['kind'] as String,
+      kind: json['kind'] as String? ?? 'full',
       items: (json['items'] as List<dynamic>)
           .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2947,7 +2947,7 @@ Map<String, dynamic> _$RelatedFullDocumentDiagnosticReportToJson(
 _RelatedUnchangedDocumentDiagnosticReport
 _$RelatedUnchangedDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
     _RelatedUnchangedDocumentDiagnosticReport(
-      kind: json['kind'] as String,
+      kind: json['kind'] as String? ?? 'unchanged',
       resultId: json['resultId'] as String,
       relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as Object)),
@@ -2964,7 +2964,7 @@ Map<String, dynamic> _$RelatedUnchangedDocumentDiagnosticReportToJson(
 _FullDocumentDiagnosticReport _$FullDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
 ) => _FullDocumentDiagnosticReport(
-  kind: json['kind'] as String,
+  kind: json['kind'] as String? ?? 'full',
   items: (json['items'] as List<dynamic>)
       .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -2982,7 +2982,7 @@ Map<String, dynamic> _$FullDocumentDiagnosticReportToJson(
 _UnchangedDocumentDiagnosticReport _$UnchangedDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
 ) => _UnchangedDocumentDiagnosticReport(
-  kind: json['kind'] as String,
+  kind: json['kind'] as String? ?? 'unchanged',
   resultId: json['resultId'] as String,
 );
 
@@ -3141,8 +3141,10 @@ const _$InlineCompletionTriggerKindEnumMap = {
   InlineCompletionTriggerKind.automatic: 1,
 };
 
-_StringValue _$StringValueFromJson(Map<String, dynamic> json) =>
-    _StringValue(kind: json['kind'] as String, value: json['value'] as String);
+_StringValue _$StringValueFromJson(Map<String, dynamic> json) => _StringValue(
+  kind: json['kind'] as String? ?? 'snippet',
+  value: json['value'] as String,
+);
 
 Map<String, dynamic> _$StringValueToJson(_StringValue instance) =>
     <String, dynamic>{'kind': instance.kind, 'value': instance.value};
@@ -3497,7 +3499,7 @@ const _$FileOperationPatternKindEnumMap = {
 _WorkspaceFullDocumentDiagnosticReport
 _$WorkspaceFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
     _WorkspaceFullDocumentDiagnosticReport(
-      kind: json['kind'] as String,
+      kind: json['kind'] as String? ?? 'full',
       items: (json['items'] as List<dynamic>)
           .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -3520,7 +3522,7 @@ _WorkspaceUnchangedDocumentDiagnosticReport
 _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
 ) => _WorkspaceUnchangedDocumentDiagnosticReport(
-  kind: json['kind'] as String,
+  kind: json['kind'] as String? ?? 'unchanged',
   resultId: json['resultId'] as String,
   uri: json['uri'] as String,
   version: (json['version'] as num?)?.toInt(),

@@ -17,7 +17,6 @@ final class LspProgress {
     bool? cancellable,
   }) async {
     final beginValue = WorkDoneProgressBegin(
-      kind: 'begin',
       title: title,
       message: message,
       percentage: percentage,
@@ -36,7 +35,6 @@ final class LspProgress {
     bool? cancellable,
   }) {
     final reportValue = WorkDoneProgressReport(
-      kind: 'report',
       message: message,
       percentage: percentage,
       cancellable: cancellable,
@@ -50,7 +48,6 @@ final class LspProgress {
   /// Sends the final end notification to the client.
   void end({String? message}) {
     final endValue = WorkDoneProgressEnd(
-      kind: 'end',
       message: message,
     );
     _connection.sendNotification(
