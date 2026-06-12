@@ -19,8 +19,11 @@ final class LspRequest {
   /// A token that signals if the request has been cancelled by the client.
   final CancellationToken cancellationToken;
 
-  /// The JSON-RPC 2.0 request ID, if applicable.
+  /// The JSON-RPC 2.0 request ID. This is null for notifications.
   final Object? id;
+
+  /// Whether this request is a notification (i.e. has no request ID).
+  bool get isNotification => id == null;
 
   /// The underlying connection that received this request.
   final LspConnection connection;

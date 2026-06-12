@@ -28,6 +28,7 @@ final class LspClient {
       );
 
   final LspConnection _connection;
+  var _isListening = false;
 
   // -------------------------------------------------------------------------
   // Incoming (server → client) handler namespaces
@@ -74,6 +75,11 @@ final class LspClient {
     Object? initializationOptions,
     Map<String, Object?>? clientInfo,
   }) async {
+    if (_isListening) {
+      throw StateError('Client has already started listening.');
+    }
+    _isListening = true;
+
     // Start listening
     unawaited(_connection.listen());
 
@@ -98,6 +104,7 @@ final class LspClient {
         ),
       );
     } catch (e) {
+      _isListening = false;
       await _connection.close();
       rethrow;
     }
@@ -117,6 +124,10 @@ final class LspClient {
   /// Registered middleware list for request/notification interception.
   List<LspMiddleware> get middlewares => _connection.middlewares;
 
+  /// Adds a middleware to this client.
+  void addMiddleware(LspMiddleware middleware) =>
+      _connection.addMiddleware(middleware);
+
   /// Gets the current lifecycle state of the LSP client.
   LspState get state => _connection.state;
 
@@ -129,8 +140,17 @@ final class LspClient {
       _connection.onError = value;
 
   /// Starts processing incoming messages.
-  Future<void> listen() => _connection.listen();
+  Future<void> listen() {
+    if (_isListening) {
+      throw StateError('Client has already started listening.');
+    }
+    _isListening = true;
+    return _connection.listen();
+  }
 
   /// Closes the connection and stops processing.
-  Future<void> close() => _connection.close();
+  Future<void> close() async {
+    _isListening = false;
+    await _connection.close();
+  }
 }

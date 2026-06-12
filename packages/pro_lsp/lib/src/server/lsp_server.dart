@@ -5,11 +5,14 @@ import 'package:stream_channel/stream_channel.dart';
 import '../connection/lsp_connection.dart';
 import '../generated/server/server_api.dart';
 import '../transport/lsp_byte_stream_channel.dart';
+import 'lsp_feature.dart';
 import 'lsp_state.dart';
 import 'middleware.dart';
 
 export '../generated/server/server_api.dart';
 export 'cancellation_token.dart';
+export 'lsp_feature.dart';
+export 'lsp_request.dart';
 export 'lsp_state.dart';
 export 'middleware.dart';
 
@@ -62,6 +65,7 @@ final class LspServer {
       );
 
   final LspConnection _connection;
+  var _isListening = false;
 
   /// Access to the underlying low-level connection.
   LspConnection get connection => _connection;
@@ -138,6 +142,10 @@ final class LspServer {
   /// Registered middleware list for request/notification interception.
   List<LspMiddleware> get middlewares => _connection.middlewares;
 
+  /// Adds a middleware to this server.
+  void addMiddleware(LspMiddleware middleware) =>
+      _connection.addMiddleware(middleware);
+
   /// Gets the current lifecycle state of the LSP server.
   LspState get state => _connection.state;
 
@@ -150,16 +158,57 @@ final class LspServer {
       _connection.onError = value;
 
   // -------------------------------------------------------------------------
+  // Feature Lifecycle
+  // -------------------------------------------------------------------------
+
+  final List<LspFeature> _features = [];
+
+  /// Registers a feature plugin with the server and binds its lifecycle.
+  ///
+  /// Features must be registered before the server starts [listen]ing.
+  void registerFeature(LspFeature feature) {
+    if (_isListening) {
+      throw StateError(
+        'Cannot register features after the server has started listening.',
+      );
+    }
+    _features.add(feature);
+    try {
+      feature.register(this);
+    } on Object catch (_) {
+      _features.remove(feature);
+      rethrow;
+    }
+  }
+
+  // -------------------------------------------------------------------------
   // Lifecycle
   // -------------------------------------------------------------------------
 
   /// Starts processing incoming messages.
   ///
   /// Returns when the underlying channel closes (e.g. the client exits).
-  Future<void> listen() => _connection.listen();
+  Future<void> listen() {
+    _isListening = true;
+    return _connection.listen();
+  }
 
   /// Closes the connection and stops processing.
   Future<void> close() async {
+    for (final feature in _features) {
+      try {
+        await feature.dispose();
+      } on Object catch (e, stackTrace) {
+        final errorHandler = onError;
+        if (errorHandler != null) {
+          errorHandler(e, stackTrace);
+        } else {
+          // Fallback to print when no custom onError handler is configured.
+          // ignore: avoid_print
+          print('Error disposing feature $feature: $e\n$stackTrace');
+        }
+      }
+    }
     await _connection.close();
   }
 }

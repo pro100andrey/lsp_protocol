@@ -9,7 +9,9 @@ final class LspConfigurationManager {
   final LspServer _server;
 
   final Map<String, Object?> _cache = {};
+  var _cacheEpoch = 0;
   final _changeListeners = StreamController<void>.broadcast();
+  final Map<String, DateTime> _failedCooldowns = {};
 
   /// A stream that fires whenever the client's configuration changes.
   Stream<void> get onChange => _changeListeners.stream;
@@ -18,9 +20,11 @@ final class LspConfigurationManager {
   /// notifications.
   void bind() {
     _server.workspace.onDidChangeConfiguration((params, context) async {
-      // Configuration changed on the client: invalidate cache and notify
-      // listeners
+      // Configuration changed on the client: invalidate cache, clear cooldowns,
+      // and notify listeners
+      _cacheEpoch++;
       _cache.clear();
+      _failedCooldowns.clear();
       _changeListeners.add(null);
     });
   }
@@ -34,6 +38,15 @@ final class LspConfigurationManager {
       return _cache[section] as T?;
     }
 
+    // Check if request for this section is on cooldown due to a recent failure
+    final now = DateTime.now();
+    final cooldown = _failedCooldowns[section];
+    if (cooldown != null && now.isBefore(cooldown)) {
+      return null;
+    }
+
+    final startEpoch = _cacheEpoch;
+
     try {
       final results = await _server.client.workspace.configuration(
         ConfigurationParams(
@@ -41,14 +54,21 @@ final class LspConfigurationManager {
         ),
       );
 
+      // Verify that the epoch hasn't changed (e.g., config wasn't cleared)
+      // during the asynchronous network call before caching.
       if (results.isNotEmpty) {
-        final val = results.first as T?;
-        _cache[section] = val;
-        return val;
+        _failedCooldowns.remove(section);
+        if (_cacheEpoch == startEpoch) {
+          final val = results.first as T?;
+          _cache[section] = val;
+          return val;
+        }
       }
     } on Object catch (_) {
-      // Return null if configuration request fails (e.g. client doesn't support
-      // configuration)
+      // Apply a cooldown of 5 seconds before allowing a retry for this section
+      _failedCooldowns[section] = DateTime.now().add(
+        const Duration(seconds: 5),
+      );
     }
 
     return null;

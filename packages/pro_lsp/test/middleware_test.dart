@@ -53,18 +53,18 @@ void main() {
 
       final handler = composeMiddlewares(
         [
-          (request, next) {
+          LspMiddleware.fromFunction((request, next) {
             order.add('m1-before');
             final result = next(request);
             order.add('m1-after');
             return result;
-          },
-          (request, next) {
+          }),
+          LspMiddleware.fromFunction((request, next) {
             order.add('m2-before');
             final result = next(request);
             order.add('m2-after');
             return result;
-          },
+          }),
         ],
         (request) async {
           order.add('target');
@@ -88,14 +88,14 @@ void main() {
 
       final handler = composeMiddlewares(
         [
-          (request, next) {
+          LspMiddleware.fromFunction((request, next) {
             final modified = LspIncomingRequest(
               method: request.method,
-              params: {'modified': true, 'extra': 'value'},
+              params: const {'modified': true, 'extra': 'value'},
               requestId: request.requestId,
             );
             return next(modified);
-          },
+          }),
         ],
         (request) async {
           capturedParams = request.params;
@@ -115,7 +115,9 @@ void main() {
 
       final handler = composeMiddlewares(
         [
-          (request, next) async => {'intercepted': true},
+          LspMiddleware.fromFunction(
+            (request, next) async => const {'intercepted': true},
+          ),
         ],
         (request) async {
           targetCalled = true;
@@ -136,10 +138,10 @@ void main() {
 
       final handler = composeMiddlewares(
         [
-          (request, next) {
+          LspMiddleware.fromFunction((request, next) {
             methods.add(request.method);
             return next(request);
-          },
+          }),
         ],
         (request) async => 'done',
       );
@@ -156,14 +158,14 @@ void main() {
 
       final handler = composeMiddlewares(
         [
-          (request, next) async {
+          LspMiddleware.fromFunction((request, next) async {
             order.add('m1');
-            return {'mw': 1};
-          },
-          (request, next) async {
+            return const {'mw': 1};
+          }),
+          LspMiddleware.fromFunction((request, next) async {
             order.add('m2');
-            return {'mw': 2};
-          },
+            return const {'mw': 2};
+          }),
         ],
         (request) async => {'target': true},
       );
@@ -180,7 +182,7 @@ void main() {
       Object? capturedRequestId;
 
       final handler = composeMiddlewares(
-        [(request, next) => next(request)],
+        [LspMiddleware.fromFunction((request, next) => next(request))],
         (request) async {
           capturedRequestId = request.requestId;
           return null;

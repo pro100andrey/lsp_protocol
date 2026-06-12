@@ -168,8 +168,10 @@ final class ServerRunner {
     _server.textDocument.onCompletion((params, context) async {
       logInfo('Completion request: ${params.textDocument.uri}');
       final documentText = _docService.get(params.textDocument.uri);
-      final items =
-          _completionService.getCompletions(params, documentText: documentText);
+      final items = _completionService.getCompletions(
+        params,
+        documentText: documentText,
+      );
 
       return .completionItemList(items);
     });

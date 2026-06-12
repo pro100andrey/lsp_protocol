@@ -281,21 +281,21 @@ void main() {
       test('intercepts requests and can modify or measure execution', () async {
         final methodsCalled = <String>[];
 
-        // Middleware 1: logs methods
-        connection.middlewares.add((request, next) {
-          methodsCalled.add(request.method);
-          return next(request);
-        });
-
-        // Middleware 2: overrides response for textDocument/hover
-        connection.middlewares.add((request, next) async {
-          if (request.method == 'textDocument/hover') {
-            return <String, dynamic>{'contents': 'Intercepted Hover'};
-          }
-          return next(request);
-        });
-
         connection
+          ..addMiddleware(
+            LspMiddleware.fromFunction((request, next) {
+              methodsCalled.add(request.method);
+              return next(request);
+            }),
+          )
+          ..addMiddleware(
+            LspMiddleware.fromFunction((request, next) async {
+              if (request.method == 'textDocument/hover') {
+                return <String, dynamic>{'contents': 'Intercepted Hover'};
+              }
+              return next(request);
+            }),
+          )
           ..registerRequestHandler(
             RequestMethod.initialize,
             (params, _) async => <String, dynamic>{},

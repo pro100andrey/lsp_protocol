@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:pro_lsp/pro_lsp.dart';
 import 'package:pro_lsp/pro_lsp_client.dart';
 
@@ -35,16 +37,31 @@ final class TextDocumentManager {
 
   final Map<String, LspDocument> _documents = {};
 
+  final _didOpenController = StreamController<LspDocument>.broadcast();
+  final _didChangeController = StreamController<LspDocument>.broadcast();
+  final _didCloseController = StreamController<LspDocument>.broadcast();
+
+  /// Stream of documents that were opened.
+  Stream<LspDocument> get onDidOpen => _didOpenController.stream;
+
+  /// Stream of documents that were changed.
+  Stream<LspDocument> get onDidChange => _didChangeController.stream;
+
+  /// Stream of documents that were closed.
+  Stream<LspDocument> get onDidClose => _didCloseController.stream;
+
   /// Binds listeners to the server's textDocument handlers to capture updates.
   void bind(LspServer server) {
     server.textDocument.onDidOpen((params, context) async {
       final item = params.textDocument;
-      _documents[item.uri] = LspDocument(
+      final doc = LspDocument(
         uri: item.uri,
         languageId: item.languageId,
         version: item.version,
         text: item.text,
       );
+      _documents[item.uri] = doc;
+      _didOpenController.add(doc);
     });
 
     server.textDocument.onDidChange((params, context) async {
@@ -65,17 +82,22 @@ final class TextDocumentManager {
 
       final existingDoc = _documents[uri];
       if (existingDoc != null) {
-        _documents[uri] = LspDocument(
+        final updated = LspDocument(
           uri: uri,
           languageId: existingDoc.languageId,
           version: params.textDocument.version,
           text: lastChangeText,
         );
+        _documents[uri] = updated;
+        _didChangeController.add(updated);
       }
     });
 
     server.textDocument.onDidClose((params, context) async {
-      _documents.remove(params.textDocument.uri);
+      final doc = _documents.remove(params.textDocument.uri);
+      if (doc != null) {
+        _didCloseController.add(doc);
+      }
     });
   }
 
@@ -84,6 +106,13 @@ final class TextDocumentManager {
 
   /// Returns all currently open documents.
   List<LspDocument> get all => _documents.values.toList();
+
+  /// Closes all event streams.
+  void close() {
+    unawaited(_didOpenController.close());
+    unawaited(_didChangeController.close());
+    unawaited(_didCloseController.close());
+  }
 }
 
 /// Manages text documents on the client side and synchronizes them with the

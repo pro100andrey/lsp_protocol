@@ -304,7 +304,7 @@ abstract class ApiVisitorBase {
     if (member != null) {
       return refer('').property(member);
     }
-    
+
     return literalString(wireMethod, raw: wireMethod.contains(r'$'));
   }
 

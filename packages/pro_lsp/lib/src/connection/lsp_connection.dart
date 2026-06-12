@@ -134,8 +134,13 @@ final class LspConnection {
 
   final List<LspMiddleware> _middlewares = [];
 
-  /// Gets the list of registered middlewares.
-  List<LspMiddleware> get middlewares => _middlewares;
+  /// Gets an unmodifiable list of registered middlewares.
+  List<LspMiddleware> get middlewares => List.unmodifiable(_middlewares);
+
+  /// Adds a middleware to this connection.
+  void addMiddleware(LspMiddleware middleware) {
+    _middlewares.add(middleware);
+  }
 
   /// The error callback triggered on unhandled exceptions in handlers.
   void Function(Object error, StackTrace stackTrace)? onError;
@@ -164,7 +169,7 @@ final class LspConnection {
     _peer.registerMethod(method.value, (rpc.Parameters params) async {
       final rawVal = params.value;
       Object? requestId;
-      
+
       if (isRequest && rawVal is Map) {
         requestId = rawVal['_requestId'];
       }

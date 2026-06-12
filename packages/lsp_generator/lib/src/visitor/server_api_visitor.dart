@@ -282,7 +282,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
     final handlerExpr = hasParams
         ? refer('handler').call([refer('p'), refer('context')]).awaited
         : refer('handler').call([refer('context')]).awaited;
-        
+
     statements.add(handlerExpr.statement);
 
     final closure = Method(
