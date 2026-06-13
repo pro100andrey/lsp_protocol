@@ -23,8 +23,10 @@ final class LspConfigurationManager {
     if (_registration != null) {
       return;
     }
-    _registration =
-        _server.workspace.onDidChangeConfiguration((params, context) async {
+    _registration = _server.workspace.onDidChangeConfiguration((
+      params,
+      context,
+    ) async {
       // Configuration changed on the client: invalidate cache, clear cooldowns,
       // and notify listeners
       _cacheEpoch++;

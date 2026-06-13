@@ -1,6 +1,6 @@
-part of 'emitter_visitor.dart';
+part of 'model_generator.dart';
 
-extension EmitterVisitorAliases on EmitterVisitor {
+extension ModelGeneratorAliases on ModelGenerator {
   Spec _buildAlias(ResolvedAlias alias) => TypeDef(
     (b) {
       b

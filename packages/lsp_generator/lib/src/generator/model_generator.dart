@@ -6,15 +6,15 @@ import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
 import '../resolver/resolved_state.dart';
 import 'codegen_type.dart';
-import 'emitter_helpers.dart';
-import 'resolver_visitor.dart';
-import 'type_reference.dart';
+import 'generator_helpers.dart';
+import 'resolver.dart';
+import 'type_ref_helpers.dart';
 
-part 'emitter_classes.dart';
-part 'emitter_enums.dart';
-part 'emitter_unions.dart';
-part 'emitter_aliases.dart';
-part 'emitter_serialization.dart';
+part 'model_aliases.dart';
+part 'model_classes.dart';
+part 'model_enums.dart';
+part 'model_serialization.dart';
+part 'model_unions.dart';
 
 // ---------------------------------------------------------------------------
 
@@ -25,8 +25,8 @@ enum _ClassCategory { capabilities, params, common }
 /// Builds code_builder [Library] objects from a fully resolved [ResolvedState].
 ///
 /// Each [Library] can be emitted to a Dart source string via [DartEmitter].
-final class EmitterVisitor {
-  EmitterVisitor(this._resolved);
+final class ModelGenerator {
+  ModelGenerator(this._resolved);
 
   final ResolvedState _resolved;
 
@@ -55,10 +55,9 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
 
   _ClassCategory _classifyClass(ResolvedClass cls) => switch (cls.name) {
-    final s when s.contains('Capabilities') => _ClassCategory.capabilities,
-    final s when s.endsWith('Params') || s.endsWith('Options') =>
-      _ClassCategory.params,
-    _ => _ClassCategory.common,
+    final s when s.contains('Capabilities') => .capabilities,
+    final s when s.endsWith('Params') || s.endsWith('Options') => .params,
+    _ => .common,
   };
 
   Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) {
@@ -70,7 +69,7 @@ final class EmitterVisitor {
       return _classifyClass(c) == category;
     });
 
-    if (category == _ClassCategory.common) {
+    if (category == .common) {
       // Keep anonymous classes before named classes for backward compatibility/ordering.
       return [
         ...filtered.where((c) => c.isAnonymous),
@@ -90,42 +89,35 @@ final class EmitterVisitor {
       (b) => b
         ..comments.addAll([_header])
         ..directives.add(
-          Directive.import(
-            'package:freezed_annotation/freezed_annotation.dart',
-          ),
+          .import('package:freezed_annotation/freezed_annotation.dart'),
         )
-        ..directives.addAll(
-          _crossImports(allTypes, Files.structures),
-        )
-        ..directives.add(Directive.part(Files.structuresFreezed))
-        ..directives.add(Directive.part(Files.structuresG))
-        ..directives.add(Directive.part(Files.structuresCapabilities))
-        ..directives.add(Directive.part(Files.structuresParams))
-        ..directives.add(Directive.part(Files.structuresCommon)),
+        ..directives.addAll(_crossImports(allTypes, Files.structures))
+        ..directives.add(.part(Files.structuresFreezed))
+        ..directives.add(.part(Files.structuresG))
+        ..directives.add(.part(Files.structuresCapabilities))
+        ..directives.add(.part(Files.structuresParams))
+        ..directives.add(.part(Files.structuresCommon)),
     );
   }
 
-  Library buildStructuresCapabilities() =>
-      _buildCategoryLibrary(_ClassCategory.capabilities);
+  Library buildStructuresCaps() => _buildCategoryLibrary(.capabilities);
 
-  Library buildStructuresParams() =>
-      _buildCategoryLibrary(_ClassCategory.params);
+  Library buildStructuresParams() => _buildCategoryLibrary(.params);
 
-  Library buildStructuresCommon() =>
-      _buildCategoryLibrary(_ClassCategory.common);
+  Library buildStructuresCommon() => _buildCategoryLibrary(.common);
 
   Library _buildCategoryLibrary(_ClassCategory category) => Library(
     (b) => b
       ..comments.addAll([
         _header,
-        if (category == _ClassCategory.params) ...[
+        if (category == .params) ...[
           'ignore_for_file: lines_longer_than_80_chars',
           'ignore_for_file: remove_deprecations_in_breaking_versions',
         ],
-        if (category == _ClassCategory.common)
+        if (category == .common)
           'ignore_for_file: remove_deprecations_in_breaking_versions',
       ])
-      ..directives.add(Directive.partOf(Files.structures))
+      ..directives.add(.partOf(Files.structures))
       ..body.addAll(_classesForCategory(category).map(_buildClass)),
   );
 
@@ -133,10 +125,8 @@ final class EmitterVisitor {
   Library buildEnumerations() => Library(
     (b) => b
       ..comments.add(_header)
-      ..directives.add(
-        Directive.import('package:json_annotation/json_annotation.dart'),
-      )
-      ..directives.add(Directive.part(Files.enumerationsG))
+      ..directives.add(.import('package:json_annotation/json_annotation.dart'))
+      ..directives.add(.part(Files.enumerationsG))
       ..body.addAll(_resolved.enumerations.map(_buildEnum)),
   );
 
@@ -156,9 +146,9 @@ final class EmitterVisitor {
       (b) => b
         ..comments.add(_header)
         ..directives.add(
-          Directive.import('package:json_annotation/json_annotation.dart'),
+          .import('package:json_annotation/json_annotation.dart'),
         )
-        ..directives.add(Directive.part(Files.methodsG))
+        ..directives.add(.part(Files.methodsG))
         ..body.add(_buildLSPMethodClass())
         ..body.add(
           _buildMethodEnum(
@@ -205,7 +195,7 @@ final class EmitterVisitor {
         (m) => m
           ..name = 'value'
           ..returns = refer('String')
-          ..type = MethodType.getter,
+          ..type = .getter,
       ),
     );
   });
@@ -279,9 +269,7 @@ final class EmitterVisitor {
       final name = entry.key;
       final ut = entry.value;
       final kind = _ctx.classifyUnion(ut);
-      final matchesKind = isScalar
-          ? kind == CodegenUnionKind.scalar
-          : kind != CodegenUnionKind.scalar;
+      final matchesKind = isScalar ? kind == .scalar : kind != .scalar;
       if (matchesKind) {
         specs.add(
           _buildExtensionTypeUnion(
@@ -367,9 +355,9 @@ final class EmitterVisitor {
   }
 
   String _directionLabel(MessageDirection d) => switch (d) {
-    MessageDirection.clientToServer => 'client to server',
-    MessageDirection.serverToClient => 'server to client',
-    MessageDirection.both => 'both directions',
+    .clientToServer => 'client to server',
+    .serverToClient => 'server to client',
+    .both => 'both directions',
   };
 
   // ---------------------------------------------------------------------------
@@ -448,7 +436,7 @@ final class EmitterVisitor {
         .split(RegExp(r'\n\s*\n'))
         .map((p) => p.trim())
         .where((p) => p.isNotEmpty)
-        .toList();
+        .toList(growable: false);
 
     final lines = <String>[];
     for (final paragraph in paragraphs) {
@@ -520,7 +508,7 @@ final class EmitterVisitor {
       return [
         'Type: ${items.map(
           (e) => '`${ResolvedTypeCodegenX.dartTypeName(e)}`',
-        ).join(' | ')}'
+        ).join(' | ')}',
       ];
     }
     return const [];
@@ -587,14 +575,14 @@ final class EmitterVisitor {
     }
 
     // Synthesize union types for request inline union results
-    final resolver = ResolverVisitor(_resolved.registry);
+    final resolver = ModelResolver(_resolved.registry);
     for (final req in _resolved.requests) {
       final resRef = req.result;
       if (isRequestResultUnion(resRef)) {
         final orRef = resRef! as OrRef;
         final nonNullItems = orRef.items
             .where((item) => !(item is BaseRef && item.name == 'null'))
-            .toList();
+            .toList(growable: false);
         final cleanOrRef = OrRef(kind: orRef.kind, items: nonNullItems);
         final resolvedType = resolver.resolveRef(
           cleanOrRef,

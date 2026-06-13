@@ -19,8 +19,7 @@ Future<int> run(List<String> args) async {
             abbr: 'v',
             help: 'Enable verbose logging output.',
             negatable: false,
-            callback: (value) =>
-                logger.level = value ? Level.verbose : Level.info,
+            callback: (value) => logger.level = value ? .verbose : .info,
           )
           ..addCommand(GenerateCommand(logger: logger));
 

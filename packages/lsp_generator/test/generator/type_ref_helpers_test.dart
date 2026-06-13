@@ -1,7 +1,7 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:lsp_generator/src/generator/type_ref_helpers.dart';
 import 'package:lsp_generator/src/models/resolved_decl.dart';
 import 'package:lsp_generator/src/models/resolved_type.dart';
-import 'package:lsp_generator/src/visitor/type_reference.dart';
 import 'package:test/test.dart';
 
 // ---------------------------------------------------------------------------

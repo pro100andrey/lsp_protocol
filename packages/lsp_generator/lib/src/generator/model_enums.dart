@@ -1,6 +1,6 @@
-part of 'emitter_visitor.dart';
+part of 'model_generator.dart';
 
-extension EmitterVisitorEnums on EmitterVisitor {
+extension ModelGeneratorEnums on ModelGenerator {
   /// Generates a standard Dart enum for closed enums, or a Dart
   /// `extension type` wrapping the underlying primitive value for open
   /// enums (`supportsCustomValues = true`).
@@ -28,7 +28,7 @@ extension EmitterVisitorEnums on EmitterVisitor {
             Field(
               (b) => b
                 ..static = true
-                ..modifier = FieldModifier.constant
+                ..modifier = .constant
                 ..name = safeIdentifier(toLowerCamelCase(member.name))
                 ..assignment = refer(en.name).call([
                   if (isInt)
@@ -113,7 +113,7 @@ extension EmitterVisitorEnums on EmitterVisitor {
       b.fields.add(
         Field(
           (b) => b
-            ..modifier = FieldModifier.final$
+            ..modifier = .final$
             ..name = 'value'
             ..type = refer(valueTypeName),
         ),

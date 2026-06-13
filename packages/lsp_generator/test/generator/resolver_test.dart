@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:lsp_generator/src/generator/resolver.dart';
 import 'package:lsp_generator/src/models/protocol.dart';
 import 'package:lsp_generator/src/models/resolved_decl.dart';
 import 'package:lsp_generator/src/models/resolved_type.dart';
-import 'package:lsp_generator/src/visitor/resolver_visitor.dart';
 import 'package:test/test.dart';
 
 // ---------------------------------------------------------------------------
@@ -32,8 +32,8 @@ void main() {
   // Unit tests — resolveRef with an empty registry
   // =========================================================================
   group('resolveRef — BaseRef mappings', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('string → String', () {
       expect(v.resolveRef(_base('string')), isDartCoreType('String'));
@@ -88,8 +88,8 @@ void main() {
   });
 
   group('resolveRef — TypeRef', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('unknown name → DartCoreType fallback', () {
       expect(v.resolveRef(_ref('Unknown')), isDartCoreType('Unknown'));
@@ -97,8 +97,8 @@ void main() {
   });
 
   group('resolveRef — ArrayRef', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('ArrayRef(string) → ListType(String)', () {
       final ref = MetaReference.array(
@@ -124,8 +124,8 @@ void main() {
   });
 
   group('resolveRef — MapRef', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('MapRef(string, integer) → MapType(String, int)', () {
       final ref = MetaReference.map(
@@ -140,8 +140,8 @@ void main() {
   });
 
   group('resolveRef — OrRef', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('OrRef([T, null]) → NullableType(T)', () {
       final ref = MetaReference.or(
@@ -180,8 +180,8 @@ void main() {
   });
 
   group('resolveRef — AndRef', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('AndRef([string, integer]) → UnionType', () {
       final ref = MetaReference.and(
@@ -195,8 +195,8 @@ void main() {
   });
 
   group('resolveRef — TupleRef', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('TupleRef([string, integer]) → TupleType', () {
       final ref = MetaReference.tuple(
@@ -210,8 +210,8 @@ void main() {
   });
 
   group('resolveRef — StringLiteralRef', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('StringLiteralRef → StringLiteralType', () {
       const ref = MetaReference.stringLiteral(
@@ -223,8 +223,8 @@ void main() {
   });
 
   group('resolveRef — LiteralRef', () {
-    late ResolverVisitor v;
-    setUp(() => v = ResolverVisitor());
+    late ModelResolver v;
+    setUp(() => v = ModelResolver());
 
     test('LiteralRef produces InlineRecord with resolved fields', () {
       const ref = MetaReference.literal(
@@ -271,13 +271,13 @@ void main() {
   // Integration tests — real metaModel.json
   // =========================================================================
   group('real metaModel.json', () {
-    late ResolverVisitor visitor;
+    late ModelResolver visitor;
 
     setUpAll(() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
-      visitor = ResolverVisitor()..resolve(protocol);
+      visitor = ModelResolver()..resolve(protocol);
     });
 
     // -----------------------------------------------------------------------

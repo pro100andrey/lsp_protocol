@@ -2,12 +2,12 @@ import 'package:code_builder/code_builder.dart';
 
 import '../models/protocol.dart';
 import '../resolver/resolved_state.dart' show ResolvedState;
-import 'api_visitor.dart';
-import 'emitter_helpers.dart';
+import 'api_generator.dart';
+import 'generator_helpers.dart';
 
 /// Generates the typed LSP server API from a fully resolved [ResolvedState].
-final class ServerApiVisitor extends ApiVisitor {
-  ServerApiVisitor(super.resolved);
+final class ServerApiGenerator extends ApiGenerator {
+  ServerApiGenerator(super.resolved);
 
   @override
   String get side => 'Server';

@@ -1,6 +1,6 @@
-part of 'emitter_visitor.dart';
+part of 'model_generator.dart';
 
-extension EmitterVisitorSerialization on EmitterVisitor {
+extension ModelGeneratorSerialization on ModelGenerator {
   /// Builds a Dart expression string that constructs an inline record from a
   /// JSON map (e.g. `(delta: json['delta'] as bool?)`).
   String _inlineRecordFromJson(

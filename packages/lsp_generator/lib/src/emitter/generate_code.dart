@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:code_builder/code_builder.dart';
 
 import '../config/files.dart';
+import '../generator/client_api_generator.dart';
+import '../generator/generator_helpers.dart';
+import '../generator/model_generator.dart';
+import '../generator/server_api_generator.dart';
 import '../resolver/resolved_state.dart';
-import '../visitor/client_api_visitor.dart';
-import '../visitor/emitter_helpers.dart';
-import '../visitor/emitter_visitor.dart';
-import '../visitor/server_api_visitor.dart';
 
 /// Package name for which special barrel/API files are generated.
 const kProLspPackage = 'pro_lsp';
@@ -46,29 +46,27 @@ final _clientBarrelSourceExports = [
 ];
 
 void generateCode(ResolvedState resolved, String outputDir) {
-  final visitor = EmitterVisitor(resolved);
+  final mg = ModelGenerator(resolved);
 
-  _writeGeneratedFiles(visitor, outputDir);
-  _writeBarrelFiles(visitor, outputDir);
+  _writeGeneratedFiles(mg, outputDir);
+  _writeBarrelFiles(outputDir);
   _writeApiFiles(resolved, outputDir);
 }
 
-void _writeGeneratedFiles(EmitterVisitor visitor, String outputDir) {
+void _writeGeneratedFiles(ModelGenerator mg, String outputDir) {
   final dir = Directory(outputDir);
   dir.modelsDir.createSync(recursive: true);
 
   final files = {
-    dir.structuresFile: emitLibrary(visitor.buildStructures()),
-    dir.structuresCapabilitiesFile: emitLibrary(
-      visitor.buildStructuresCapabilities(),
-    ),
-    dir.structuresParamsFile: emitLibrary(visitor.buildStructuresParams()),
-    dir.structuresCommonFile: emitLibrary(visitor.buildStructuresCommon()),
-    dir.enumerationsFile: emitLibrary(visitor.buildEnumerations()),
-    dir.aliasesFile: emitLibrary(visitor.buildAliases()),
-    dir.scalarUnionsFile: emitLibrary(visitor.buildScalarUnions()),
-    dir.unionsFile: emitLibrary(visitor.buildUnions()),
-    dir.methodsFile: emitLibrary(visitor.buildNotificationMethods()),
+    dir.structuresFile: emitLibrary(mg.buildStructures()),
+    dir.structuresCapabilitiesFile: emitLibrary(mg.buildStructuresCaps()),
+    dir.structuresParamsFile: emitLibrary(mg.buildStructuresParams()),
+    dir.structuresCommonFile: emitLibrary(mg.buildStructuresCommon()),
+    dir.enumerationsFile: emitLibrary(mg.buildEnumerations()),
+    dir.aliasesFile: emitLibrary(mg.buildAliases()),
+    dir.scalarUnionsFile: emitLibrary(mg.buildScalarUnions()),
+    dir.unionsFile: emitLibrary(mg.buildUnions()),
+    dir.methodsFile: emitLibrary(mg.buildNotificationMethods()),
   };
 
   for (final entry in files.entries) {
@@ -76,7 +74,7 @@ void _writeGeneratedFiles(EmitterVisitor visitor, String outputDir) {
   }
 }
 
-void _writeBarrelFiles(EmitterVisitor visitor, String outputDir) {
+void _writeBarrelFiles(String outputDir) {
   final dir = Directory(outputDir);
   _writeBarrel(dir, _modelExports, dir.barrelFile);
 
@@ -105,14 +103,14 @@ void _writeBarrel(Directory dir, List<String> exports, File barrelFile) {
   barrelFile.writeAsStringSync(formatLibrary(lib));
 }
 
-void _writeApiFiles(ResolvedState resolved, String outputDir) {
+void _writeApiFiles(ResolvedState rs, String outputDir) {
   final dir = Directory(outputDir);
   dir.serverDir.createSync(recursive: true);
   dir.clientDir.createSync(recursive: true);
 
-  final serverLib = ServerApiVisitor(resolved).buildServerApi();
+  final serverLib = ServerApiGenerator(rs).buildServerApi();
   dir.serverApiFile.writeAsStringSync(formatLibrary(serverLib));
 
-  final clientLib = ClientApiVisitor(resolved).buildClientApi();
+  final clientLib = ClientApiGenerator(rs).buildClientApi();
   dir.clientApiFile.writeAsStringSync(formatLibrary(clientLib));
 }

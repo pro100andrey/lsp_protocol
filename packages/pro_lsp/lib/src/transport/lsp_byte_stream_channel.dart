@@ -213,8 +213,21 @@ final class _Parser {
 
   bool _isContentLengthPrefix(int index) {
     const chars = [
-      99, 111, 110, 116, 101, 110, 116, 45,
-      108, 101, 110, 103, 116, 104, 58
+      99,
+      111,
+      110,
+      116,
+      101,
+      110,
+      116,
+      45,
+      108,
+      101,
+      110,
+      103,
+      116,
+      104,
+      58,
     ];
     for (var i = 0; i < chars.length; i++) {
       final b = _buffer[index + i];

@@ -3,12 +3,12 @@ import 'dart:io';
 
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
+import 'package:lsp_generator/src/generator/model_generator.dart';
+import 'package:lsp_generator/src/generator/resolver.dart';
 import 'package:lsp_generator/src/models/protocol.dart';
 import 'package:lsp_generator/src/models/resolved_decl.dart';
 import 'package:lsp_generator/src/models/resolved_type.dart';
 import 'package:lsp_generator/src/resolver/resolved_state.dart';
-import 'package:lsp_generator/src/visitor/emitter_visitor.dart';
-import 'package:lsp_generator/src/visitor/resolver_visitor.dart';
 import 'package:test/test.dart';
 
 // ---------------------------------------------------------------------------
@@ -25,15 +25,15 @@ final _formatter = DartFormatter(
 
 String _format(Library lib) => _formatter.format('${lib.accept(_emitter)}');
 
-String _allStructuresSrc(EmitterVisitor visitor) => [
+String _allStructuresSrc(ModelGenerator visitor) => [
   _format(visitor.buildStructures()),
-  _format(visitor.buildStructuresCapabilities()),
+  _format(visitor.buildStructuresCaps()),
   _format(visitor.buildStructuresParams()),
   _format(visitor.buildStructuresCommon()),
 ].join('\n');
 
 String _getStructures(ResolvedState state) =>
-    _allStructuresSrc(EmitterVisitor(state));
+    _allStructuresSrc(ModelGenerator(state));
 
 ResolvedClass _cls(
   String name, {
@@ -91,7 +91,7 @@ ResolvedState _stateWith({
 // ---------------------------------------------------------------------------
 
 void main() {
-  group('EmitterVisitor.buildStructures()', () {
+  group('ModelGenerator.buildStructures()', () {
     test('empty state produces empty library', () {
       final src = _getStructures(_stateWith());
       // Only the GENERATED header comment; no class declarations.
@@ -320,9 +320,9 @@ void main() {
     });
   });
 
-  group('EmitterVisitor.buildEnumerations()', () {
+  group('ModelGenerator.buildEnumerations()', () {
     test('empty state produces empty library', () {
-      final src = _format(EmitterVisitor(_stateWith()).buildEnumerations());
+      final src = _format(ModelGenerator(_stateWith()).buildEnumerations());
       expect(src.contains('enum '), isFalse);
       expect(src.contains('class '), isFalse);
     });
@@ -336,7 +336,7 @@ void main() {
           ]),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildEnumerations());
+      final src = _format(ModelGenerator(state).buildEnumerations());
       expect(src, contains('enum DiagnosticSeverity'));
       expect(src, contains('final int value'));
       expect(src, contains('error(1)'));
@@ -362,7 +362,7 @@ void main() {
           ]),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildEnumerations());
+      final src = _format(ModelGenerator(state).buildEnumerations());
       expect(src, contains("create('create')"));
       expect(src, contains("rename('rename')"));
       expect(src, contains("delete('delete')"));
@@ -377,7 +377,7 @@ void main() {
           ], supportsCustomValues: true),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildEnumerations());
+      final src = _format(ModelGenerator(state).buildEnumerations());
       expect(
         src,
         contains('extension type const FoldingRangeKind(String value)'),
@@ -400,7 +400,7 @@ void main() {
           ], supportsCustomValues: true),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildEnumerations());
+      final src = _format(ModelGenerator(state).buildEnumerations());
       expect(src, contains('const CodeActionKind('));
     });
 
@@ -421,15 +421,15 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildEnumerations());
+      final src = _format(ModelGenerator(state).buildEnumerations());
       expect(src, contains('/// The message type.'));
       expect(src, contains('/// An error message.'));
     });
   });
 
-  group('EmitterVisitor.buildAliases()', () {
+  group('ModelGenerator.buildAliases()', () {
     test('empty state produces empty library', () {
-      final src = _format(EmitterVisitor(_stateWith()).buildAliases());
+      final src = _format(ModelGenerator(_stateWith()).buildAliases());
       expect(src.contains('typedef '), isFalse);
     });
 
@@ -439,7 +439,7 @@ void main() {
           _alias('DocumentUri', const DartCoreType(dartName: 'String')),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildAliases());
+      final src = _format(ModelGenerator(state).buildAliases());
       expect(src, contains('typedef DocumentUri = String'));
     });
 
@@ -452,7 +452,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildAliases());
+      final src = _format(ModelGenerator(state).buildAliases());
       expect(src, contains('typedef StringList = List<String>'));
     });
 
@@ -474,7 +474,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildAliases());
+      final src = _format(ModelGenerator(state).buildAliases());
       expect(src, isNot(contains('typedef LSPAny')));
     });
 
@@ -493,7 +493,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildAliases());
+      final src = _format(ModelGenerator(state).buildAliases());
       expect(src, isNot(contains('typedef ProgressToken')));
     });
   });
@@ -502,7 +502,7 @@ void main() {
   // buildUnions() — sealed union classes
   // ---------------------------------------------------------------------------
 
-  group('EmitterVisitor.buildUnions()', () {
+  group('ModelGenerator.buildUnions()', () {
     test('scalar union generates extension type const + getter variants', () {
       final state = _stateWith(
         aliases: [
@@ -518,7 +518,7 @@ void main() {
         ],
       );
       // Scalar unions go to buildScalarUnions(), not buildUnions().
-      final src = _format(EmitterVisitor(state).buildScalarUnions());
+      final src = _format(ModelGenerator(state).buildScalarUnions());
       expect(
         src,
         contains('extension type const ProgressToken._(Object value)'),
@@ -546,7 +546,7 @@ void main() {
         ],
       );
       // Scalar unions go to buildScalarUnions().
-      final src = _format(EmitterVisitor(state).buildScalarUnions());
+      final src = _format(ModelGenerator(state).buildScalarUnions());
       expect(
         src,
         contains(
@@ -571,7 +571,7 @@ void main() {
         ],
       );
       // Scalar unions go to buildScalarUnions(), buildUnions() stays empty.
-      final src = _format(EmitterVisitor(state).buildUnions());
+      final src = _format(ModelGenerator(state).buildUnions());
       expect(src, isNot(contains('ProgressToken')));
     });
 
@@ -592,7 +592,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildUnions());
+      final src = _format(ModelGenerator(state).buildUnions());
       expect(src, contains('extension type const LSPAny._(Object value)'));
     });
 
@@ -617,7 +617,7 @@ void main() {
           ),
         ],
       );
-      final visitor = EmitterVisitor(state);
+      final visitor = ModelGenerator(state);
       final unionsSrc = _format(visitor.buildScalarUnions());
       expect(
         unionsSrc,
@@ -669,7 +669,7 @@ void main() {
             ),
           ],
         );
-        final src = _format(EmitterVisitor(state).buildUnions());
+        final src = _format(ModelGenerator(state).buildUnions());
         expect(src, contains('factory SymbolResult.symbolInformationList('));
         expect(src, contains('factory SymbolResult.workspaceSymbolList('));
         expect(src, contains('bool get isSymbolInformationList =>'));
@@ -692,14 +692,14 @@ void main() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
-      final resolver = ResolverVisitor()..resolve(protocol);
+      final resolver = ModelResolver()..resolve(protocol);
       final resolved = ResolvedState(
         registry: resolver.registry,
         classes: resolver.classes.toList(),
         enumerations: resolver.enumerations.toList(),
         aliases: resolver.aliases.toList(),
       );
-      final lib = EmitterVisitor(resolved).buildUnions();
+      final lib = ModelGenerator(resolved).buildUnions();
       expect(() => _format(lib), returnsNormally);
     });
 
@@ -707,7 +707,7 @@ void main() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
-      final resolver = ResolverVisitor()..resolve(protocol);
+      final resolver = ModelResolver()..resolve(protocol);
       final resolved = ResolvedState(
         registry: resolver.registry,
         classes: resolver.classes.toList(),
@@ -716,7 +716,7 @@ void main() {
       );
       // ProgressToken is scalar → lives in buildScalarUnions(), not
       // buildUnions().
-      final scalarSrc = _format(EmitterVisitor(resolved).buildScalarUnions());
+      final scalarSrc = _format(ModelGenerator(resolved).buildScalarUnions());
       expect(
         scalarSrc,
         contains('extension type const ProgressToken._(Object value)'),
@@ -728,7 +728,7 @@ void main() {
   // Integration — real metaModel.json
   // ---------------------------------------------------------------------------
 
-  group('EmitterVisitor integration (real metaModel.json)', () {
+  group('ModelGenerator integration (real metaModel.json)', () {
     late ResolvedState resolved;
 
     setUpAll(() {
@@ -736,7 +736,7 @@ void main() {
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
 
-      final resolver = ResolverVisitor()..resolve(protocol);
+      final resolver = ModelResolver()..resolve(protocol);
       resolved = ResolvedState(
         registry: resolver.registry,
         classes: resolver.classes.toList(),
@@ -746,10 +746,10 @@ void main() {
     });
 
     test('buildStructures() emits valid formattable Dart', () {
-      final visitor = EmitterVisitor(resolved);
+      final visitor = ModelGenerator(resolved);
       expect(() => _format(visitor.buildStructures()), returnsNormally);
       expect(
-        () => _format(visitor.buildStructuresCapabilities()),
+        () => _format(visitor.buildStructuresCaps()),
         returnsNormally,
       );
       expect(
@@ -778,12 +778,12 @@ void main() {
     });
 
     test('buildEnumerations() emits valid formattable Dart', () {
-      final lib = EmitterVisitor(resolved).buildEnumerations();
+      final lib = ModelGenerator(resolved).buildEnumerations();
       expect(() => _format(lib), returnsNormally);
     });
 
     test('enumerations output contains DiagnosticSeverity enum', () {
-      final src = _format(EmitterVisitor(resolved).buildEnumerations());
+      final src = _format(ModelGenerator(resolved).buildEnumerations());
       expect(src, contains('enum DiagnosticSeverity'));
       // Generator normalises to lowerCamelCase.
       expect(src, contains('error(1)'));
@@ -794,18 +794,18 @@ void main() {
       'enumerations output contains FoldingRangeKind as extension type '
       '(supportsCustomValues)',
       () {
-        final src = _format(EmitterVisitor(resolved).buildEnumerations());
+        final src = _format(ModelGenerator(resolved).buildEnumerations());
         expect(src, contains('extension type const FoldingRangeKind'));
       },
     );
 
     test('buildAliases() emits valid formattable Dart', () {
-      final lib = EmitterVisitor(resolved).buildAliases();
+      final lib = ModelGenerator(resolved).buildAliases();
       expect(() => _format(lib), returnsNormally);
     });
 
     test('aliases output contains a typedef from the real model', () {
-      final src = _format(EmitterVisitor(resolved).buildAliases());
+      final src = _format(ModelGenerator(resolved).buildAliases());
       // ChangeAnnotationIdentifier is a String alias in LSP 3.17.
       expect(src, contains('typedef ChangeAnnotationIdentifier'));
     });
@@ -891,7 +891,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildEnumerations());
+      final src = _format(ModelGenerator(state).buildEnumerations());
       expect(src, contains("@Deprecated('Use active instead.')"));
       // Non-deprecated member should not have @Deprecated.
       expect(
@@ -911,7 +911,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildAliases());
+      final src = _format(ModelGenerator(state).buildAliases());
       expect(src, contains("@Deprecated('Use NewAlias instead.')"));
       expect(src, contains('typedef OldAlias'));
     });
@@ -981,7 +981,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildEnumerations());
+      final src = _format(ModelGenerator(state).buildEnumerations());
       expect(src, contains('/// @since 3.18.0'));
       expect(src, contains('/// @proposed'));
     });
@@ -996,7 +996,7 @@ void main() {
           ),
         ],
       );
-      final src = _format(EmitterVisitor(state).buildAliases());
+      final src = _format(ModelGenerator(state).buildAliases());
       expect(src, contains('/// @since 3.17.0'));
     });
   });
@@ -1012,7 +1012,7 @@ void main() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
-      final resolver = ResolverVisitor()..resolve(protocol);
+      final resolver = ModelResolver()..resolve(protocol);
       resolved = ResolvedState(
         registry: resolver.registry,
         classes: resolver.classes.toList(),
@@ -1024,24 +1024,24 @@ void main() {
     });
 
     test('emits NotificationMethod enum', () {
-      final src = _format(EmitterVisitor(resolved).buildNotificationMethods());
+      final src = _format(ModelGenerator(resolved).buildNotificationMethods());
       expect(src, contains('enum NotificationMethod'));
     });
 
     test('emits RequestMethod enum', () {
-      final src = _format(EmitterVisitor(resolved).buildNotificationMethods());
+      final src = _format(ModelGenerator(resolved).buildNotificationMethods());
       expect(src, contains('enum RequestMethod'));
     });
 
     test('NotificationMethod has at least 10 members', () {
-      final src = _format(EmitterVisitor(resolved).buildNotificationMethods());
+      final src = _format(ModelGenerator(resolved).buildNotificationMethods());
       // Count enum value entries — each line with '(' and a string argument.
       final count = "(r'".allMatches(src).length + "('".allMatches(src).length;
       expect(count, greaterThanOrEqualTo(10));
     });
 
     test(r'methods use raw strings for $/ methods', () {
-      final src = _format(EmitterVisitor(resolved).buildNotificationMethods());
+      final src = _format(ModelGenerator(resolved).buildNotificationMethods());
       // The setTrace notification uses \$/setTrace.
       expect(src, contains(r"r'$/"));
     });

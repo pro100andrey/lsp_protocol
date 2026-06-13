@@ -7,10 +7,10 @@ import 'package:path/path.dart' as p;
 import '../common/cli_exception.dart';
 
 Future<void> fetchLSPLicense(
-  String version,
   String outputDir,
-  Logger logger,
-) async {
+  Logger logger, [
+  String version = '3.17',
+]) async {
   final downloadProgress = logger.progress(
     'Downloading LSP license for version $version...',
   );

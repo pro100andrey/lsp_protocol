@@ -128,8 +128,7 @@ void main() {
       expect(decoded, '$expectedHeader$message');
     });
 
-    test(
-        'throws FormatException and cancels subscription '
+    test('throws FormatException and cancels subscription '
         'if Content-Length exceeds limit', () async {
       const headerStr = 'Content-Length: 52428801\r\n\r\n';
       final headerBytes = ascii.encode(headerStr);
@@ -158,8 +157,7 @@ void main() {
       );
     });
 
-    test(
-        'throws FormatException and cancels subscription '
+    test('throws FormatException and cancels subscription '
         'on malformed header', () async {
       const headerStr = 'Content-Length: abc\r\n\r\n';
       final headerBytes = ascii.encode(headerStr);

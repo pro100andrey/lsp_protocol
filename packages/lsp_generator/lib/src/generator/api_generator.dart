@@ -3,10 +3,10 @@ import 'package:code_builder/code_builder.dart';
 import '../models/protocol.dart';
 import '../models/resolved_type.dart';
 import '../resolver/resolved_state.dart';
-import 'emitter_helpers.dart';
+import 'generator_helpers.dart';
 
-abstract class ApiVisitor {
-  ApiVisitor(this.resolved) {
+abstract class ApiGenerator {
+  ApiGenerator(this.resolved) {
     requestMethods = {
       for (final e in dartNames(
         resolved.requests,
@@ -84,12 +84,12 @@ abstract class ApiVisitor {
       (b) => b
         ..comments.addAll(['GENERATED — do not edit.'])
         ..directives.addAll([
-          Directive.import('dart:async'),
-          Directive.import('../../connection/lsp_connection.dart'),
-          Directive.import('../../connection/lsp_exception.dart'),
-          Directive.import('../../server/lsp_request.dart'),
-          Directive.import('../models/structures.dart'),
-          Directive.import('../models/unions.dart'),
+          .import('dart:async'),
+          .import('../../connection/lsp_connection.dart'),
+          .import('../../connection/lsp_exception.dart'),
+          .import('../../server/lsp_request.dart'),
+          .import('../models/structures.dart'),
+          .import('../models/unions.dart'),
         ])
         ..body.addAll(specs),
     );
@@ -465,7 +465,7 @@ abstract class ApiVisitor {
     String namespace,
     List<MethodEntry> entries,
   ) {
-    final className = '$side${ApiVisitor.handlerClassName(namespace)}';
+    final className = '$side${ApiGenerator.handlerClassName(namespace)}';
 
     return ExtensionType(
       (b) => b
@@ -477,7 +477,7 @@ abstract class ApiVisitor {
         ..representationDeclaration = RepresentationDeclaration(
           (b) => b
             ..name = '_c'
-            ..declaredRepresentationType = tLspConnection,
+            ..declaredRepresentationType = refer('LspConnection'),
         )
         ..methods.addAll(entries.map(_buildHandlerMethod)),
     );
@@ -527,7 +527,7 @@ abstract class ApiVisitor {
       if (hasParams)
         isRawParams
             ? declareFinal('params').assign(refer('j')).statement
-            : ApiVisitor.fromJsonAssign(paramsType, 'params', 'j'),
+            : ApiGenerator.fromJsonAssign(paramsType, 'params', 'j'),
     ];
     final handlerExpr = hasParams
         ? refer('handler').call([refer('params'), refer('c')])
@@ -568,7 +568,7 @@ abstract class ApiVisitor {
       if (hasParams)
         isRawParams
             ? declareFinal('params').assign(refer('j')).statement
-            : ApiVisitor.fromJsonAssign(paramsType, 'params', 'j'),
+            : ApiGenerator.fromJsonAssign(paramsType, 'params', 'j'),
     ];
 
     final handlerExpr = hasParams
@@ -594,7 +594,7 @@ abstract class ApiVisitor {
   }
 
   ExtensionType _buildSenderClass(String namespace, List<MethodEntry> entries) {
-    final className = '$side${ApiVisitor.senderClassName(namespace)}';
+    final className = '$side${ApiGenerator.senderClassName(namespace)}';
     return ExtensionType(
       (b) => b
         ..name = className
@@ -605,7 +605,7 @@ abstract class ApiVisitor {
         ..representationDeclaration = RepresentationDeclaration(
           (b) => b
             ..name = '_c'
-            ..declaredRepresentationType = tLspConnection,
+            ..declaredRepresentationType = refer('LspConnection'),
         )
         ..methods.addAll(entries.map(_buildSenderMethod)),
     );
@@ -734,7 +734,7 @@ abstract class ApiVisitor {
   }
 
   ExtensionType _buildProxy(Iterable<String> senderNamespaces) {
-    final namespaces = senderNamespaces.toList();
+    final namespaces = senderNamespaces.toList(growable: false);
     return ExtensionType(
       (b) => b
         ..name = proxyName
@@ -749,7 +749,7 @@ abstract class ApiVisitor {
         ..representationDeclaration = RepresentationDeclaration(
           (b) => b
             ..name = '_c'
-            ..declaredRepresentationType = tLspConnection,
+            ..declaredRepresentationType = refer('LspConnection'),
         )
         ..methods.addAll(
           namespaces.map(
@@ -759,7 +759,8 @@ abstract class ApiVisitor {
                   : ns == 'general'
                   ? 'general'
                   : ns;
-              final senderClass = '$side${ApiVisitor.senderClassName(ns)}';
+              final senderClass = '$side${ApiGenerator.senderClassName(ns)}';
+
               return Method(
                 (b) => b
                   ..name = propName

@@ -9,10 +9,10 @@ import '../common/cli_exception.dart';
 import '../models/protocol.dart';
 
 Future<MetaProtocol> fetchLSPModel(
-  String version,
   String outputDir,
-  Logger logger,
-) async {
+  Logger logger, [
+  String version = '3.17',
+]) async {
   final downloadProgress = logger.progress(
     'Downloading LSP meta-model for version $version...',
   );

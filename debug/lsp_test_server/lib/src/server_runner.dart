@@ -145,10 +145,11 @@ final class ServerRunner {
         } else {
           final rangeChange = change.asRangeRangeLengthText;
           if (rangeChange != null) {
-            final startOffset =
-                _positionToOffset(text, rangeChange.range.start);
-            final endOffset =
-                _positionToOffset(text, rangeChange.range.end);
+            final startOffset = _positionToOffset(
+              text,
+              rangeChange.range.start,
+            );
+            final endOffset = _positionToOffset(text, rangeChange.range.end);
             text = text.replaceRange(
               startOffset,
               endOffset,
@@ -560,9 +561,9 @@ final class ServerRunner {
     }
     final code = char.codeUnitAt(0);
     return (code >= 97 && code <= 122) || // a-z
-           (code >= 65 && code <= 90) ||  // A-Z
-           (code >= 48 && code <= 57) ||  // 0-9
-           code == 95;                    // _
+        (code >= 65 && code <= 90) || // A-Z
+        (code >= 48 && code <= 57) || // 0-9
+        code == 95; // _
   }
 
   bool _isComment(String line) {

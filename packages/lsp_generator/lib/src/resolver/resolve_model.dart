@@ -1,9 +1,9 @@
+import '../generator/resolver.dart';
 import '../models/protocol.dart';
-import '../visitor/resolver_visitor.dart';
 import 'resolved_state.dart';
 
 ResolvedState resolveModel(MetaProtocol protocol) {
-  final visitor = ResolverVisitor()..resolve(protocol);
+  final visitor = ModelResolver()..resolve(protocol);
 
   return ResolvedState(
     registry: visitor.registry,

@@ -90,10 +90,14 @@ final class TextDocumentManager {
               } else {
                 final rangeChange = change.asRangeRangeLengthText;
                 if (rangeChange != null) {
-                  final startOffset =
-                      _positionToOffset(text, rangeChange.range.start);
-                  final endOffset =
-                      _positionToOffset(text, rangeChange.range.end);
+                  final startOffset = _positionToOffset(
+                    text,
+                    rangeChange.range.start,
+                  );
+                  final endOffset = _positionToOffset(
+                    text,
+                    rangeChange.range.end,
+                  );
                   text = text.replaceRange(
                     startOffset,
                     endOffset,

@@ -1,9 +1,6 @@
-import 'package:meta/meta.dart';
-
 import '../models/protocol.dart';
 import '../models/resolved_decl.dart';
 
-@immutable
 class ResolvedState {
   const ResolvedState({
     required this.registry,

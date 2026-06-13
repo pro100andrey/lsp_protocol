@@ -29,10 +29,9 @@ final class GenerateCommand extends Command<dynamic> {
   @override
   Future<void> run() async {
     final outputPath = argResults?['output'] as String? ?? 'packages/pro_lsp';
-    const lspVersion = '3.17';
 
-    final modelFuture = fetchLSPModel(lspVersion, outputPath, logger);
-    final licenseFuture = fetchLSPLicense(lspVersion, outputPath, logger);
+    final modelFuture = fetchLSPModel(outputPath, logger);
+    final licenseFuture = fetchLSPLicense(outputPath, logger);
 
     final metaProtocol = await modelFuture;
     final resolvedModel = resolveModel(metaProtocol);

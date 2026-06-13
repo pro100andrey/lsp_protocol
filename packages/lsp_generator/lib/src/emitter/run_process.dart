@@ -52,17 +52,17 @@ Future<void> runProcess(
 
 /// Runs `dart analyze` in the given [workingDir].
 Future<void> runAnalyzer(String workingDir, Logger logger) => runProcess(
-      workingDir,
-      logger,
-      'Running dart analyze in $workingDir...',
-      ['analyze'],
-    );
+  workingDir,
+  logger,
+  'Running dart analyze in $workingDir...',
+  ['analyze'],
+);
 
 /// Runs `build_runner build` in the given [workingDir].
 Future<void> runBuildRunner(String workingDir, Logger logger) => runProcess(
-      workingDir,
-      logger,
-      'Running build_runner in $workingDir...',
-      ['run', 'build_runner', 'build'],
-      onSuccess: (stdout) => logger.detail(stdout),
-    );
+  workingDir,
+  logger,
+  'Running build_runner in $workingDir...',
+  ['run', 'build_runner', 'build'],
+  onSuccess: (stdout) => logger.detail(stdout),
+);

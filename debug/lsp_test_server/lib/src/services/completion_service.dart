@@ -9,7 +9,7 @@ class CompletionService {
 
     if (documentText != null && documentText.isNotEmpty) {
       final words = _extractWords(documentText);
-      final uniqueWords = words.toSet().toList();
+      final uniqueWords = words.toSet().toList(growable: false);
 
       for (final word in uniqueWords) {
         if (word.length < 2) {

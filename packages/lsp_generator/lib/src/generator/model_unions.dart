@@ -1,6 +1,6 @@
-part of 'emitter_visitor.dart';
+part of 'model_generator.dart';
 
-extension EmitterVisitorUnions on EmitterVisitor {
+extension ModelGeneratorUnions on ModelGenerator {
   Spec _buildExtensionTypeUnion(
     String name,
     UnionType ut, {
@@ -328,11 +328,12 @@ extension EmitterVisitorUnions on EmitterVisitor {
             : ref.name,
       ListType(:final element) => '${_variantSuffix(element, aliasName)}List',
       MapType() => 'Map',
-      InlineRecord(:final fields) => fields.isEmpty
-          ? 'Empty'
-          : fields
-              .map((f) => f.name[0].toUpperCase() + f.name.substring(1))
-              .join(),
+      InlineRecord(:final fields) =>
+        fields.isEmpty
+            ? 'Empty'
+            : fields
+                  .map((f) => f.name[0].toUpperCase() + f.name.substring(1))
+                  .join(),
       TupleType() => 'Tuple',
       _ => 'Unknown',
     };

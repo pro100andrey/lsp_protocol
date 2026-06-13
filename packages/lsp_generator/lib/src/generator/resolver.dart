@@ -9,8 +9,8 @@ import 'meta_visitor.dart';
 ///   populates the registry with all named declarations.
 /// Pass 2 — resolve pass: fills in all resolved type fields by resolving
 ///   every [MetaReference] against the registry.
-final class ResolverVisitor {
-  ResolverVisitor([Map<String, ResolvedDecl>? registry]) {
+final class ModelResolver {
+  ModelResolver([Map<String, ResolvedDecl>? registry]) {
     if (registry != null) {
       _registry.addAll(registry);
     }
@@ -68,14 +68,14 @@ final class ResolverVisitor {
           .map(
             (i) => resolveRef(i, parentName: parentName, fieldName: fieldName),
           )
-          .toList(),
+          .toList(growable: false),
     ),
     TupleRef(:final items) => TupleType(
       items: items
           .map(
             (i) => resolveRef(i, parentName: parentName, fieldName: fieldName),
           )
-          .toList(),
+          .toList(growable: false),
     ),
     LiteralRef() => _resolveLiteral(
       ref,
@@ -97,8 +97,10 @@ final class ResolverVisitor {
     final items = ref.items;
 
     // Detect OrRef([T, null]) → NullableType(T)
-    final nullItems = items.where(_isNull).toList();
-    final nonNullItems = items.where((i) => !_isNull(i)).toList();
+    final nullItems = items.where(_isNull).toList(growable: false);
+    final nonNullItems = items
+        .where((i) => !_isNull(i))
+        .toList(growable: false);
 
     if (nullItems.length == 1 && nonNullItems.length == 1) {
       return NullableType(
@@ -120,7 +122,7 @@ final class ResolverVisitor {
               fieldName: fieldName,
             ),
           )
-          .toList(),
+          .toList(growable: false),
     );
   }
 
@@ -147,7 +149,8 @@ final class ResolverVisitor {
             deprecated: prop.deprecated,
           ),
         )
-        .toList();
+        .toList(growable: false);
+
     return InlineRecord(fields: fields);
   }
 
@@ -175,7 +178,7 @@ final class ResolverVisitor {
 
 final class _RegisterPass extends MetaVisitor {
   _RegisterPass(this._r);
-  final ResolverVisitor _r;
+  final ModelResolver _r;
 
   @override
   void visitStructure(MetaStructure structure) {
@@ -197,7 +200,7 @@ final class _RegisterPass extends MetaVisitor {
   @override
   void visitEnumeration(MetaEnumeration enumeration) {
     final valueType = enumeration.type is BaseRef
-        ? ResolverVisitor._baseRefToDart((enumeration.type as BaseRef).name)
+        ? ModelResolver._baseRefToDart((enumeration.type as BaseRef).name)
         : 'String';
 
     final members = enumeration.values
@@ -213,7 +216,7 @@ final class _RegisterPass extends MetaVisitor {
             deprecated: m.deprecated,
           ),
         )
-        .toList();
+        .toList(growable: false);
 
     final en = ResolvedEnum(
       name: enumeration.name,
@@ -259,7 +262,7 @@ final class _RegisterPass extends MetaVisitor {
 
 final class _ResolvePass extends MetaVisitor {
   _ResolvePass(this._r);
-  final ResolverVisitor _r;
+  final ModelResolver _r;
 
   @override
   void visitStructure(MetaStructure structure) {

@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:meta/meta.dart';
+
 import '../models/protocol.dart';
 
 /// Adds helpers that complement [Expression] from `code_builder`.
@@ -12,7 +13,10 @@ extension ExpressionX on Expression {
   /// Keep using [Expression.asA] when chaining further (`.property()`, etc.).
   Expression bareAsA(Expression type) {
     final e = DartEmitter();
-    return CodeExpression(Code('${accept(e)} as ${type.accept(e)}'));
+
+    return CodeExpression(
+      Code('${accept(e)} as ${type.accept(e)}'),
+    );
   }
 }
 
@@ -102,7 +106,6 @@ final tBool = refer('bool');
 final tVoid = refer('void');
 final tNull = refer('Null');
 final tList = refer('List');
-final tLspConnection = refer('LspConnection');
 final tMapStringDynamic = refer('Map<String, dynamic>');
 final tMapSD = TypeReference(
   (b) => b
@@ -175,6 +178,7 @@ Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
   String lastSeg(String m) => clean(m).split('/').last;
   String camelCase(String m) {
     final parts = clean(m).split('/');
+
     return [
       parts.first,
       ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
@@ -186,6 +190,7 @@ Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
   for (final s in lastSegs.values) {
     counts[s] = (counts[s] ?? 0) + 1;
   }
+
   return {
     for (final x in items)
       x: safeIdentifier(
@@ -222,6 +227,7 @@ Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
 String requestResultUnionName(String method) {
   final (_, dartName) = namespacedMethod(method);
   final capitalized = dartName[0].toUpperCase() + dartName.substring(1);
+
   return '${capitalized}Result';
 }
 
@@ -235,7 +241,8 @@ bool isRequestResultUnion(MetaReference? result) {
   if (result is OrRef) {
     final nonNullItems = result.items
         .where((i) => !(i is BaseRef && i.name == 'null'))
-        .toList();
+        .toList(growable: false);
+
     return nonNullItems.length > 1;
   }
   return false;

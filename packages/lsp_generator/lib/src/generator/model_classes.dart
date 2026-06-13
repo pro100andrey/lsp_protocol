@@ -1,6 +1,6 @@
-part of 'emitter_visitor.dart';
+part of 'model_generator.dart';
 
-extension EmitterVisitorClasses on EmitterVisitor {
+extension ModelGeneratorClasses on ModelGenerator {
   Spec _buildClass(ResolvedClass cls) {
     // For underscore-prefixed anonymous structs (e.g.
     // `_InitializeParamsClientInfo`), use plain @JsonSerializable instead
@@ -68,7 +68,7 @@ extension EmitterVisitorClasses on EmitterVisitor {
         b.fields.add(
           Field((b) {
             b
-              ..modifier = FieldModifier.final$
+              ..modifier = .final$
               ..name = p.name
               ..type = _propertyTypeRef(cls.name, p);
             if (p.deprecated != null) {
@@ -243,7 +243,7 @@ extension EmitterVisitorClasses on EmitterVisitor {
     b.fields.add(
       Field(
         (b) => b
-          ..modifier = FieldModifier.final$
+          ..modifier = .final$
           ..name = 'value'
           ..type = tString
           ..annotations.add(refer('override')),

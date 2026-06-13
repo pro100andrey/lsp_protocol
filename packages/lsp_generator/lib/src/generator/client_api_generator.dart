@@ -2,11 +2,11 @@ import 'package:code_builder/code_builder.dart';
 
 import '../models/protocol.dart';
 import '../resolver/resolved_state.dart' show ResolvedState;
-import 'api_visitor.dart';
+import 'api_generator.dart';
 
 /// Generates the typed LSP client API from a fully resolved [ResolvedState].
-final class ClientApiVisitor extends ApiVisitor {
-  ClientApiVisitor(super.resolved);
+final class ClientApiGenerator extends ApiGenerator {
+  ClientApiGenerator(super.resolved);
 
   @override
   String get side => 'Client';
@@ -28,10 +28,10 @@ final class ClientApiVisitor extends ApiVisitor {
       'client.server.workspace.didChangeConfiguration(...);';
 
   @override
-  MessageDirection get handlerDirection => MessageDirection.serverToClient;
+  MessageDirection get handlerDirection => .serverToClient;
 
   @override
-  MessageDirection get senderDirection => MessageDirection.clientToServer;
+  MessageDirection get senderDirection => .clientToServer;
 
   Library buildClientApi() => buildApi();
 }
