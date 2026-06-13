@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:json_rpc_2/json_rpc_2.dart' as rpc;
 import 'package:stream_channel/stream_channel.dart';
@@ -72,7 +73,10 @@ final class LspConnection {
   late final rpc.Peer _peer;
 
   /// The set of LSP methods that have a registered handler.
-  final Set<LSPMethod> registeredMethods = {};
+  List<LSPMethod> get registeredMethods =>
+      UnmodifiableListView(_registeredMethods);
+
+  final Set<LSPMethod> _registeredMethods = {};
 
   final Map<Type, Object> _services = {};
 
@@ -168,7 +172,7 @@ final class LspConnection {
     required Future<Object?> Function(Object? params, LspRequest context)
     handler,
   }) {
-    registeredMethods.add(method);
+    _registeredMethods.add(method);
 
     Future<void> Function(Object? params, LspRequest context)? multicastItem;
 

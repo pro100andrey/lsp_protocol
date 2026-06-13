@@ -59,7 +59,7 @@ final class CapabilitiesInferer {
   /// [workspaceDiagnostics] tells the client the server supports workspace-wide
   /// diagnostics. Defaults to `false`.
   ServerCapabilities infer(
-    Set<LSPMethod> registeredMethods, {
+    List<LSPMethod> registeredMethods, {
     List<String> completionTriggerCharacters = const ['.', ':', ' '],
     bool interFileDependencies = true,
     bool workspaceDiagnostics = false,
