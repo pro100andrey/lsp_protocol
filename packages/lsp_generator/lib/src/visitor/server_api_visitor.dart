@@ -198,10 +198,10 @@ final class ServerApiVisitor extends ApiVisitorBase {
     return Method(
       (b) => b
         ..name =
-            '${entry.isNotification ? 'on' : 'on'}${ApiVisitorBase.capitalize(
+            'on${ApiVisitorBase.capitalize(
               entry.dartName,
             )}'
-        ..returns = tVoid
+        ..returns = entry.isNotification ? refer('void Function()') : tVoid
         ..docs.add('/// Registers handler for `${entry.wireMethod}`.')
         ..requiredParameters.add(
           Parameter(
@@ -306,7 +306,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
     return eConnection.property('registerNotificationHandler').call([
       methodRef('NotificationMethod', wireMethod),
       closure,
-    ]).statement;
+    ]).returned.statement;
   }
 
   // -------------------------------------------------------------------------

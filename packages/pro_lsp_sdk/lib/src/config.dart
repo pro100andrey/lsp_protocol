@@ -12,6 +12,7 @@ final class LspConfigurationManager {
   var _cacheEpoch = 0;
   final _changeListeners = StreamController<void>.broadcast();
   final Map<String, DateTime> _failedCooldowns = {};
+  void Function()? _registration;
 
   /// A stream that fires whenever the client's configuration changes.
   Stream<void> get onChange => _changeListeners.stream;
@@ -19,7 +20,11 @@ final class LspConfigurationManager {
   /// Binds configuration change listener to the server's workspace
   /// notifications.
   void bind() {
-    _server.workspace.onDidChangeConfiguration((params, context) async {
+    if (_registration != null) {
+      return;
+    }
+    _registration =
+        _server.workspace.onDidChangeConfiguration((params, context) async {
       // Configuration changed on the client: invalidate cache, clear cooldowns,
       // and notify listeners
       _cacheEpoch++;
@@ -27,6 +32,12 @@ final class LspConfigurationManager {
       _failedCooldowns.clear();
       _changeListeners.add(null);
     });
+  }
+
+  /// Unbinds the configuration change listener.
+  void unbind() {
+    _registration?.call();
+    _registration = null;
   }
 
   /// Retrieves the value of the specified [section] from the client,
@@ -56,13 +67,11 @@ final class LspConfigurationManager {
 
       // Verify that the epoch hasn't changed (e.g., config wasn't cleared)
       // during the asynchronous network call before caching.
-      if (results.isNotEmpty) {
-        _failedCooldowns.remove(section);
-        if (_cacheEpoch == startEpoch) {
-          final val = results.first as T?;
-          _cache[section] = val;
-          return val;
-        }
+      _failedCooldowns.remove(section);
+      if (_cacheEpoch == startEpoch) {
+        final val = results.isNotEmpty ? results.first as T? : null;
+        _cache[section] = val;
+        return val;
       }
     } on Object catch (_) {
       // Apply a cooldown of 5 seconds before allowing a retry for this section
@@ -74,6 +83,9 @@ final class LspConfigurationManager {
     return null;
   }
 
-  /// Closes change streams.
-  void close() => _changeListeners.close();
+  /// Closes change streams and unbinds listeners.
+  void close() {
+    unbind();
+    unawaited(_changeListeners.close());
+  }
 }

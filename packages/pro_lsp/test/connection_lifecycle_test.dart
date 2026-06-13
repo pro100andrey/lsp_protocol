@@ -19,7 +19,9 @@ void main() {
         clientIncoming.stream,
         clientOutgoing.sink,
       );
-      connection = LspConnection(serverChannel);
+      connection = LspConnection(
+        serverChannel.transform(jsonDocument),
+      );
     });
 
     tearDown(() async {
@@ -396,11 +398,67 @@ void main() {
           final error = hoverResp['error'] as Map<String, dynamic>;
           expect(error['code'], -32603); // InternalError
           expect(error['message'], contains('Simulated crash'));
+          final errorData = error['data'] as Map<String, dynamic>?;
+          expect(errorData?['stackTrace'], isNull);
 
           await connection.close();
           await listenFuture;
         },
       );
+
+      test('handles unmodifiable params map without crashing', () async {
+        final incoming = StreamController<Object?>.broadcast();
+        final outgoing = StreamController<Object?>.broadcast();
+        final channel = StreamChannel<Object?>(incoming.stream, outgoing.sink);
+        final conn = LspConnection(channel)
+          ..registerRequestHandler(
+            RequestMethod.initialize,
+            (params, context) async => <String, dynamic>{},
+          )
+          ..registerRequestHandler(
+            RequestMethod.hover,
+            (params, context) async {
+              expect(params, isA<Map<Object?, Object?>>());
+              final map = params as Map<Object?, Object?>?;
+              expect(map, isNotNull);
+              expect(context.id, 2);
+              expect(map!.containsKey('_requestId'), isFalse);
+              return 'ok';
+            },
+          );
+
+        unawaited(conn.listen());
+
+        // Transition state to initialized so hover is allowed
+        incoming.add(<String, dynamic>{
+          'jsonrpc': '2.0',
+          'id': 1,
+          'method': 'initialize',
+          'params': <String, dynamic>{},
+        });
+        await Future<void>.delayed(const Duration(milliseconds: 10));
+
+        // Send hover with immutable params
+        incoming.add(<String, dynamic>{
+          'jsonrpc': '2.0',
+          'id': 2,
+          'method': 'textDocument/hover',
+          'params': Map<String, Object?>.unmodifiable(
+            <String, Object?>{'foo': 'bar'},
+          ),
+        });
+
+        final response = await outgoing.stream.first;
+        expect(response, <String, dynamic>{
+          'jsonrpc': '2.0',
+          'id': 2,
+          'result': 'ok',
+        });
+
+        await conn.close();
+        await incoming.close();
+        await outgoing.close();
+      });
     });
   });
 }

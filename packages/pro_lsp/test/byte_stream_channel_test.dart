@@ -10,7 +10,7 @@ void main() {
     late StreamController<List<int>> incomingController;
     late StreamController<List<int>> outgoingController;
     late StreamChannel<List<int>> byteChannel;
-    late StreamChannel<String> lspChannel;
+    late StreamChannel<Object?> lspChannel;
 
     setUp(() {
       incomingController = StreamController<List<int>>.broadcast();
@@ -33,7 +33,7 @@ void main() {
       final headerStr = 'Content-Length: ${bodyBytes.length}\r\n\r\n';
       final headerBytes = ascii.encode(headerStr);
 
-      final received = <String>[];
+      final received = <Object?>[];
       final done = lspChannel.stream.forEach(received.add);
 
       incomingController.add([...headerBytes, ...bodyBytes]);
@@ -41,7 +41,7 @@ void main() {
       await done;
 
       expect(received, hasLength(1));
-      expect(received[0], message);
+      expect(received[0], jsonDecode(message));
     });
 
     test('parses a message with lowercase content-length', () async {
@@ -50,7 +50,7 @@ void main() {
       final headerStr = 'content-length: ${bodyBytes.length}\r\n\r\n';
       final headerBytes = ascii.encode(headerStr);
 
-      final received = <String>[];
+      final received = <Object?>[];
       final done = lspChannel.stream.forEach(received.add);
 
       incomingController.add([...headerBytes, ...bodyBytes]);
@@ -58,7 +58,7 @@ void main() {
       await done;
 
       expect(received, hasLength(1));
-      expect(received[0], message);
+      expect(received[0], jsonDecode(message));
     });
 
     test('parses multiple headers in framing', () async {
@@ -69,7 +69,7 @@ void main() {
           'Content-Length: ${bodyBytes.length}\r\n\r\n';
       final headerBytes = ascii.encode(headerStr);
 
-      final received = <String>[];
+      final received = <Object?>[];
       final done = lspChannel.stream.forEach(received.add);
 
       incomingController.add([...headerBytes, ...bodyBytes]);
@@ -77,7 +77,7 @@ void main() {
       await done;
 
       expect(received, hasLength(1));
-      expect(received[0], message);
+      expect(received[0], jsonDecode(message));
     });
 
     test('parses multiple sequential messages', () async {
@@ -92,7 +92,7 @@ void main() {
       final headerStr2 = 'Content-Length: ${bodyBytes2.length}\r\n\r\n';
       final frame2 = [...ascii.encode(headerStr2), ...bodyBytes2];
 
-      final received = <String>[];
+      final received = <Object?>[];
       final done = lspChannel.stream.forEach(received.add);
 
       // Send in parts to test buffer accumulation
@@ -105,16 +105,17 @@ void main() {
       await done;
 
       expect(received, hasLength(2));
-      expect(received[0], message1);
-      expect(received[1], message2);
+      expect(received[0], jsonDecode(message1));
+      expect(received[1], jsonDecode(message2));
     });
 
     test('encodes and writes outgoing messages with header', () async {
-      const message = '{"jsonrpc":"2.0","result":"ok"}';
+      const messageMap = {'jsonrpc': '2.0', 'result': 'ok'};
+      final message = jsonEncode(messageMap);
       final writtenBytesList = <List<int>>[];
       outgoingController.stream.listen(writtenBytesList.add);
 
-      lspChannel.sink.add(message);
+      lspChannel.sink.add(messageMap);
       await lspChannel.sink.close();
 
       // Concatenate all chunks written to the channel
@@ -125,6 +126,59 @@ void main() {
       final expectedHeader = 'Content-Length: ${bodyBytes.length}\r\n\r\n';
 
       expect(decoded, '$expectedHeader$message');
+    });
+
+    test(
+        'throws FormatException and cancels subscription '
+        'if Content-Length exceeds limit', () async {
+      const headerStr = 'Content-Length: 52428801\r\n\r\n';
+      final headerBytes = ascii.encode(headerStr);
+
+      Object? caughtError;
+      final completer = Completer<void>();
+      lspChannel.stream.listen(
+        (_) {},
+        onError: (Object e) {
+          caughtError = e;
+        },
+        onDone: completer.complete,
+      );
+
+      incomingController.add(headerBytes);
+      await incomingController.close();
+
+      await completer.future;
+      expect(
+        caughtError,
+        isA<FormatException>().having(
+          (e) => e.toString(),
+          'message',
+          contains('exceeds limit'),
+        ),
+      );
+    });
+
+    test(
+        'throws FormatException and cancels subscription '
+        'on malformed header', () async {
+      const headerStr = 'Content-Length: abc\r\n\r\n';
+      final headerBytes = ascii.encode(headerStr);
+
+      Object? caughtError;
+      final completer = Completer<void>();
+      lspChannel.stream.listen(
+        (_) {},
+        onError: (Object e) {
+          caughtError = e;
+        },
+        onDone: completer.complete,
+      );
+
+      incomingController.add(headerBytes);
+      await incomingController.close();
+
+      await completer.future;
+      expect(caughtError, isA<FormatException>());
     });
   });
 }

@@ -274,10 +274,10 @@ enum UniquenessLevel {
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum MonikerKind {
   /// The moniker represent a symbol that is imported into a project
-  import('import'),
+  import_('import'),
 
   /// The moniker represents a symbol that is exported from a project
-  export('export'),
+  export_('export'),
 
   /// The moniker represents a symbol that is local to a project (e.g. a local
   /// variable of a function, a class not visible outside the project, ...)

@@ -145,26 +145,70 @@ String emitLibrary(Library lib) {
   }
 }
 
-/// Ensures an identifier is valid Dart (avoids reserved words).
-String safeIdentifier(String name) {
-  const reserved = {
-    'class',
-    'enum',
-    'null',
-    'void',
-    'async',
-    'await',
-    'yield',
-    'abstract',
-    'interface',
-    'operator',
-    'static',
-    'macro',
-    'value',
-  };
+const reservedDartKeywords = {
+  'class',
+  'enum',
+  'null',
+  'void',
+  'async',
+  'await',
+  'yield',
+  'abstract',
+  'interface',
+  'operator',
+  'static',
+  'macro',
+  'value',
+  'export',
+  'import',
+  'part',
+  'library',
+  'typedef',
+  'as',
+  'is',
+  'var',
+  'new',
+  'rethrow',
+  'break',
+  'continue',
+  'do',
+  'switch',
+  'case',
+  'default',
+  'deferred',
+  'assert',
+  'late',
+  'final',
+  'const',
+  'get',
+  'set',
+  'mixin',
+  'extends',
+  'implements',
+  'this',
+  'super',
+  'in',
+  'for',
+  'return',
+  'throw',
+  'try',
+  'catch',
+  'finally',
+  'if',
+  'else',
+  'while',
+  'show',
+  'hide',
+  'on',
+  'covariant',
+  'dynamic',
+  'with',
+  'required',
+};
 
-  return reserved.contains(name) ? '${name}_' : name;
-}
+/// Ensures an identifier is valid Dart (avoids reserved words).
+String safeIdentifier(String name) =>
+    reservedDartKeywords.contains(name) ? '${name}_' : name;
 
 /// Maps each item in [items] to a unique Dart identifier derived from its
 /// LSP method string (e.g. `textDocument/didOpen` → `didOpen`).

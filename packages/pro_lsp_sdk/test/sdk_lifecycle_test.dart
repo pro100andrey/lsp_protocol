@@ -12,8 +12,8 @@ void main() {
     late StreamController<List<int>> clientOutgoing;
     late StreamChannel<List<int>> serverChannel;
     late LspServer server;
-    late StreamChannel<String> clientLspChannel;
-    late Stream<String> clientLspStream;
+    late StreamChannel<Object?> clientLspChannel;
+    late Stream<Map<String, dynamic>> clientLspStream;
 
     setUp(() {
       clientIncoming = StreamController<List<int>>.broadcast();
@@ -31,7 +31,9 @@ void main() {
       clientLspChannel = LspByteStreamChannel.fromByteChannel(
         clientByteChannel,
       );
-      clientLspStream = clientLspChannel.stream.asBroadcastStream();
+      clientLspStream = clientLspChannel.stream
+          .cast<Map<String, dynamic>>()
+          .asBroadcastStream();
     });
 
     tearDown(() async {
@@ -186,7 +188,7 @@ void main() {
         final resolvedDiag = server.resolve<DiagnosticsManager>()
           ..debounceDuration = const Duration(milliseconds: 100);
 
-        final receivedMessages = <String>[];
+        final receivedMessages = <Map<String, dynamic>>[];
         final subscription = clientLspStream.listen(receivedMessages.add);
 
         // Publish diagnostics
@@ -208,8 +210,7 @@ void main() {
         await Future<void>.delayed(const Duration(milliseconds: 100));
         expect(receivedMessages, hasLength(1));
 
-        final diagParams =
-            jsonDecode(receivedMessages.first) as Map<String, dynamic>;
+        final diagParams = receivedMessages.first;
         expect(diagParams['method'], 'textDocument/publishDiagnostics');
         final params = diagParams['params'] as Map<String, dynamic>;
         expect(params['uri'], 'file:///test.dart');
@@ -220,8 +221,7 @@ void main() {
         await Future<void>.delayed(const Duration(milliseconds: 20));
 
         expect(receivedMessages, hasLength(2));
-        final clearParams =
-            jsonDecode(receivedMessages.last) as Map<String, dynamic>;
+        final clearParams = receivedMessages.last;
         final clearParamsParams = clearParams['params'] as Map<String, dynamic>;
         expect(clearParamsParams['diagnostics'] as List, isEmpty);
 
@@ -242,7 +242,7 @@ void main() {
 
         // Listen for workspace/configuration request from server and respond
         final subscription = clientLspStream.listen((msg) {
-          final json = jsonDecode(msg) as Map<String, dynamic>;
+          final json = msg;
           if (json['method'] == 'workspace/configuration') {
             sendClientMessage(
               jsonEncode(<String, dynamic>{
@@ -297,11 +297,11 @@ void main() {
 
         await performInitialization();
 
-        final receivedMessages = <String>[];
+        final receivedMessages = <Map<String, dynamic>>[];
         final subscription = clientLspStream.listen((msg) {
           receivedMessages.add(msg);
           // Respond success to registration request
-          final json = jsonDecode(msg) as Map<String, dynamic>;
+          final json = msg;
           if (json['id'] != null) {
             sendClientMessage(
               jsonEncode(<String, dynamic>{
@@ -323,8 +323,7 @@ void main() {
         await Future<void>.delayed(const Duration(milliseconds: 50));
 
         expect(receivedMessages, hasLength(1));
-        final regReq =
-            jsonDecode(receivedMessages.first) as Map<String, dynamic>;
+        final regReq = receivedMessages.first;
         expect(regReq['method'], 'client/registerCapability');
         final regParams = regReq['params'] as Map<String, dynamic>;
         final registrations = regParams['registrations'] as List<dynamic>;
@@ -339,8 +338,7 @@ void main() {
         await Future<void>.delayed(const Duration(milliseconds: 50));
 
         expect(receivedMessages, hasLength(2));
-        final unregReq =
-            jsonDecode(receivedMessages.last) as Map<String, dynamic>;
+        final unregReq = receivedMessages.last;
         expect(unregReq['method'], 'client/unregisterCapability');
         final unregParams = unregReq['params'] as Map<String, dynamic>;
         final unregistrations =

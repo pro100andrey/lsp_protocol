@@ -30,7 +30,7 @@ extension LspStateExtension on LspState {
       case .uninitialized:
         return method == .initialize;
       case .initializing:
-        return method == .initialize;
+        return false;
       case .initialized:
         // initialize is not allowed after we are initialized
         return method != .initialize;

@@ -108,4 +108,35 @@ void main() {
       expect(rpc.data, {'key': 'value'});
     });
   });
+
+  group('parseParams', () {
+    test('successfully parses non-null map', () {
+      final result = parseParams<Map<String, dynamic>>(
+        {'key': 'value'},
+        (json) => json,
+      );
+      expect(result, {'key': 'value'});
+    });
+
+    test('successfully parses null map as empty map', () {
+      final result = parseParams<Map<String, dynamic>>(
+        null,
+        (json) => json,
+      );
+      expect(result, isEmpty);
+    });
+
+    test('throws LspException.invalidParams on invalid types', () {
+      expect(
+        () => parseParams<Map<String, dynamic>>('not-a-map', (json) => json),
+        throwsA(
+          isA<LspException>().having(
+            (e) => e.code,
+            'code',
+            LspErrorCodes.invalidParams,
+          ),
+        ),
+      );
+    });
+  });
 }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:pro_lsp/pro_lsp.dart';
 import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
@@ -12,8 +11,8 @@ void main() {
     late StreamController<List<int>> clientOutgoing;
     late StreamChannel<List<int>> serverChannel;
     late LspConnection connection;
-    late StreamChannel<String> clientLspChannel;
-    late Stream<String> clientLspStream;
+    late StreamChannel<Object?> clientLspChannel;
+    late Stream<Map<String, dynamic>> clientLspStream;
 
     setUp(() {
       clientIncoming = StreamController<List<int>>.broadcast();
@@ -32,7 +31,9 @@ void main() {
       clientLspChannel = LspByteStreamChannel.fromByteChannel(
         clientByteChannel,
       );
-      clientLspStream = clientLspChannel.stream.asBroadcastStream();
+      clientLspStream = clientLspChannel.stream
+          .cast<Map<String, dynamic>>()
+          .asBroadcastStream();
     });
 
     tearDown(() async {
@@ -55,13 +56,13 @@ void main() {
 
       await Future<void>.delayed(const Duration(milliseconds: 100));
 
-      final messages = <String>[];
+      final messages = <Map<String, dynamic>>[];
       final sub = clientLspStream.listen(messages.add);
       await Future<void>.delayed(const Duration(milliseconds: 100));
       await sub.cancel();
 
       expect(messages, hasLength(1));
-      final msg = jsonDecode(messages.first) as Map<String, dynamic>;
+      final msg = messages.first;
       expect(msg['method'], r'$/progress');
       final params = msg['params'] as Map<String, dynamic>;
       expect(params['token'], 'token-1');
@@ -74,20 +75,21 @@ void main() {
     });
 
     test('report sends correct notification', () async {
-      final _ = LspProgress(
+      final messages = <Map<String, dynamic>>[];
+      final sub = clientLspStream.listen(messages.add);
+
+      final progress = LspProgress(
         connection,
         const ProgressToken.string('token-1'),
-      )..report(message: 'Still working...', percentage: 75);
+      );
+      await progress.begin(title: 'Title');
+      progress.report(message: 'Still working...', percentage: 75);
 
-      await Future<void>.delayed(const Duration(milliseconds: 100));
-
-      final messages = <String>[];
-      final sub = clientLspStream.listen(messages.add);
       await Future<void>.delayed(const Duration(milliseconds: 100));
       await sub.cancel();
 
-      expect(messages, hasLength(1));
-      final msg = jsonDecode(messages.first) as Map<String, dynamic>;
+      expect(messages, hasLength(2));
+      final msg = messages[1];
       expect(msg['method'], r'$/progress');
       final params = msg['params'] as Map<String, dynamic>;
       expect(params['token'], 'token-1');
@@ -98,18 +100,21 @@ void main() {
     });
 
     test('end sends correct notification', () async {
-      final _ = LspProgress(
+      final messages = <Map<String, dynamic>>[];
+      final sub = clientLspStream.listen(messages.add);
+
+      final progress = LspProgress(
         connection,
         const ProgressToken.string('token-1'),
-      )..end(message: 'Done!');
+      );
+      await progress.begin(title: 'Title');
+      progress.end(message: 'Done!');
 
-      final messages = <String>[];
-      final sub = clientLspStream.listen(messages.add);
       await Future<void>.delayed(const Duration(milliseconds: 100));
       await sub.cancel();
 
-      expect(messages, hasLength(1));
-      final msg = jsonDecode(messages.first) as Map<String, dynamic>;
+      expect(messages, hasLength(2));
+      final msg = messages[1];
       expect(msg['method'], r'$/progress');
       final params = msg['params'] as Map<String, dynamic>;
       expect(params['token'], 'token-1');
@@ -127,13 +132,13 @@ void main() {
 
       await Future<void>.delayed(const Duration(milliseconds: 100));
 
-      final messages = <String>[];
+      final messages = <Map<String, dynamic>>[];
       final sub = clientLspStream.listen(messages.add);
       await Future<void>.delayed(const Duration(milliseconds: 100));
       await sub.cancel();
 
       expect(messages, hasLength(1));
-      final msg = jsonDecode(messages.first) as Map<String, dynamic>;
+      final msg = messages.first;
       final value =
           (msg['params'] as Map<String, dynamic>)['value']
               as Map<String, dynamic>;

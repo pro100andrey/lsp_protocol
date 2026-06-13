@@ -49,21 +49,19 @@ final class EmitterVisitor {
 
   static const _header = 'GENERATED — do not edit.';
 
-  static const _reservedDartIdentifiers = {
-    'null', 'default', 'void', 'dynamic', 'class', 'enum', 'switch', 'case', //
-    'break', 'continue', 'return', 'if', 'else', 'for', 'in', 'while', 'do', //
-    'try', 'catch', 'finally', 'throw', 'rethrow', 'assert', 'this', 'super', //
-    'extends', 'with', 'implements', 'mixin', 'import', 'export', 'part', //
-    'library', 'typedef',
-    'operator', 'get', 'set', 'static', 'final', 'const', 'late', 'required', //
-    'covariant', 'as', 'is', 'var', 'new', //
-  };
+
 
   /// All class names (including anonymous) — used to filter conflicting
   /// aliases.
   late final Set<String> _classNames = _resolved.classes
       .map((c) => c.name)
       .toSet();
+
+  late final Map<String, ResolvedClass> _classMap = {
+    for (final c in _resolved.classes) c.name: c,
+  };
+
+  final _allPropertiesCache = <String, List<ResolvedProperty>>{};
 
   /// Names of aliases emitted as sealed union classes (all union files
   /// combined).
@@ -428,6 +426,10 @@ final class EmitterVisitor {
     ResolvedClass cls, [
     Set<String>? visited,
   ]) {
+    if (_allPropertiesCache.containsKey(cls.name)) {
+      return _allPropertiesCache[cls.name]!;
+    }
+
     visited ??= {};
     if (!visited.add(cls.name)) {
       return [];
@@ -456,10 +458,14 @@ final class EmitterVisitor {
       }
     }
 
-    return [
+    final result = [
       ...inherited.where((p) => !ownNames.contains(p.name)),
       ...cls.properties,
     ];
+
+    visited.remove(cls.name);
+    _allPropertiesCache[cls.name] = result;
+    return result;
   }
 
   /// Builds a plain `@JsonSerializable` class for underscore-prefixed anonymous
@@ -1199,7 +1205,7 @@ final class EmitterVisitor {
     for (final item in uniqueItems) {
       final suffix = _variantSuffix(item, name);
       var constructorName = _toLowerCamelCase(suffix);
-      if (_reservedDartIdentifiers.contains(constructorName)) {
+      if (reservedDartKeywords.contains(constructorName)) {
         constructorName = '${constructorName}Value';
       }
 
@@ -1555,9 +1561,7 @@ final class EmitterVisitor {
     final actual = type.nonNull;
     final List<String> reqs;
     if (actual is ClassType) {
-      final cls = _resolved.classes.firstWhereOrNull(
-        (c) => c.name == actual.ref.name,
-      );
+      final cls = _classMap[actual.ref.name];
       reqs = cls != null
           ? [
               for (final p in cls.properties)

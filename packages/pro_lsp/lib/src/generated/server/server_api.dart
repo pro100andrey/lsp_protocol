@@ -634,11 +634,11 @@ class TextDocumentHandlers {
   }
 
   /// Registers handler for `textDocument/didOpen`.
-  void onDidOpen(
+  void Function() onDidOpen(
     Future<void> Function(DidOpenTextDocumentParams params, LspRequest context)
     handler,
   ) {
-    _connection.registerNotificationHandler(.textDocumentDidOpen, (
+    return _connection.registerNotificationHandler(.textDocumentDidOpen, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -648,14 +648,14 @@ class TextDocumentHandlers {
   }
 
   /// Registers handler for `textDocument/didChange`.
-  void onDidChange(
+  void Function() onDidChange(
     Future<void> Function(
       DidChangeTextDocumentParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.textDocumentDidChange, (
+    return _connection.registerNotificationHandler(.textDocumentDidChange, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -665,11 +665,11 @@ class TextDocumentHandlers {
   }
 
   /// Registers handler for `textDocument/didClose`.
-  void onDidClose(
+  void Function() onDidClose(
     Future<void> Function(DidCloseTextDocumentParams params, LspRequest context)
     handler,
   ) {
-    _connection.registerNotificationHandler(.textDocumentDidClose, (
+    return _connection.registerNotificationHandler(.textDocumentDidClose, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -679,11 +679,11 @@ class TextDocumentHandlers {
   }
 
   /// Registers handler for `textDocument/didSave`.
-  void onDidSave(
+  void Function() onDidSave(
     Future<void> Function(DidSaveTextDocumentParams params, LspRequest context)
     handler,
   ) {
-    _connection.registerNotificationHandler(.textDocumentDidSave, (
+    return _connection.registerNotificationHandler(.textDocumentDidSave, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -693,11 +693,11 @@ class TextDocumentHandlers {
   }
 
   /// Registers handler for `textDocument/willSave`.
-  void onWillSave(
+  void Function() onWillSave(
     Future<void> Function(WillSaveTextDocumentParams params, LspRequest context)
     handler,
   ) {
-    _connection.registerNotificationHandler(.willSave, (
+    return _connection.registerNotificationHandler(.willSave, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -861,14 +861,14 @@ class WorkspaceHandlers {
   }
 
   /// Registers handler for `workspace/didChangeWorkspaceFolders`.
-  void onDidChangeWorkspaceFolders(
+  void Function() onDidChangeWorkspaceFolders(
     Future<void> Function(
       DidChangeWorkspaceFoldersParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.didChangeWorkspaceFolders, (
+    return _connection.registerNotificationHandler(.didChangeWorkspaceFolders, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -878,10 +878,10 @@ class WorkspaceHandlers {
   }
 
   /// Registers handler for `workspace/didCreateFiles`.
-  void onDidCreateFiles(
+  void Function() onDidCreateFiles(
     Future<void> Function(CreateFilesParams params, LspRequest context) handler,
   ) {
-    _connection.registerNotificationHandler(.didCreateFiles, (
+    return _connection.registerNotificationHandler(.didCreateFiles, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -891,10 +891,10 @@ class WorkspaceHandlers {
   }
 
   /// Registers handler for `workspace/didRenameFiles`.
-  void onDidRenameFiles(
+  void Function() onDidRenameFiles(
     Future<void> Function(RenameFilesParams params, LspRequest context) handler,
   ) {
-    _connection.registerNotificationHandler(.didRenameFiles, (
+    return _connection.registerNotificationHandler(.didRenameFiles, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -904,10 +904,10 @@ class WorkspaceHandlers {
   }
 
   /// Registers handler for `workspace/didDeleteFiles`.
-  void onDidDeleteFiles(
+  void Function() onDidDeleteFiles(
     Future<void> Function(DeleteFilesParams params, LspRequest context) handler,
   ) {
-    _connection.registerNotificationHandler(.didDeleteFiles, (
+    return _connection.registerNotificationHandler(.didDeleteFiles, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -917,14 +917,14 @@ class WorkspaceHandlers {
   }
 
   /// Registers handler for `workspace/didChangeConfiguration`.
-  void onDidChangeConfiguration(
+  void Function() onDidChangeConfiguration(
     Future<void> Function(
       DidChangeConfigurationParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.didChangeConfiguration, (
+    return _connection.registerNotificationHandler(.didChangeConfiguration, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -934,14 +934,14 @@ class WorkspaceHandlers {
   }
 
   /// Registers handler for `workspace/didChangeWatchedFiles`.
-  void onDidChangeWatchedFiles(
+  void Function() onDidChangeWatchedFiles(
     Future<void> Function(
       DidChangeWatchedFilesParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.didChangeWatchedFiles, (
+    return _connection.registerNotificationHandler(.didChangeWatchedFiles, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1051,10 +1051,10 @@ class GeneralHandlers {
   }
 
   /// Registers handler for `initialized`.
-  void onInitialized(
+  void Function() onInitialized(
     Future<void> Function(InitializedParams params, LspRequest context) handler,
   ) {
-    _connection.registerNotificationHandler(.initialized, (
+    return _connection.registerNotificationHandler(.initialized, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1064,8 +1064,8 @@ class GeneralHandlers {
   }
 
   /// Registers handler for `exit`.
-  void onExit(Future<void> Function(LspRequest context) handler) {
-    _connection.registerNotificationHandler(.exit, (
+  void Function() onExit(Future<void> Function(LspRequest context) handler) {
+    return _connection.registerNotificationHandler(.exit, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1074,10 +1074,10 @@ class GeneralHandlers {
   }
 
   /// Registers handler for `$/setTrace`.
-  void onSetTrace(
+  void Function() onSetTrace(
     Future<void> Function(SetTraceParams params, LspRequest context) handler,
   ) {
-    _connection.registerNotificationHandler(.setTrace, (
+    return _connection.registerNotificationHandler(.setTrace, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1087,10 +1087,10 @@ class GeneralHandlers {
   }
 
   /// Registers handler for `$/cancelRequest`.
-  void onCancelRequest(
+  void Function() onCancelRequest(
     Future<void> Function(CancelParams params, LspRequest context) handler,
   ) {
-    _connection.registerNotificationHandler(.cancelRequest, (
+    return _connection.registerNotificationHandler(.cancelRequest, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1100,10 +1100,10 @@ class GeneralHandlers {
   }
 
   /// Registers handler for `$/progress`.
-  void onProgress(
+  void Function() onProgress(
     Future<void> Function(ProgressParams params, LspRequest context) handler,
   ) {
-    _connection.registerNotificationHandler(.progress, (
+    return _connection.registerNotificationHandler(.progress, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1228,14 +1228,14 @@ class WindowHandlers {
   final LspConnection _connection;
 
   /// Registers handler for `window/workDoneProgress/cancel`.
-  void onWorkDoneProgressCancel(
+  void Function() onWorkDoneProgressCancel(
     Future<void> Function(
       WorkDoneProgressCancelParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.cancel, (
+    return _connection.registerNotificationHandler(.cancel, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1252,14 +1252,14 @@ class NotebookDocumentHandlers {
   final LspConnection _connection;
 
   /// Registers handler for `notebookDocument/didOpen`.
-  void onDidOpen(
+  void Function() onDidOpen(
     Future<void> Function(
       DidOpenNotebookDocumentParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.notebookDocumentDidOpen, (
+    return _connection.registerNotificationHandler(.notebookDocumentDidOpen, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1269,14 +1269,14 @@ class NotebookDocumentHandlers {
   }
 
   /// Registers handler for `notebookDocument/didChange`.
-  void onDidChange(
+  void Function() onDidChange(
     Future<void> Function(
       DidChangeNotebookDocumentParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.notebookDocumentDidChange, (
+    return _connection.registerNotificationHandler(.notebookDocumentDidChange, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1286,14 +1286,14 @@ class NotebookDocumentHandlers {
   }
 
   /// Registers handler for `notebookDocument/didSave`.
-  void onDidSave(
+  void Function() onDidSave(
     Future<void> Function(
       DidSaveNotebookDocumentParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.notebookDocumentDidSave, (
+    return _connection.registerNotificationHandler(.notebookDocumentDidSave, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1303,14 +1303,14 @@ class NotebookDocumentHandlers {
   }
 
   /// Registers handler for `notebookDocument/didClose`.
-  void onDidClose(
+  void Function() onDidClose(
     Future<void> Function(
       DidCloseNotebookDocumentParams params,
       LspRequest context,
     )
     handler,
   ) {
-    _connection.registerNotificationHandler(.notebookDocumentDidClose, (
+    return _connection.registerNotificationHandler(.notebookDocumentDidClose, (
       dynamic json,
       LspRequest context,
     ) async {
@@ -1329,10 +1329,12 @@ class WorkspaceSender {
   /// Sends the `workspace/workspaceFolders` request to the client.
   Future<List<WorkspaceFolder>?> workspaceFolders() async {
     final dynamic raw = await _connection.sendRequest(.workspaceFolders);
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(WorkspaceFolder.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(WorkspaceFolder.fromJson)
+              .toList();
   }
 
   /// Sends the `workspace/configuration` request to the client.

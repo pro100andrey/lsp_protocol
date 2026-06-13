@@ -1,5 +1,4 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:collection/collection.dart';
 
 import '../models/protocol.dart';
 import '../models/resolved_type.dart';
@@ -22,6 +21,24 @@ abstract class ApiVisitorBase {
       ).entries)
         e.key.method: e.value,
     };
+
+    _unionTypeNames = <String>{};
+    for (final req in resolved.requests) {
+      final resRef = req.result;
+      if (resRef != null && resRef is OrRef) {
+        final nonNullItems = resRef.items
+            .where((i) => !(i is BaseRef && i.name == 'null'))
+            .toList();
+        if (nonNullItems.length > 1) {
+          _unionTypeNames.add(requestResultUnionName(req.method));
+        }
+      }
+    }
+    for (final alias in resolved.aliases) {
+      if (alias.type is UnionType) {
+        _unionTypeNames.add(alias.name);
+      }
+    }
   }
 
   final ResolvedState resolved;
@@ -32,27 +49,9 @@ abstract class ApiVisitorBase {
   /// wire method → `NotificationMethod` enum member name.
   late final Map<String, String> notificationMethods;
 
-  bool isUnionType(String typeName) {
-    // Check if it's a synthesized request result union
-    for (final req in resolved.requests) {
-      final resRef = req.result;
-      if (resRef != null && resRef is OrRef) {
-        final nonNullItems = resRef.items
-            .where((i) => !(i is BaseRef && i.name == 'null'))
-            .toList();
-        if (nonNullItems.length > 1) {
-          if (requestResultUnionName(req.method) == typeName) {
-            return true;
-          }
-        }
-      }
-    }
-    final alias = resolved.aliases.firstWhereOrNull((a) => a.name == typeName);
-    if (alias != null && alias.type is UnionType) {
-      return true;
-    }
-    return false;
-  }
+  late final Set<String> _unionTypeNames;
+
+  bool isUnionType(String typeName) => _unionTypeNames.contains(typeName);
 
   String resultTypeName(MetaReference? result, String wireMethod) {
     if (result == null) {
@@ -205,16 +204,22 @@ abstract class ApiVisitorBase {
     if (baseType.startsWith('List<')) {
       final innerType = baseType.substring(5, baseType.length - 1);
       if (innerType == 'Object' || innerType == 'Object?') {
-        return [
-          refer('raw')
-              .asA(tList)
-              .property('cast')
-              .call([], {}, [tObject])
-              .property('toList')
-              .call([])
-              .returned
-              .statement,
-        ];
+        final castExpr = refer('raw')
+            .asA(tList)
+            .property('cast')
+            .call([], {}, [tObject])
+            .property('toList')
+            .call([]);
+        if (isNullable) {
+          return [
+            refer('raw')
+                .equalTo(literalNull)
+                .conditional(literalNull, castExpr)
+                .returned
+                .statement,
+          ];
+        }
+        return [castExpr.returned.statement];
       }
 
       final isInnerUnion = isUnionType(innerType);
@@ -227,30 +232,42 @@ abstract class ApiVisitorBase {
               innerType,
             ).newInstanceNamed('fromJson', [refer('e').asA(tObject)]).code,
         ).closure;
+        final mapExpr = refer('raw')
+            .asA(tList)
+            .property('map')
+            .call([mapClosure])
+            .property('toList')
+            .call([]);
+        if (isNullable) {
+          return [
+            refer('raw')
+                .equalTo(literalNull)
+                .conditional(literalNull, mapExpr)
+                .returned
+                .statement,
+          ];
+        }
+        return [mapExpr.returned.statement];
+      }
+
+      final castExpr = refer('raw')
+          .asA(tList)
+          .property('cast')
+          .call([], {}, [_jsonMapRef()])
+          .property('map')
+          .call([refer(innerType).property('fromJson')])
+          .property('toList')
+          .call([]);
+      if (isNullable) {
         return [
           refer('raw')
-              .asA(tList)
-              .property('map')
-              .call([mapClosure])
-              .property('toList')
-              .call([])
+              .equalTo(literalNull)
+              .conditional(literalNull, castExpr)
               .returned
               .statement,
         ];
       }
-
-      return [
-        refer('raw')
-            .asA(tList)
-            .property('cast')
-            .call([], {}, [_jsonMapRef()])
-            .property('map')
-            .call([refer(innerType).property('fromJson')])
-            .property('toList')
-            .call([])
-            .returned
-            .statement,
-      ];
+      return [castExpr.returned.statement];
     }
 
     final isUnion = isUnionType(baseType);

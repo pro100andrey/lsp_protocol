@@ -49,7 +49,8 @@ Future<Object?> Function(LspIncomingRequest) composeMiddlewares(
   Future<Object?> Function(LspIncomingRequest) target,
 ) {
   var handler = target;
-  for (final middleware in middlewares.reversed) {
+  for (var i = middlewares.length - 1; i >= 0; i--) {
+    final middleware = middlewares[i];
     final currentHandler = handler;
     handler = (request) => middleware(request, currentHandler);
   }

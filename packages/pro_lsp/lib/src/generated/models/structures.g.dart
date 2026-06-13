@@ -2019,8 +2019,8 @@ const _$UniquenessLevelEnumMap = {
 };
 
 const _$MonikerKindEnumMap = {
-  MonikerKind.import: 'import',
-  MonikerKind.export: 'export',
+  MonikerKind.import_: 'import',
+  MonikerKind.export_: 'export',
   MonikerKind.local: 'local',
 };
 

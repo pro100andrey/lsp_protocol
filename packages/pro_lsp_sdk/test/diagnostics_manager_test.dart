@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:pro_lsp/pro_lsp.dart';
 import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
@@ -13,8 +12,8 @@ void main() {
     late StreamChannel<List<int>> serverChannel;
     late LspServer server;
     late DiagnosticsManager diagnostics;
-    late StreamChannel<String> clientLspChannel;
-    late Stream<String> clientLspStream;
+    late StreamChannel<Object?> clientLspChannel;
+    late Stream<Map<String, dynamic>> clientLspStream;
 
     setUp(() {
       clientIncoming = StreamController<List<int>>.broadcast();
@@ -33,7 +32,9 @@ void main() {
       clientLspChannel = LspByteStreamChannel.fromByteChannel(
         clientByteChannel,
       );
-      clientLspStream = clientLspChannel.stream.asBroadcastStream();
+      clientLspStream = clientLspChannel.stream
+          .cast<Map<String, dynamic>>()
+          .asBroadcastStream();
     });
 
     tearDown(() async {
@@ -61,7 +62,7 @@ void main() {
     });
 
     test('multiple URIs are tracked independently', () async {
-      final messages = <String>[];
+      final messages = <Map<String, dynamic>>[];
       final sub = clientLspStream.listen(messages.add);
 
       // Publish diagnostics for two different URIs with short debounce
@@ -92,8 +93,8 @@ void main() {
 
       expect(messages, hasLength(2));
 
-      final msgA = jsonDecode(messages[0]) as Map<String, dynamic>;
-      final msgB = jsonDecode(messages[1]) as Map<String, dynamic>;
+      final msgA = messages[0];
+      final msgB = messages[1];
 
       final paramsA = msgA['params'] as Map<String, dynamic>;
       final paramsB = msgB['params'] as Map<String, dynamic>;
@@ -103,7 +104,7 @@ void main() {
     });
 
     test('clearing after publish sends empty diagnostics', () async {
-      final messages = <String>[];
+      final messages = <Map<String, dynamic>>[];
       final sub = clientLspStream.listen(messages.add);
 
       diagnostics
@@ -124,13 +125,13 @@ void main() {
       await sub.cancel();
 
       expect(messages, hasLength(1));
-      final msg = jsonDecode(messages.first) as Map<String, dynamic>;
+      final msg = messages.first;
       final params = msg['params'] as Map<String, dynamic>;
       expect(params['diagnostics'], isEmpty);
     });
 
     test('publish with zero debounce sends immediately', () async {
-      final messages = <String>[];
+      final messages = <Map<String, dynamic>>[];
       final sub = clientLspStream.listen(messages.add);
 
       diagnostics

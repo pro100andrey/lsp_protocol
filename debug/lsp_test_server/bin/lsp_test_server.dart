@@ -34,7 +34,7 @@ Future<void> _runSocket(int port) async {
     );
     final channel = StreamChannel<List<int>>(socket, socket);
     unawaited(
-      ServerRunner.fromChannel(channel).run().then((_) {
+      ServerRunner.fromChannel(channel).run().whenComplete(() {
         socket.destroy();
         stderr.writeln('[lsp_test_server] Client disconnected');
       }),

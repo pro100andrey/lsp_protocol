@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:stream_channel/stream_channel.dart';
 
-/// Creates a [StreamChannel<String>] that speaks the LSP byte-framing
+/// Creates a [StreamChannel<Object?>] that speaks the LSP byte-framing
 /// protocol (Content-Length headers) over an underlying byte channel.
 ///
 /// Typical usage (stdio transport):
@@ -16,21 +17,21 @@ final class LspByteStreamChannel {
   LspByteStreamChannel._();
 
   /// Wraps the process's stdin/stdout streams with LSP framing.
-  static StreamChannel<String> fromStdio() =>
+  static StreamChannel<Object?> fromStdio() =>
       fromByteChannel(StreamChannel<List<int>>(stdin, stdout));
 
   /// Wraps an arbitrary [StreamChannel<List<int>>] with LSP framing.
   ///
   /// Incoming bytes are parsed as LSP messages (Content-Length header + JSON
-  /// body) and emitted as [String] values on the returned channel's stream.
+  /// body) and emitted as [Object?] values on the returned channel's stream.
   ///
-  /// Outgoing [String] values are encoded with Content-Length framing and
+  /// Outgoing [Object?] values are encoded with Content-Length framing and
   /// passed to `channel.sink` as `List<int>` byte chunks.
-  static StreamChannel<String> fromByteChannel(
+  static StreamChannel<Object?> fromByteChannel(
     StreamChannel<List<int>> channel,
   ) {
     final parser = _Parser(channel.stream);
-    return StreamChannel<String>.withGuarantees(
+    return StreamChannel<Object?>.withGuarantees(
       parser.stream,
       _LspMessageSink(channel.sink),
     );
@@ -41,11 +42,11 @@ final class LspByteStreamChannel {
 // Incoming — Content-Length parser
 // ---------------------------------------------------------------------------
 
-/// Parses a [Stream<List<int>>] byte stream into LSP message strings.
+/// Parses a [Stream<List<int>>] byte stream into LSP message objects.
 ///
 /// Accumulates bytes in a buffer, detects the `\r\n\r\n` header terminator,
 /// extracts the Content-Length value, then emits the exact JSON body as a
-/// decoded [String].
+/// decoded [Object?].
 final class _Parser {
   _Parser(Stream<List<int>> stream) {
     _subscription = stream.listen(
@@ -55,8 +56,10 @@ final class _Parser {
     );
   }
 
-  final _streamCtl = StreamController<String>();
-  Stream<String> get stream => _streamCtl.stream;
+  static const int kMaxMessageSize = 50 * 1024 * 1024; // 50MB
+
+  final _streamCtl = StreamController<Object?>();
+  Stream<Object?> get stream => _streamCtl.stream;
 
   var _buffer = Uint8List(4096);
   var _readIndex = 0;
@@ -78,6 +81,10 @@ final class _Parser {
     if (_readIndex == _writeIndex) {
       _readIndex = 0;
       _writeIndex = 0;
+      // Shrink buffer if it had grown large but is now empty
+      if (_buffer.length > 4096) {
+        _buffer = Uint8List(4096);
+      }
     }
 
     final neededCapacity = _writeIndex + chunk.length;
@@ -110,12 +117,19 @@ final class _Parser {
     while (true) {
       final available = _writeIndex - _readIndex;
       if (_headerMode) {
-        final headerEnd = _findHeaderEnd();
+        final headerEnd = _findHeaderEnd(chunk.length);
         if (headerEnd == -1) {
           break; // Header is not yet complete
         }
 
-        _contentLength = _parseContentLengthFromBytes(headerEnd);
+        try {
+          _contentLength = _parseContentLengthFromBytes(headerEnd);
+        } on FormatException catch (e, st) {
+          _streamCtl.addError(e, st);
+          unawaited(_subscription.cancel());
+          unawaited(_streamCtl.close());
+          break;
+        }
         _readIndex = headerEnd;
         _headerMode = false;
       } else {
@@ -129,7 +143,12 @@ final class _Parser {
           _readIndex + _contentLength,
         );
 
-        _streamCtl.add(bodyStr);
+        try {
+          final bodyObj = jsonDecode(bodyStr);
+          _streamCtl.add(bodyObj);
+        } on FormatException catch (e, st) {
+          _streamCtl.addError(e, st);
+        }
 
         _readIndex += _contentLength;
         _headerMode = true;
@@ -138,9 +157,12 @@ final class _Parser {
     }
   }
 
-  int _findHeaderEnd() {
+  int _findHeaderEnd(int lastChunkLength) {
+    // Only search starting from the newly appended chunk
+    // (plus boundary overlap)
+    final start = math.max(_readIndex, _writeIndex - lastChunkLength - 3);
     final limit = _writeIndex - 3;
-    for (var i = _readIndex; i < limit; i++) {
+    for (var i = start; i < limit; i++) {
       if (_buffer[i] == 13 && // \r
           _buffer[i + 1] == 10 && // \n
           _buffer[i + 2] == 13 && // \r
@@ -153,25 +175,61 @@ final class _Parser {
   }
 
   int _parseContentLengthFromBytes(int headerEnd) {
-    final headerStr = String.fromCharCodes(_buffer, _readIndex, headerEnd);
-    const prefix = 'content-length:';
-    final index = headerStr.toLowerCase().indexOf(prefix);
-    if (index != -1) {
-      final start = index + prefix.length;
-      final end = headerStr.indexOf('\r\n', start);
-      final valueStr =
-          (end == -1
-                  ? headerStr.substring(start)
-                  : headerStr.substring(start, end))
-              .trim();
+    final limit = headerEnd - 15; // Length of 'content-length:'
+    int? prefixIndex;
 
-      final length = int.tryParse(valueStr);
-      if (length != null) {
-        return length;
+    for (var i = _readIndex; i <= limit; i++) {
+      if (_isContentLengthPrefix(i)) {
+        prefixIndex = i;
+        break;
       }
     }
 
+    if (prefixIndex != null) {
+      var start = prefixIndex + 15;
+      while (start < headerEnd &&
+          (_buffer[start] == 32 || _buffer[start] == 9)) {
+        start++;
+      }
+      var end = start;
+      while (end < headerEnd && _buffer[end] >= 48 && _buffer[end] <= 57) {
+        end++;
+      }
+      if (end > start) {
+        var length = 0;
+        for (var i = start; i < end; i++) {
+          length = length * 10 + (_buffer[i] - 48);
+          if (length > kMaxMessageSize) {
+            throw FormatException(
+              'Content-Length $length exceeds limit of $kMaxMessageSize bytes',
+            );
+          }
+        }
+        return length;
+      }
+    }
     throw const FormatException('Content-Length header missing or malformed');
+  }
+
+  bool _isContentLengthPrefix(int index) {
+    const chars = [
+      99, 111, 110, 116, 101, 110, 116, 45,
+      108, 101, 110, 103, 116, 104, 58
+    ];
+    for (var i = 0; i < chars.length; i++) {
+      final b = _buffer[index + i];
+      final target = chars[i];
+      if (target == 45 || target == 58) {
+        if (b != target) {
+          return false;
+        }
+      } else {
+        if ((b | 32) != target) {
+          return false; // Case-insensitive ASCII match
+        }
+      }
+    }
+    return true;
   }
 }
 
@@ -179,21 +237,19 @@ final class _Parser {
 // Outgoing — Content-Length writer
 // ---------------------------------------------------------------------------
 
-final class _LspMessageSink implements StreamSink<String> {
+final class _LspMessageSink implements StreamSink<Object?> {
   _LspMessageSink(this._byteSink);
 
   final StreamSink<List<int>> _byteSink;
+  static final _encoder = JsonUtf8Encoder();
 
   @override
-  void add(String event) {
-    final body = utf8.encode(event);
-    final headerStr = 'Content-Length: ${body.length}\r\n\r\n';
-    final headerLen = headerStr.length;
-    final frame = Uint8List(headerLen + body.length);
-    for (var i = 0; i < headerLen; i++) {
-      frame[i] = headerStr.codeUnitAt(i);
-    }
-    frame.setAll(headerLen, body);
+  void add(Object? event) {
+    final body = _encoder.convert(event);
+    final headerBytes = ascii.encode('Content-Length: ${body.length}\r\n\r\n');
+    final frame = Uint8List(headerBytes.length + body.length)
+      ..setAll(0, headerBytes)
+      ..setAll(headerBytes.length, body);
     _byteSink.add(frame);
   }
 
@@ -202,7 +258,7 @@ final class _LspMessageSink implements StreamSink<String> {
       _byteSink.addError(error, stackTrace);
 
   @override
-  Future<void> addStream(Stream<String> stream) async {
+  Future<void> addStream(Stream<Object?> stream) async {
     await for (final event in stream) {
       add(event);
     }

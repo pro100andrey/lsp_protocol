@@ -42,6 +42,8 @@ final class TextDocumentManager {
   final _didChangeController = StreamController<LspDocument>.broadcast();
   final _didCloseController = StreamController<LspDocument>.broadcast();
 
+  final List<void Function()> _registrations = [];
+
   /// Stream of documents that were opened.
   Stream<LspDocument> get onDidOpen => _didOpenController.stream;
 
@@ -53,65 +55,81 @@ final class TextDocumentManager {
 
   /// Binds listeners to the server's textDocument handlers to capture updates.
   void bind(LspServer server) {
-    server.textDocument.onDidOpen((params, context) async {
-      final item = params.textDocument;
-      final doc = LspDocument(
-        uri: item.uri,
-        languageId: item.languageId,
-        version: item.version,
-        text: item.text,
-      );
-      _documents[item.uri] = doc;
-      _didOpenController.add(doc);
-    });
-
-    server.textDocument.onDidChange((params, context) async {
-      final uri = params.textDocument.uri;
-      final changes = params.contentChanges;
-      if (changes.isEmpty) {
-        return;
-      }
-
-      final existingDoc = _documents[uri];
-      if (existingDoc != null) {
-        var text = existingDoc.text;
-        for (final change in changes) {
-          final fullText = change.asText;
-          if (fullText != null) {
-            text = fullText.text;
-          } else {
-            final rangeChange = change.asRangeRangeLengthText;
-            if (rangeChange != null) {
-              final startOffset =
-                  _positionToOffset(text, rangeChange.range.start);
-              final endOffset =
-                  _positionToOffset(text, rangeChange.range.end);
-              text = text.replaceRange(
-                startOffset,
-                endOffset,
-                rangeChange.text,
-              );
-            }
+    if (_registrations.isNotEmpty) {
+      return;
+    }
+    _registrations
+      ..add(
+        server.textDocument.onDidOpen((params, context) async {
+          final item = params.textDocument;
+          final doc = LspDocument(
+            uri: item.uri,
+            languageId: item.languageId,
+            version: item.version,
+            text: item.text,
+          );
+          _documents[item.uri] = doc;
+          _didOpenController.add(doc);
+        }),
+      )
+      ..add(
+        server.textDocument.onDidChange((params, context) async {
+          final uri = params.textDocument.uri;
+          final changes = params.contentChanges;
+          if (changes.isEmpty) {
+            return;
           }
-        }
 
-        final updated = LspDocument(
-          uri: uri,
-          languageId: existingDoc.languageId,
-          version: params.textDocument.version,
-          text: text,
-        );
-        _documents[uri] = updated;
-        _didChangeController.add(updated);
-      }
-    });
+          final existingDoc = _documents[uri];
+          if (existingDoc != null) {
+            var text = existingDoc.text;
+            for (final change in changes) {
+              final fullText = change.asText;
+              if (fullText != null) {
+                text = fullText.text;
+              } else {
+                final rangeChange = change.asRangeRangeLengthText;
+                if (rangeChange != null) {
+                  final startOffset =
+                      _positionToOffset(text, rangeChange.range.start);
+                  final endOffset =
+                      _positionToOffset(text, rangeChange.range.end);
+                  text = text.replaceRange(
+                    startOffset,
+                    endOffset,
+                    rangeChange.text,
+                  );
+                }
+              }
+            }
 
-    server.textDocument.onDidClose((params, context) async {
-      final doc = _documents.remove(params.textDocument.uri);
-      if (doc != null) {
-        _didCloseController.add(doc);
-      }
-    });
+            final updated = LspDocument(
+              uri: uri,
+              languageId: existingDoc.languageId,
+              version: params.textDocument.version,
+              text: text,
+            );
+            _documents[uri] = updated;
+            _didChangeController.add(updated);
+          }
+        }),
+      )
+      ..add(
+        server.textDocument.onDidClose((params, context) async {
+          final doc = _documents.remove(params.textDocument.uri);
+          if (doc != null) {
+            _didCloseController.add(doc);
+          }
+        }),
+      );
+  }
+
+  /// Unbinds document manager listeners from the server.
+  void unbind() {
+    for (final dispose in _registrations) {
+      dispose();
+    }
+    _registrations.clear();
   }
 
   /// Retrieves the document matching the given [uri].
@@ -120,8 +138,9 @@ final class TextDocumentManager {
   /// Returns all currently open documents.
   List<LspDocument> get all => _documents.values.toList();
 
-  /// Closes all event streams.
+  /// Closes all event streams and unbinds listeners.
   void close() {
+    unbind();
     unawaited(_didOpenController.close());
     unawaited(_didChangeController.close());
     unawaited(_didCloseController.close());
@@ -139,6 +158,11 @@ final class ClientDocumentManager {
   /// Binds this manager to an [LspClient] to enable automatic sync.
   void bind(LspClient client) {
     _client = client;
+  }
+
+  /// Unbinds this manager from the client.
+  void unbind() {
+    _client = null;
   }
 
   /// Opens a document and notifies the server via `textDocument/didOpen`.

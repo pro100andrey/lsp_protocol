@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:json_rpc_2/json_rpc_2.dart' as rpc;
 import 'package:stream_channel/stream_channel.dart';
@@ -8,34 +7,31 @@ import '../../pro_lsp.dart' show LspServer;
 import '../generated/models/methods.dart';
 import '../server/cancellation_token.dart';
 import '../server/lsp_request.dart';
-import '../server/lsp_server.dart' show LspServer;
 import '../server/lsp_state.dart';
 import '../server/middleware.dart';
 import 'lsp_exception.dart';
 
 /// Low-level LSP connection backed by a [rpc.Peer].
 ///
-/// Wraps a [StreamChannel<String>] carrying JSON-RPC 2.0 messages and exposes
+/// Wraps a [StreamChannel<Object?>] carrying JSON-RPC 2.0 messages and exposes
 /// typed helpers for registering method handlers and sending outgoing messages.
 ///
 /// [LspConnection] is the single dependency injected into all generated
 /// handler and sender classes. You rarely interact with it directly — the
 /// typed [LspServer] API is the preferred entry point.
 final class LspConnection {
-  LspConnection(StreamChannel<String> channel) {
+  LspConnection(StreamChannel<Object?> channel) {
     // Intercept incoming stream to extract request IDs and handle cancelRequest
     final decodedStream = channel.stream
         .map((event) {
           try {
-            final decoded = jsonDecode(event);
+            final decoded = event;
             if (decoded case {'id': final Object id, 'method': String _}) {
-              // Request: Inject request ID so handlers can map it to
-              // cancellation
+              // Request: Map request ID using Expando so handlers can map it to
+              // cancellation without mutating parameter maps.
               final params = decoded['params'];
-              if (params is Map) {
-                params['_requestId'] = id;
-              } else if (params == null) {
-                decoded['params'] = <String, Object?>{'_requestId': id};
+              if (params case Map() || List()) {
+                _requestIds[params!] = id;
               }
             } else if (decoded case {
               'method': final String method,
@@ -46,23 +42,21 @@ final class LspConnection {
             return decoded;
           } on Object catch (e) {
             // Send Parse Error response directly back to the client
-            channel.sink.add(
-              jsonEncode({
-                'jsonrpc': '2.0',
-                'error': {
-                  'code': LspErrorCodes.parseError,
-                  'message': 'Parse error: $e',
-                },
-                'id': null,
-              }),
-            );
+            channel.sink.add({
+              'jsonrpc': '2.0',
+              'error': {
+                'code': LspErrorCodes.parseError,
+                'message': 'Parse error: $e',
+              },
+              'id': null,
+            });
             return null;
           }
         })
         .where((event) => event != null);
 
     _peer = rpc.Peer.withoutJson(
-      StreamChannel<Object?>(decodedStream, _JsonSink(channel.sink)),
+      StreamChannel<Object?>(decodedStream, channel.sink),
     );
     _peer.registerFallback(_handleUnknownMethod);
 
@@ -73,12 +67,21 @@ final class LspConnection {
     );
   }
 
+  final _requestIds = Expando<Object>();
+
   late final rpc.Peer _peer;
 
   /// The set of LSP methods that have a registered handler.
   final Set<LSPMethod> registeredMethods = {};
 
   final Map<Type, Object> _services = {};
+
+  /// Multicast notification handlers map.
+  final _notificationHandlers =
+      <
+        String,
+        List<Future<void> Function(Object? params, LspRequest context)>
+      >{};
 
   /// Registers a service in the connection context.
   void register<T extends Object>(T service) {
@@ -159,19 +162,35 @@ final class LspConnection {
   // Handler registration
   // ---------------------------------------------------------------------------
 
-  void _registerHandler(
+  void Function()? _registerHandler(
     LSPMethod method, {
     required bool isRequest,
     required Future<Object?> Function(Object? params, LspRequest context)
     handler,
   }) {
     registeredMethods.add(method);
+
+    Future<void> Function(Object? params, LspRequest context)? multicastItem;
+
+    if (!isRequest) {
+      final methodStr = method.value;
+      final list = _notificationHandlers.putIfAbsent(methodStr, () => []);
+      multicastItem = (params, context) => handler(params, context);
+      list.add(multicastItem);
+      if (list.length > 1) {
+        return () {
+          list.remove(multicastItem);
+        };
+      }
+    }
+
     _peer.registerMethod(method.value, (rpc.Parameters params) async {
       final rawVal = params.value;
       Object? requestId;
-
-      if (isRequest && rawVal is Map) {
-        requestId = rawVal['_requestId'];
+      if (isRequest) {
+        if (rawVal case Map() || List()) {
+          requestId = _requestIds[rawVal as Object];
+        }
       }
 
       final token = isRequest && requestId != null
@@ -203,24 +222,57 @@ final class LspConnection {
         }
 
         final Object? response;
-        if (_middlewares.isEmpty) {
-          response = await runZoned(
-            () => handler(rawVal, context),
-            zoneValues: {#cancellationToken: token},
-          );
+        if (isRequest) {
+          if (_middlewares.isEmpty) {
+            response = await runZoned(
+              () => handler(rawVal, context),
+              zoneValues: {#cancellationToken: token},
+            );
+          } else {
+            final request = LspIncomingRequest(
+              method: method.value,
+              params: rawVal,
+              requestId: requestId,
+            );
+            response = await runZoned(
+              () => composeMiddlewares(
+                _middlewares,
+                (req) => handler(req.params, context),
+              )(request),
+              zoneValues: {#cancellationToken: token},
+            );
+          }
         } else {
-          final request = LspIncomingRequest(
-            method: method.value,
-            params: rawVal,
-            requestId: requestId,
-          );
-          response = await runZoned(
-            () => composeMiddlewares(
-              _middlewares,
-              (req) => handler(req.params, context),
-            )(request),
-            zoneValues: {#cancellationToken: token},
-          );
+          final handlers = _notificationHandlers[method.value] ?? [];
+          if (_middlewares.isEmpty) {
+            await runZoned(
+              () async {
+                for (final h in handlers) {
+                  await h(rawVal, context);
+                }
+              },
+              zoneValues: {#cancellationToken: token},
+            );
+          } else {
+            final request = LspIncomingRequest(
+              method: method.value,
+              params: rawVal,
+              requestId: requestId,
+            );
+            await runZoned(
+              () => composeMiddlewares(
+                _middlewares,
+                (req) async {
+                  for (final h in handlers) {
+                    await h(req.params, context);
+                  }
+                  return null;
+                },
+              )(request),
+              zoneValues: {#cancellationToken: token},
+            );
+          }
+          response = null;
         }
 
         // 3. Post-handler state changes / actions
@@ -251,14 +303,21 @@ final class LspConnection {
           LspErrorCodes.internalError,
           'Internal error processing '
           '${isRequest ? "request" : "notification"}: $e',
-          data: {'stackTrace': stackTrace.toString()},
         );
       } finally {
         if (requestId != null) {
           _activeCancellations.remove(requestId);
         }
+        token.dispose();
       }
     });
+
+    if (!isRequest) {
+      return () {
+        _notificationHandlers[method.value]?.remove(multicastItem);
+      };
+    }
+    return null;
   }
 
   /// Registers a handler for an LSP *request* (client → server).
@@ -276,7 +335,9 @@ final class LspConnection {
   /// [handler] receives the raw JSON value of the params field ([Object?]).
   /// Return value is ignored by the protocol.  Throw [LspException] to
   /// propagate as an RpcException (visible in logs on the sender side).
-  void registerNotificationHandler(
+  ///
+  /// Returns a function to unregister this handler.
+  void Function() registerNotificationHandler(
     NotificationMethod method,
     Future<void> Function(Object? params, LspRequest context) handler,
   ) => _registerHandler(
@@ -286,7 +347,7 @@ final class LspConnection {
       await handler(params, context);
       return null;
     },
-  );
+  )!;
 
   // ---------------------------------------------------------------------------
   // Outgoing
@@ -320,27 +381,4 @@ final class LspConnection {
       'Method not found: ${params.method}',
     );
   }
-}
-
-/// A custom sink that encodes outgoing objects as JSON strings.
-final class _JsonSink implements StreamSink<Object?> {
-  _JsonSink(this._stringSink);
-  final StreamSink<String> _stringSink;
-
-  @override
-  void add(Object? event) => _stringSink.add(jsonEncode(event));
-
-  @override
-  void addError(Object error, [StackTrace? stackTrace]) =>
-      _stringSink.addError(error, stackTrace);
-
-  @override
-  Future<void> addStream(Stream<Object?> stream) =>
-      _stringSink.addStream(stream.map(jsonEncode));
-
-  @override
-  Future<void> close() => _stringSink.close();
-
-  @override
-  Future<void> get done => _stringSink.done;
 }

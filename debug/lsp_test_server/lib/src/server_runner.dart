@@ -211,7 +211,7 @@ final class ServerRunner {
         return null;
       }
 
-      final lines = text.split('\n');
+      final lines = _splitLines(text);
       if (params.position.line >= lines.length) {
         return null;
       }
@@ -270,7 +270,7 @@ final class ServerRunner {
         return [];
       }
 
-      final lines = text.split('\n');
+      final lines = _splitLines(text);
       if (params.position.line >= lines.length) {
         return [];
       }
@@ -320,7 +320,7 @@ final class ServerRunner {
       }
 
       final symbols = <DocumentSymbol>[];
-      final lines = text.split('\n');
+      final lines = _splitLines(text);
 
       for (var i = 0; i < lines.length; i++) {
         final line = lines[i];
@@ -368,7 +368,7 @@ final class ServerRunner {
       for (final entry in _docService.documents.entries) {
         final uri = entry.key;
         final text = entry.value;
-        final lines = text.split('\n');
+        final lines = _splitLines(text);
 
         for (var i = 0; i < lines.length; i++) {
           final line = lines[i];
@@ -450,7 +450,7 @@ final class ServerRunner {
 
   void _publishDiagnostics(String uri, String text) {
     final diagnostics = <Diagnostic>[];
-    final lines = text.split('\n');
+    final lines = _splitLines(text);
 
     for (var i = 0; i < lines.length; i++) {
       final line = lines[i];
@@ -554,7 +554,16 @@ final class ServerRunner {
     return line.substring(start, end);
   }
 
-  bool _isWordCharacter(String char) => char.contains(RegExp('[a-zA-Z0-9_]'));
+  bool _isWordCharacter(String char) {
+    if (char.isEmpty) {
+      return false;
+    }
+    final code = char.codeUnitAt(0);
+    return (code >= 97 && code <= 122) || // a-z
+           (code >= 65 && code <= 90) ||  // A-Z
+           (code >= 48 && code <= 57) ||  // 0-9
+           code == 95;                    // _
+  }
 
   bool _isComment(String line) {
     final trimmed = line.trim();
@@ -588,4 +597,7 @@ final class ServerRunner {
     final char = position.character.clamp(0, maxChar);
     return offset + char;
   }
+
+  List<String> _splitLines(String text) =>
+      text.replaceAll('\r\n', '\n').split('\n');
 }

@@ -76,7 +76,9 @@ final class LspException implements Exception {
 /// Throws an [LspException.invalidParams] if parsing fails.
 T parseParams<T>(dynamic json, T Function(Map<String, dynamic> json) fromJson) {
   try {
-    return fromJson(json as Map<String, dynamic>);
+    final map =
+        json == null ? const <String, dynamic>{} : json as Map<String, dynamic>;
+    return fromJson(map);
   } catch (e) {
     throw LspException.invalidParams(
       'Invalid parameters for $T: $e',

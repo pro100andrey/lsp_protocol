@@ -188,9 +188,16 @@ final class LspServer {
   /// Starts processing incoming messages.
   ///
   /// Returns when the underlying channel closes (e.g. the client exits).
-  Future<void> listen() {
+  Future<void> listen() async {
+    if (_isListening) {
+      throw StateError('Server has already started listening.');
+    }
     _isListening = true;
-    return _connection.listen();
+    try {
+      await _connection.listen();
+    } finally {
+      await close();
+    }
   }
 
   /// Closes the connection and stops processing.

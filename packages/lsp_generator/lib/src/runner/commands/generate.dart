@@ -34,15 +34,16 @@ final class GenerateCommand extends Command<dynamic> {
     final outputPath = argResults?['output'] as String? ?? 'packages/pro_lsp';
     const lspVersion = '3.17';
 
-    await Future.wait([
-      fetchLSPModel(lspVersion, outputPath, logger).then((metaProtocol) {
-        final resolvedModel = resolveModel(metaProtocol);
-        generateCode(resolvedModel, outputPath);
-        generateServerApi(resolvedModel, outputPath);
-        generateClientApi(resolvedModel, outputPath);
-      }),
-      fetchLSPLicense(lspVersion, outputPath, logger),
-    ]);
+    final modelFuture = fetchLSPModel(lspVersion, outputPath, logger);
+    final licenseFuture = fetchLSPLicense(lspVersion, outputPath, logger);
+
+    final metaProtocol = await modelFuture;
+    final resolvedModel = resolveModel(metaProtocol);
+    generateCode(resolvedModel, outputPath);
+    generateServerApi(resolvedModel, outputPath);
+    generateClientApi(resolvedModel, outputPath);
+
+    await licenseFuture;
 
     await runBuildRunner(outputPath, logger);
     await runAnalyzer(outputPath, logger);

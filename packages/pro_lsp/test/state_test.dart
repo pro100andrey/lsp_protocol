@@ -21,12 +21,12 @@ void main() {
         );
       });
 
-      test('initializing allows only initialize', () {
+      test('initializing allows no requests', () {
         expect(
           LspState.initializing.isRequestAllowed(
             RequestMethod.initialize,
           ),
-          isTrue,
+          isFalse,
         );
         expect(
           LspState.initializing.isRequestAllowed(RequestMethod.hover),

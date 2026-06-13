@@ -122,5 +122,45 @@ void main() {
 
       await sub.cancel();
     });
+
+    test('unbind() cancels server notification subscription', () async {
+      server.general.onInitialize(
+        (params, _) async =>
+            const InitializeResult(capabilities: ServerCapabilities()),
+      );
+
+      unawaited(server.listen());
+      config.bind();
+
+      // Send initialize to transition state
+      const initReq =
+          '{"jsonrpc":"2.0","id":1,"method":"initialize",'
+          '"params":{"capabilities":{},"processId":null,"rootUri":null,'
+          '"workspaceFolders":null}}';
+      clientIncoming.add(
+        utf8.encode('Content-Length: ${initReq.length}\r\n\r\n$initReq'),
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 50));
+
+      // Unbind
+      config.unbind();
+
+      // Now send workspace/didChangeConfiguration, should NOT trigger onChange stream
+      var onChangeTriggered = false;
+      final sub = config.onChange.listen((_) => onChangeTriggered = true);
+
+      const changeNotification =
+          '{"jsonrpc":"2.0","method":"workspace/didChangeConfiguration","params":{}}';
+      clientIncoming.add(
+        utf8.encode(
+          'Content-Length: ${changeNotification.length}'
+          '\r\n\r\n$changeNotification',
+        ),
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 50));
+
+      expect(onChangeTriggered, isFalse);
+      await sub.cancel();
+    });
   });
 }

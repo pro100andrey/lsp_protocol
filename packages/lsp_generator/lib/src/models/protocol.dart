@@ -287,7 +287,7 @@ class IntOrStringSealedConverter
     } else if (json is String) {
       return EnumRawValue.string(raw: json);
     }
-    throw Exception(
+    throw FormatException(
       'Expected int or String for IntOrString, but got ${json.runtimeType}',
     );
   }

@@ -9,6 +9,15 @@ final class LspProgress {
   final LspConnection _connection;
   final ProgressToken _token;
 
+  var _isStarted = false;
+  var _isCompleted = false;
+
+  /// Whether the progress session has started.
+  bool get isStarted => _isStarted;
+
+  /// Whether the progress session has ended.
+  bool get isCompleted => _isCompleted;
+
   /// Sends the initial begin notification to the client.
   Future<void> begin({
     required String title,
@@ -16,6 +25,16 @@ final class LspProgress {
     int? percentage,
     bool? cancellable,
   }) async {
+    if (_isCompleted) {
+      throw StateError(
+        'Cannot begin a progress session that has already ended.',
+      );
+    }
+    if (_isStarted) {
+      throw StateError('Progress session has already started.');
+    }
+    _isStarted = true;
+
     final beginValue = WorkDoneProgressBegin(
       title: title,
       message: message,
@@ -26,7 +45,7 @@ final class LspProgress {
       NotificationMethod.progress,
       ProgressParams(
         token: _token,
-        value: LSPAny.fromJson(beginValue.toJson()),
+        value: LSPAny.fromJson(beginValue),
       ).toJson(),
     );
   }
@@ -37,6 +56,15 @@ final class LspProgress {
     int? percentage,
     bool? cancellable,
   }) {
+    if (!_isStarted) {
+      throw StateError('Cannot report progress before calling begin().');
+    }
+    if (_isCompleted) {
+      throw StateError(
+        'Cannot report progress on a session that has already ended.',
+      );
+    }
+
     final reportValue = WorkDoneProgressReport(
       message: message,
       percentage: percentage,
@@ -46,13 +74,21 @@ final class LspProgress {
       NotificationMethod.progress,
       ProgressParams(
         token: _token,
-        value: LSPAny.fromJson(reportValue.toJson()),
+        value: LSPAny.fromJson(reportValue),
       ).toJson(),
     );
   }
 
   /// Sends the final end notification to the client.
   void end({String? message}) {
+    if (!_isStarted) {
+      throw StateError('Cannot end progress before calling begin().');
+    }
+    if (_isCompleted) {
+      return;
+    }
+    _isCompleted = true;
+
     final endValue = WorkDoneProgressEnd(
       message: message,
     );
@@ -60,9 +96,17 @@ final class LspProgress {
       NotificationMethod.progress,
       ProgressParams(
         token: _token,
-        value: LSPAny.fromJson(endValue.toJson()),
+        value: LSPAny.fromJson(endValue),
       ).toJson(),
     );
+  }
+
+  /// Cancels the progress session, guaranteeing it is ended.
+  void cancel() {
+    if (!_isStarted || _isCompleted) {
+      return;
+    }
+    end(message: 'Cancelled');
   }
 }
 

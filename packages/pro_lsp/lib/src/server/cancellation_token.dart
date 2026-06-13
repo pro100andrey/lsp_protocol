@@ -25,6 +25,11 @@ final class CancellationToken {
     _onCancelled.close().ignore();
   }
 
+  /// Disposes the token, closing the stream controller.
+  void dispose() {
+    unawaited(_onCancelled.close());
+  }
+
   /// Throws an [LspException.requestCancelled] if the token has been cancelled.
   void throwIfCancelled() {
     if (_isCancelled) {

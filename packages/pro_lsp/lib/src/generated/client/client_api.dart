@@ -415,10 +415,12 @@ class TextDocumentSender {
       .foldingRange,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(FoldingRange.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(FoldingRange.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/declaration` request to the server.
@@ -438,10 +440,12 @@ class TextDocumentSender {
       .selectionRange,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(SelectionRange.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(SelectionRange.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/prepareCallHierarchy` request to the server.
@@ -452,10 +456,12 @@ class TextDocumentSender {
       .prepareCallHierarchy,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(CallHierarchyItem.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(CallHierarchyItem.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/semanticTokens/full` request to the server.
@@ -507,10 +513,12 @@ class TextDocumentSender {
       .moniker,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(Moniker.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(Moniker.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/prepareTypeHierarchy` request to the server.
@@ -521,10 +529,12 @@ class TextDocumentSender {
       .prepareTypeHierarchy,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(TypeHierarchyItem.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(TypeHierarchyItem.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/inlineValue` request to the server.
@@ -533,9 +543,11 @@ class TextDocumentSender {
       .inlineValue,
       params.toJson(),
     );
-    return (raw as List)
-        .map((e) => InlineValue.fromJson((e as Object)))
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .map((e) => InlineValue.fromJson((e as Object)))
+              .toList();
   }
 
   /// Sends the `textDocument/inlayHint` request to the server.
@@ -544,10 +556,12 @@ class TextDocumentSender {
       .inlayHint,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(InlayHint.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(InlayHint.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/diagnostic` request to the server.
@@ -580,10 +594,12 @@ class TextDocumentSender {
       .willSaveWaitUntil,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(TextEdit.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(TextEdit.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/completion` request to the server.
@@ -627,10 +643,12 @@ class TextDocumentSender {
       .references,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(Location.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(Location.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/documentHighlight` request to the server.
@@ -641,10 +659,12 @@ class TextDocumentSender {
       .documentHighlight,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(DocumentHighlight.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(DocumentHighlight.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/documentSymbol` request to the server.
@@ -664,7 +684,7 @@ class TextDocumentSender {
       .codeAction,
       params.toJson(),
     );
-    return (raw as List).cast<Object>().toList();
+    return raw == null ? null : (raw as List).cast<Object>().toList();
   }
 
   /// Sends the `textDocument/codeLens` request to the server.
@@ -673,10 +693,12 @@ class TextDocumentSender {
       .codeLens,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(CodeLens.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(CodeLens.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/documentLink` request to the server.
@@ -685,10 +707,12 @@ class TextDocumentSender {
       .documentLink,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(DocumentLink.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(DocumentLink.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/formatting` request to the server.
@@ -697,10 +721,12 @@ class TextDocumentSender {
       .formatting,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(TextEdit.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(TextEdit.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/rangeFormatting` request to the server.
@@ -711,10 +737,12 @@ class TextDocumentSender {
       .rangeFormatting,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(TextEdit.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(TextEdit.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/rangesFormatting` request to the server.
@@ -725,10 +753,12 @@ class TextDocumentSender {
       .rangesFormatting,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(TextEdit.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(TextEdit.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/onTypeFormatting` request to the server.
@@ -739,10 +769,12 @@ class TextDocumentSender {
       .onTypeFormatting,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(TextEdit.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(TextEdit.fromJson)
+              .toList();
   }
 
   /// Sends the `textDocument/rename` request to the server.
@@ -797,10 +829,12 @@ class CallHierarchySender {
       .incomingCalls,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(CallHierarchyIncomingCall.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(CallHierarchyIncomingCall.fromJson)
+              .toList();
   }
 
   /// Sends the `callHierarchy/outgoingCalls` request to the server.
@@ -811,10 +845,12 @@ class CallHierarchySender {
       .outgoingCalls,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(CallHierarchyOutgoingCall.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(CallHierarchyOutgoingCall.fromJson)
+              .toList();
   }
 }
 
@@ -922,10 +958,12 @@ class TypeHierarchySender {
       .supertypes,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(TypeHierarchyItem.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(TypeHierarchyItem.fromJson)
+              .toList();
   }
 
   /// Sends the `typeHierarchy/subtypes` request to the server.
@@ -936,10 +974,12 @@ class TypeHierarchySender {
       .subtypes,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, dynamic>>()
-        .map(TypeHierarchyItem.fromJson)
-        .toList();
+    return raw == null
+        ? null
+        : (raw as List)
+              .cast<Map<String, dynamic>>()
+              .map(TypeHierarchyItem.fromJson)
+              .toList();
   }
 }
 
