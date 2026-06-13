@@ -8,21 +8,51 @@ import '../../server/lsp_request.dart';
 import '../models/structures.dart';
 import '../models/unions.dart';
 
+/// Aggregates all outgoing sender classes.
+///
+/// Access via `LspClient.client.server`:
+/// ```dart
+/// client.server.workspace.didChangeConfiguration(...);
+/// ```
+extension type ClientToServerProxy(LspConnection _c) {
+  ClientTextDocumentSender get textDocument => ClientTextDocumentSender(_c);
+
+  ClientCallHierarchySender get callHierarchy => ClientCallHierarchySender(_c);
+
+  ClientWorkspaceSender get workspace => ClientWorkspaceSender(_c);
+
+  ClientTypeHierarchySender get typeHierarchy => ClientTypeHierarchySender(_c);
+
+  ClientInlayHintSender get inlayHint => ClientInlayHintSender(_c);
+
+  ClientGeneralSender get general => ClientGeneralSender(_c);
+
+  ClientCompletionItemSender get completionItem =>
+      ClientCompletionItemSender(_c);
+
+  ClientCodeActionSender get codeAction => ClientCodeActionSender(_c);
+
+  ClientWorkspaceSymbolSender get workspaceSymbol =>
+      ClientWorkspaceSymbolSender(_c);
+
+  ClientCodeLensSender get codeLens => ClientCodeLensSender(_c);
+
+  ClientDocumentLinkSender get documentLink => ClientDocumentLinkSender(_c);
+
+  ClientWindowSender get window => ClientWindowSender(_c);
+
+  ClientNotebookDocumentSender get notebookDocument =>
+      ClientNotebookDocumentSender(_c);
+}
+
 /// Registers incoming LSP handlers for the `workspace` namespace.
-class ClientWorkspaceHandlers {
-  ClientWorkspaceHandlers(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientWorkspaceHandlers(LspConnection _c) {
   /// Registers handler for `workspace/workspaceFolders`.
   void onWorkspaceFolders(
     Future<List<WorkspaceFolder>?> Function(LspRequest context) handler,
-  ) => _connection.registerRequestHandler(.workspaceFolders, (
-    json,
-    context,
-  ) async {
-    final r = await handler(context);
-    return r?.map((e) => e.toJson()).toList();
+  ) => _c.registerRequestHandler(.workspaceFolders, (j, c) async {
+    final result = await handler(c);
+    return result?.map((e) => e.toJson()).toList();
   });
 
   /// Registers handler for `workspace/configuration`.
@@ -32,73 +62,54 @@ class ClientWorkspaceHandlers {
       LspRequest context,
     )
     handler,
-  ) =>
-      _connection.registerRequestHandler(.configuration, (json, context) async {
-        final p = parseParams(json, ConfigurationParams.fromJson);
-        final r = await handler(p, context);
-        return r.map((e) => (e as dynamic).toJson()).toList();
-      });
+  ) => _c.registerRequestHandler(.configuration, (j, c) async {
+    final params = parseParams(j, ConfigurationParams.fromJson);
+    final result = await handler(params, c);
+    return result.map((e) => (e as dynamic).toJson()).toList();
+  });
 
   /// Registers handler for `workspace/foldingRange/refresh`.
   void onFoldingRangeRefresh(
     Future<void> Function(LspRequest context) handler,
-  ) => _connection.registerRequestHandler(.workspaceFoldingRangeRefresh, (
-    json,
-    context,
-  ) async {
-    await handler(context);
+  ) => _c.registerRequestHandler(.workspaceFoldingRangeRefresh, (j, c) async {
+    await handler(c);
     return null;
   });
 
   /// Registers handler for `workspace/semanticTokens/refresh`.
   void onSemanticTokensRefresh(
     Future<void> Function(LspRequest context) handler,
-  ) => _connection.registerRequestHandler(.workspaceSemanticTokensRefresh, (
-    json,
-    context,
-  ) async {
-    await handler(context);
+  ) => _c.registerRequestHandler(.workspaceSemanticTokensRefresh, (j, c) async {
+    await handler(c);
     return null;
   });
 
   /// Registers handler for `workspace/inlineValue/refresh`.
   void onInlineValueRefresh(
     Future<void> Function(LspRequest context) handler,
-  ) => _connection.registerRequestHandler(.workspaceInlineValueRefresh, (
-    json,
-    context,
-  ) async {
-    await handler(context);
+  ) => _c.registerRequestHandler(.workspaceInlineValueRefresh, (j, c) async {
+    await handler(c);
     return null;
   });
 
   /// Registers handler for `workspace/inlayHint/refresh`.
   void onInlayHintRefresh(Future<void> Function(LspRequest context) handler) =>
-      _connection.registerRequestHandler(.workspaceInlayHintRefresh, (
-        json,
-        context,
-      ) async {
-        await handler(context);
+      _c.registerRequestHandler(.workspaceInlayHintRefresh, (j, c) async {
+        await handler(c);
         return null;
       });
 
   /// Registers handler for `workspace/diagnostic/refresh`.
   void onDiagnosticRefresh(Future<void> Function(LspRequest context) handler) =>
-      _connection.registerRequestHandler(.workspaceDiagnosticRefresh, (
-        json,
-        context,
-      ) async {
-        await handler(context);
+      _c.registerRequestHandler(.workspaceDiagnosticRefresh, (j, c) async {
+        await handler(c);
         return null;
       });
 
   /// Registers handler for `workspace/codeLens/refresh`.
   void onCodeLensRefresh(Future<void> Function(LspRequest context) handler) =>
-      _connection.registerRequestHandler(.workspaceCodeLensRefresh, (
-        json,
-        context,
-      ) async {
-        await handler(context);
+      _c.registerRequestHandler(.workspaceCodeLensRefresh, (j, c) async {
+        await handler(c);
         return null;
       });
 
@@ -109,19 +120,15 @@ class ClientWorkspaceHandlers {
       LspRequest context,
     )
     handler,
-  ) => _connection.registerRequestHandler(.applyEdit, (json, context) async {
-    final p = parseParams(json, ApplyWorkspaceEditParams.fromJson);
-    final r = await handler(p, context);
-    return r.toJson();
+  ) => _c.registerRequestHandler(.applyEdit, (j, c) async {
+    final params = parseParams(j, ApplyWorkspaceEditParams.fromJson);
+    final result = await handler(params, c);
+    return result.toJson();
   });
 }
 
 /// Registers incoming LSP handlers for the `window` namespace.
-class ClientWindowHandlers {
-  ClientWindowHandlers(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientWindowHandlers(LspConnection _c) {
   /// Registers handler for `window/workDoneProgress/create`.
   void onWorkDoneProgressCreate(
     Future<void> Function(
@@ -129,9 +136,9 @@ class ClientWindowHandlers {
       LspRequest context,
     )
     handler,
-  ) => _connection.registerRequestHandler(.create, (json, context) async {
-    final p = parseParams(json, WorkDoneProgressCreateParams.fromJson);
-    await handler(p, context);
+  ) => _c.registerRequestHandler(.create, (j, c) async {
+    final params = parseParams(j, WorkDoneProgressCreateParams.fromJson);
+    await handler(params, c);
     return null;
   });
 
@@ -142,10 +149,10 @@ class ClientWindowHandlers {
       LspRequest context,
     )
     handler,
-  ) => _connection.registerRequestHandler(.showDocument, (json, context) async {
-    final p = parseParams(json, ShowDocumentParams.fromJson);
-    final r = await handler(p, context);
-    return r.toJson();
+  ) => _c.registerRequestHandler(.showDocument, (j, c) async {
+    final params = parseParams(j, ShowDocumentParams.fromJson);
+    final result = await handler(params, c);
+    return result.toJson();
   });
 
   /// Registers handler for `window/showMessageRequest`.
@@ -155,54 +162,38 @@ class ClientWindowHandlers {
       LspRequest context,
     )
     handler,
-  ) => _connection.registerRequestHandler(.showMessageRequest, (
-    json,
-    context,
-  ) async {
-    final p = parseParams(json, ShowMessageRequestParams.fromJson);
-    final r = await handler(p, context);
-    return r?.toJson();
+  ) => _c.registerRequestHandler(.showMessageRequest, (j, c) async {
+    final params = parseParams(j, ShowMessageRequestParams.fromJson);
+    final result = await handler(params, c);
+    return result?.toJson();
   });
 
   /// Registers handler for `window/showMessage`.
   void onShowMessage(
     Future<void> Function(ShowMessageParams params, LspRequest context) handler,
-  ) => _connection.registerNotificationHandler(.showMessage, (
-    json,
-    context,
-  ) async {
-    final p = parseParams(json, ShowMessageParams.fromJson);
-    await handler(p, context);
+  ) => _c.registerNotificationHandler(.showMessage, (j, c) async {
+    final params = parseParams(j, ShowMessageParams.fromJson);
+    await handler(params, c);
   });
 
   /// Registers handler for `window/logMessage`.
   void onLogMessage(
     Future<void> Function(LogMessageParams params, LspRequest context) handler,
-  ) => _connection.registerNotificationHandler(.logMessage, (
-    json,
-    context,
-  ) async {
-    final p = parseParams(json, LogMessageParams.fromJson);
-    await handler(p, context);
+  ) => _c.registerNotificationHandler(.logMessage, (j, c) async {
+    final params = parseParams(j, LogMessageParams.fromJson);
+    await handler(params, c);
   });
 }
 
 /// Registers incoming LSP handlers for the `client` namespace.
-class ClientClientHandlers {
-  ClientClientHandlers(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientClientHandlers(LspConnection _c) {
   /// Registers handler for `client/registerCapability`.
   void onRegisterCapability(
     Future<void> Function(RegistrationParams params, LspRequest context)
     handler,
-  ) => _connection.registerRequestHandler(.registerCapability, (
-    json,
-    context,
-  ) async {
-    final p = parseParams(json, RegistrationParams.fromJson);
-    await handler(p, context);
+  ) => _c.registerRequestHandler(.registerCapability, (j, c) async {
+    final params = parseParams(j, RegistrationParams.fromJson);
+    await handler(params, c);
     return null;
   });
 
@@ -210,100 +201,70 @@ class ClientClientHandlers {
   void onUnregisterCapability(
     Future<void> Function(UnregistrationParams params, LspRequest context)
     handler,
-  ) => _connection.registerRequestHandler(.unregisterCapability, (
-    json,
-    context,
-  ) async {
-    final p = parseParams(json, UnregistrationParams.fromJson);
-    await handler(p, context);
+  ) => _c.registerRequestHandler(.unregisterCapability, (j, c) async {
+    final params = parseParams(j, UnregistrationParams.fromJson);
+    await handler(params, c);
     return null;
   });
 }
 
 /// Registers incoming LSP handlers for the `telemetry` namespace.
-class ClientTelemetryHandlers {
-  ClientTelemetryHandlers(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientTelemetryHandlers(LspConnection _c) {
   /// Registers handler for `telemetry/event`.
   void onEvent(
     Future<void> Function(Object? params, LspRequest context) handler,
-  ) => _connection.registerNotificationHandler(.event, (json, context) async {
-    final p = json;
-    await handler(p, context);
+  ) => _c.registerNotificationHandler(.event, (j, c) async {
+    final params = j;
+    await handler(params, c);
   });
 }
 
 /// Registers incoming LSP handlers for the `textDocument` namespace.
-class ClientTextDocumentHandlers {
-  ClientTextDocumentHandlers(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientTextDocumentHandlers(LspConnection _c) {
   /// Registers handler for `textDocument/publishDiagnostics`.
   void onPublishDiagnostics(
     Future<void> Function(PublishDiagnosticsParams params, LspRequest context)
     handler,
-  ) => _connection.registerNotificationHandler(.publishDiagnostics, (
-    json,
-    context,
-  ) async {
-    final p = parseParams(json, PublishDiagnosticsParams.fromJson);
-    await handler(p, context);
+  ) => _c.registerNotificationHandler(.publishDiagnostics, (j, c) async {
+    final params = parseParams(j, PublishDiagnosticsParams.fromJson);
+    await handler(params, c);
   });
 }
 
 /// Registers incoming LSP handlers for the `general` namespace.
-class ClientGeneralHandlers {
-  ClientGeneralHandlers(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientGeneralHandlers(LspConnection _c) {
   /// Registers handler for `$/logTrace`.
   void onLogTrace(
     Future<void> Function(LogTraceParams params, LspRequest context) handler,
-  ) =>
-      _connection.registerNotificationHandler(.logTrace, (json, context) async {
-        final p = parseParams(json, LogTraceParams.fromJson);
-        await handler(p, context);
-      });
+  ) => _c.registerNotificationHandler(.logTrace, (j, c) async {
+    final params = parseParams(j, LogTraceParams.fromJson);
+    await handler(params, c);
+  });
 
   /// Registers handler for `$/cancelRequest`.
   void onCancelRequest(
     Future<void> Function(CancelParams params, LspRequest context) handler,
-  ) => _connection.registerNotificationHandler(.cancelRequest, (
-    json,
-    context,
-  ) async {
-    final p = parseParams(json, CancelParams.fromJson);
-    await handler(p, context);
+  ) => _c.registerNotificationHandler(.cancelRequest, (j, c) async {
+    final params = parseParams(j, CancelParams.fromJson);
+    await handler(params, c);
   });
 
   /// Registers handler for `$/progress`.
   void onProgress(
     Future<void> Function(ProgressParams params, LspRequest context) handler,
-  ) =>
-      _connection.registerNotificationHandler(.progress, (json, context) async {
-        final p = parseParams(json, ProgressParams.fromJson);
-        await handler(p, context);
-      });
+  ) => _c.registerNotificationHandler(.progress, (j, c) async {
+    final params = parseParams(j, ProgressParams.fromJson);
+    await handler(params, c);
+  });
 }
 
 /// Sends LSP messages to the server for the `textDocument` namespace.
-class ClientTextDocumentSender {
-  ClientTextDocumentSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientTextDocumentSender(LspConnection _c) {
   /// Sends the `textDocument/implementation` request to the server.
   Future<ImplementationResult?> implementation(
     ImplementationParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .implementation,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.implementation, params.toJson());
     return raw == null ? null : ImplementationResult.fromJson(raw as Object);
   }
 
@@ -311,10 +272,7 @@ class ClientTextDocumentSender {
   Future<TypeDefinitionResult?> typeDefinition(
     TypeDefinitionParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .typeDefinition,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.typeDefinition, params.toJson());
     return raw == null ? null : TypeDefinitionResult.fromJson(raw as Object);
   }
 
@@ -322,10 +280,7 @@ class ClientTextDocumentSender {
   Future<List<ColorInformation>> documentColor(
     DocumentColorParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .documentColor,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.documentColor, params.toJson());
     return (raw as List)
         .cast<Map<String, dynamic>>()
         .map(ColorInformation.fromJson)
@@ -336,7 +291,7 @@ class ClientTextDocumentSender {
   Future<List<ColorPresentation>> colorPresentation(
     ColorPresentationParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .colorPresentation,
       params.toJson(),
     );
@@ -348,10 +303,7 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/foldingRange` request to the server.
   Future<List<FoldingRange>?> foldingRange(FoldingRangeParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .foldingRange,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.foldingRange, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -362,10 +314,7 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/declaration` request to the server.
   Future<DeclarationResult?> declaration(DeclarationParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .declaration,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.declaration, params.toJson());
     return raw == null ? null : DeclarationResult.fromJson(raw as Object);
   }
 
@@ -373,10 +322,7 @@ class ClientTextDocumentSender {
   Future<List<SelectionRange>?> selectionRange(
     SelectionRangeParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .selectionRange,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.selectionRange, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -389,7 +335,7 @@ class ClientTextDocumentSender {
   Future<List<CallHierarchyItem>?> prepareCallHierarchy(
     CallHierarchyPrepareParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .prepareCallHierarchy,
       params.toJson(),
     );
@@ -405,7 +351,7 @@ class ClientTextDocumentSender {
   Future<SemanticTokens?> semanticTokensFull(
     SemanticTokensParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(.full, params.toJson());
+    final dynamic raw = await _c.sendRequest(.full, params.toJson());
     return raw == null
         ? null
         : SemanticTokens.fromJson(raw as Map<String, dynamic>);
@@ -415,7 +361,7 @@ class ClientTextDocumentSender {
   Future<SemanticTokensFullDeltaResult?> semanticTokensFullDelta(
     SemanticTokensDeltaParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(.delta, params.toJson());
+    final dynamic raw = await _c.sendRequest(.delta, params.toJson());
     return raw == null
         ? null
         : SemanticTokensFullDeltaResult.fromJson(raw as Object);
@@ -425,7 +371,7 @@ class ClientTextDocumentSender {
   Future<SemanticTokens?> semanticTokensRange(
     SemanticTokensRangeParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(.range, params.toJson());
+    final dynamic raw = await _c.sendRequest(.range, params.toJson());
     return raw == null
         ? null
         : SemanticTokens.fromJson(raw as Map<String, dynamic>);
@@ -435,7 +381,7 @@ class ClientTextDocumentSender {
   Future<LinkedEditingRanges?> linkedEditingRange(
     LinkedEditingRangeParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .linkedEditingRange,
       params.toJson(),
     );
@@ -446,10 +392,7 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/moniker` request to the server.
   Future<List<Moniker>?> moniker(MonikerParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .moniker,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.moniker, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -462,7 +405,7 @@ class ClientTextDocumentSender {
   Future<List<TypeHierarchyItem>?> prepareTypeHierarchy(
     TypeHierarchyPrepareParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .prepareTypeHierarchy,
       params.toJson(),
     );
@@ -476,10 +419,7 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/inlineValue` request to the server.
   Future<List<InlineValue>?> inlineValue(InlineValueParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .inlineValue,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.inlineValue, params.toJson());
     return raw == null
         ? null
         : (raw as List).map((e) => InlineValue.fromJson(e as Object)).toList();
@@ -487,10 +427,7 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/inlayHint` request to the server.
   Future<List<InlayHint>?> inlayHint(InlayHintParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .inlayHint,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.inlayHint, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -503,7 +440,7 @@ class ClientTextDocumentSender {
   Future<DocumentDiagnosticReport> diagnostic(
     DocumentDiagnosticParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .textDocumentDiagnostic,
       params.toJson(),
     );
@@ -514,7 +451,7 @@ class ClientTextDocumentSender {
   Future<InlineCompletionResult?> inlineCompletion(
     InlineCompletionParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .inlineCompletion,
       params.toJson(),
     );
@@ -525,7 +462,7 @@ class ClientTextDocumentSender {
   Future<List<TextEdit>?> willSaveWaitUntil(
     WillSaveTextDocumentParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .willSaveWaitUntil,
       params.toJson(),
     );
@@ -539,25 +476,19 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/completion` request to the server.
   Future<CompletionResult?> completion(CompletionParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .completion,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.completion, params.toJson());
     return raw == null ? null : CompletionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/hover` request to the server.
   Future<Hover?> hover(HoverParams params) async {
-    final dynamic raw = await _connection.sendRequest(.hover, params.toJson());
+    final dynamic raw = await _c.sendRequest(.hover, params.toJson());
     return raw == null ? null : Hover.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `textDocument/signatureHelp` request to the server.
   Future<SignatureHelp?> signatureHelp(SignatureHelpParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .signatureHelp,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.signatureHelp, params.toJson());
     return raw == null
         ? null
         : SignatureHelp.fromJson(raw as Map<String, dynamic>);
@@ -565,19 +496,13 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/definition` request to the server.
   Future<DefinitionResult?> definition(DefinitionParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .definition,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.definition, params.toJson());
     return raw == null ? null : DefinitionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/references` request to the server.
   Future<List<Location>?> references(ReferenceParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .references,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.references, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -590,7 +515,7 @@ class ClientTextDocumentSender {
   Future<List<DocumentHighlight>?> documentHighlight(
     DocumentHighlightParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .documentHighlight,
       params.toJson(),
     );
@@ -606,28 +531,19 @@ class ClientTextDocumentSender {
   Future<DocumentSymbolResult?> documentSymbol(
     DocumentSymbolParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .documentSymbol,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.documentSymbol, params.toJson());
     return raw == null ? null : DocumentSymbolResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/codeAction` request to the server.
   Future<List<Object>?> codeAction(CodeActionParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .codeAction,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.codeAction, params.toJson());
     return raw == null ? null : (raw as List).cast<Object>().toList();
   }
 
   /// Sends the `textDocument/codeLens` request to the server.
   Future<List<CodeLens>?> codeLens(CodeLensParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .codeLens,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.codeLens, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -638,10 +554,7 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/documentLink` request to the server.
   Future<List<DocumentLink>?> documentLink(DocumentLinkParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .documentLink,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.documentLink, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -652,10 +565,7 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/formatting` request to the server.
   Future<List<TextEdit>?> formatting(DocumentFormattingParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .formatting,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.formatting, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -668,10 +578,7 @@ class ClientTextDocumentSender {
   Future<List<TextEdit>?> rangeFormatting(
     DocumentRangeFormattingParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .rangeFormatting,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.rangeFormatting, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -684,7 +591,7 @@ class ClientTextDocumentSender {
   Future<List<TextEdit>?> rangesFormatting(
     DocumentRangesFormattingParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .rangesFormatting,
       params.toJson(),
     );
@@ -700,7 +607,7 @@ class ClientTextDocumentSender {
   Future<List<TextEdit>?> onTypeFormatting(
     DocumentOnTypeFormattingParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .onTypeFormatting,
       params.toJson(),
     );
@@ -714,7 +621,7 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/rename` request to the server.
   Future<WorkspaceEdit?> rename(RenameParams params) async {
-    final dynamic raw = await _connection.sendRequest(.rename, params.toJson());
+    final dynamic raw = await _c.sendRequest(.rename, params.toJson());
     return raw == null
         ? null
         : WorkspaceEdit.fromJson(raw as Map<String, dynamic>);
@@ -722,48 +629,38 @@ class ClientTextDocumentSender {
 
   /// Sends the `textDocument/prepareRename` request to the server.
   Future<PrepareRenameResult?> prepareRename(PrepareRenameParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .prepareRename,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.prepareRename, params.toJson());
     return raw == null ? null : PrepareRenameResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/didOpen` notification to the server.
   void didOpen(DidOpenTextDocumentParams params) =>
-      _connection.sendNotification(.textDocumentDidOpen, params.toJson());
+      _c.sendNotification(.textDocumentDidOpen, params.toJson());
 
   /// Sends the `textDocument/didChange` notification to the server.
   void didChange(DidChangeTextDocumentParams params) =>
-      _connection.sendNotification(.textDocumentDidChange, params.toJson());
+      _c.sendNotification(.textDocumentDidChange, params.toJson());
 
   /// Sends the `textDocument/didClose` notification to the server.
   void didClose(DidCloseTextDocumentParams params) =>
-      _connection.sendNotification(.textDocumentDidClose, params.toJson());
+      _c.sendNotification(.textDocumentDidClose, params.toJson());
 
   /// Sends the `textDocument/didSave` notification to the server.
   void didSave(DidSaveTextDocumentParams params) =>
-      _connection.sendNotification(.textDocumentDidSave, params.toJson());
+      _c.sendNotification(.textDocumentDidSave, params.toJson());
 
   /// Sends the `textDocument/willSave` notification to the server.
   void willSave(WillSaveTextDocumentParams params) =>
-      _connection.sendNotification(.willSave, params.toJson());
+      _c.sendNotification(.willSave, params.toJson());
 }
 
 /// Sends LSP messages to the server for the `callHierarchy` namespace.
-class ClientCallHierarchySender {
-  ClientCallHierarchySender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientCallHierarchySender(LspConnection _c) {
   /// Sends the `callHierarchy/incomingCalls` request to the server.
   Future<List<CallHierarchyIncomingCall>?> incomingCalls(
     CallHierarchyIncomingCallsParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .incomingCalls,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.incomingCalls, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -776,10 +673,7 @@ class ClientCallHierarchySender {
   Future<List<CallHierarchyOutgoingCall>?> outgoingCalls(
     CallHierarchyOutgoingCallsParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .outgoingCalls,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.outgoingCalls, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -790,17 +684,10 @@ class ClientCallHierarchySender {
 }
 
 /// Sends LSP messages to the server for the `workspace` namespace.
-class ClientWorkspaceSender {
-  ClientWorkspaceSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientWorkspaceSender(LspConnection _c) {
   /// Sends the `workspace/willCreateFiles` request to the server.
   Future<WorkspaceEdit?> willCreateFiles(CreateFilesParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .willCreateFiles,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.willCreateFiles, params.toJson());
     return raw == null
         ? null
         : WorkspaceEdit.fromJson(raw as Map<String, dynamic>);
@@ -808,10 +695,7 @@ class ClientWorkspaceSender {
 
   /// Sends the `workspace/willRenameFiles` request to the server.
   Future<WorkspaceEdit?> willRenameFiles(RenameFilesParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .willRenameFiles,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.willRenameFiles, params.toJson());
     return raw == null
         ? null
         : WorkspaceEdit.fromJson(raw as Map<String, dynamic>);
@@ -819,10 +703,7 @@ class ClientWorkspaceSender {
 
   /// Sends the `workspace/willDeleteFiles` request to the server.
   Future<WorkspaceEdit?> willDeleteFiles(DeleteFilesParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .willDeleteFiles,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.willDeleteFiles, params.toJson());
     return raw == null
         ? null
         : WorkspaceEdit.fromJson(raw as Map<String, dynamic>);
@@ -832,7 +713,7 @@ class ClientWorkspaceSender {
   Future<WorkspaceDiagnosticReport> diagnostic(
     WorkspaceDiagnosticParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .workspaceDiagnostic,
       params.toJson(),
     );
@@ -841,58 +722,48 @@ class ClientWorkspaceSender {
 
   /// Sends the `workspace/symbol` request to the server.
   Future<SymbolResult?> symbol(WorkspaceSymbolParams params) async {
-    final dynamic raw = await _connection.sendRequest(.symbol, params.toJson());
+    final dynamic raw = await _c.sendRequest(.symbol, params.toJson());
     return raw == null ? null : SymbolResult.fromJson(raw as Object);
   }
 
   /// Sends the `workspace/executeCommand` request to the server.
   Future<Object?> executeCommand(ExecuteCommandParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .executeCommand,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.executeCommand, params.toJson());
     return raw;
   }
 
   /// Sends the `workspace/didChangeWorkspaceFolders` notification to the server.
   void didChangeWorkspaceFolders(DidChangeWorkspaceFoldersParams params) =>
-      _connection.sendNotification(.didChangeWorkspaceFolders, params.toJson());
+      _c.sendNotification(.didChangeWorkspaceFolders, params.toJson());
 
   /// Sends the `workspace/didCreateFiles` notification to the server.
   void didCreateFiles(CreateFilesParams params) =>
-      _connection.sendNotification(.didCreateFiles, params.toJson());
+      _c.sendNotification(.didCreateFiles, params.toJson());
 
   /// Sends the `workspace/didRenameFiles` notification to the server.
   void didRenameFiles(RenameFilesParams params) =>
-      _connection.sendNotification(.didRenameFiles, params.toJson());
+      _c.sendNotification(.didRenameFiles, params.toJson());
 
   /// Sends the `workspace/didDeleteFiles` notification to the server.
   void didDeleteFiles(DeleteFilesParams params) =>
-      _connection.sendNotification(.didDeleteFiles, params.toJson());
+      _c.sendNotification(.didDeleteFiles, params.toJson());
 
   /// Sends the `workspace/didChangeConfiguration` notification to the server.
   void didChangeConfiguration(DidChangeConfigurationParams params) =>
-      _connection.sendNotification(.didChangeConfiguration, params.toJson());
+      _c.sendNotification(.didChangeConfiguration, params.toJson());
 
   /// Sends the `workspace/didChangeWatchedFiles` notification to the server.
   void didChangeWatchedFiles(DidChangeWatchedFilesParams params) =>
-      _connection.sendNotification(.didChangeWatchedFiles, params.toJson());
+      _c.sendNotification(.didChangeWatchedFiles, params.toJson());
 }
 
 /// Sends LSP messages to the server for the `typeHierarchy` namespace.
-class ClientTypeHierarchySender {
-  ClientTypeHierarchySender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientTypeHierarchySender(LspConnection _c) {
   /// Sends the `typeHierarchy/supertypes` request to the server.
   Future<List<TypeHierarchyItem>?> supertypes(
     TypeHierarchySupertypesParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .supertypes,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.supertypes, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -905,10 +776,7 @@ class ClientTypeHierarchySender {
   Future<List<TypeHierarchyItem>?> subtypes(
     TypeHierarchySubtypesParams params,
   ) async {
-    final dynamic raw = await _connection.sendRequest(
-      .subtypes,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.subtypes, params.toJson());
     return raw == null
         ? null
         : (raw as List)
@@ -919,14 +787,10 @@ class ClientTypeHierarchySender {
 }
 
 /// Sends LSP messages to the server for the `inlayHint` namespace.
-class ClientInlayHintSender {
-  ClientInlayHintSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientInlayHintSender(LspConnection _c) {
   /// Sends the `inlayHint/resolve` request to the server.
   Future<InlayHint> resolve(InlayHint params) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .inlayHintResolve,
       params.toJson(),
     );
@@ -935,54 +799,43 @@ class ClientInlayHintSender {
 }
 
 /// Sends LSP messages to the server for the `general` namespace.
-class ClientGeneralSender {
-  ClientGeneralSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientGeneralSender(LspConnection _c) {
   /// Sends the `initialize` request to the server.
   Future<InitializeResult> initialize(InitializeParams params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .initialize,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.initialize, params.toJson());
     return InitializeResult.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `shutdown` request to the server.
   Future<void> shutdown() async {
-    await _connection.sendRequest(.shutdown);
+    await _c.sendRequest(.shutdown);
   }
 
   /// Sends the `initialized` notification to the server.
   void initialized(InitializedParams params) =>
-      _connection.sendNotification(.initialized, params.toJson());
+      _c.sendNotification(.initialized, params.toJson());
 
   /// Sends the `exit` notification to the server.
-  void exit() => _connection.sendNotification(.exit);
+  void exit() => _c.sendNotification(.exit);
 
   /// Sends the `$/setTrace` notification to the server.
   void setTrace(SetTraceParams params) =>
-      _connection.sendNotification(.setTrace, params.toJson());
+      _c.sendNotification(.setTrace, params.toJson());
 
   /// Sends the `$/cancelRequest` notification to the server.
   void cancelRequest(CancelParams params) =>
-      _connection.sendNotification(.cancelRequest, params.toJson());
+      _c.sendNotification(.cancelRequest, params.toJson());
 
   /// Sends the `$/progress` notification to the server.
   void progress(ProgressParams params) =>
-      _connection.sendNotification(.progress, params.toJson());
+      _c.sendNotification(.progress, params.toJson());
 }
 
 /// Sends LSP messages to the server for the `completionItem` namespace.
-class ClientCompletionItemSender {
-  ClientCompletionItemSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientCompletionItemSender(LspConnection _c) {
   /// Sends the `completionItem/resolve` request to the server.
   Future<CompletionItem> resolve(CompletionItem params) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .completionItemResolve,
       params.toJson(),
     );
@@ -991,14 +844,10 @@ class ClientCompletionItemSender {
 }
 
 /// Sends LSP messages to the server for the `codeAction` namespace.
-class ClientCodeActionSender {
-  ClientCodeActionSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientCodeActionSender(LspConnection _c) {
   /// Sends the `codeAction/resolve` request to the server.
   Future<CodeAction> resolve(CodeAction params) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .codeActionResolve,
       params.toJson(),
     );
@@ -1007,14 +856,10 @@ class ClientCodeActionSender {
 }
 
 /// Sends LSP messages to the server for the `workspaceSymbol` namespace.
-class ClientWorkspaceSymbolSender {
-  ClientWorkspaceSymbolSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientWorkspaceSymbolSender(LspConnection _c) {
   /// Sends the `workspaceSymbol/resolve` request to the server.
   Future<WorkspaceSymbol> resolve(WorkspaceSymbol params) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .workspaceSymbolResolve,
       params.toJson(),
     );
@@ -1023,30 +868,19 @@ class ClientWorkspaceSymbolSender {
 }
 
 /// Sends LSP messages to the server for the `codeLens` namespace.
-class ClientCodeLensSender {
-  ClientCodeLensSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientCodeLensSender(LspConnection _c) {
   /// Sends the `codeLens/resolve` request to the server.
   Future<CodeLens> resolve(CodeLens params) async {
-    final dynamic raw = await _connection.sendRequest(
-      .codeLensResolve,
-      params.toJson(),
-    );
+    final dynamic raw = await _c.sendRequest(.codeLensResolve, params.toJson());
     return CodeLens.fromJson(raw as Map<String, dynamic>);
   }
 }
 
 /// Sends LSP messages to the server for the `documentLink` namespace.
-class ClientDocumentLinkSender {
-  ClientDocumentLinkSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientDocumentLinkSender(LspConnection _c) {
   /// Sends the `documentLink/resolve` request to the server.
   Future<DocumentLink> resolve(DocumentLink params) async {
-    final dynamic raw = await _connection.sendRequest(
+    final dynamic raw = await _c.sendRequest(
       .documentLinkResolve,
       params.toJson(),
     );
@@ -1055,73 +889,27 @@ class ClientDocumentLinkSender {
 }
 
 /// Sends LSP messages to the server for the `window` namespace.
-class ClientWindowSender {
-  ClientWindowSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientWindowSender(LspConnection _c) {
   /// Sends the `window/workDoneProgress/cancel` notification to the server.
   void workDoneProgressCancel(WorkDoneProgressCancelParams params) =>
-      _connection.sendNotification(.cancel, params.toJson());
+      _c.sendNotification(.cancel, params.toJson());
 }
 
 /// Sends LSP messages to the server for the `notebookDocument` namespace.
-class ClientNotebookDocumentSender {
-  ClientNotebookDocumentSender(this._connection);
-
-  final LspConnection _connection;
-
+extension type ClientNotebookDocumentSender(LspConnection _c) {
   /// Sends the `notebookDocument/didOpen` notification to the server.
   void didOpen(DidOpenNotebookDocumentParams params) =>
-      _connection.sendNotification(.notebookDocumentDidOpen, params.toJson());
+      _c.sendNotification(.notebookDocumentDidOpen, params.toJson());
 
   /// Sends the `notebookDocument/didChange` notification to the server.
   void didChange(DidChangeNotebookDocumentParams params) =>
-      _connection.sendNotification(.notebookDocumentDidChange, params.toJson());
+      _c.sendNotification(.notebookDocumentDidChange, params.toJson());
 
   /// Sends the `notebookDocument/didSave` notification to the server.
   void didSave(DidSaveNotebookDocumentParams params) =>
-      _connection.sendNotification(.notebookDocumentDidSave, params.toJson());
+      _c.sendNotification(.notebookDocumentDidSave, params.toJson());
 
   /// Sends the `notebookDocument/didClose` notification to the server.
   void didClose(DidCloseNotebookDocumentParams params) =>
-      _connection.sendNotification(.notebookDocumentDidClose, params.toJson());
-}
-
-/// Aggregates all outgoing sender classes.
-///
-/// Access via `LspClient.server`:
-/// ```dart
-/// client.server.textDocument.completion(CompletionParams(...));
-/// ```
-class ClientToServerProxy {
-  ClientToServerProxy(this._connection);
-
-  final LspConnection _connection;
-
-  late final textDocument = ClientTextDocumentSender(_connection);
-
-  late final callHierarchy = ClientCallHierarchySender(_connection);
-
-  late final workspace = ClientWorkspaceSender(_connection);
-
-  late final typeHierarchy = ClientTypeHierarchySender(_connection);
-
-  late final inlayHint = ClientInlayHintSender(_connection);
-
-  late final general = ClientGeneralSender(_connection);
-
-  late final completionItem = ClientCompletionItemSender(_connection);
-
-  late final codeAction = ClientCodeActionSender(_connection);
-
-  late final workspaceSymbol = ClientWorkspaceSymbolSender(_connection);
-
-  late final codeLens = ClientCodeLensSender(_connection);
-
-  late final documentLink = ClientDocumentLinkSender(_connection);
-
-  late final window = ClientWindowSender(_connection);
-
-  late final notebookDocument = ClientNotebookDocumentSender(_connection);
+      _c.sendNotification(.notebookDocumentDidClose, params.toJson());
 }

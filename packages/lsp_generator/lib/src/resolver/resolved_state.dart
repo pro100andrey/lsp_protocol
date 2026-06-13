@@ -1,19 +1,23 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../models/protocol.dart';
 import '../models/resolved_decl.dart';
 
-part 'resolved_state.freezed.dart';
+@immutable
+class ResolvedState {
+  const ResolvedState({
+    required this.registry,
+    required this.classes,
+    required this.enumerations,
+    required this.aliases,
+    this.notifications = const [],
+    this.requests = const [],
+  });
 
-@freezed
-abstract class ResolvedState with _$ResolvedState {
-  const factory ResolvedState({
-    /// Symbol table: declaration name → resolved declaration.
-    required Map<String, ResolvedDecl> registry,
-    required List<ResolvedClass> classes,
-    required List<ResolvedEnum> enumerations,
-    required List<ResolvedAlias> aliases,
-    @Default([]) List<MetaNotification> notifications,
-    @Default([]) List<MetaRequest> requests,
-  }) = _ResolvedState;
+  final Map<String, ResolvedDecl> registry;
+  final List<ResolvedClass> classes;
+  final List<ResolvedEnum> enumerations;
+  final List<ResolvedAlias> aliases;
+  final List<MetaNotification> notifications;
+  final List<MetaRequest> requests;
 }

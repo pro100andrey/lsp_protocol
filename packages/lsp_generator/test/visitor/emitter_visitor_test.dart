@@ -80,7 +80,7 @@ ResolvedState _stateWith({
   List<ResolvedEnum> enumerations = const [],
   List<ResolvedAlias> aliases = const [],
 }) => ResolvedState(
-  registry: {},
+  registry: const {},
   classes: classes,
   enumerations: enumerations,
   aliases: aliases,

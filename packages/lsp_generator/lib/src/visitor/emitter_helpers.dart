@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:meta/meta.dart';
+import '../models/protocol.dart';
 
 /// Adds helpers that complement [Expression] from `code_builder`.
 extension ExpressionX on Expression {
@@ -116,7 +117,6 @@ final tFreezed = refer('freezed');
 /// Common expression references.
 final eJson = refer('json');
 final eValue = refer('value');
-final eConnection = refer('_connection');
 final eParams = refer('params');
 
 /// Formats and emits a [Library] as a string.
@@ -223,4 +223,20 @@ String requestResultUnionName(String method) {
   final (_, dartName) = namespacedMethod(method);
   final capitalized = dartName[0].toUpperCase() + dartName.substring(1);
   return '${capitalized}Result';
+}
+
+String toLowerCamelCase(String name) =>
+    name.isEmpty ? name : name[0].toLowerCase() + name.substring(1);
+
+String capitalize(String s) =>
+    s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
+
+bool isRequestResultUnion(MetaReference? result) {
+  if (result is OrRef) {
+    final nonNullItems = result.items
+        .where((i) => !(i is BaseRef && i.name == 'null'))
+        .toList();
+    return nonNullItems.length > 1;
+  }
+  return false;
 }
