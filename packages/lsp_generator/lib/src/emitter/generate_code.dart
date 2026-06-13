@@ -65,18 +65,19 @@ void generateCode(ResolvedState resolved, String outputDir) {
       (b) => b
         ..comments.add('GENERATED — do not edit.')
         ..directives.addAll([
-          Directive.export(GeneratedPaths.modelExport(Files.structures)),
-          Directive.export(GeneratedPaths.modelExport(Files.enumerations)),
-          Directive.export(GeneratedPaths.modelExport(Files.aliases)),
-          Directive.export(GeneratedPaths.modelExport(Files.scalarUnions)),
-          Directive.export(GeneratedPaths.modelExport(Files.unions)),
-          Directive.export(GeneratedPaths.modelExport(Files.methods)),
-          Directive.export('src/client/lsp_client.dart'),
-          Directive.export('src/connection/lsp_connection.dart'),
-          Directive.export('src/connection/lsp_exception.dart'),
-          Directive.export('src/transport/lsp_byte_stream_channel.dart'),
+          .export(GeneratedPaths.modelExport(Files.structures)),
+          .export(GeneratedPaths.modelExport(Files.enumerations)),
+          .export(GeneratedPaths.modelExport(Files.aliases)),
+          .export(GeneratedPaths.modelExport(Files.scalarUnions)),
+          .export(GeneratedPaths.modelExport(Files.unions)),
+          .export(GeneratedPaths.modelExport(Files.methods)),
+          .export('src/client/lsp_client.dart'),
+          .export('src/connection/lsp_connection.dart'),
+          .export('src/connection/lsp_exception.dart'),
+          .export('src/transport/lsp_byte_stream_channel.dart'),
         ]),
     );
+    
     final clientBarrel = formatLibrary(clientBarrelLib);
     File('${dir.path}/lib/pro_lsp_client.dart').writeAsStringSync(clientBarrel);
   }

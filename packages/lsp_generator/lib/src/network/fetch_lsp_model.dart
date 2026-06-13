@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:mason_logger/mason_logger.dart';
 import 'package:path/path.dart' as p;
 
-import '../common/user_exception.dart';
+import '../common/cli_exception.dart';
 import '../models/protocol.dart';
 
 Future<MetaProtocol> fetchLSPModel(
@@ -28,7 +28,7 @@ Future<MetaProtocol> fetchLSPModel(
   } else {
     downloadProgress.fail('Failed to download: ${response.statusCode}');
 
-    throw UserException(
+    throw CliException(
       'Failed to download LSP meta-model for version $version.',
       reason: 'HTTP status code: ${response.statusCode}',
       code: 1,
@@ -56,7 +56,7 @@ Future<MetaProtocol> fetchLSPModel(
   } catch (e) {
     parserProgress.fail('Failed to parse LSP meta-model: $e');
 
-    throw UserException(
+    throw CliException(
       'Failed to parse LSP meta-model for version $version.',
       reason: 'JSON parsing error: $e',
       code: 1,

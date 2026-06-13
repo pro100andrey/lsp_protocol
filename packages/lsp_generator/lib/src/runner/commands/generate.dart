@@ -1,11 +1,9 @@
 import 'package:args/command_runner.dart';
 import 'package:mason_logger/mason_logger.dart';
 
-import '../../emitter/generate_client_api.dart';
+import '../../emitter/api_generator.dart';
 import '../../emitter/generate_code.dart';
-import '../../emitter/generate_server_api.dart';
-import '../../emitter/run_analyzer.dart';
-import '../../emitter/run_build_runner.dart';
+import '../../emitter/run_process.dart';
 import '../../network/fetch_lsp_license.dart';
 import '../../network/fetch_lsp_model.dart';
 import '../../resolver/resolve_model.dart';

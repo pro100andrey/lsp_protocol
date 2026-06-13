@@ -1,7 +1,7 @@
 import 'package:args/command_runner.dart';
 import 'package:mason_logger/mason_logger.dart';
 
-import '../common/user_exception.dart';
+import '../common/cli_exception.dart';
 import 'commands/generate.dart';
 
 Future<int> run(List<String> args) async {
@@ -37,7 +37,7 @@ Future<int> run(List<String> args) async {
 
     return 0;
   } on Object catch (e) {
-    if (e case UserException(:final code?)) {
+    if (e case CliException(:final code?)) {
       return code;
     }
 

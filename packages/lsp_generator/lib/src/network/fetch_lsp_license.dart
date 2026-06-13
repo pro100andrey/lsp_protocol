@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:mason_logger/mason_logger.dart';
 import 'package:path/path.dart' as p;
 
-import '../common/user_exception.dart';
+import '../common/cli_exception.dart';
 
 Future<void> fetchLSPLicense(
   String version,
@@ -26,7 +26,7 @@ Future<void> fetchLSPLicense(
   } else {
     downloadProgress.fail('Failed to download: ${response.statusCode}');
 
-    throw UserException(
+    throw CliException(
       'Failed to download LSP license for version $version.',
       reason: 'HTTP status code: ${response.statusCode}',
       code: 1,
