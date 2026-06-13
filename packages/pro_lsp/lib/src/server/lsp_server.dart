@@ -76,43 +76,43 @@ final class LspServer {
 
   /// Handlers for `initialize`, `shutdown`, `initialized`, `exit`, and
   /// protocol-level (`$/`) methods.
-  late final general = GeneralHandlers(_connection);
+  late final general = ServerGeneralHandlers(_connection);
 
   /// Handlers for `textDocument/*` requests and notifications.
-  late final textDocument = TextDocumentHandlers(_connection);
+  late final textDocument = ServerTextDocumentHandlers(_connection);
 
   /// Handlers for `workspace/*` requests and notifications.
-  late final workspace = WorkspaceHandlers(_connection);
+  late final workspace = ServerWorkspaceHandlers(_connection);
 
   /// Handlers for `callHierarchy/*` requests.
-  late final callHierarchy = CallHierarchyHandlers(_connection);
+  late final callHierarchy = ServerCallHierarchyHandlers(_connection);
 
   /// Handlers for `typeHierarchy/*` requests.
-  late final typeHierarchy = TypeHierarchyHandlers(_connection);
+  late final typeHierarchy = ServerTypeHierarchyHandlers(_connection);
 
   /// Handlers for `notebookDocument/*` notifications.
-  late final notebookDocument = NotebookDocumentHandlers(_connection);
+  late final notebookDocument = ServerNotebookDocumentHandlers(_connection);
 
   /// Handlers for `completionItem/resolve`.
-  late final completionItem = CompletionItemHandlers(_connection);
+  late final completionItem = ServerCompletionItemHandlers(_connection);
 
   /// Handlers for `codeAction/resolve`.
-  late final codeAction = CodeActionHandlers(_connection);
+  late final codeAction = ServerCodeActionHandlers(_connection);
 
   /// Handlers for `codeLens/resolve`.
-  late final codeLens = CodeLensHandlers(_connection);
+  late final codeLens = ServerCodeLensHandlers(_connection);
 
   /// Handlers for `documentLink/resolve`.
-  late final documentLink = DocumentLinkHandlers(_connection);
+  late final documentLink = ServerDocumentLinkHandlers(_connection);
 
   /// Handlers for `inlayHint/resolve`.
-  late final inlayHint = InlayHintHandlers(_connection);
+  late final inlayHint = ServerInlayHintHandlers(_connection);
 
   /// Handlers for `workspaceSymbol/resolve`.
-  late final workspaceSymbol = WorkspaceSymbolHandlers(_connection);
+  late final workspaceSymbol = ServerWorkspaceSymbolHandlers(_connection);
 
   /// Handlers for `window/*` client→server notifications.
-  late final window = WindowHandlers(_connection);
+  late final window = ServerWindowHandlers(_connection);
 
   // -------------------------------------------------------------------------
   // Outgoing (server → client)

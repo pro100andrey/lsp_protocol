@@ -26,95 +26,103 @@ mixin _$ServerCapabilities {
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
 ///
-/// Type: TextDocumentSyncOptions | TextDocumentSyncKind
+/// Type: `TextDocumentSyncOptions` | `TextDocumentSyncKind`
  ServerCapabilitiesTextDocumentSync? get textDocumentSync;/// Defines how notebook documents are synced.
 ///
-/// Type: NotebookDocumentSyncOptions | NotebookDocumentSyncRegistrationOptions
+/// Type: `NotebookDocumentSyncOptions` |
+/// `NotebookDocumentSyncRegistrationOptions`
  ServerCapabilitiesNotebookDocumentSync? get notebookDocumentSync;/// The server provides completion support.
  CompletionOptions? get completionProvider;/// The server provides hover support.
 ///
-/// Type: bool | HoverOptions
+/// Type: `bool` | `HoverOptions`
  ServerCapabilitiesHoverProvider? get hoverProvider;/// The server provides signature help support.
  SignatureHelpOptions? get signatureHelpProvider;/// The server provides Goto Declaration support.
 ///
-/// Type: bool | DeclarationOptions | DeclarationRegistrationOptions
+/// Type: `bool` | `DeclarationOptions` | `DeclarationRegistrationOptions`
  ServerCapabilitiesDeclarationProvider? get declarationProvider;/// The server provides goto definition support.
 ///
-/// Type: bool | DefinitionOptions
+/// Type: `bool` | `DefinitionOptions`
  ServerCapabilitiesDefinitionProvider? get definitionProvider;/// The server provides Goto Type Definition support.
 ///
-/// Type: bool | TypeDefinitionOptions | TypeDefinitionRegistrationOptions
+/// Type: `bool` | `TypeDefinitionOptions` |
+/// `TypeDefinitionRegistrationOptions`
  ServerCapabilitiesTypeDefinitionProvider? get typeDefinitionProvider;/// The server provides Goto Implementation support.
 ///
-/// Type: bool | ImplementationOptions | ImplementationRegistrationOptions
+/// Type: `bool` | `ImplementationOptions` |
+/// `ImplementationRegistrationOptions`
  ServerCapabilitiesImplementationProvider? get implementationProvider;/// The server provides find references support.
 ///
-/// Type: bool | ReferenceOptions
+/// Type: `bool` | `ReferenceOptions`
  ServerCapabilitiesReferencesProvider? get referencesProvider;/// The server provides document highlight support.
 ///
-/// Type: bool | DocumentHighlightOptions
+/// Type: `bool` | `DocumentHighlightOptions`
  ServerCapabilitiesDocumentHighlightProvider? get documentHighlightProvider;/// The server provides document symbol support.
 ///
-/// Type: bool | DocumentSymbolOptions
+/// Type: `bool` | `DocumentSymbolOptions`
  ServerCapabilitiesDocumentSymbolProvider? get documentSymbolProvider;/// The server provides code actions. CodeActionOptions may only be
 /// specified if the client states that it supports
 /// `codeActionLiteralSupport` in its initial `initialize` request.
 ///
-/// Type: bool | CodeActionOptions
+/// Type: `bool` | `CodeActionOptions`
  ServerCapabilitiesCodeActionProvider? get codeActionProvider;/// The server provides code lens.
  CodeLensOptions? get codeLensProvider;/// The server provides document link support.
  DocumentLinkOptions? get documentLinkProvider;/// The server provides color provider support.
 ///
-/// Type: bool | DocumentColorOptions | DocumentColorRegistrationOptions
+/// Type: `bool` | `DocumentColorOptions` |
+/// `DocumentColorRegistrationOptions`
  ServerCapabilitiesColorProvider? get colorProvider;/// The server provides workspace symbol support.
 ///
-/// Type: bool | WorkspaceSymbolOptions
+/// Type: `bool` | `WorkspaceSymbolOptions`
  ServerCapabilitiesWorkspaceSymbolProvider? get workspaceSymbolProvider;/// The server provides document formatting.
 ///
-/// Type: bool | DocumentFormattingOptions
+/// Type: `bool` | `DocumentFormattingOptions`
  ServerCapabilitiesDocumentFormattingProvider? get documentFormattingProvider;/// The server provides document range formatting.
 ///
-/// Type: bool | DocumentRangeFormattingOptions
+/// Type: `bool` | `DocumentRangeFormattingOptions`
  ServerCapabilitiesDocumentRangeFormattingProvider? get documentRangeFormattingProvider;/// The server provides document formatting on typing.
  DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider;/// The server provides rename support. RenameOptions may only be specified
 /// if the client states that it supports `prepareSupport` in its initial
 /// `initialize` request.
 ///
-/// Type: bool | RenameOptions
+/// Type: `bool` | `RenameOptions`
  ServerCapabilitiesRenameProvider? get renameProvider;/// The server provides folding provider support.
 ///
-/// Type: bool | FoldingRangeOptions | FoldingRangeRegistrationOptions
+/// Type: `bool` | `FoldingRangeOptions` | `FoldingRangeRegistrationOptions`
  ServerCapabilitiesFoldingRangeProvider? get foldingRangeProvider;/// The server provides selection range support.
 ///
-/// Type: bool | SelectionRangeOptions | SelectionRangeRegistrationOptions
+/// Type: `bool` | `SelectionRangeOptions` |
+/// `SelectionRangeRegistrationOptions`
  ServerCapabilitiesSelectionRangeProvider? get selectionRangeProvider;/// The server provides execute command support.
  ExecuteCommandOptions? get executeCommandProvider;/// The server provides call hierarchy support.
 ///
-/// Type: bool | CallHierarchyOptions | CallHierarchyRegistrationOptions
+/// Type: `bool` | `CallHierarchyOptions` |
+/// `CallHierarchyRegistrationOptions`
  ServerCapabilitiesCallHierarchyProvider? get callHierarchyProvider;/// The server provides linked editing range support.
 ///
-/// Type: bool | LinkedEditingRangeOptions | LinkedEditingRangeRegistrationOptions
+/// Type: `bool` | `LinkedEditingRangeOptions` |
+/// `LinkedEditingRangeRegistrationOptions`
  ServerCapabilitiesLinkedEditingRangeProvider? get linkedEditingRangeProvider;/// The server provides semantic tokens support.
 ///
-/// Type: SemanticTokensOptions | SemanticTokensRegistrationOptions
+/// Type: `SemanticTokensOptions` | `SemanticTokensRegistrationOptions`
  ServerCapabilitiesSemanticTokensProvider? get semanticTokensProvider;/// The server provides moniker support.
 ///
-/// Type: bool | MonikerOptions | MonikerRegistrationOptions
+/// Type: `bool` | `MonikerOptions` | `MonikerRegistrationOptions`
  ServerCapabilitiesMonikerProvider? get monikerProvider;/// The server provides type hierarchy support.
 ///
-/// Type: bool | TypeHierarchyOptions | TypeHierarchyRegistrationOptions
+/// Type: `bool` | `TypeHierarchyOptions` |
+/// `TypeHierarchyRegistrationOptions`
  ServerCapabilitiesTypeHierarchyProvider? get typeHierarchyProvider;/// The server provides inline values.
 ///
-/// Type: bool | InlineValueOptions | InlineValueRegistrationOptions
+/// Type: `bool` | `InlineValueOptions` | `InlineValueRegistrationOptions`
  ServerCapabilitiesInlineValueProvider? get inlineValueProvider;/// The server provides inlay hints.
 ///
-/// Type: bool | InlayHintOptions | InlayHintRegistrationOptions
+/// Type: `bool` | `InlayHintOptions` | `InlayHintRegistrationOptions`
  ServerCapabilitiesInlayHintProvider? get inlayHintProvider;/// The server has support for pull model diagnostics.
 ///
-/// Type: DiagnosticOptions | DiagnosticRegistrationOptions
+/// Type: `DiagnosticOptions` | `DiagnosticRegistrationOptions`
  ServerCapabilitiesDiagnosticProvider? get diagnosticProvider;/// Inline completion options used during static registration.
 ///
-/// Type: bool | InlineCompletionOptions
+/// Type: `bool` | `InlineCompletionOptions`
  ServerCapabilitiesInlineCompletionProvider? get inlineCompletionProvider;/// Workspace specific server capabilities.
  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace;/// Experimental server capabilities.
  LSPAny? get experimental;
@@ -304,53 +312,56 @@ class _ServerCapabilities implements ServerCapabilities {
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
 ///
-/// Type: TextDocumentSyncOptions | TextDocumentSyncKind
+/// Type: `TextDocumentSyncOptions` | `TextDocumentSyncKind`
 @override final  ServerCapabilitiesTextDocumentSync? textDocumentSync;
 /// Defines how notebook documents are synced.
 ///
-/// Type: NotebookDocumentSyncOptions | NotebookDocumentSyncRegistrationOptions
+/// Type: `NotebookDocumentSyncOptions` |
+/// `NotebookDocumentSyncRegistrationOptions`
 @override final  ServerCapabilitiesNotebookDocumentSync? notebookDocumentSync;
 /// The server provides completion support.
 @override final  CompletionOptions? completionProvider;
 /// The server provides hover support.
 ///
-/// Type: bool | HoverOptions
+/// Type: `bool` | `HoverOptions`
 @override final  ServerCapabilitiesHoverProvider? hoverProvider;
 /// The server provides signature help support.
 @override final  SignatureHelpOptions? signatureHelpProvider;
 /// The server provides Goto Declaration support.
 ///
-/// Type: bool | DeclarationOptions | DeclarationRegistrationOptions
+/// Type: `bool` | `DeclarationOptions` | `DeclarationRegistrationOptions`
 @override final  ServerCapabilitiesDeclarationProvider? declarationProvider;
 /// The server provides goto definition support.
 ///
-/// Type: bool | DefinitionOptions
+/// Type: `bool` | `DefinitionOptions`
 @override final  ServerCapabilitiesDefinitionProvider? definitionProvider;
 /// The server provides Goto Type Definition support.
 ///
-/// Type: bool | TypeDefinitionOptions | TypeDefinitionRegistrationOptions
+/// Type: `bool` | `TypeDefinitionOptions` |
+/// `TypeDefinitionRegistrationOptions`
 @override final  ServerCapabilitiesTypeDefinitionProvider? typeDefinitionProvider;
 /// The server provides Goto Implementation support.
 ///
-/// Type: bool | ImplementationOptions | ImplementationRegistrationOptions
+/// Type: `bool` | `ImplementationOptions` |
+/// `ImplementationRegistrationOptions`
 @override final  ServerCapabilitiesImplementationProvider? implementationProvider;
 /// The server provides find references support.
 ///
-/// Type: bool | ReferenceOptions
+/// Type: `bool` | `ReferenceOptions`
 @override final  ServerCapabilitiesReferencesProvider? referencesProvider;
 /// The server provides document highlight support.
 ///
-/// Type: bool | DocumentHighlightOptions
+/// Type: `bool` | `DocumentHighlightOptions`
 @override final  ServerCapabilitiesDocumentHighlightProvider? documentHighlightProvider;
 /// The server provides document symbol support.
 ///
-/// Type: bool | DocumentSymbolOptions
+/// Type: `bool` | `DocumentSymbolOptions`
 @override final  ServerCapabilitiesDocumentSymbolProvider? documentSymbolProvider;
 /// The server provides code actions. CodeActionOptions may only be
 /// specified if the client states that it supports
 /// `codeActionLiteralSupport` in its initial `initialize` request.
 ///
-/// Type: bool | CodeActionOptions
+/// Type: `bool` | `CodeActionOptions`
 @override final  ServerCapabilitiesCodeActionProvider? codeActionProvider;
 /// The server provides code lens.
 @override final  CodeLensOptions? codeLensProvider;
@@ -358,19 +369,20 @@ class _ServerCapabilities implements ServerCapabilities {
 @override final  DocumentLinkOptions? documentLinkProvider;
 /// The server provides color provider support.
 ///
-/// Type: bool | DocumentColorOptions | DocumentColorRegistrationOptions
+/// Type: `bool` | `DocumentColorOptions` |
+/// `DocumentColorRegistrationOptions`
 @override final  ServerCapabilitiesColorProvider? colorProvider;
 /// The server provides workspace symbol support.
 ///
-/// Type: bool | WorkspaceSymbolOptions
+/// Type: `bool` | `WorkspaceSymbolOptions`
 @override final  ServerCapabilitiesWorkspaceSymbolProvider? workspaceSymbolProvider;
 /// The server provides document formatting.
 ///
-/// Type: bool | DocumentFormattingOptions
+/// Type: `bool` | `DocumentFormattingOptions`
 @override final  ServerCapabilitiesDocumentFormattingProvider? documentFormattingProvider;
 /// The server provides document range formatting.
 ///
-/// Type: bool | DocumentRangeFormattingOptions
+/// Type: `bool` | `DocumentRangeFormattingOptions`
 @override final  ServerCapabilitiesDocumentRangeFormattingProvider? documentRangeFormattingProvider;
 /// The server provides document formatting on typing.
 @override final  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
@@ -378,53 +390,57 @@ class _ServerCapabilities implements ServerCapabilities {
 /// if the client states that it supports `prepareSupport` in its initial
 /// `initialize` request.
 ///
-/// Type: bool | RenameOptions
+/// Type: `bool` | `RenameOptions`
 @override final  ServerCapabilitiesRenameProvider? renameProvider;
 /// The server provides folding provider support.
 ///
-/// Type: bool | FoldingRangeOptions | FoldingRangeRegistrationOptions
+/// Type: `bool` | `FoldingRangeOptions` | `FoldingRangeRegistrationOptions`
 @override final  ServerCapabilitiesFoldingRangeProvider? foldingRangeProvider;
 /// The server provides selection range support.
 ///
-/// Type: bool | SelectionRangeOptions | SelectionRangeRegistrationOptions
+/// Type: `bool` | `SelectionRangeOptions` |
+/// `SelectionRangeRegistrationOptions`
 @override final  ServerCapabilitiesSelectionRangeProvider? selectionRangeProvider;
 /// The server provides execute command support.
 @override final  ExecuteCommandOptions? executeCommandProvider;
 /// The server provides call hierarchy support.
 ///
-/// Type: bool | CallHierarchyOptions | CallHierarchyRegistrationOptions
+/// Type: `bool` | `CallHierarchyOptions` |
+/// `CallHierarchyRegistrationOptions`
 @override final  ServerCapabilitiesCallHierarchyProvider? callHierarchyProvider;
 /// The server provides linked editing range support.
 ///
-/// Type: bool | LinkedEditingRangeOptions | LinkedEditingRangeRegistrationOptions
+/// Type: `bool` | `LinkedEditingRangeOptions` |
+/// `LinkedEditingRangeRegistrationOptions`
 @override final  ServerCapabilitiesLinkedEditingRangeProvider? linkedEditingRangeProvider;
 /// The server provides semantic tokens support.
 ///
-/// Type: SemanticTokensOptions | SemanticTokensRegistrationOptions
+/// Type: `SemanticTokensOptions` | `SemanticTokensRegistrationOptions`
 @override final  ServerCapabilitiesSemanticTokensProvider? semanticTokensProvider;
 /// The server provides moniker support.
 ///
-/// Type: bool | MonikerOptions | MonikerRegistrationOptions
+/// Type: `bool` | `MonikerOptions` | `MonikerRegistrationOptions`
 @override final  ServerCapabilitiesMonikerProvider? monikerProvider;
 /// The server provides type hierarchy support.
 ///
-/// Type: bool | TypeHierarchyOptions | TypeHierarchyRegistrationOptions
+/// Type: `bool` | `TypeHierarchyOptions` |
+/// `TypeHierarchyRegistrationOptions`
 @override final  ServerCapabilitiesTypeHierarchyProvider? typeHierarchyProvider;
 /// The server provides inline values.
 ///
-/// Type: bool | InlineValueOptions | InlineValueRegistrationOptions
+/// Type: `bool` | `InlineValueOptions` | `InlineValueRegistrationOptions`
 @override final  ServerCapabilitiesInlineValueProvider? inlineValueProvider;
 /// The server provides inlay hints.
 ///
-/// Type: bool | InlayHintOptions | InlayHintRegistrationOptions
+/// Type: `bool` | `InlayHintOptions` | `InlayHintRegistrationOptions`
 @override final  ServerCapabilitiesInlayHintProvider? inlayHintProvider;
 /// The server has support for pull model diagnostics.
 ///
-/// Type: DiagnosticOptions | DiagnosticRegistrationOptions
+/// Type: `DiagnosticOptions` | `DiagnosticRegistrationOptions`
 @override final  ServerCapabilitiesDiagnosticProvider? diagnosticProvider;
 /// Inline completion options used during static registration.
 ///
-/// Type: bool | InlineCompletionOptions
+/// Type: `bool` | `InlineCompletionOptions`
 @override final  ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider;
 /// Workspace specific server capabilities.
 @override final  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace;
@@ -892,7 +908,7 @@ mixin _$WorkspaceFoldersServerCapabilities {
 /// unregister for these events using the `client/unregisterCapability`
 /// request.
 ///
-/// Type: String | bool
+/// Type: `String` | `bool`
  WorkspaceFoldersServerCapabilitiesChangeNotifications? get changeNotifications;
 /// Create a copy of WorkspaceFoldersServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -972,7 +988,7 @@ class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapab
 /// unregister for these events using the `client/unregisterCapability`
 /// request.
 ///
-/// Type: String | bool
+/// Type: `String` | `bool`
 @override final  WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications;
 
 /// Create a copy of WorkspaceFoldersServerCapabilities
@@ -13473,7 +13489,7 @@ mixin _$InlayHint {
 ///
 /// *Note* that neither the string nor the label part can be empty.
 ///
-/// Type: String | List<InlayHintLabelPart>
+/// Type: `String` | `List<InlayHintLabelPart>`
  InlayHintLabel get label;/// The kind of this hint. Can be omitted in which case the client should
 /// fall back to a reasonable default.
  InlayHintKind? get kind;/// Optional text edits that are performed when accepting this inlay hint.
@@ -13483,7 +13499,7 @@ mixin _$InlayHint {
 /// hint itself is now obsolete.
  List<TextEdit>? get textEdits;/// The tooltip text when you hover over this item.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
  InlayHintTooltip? get tooltip;/// Render padding before the hint.
 ///
 /// Note: Padding should use the editor's background color, not the
@@ -13590,7 +13606,7 @@ class _InlayHint implements InlayHint {
 ///
 /// *Note* that neither the string nor the label part can be empty.
 ///
-/// Type: String | List<InlayHintLabelPart>
+/// Type: `String` | `List<InlayHintLabelPart>`
 @override final  InlayHintLabel label;
 /// The kind of this hint. Can be omitted in which case the client should
 /// fall back to a reasonable default.
@@ -13616,7 +13632,7 @@ class _InlayHint implements InlayHint {
 
 /// The tooltip text when you hover over this item.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
 @override final  InlayHintTooltip? tooltip;
 /// Render padding before the hint.
 ///
@@ -14413,7 +14429,7 @@ mixin _$InlineCompletionItem {
 
 /// The text to replace the range with. Must be set.
 ///
-/// Type: String | StringValue
+/// Type: `String` | `StringValue`
  InlineCompletionItemInsertText get insertText;/// A text that is used to decide if this inline completion should be shown.
 /// When `falsy` the `InlineCompletionItem.insertText` is used.
  String? get filterText;/// The range to replace. Must begin and end on the same line.
@@ -14516,7 +14532,7 @@ class _InlineCompletionItem implements InlineCompletionItem {
 
 /// The text to replace the range with. Must be set.
 ///
-/// Type: String | StringValue
+/// Type: `String` | `StringValue`
 @override final  InlineCompletionItemInsertText insertText;
 /// A text that is used to decide if this inline completion should be shown.
 /// When `falsy` the `InlineCompletionItem.insertText` is used.
@@ -15231,7 +15247,7 @@ mixin _$CompletionItem {
 /// like type or symbol information.
  String? get detail;/// A human-readable string that represents a doc-comment.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
  CompletionItemDocumentation? get documentation;/// Indicates if this item is deprecated. @deprecated Use `tags` instead.
 @Deprecated('Use `tags` instead.') bool? get deprecated;/// Select this item when showing.
 ///
@@ -15247,7 +15263,7 @@ mixin _$CompletionItem {
 ///
 /// The `insertText` is subject to interpretation by the client side. Some
 /// tools might not take the string literally. For example VS Code when code
-/// complete is requested in this example `con<cursor position>` and a
+/// complete is requested in this example `con&lt;cursor position&gt;` and a
 /// completion item with an `insertText` of `console` is provided it will
 /// only insert `sole`. Therefore it is recommended to use `textEdit`
 /// instead since it avoids additional client side interpretation.
@@ -15280,7 +15296,7 @@ mixin _$CompletionItem {
 ///
 /// additional type `InsertReplaceEdit`
 ///
-/// Type: TextEdit | InsertReplaceEdit
+/// Type: `TextEdit` | `InsertReplaceEdit`
  CompletionItemTextEdit? get textEdit;/// The edit text used if the completion item is part of a CompletionList
 /// and CompletionList defines an item default for the text edit range.
 ///
@@ -15444,7 +15460,7 @@ class _CompletionItem implements CompletionItem {
 @override final  String? detail;
 /// A human-readable string that represents a doc-comment.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
 @override final  CompletionItemDocumentation? documentation;
 /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
 @override@Deprecated('Use `tags` instead.') final  bool? deprecated;
@@ -15465,7 +15481,7 @@ class _CompletionItem implements CompletionItem {
 ///
 /// The `insertText` is subject to interpretation by the client side. Some
 /// tools might not take the string literally. For example VS Code when code
-/// complete is requested in this example `con<cursor position>` and a
+/// complete is requested in this example `con&lt;cursor position&gt;` and a
 /// completion item with an `insertText` of `console` is provided it will
 /// only insert `sole`. Therefore it is recommended to use `textEdit`
 /// instead since it avoids additional client side interpretation.
@@ -15501,7 +15517,7 @@ class _CompletionItem implements CompletionItem {
 ///
 /// additional type `InsertReplaceEdit`
 ///
-/// Type: TextEdit | InsertReplaceEdit
+/// Type: `TextEdit` | `InsertReplaceEdit`
 @override final  CompletionItemTextEdit? textEdit;
 /// The edit text used if the completion item is part of a CompletionList
 /// and CompletionList defines an item default for the text edit range.
@@ -15847,7 +15863,7 @@ mixin _$Hover {
 
 /// The hover's content
 ///
-/// Type: MarkupContent | MarkedString | List<MarkedString>
+/// Type: `MarkupContent` | `MarkedString` | `List<MarkedString>`
  HoverContents get contents;/// An optional range inside the text document that is used to visualize the
 /// hover, e.g. by changing the background color.
  Range? get range;
@@ -15933,7 +15949,7 @@ class _Hover implements Hover {
 
 /// The hover's content
 ///
-/// Type: MarkupContent | MarkedString | List<MarkedString>
+/// Type: `MarkupContent` | `MarkedString` | `List<MarkedString>`
 @override final  HoverContents contents;
 /// An optional range inside the text document that is used to visualize the
 /// hover, e.g. by changing the background color.
@@ -17252,7 +17268,7 @@ mixin _$WorkspaceSymbol {
 ///
 /// See SymbolInformation#location for more details.
 ///
-/// Type: Location | Object
+/// Type: `Location` | `Object`
  WorkspaceSymbolLocation get location;/// Tags for this symbol.
  List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
 /// user interface purposes (e.g. to render a qualifier in the user
@@ -17343,7 +17359,7 @@ class _WorkspaceSymbol implements WorkspaceSymbol {
 ///
 /// See SymbolInformation#location for more details.
 ///
-/// Type: Location | Object
+/// Type: `Location` | `Object`
 @override final  WorkspaceSymbolLocation location;
 /// Tags for this symbol.
  final  List<SymbolTag>? _tags;
@@ -17963,11 +17979,11 @@ as int?,
 /// @nodoc
 mixin _$WorkDoneProgressBegin {
 
- String get kind;/// Mandatory title of the progress operation. Used to briefly inform about
+/// Mandatory title of the progress operation. Used to briefly inform about
 /// the kind of operation being performed.
 ///
 /// Examples: "Indexing" or "Linking dependencies".
- String get title;/// Controls if a cancel button should show to allow the user to cancel the
+ String get title; String get kind;/// Controls if a cancel button should show to allow the user to cancel the
 /// long running operation. Clients that don't support cancellation are
 /// allowed to ignore the setting.
  bool? get cancellable;/// Optional, more detailed associated progress message. Contains
@@ -17994,16 +18010,16 @@ $WorkDoneProgressBeginCopyWith<WorkDoneProgressBegin> get copyWith => _$WorkDone
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkDoneProgressBegin&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.title, title) || other.title == title)&&(identical(other.cancellable, cancellable) || other.cancellable == cancellable)&&(identical(other.message, message) || other.message == message)&&(identical(other.percentage, percentage) || other.percentage == percentage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkDoneProgressBegin&&(identical(other.title, title) || other.title == title)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.cancellable, cancellable) || other.cancellable == cancellable)&&(identical(other.message, message) || other.message == message)&&(identical(other.percentage, percentage) || other.percentage == percentage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,title,cancellable,message,percentage);
+int get hashCode => Object.hash(runtimeType,title,kind,cancellable,message,percentage);
 
 @override
 String toString() {
-  return 'WorkDoneProgressBegin(kind: $kind, title: $title, cancellable: $cancellable, message: $message, percentage: $percentage)';
+  return 'WorkDoneProgressBegin(title: $title, kind: $kind, cancellable: $cancellable, message: $message, percentage: $percentage)';
 }
 
 
@@ -18014,7 +18030,7 @@ abstract mixin class $WorkDoneProgressBeginCopyWith<$Res>  {
   factory $WorkDoneProgressBeginCopyWith(WorkDoneProgressBegin value, $Res Function(WorkDoneProgressBegin) _then) = _$WorkDoneProgressBeginCopyWithImpl;
 @useResult
 $Res call({
- String kind, String title, bool? cancellable, String? message, int? percentage
+ String title, String kind, bool? cancellable, String? message, int? percentage
 });
 
 
@@ -18031,10 +18047,10 @@ class _$WorkDoneProgressBeginCopyWithImpl<$Res>
 
 /// Create a copy of WorkDoneProgressBegin
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? title = null,Object? cancellable = freezed,Object? message = freezed,Object? percentage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? kind = null,Object? cancellable = freezed,Object? message = freezed,Object? percentage = freezed,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,cancellable: freezed == cancellable ? _self.cancellable : cancellable // ignore: cast_nullable_to_non_nullable
 as bool?,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,percentage: freezed == percentage ? _self.percentage : percentage // ignore: cast_nullable_to_non_nullable
@@ -18050,15 +18066,15 @@ as int?,
 @JsonSerializable()
 
 class _WorkDoneProgressBegin implements WorkDoneProgressBegin {
-  const _WorkDoneProgressBegin({this.kind = 'begin', required this.title, this.cancellable, this.message, this.percentage});
+  const _WorkDoneProgressBegin({required this.title, this.kind = 'begin', this.cancellable, this.message, this.percentage});
   factory _WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressBeginFromJson(json);
 
-@override@JsonKey() final  String kind;
 /// Mandatory title of the progress operation. Used to briefly inform about
 /// the kind of operation being performed.
 ///
 /// Examples: "Indexing" or "Linking dependencies".
 @override final  String title;
+@override@JsonKey() final  String kind;
 /// Controls if a cancel button should show to allow the user to cancel the
 /// long running operation. Clients that don't support cancellation are
 /// allowed to ignore the setting.
@@ -18090,16 +18106,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkDoneProgressBegin&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.title, title) || other.title == title)&&(identical(other.cancellable, cancellable) || other.cancellable == cancellable)&&(identical(other.message, message) || other.message == message)&&(identical(other.percentage, percentage) || other.percentage == percentage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkDoneProgressBegin&&(identical(other.title, title) || other.title == title)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.cancellable, cancellable) || other.cancellable == cancellable)&&(identical(other.message, message) || other.message == message)&&(identical(other.percentage, percentage) || other.percentage == percentage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,title,cancellable,message,percentage);
+int get hashCode => Object.hash(runtimeType,title,kind,cancellable,message,percentage);
 
 @override
 String toString() {
-  return 'WorkDoneProgressBegin(kind: $kind, title: $title, cancellable: $cancellable, message: $message, percentage: $percentage)';
+  return 'WorkDoneProgressBegin(title: $title, kind: $kind, cancellable: $cancellable, message: $message, percentage: $percentage)';
 }
 
 
@@ -18110,7 +18126,7 @@ abstract mixin class _$WorkDoneProgressBeginCopyWith<$Res> implements $WorkDoneP
   factory _$WorkDoneProgressBeginCopyWith(_WorkDoneProgressBegin value, $Res Function(_WorkDoneProgressBegin) _then) = __$WorkDoneProgressBeginCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String title, bool? cancellable, String? message, int? percentage
+ String title, String kind, bool? cancellable, String? message, int? percentage
 });
 
 
@@ -18127,10 +18143,10 @@ class __$WorkDoneProgressBeginCopyWithImpl<$Res>
 
 /// Create a copy of WorkDoneProgressBegin
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? title = null,Object? cancellable = freezed,Object? message = freezed,Object? percentage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? kind = null,Object? cancellable = freezed,Object? message = freezed,Object? percentage = freezed,}) {
   return _then(_WorkDoneProgressBegin(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,cancellable: freezed == cancellable ? _self.cancellable : cancellable // ignore: cast_nullable_to_non_nullable
 as bool?,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,percentage: freezed == percentage ? _self.percentage : percentage // ignore: cast_nullable_to_non_nullable
@@ -20073,10 +20089,10 @@ $OptionalVersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$CreateFile {
 
-/// A create
- String get kind;/// The resource to create.
+/// The resource to create.
  String get uri;/// An optional annotation identifier describing the operation.
- ChangeAnnotationIdentifier? get annotationId;/// Additional options
+ ChangeAnnotationIdentifier? get annotationId;/// A create
+ String get kind;/// Additional options
  CreateFileOptions? get options;
 /// Create a copy of CreateFile
 /// with the given fields replaced by the non-null parameter values.
@@ -20090,16 +20106,16 @@ $CreateFileCopyWith<CreateFile> get copyWith => _$CreateFileCopyWithImpl<CreateF
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateFile&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,uri,annotationId,options);
+int get hashCode => Object.hash(runtimeType,uri,annotationId,kind,options);
 
 @override
 String toString() {
-  return 'CreateFile(kind: $kind, uri: $uri, annotationId: $annotationId, options: $options)';
+  return 'CreateFile(uri: $uri, annotationId: $annotationId, kind: $kind, options: $options)';
 }
 
 
@@ -20110,7 +20126,7 @@ abstract mixin class $CreateFileCopyWith<$Res>  {
   factory $CreateFileCopyWith(CreateFile value, $Res Function(CreateFile) _then) = _$CreateFileCopyWithImpl;
 @useResult
 $Res call({
- String kind, String uri, ChangeAnnotationIdentifier? annotationId, CreateFileOptions? options
+ String uri, ChangeAnnotationIdentifier? annotationId, String kind, CreateFileOptions? options
 });
 
 
@@ -20127,12 +20143,12 @@ class _$CreateFileCopyWithImpl<$Res>
 
 /// Create a copy of CreateFile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? uri = null,Object? annotationId = freezed,Object? options = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,Object? annotationId = freezed,Object? kind = null,Object? options = freezed,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as CreateFileOptions?,
   ));
 }
@@ -20157,15 +20173,15 @@ $CreateFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _CreateFile implements CreateFile {
-  const _CreateFile({this.kind = 'create', required this.uri, this.annotationId, this.options});
+  const _CreateFile({required this.uri, this.annotationId, this.kind = 'create', this.options});
   factory _CreateFile.fromJson(Map<String, dynamic> json) => _$CreateFileFromJson(json);
 
-/// A create
-@override@JsonKey() final  String kind;
 /// The resource to create.
 @override final  String uri;
 /// An optional annotation identifier describing the operation.
 @override final  ChangeAnnotationIdentifier? annotationId;
+/// A create
+@override@JsonKey() final  String kind;
 /// Additional options
 @override final  CreateFileOptions? options;
 
@@ -20182,16 +20198,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateFile&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,uri,annotationId,options);
+int get hashCode => Object.hash(runtimeType,uri,annotationId,kind,options);
 
 @override
 String toString() {
-  return 'CreateFile(kind: $kind, uri: $uri, annotationId: $annotationId, options: $options)';
+  return 'CreateFile(uri: $uri, annotationId: $annotationId, kind: $kind, options: $options)';
 }
 
 
@@ -20202,7 +20218,7 @@ abstract mixin class _$CreateFileCopyWith<$Res> implements $CreateFileCopyWith<$
   factory _$CreateFileCopyWith(_CreateFile value, $Res Function(_CreateFile) _then) = __$CreateFileCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String uri, ChangeAnnotationIdentifier? annotationId, CreateFileOptions? options
+ String uri, ChangeAnnotationIdentifier? annotationId, String kind, CreateFileOptions? options
 });
 
 
@@ -20219,12 +20235,12 @@ class __$CreateFileCopyWithImpl<$Res>
 
 /// Create a copy of CreateFile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? uri = null,Object? annotationId = freezed,Object? options = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,Object? annotationId = freezed,Object? kind = null,Object? options = freezed,}) {
   return _then(_CreateFile(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as CreateFileOptions?,
   ));
 }
@@ -20248,11 +20264,11 @@ $CreateFileOptionsCopyWith<$Res>? get options {
 /// @nodoc
 mixin _$RenameFile {
 
-/// A rename
- String get kind;/// The old (existing) location.
+/// The old (existing) location.
  String get oldUri;/// The new location.
  String get newUri;/// An optional annotation identifier describing the operation.
- ChangeAnnotationIdentifier? get annotationId;/// Rename options.
+ ChangeAnnotationIdentifier? get annotationId;/// A rename
+ String get kind;/// Rename options.
  RenameFileOptions? get options;
 /// Create a copy of RenameFile
 /// with the given fields replaced by the non-null parameter values.
@@ -20266,16 +20282,16 @@ $RenameFileCopyWith<RenameFile> get copyWith => _$RenameFileCopyWithImpl<RenameF
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RenameFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.oldUri, oldUri) || other.oldUri == oldUri)&&(identical(other.newUri, newUri) || other.newUri == newUri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RenameFile&&(identical(other.oldUri, oldUri) || other.oldUri == oldUri)&&(identical(other.newUri, newUri) || other.newUri == newUri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,oldUri,newUri,annotationId,options);
+int get hashCode => Object.hash(runtimeType,oldUri,newUri,annotationId,kind,options);
 
 @override
 String toString() {
-  return 'RenameFile(kind: $kind, oldUri: $oldUri, newUri: $newUri, annotationId: $annotationId, options: $options)';
+  return 'RenameFile(oldUri: $oldUri, newUri: $newUri, annotationId: $annotationId, kind: $kind, options: $options)';
 }
 
 
@@ -20286,7 +20302,7 @@ abstract mixin class $RenameFileCopyWith<$Res>  {
   factory $RenameFileCopyWith(RenameFile value, $Res Function(RenameFile) _then) = _$RenameFileCopyWithImpl;
 @useResult
 $Res call({
- String kind, String oldUri, String newUri, ChangeAnnotationIdentifier? annotationId, RenameFileOptions? options
+ String oldUri, String newUri, ChangeAnnotationIdentifier? annotationId, String kind, RenameFileOptions? options
 });
 
 
@@ -20303,13 +20319,13 @@ class _$RenameFileCopyWithImpl<$Res>
 
 /// Create a copy of RenameFile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? oldUri = null,Object? newUri = null,Object? annotationId = freezed,Object? options = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? oldUri = null,Object? newUri = null,Object? annotationId = freezed,Object? kind = null,Object? options = freezed,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,oldUri: null == oldUri ? _self.oldUri : oldUri // ignore: cast_nullable_to_non_nullable
+oldUri: null == oldUri ? _self.oldUri : oldUri // ignore: cast_nullable_to_non_nullable
 as String,newUri: null == newUri ? _self.newUri : newUri // ignore: cast_nullable_to_non_nullable
 as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as RenameFileOptions?,
   ));
 }
@@ -20334,17 +20350,17 @@ $RenameFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _RenameFile implements RenameFile {
-  const _RenameFile({this.kind = 'rename', required this.oldUri, required this.newUri, this.annotationId, this.options});
+  const _RenameFile({required this.oldUri, required this.newUri, this.annotationId, this.kind = 'rename', this.options});
   factory _RenameFile.fromJson(Map<String, dynamic> json) => _$RenameFileFromJson(json);
 
-/// A rename
-@override@JsonKey() final  String kind;
 /// The old (existing) location.
 @override final  String oldUri;
 /// The new location.
 @override final  String newUri;
 /// An optional annotation identifier describing the operation.
 @override final  ChangeAnnotationIdentifier? annotationId;
+/// A rename
+@override@JsonKey() final  String kind;
 /// Rename options.
 @override final  RenameFileOptions? options;
 
@@ -20361,16 +20377,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RenameFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.oldUri, oldUri) || other.oldUri == oldUri)&&(identical(other.newUri, newUri) || other.newUri == newUri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RenameFile&&(identical(other.oldUri, oldUri) || other.oldUri == oldUri)&&(identical(other.newUri, newUri) || other.newUri == newUri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,oldUri,newUri,annotationId,options);
+int get hashCode => Object.hash(runtimeType,oldUri,newUri,annotationId,kind,options);
 
 @override
 String toString() {
-  return 'RenameFile(kind: $kind, oldUri: $oldUri, newUri: $newUri, annotationId: $annotationId, options: $options)';
+  return 'RenameFile(oldUri: $oldUri, newUri: $newUri, annotationId: $annotationId, kind: $kind, options: $options)';
 }
 
 
@@ -20381,7 +20397,7 @@ abstract mixin class _$RenameFileCopyWith<$Res> implements $RenameFileCopyWith<$
   factory _$RenameFileCopyWith(_RenameFile value, $Res Function(_RenameFile) _then) = __$RenameFileCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String oldUri, String newUri, ChangeAnnotationIdentifier? annotationId, RenameFileOptions? options
+ String oldUri, String newUri, ChangeAnnotationIdentifier? annotationId, String kind, RenameFileOptions? options
 });
 
 
@@ -20398,13 +20414,13 @@ class __$RenameFileCopyWithImpl<$Res>
 
 /// Create a copy of RenameFile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? oldUri = null,Object? newUri = null,Object? annotationId = freezed,Object? options = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? oldUri = null,Object? newUri = null,Object? annotationId = freezed,Object? kind = null,Object? options = freezed,}) {
   return _then(_RenameFile(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,oldUri: null == oldUri ? _self.oldUri : oldUri // ignore: cast_nullable_to_non_nullable
+oldUri: null == oldUri ? _self.oldUri : oldUri // ignore: cast_nullable_to_non_nullable
 as String,newUri: null == newUri ? _self.newUri : newUri // ignore: cast_nullable_to_non_nullable
 as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as RenameFileOptions?,
   ));
 }
@@ -20428,10 +20444,10 @@ $RenameFileOptionsCopyWith<$Res>? get options {
 /// @nodoc
 mixin _$DeleteFile {
 
-/// A delete
- String get kind;/// The file to delete.
+/// The file to delete.
  String get uri;/// An optional annotation identifier describing the operation.
- ChangeAnnotationIdentifier? get annotationId;/// Delete options.
+ ChangeAnnotationIdentifier? get annotationId;/// A delete
+ String get kind;/// Delete options.
  DeleteFileOptions? get options;
 /// Create a copy of DeleteFile
 /// with the given fields replaced by the non-null parameter values.
@@ -20445,16 +20461,16 @@ $DeleteFileCopyWith<DeleteFile> get copyWith => _$DeleteFileCopyWithImpl<DeleteF
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeleteFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeleteFile&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,uri,annotationId,options);
+int get hashCode => Object.hash(runtimeType,uri,annotationId,kind,options);
 
 @override
 String toString() {
-  return 'DeleteFile(kind: $kind, uri: $uri, annotationId: $annotationId, options: $options)';
+  return 'DeleteFile(uri: $uri, annotationId: $annotationId, kind: $kind, options: $options)';
 }
 
 
@@ -20465,7 +20481,7 @@ abstract mixin class $DeleteFileCopyWith<$Res>  {
   factory $DeleteFileCopyWith(DeleteFile value, $Res Function(DeleteFile) _then) = _$DeleteFileCopyWithImpl;
 @useResult
 $Res call({
- String kind, String uri, ChangeAnnotationIdentifier? annotationId, DeleteFileOptions? options
+ String uri, ChangeAnnotationIdentifier? annotationId, String kind, DeleteFileOptions? options
 });
 
 
@@ -20482,12 +20498,12 @@ class _$DeleteFileCopyWithImpl<$Res>
 
 /// Create a copy of DeleteFile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? uri = null,Object? annotationId = freezed,Object? options = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,Object? annotationId = freezed,Object? kind = null,Object? options = freezed,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as DeleteFileOptions?,
   ));
 }
@@ -20512,15 +20528,15 @@ $DeleteFileOptionsCopyWith<$Res>? get options {
 @JsonSerializable()
 
 class _DeleteFile implements DeleteFile {
-  const _DeleteFile({this.kind = 'delete', required this.uri, this.annotationId, this.options});
+  const _DeleteFile({required this.uri, this.annotationId, this.kind = 'delete', this.options});
   factory _DeleteFile.fromJson(Map<String, dynamic> json) => _$DeleteFileFromJson(json);
 
-/// A delete
-@override@JsonKey() final  String kind;
 /// The file to delete.
 @override final  String uri;
 /// An optional annotation identifier describing the operation.
 @override final  ChangeAnnotationIdentifier? annotationId;
+/// A delete
+@override@JsonKey() final  String kind;
 /// Delete options.
 @override final  DeleteFileOptions? options;
 
@@ -20537,16 +20553,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteFile&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.options, options) || other.options == options));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteFile&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.options, options) || other.options == options));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,uri,annotationId,options);
+int get hashCode => Object.hash(runtimeType,uri,annotationId,kind,options);
 
 @override
 String toString() {
-  return 'DeleteFile(kind: $kind, uri: $uri, annotationId: $annotationId, options: $options)';
+  return 'DeleteFile(uri: $uri, annotationId: $annotationId, kind: $kind, options: $options)';
 }
 
 
@@ -20557,7 +20573,7 @@ abstract mixin class _$DeleteFileCopyWith<$Res> implements $DeleteFileCopyWith<$
   factory _$DeleteFileCopyWith(_DeleteFile value, $Res Function(_DeleteFile) _then) = __$DeleteFileCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String uri, ChangeAnnotationIdentifier? annotationId, DeleteFileOptions? options
+ String uri, ChangeAnnotationIdentifier? annotationId, String kind, DeleteFileOptions? options
 });
 
 
@@ -20574,12 +20590,12 @@ class __$DeleteFileCopyWithImpl<$Res>
 
 /// Create a copy of DeleteFile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? uri = null,Object? annotationId = freezed,Object? options = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,Object? annotationId = freezed,Object? kind = null,Object? options = freezed,}) {
   return _then(_DeleteFile(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
-as ChangeAnnotationIdentifier?,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as DeleteFileOptions?,
   ));
 }
@@ -21847,7 +21863,7 @@ mixin _$InlayHintLabelPart {
 /// client capability `inlayHint.resolveSupport` clients might resolve this
 /// property late using the resolve request.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
  InlayHintLabelPartTooltip? get tooltip;/// An optional source code location that represents this label part.
 ///
 /// The editor will use this location for the hover and for code navigation
@@ -21963,7 +21979,7 @@ class _InlayHintLabelPart implements InlayHintLabelPart {
 /// client capability `inlayHint.resolveSupport` clients might resolve this
 /// property late using the resolve request.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
 @override final  InlayHintLabelPartTooltip? tooltip;
 /// An optional source code location that represents this label part.
 ///
@@ -22214,9 +22230,9 @@ as String,
 /// @nodoc
 mixin _$RelatedFullDocumentDiagnosticReport {
 
-/// A full document diagnostic report.
- String get kind;/// The actual items.
- List<Diagnostic> get items;/// An optional result id. If provided it will be sent on the next
+/// The actual items.
+ List<Diagnostic> get items;/// A full document diagnostic report.
+ String get kind;/// An optional result id. If provided it will be sent on the next
 /// diagnostic request for the same document.
  String? get resultId;/// Diagnostics of related documents. This information is useful in
 /// programming languages where code in a file A can generate diagnostics in
@@ -22236,16 +22252,16 @@ $RelatedFullDocumentDiagnosticReportCopyWith<RelatedFullDocumentDiagnosticReport
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RelatedFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.relatedDocuments, relatedDocuments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RelatedFullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.relatedDocuments, relatedDocuments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(items),resultId,const DeepCollectionEquality().hash(relatedDocuments));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),kind,resultId,const DeepCollectionEquality().hash(relatedDocuments));
 
 @override
 String toString() {
-  return 'RelatedFullDocumentDiagnosticReport(kind: $kind, items: $items, resultId: $resultId, relatedDocuments: $relatedDocuments)';
+  return 'RelatedFullDocumentDiagnosticReport(items: $items, kind: $kind, resultId: $resultId, relatedDocuments: $relatedDocuments)';
 }
 
 
@@ -22256,7 +22272,7 @@ abstract mixin class $RelatedFullDocumentDiagnosticReportCopyWith<$Res>  {
   factory $RelatedFullDocumentDiagnosticReportCopyWith(RelatedFullDocumentDiagnosticReport value, $Res Function(RelatedFullDocumentDiagnosticReport) _then) = _$RelatedFullDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, List<Diagnostic> items, String? resultId, Map<String, Object>? relatedDocuments
+ List<Diagnostic> items, String kind, String? resultId, Map<String, Object>? relatedDocuments
 });
 
 
@@ -22273,11 +22289,11 @@ class _$RelatedFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of RelatedFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? items = null,Object? resultId = freezed,Object? relatedDocuments = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? kind = null,Object? resultId = freezed,Object? relatedDocuments = freezed,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,relatedDocuments: freezed == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
 as Map<String, Object>?,
   ));
@@ -22291,11 +22307,9 @@ as Map<String, Object>?,
 @JsonSerializable()
 
 class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnosticReport {
-  const _RelatedFullDocumentDiagnosticReport({this.kind = 'full', required final  List<Diagnostic> items, this.resultId, final  Map<String, Object>? relatedDocuments}): _items = items,_relatedDocuments = relatedDocuments;
+  const _RelatedFullDocumentDiagnosticReport({required final  List<Diagnostic> items, this.kind = 'full', this.resultId, final  Map<String, Object>? relatedDocuments}): _items = items,_relatedDocuments = relatedDocuments;
   factory _RelatedFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
 
-/// A full document diagnostic report.
-@override@JsonKey() final  String kind;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -22305,6 +22319,8 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
   return EqualUnmodifiableListView(_items);
 }
 
+/// A full document diagnostic report.
+@override@JsonKey() final  String kind;
 /// An optional result id. If provided it will be sent on the next
 /// diagnostic request for the same document.
 @override final  String? resultId;
@@ -22341,16 +22357,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RelatedFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._relatedDocuments, _relatedDocuments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RelatedFullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._relatedDocuments, _relatedDocuments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items),resultId,const DeepCollectionEquality().hash(_relatedDocuments));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),kind,resultId,const DeepCollectionEquality().hash(_relatedDocuments));
 
 @override
 String toString() {
-  return 'RelatedFullDocumentDiagnosticReport(kind: $kind, items: $items, resultId: $resultId, relatedDocuments: $relatedDocuments)';
+  return 'RelatedFullDocumentDiagnosticReport(items: $items, kind: $kind, resultId: $resultId, relatedDocuments: $relatedDocuments)';
 }
 
 
@@ -22361,7 +22377,7 @@ abstract mixin class _$RelatedFullDocumentDiagnosticReportCopyWith<$Res> impleme
   factory _$RelatedFullDocumentDiagnosticReportCopyWith(_RelatedFullDocumentDiagnosticReport value, $Res Function(_RelatedFullDocumentDiagnosticReport) _then) = __$RelatedFullDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, List<Diagnostic> items, String? resultId, Map<String, Object>? relatedDocuments
+ List<Diagnostic> items, String kind, String? resultId, Map<String, Object>? relatedDocuments
 });
 
 
@@ -22378,11 +22394,11 @@ class __$RelatedFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of RelatedFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,Object? resultId = freezed,Object? relatedDocuments = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? kind = null,Object? resultId = freezed,Object? relatedDocuments = freezed,}) {
   return _then(_RelatedFullDocumentDiagnosticReport(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,relatedDocuments: freezed == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
 as Map<String, Object>?,
   ));
@@ -22395,11 +22411,11 @@ as Map<String, Object>?,
 /// @nodoc
 mixin _$RelatedUnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// A result id which will be sent on the next diagnostic request for the
 /// same document.
- String get resultId;/// Diagnostics of related documents. This information is useful in
+ String get resultId;/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+ String get kind;/// Diagnostics of related documents. This information is useful in
 /// programming languages where code in a file A can generate diagnostics in
 /// a file B which A depends on. An example of such a language is C/C++
 /// where marco definitions in a file a.cpp and result in errors in a header
@@ -22417,16 +22433,16 @@ $RelatedUnchangedDocumentDiagnosticReportCopyWith<RelatedUnchangedDocumentDiagno
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RelatedUnchangedDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other.relatedDocuments, relatedDocuments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RelatedUnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.relatedDocuments, relatedDocuments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,const DeepCollectionEquality().hash(relatedDocuments));
+int get hashCode => Object.hash(runtimeType,resultId,kind,const DeepCollectionEquality().hash(relatedDocuments));
 
 @override
 String toString() {
-  return 'RelatedUnchangedDocumentDiagnosticReport(kind: $kind, resultId: $resultId, relatedDocuments: $relatedDocuments)';
+  return 'RelatedUnchangedDocumentDiagnosticReport(resultId: $resultId, kind: $kind, relatedDocuments: $relatedDocuments)';
 }
 
 
@@ -22437,7 +22453,7 @@ abstract mixin class $RelatedUnchangedDocumentDiagnosticReportCopyWith<$Res>  {
   factory $RelatedUnchangedDocumentDiagnosticReportCopyWith(RelatedUnchangedDocumentDiagnosticReport value, $Res Function(RelatedUnchangedDocumentDiagnosticReport) _then) = _$RelatedUnchangedDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, String resultId, Map<String, Object>? relatedDocuments
+ String resultId, String kind, Map<String, Object>? relatedDocuments
 });
 
 
@@ -22454,10 +22470,10 @@ class _$RelatedUnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of RelatedUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? resultId = null,Object? relatedDocuments = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? resultId = null,Object? kind = null,Object? relatedDocuments = freezed,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,relatedDocuments: freezed == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
 as Map<String, Object>?,
   ));
@@ -22471,15 +22487,15 @@ as Map<String, Object>?,
 @JsonSerializable()
 
 class _RelatedUnchangedDocumentDiagnosticReport implements RelatedUnchangedDocumentDiagnosticReport {
-  const _RelatedUnchangedDocumentDiagnosticReport({this.kind = 'unchanged', required this.resultId, final  Map<String, Object>? relatedDocuments}): _relatedDocuments = relatedDocuments;
+  const _RelatedUnchangedDocumentDiagnosticReport({required this.resultId, this.kind = 'unchanged', final  Map<String, Object>? relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _RelatedUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
-@override@JsonKey() final  String kind;
 /// A result id which will be sent on the next diagnostic request for the
 /// same document.
 @override final  String resultId;
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+@override@JsonKey() final  String kind;
 /// Diagnostics of related documents. This information is useful in
 /// programming languages where code in a file A can generate diagnostics in
 /// a file B which A depends on. An example of such a language is C/C++
@@ -22513,16 +22529,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RelatedUnchangedDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&const DeepCollectionEquality().equals(other._relatedDocuments, _relatedDocuments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RelatedUnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._relatedDocuments, _relatedDocuments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,const DeepCollectionEquality().hash(_relatedDocuments));
+int get hashCode => Object.hash(runtimeType,resultId,kind,const DeepCollectionEquality().hash(_relatedDocuments));
 
 @override
 String toString() {
-  return 'RelatedUnchangedDocumentDiagnosticReport(kind: $kind, resultId: $resultId, relatedDocuments: $relatedDocuments)';
+  return 'RelatedUnchangedDocumentDiagnosticReport(resultId: $resultId, kind: $kind, relatedDocuments: $relatedDocuments)';
 }
 
 
@@ -22533,7 +22549,7 @@ abstract mixin class _$RelatedUnchangedDocumentDiagnosticReportCopyWith<$Res> im
   factory _$RelatedUnchangedDocumentDiagnosticReportCopyWith(_RelatedUnchangedDocumentDiagnosticReport value, $Res Function(_RelatedUnchangedDocumentDiagnosticReport) _then) = __$RelatedUnchangedDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String resultId, Map<String, Object>? relatedDocuments
+ String resultId, String kind, Map<String, Object>? relatedDocuments
 });
 
 
@@ -22550,10 +22566,10 @@ class __$RelatedUnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of RelatedUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? resultId = null,Object? relatedDocuments = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? resultId = null,Object? kind = null,Object? relatedDocuments = freezed,}) {
   return _then(_RelatedUnchangedDocumentDiagnosticReport(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,relatedDocuments: freezed == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
 as Map<String, Object>?,
   ));
@@ -22566,9 +22582,9 @@ as Map<String, Object>?,
 /// @nodoc
 mixin _$FullDocumentDiagnosticReport {
 
-/// A full document diagnostic report.
- String get kind;/// The actual items.
- List<Diagnostic> get items;/// An optional result id. If provided it will be sent on the next
+/// The actual items.
+ List<Diagnostic> get items;/// A full document diagnostic report.
+ String get kind;/// An optional result id. If provided it will be sent on the next
 /// diagnostic request for the same document.
  String? get resultId;
 /// Create a copy of FullDocumentDiagnosticReport
@@ -22583,16 +22599,16 @@ $FullDocumentDiagnosticReportCopyWith<FullDocumentDiagnosticReport> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(items),resultId);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),kind,resultId);
 
 @override
 String toString() {
-  return 'FullDocumentDiagnosticReport(kind: $kind, items: $items, resultId: $resultId)';
+  return 'FullDocumentDiagnosticReport(items: $items, kind: $kind, resultId: $resultId)';
 }
 
 
@@ -22603,7 +22619,7 @@ abstract mixin class $FullDocumentDiagnosticReportCopyWith<$Res>  {
   factory $FullDocumentDiagnosticReportCopyWith(FullDocumentDiagnosticReport value, $Res Function(FullDocumentDiagnosticReport) _then) = _$FullDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, List<Diagnostic> items, String? resultId
+ List<Diagnostic> items, String kind, String? resultId
 });
 
 
@@ -22620,11 +22636,11 @@ class _$FullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of FullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? items = null,Object? resultId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? kind = null,Object? resultId = freezed,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -22637,11 +22653,9 @@ as String?,
 @JsonSerializable()
 
 class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
-  const _FullDocumentDiagnosticReport({this.kind = 'full', required final  List<Diagnostic> items, this.resultId}): _items = items;
+  const _FullDocumentDiagnosticReport({required final  List<Diagnostic> items, this.kind = 'full', this.resultId}): _items = items;
   factory _FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$FullDocumentDiagnosticReportFromJson(json);
 
-/// A full document diagnostic report.
-@override@JsonKey() final  String kind;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -22651,6 +22665,8 @@ class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
   return EqualUnmodifiableListView(_items);
 }
 
+/// A full document diagnostic report.
+@override@JsonKey() final  String kind;
 /// An optional result id. If provided it will be sent on the next
 /// diagnostic request for the same document.
 @override final  String? resultId;
@@ -22668,16 +22684,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items),resultId);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),kind,resultId);
 
 @override
 String toString() {
-  return 'FullDocumentDiagnosticReport(kind: $kind, items: $items, resultId: $resultId)';
+  return 'FullDocumentDiagnosticReport(items: $items, kind: $kind, resultId: $resultId)';
 }
 
 
@@ -22688,7 +22704,7 @@ abstract mixin class _$FullDocumentDiagnosticReportCopyWith<$Res> implements $Fu
   factory _$FullDocumentDiagnosticReportCopyWith(_FullDocumentDiagnosticReport value, $Res Function(_FullDocumentDiagnosticReport) _then) = __$FullDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, List<Diagnostic> items, String? resultId
+ List<Diagnostic> items, String kind, String? resultId
 });
 
 
@@ -22705,11 +22721,11 @@ class __$FullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of FullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,Object? resultId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? kind = null,Object? resultId = freezed,}) {
   return _then(_FullDocumentDiagnosticReport(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -22721,11 +22737,11 @@ as String?,
 /// @nodoc
 mixin _$UnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// A result id which will be sent on the next diagnostic request for the
 /// same document.
- String get resultId;
+ String get resultId;/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+ String get kind;
 /// Create a copy of UnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -22738,16 +22754,16 @@ $UnchangedDocumentDiagnosticReportCopyWith<UnchangedDocumentDiagnosticReport> ge
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UnchangedDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.kind, kind) || other.kind == kind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId);
+int get hashCode => Object.hash(runtimeType,resultId,kind);
 
 @override
 String toString() {
-  return 'UnchangedDocumentDiagnosticReport(kind: $kind, resultId: $resultId)';
+  return 'UnchangedDocumentDiagnosticReport(resultId: $resultId, kind: $kind)';
 }
 
 
@@ -22758,7 +22774,7 @@ abstract mixin class $UnchangedDocumentDiagnosticReportCopyWith<$Res>  {
   factory $UnchangedDocumentDiagnosticReportCopyWith(UnchangedDocumentDiagnosticReport value, $Res Function(UnchangedDocumentDiagnosticReport) _then) = _$UnchangedDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, String resultId
+ String resultId, String kind
 });
 
 
@@ -22775,10 +22791,10 @@ class _$UnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of UnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? resultId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? resultId = null,Object? kind = null,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -22791,15 +22807,15 @@ as String,
 @JsonSerializable()
 
 class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticReport {
-  const _UnchangedDocumentDiagnosticReport({this.kind = 'unchanged', required this.resultId});
+  const _UnchangedDocumentDiagnosticReport({required this.resultId, this.kind = 'unchanged'});
   factory _UnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
-@override@JsonKey() final  String kind;
 /// A result id which will be sent on the next diagnostic request for the
 /// same document.
 @override final  String resultId;
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+@override@JsonKey() final  String kind;
 
 /// Create a copy of UnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -22814,16 +22830,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UnchangedDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.kind, kind) || other.kind == kind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId);
+int get hashCode => Object.hash(runtimeType,resultId,kind);
 
 @override
 String toString() {
-  return 'UnchangedDocumentDiagnosticReport(kind: $kind, resultId: $resultId)';
+  return 'UnchangedDocumentDiagnosticReport(resultId: $resultId, kind: $kind)';
 }
 
 
@@ -22834,7 +22850,7 @@ abstract mixin class _$UnchangedDocumentDiagnosticReportCopyWith<$Res> implement
   factory _$UnchangedDocumentDiagnosticReportCopyWith(_UnchangedDocumentDiagnosticReport value, $Res Function(_UnchangedDocumentDiagnosticReport) _then) = __$UnchangedDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String resultId
+ String resultId, String kind
 });
 
 
@@ -22851,10 +22867,10 @@ class __$UnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of UnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? resultId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? resultId = null,Object? kind = null,}) {
   return _then(_UnchangedDocumentDiagnosticReport(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -23940,9 +23956,9 @@ $SelectedCompletionInfoCopyWith<$Res>? get selectedCompletionInfo {
 /// @nodoc
 mixin _$StringValue {
 
-/// The kind of string value.
- String get kind;/// The snippet string.
- String get value;
+/// The snippet string.
+ String get value;/// The kind of string value.
+ String get kind;
 /// Create a copy of StringValue
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -23955,16 +23971,16 @@ $StringValueCopyWith<StringValue> get copyWith => _$StringValueCopyWithImpl<Stri
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StringValue&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.value, value) || other.value == value));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StringValue&&(identical(other.value, value) || other.value == value)&&(identical(other.kind, kind) || other.kind == kind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,value);
+int get hashCode => Object.hash(runtimeType,value,kind);
 
 @override
 String toString() {
-  return 'StringValue(kind: $kind, value: $value)';
+  return 'StringValue(value: $value, kind: $kind)';
 }
 
 
@@ -23975,7 +23991,7 @@ abstract mixin class $StringValueCopyWith<$Res>  {
   factory $StringValueCopyWith(StringValue value, $Res Function(StringValue) _then) = _$StringValueCopyWithImpl;
 @useResult
 $Res call({
- String kind, String value
+ String value, String kind
 });
 
 
@@ -23992,10 +24008,10 @@ class _$StringValueCopyWithImpl<$Res>
 
 /// Create a copy of StringValue
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? value = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? value = null,Object? kind = null,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -24008,13 +24024,13 @@ as String,
 @JsonSerializable()
 
 class _StringValue implements StringValue {
-  const _StringValue({this.kind = 'snippet', required this.value});
+  const _StringValue({required this.value, this.kind = 'snippet'});
   factory _StringValue.fromJson(Map<String, dynamic> json) => _$StringValueFromJson(json);
 
-/// The kind of string value.
-@override@JsonKey() final  String kind;
 /// The snippet string.
 @override final  String value;
+/// The kind of string value.
+@override@JsonKey() final  String kind;
 
 /// Create a copy of StringValue
 /// with the given fields replaced by the non-null parameter values.
@@ -24029,16 +24045,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StringValue&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.value, value) || other.value == value));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StringValue&&(identical(other.value, value) || other.value == value)&&(identical(other.kind, kind) || other.kind == kind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,value);
+int get hashCode => Object.hash(runtimeType,value,kind);
 
 @override
 String toString() {
-  return 'StringValue(kind: $kind, value: $value)';
+  return 'StringValue(value: $value, kind: $kind)';
 }
 
 
@@ -24049,7 +24065,7 @@ abstract mixin class _$StringValueCopyWith<$Res> implements $StringValueCopyWith
   factory _$StringValueCopyWith(_StringValue value, $Res Function(_StringValue) _then) = __$StringValueCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String value
+ String value, String kind
 });
 
 
@@ -24066,10 +24082,10 @@ class __$StringValueCopyWithImpl<$Res>
 
 /// Create a copy of StringValue
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? value = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? value = null,Object? kind = null,}) {
   return _then(_StringValue(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -24807,7 +24823,7 @@ mixin _$Diagnostic {
 /// client to interpret diagnostics as error, warning, info or hint.
  DiagnosticSeverity? get severity;/// The diagnostic's code, which usually appear in the user interface.
 ///
-/// Type: int | String
+/// Type: `int` | `String`
  DiagnosticCode? get code;/// An optional property to describe the error code. Requires the code field
 /// (above) to be present/not null.
  CodeDescription? get codeDescription;/// A human-readable string describing the source of this diagnostic, e.g.
@@ -24924,7 +24940,7 @@ class _Diagnostic implements Diagnostic {
 @override final  DiagnosticSeverity? severity;
 /// The diagnostic's code, which usually appear in the user interface.
 ///
-/// Type: int | String
+/// Type: `int` | `String`
 @override final  DiagnosticCode? code;
 /// An optional property to describe the error code. Requires the code field
 /// (above) to be present/not null.
@@ -25729,7 +25745,7 @@ mixin _$SignatureInformation {
  String get label;/// The human-readable doc-comment of this signature. Will be shown in the
 /// UI but can be omitted.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
  SignatureInformationDocumentation? get documentation;/// The parameters of this signature.
  List<ParameterInformation>? get parameters;/// The index of the active parameter.
 ///
@@ -25810,7 +25826,7 @@ class _SignatureInformation implements SignatureInformation {
 /// The human-readable doc-comment of this signature. Will be shown in the
 /// UI but can be omitted.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
 @override final  SignatureInformationDocumentation? documentation;
 /// The parameters of this signature.
  final  List<ParameterInformation>? _parameters;
@@ -27188,12 +27204,12 @@ $FileOperationPatternOptionsCopyWith<$Res>? get options {
 /// @nodoc
 mixin _$WorkspaceFullDocumentDiagnosticReport {
 
-/// A full document diagnostic report.
- String get kind;/// The actual items.
+/// The actual items.
  List<Diagnostic> get items;/// The URI for which diagnostic information is reported.
  String get uri;/// The version number for which the diagnostics are reported. If the
 /// document is not marked as open `null` can be provided.
- int? get version;/// An optional result id. If provided it will be sent on the next
+ int? get version;/// A full document diagnostic report.
+ String get kind;/// An optional result id. If provided it will be sent on the next
 /// diagnostic request for the same document.
  String? get resultId;
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
@@ -27208,16 +27224,16 @@ $WorkspaceFullDocumentDiagnosticReportCopyWith<WorkspaceFullDocumentDiagnosticRe
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceFullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(items),uri,version,resultId);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),uri,version,kind,resultId);
 
 @override
 String toString() {
-  return 'WorkspaceFullDocumentDiagnosticReport(kind: $kind, items: $items, uri: $uri, version: $version, resultId: $resultId)';
+  return 'WorkspaceFullDocumentDiagnosticReport(items: $items, uri: $uri, version: $version, kind: $kind, resultId: $resultId)';
 }
 
 
@@ -27228,7 +27244,7 @@ abstract mixin class $WorkspaceFullDocumentDiagnosticReportCopyWith<$Res>  {
   factory $WorkspaceFullDocumentDiagnosticReportCopyWith(WorkspaceFullDocumentDiagnosticReport value, $Res Function(WorkspaceFullDocumentDiagnosticReport) _then) = _$WorkspaceFullDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, List<Diagnostic> items, String uri, int? version, String? resultId
+ List<Diagnostic> items, String uri, int? version, String kind, String? resultId
 });
 
 
@@ -27245,13 +27261,13 @@ class _$WorkspaceFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? items = null,Object? uri = null,Object? version = freezed,Object? resultId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? uri = null,Object? version = freezed,Object? kind = null,Object? resultId = freezed,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int?,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as int?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -27264,11 +27280,9 @@ as String?,
 @JsonSerializable()
 
 class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDiagnosticReport {
-  const _WorkspaceFullDocumentDiagnosticReport({this.kind = 'full', required final  List<Diagnostic> items, required this.uri, required this.version, this.resultId}): _items = items;
+  const _WorkspaceFullDocumentDiagnosticReport({required final  List<Diagnostic> items, required this.uri, required this.version, this.kind = 'full', this.resultId}): _items = items;
   factory _WorkspaceFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceFullDocumentDiagnosticReportFromJson(json);
 
-/// A full document diagnostic report.
-@override@JsonKey() final  String kind;
 /// The actual items.
  final  List<Diagnostic> _items;
 /// The actual items.
@@ -27283,6 +27297,8 @@ class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDia
 /// The version number for which the diagnostics are reported. If the
 /// document is not marked as open `null` can be provided.
 @override final  int? version;
+/// A full document diagnostic report.
+@override@JsonKey() final  String kind;
 /// An optional result id. If provided it will be sent on the next
 /// diagnostic request for the same document.
 @override final  String? resultId;
@@ -27300,16 +27316,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceFullDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceFullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items),uri,version,resultId);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),uri,version,kind,resultId);
 
 @override
 String toString() {
-  return 'WorkspaceFullDocumentDiagnosticReport(kind: $kind, items: $items, uri: $uri, version: $version, resultId: $resultId)';
+  return 'WorkspaceFullDocumentDiagnosticReport(items: $items, uri: $uri, version: $version, kind: $kind, resultId: $resultId)';
 }
 
 
@@ -27320,7 +27336,7 @@ abstract mixin class _$WorkspaceFullDocumentDiagnosticReportCopyWith<$Res> imple
   factory _$WorkspaceFullDocumentDiagnosticReportCopyWith(_WorkspaceFullDocumentDiagnosticReport value, $Res Function(_WorkspaceFullDocumentDiagnosticReport) _then) = __$WorkspaceFullDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, List<Diagnostic> items, String uri, int? version, String? resultId
+ List<Diagnostic> items, String uri, int? version, String kind, String? resultId
 });
 
 
@@ -27337,13 +27353,13 @@ class __$WorkspaceFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,Object? uri = null,Object? version = freezed,Object? resultId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? uri = null,Object? version = freezed,Object? kind = null,Object? resultId = freezed,}) {
   return _then(_WorkspaceFullDocumentDiagnosticReport(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int?,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as int?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -27355,14 +27371,14 @@ as String?,
 /// @nodoc
 mixin _$WorkspaceUnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// A result id which will be sent on the next diagnostic request for the
 /// same document.
  String get resultId;/// The URI for which diagnostic information is reported.
  String get uri;/// The version number for which the diagnostics are reported. If the
 /// document is not marked as open `null` can be provided.
- int? get version;
+ int? get version;/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+ String get kind;
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27375,16 +27391,16 @@ $WorkspaceUnchangedDocumentDiagnosticReportCopyWith<WorkspaceUnchangedDocumentDi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceUnchangedDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceUnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&(identical(other.kind, kind) || other.kind == kind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,uri,version);
+int get hashCode => Object.hash(runtimeType,resultId,uri,version,kind);
 
 @override
 String toString() {
-  return 'WorkspaceUnchangedDocumentDiagnosticReport(kind: $kind, resultId: $resultId, uri: $uri, version: $version)';
+  return 'WorkspaceUnchangedDocumentDiagnosticReport(resultId: $resultId, uri: $uri, version: $version, kind: $kind)';
 }
 
 
@@ -27395,7 +27411,7 @@ abstract mixin class $WorkspaceUnchangedDocumentDiagnosticReportCopyWith<$Res>  
   factory $WorkspaceUnchangedDocumentDiagnosticReportCopyWith(WorkspaceUnchangedDocumentDiagnosticReport value, $Res Function(WorkspaceUnchangedDocumentDiagnosticReport) _then) = _$WorkspaceUnchangedDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, String resultId, String uri, int? version
+ String resultId, String uri, int? version, String kind
 });
 
 
@@ -27412,13 +27428,13 @@ class _$WorkspaceUnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? resultId = null,Object? uri = null,Object? version = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? resultId = null,Object? uri = null,Object? version = freezed,Object? kind = null,}) {
   return _then(_self.copyWith(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -27430,12 +27446,9 @@ as int?,
 @JsonSerializable()
 
 class _WorkspaceUnchangedDocumentDiagnosticReport implements WorkspaceUnchangedDocumentDiagnosticReport {
-  const _WorkspaceUnchangedDocumentDiagnosticReport({this.kind = 'unchanged', required this.resultId, required this.uri, required this.version});
+  const _WorkspaceUnchangedDocumentDiagnosticReport({required this.resultId, required this.uri, required this.version, this.kind = 'unchanged'});
   factory _WorkspaceUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
-@override@JsonKey() final  String kind;
 /// A result id which will be sent on the next diagnostic request for the
 /// same document.
 @override final  String resultId;
@@ -27444,6 +27457,9 @@ class _WorkspaceUnchangedDocumentDiagnosticReport implements WorkspaceUnchangedD
 /// The version number for which the diagnostics are reported. If the
 /// document is not marked as open `null` can be provided.
 @override final  int? version;
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+@override@JsonKey() final  String kind;
 
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -27458,16 +27474,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceUnchangedDocumentDiagnosticReport&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceUnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.version, version) || other.version == version)&&(identical(other.kind, kind) || other.kind == kind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,kind,resultId,uri,version);
+int get hashCode => Object.hash(runtimeType,resultId,uri,version,kind);
 
 @override
 String toString() {
-  return 'WorkspaceUnchangedDocumentDiagnosticReport(kind: $kind, resultId: $resultId, uri: $uri, version: $version)';
+  return 'WorkspaceUnchangedDocumentDiagnosticReport(resultId: $resultId, uri: $uri, version: $version, kind: $kind)';
 }
 
 
@@ -27478,7 +27494,7 @@ abstract mixin class _$WorkspaceUnchangedDocumentDiagnosticReportCopyWith<$Res> 
   factory _$WorkspaceUnchangedDocumentDiagnosticReportCopyWith(_WorkspaceUnchangedDocumentDiagnosticReport value, $Res Function(_WorkspaceUnchangedDocumentDiagnosticReport) _then) = __$WorkspaceUnchangedDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String resultId, String uri, int? version
+ String resultId, String uri, int? version, String kind
 });
 
 
@@ -27495,13 +27511,13 @@ class __$WorkspaceUnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? resultId = null,Object? uri = null,Object? version = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? resultId = null,Object? uri = null,Object? version = freezed,Object? kind = null,}) {
   return _then(_WorkspaceUnchangedDocumentDiagnosticReport(
-kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -28322,11 +28338,11 @@ mixin _$ParameterInformation {
 /// signature label. Its intended use case is to highlight the parameter
 /// label part in the `SignatureInformation.label`.
 ///
-/// Type: String | (int, int)
+/// Type: `String` | `(int, int)`
  ParameterInformationLabel get label;/// The human-readable doc-comment of this parameter. Will be shown in the
 /// UI but can be omitted.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
  ParameterInformationDocumentation? get documentation;
 /// Create a copy of ParameterInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -28407,12 +28423,12 @@ class _ParameterInformation implements ParameterInformation {
 /// signature label. Its intended use case is to highlight the parameter
 /// label part in the `SignatureInformation.label`.
 ///
-/// Type: String | (int, int)
+/// Type: `String` | `(int, int)`
 @override final  ParameterInformationLabel label;
 /// The human-readable doc-comment of this parameter. Will be shown in the
 /// UI but can be omitted.
 ///
-/// Type: String | MarkupContent
+/// Type: `String` | `MarkupContent`
 @override final  ParameterInformationDocumentation? documentation;
 
 /// Create a copy of ParameterInformation
@@ -28484,7 +28500,7 @@ mixin _$NotebookCellTextDocumentFilter {
 /// If a string value is provided it matches against the notebook type. '*'
 /// matches every notebook.
 ///
-/// Type: String | NotebookDocumentFilter
+/// Type: `String` | `NotebookDocumentFilter`
  NotebookCellTextDocumentFilterNotebook get notebook;/// A language id like `python`.
 ///
 /// Will be matched against the language id of the notebook cell document.
@@ -28562,7 +28578,7 @@ class _NotebookCellTextDocumentFilter implements NotebookCellTextDocumentFilter 
 /// If a string value is provided it matches against the notebook type. '*'
 /// matches every notebook.
 ///
-/// Type: String | NotebookDocumentFilter
+/// Type: `String` | `NotebookDocumentFilter`
 @override final  NotebookCellTextDocumentFilterNotebook notebook;
 /// A language id like `python`.
 ///
@@ -28781,7 +28797,7 @@ mixin _$RelativePattern {
 /// A workspace folder or a base URI to which this pattern will be matched
 /// against relatively.
 ///
-/// Type: WorkspaceFolder | String
+/// Type: `WorkspaceFolder` | `String`
  RelativePatternBaseUri get baseUri;/// The actual glob pattern;
  Pattern get pattern;
 /// Create a copy of RelativePattern
@@ -28855,7 +28871,7 @@ class _RelativePattern implements RelativePattern {
 /// A workspace folder or a base URI to which this pattern will be matched
 /// against relatively.
 ///
-/// Type: WorkspaceFolder | String
+/// Type: `WorkspaceFolder` | `String`
 @override final  RelativePatternBaseUri baseUri;
 /// The actual glob pattern;
 @override final  Pattern pattern;
@@ -32850,10 +32866,10 @@ mixin _$SemanticTokensRegistrationOptions {
  SemanticTokensLegend get legend; bool? get workDoneProgress;/// Server supports providing semantic tokens for a specific range of a
 /// document.
 ///
-/// Type: bool | Object
+/// Type: `bool` | `Object`
  SemanticTokensRegistrationOptionsRange? get range;/// Server supports providing semantic tokens for a full document.
 ///
-/// Type: bool | Object
+/// Type: `bool` | `Object`
  SemanticTokensRegistrationOptionsFull? get full;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
@@ -32957,11 +32973,11 @@ class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOp
 /// Server supports providing semantic tokens for a specific range of a
 /// document.
 ///
-/// Type: bool | Object
+/// Type: `bool` | `Object`
 @override final  SemanticTokensRegistrationOptionsRange? range;
 /// Server supports providing semantic tokens for a full document.
 ///
-/// Type: bool | Object
+/// Type: `bool` | `Object`
 @override final  SemanticTokensRegistrationOptionsFull? full;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
@@ -47108,7 +47124,7 @@ mixin _$CancelParams {
 
 /// The request id to cancel.
 ///
-/// Type: int | String
+/// Type: `int` | `String`
  CancelParamsId get id;
 /// Create a copy of CancelParams
 /// with the given fields replaced by the non-null parameter values.
@@ -47179,7 +47195,7 @@ class _CancelParams implements CancelParams {
 
 /// The request id to cancel.
 ///
-/// Type: int | String
+/// Type: `int` | `String`
 @override final  CancelParamsId id;
 
 /// Create a copy of CancelParams
@@ -48918,10 +48934,10 @@ mixin _$SemanticTokensOptions {
  SemanticTokensLegend get legend; bool? get workDoneProgress;/// Server supports providing semantic tokens for a specific range of a
 /// document.
 ///
-/// Type: bool | Object
+/// Type: `bool` | `Object`
  SemanticTokensOptionsRange? get range;/// Server supports providing semantic tokens for a full document.
 ///
-/// Type: bool | Object
+/// Type: `bool` | `Object`
  SemanticTokensOptionsFull? get full;
 /// Create a copy of SemanticTokensOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -49008,11 +49024,11 @@ class _SemanticTokensOptions implements SemanticTokensOptions {
 /// Server supports providing semantic tokens for a specific range of a
 /// document.
 ///
-/// Type: bool | Object
+/// Type: `bool` | `Object`
 @override final  SemanticTokensOptionsRange? range;
 /// Server supports providing semantic tokens for a full document.
 ///
-/// Type: bool | Object
+/// Type: `bool` | `Object`
 @override final  SemanticTokensOptionsFull? full;
 
 /// Create a copy of SemanticTokensOptions
@@ -53311,7 +53327,7 @@ mixin _$TextDocumentSyncOptions {
  bool? get willSaveWaitUntil;/// If present save notifications are sent to the server. If omitted the
 /// notification should not be sent.
 ///
-/// Type: bool | SaveOptions
+/// Type: `bool` | `SaveOptions`
  TextDocumentSyncOptionsSave? get save;
 /// Create a copy of TextDocumentSyncOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -53401,7 +53417,7 @@ class _TextDocumentSyncOptions implements TextDocumentSyncOptions {
 /// If present save notifications are sent to the server. If omitted the
 /// notification should not be sent.
 ///
-/// Type: bool | SaveOptions
+/// Type: `bool` | `SaveOptions`
 @override final  TextDocumentSyncOptionsSave? save;
 
 /// Create a copy of TextDocumentSyncOptions

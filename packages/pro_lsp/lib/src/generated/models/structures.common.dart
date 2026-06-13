@@ -1,6 +1,5 @@
-// ignore_for_file: type=lint
-
 // GENERATED — do not edit.
+// ignore_for_file: remove_deprecations_in_breaking_versions
 
 part of 'structures.dart';
 
@@ -419,7 +418,7 @@ abstract class InlayHint with _$InlayHint {
     ///
     /// *Note* that neither the string nor the label part can be empty.
     ///
-    /// Type: String | List<InlayHintLabelPart>
+    /// Type: `String` | `List<InlayHintLabelPart>`
     required InlayHintLabel label,
 
     /// The kind of this hint. Can be omitted in which case the client should
@@ -435,7 +434,7 @@ abstract class InlayHint with _$InlayHint {
 
     /// The tooltip text when you hover over this item.
     ///
-    /// Type: String | MarkupContent
+    /// Type: `String` | `MarkupContent`
     InlayHintTooltip? tooltip,
 
     /// Render padding before the hint.
@@ -545,7 +544,7 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
   const factory InlineCompletionItem({
     /// The text to replace the range with. Must be set.
     ///
-    /// Type: String | StringValue
+    /// Type: `String` | `StringValue`
     required InlineCompletionItemInsertText insertText,
 
     /// A text that is used to decide if this inline completion should be shown.
@@ -651,7 +650,7 @@ abstract class CompletionItem with _$CompletionItem {
 
     /// A human-readable string that represents a doc-comment.
     ///
-    /// Type: String | MarkupContent
+    /// Type: `String` | `MarkupContent`
     CompletionItemDocumentation? documentation,
 
     /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
@@ -677,7 +676,7 @@ abstract class CompletionItem with _$CompletionItem {
     ///
     /// The `insertText` is subject to interpretation by the client side. Some
     /// tools might not take the string literally. For example VS Code when code
-    /// complete is requested in this example `con<cursor position>` and a
+    /// complete is requested in this example `con&lt;cursor position&gt;` and a
     /// completion item with an `insertText` of `console` is provided it will
     /// only insert `sole`. Therefore it is recommended to use `textEdit`
     /// instead since it avoids additional client side interpretation.
@@ -716,7 +715,7 @@ abstract class CompletionItem with _$CompletionItem {
     ///
     /// additional type `InsertReplaceEdit`
     ///
-    /// Type: TextEdit | InsertReplaceEdit
+    /// Type: `TextEdit` | `InsertReplaceEdit`
     CompletionItemTextEdit? textEdit,
 
     /// The edit text used if the completion item is part of a CompletionList
@@ -802,7 +801,7 @@ abstract class Hover with _$Hover {
   const factory Hover({
     /// The hover's content
     ///
-    /// Type: MarkupContent | MarkedString | List<MarkedString>
+    /// Type: `MarkupContent` | `MarkedString` | `List<MarkedString>`
     required HoverContents contents,
 
     /// An optional range inside the text document that is used to visualize the
@@ -1050,7 +1049,7 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     ///
     /// See SymbolInformation#location for more details.
     ///
-    /// Type: Location | Object
+    /// Type: `Location` | `Object`
     required WorkspaceSymbolLocation location,
 
     /// Tags for this symbol.
@@ -1154,13 +1153,12 @@ abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
 @freezed
 abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
   const factory WorkDoneProgressBegin({
-    @Default('begin') String kind,
-
     /// Mandatory title of the progress operation. Used to briefly inform about
     /// the kind of operation being performed.
     ///
     /// Examples: "Indexing" or "Linking dependencies".
     required String title,
+    @Default('begin') String kind,
 
     /// Controls if a cancel button should show to allow the user to cancel the
     /// long running operation. Clients that don't support cancellation are
@@ -1455,14 +1453,14 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
 @freezed
 abstract class CreateFile with _$CreateFile {
   const factory CreateFile({
-    /// A create
-    @Default('create') String kind,
-
     /// The resource to create.
     required String uri,
 
     /// An optional annotation identifier describing the operation.
     ChangeAnnotationIdentifier? annotationId,
+
+    /// A create
+    @Default('create') String kind,
 
     /// Additional options
     CreateFileOptions? options,
@@ -1476,9 +1474,6 @@ abstract class CreateFile with _$CreateFile {
 @freezed
 abstract class RenameFile with _$RenameFile {
   const factory RenameFile({
-    /// A rename
-    @Default('rename') String kind,
-
     /// The old (existing) location.
     required String oldUri,
 
@@ -1487,6 +1482,9 @@ abstract class RenameFile with _$RenameFile {
 
     /// An optional annotation identifier describing the operation.
     ChangeAnnotationIdentifier? annotationId,
+
+    /// A rename
+    @Default('rename') String kind,
 
     /// Rename options.
     RenameFileOptions? options,
@@ -1500,14 +1498,14 @@ abstract class RenameFile with _$RenameFile {
 @freezed
 abstract class DeleteFile with _$DeleteFile {
   const factory DeleteFile({
-    /// A delete
-    @Default('delete') String kind,
-
     /// The file to delete.
     required String uri,
 
     /// An optional annotation identifier describing the operation.
     ChangeAnnotationIdentifier? annotationId,
+
+    /// A delete
+    @Default('delete') String kind,
 
     /// Delete options.
     DeleteFileOptions? options,
@@ -1683,7 +1681,7 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     /// client capability `inlayHint.resolveSupport` clients might resolve this
     /// property late using the resolve request.
     ///
-    /// Type: String | MarkupContent
+    /// Type: `String` | `MarkupContent`
     InlayHintLabelPartTooltip? tooltip,
 
     /// An optional source code location that represents this label part.
@@ -1745,11 +1743,11 @@ abstract class MarkupContent with _$MarkupContent {
 abstract class RelatedFullDocumentDiagnosticReport
     with _$RelatedFullDocumentDiagnosticReport {
   const factory RelatedFullDocumentDiagnosticReport({
-    /// A full document diagnostic report.
-    @Default('full') String kind,
-
     /// The actual items.
     required List<Diagnostic> items,
+
+    /// A full document diagnostic report.
+    @Default('full') String kind,
 
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
@@ -1775,13 +1773,13 @@ abstract class RelatedFullDocumentDiagnosticReport
 abstract class RelatedUnchangedDocumentDiagnosticReport
     with _$RelatedUnchangedDocumentDiagnosticReport {
   const factory RelatedUnchangedDocumentDiagnosticReport({
-    /// A document diagnostic report indicating no changes to the last result. A
-    /// server can only return `unchanged` if result ids are provided.
-    @Default('unchanged') String kind,
-
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.
     required String resultId,
+
+    /// A document diagnostic report indicating no changes to the last result. A
+    /// server can only return `unchanged` if result ids are provided.
+    @Default('unchanged') String kind,
 
     /// Diagnostics of related documents. This information is useful in
     /// programming languages where code in a file A can generate diagnostics in
@@ -1803,11 +1801,11 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
 abstract class FullDocumentDiagnosticReport
     with _$FullDocumentDiagnosticReport {
   const factory FullDocumentDiagnosticReport({
-    /// A full document diagnostic report.
-    @Default('full') String kind,
-
     /// The actual items.
     required List<Diagnostic> items,
+
+    /// A full document diagnostic report.
+    @Default('full') String kind,
 
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
@@ -1826,13 +1824,13 @@ abstract class FullDocumentDiagnosticReport
 abstract class UnchangedDocumentDiagnosticReport
     with _$UnchangedDocumentDiagnosticReport {
   const factory UnchangedDocumentDiagnosticReport({
-    /// A document diagnostic report indicating no changes to the last result. A
-    /// server can only return `unchanged` if result ids are provided.
-    @Default('unchanged') String kind,
-
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.
     required String resultId,
+
+    /// A document diagnostic report indicating no changes to the last result. A
+    /// server can only return `unchanged` if result ids are provided.
+    @Default('unchanged') String kind,
   }) = _UnchangedDocumentDiagnosticReport;
 
   factory UnchangedDocumentDiagnosticReport.fromJson(
@@ -2002,11 +2000,11 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
 @freezed
 abstract class StringValue with _$StringValue {
   const factory StringValue({
-    /// The kind of string value.
-    @Default('snippet') String kind,
-
     /// The snippet string.
     required String value,
+
+    /// The kind of string value.
+    @Default('snippet') String kind,
   }) = _StringValue;
 
   factory StringValue.fromJson(Map<String, dynamic> json) =>
@@ -2113,7 +2111,7 @@ abstract class Diagnostic with _$Diagnostic {
 
     /// The diagnostic's code, which usually appear in the user interface.
     ///
-    /// Type: int | String
+    /// Type: `int` | `String`
     DiagnosticCode? code,
 
     /// An optional property to describe the error code. Requires the code field
@@ -2245,7 +2243,7 @@ abstract class SignatureInformation with _$SignatureInformation {
     /// The human-readable doc-comment of this signature. Will be shown in the
     /// UI but can be omitted.
     ///
-    /// Type: String | MarkupContent
+    /// Type: `String` | `MarkupContent`
     SignatureInformationDocumentation? documentation,
 
     /// The parameters of this signature.
@@ -2438,9 +2436,6 @@ abstract class FileOperationPattern with _$FileOperationPattern {
 abstract class WorkspaceFullDocumentDiagnosticReport
     with _$WorkspaceFullDocumentDiagnosticReport {
   const factory WorkspaceFullDocumentDiagnosticReport({
-    /// A full document diagnostic report.
-    @Default('full') String kind,
-
     /// The actual items.
     required List<Diagnostic> items,
 
@@ -2450,6 +2445,9 @@ abstract class WorkspaceFullDocumentDiagnosticReport
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
     required int? version,
+
+    /// A full document diagnostic report.
+    @Default('full') String kind,
 
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
@@ -2468,10 +2466,6 @@ abstract class WorkspaceFullDocumentDiagnosticReport
 abstract class WorkspaceUnchangedDocumentDiagnosticReport
     with _$WorkspaceUnchangedDocumentDiagnosticReport {
   const factory WorkspaceUnchangedDocumentDiagnosticReport({
-    /// A document diagnostic report indicating no changes to the last result. A
-    /// server can only return `unchanged` if result ids are provided.
-    @Default('unchanged') String kind,
-
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.
     required String resultId,
@@ -2482,6 +2476,10 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
     required int? version,
+
+    /// A document diagnostic report indicating no changes to the last result. A
+    /// server can only return `unchanged` if result ids are provided.
+    @Default('unchanged') String kind,
   }) = _WorkspaceUnchangedDocumentDiagnosticReport;
 
   factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
@@ -2604,13 +2602,13 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// signature label. Its intended use case is to highlight the parameter
     /// label part in the `SignatureInformation.label`.
     ///
-    /// Type: String | (int, int)
+    /// Type: `String` | `(int, int)`
     required ParameterInformationLabel label,
 
     /// The human-readable doc-comment of this parameter. Will be shown in the
     /// UI but can be omitted.
     ///
-    /// Type: String | MarkupContent
+    /// Type: `String` | `MarkupContent`
     ParameterInformationDocumentation? documentation,
   }) = _ParameterInformation;
 
@@ -2630,7 +2628,7 @@ abstract class NotebookCellTextDocumentFilter
     /// If a string value is provided it matches against the notebook type. '*'
     /// matches every notebook.
     ///
-    /// Type: String | NotebookDocumentFilter
+    /// Type: `String` | `NotebookDocumentFilter`
     required NotebookCellTextDocumentFilterNotebook notebook,
 
     /// A language id like `python`.
@@ -2670,7 +2668,7 @@ abstract class RelativePattern with _$RelativePattern {
     /// A workspace folder or a base URI to which this pattern will be matched
     /// against relatively.
     ///
-    /// Type: WorkspaceFolder | String
+    /// Type: `WorkspaceFolder` | `String`
     required RelativePatternBaseUri baseUri,
 
     /// The actual glob pattern;

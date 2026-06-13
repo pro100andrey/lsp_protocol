@@ -1,7 +1,6 @@
 import 'package:args/command_runner.dart';
 import 'package:mason_logger/mason_logger.dart';
 
-import '../../emitter/api_generator.dart';
 import '../../emitter/generate_code.dart';
 import '../../emitter/run_process.dart';
 import '../../network/fetch_lsp_license.dart';
@@ -38,8 +37,6 @@ final class GenerateCommand extends Command<dynamic> {
     final metaProtocol = await modelFuture;
     final resolvedModel = resolveModel(metaProtocol);
     generateCode(resolvedModel, outputPath);
-    generateServerApi(resolvedModel, outputPath);
-    generateClientApi(resolvedModel, outputPath);
 
     await licenseFuture;
 

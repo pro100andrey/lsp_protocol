@@ -35,19 +35,19 @@ final class LspClient {
   // -------------------------------------------------------------------------
 
   /// Handlers for protocol-level (`$/`) methods.
-  late final general = GeneralHandlers(_connection);
+  late final general = ClientGeneralHandlers(_connection);
 
   /// Handlers for `window/*` server→client notifications.
-  late final window = WindowHandlers(_connection);
+  late final window = ClientWindowHandlers(_connection);
 
   /// Handlers for `client/*` server→client notifications.
-  late final client = ClientHandlers(_connection);
+  late final client = ClientClientHandlers(_connection);
 
   /// Handlers for `textDocument/*` (e.g. `publishDiagnostics`).
-  late final textDocument = TextDocumentHandlers(_connection);
+  late final textDocument = ClientTextDocumentHandlers(_connection);
 
   /// Handlers for `workspace/*` (e.g. `applyEdit`).
-  late final workspace = WorkspaceHandlers(_connection);
+  late final workspace = ClientWorkspaceHandlers(_connection);
 
   // -------------------------------------------------------------------------
   // Outgoing (client → server)

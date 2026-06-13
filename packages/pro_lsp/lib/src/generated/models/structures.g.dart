@@ -2556,8 +2556,8 @@ Map<String, dynamic> _$ApplyWorkspaceEditResultToJson(
 _WorkDoneProgressBegin _$WorkDoneProgressBeginFromJson(
   Map<String, dynamic> json,
 ) => _WorkDoneProgressBegin(
-  kind: json['kind'] as String? ?? 'begin',
   title: json['title'] as String,
+  kind: json['kind'] as String? ?? 'begin',
   cancellable: json['cancellable'] as bool?,
   message: json['message'] as String?,
   percentage: (json['percentage'] as num?)?.toInt(),
@@ -2566,8 +2566,8 @@ _WorkDoneProgressBegin _$WorkDoneProgressBeginFromJson(
 Map<String, dynamic> _$WorkDoneProgressBeginToJson(
   _WorkDoneProgressBegin instance,
 ) => <String, dynamic>{
-  'kind': instance.kind,
   'title': instance.title,
+  'kind': instance.kind,
   'cancellable': ?instance.cancellable,
   'message': ?instance.message,
   'percentage': ?instance.percentage,
@@ -2734,9 +2734,9 @@ Map<String, dynamic> _$TextDocumentEditToJson(_TextDocumentEdit instance) =>
     };
 
 _CreateFile _$CreateFileFromJson(Map<String, dynamic> json) => _CreateFile(
-  kind: json['kind'] as String? ?? 'create',
   uri: json['uri'] as String,
   annotationId: json['annotationId'] as String?,
+  kind: json['kind'] as String? ?? 'create',
   options: json['options'] == null
       ? null
       : CreateFileOptions.fromJson(json['options'] as Map<String, dynamic>),
@@ -2744,17 +2744,17 @@ _CreateFile _$CreateFileFromJson(Map<String, dynamic> json) => _CreateFile(
 
 Map<String, dynamic> _$CreateFileToJson(_CreateFile instance) =>
     <String, dynamic>{
-      'kind': instance.kind,
       'uri': instance.uri,
       'annotationId': ?instance.annotationId,
+      'kind': instance.kind,
       'options': ?instance.options?.toJson(),
     };
 
 _RenameFile _$RenameFileFromJson(Map<String, dynamic> json) => _RenameFile(
-  kind: json['kind'] as String? ?? 'rename',
   oldUri: json['oldUri'] as String,
   newUri: json['newUri'] as String,
   annotationId: json['annotationId'] as String?,
+  kind: json['kind'] as String? ?? 'rename',
   options: json['options'] == null
       ? null
       : RenameFileOptions.fromJson(json['options'] as Map<String, dynamic>),
@@ -2762,17 +2762,17 @@ _RenameFile _$RenameFileFromJson(Map<String, dynamic> json) => _RenameFile(
 
 Map<String, dynamic> _$RenameFileToJson(_RenameFile instance) =>
     <String, dynamic>{
-      'kind': instance.kind,
       'oldUri': instance.oldUri,
       'newUri': instance.newUri,
       'annotationId': ?instance.annotationId,
+      'kind': instance.kind,
       'options': ?instance.options?.toJson(),
     };
 
 _DeleteFile _$DeleteFileFromJson(Map<String, dynamic> json) => _DeleteFile(
-  kind: json['kind'] as String? ?? 'delete',
   uri: json['uri'] as String,
   annotationId: json['annotationId'] as String?,
+  kind: json['kind'] as String? ?? 'delete',
   options: json['options'] == null
       ? null
       : DeleteFileOptions.fromJson(json['options'] as Map<String, dynamic>),
@@ -2780,9 +2780,9 @@ _DeleteFile _$DeleteFileFromJson(Map<String, dynamic> json) => _DeleteFile(
 
 Map<String, dynamic> _$DeleteFileToJson(_DeleteFile instance) =>
     <String, dynamic>{
-      'kind': instance.kind,
       'uri': instance.uri,
       'annotationId': ?instance.annotationId,
+      'kind': instance.kind,
       'options': ?instance.options?.toJson(),
     };
 
@@ -2919,10 +2919,10 @@ Map<String, dynamic> _$MarkupContentToJson(_MarkupContent instance) =>
 _RelatedFullDocumentDiagnosticReport
 _$RelatedFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
     _RelatedFullDocumentDiagnosticReport(
-      kind: json['kind'] as String? ?? 'full',
       items: (json['items'] as List<dynamic>)
           .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
           .toList(),
+      kind: json['kind'] as String? ?? 'full',
       resultId: json['resultId'] as String?,
       relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as Object)),
@@ -2931,8 +2931,8 @@ _$RelatedFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$RelatedFullDocumentDiagnosticReportToJson(
   _RelatedFullDocumentDiagnosticReport instance,
 ) => <String, dynamic>{
-  'kind': instance.kind,
   'items': instance.items.map((e) => e.toJson()).toList(),
+  'kind': instance.kind,
   'resultId': ?instance.resultId,
   'relatedDocuments': ?instance.relatedDocuments,
 };
@@ -2940,8 +2940,8 @@ Map<String, dynamic> _$RelatedFullDocumentDiagnosticReportToJson(
 _RelatedUnchangedDocumentDiagnosticReport
 _$RelatedUnchangedDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
     _RelatedUnchangedDocumentDiagnosticReport(
-      kind: json['kind'] as String? ?? 'unchanged',
       resultId: json['resultId'] as String,
+      kind: json['kind'] as String? ?? 'unchanged',
       relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as Object)),
     );
@@ -2949,39 +2949,39 @@ _$RelatedUnchangedDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$RelatedUnchangedDocumentDiagnosticReportToJson(
   _RelatedUnchangedDocumentDiagnosticReport instance,
 ) => <String, dynamic>{
-  'kind': instance.kind,
   'resultId': instance.resultId,
+  'kind': instance.kind,
   'relatedDocuments': ?instance.relatedDocuments,
 };
 
 _FullDocumentDiagnosticReport _$FullDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
 ) => _FullDocumentDiagnosticReport(
-  kind: json['kind'] as String? ?? 'full',
   items: (json['items'] as List<dynamic>)
       .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
       .toList(),
+  kind: json['kind'] as String? ?? 'full',
   resultId: json['resultId'] as String?,
 );
 
 Map<String, dynamic> _$FullDocumentDiagnosticReportToJson(
   _FullDocumentDiagnosticReport instance,
 ) => <String, dynamic>{
-  'kind': instance.kind,
   'items': instance.items.map((e) => e.toJson()).toList(),
+  'kind': instance.kind,
   'resultId': ?instance.resultId,
 };
 
 _UnchangedDocumentDiagnosticReport _$UnchangedDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
 ) => _UnchangedDocumentDiagnosticReport(
-  kind: json['kind'] as String? ?? 'unchanged',
   resultId: json['resultId'] as String,
+  kind: json['kind'] as String? ?? 'unchanged',
 );
 
 Map<String, dynamic> _$UnchangedDocumentDiagnosticReportToJson(
   _UnchangedDocumentDiagnosticReport instance,
-) => <String, dynamic>{'kind': instance.kind, 'resultId': instance.resultId};
+) => <String, dynamic>{'resultId': instance.resultId, 'kind': instance.kind};
 
 _PreviousResultId _$PreviousResultIdFromJson(Map<String, dynamic> json) =>
     _PreviousResultId(
@@ -3135,12 +3135,12 @@ const _$InlineCompletionTriggerKindEnumMap = {
 };
 
 _StringValue _$StringValueFromJson(Map<String, dynamic> json) => _StringValue(
-  kind: json['kind'] as String? ?? 'snippet',
   value: json['value'] as String,
+  kind: json['kind'] as String? ?? 'snippet',
 );
 
 Map<String, dynamic> _$StringValueToJson(_StringValue instance) =>
-    <String, dynamic>{'kind': instance.kind, 'value': instance.value};
+    <String, dynamic>{'value': instance.value, 'kind': instance.kind};
 
 _Registration _$RegistrationFromJson(Map<String, dynamic> json) =>
     _Registration(
@@ -3492,22 +3492,22 @@ const _$FileOperationPatternKindEnumMap = {
 _WorkspaceFullDocumentDiagnosticReport
 _$WorkspaceFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
     _WorkspaceFullDocumentDiagnosticReport(
-      kind: json['kind'] as String? ?? 'full',
       items: (json['items'] as List<dynamic>)
           .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
           .toList(),
       uri: json['uri'] as String,
       version: (json['version'] as num?)?.toInt(),
+      kind: json['kind'] as String? ?? 'full',
       resultId: json['resultId'] as String?,
     );
 
 Map<String, dynamic> _$WorkspaceFullDocumentDiagnosticReportToJson(
   _WorkspaceFullDocumentDiagnosticReport instance,
 ) => <String, dynamic>{
-  'kind': instance.kind,
   'items': instance.items.map((e) => e.toJson()).toList(),
   'uri': instance.uri,
   'version': ?instance.version,
+  'kind': instance.kind,
   'resultId': ?instance.resultId,
 };
 
@@ -3515,19 +3515,19 @@ _WorkspaceUnchangedDocumentDiagnosticReport
 _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
 ) => _WorkspaceUnchangedDocumentDiagnosticReport(
-  kind: json['kind'] as String? ?? 'unchanged',
   resultId: json['resultId'] as String,
   uri: json['uri'] as String,
   version: (json['version'] as num?)?.toInt(),
+  kind: json['kind'] as String? ?? 'unchanged',
 );
 
 Map<String, dynamic> _$WorkspaceUnchangedDocumentDiagnosticReportToJson(
   _WorkspaceUnchangedDocumentDiagnosticReport instance,
 ) => <String, dynamic>{
-  'kind': instance.kind,
   'resultId': instance.resultId,
   'uri': instance.uri,
   'version': ?instance.version,
+  'kind': instance.kind,
 };
 
 _NotebookCell _$NotebookCellFromJson(Map<String, dynamic> json) =>

@@ -106,4 +106,12 @@ extension GeneratedPaths on Directory {
   /// Relative export path for a model file: `src/generated/models/<fileName>`.
   static String modelExport(String fileName) =>
       p.join('src', 'generated', 'models', fileName);
+
+  /// Relative export path for a server API file: `src/generated/server/<fileName>`.
+  static String serverApiExport(String fileName) =>
+      p.join('src', 'generated', 'server', fileName);
+
+  /// Relative export path for a client API file: `src/generated/client/<fileName>`.
+  static String clientApiExport(String fileName) =>
+      p.join('src', 'generated', 'client', fileName);
 }

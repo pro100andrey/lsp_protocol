@@ -1,5 +1,3 @@
-// ignore_for_file: type=lint
-
 // GENERATED — do not edit.
 
 import 'package:freezed_annotation/freezed_annotation.dart';

@@ -131,17 +131,16 @@ String formatLibrary(Library lib) {
   return formatter.format(lib.accept(emitter).toString());
 }
 
-/// Formats and emits a [Library] as a string with standard
-/// ignore_for_file header.
+/// Formats and emits a [Library] as a string
 String emitLibrary(Library lib) {
   try {
-    return '// ignore_for_file: type=lint\n\n${formatLibrary(lib)}';
+    return formatLibrary(lib);
   } on Object catch (_) {
     final emitter = DartEmitter.scoped(
       orderDirectives: true,
       useNullSafetySyntax: true,
     );
-    return '// ignore_for_file: type=lint\n\n${lib.accept(emitter)}';
+    return '${lib.accept(emitter)}';
   }
 }
 

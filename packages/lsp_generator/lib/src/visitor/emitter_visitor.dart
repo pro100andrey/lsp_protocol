@@ -49,8 +49,6 @@ final class EmitterVisitor {
 
   static const _header = 'GENERATED — do not edit.';
 
-
-
   /// All class names (including anonymous) — used to filter conflicting
   /// aliases.
   late final Set<String> _classNames = _resolved.classes
@@ -114,9 +112,7 @@ final class EmitterVisitor {
 
     return Library(
       (b) => b
-        ..comments.addAll([
-          _header,
-        ])
+        ..comments.addAll([_header])
         ..directives.add(
           .import(
             'package:freezed_annotation/freezed_annotation.dart',
@@ -141,7 +137,15 @@ final class EmitterVisitor {
 
   Library _buildCategoryLibrary(_ClassCategory category) => Library(
     (b) => b
-      ..comments.addAll([_header])
+      ..comments.addAll([
+        _header,
+        if (category == .params) ...[
+          'ignore_for_file: lines_longer_than_80_chars',
+          'ignore_for_file:remove_deprecations_in_breaking_versions',
+        ],
+        if (category == .common)
+          'ignore_for_file: remove_deprecations_in_breaking_versions',
+      ])
       ..directives.add(.partOf(Files.structures))
       ..body.addAll(_classesForCategory(category).map(_buildClass)),
   );
@@ -149,9 +153,7 @@ final class EmitterVisitor {
   /// Builds a [Library] containing all resolved enumerations.
   Library buildEnumerations() => Library(
     (b) => b
-      ..comments.addAll([
-        _header,
-      ])
+      ..comments.add(_header)
       ..directives.add(
         .import('package:json_annotation/json_annotation.dart'),
       )
@@ -316,7 +318,15 @@ final class EmitterVisitor {
 
     return Library(
       (b) => b
-        ..comments.add(_header)
+        ..comments.addAll([
+          _header,
+          if (!isScalar) ...[
+            'ignore_for_file: lines_longer_than_80_chars',
+            'ignore_for_file: deprecated_consistency',
+            'ignore_for_file: deprecated_member_use_from_same_package',
+            'ignore_for_file: remove_deprecations_in_breaking_versions',
+          ],
+        ])
         ..directives.addAll(
           isScalar ? [] : _crossImports(referencedTypes, Files.unions),
         )
@@ -576,8 +586,12 @@ final class EmitterVisitor {
       ..redirect = refer('_$className')
       ..optionalParameters.addAll(
         [
-          ...props.where((p) => !p.optional),
-          ...props.where((p) => p.optional),
+          ...props.where(
+            (p) => !p.optional && p.type.nonNull is! StringLiteralType,
+          ),
+          ...props.where(
+            (p) => p.optional || p.type.nonNull is StringLiteralType,
+          ),
         ].map((p) {
           final typeRef = _propertyTypeRef(className, p);
           return Parameter((b) {
@@ -637,9 +651,9 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
 
   static String _directionLabel(MessageDirection d) => switch (d) {
-    MessageDirection.clientToServer => 'client to server',
-    MessageDirection.serverToClient => 'server to client',
-    MessageDirection.both => 'both directions',
+    .clientToServer => 'client to server',
+    .serverToClient => 'server to client',
+    .both => 'both directions',
   };
 
   /// Returns a map from each [MetaNotification] to its Dart enum member name.
@@ -684,9 +698,10 @@ final class EmitterVisitor {
     b.fields.add(
       Field(
         (b) => b
-          ..modifier = FieldModifier.final$
+          ..modifier = .final$
           ..name = 'value'
-          ..type = tString,
+          ..type = tString
+          ..annotations.add(refer('override')),
       ),
     );
 
@@ -1131,12 +1146,13 @@ final class EmitterVisitor {
     final hasNull = ut.items.any(
       (item) => item is DartCoreType && item.dartName == 'Null',
     );
+
     final representationType = hasNull ? tObjectNullable : tObject;
 
-    _addExtensionTypeStructure(b, name, representationType);
+    _addExtensionTypeStructure(b, name, representationType, deprecated);
     _addExtensionTypeAnnotations(b, docs, deprecated);
-    _addExtensionTypeFromJson(b, name, representationType);
-    _addExtensionTypeVariantConstructors(b, name, ut);
+    _addExtensionTypeFromJson(b, name, representationType, deprecated);
+    _addExtensionTypeVariantConstructors(b, name, ut, deprecated);
     _addExtensionTypeToJson(b, representationType);
     _addExtensionTypeVariantGetters(b, name, ut, representationType);
   });
@@ -1145,14 +1161,20 @@ final class EmitterVisitor {
     ExtensionTypeBuilder b,
     String name,
     Reference representationType,
+    String? deprecated,
   ) => b
     ..name = name
     ..constant = true
     ..primaryConstructorName = '_'
     ..representationDeclaration = RepresentationDeclaration(
-      (r) => r
-        ..name = 'value'
-        ..declaredRepresentationType = representationType,
+      (r) {
+        r
+          ..name = 'value'
+          ..declaredRepresentationType = representationType;
+        if (deprecated != null) {
+          r.annotations.add(tDeprecated.call([literalString(deprecated)]));
+        }
+      },
     );
 
   void _addExtensionTypeAnnotations(
@@ -1170,20 +1192,26 @@ final class EmitterVisitor {
     ExtensionTypeBuilder b,
     String name,
     Reference representationType,
+    String? deprecated,
   ) => b.constructors.add(
     Constructor(
-      (b) => b
-        ..factory = true
-        ..constant = true
-        ..name = 'fromJson'
-        ..requiredParameters.add(
-          Parameter(
-            (b) => b
-              ..name = 'json'
-              ..type = representationType,
-          ),
-        )
-        ..redirect = refer('$name._'),
+      (b) {
+        b
+          ..factory = true
+          ..constant = true
+          ..name = 'fromJson'
+          ..requiredParameters.add(
+            Parameter(
+              (b) => b
+                ..name = 'json'
+                ..type = representationType,
+            ),
+          )
+          ..redirect = refer('$name._');
+        if (deprecated != null) {
+          b.annotations.add(tDeprecated.call([literalString(deprecated)]));
+        }
+      },
     ),
   );
 
@@ -1191,6 +1219,7 @@ final class EmitterVisitor {
     ExtensionTypeBuilder b,
     String name,
     UnionType ut,
+    String? deprecated,
   ) {
     final uniqueItems = <ResolvedType>[];
     final seenSuffixes = <String>{};
@@ -1213,11 +1242,24 @@ final class EmitterVisitor {
 
       if (item case InlineRecord(:final fields)) {
         b.constructors.add(
-          _buildInlineRecordConstructor(b, name, fields, constructorName),
+          _buildInlineRecordConstructor(
+            b,
+            name,
+            fields,
+            constructorName,
+            deprecated,
+          ),
         );
       } else {
         b.constructors.add(
-          _buildVariantConstructor(b, name, item, constructorName, isNullType),
+          _buildVariantConstructor(
+            b,
+            name,
+            item,
+            constructorName,
+            isNullType,
+            deprecated,
+          ),
         );
       }
     }
@@ -1228,13 +1270,21 @@ final class EmitterVisitor {
     String name,
     List<ResolvedProperty> fields,
     String constructorName,
+    String? deprecated,
   ) => Constructor((b) {
     b
       ..factory = true
       ..name = constructorName;
+    if (deprecated != null) {
+      b.annotations.add(tDeprecated.call([literalString(deprecated)]));
+    }
 
-    // Add named parameters
-    for (final f in fields) {
+    // Add named parameters: required first, then optional.
+    final sortedFields = [
+      ...fields.where((f) => !f.optional),
+      ...fields.where((f) => f.optional),
+    ];
+    for (final f in sortedFields) {
       b.optionalParameters.add(
         Parameter(
           (p) => p
@@ -1253,12 +1303,15 @@ final class EmitterVisitor {
         f.type,
       ).accept(DartEmitter()).toString();
       if (f.optional) {
-        mapEntries.add("if (${f.name} != null) '${f.name}': $wireExpr");
+        mapEntries.add("'${f.name}': ?$wireExpr");
       } else {
         mapEntries.add("'${f.name}': $wireExpr");
       }
     }
-    b.body = Code("return $name._({\n${mapEntries.join(',\n')}\n});");
+    final constructorPrefix = fields.isEmpty ? 'const $name._' : '$name._';
+    b
+      ..lambda = true
+      ..body = Code("$constructorPrefix({\n${mapEntries.join(',\n')}\n})");
   });
 
   Constructor _buildVariantConstructor(
@@ -1267,6 +1320,7 @@ final class EmitterVisitor {
     ResolvedType item,
     String constructorName,
     bool isNullType,
+    String? deprecated,
   ) {
     final wireExpr = isNullType
         ? null
@@ -1278,6 +1332,9 @@ final class EmitterVisitor {
       b
         ..factory = true
         ..name = constructorName;
+      if (deprecated != null) {
+        b.annotations.add(tDeprecated.call([literalString(deprecated)]));
+      }
 
       if (!isNullType) {
         b.requiredParameters.add(
@@ -1294,10 +1351,13 @@ final class EmitterVisitor {
           ..constant = true
           ..redirect = refer('$name._');
       } else {
-        final wireExprStr = isNullType
-            ? 'null'
-            : wireExpr!.accept(DartEmitter()).toString();
-        b.body = Code('return $name._($wireExprStr);');
+        final arg = isNullType ? literalNull : wireExpr!;
+        final constructorRefer = isNullType
+            ? refer('const $name._')
+            : refer('$name._');
+        b
+          ..lambda = true
+          ..body = constructorRefer.call([arg]).code;
       }
     });
   }
@@ -1333,7 +1393,8 @@ final class EmitterVisitor {
 
     final structs = uniqueItems
         .where((t) => t is ClassType || t is InlineRecord)
-        .toList();
+        .toList(growable: false);
+
     final structChecks = _findStructDiscriminator(structs);
 
     for (final item in uniqueItems) {
@@ -1341,22 +1402,25 @@ final class EmitterVisitor {
       final capSuffix = _capitalize(suffix);
       final typeRef = toRef(item);
       final checkExpr = _variantCheckExpression(item, eValue, structChecks, ut);
-      final castExpr = _variantCastExpression(item, typeRef, capSuffix);
+      final val = representationType.symbol == 'Object?'
+          ? const CodeExpression(Code('value!'))
+          : refer('value');
+      final castExpr = _variantCastExpression(item, typeRef, capSuffix, val);
 
       b.methods.add(
         Method(
           (b) => b
             ..name = 'is$capSuffix'
             ..returns = tBool
-            ..type = MethodType.getter
+            ..type = .getter
             ..lambda = true
             ..body = checkExpr.code,
         ),
       );
 
-      final isNullType = typeRef is TypeReference && typeRef.symbol == 'Null';
+      final isNullType = typeRef.symbol == 'Null';
       final nullableTypeRef = isNullType
-          ? typeRef
+          ? refer('Object?')
           : (typeRef is TypeReference
                 ? typeRef.rebuild((b) => b.isNullable = true)
                 : (typeRef is RecordType
@@ -1369,7 +1433,8 @@ final class EmitterVisitor {
             ..name = 'as$capSuffix'
             ..returns = nullableTypeRef
             ..type = MethodType.getter
-            ..body = castExpr,
+            ..lambda = castExpr is Expression
+            ..body = castExpr is Expression ? castExpr.code : castExpr as Code,
         ),
       );
     }
@@ -1592,14 +1657,14 @@ final class EmitterVisitor {
     return cond;
   }
 
-  Code _variantCastExpression(
+  Spec _variantCastExpression(
     ResolvedType type,
     Reference typeRef,
     String capSuffix,
+    Expression val,
   ) {
     final actual = type.nonNull;
     final typeName = _dartTypeName(actual);
-    final val = refer('value');
 
     return switch (actual) {
       DartCoreType() => _castDartCore(val, typeName, capSuffix),
@@ -1627,42 +1692,33 @@ final class EmitterVisitor {
   }
 
   /// Cast for Dart core types (int, String, bool, double, etc.).
-  Code _castDartCore(Expression val, String typeName, String capSuffix) {
+  Expression _castDartCore(Expression val, String typeName, String capSuffix) {
     if (typeName == 'Null') {
-      return literalNull.returned.statement;
+      return literalNull;
     }
 
     final typeRef = refer(typeName);
-    return val
-        .isA(typeRef)
-        .conditional(val.bareAsA(typeRef), literalNull)
-        .returned
-        .statement;
+    return refer('is$capSuffix').conditional(val.bareAsA(typeRef), literalNull);
   }
 
   /// Common union cast: try direct type check, then variant check with
   /// conversion.
-  Code _castUnion(
+  Expression _castUnion(
     Reference ref,
     Expression Function() conversion,
     String capSuffix,
   ) {
     final val = refer('value');
-    return Block.of([
-      ifStatement(
-        val.isA(ref),
-        Block.of([val.bareAsA(ref).returned.statement]),
-      ),
-      ifStatement(
-        refer('is$capSuffix'),
-        Block.of([conversion().returned.statement]),
-      ),
-      literalNull.returned.statement,
-    ]);
+    return val
+        .isA(ref)
+        .conditional(
+          val.bareAsA(ref),
+          refer('is$capSuffix').conditional(conversion(), literalNull),
+        );
   }
 
   /// Cast for alias types — union aliases use block, others use simple cast.
-  Code _castAlias(Expression val, ResolvedAlias ref, String capSuffix) {
+  Expression _castAlias(Expression val, ResolvedAlias ref, String capSuffix) {
     final aliasRef = refer(ref.name);
     if (_sealedUnionNames.contains(ref.name) ||
         _scalarUnionNames.contains(ref.name)) {
@@ -1676,13 +1732,11 @@ final class EmitterVisitor {
   }
 
   /// Simple conditional cast: `is$Suffix ? expr as Type : null`.
-  Code _castSimple(Expression val, String capSuffix, Reference typeRef) =>
-      refer(
-        'is$capSuffix',
-      ).conditional(val.bareAsA(typeRef), literalNull).returned.statement;
+  Expression _castSimple(Expression val, String capSuffix, Reference typeRef) =>
+      refer('is$capSuffix').conditional(val.bareAsA(typeRef), literalNull);
 
   /// Cast for list types with special handling for ClassType/AliasType elements.
-  Code _castList(Expression val, ResolvedType element, String capSuffix) {
+  Expression _castList(Expression val, ResolvedType element, String capSuffix) {
     final elActual = element.nonNull;
     final elName = _dartTypeName(element);
 
@@ -1745,19 +1799,17 @@ final class EmitterVisitor {
       .call([]);
 
   /// Build a cast block: try direct type check, then variant check with map.
-  Code _castBlock(
+  Expression _castBlock(
     Expression val,
     Reference typeRef,
     Expression mapExpr,
     String capSuffix,
-  ) => Block.of([
-    ifStatement(
-      val.isA(typeRef),
-      Block.of([val.bareAsA(typeRef).returned.statement]),
-    ),
-    ifStatement(refer('is$capSuffix'), Block.of([mapExpr.returned.statement])),
-    literalNull.returned.statement,
-  ]);
+  ) => val
+      .isA(typeRef)
+      .conditional(
+        val.bareAsA(typeRef),
+        refer('is$capSuffix').conditional(mapExpr, literalNull),
+      );
 
   /// Build `fromJson` call expression for a class.
   Expression _fromJsonExpr(Expression expr, Reference classRef) =>
@@ -1888,7 +1940,7 @@ final class EmitterVisitor {
       final fieldAccess = '$valueVar.${f.name}';
       final jsonValue = _fieldToJsonExpr(f.type, fieldAccess);
       if (f.optional) {
-        return "if ($fieldAccess != null) '${f.name}': $jsonValue";
+        return "'${f.name}': ?$jsonValue";
       }
       return "'${f.name}': $jsonValue";
     });
@@ -2011,6 +2063,8 @@ final class EmitterVisitor {
     final body = (input ?? '')
         .replaceAll(RegExp(r'@since\s+\S+'), '')
         .replaceAll('@proposed', '')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
         .trim();
 
     if (body.isEmpty) {
@@ -2076,9 +2130,28 @@ final class EmitterVisitor {
     }
 
     if (extra.isNotEmpty) {
-      lines
-        ..add('///')
-        ..addAll(extra.map((l) => '/// $l'));
+      lines.add('///');
+      for (final paragraph in extra) {
+        final words = paragraph.replaceAll('\n', ' ').split(RegExp(r'\s+'));
+        final buf = StringBuffer();
+        for (final word in words) {
+          if (buf.isEmpty) {
+            buf.write(word);
+          } else if (buf.length + 1 + word.length <= maxContent) {
+            buf
+              ..write(' ')
+              ..write(word);
+          } else {
+            lines.add('$prefix$buf');
+            buf
+              ..clear()
+              ..write(word);
+          }
+        }
+        if (buf.isNotEmpty) {
+          lines.add('$prefix$buf');
+        }
+      }
     }
 
     if (tags.isNotEmpty) {
@@ -2095,7 +2168,7 @@ final class EmitterVisitor {
   /// Returns an empty list for all other types.
   static List<String> _inlineUnionNote(ResolvedType type) {
     if (type.nonNull case UnionType(:final items)) {
-      return ['Type: ${items.map(_dartTypeName).join(' | ')}'];
+      return ['Type: ${items.map((e) => '`${_dartTypeName(e)}`').join(' | ')}'];
     }
     return const [];
   }

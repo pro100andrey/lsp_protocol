@@ -1,6 +1,6 @@
-// ignore_for_file: type=lint
-
 // GENERATED — do not edit.
+// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file:remove_deprecations_in_breaking_versions
 
 part of 'structures.dart';
 
@@ -455,12 +455,12 @@ abstract class SemanticTokensRegistrationOptions
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
     ///
-    /// Type: bool | Object
+    /// Type: `bool` | `Object`
     SemanticTokensRegistrationOptionsRange? range,
 
     /// Server supports providing semantic tokens for a full document.
     ///
-    /// Type: bool | Object
+    /// Type: `bool` | `Object`
     SemanticTokensRegistrationOptionsFull? full,
 
     /// The id used to register the request. The id can be used to deregister
@@ -2127,7 +2127,7 @@ abstract class CancelParams with _$CancelParams {
   const factory CancelParams({
     /// The request id to cancel.
     ///
-    /// Type: int | String
+    /// Type: `int` | `String`
     required CancelParamsId id,
   }) = _CancelParams;
 
@@ -2278,12 +2278,12 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
     ///
-    /// Type: bool | Object
+    /// Type: `bool` | `Object`
     SemanticTokensOptionsRange? range,
 
     /// Server supports providing semantic tokens for a full document.
     ///
-    /// Type: bool | Object
+    /// Type: `bool` | `Object`
     SemanticTokensOptionsFull? full,
   }) = _SemanticTokensOptions;
 
@@ -2757,7 +2757,7 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
     /// If present save notifications are sent to the server. If omitted the
     /// notification should not be sent.
     ///
-    /// Type: bool | SaveOptions
+    /// Type: `bool` | `SaveOptions`
     TextDocumentSyncOptionsSave? save,
   }) = _TextDocumentSyncOptions;
 

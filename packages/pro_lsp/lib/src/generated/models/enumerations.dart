@@ -1,5 +1,3 @@
-// ignore_for_file: type=lint
-
 // GENERATED — do not edit.
 
 import 'package:json_annotation/json_annotation.dart';
@@ -475,9 +473,9 @@ enum InsertTextMode {
   /// The editor adjusts leading whitespace of new lines so that they match the
   /// indentation up to the cursor of the line for which the item is accepted.
   ///
-  /// Consider a line like this: <2tabs><cursor><3tabs>foo. Accepting a multi
-  /// line completion item is indented using 2 tabs and all following lines
-  /// inserted will be indented using 2 tabs as well.
+  /// Consider a line like this: &lt;2tabs&gt;&lt;cursor&gt;&lt;3tabs&gt;foo.
+  /// Accepting a multi line completion item is indented using 2 tabs and all
+  /// following lines inserted will be indented using 2 tabs as well.
   adjustIndentation(2);
 
   const InsertTextMode(this.value);

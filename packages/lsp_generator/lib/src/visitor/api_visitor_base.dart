@@ -230,7 +230,7 @@ abstract class ApiVisitorBase {
             ..requiredParameters.add(Parameter((b) => b..name = 'e'))
             ..body = refer(
               innerType,
-            ).newInstanceNamed('fromJson', [refer('e').asA(tObject)]).code,
+            ).newInstanceNamed('fromJson', [refer('e').bareAsA(tObject)]).code,
         ).closure;
         final mapExpr = refer('raw')
             .asA(tList)

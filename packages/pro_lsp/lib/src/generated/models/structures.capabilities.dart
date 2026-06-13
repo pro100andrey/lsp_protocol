@@ -1,5 +1,3 @@
-// ignore_for_file: type=lint
-
 // GENERATED — do not edit.
 
 part of 'structures.dart';
@@ -21,12 +19,13 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// defining each notification or for backwards compatibility the
     /// TextDocumentSyncKind number.
     ///
-    /// Type: TextDocumentSyncOptions | TextDocumentSyncKind
+    /// Type: `TextDocumentSyncOptions` | `TextDocumentSyncKind`
     ServerCapabilitiesTextDocumentSync? textDocumentSync,
 
     /// Defines how notebook documents are synced.
     ///
-    /// Type: NotebookDocumentSyncOptions | NotebookDocumentSyncRegistrationOptions
+    /// Type: `NotebookDocumentSyncOptions` |
+    /// `NotebookDocumentSyncRegistrationOptions`
     ServerCapabilitiesNotebookDocumentSync? notebookDocumentSync,
 
     /// The server provides completion support.
@@ -34,7 +33,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
     /// The server provides hover support.
     ///
-    /// Type: bool | HoverOptions
+    /// Type: `bool` | `HoverOptions`
     ServerCapabilitiesHoverProvider? hoverProvider,
 
     /// The server provides signature help support.
@@ -42,44 +41,46 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
     /// The server provides Goto Declaration support.
     ///
-    /// Type: bool | DeclarationOptions | DeclarationRegistrationOptions
+    /// Type: `bool` | `DeclarationOptions` | `DeclarationRegistrationOptions`
     ServerCapabilitiesDeclarationProvider? declarationProvider,
 
     /// The server provides goto definition support.
     ///
-    /// Type: bool | DefinitionOptions
+    /// Type: `bool` | `DefinitionOptions`
     ServerCapabilitiesDefinitionProvider? definitionProvider,
 
     /// The server provides Goto Type Definition support.
     ///
-    /// Type: bool | TypeDefinitionOptions | TypeDefinitionRegistrationOptions
+    /// Type: `bool` | `TypeDefinitionOptions` |
+    /// `TypeDefinitionRegistrationOptions`
     ServerCapabilitiesTypeDefinitionProvider? typeDefinitionProvider,
 
     /// The server provides Goto Implementation support.
     ///
-    /// Type: bool | ImplementationOptions | ImplementationRegistrationOptions
+    /// Type: `bool` | `ImplementationOptions` |
+    /// `ImplementationRegistrationOptions`
     ServerCapabilitiesImplementationProvider? implementationProvider,
 
     /// The server provides find references support.
     ///
-    /// Type: bool | ReferenceOptions
+    /// Type: `bool` | `ReferenceOptions`
     ServerCapabilitiesReferencesProvider? referencesProvider,
 
     /// The server provides document highlight support.
     ///
-    /// Type: bool | DocumentHighlightOptions
+    /// Type: `bool` | `DocumentHighlightOptions`
     ServerCapabilitiesDocumentHighlightProvider? documentHighlightProvider,
 
     /// The server provides document symbol support.
     ///
-    /// Type: bool | DocumentSymbolOptions
+    /// Type: `bool` | `DocumentSymbolOptions`
     ServerCapabilitiesDocumentSymbolProvider? documentSymbolProvider,
 
     /// The server provides code actions. CodeActionOptions may only be
     /// specified if the client states that it supports
     /// `codeActionLiteralSupport` in its initial `initialize` request.
     ///
-    /// Type: bool | CodeActionOptions
+    /// Type: `bool` | `CodeActionOptions`
     ServerCapabilitiesCodeActionProvider? codeActionProvider,
 
     /// The server provides code lens.
@@ -90,22 +91,23 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
     /// The server provides color provider support.
     ///
-    /// Type: bool | DocumentColorOptions | DocumentColorRegistrationOptions
+    /// Type: `bool` | `DocumentColorOptions` |
+    /// `DocumentColorRegistrationOptions`
     ServerCapabilitiesColorProvider? colorProvider,
 
     /// The server provides workspace symbol support.
     ///
-    /// Type: bool | WorkspaceSymbolOptions
+    /// Type: `bool` | `WorkspaceSymbolOptions`
     ServerCapabilitiesWorkspaceSymbolProvider? workspaceSymbolProvider,
 
     /// The server provides document formatting.
     ///
-    /// Type: bool | DocumentFormattingOptions
+    /// Type: `bool` | `DocumentFormattingOptions`
     ServerCapabilitiesDocumentFormattingProvider? documentFormattingProvider,
 
     /// The server provides document range formatting.
     ///
-    /// Type: bool | DocumentRangeFormattingOptions
+    /// Type: `bool` | `DocumentRangeFormattingOptions`
     ServerCapabilitiesDocumentRangeFormattingProvider?
     documentRangeFormattingProvider,
 
@@ -116,17 +118,18 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// if the client states that it supports `prepareSupport` in its initial
     /// `initialize` request.
     ///
-    /// Type: bool | RenameOptions
+    /// Type: `bool` | `RenameOptions`
     ServerCapabilitiesRenameProvider? renameProvider,
 
     /// The server provides folding provider support.
     ///
-    /// Type: bool | FoldingRangeOptions | FoldingRangeRegistrationOptions
+    /// Type: `bool` | `FoldingRangeOptions` | `FoldingRangeRegistrationOptions`
     ServerCapabilitiesFoldingRangeProvider? foldingRangeProvider,
 
     /// The server provides selection range support.
     ///
-    /// Type: bool | SelectionRangeOptions | SelectionRangeRegistrationOptions
+    /// Type: `bool` | `SelectionRangeOptions` |
+    /// `SelectionRangeRegistrationOptions`
     ServerCapabilitiesSelectionRangeProvider? selectionRangeProvider,
 
     /// The server provides execute command support.
@@ -134,47 +137,50 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
     /// The server provides call hierarchy support.
     ///
-    /// Type: bool | CallHierarchyOptions | CallHierarchyRegistrationOptions
+    /// Type: `bool` | `CallHierarchyOptions` |
+    /// `CallHierarchyRegistrationOptions`
     ServerCapabilitiesCallHierarchyProvider? callHierarchyProvider,
 
     /// The server provides linked editing range support.
     ///
-    /// Type: bool | LinkedEditingRangeOptions | LinkedEditingRangeRegistrationOptions
+    /// Type: `bool` | `LinkedEditingRangeOptions` |
+    /// `LinkedEditingRangeRegistrationOptions`
     ServerCapabilitiesLinkedEditingRangeProvider? linkedEditingRangeProvider,
 
     /// The server provides semantic tokens support.
     ///
-    /// Type: SemanticTokensOptions | SemanticTokensRegistrationOptions
+    /// Type: `SemanticTokensOptions` | `SemanticTokensRegistrationOptions`
     ServerCapabilitiesSemanticTokensProvider? semanticTokensProvider,
 
     /// The server provides moniker support.
     ///
-    /// Type: bool | MonikerOptions | MonikerRegistrationOptions
+    /// Type: `bool` | `MonikerOptions` | `MonikerRegistrationOptions`
     ServerCapabilitiesMonikerProvider? monikerProvider,
 
     /// The server provides type hierarchy support.
     ///
-    /// Type: bool | TypeHierarchyOptions | TypeHierarchyRegistrationOptions
+    /// Type: `bool` | `TypeHierarchyOptions` |
+    /// `TypeHierarchyRegistrationOptions`
     ServerCapabilitiesTypeHierarchyProvider? typeHierarchyProvider,
 
     /// The server provides inline values.
     ///
-    /// Type: bool | InlineValueOptions | InlineValueRegistrationOptions
+    /// Type: `bool` | `InlineValueOptions` | `InlineValueRegistrationOptions`
     ServerCapabilitiesInlineValueProvider? inlineValueProvider,
 
     /// The server provides inlay hints.
     ///
-    /// Type: bool | InlayHintOptions | InlayHintRegistrationOptions
+    /// Type: `bool` | `InlayHintOptions` | `InlayHintRegistrationOptions`
     ServerCapabilitiesInlayHintProvider? inlayHintProvider,
 
     /// The server has support for pull model diagnostics.
     ///
-    /// Type: DiagnosticOptions | DiagnosticRegistrationOptions
+    /// Type: `DiagnosticOptions` | `DiagnosticRegistrationOptions`
     ServerCapabilitiesDiagnosticProvider? diagnosticProvider,
 
     /// Inline completion options used during static registration.
     ///
-    /// Type: bool | InlineCompletionOptions
+    /// Type: `bool` | `InlineCompletionOptions`
     ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider,
 
     /// Workspace specific server capabilities.
@@ -234,7 +240,7 @@ abstract class WorkspaceFoldersServerCapabilities
     /// unregister for these events using the `client/unregisterCapability`
     /// request.
     ///
-    /// Type: String | bool
+    /// Type: `String` | `bool`
     WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications,
   }) = _WorkspaceFoldersServerCapabilities;
 

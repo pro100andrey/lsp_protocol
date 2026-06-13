@@ -1,5 +1,3 @@
-// ignore_for_file: type=lint
-
 // GENERATED — do not edit.
 
 import 'package:json_annotation/json_annotation.dart';
@@ -126,6 +124,7 @@ enum NotificationMethod implements LSPMethod {
 
   const NotificationMethod(this.value);
 
+  @override
   final String value;
 
   static NotificationMethod? decode(String json) =>
@@ -430,6 +429,7 @@ enum RequestMethod implements LSPMethod {
 
   const RequestMethod(this.value);
 
+  @override
   final String value;
 
   static RequestMethod? decode(String json) =>

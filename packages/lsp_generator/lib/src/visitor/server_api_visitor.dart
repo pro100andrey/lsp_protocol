@@ -23,9 +23,13 @@ import 'emitter_helpers.dart';
 final class ServerApiVisitor extends ApiVisitorBase {
   ServerApiVisitor(super.resolved);
 
+  static String handlerClassName(String namespace) =>
+      'Server${ApiVisitorBase.handlerClassName(namespace)}';
+
+  static String senderClassName(String namespace) =>
+      'Server${ApiVisitorBase.senderClassName(namespace)}';
+
   static const _header = [
-    'ignore_for_file: unused_import',
-    '',
     'GENERATED — do not edit.',
   ];
 
@@ -54,11 +58,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
           Directive.import('../../connection/lsp_connection.dart'),
           Directive.import('../../connection/lsp_exception.dart'),
           Directive.import('../../server/lsp_request.dart'),
-          Directive.import('../models/enumerations.dart'),
-          Directive.import('../models/methods.dart'),
-          Directive.import('../models/scalar_unions.dart'),
           Directive.import('../models/structures.dart'),
-          Directive.import('../models/type_aliases.dart'),
           Directive.import('../models/unions.dart'),
         ])
         ..body.addAll(specs),
@@ -148,7 +148,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
   // -------------------------------------------------------------------------
 
   Class _buildHandlerClass(String namespace, List<_MethodEntry> entries) {
-    final className = ApiVisitorBase.handlerClassName(namespace);
+    final className = handlerClassName(namespace);
     return Class(
       (b) => b
         ..name = className
@@ -210,11 +210,12 @@ final class ServerApiVisitor extends ApiVisitorBase {
               ..type = refer(handlerType),
           ),
         )
-        ..body = body,
+        ..lambda = true
+        ..body = body.code,
     );
   }
 
-  Code _requestHandlerBody(
+  Expression _requestHandlerBody(
     String wireMethod,
     String paramsType,
     String resultType,
@@ -248,16 +249,8 @@ final class ServerApiVisitor extends ApiVisitorBase {
       (b) => b
         ..modifier = needsAsync ? .async : null
         ..requiredParameters.addAll([
-          Parameter(
-            (b) => b
-              ..name = 'json'
-              ..type = tDynamic,
-          ),
-          Parameter(
-            (b) => b
-              ..name = 'context'
-              ..type = refer('LspRequest'),
-          ),
+          Parameter((b) => b..name = 'json'),
+          Parameter((b) => b..name = 'context'),
         ])
         ..body = Block.of(statements),
     ).closure;
@@ -265,10 +258,10 @@ final class ServerApiVisitor extends ApiVisitorBase {
     return eConnection.property('registerRequestHandler').call([
       methodRef('RequestMethod', wireMethod),
       closure,
-    ]).statement;
+    ]);
   }
 
-  Code _notificationHandlerBody(String wireMethod, String paramsType) {
+  Expression _notificationHandlerBody(String wireMethod, String paramsType) {
     final hasParams = paramsType.isNotEmpty;
     final isRawParams = paramsType == 'Object?' || paramsType == 'Object';
 
@@ -289,16 +282,8 @@ final class ServerApiVisitor extends ApiVisitorBase {
       (b) => b
         ..modifier = .async
         ..requiredParameters.addAll([
-          Parameter(
-            (b) => b
-              ..name = 'json'
-              ..type = tDynamic,
-          ),
-          Parameter(
-            (b) => b
-              ..name = 'context'
-              ..type = refer('LspRequest'),
-          ),
+          Parameter((b) => b..name = 'json'),
+          Parameter((b) => b..name = 'context'),
         ])
         ..body = Block.of(statements),
     ).closure;
@@ -306,7 +291,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
     return eConnection.property('registerNotificationHandler').call([
       methodRef('NotificationMethod', wireMethod),
       closure,
-    ]).returned.statement;
+    ]);
   }
 
   // -------------------------------------------------------------------------
@@ -314,7 +299,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
   // -------------------------------------------------------------------------
 
   Class _buildSenderClass(String namespace, List<_MethodEntry> entries) {
-    final className = ApiVisitorBase.senderClassName(namespace);
+    final className = senderClassName(namespace);
     return Class(
       (b) => b
         ..name = className
@@ -476,7 +461,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
         ..docs.add(
           '/// Aggregates all outgoing sender classes.\n'
           '///\n'
-          '/// Access via [LspServer.client]:\n'
+          '/// Access via `LspServer.client`:\n'
           '/// ```dart\n'
           '/// server.client.window.logMessage(LogMessageParams(...));\n'
           '/// ```',
@@ -513,7 +498,7 @@ final class ServerApiVisitor extends ApiVisitorBase {
                 ..late = true
                 ..modifier = FieldModifier.final$
                 ..assignment = Code(
-                  '${ApiVisitorBase.senderClassName(ns)}(_connection)',
+                  '${senderClassName(ns)}(_connection)',
                 ),
             ),
           ),

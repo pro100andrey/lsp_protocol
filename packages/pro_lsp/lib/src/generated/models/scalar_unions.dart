@@ -1,5 +1,3 @@
-// ignore_for_file: type=lint
-
 // GENERATED — do not edit.
 
 extension type const ProgressToken._(Object value) {
@@ -13,15 +11,11 @@ extension type const ProgressToken._(Object value) {
 
   bool get isInt => value is int;
 
-  int? get asInt {
-    return value is int ? value as int : null;
-  }
+  int? get asInt => isInt ? value as int : null;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 }
 
 /// Inline union: CancelParamsId.
@@ -36,15 +30,11 @@ extension type const CancelParamsId._(Object value) {
 
   bool get isInt => value is int;
 
-  int? get asInt {
-    return value is int ? value as int : null;
-  }
+  int? get asInt => isInt ? value as int : null;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 }
 
 /// Inline union: DiagnosticCode.
@@ -59,15 +49,11 @@ extension type const DiagnosticCode._(Object value) {
 
   bool get isInt => value is int;
 
-  int? get asInt {
-    return value is int ? value as int : null;
-  }
+  int? get asInt => isInt ? value as int : null;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 }
 
 /// Inline union: WorkspaceFoldersServerCapabilitiesChangeNotifications.
@@ -90,15 +76,11 @@ extension type const WorkspaceFoldersServerCapabilitiesChangeNotifications._(
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 }
 
 /// Inline union: ParameterInformationLabel.
@@ -109,17 +91,14 @@ extension type const ParameterInformationLabel._(Object value) {
   const factory ParameterInformationLabel.string(String value) =
       ParameterInformationLabel._;
 
-  factory ParameterInformationLabel.tuple((int, int) value) {
-    return ParameterInformationLabel._([value.$1, value.$2]);
-  }
+  factory ParameterInformationLabel.tuple((int, int) value) =>
+      ParameterInformationLabel._([value.$1, value.$2]);
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isTuple => value is List && (value as List).length == 2;
 

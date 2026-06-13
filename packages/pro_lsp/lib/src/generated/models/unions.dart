@@ -1,6 +1,8 @@
-// ignore_for_file: type=lint
-
 // GENERATED — do not edit.
+// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: deprecated_consistency
+// ignore_for_file: deprecated_member_use_from_same_package
+// ignore_for_file: remove_deprecations_in_breaking_versions
 
 import 'enumerations.dart';
 import 'structures.dart';
@@ -15,13 +17,10 @@ import 'type_aliases.dart';
 extension type const Definition._(Object value) {
   const factory Definition.fromJson(Object json) = Definition._;
 
-  factory Definition.location(Location value) {
-    return Definition._(value.toJson());
-  }
+  factory Definition.location(Location value) => Definition._(value.toJson());
 
-  factory Definition.locationList(List<Location> value) {
-    return Definition._(value.map((e) => e.toJson()).toList());
-  }
+  factory Definition.locationList(List<Location> value) =>
+      Definition._(value.map((e) => e.toJson()).toList());
 
   Object toJson() => value;
 
@@ -31,29 +30,21 @@ extension type const Definition._(Object value) {
           (value as Map<String, dynamic>).containsKey('uri') &&
           (value as Map<String, dynamic>).containsKey('range');
 
-  Location? get asLocation {
-    if (value is Location) {
-      return value as Location;
-    }
-    if (isLocation) {
-      return Location.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  Location? get asLocation => value is Location
+      ? value as Location
+      : isLocation
+      ? Location.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isLocationList => value is List;
 
-  List<Location>? get asLocationList {
-    if (value is List<Location>) {
-      return value as List<Location>;
-    }
-    if (isLocationList) {
-      return (value as List)
-          .map((e) => Location.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<Location>? get asLocationList => value is List<Location>
+      ? value as List<Location>
+      : isLocationList
+      ? (value as List)
+            .map((e) => Location.fromJson(e as Map<String, dynamic>))
+            .toList()
+      : null;
 }
 
 /// The LSP any type. Please note that strictly speaking a property with the
@@ -77,66 +68,47 @@ extension type const LSPAny._(Object? value) {
 
   const factory LSPAny.bool(bool value) = LSPAny._;
 
-  factory LSPAny.nullValue() {
-    return LSPAny._(null);
-  }
+  factory LSPAny.nullValue() => const LSPAny._(null);
 
   Object? toJson() => value;
 
   bool get isLSPObject => value is Map<String, dynamic>;
 
-  LSPObject? get asLSPObject {
-    return isLSPObject ? value as LSPObject : null;
-  }
+  LSPObject? get asLSPObject => isLSPObject ? value! as LSPObject : null;
 
   bool get isLSPArray => value is List;
 
-  LSPArray? get asLSPArray {
-    return isLSPArray ? value as LSPArray : null;
-  }
+  LSPArray? get asLSPArray => isLSPArray ? value! as LSPArray : null;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value! as String : null;
 
   bool get isInt => value is int;
 
-  int? get asInt {
-    return value is int ? value as int : null;
-  }
+  int? get asInt => isInt ? value! as int : null;
 
   bool get isDouble => value is double;
 
-  double? get asDouble {
-    return value is double ? value as double : null;
-  }
+  double? get asDouble => isDouble ? value! as double : null;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value! as bool : null;
 
   bool get isNull => value == null;
 
-  Null get asNull {
-    return null;
-  }
+  Object? get asNull => null;
 }
 
 /// The declaration of a symbol representation as one or many `locations`.
 extension type const Declaration._(Object value) {
   const factory Declaration.fromJson(Object json) = Declaration._;
 
-  factory Declaration.location(Location value) {
-    return Declaration._(value.toJson());
-  }
+  factory Declaration.location(Location value) => Declaration._(value.toJson());
 
-  factory Declaration.locationList(List<Location> value) {
-    return Declaration._(value.map((e) => e.toJson()).toList());
-  }
+  factory Declaration.locationList(List<Location> value) =>
+      Declaration._(value.map((e) => e.toJson()).toList());
 
   Object toJson() => value;
 
@@ -146,29 +118,21 @@ extension type const Declaration._(Object value) {
           (value as Map<String, dynamic>).containsKey('uri') &&
           (value as Map<String, dynamic>).containsKey('range');
 
-  Location? get asLocation {
-    if (value is Location) {
-      return value as Location;
-    }
-    if (isLocation) {
-      return Location.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  Location? get asLocation => value is Location
+      ? value as Location
+      : isLocation
+      ? Location.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isLocationList => value is List;
 
-  List<Location>? get asLocationList {
-    if (value is List<Location>) {
-      return value as List<Location>;
-    }
-    if (isLocationList) {
-      return (value as List)
-          .map((e) => Location.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<Location>? get asLocationList => value is List<Location>
+      ? value as List<Location>
+      : isLocationList
+      ? (value as List)
+            .map((e) => Location.fromJson(e as Map<String, dynamic>))
+            .toList()
+      : null;
 }
 
 /// Inline value information can be provided by different means: - directly as a
@@ -181,19 +145,15 @@ extension type const Declaration._(Object value) {
 extension type const InlineValue._(Object value) {
   const factory InlineValue.fromJson(Object json) = InlineValue._;
 
-  factory InlineValue.text(InlineValueText value) {
-    return InlineValue._(value.toJson());
-  }
+  factory InlineValue.text(InlineValueText value) =>
+      InlineValue._(value.toJson());
 
-  factory InlineValue.variableLookup(InlineValueVariableLookup value) {
-    return InlineValue._(value.toJson());
-  }
+  factory InlineValue.variableLookup(InlineValueVariableLookup value) =>
+      InlineValue._(value.toJson());
 
   factory InlineValue.evaluatableExpression(
     InlineValueEvaluatableExpression value,
-  ) {
-    return InlineValue._(value.toJson());
-  }
+  ) => InlineValue._(value.toJson());
 
   Object toJson() => value;
 
@@ -202,30 +162,23 @@ extension type const InlineValue._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('text');
 
-  InlineValueText? get asText {
-    if (value is InlineValueText) {
-      return value as InlineValueText;
-    }
-    if (isText) {
-      return InlineValueText.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  InlineValueText? get asText => value is InlineValueText
+      ? value as InlineValueText
+      : isText
+      ? InlineValueText.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isVariableLookup =>
       value is InlineValueVariableLookup ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('caseSensitiveLookup');
 
-  InlineValueVariableLookup? get asVariableLookup {
-    if (value is InlineValueVariableLookup) {
-      return value as InlineValueVariableLookup;
-    }
-    if (isVariableLookup) {
-      return InlineValueVariableLookup.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  InlineValueVariableLookup? get asVariableLookup =>
+      value is InlineValueVariableLookup
+      ? value as InlineValueVariableLookup
+      : isVariableLookup
+      ? InlineValueVariableLookup.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isEvaluatableExpression =>
       value is InlineValueEvaluatableExpression ||
@@ -233,17 +186,12 @@ extension type const InlineValue._(Object value) {
           !(value as Map<String, dynamic>).containsKey('text') &&
           !(value as Map<String, dynamic>).containsKey('caseSensitiveLookup');
 
-  InlineValueEvaluatableExpression? get asEvaluatableExpression {
-    if (value is InlineValueEvaluatableExpression) {
-      return value as InlineValueEvaluatableExpression;
-    }
-    if (isEvaluatableExpression) {
-      return InlineValueEvaluatableExpression.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  InlineValueEvaluatableExpression? get asEvaluatableExpression =>
+      value is InlineValueEvaluatableExpression
+      ? value as InlineValueEvaluatableExpression
+      : isEvaluatableExpression
+      ? InlineValueEvaluatableExpression.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// The result of a document diagnostic pull request. A report can either be a
@@ -258,15 +206,11 @@ extension type const DocumentDiagnosticReport._(Object value) {
 
   factory DocumentDiagnosticReport.relatedFullDocumentDiagnosticReport(
     RelatedFullDocumentDiagnosticReport value,
-  ) {
-    return DocumentDiagnosticReport._(value.toJson());
-  }
+  ) => DocumentDiagnosticReport._(value.toJson());
 
   factory DocumentDiagnosticReport.relatedUnchangedDocumentDiagnosticReport(
     RelatedUnchangedDocumentDiagnosticReport value,
-  ) {
-    return DocumentDiagnosticReport._(value.toJson());
-  }
+  ) => DocumentDiagnosticReport._(value.toJson());
 
   Object toJson() => value;
 
@@ -276,17 +220,14 @@ extension type const DocumentDiagnosticReport._(Object value) {
           (value as Map<String, dynamic>)['kind'] == 'full';
 
   RelatedFullDocumentDiagnosticReport?
-  get asRelatedFullDocumentDiagnosticReport {
-    if (value is RelatedFullDocumentDiagnosticReport) {
-      return value as RelatedFullDocumentDiagnosticReport;
-    }
-    if (isRelatedFullDocumentDiagnosticReport) {
-      return RelatedFullDocumentDiagnosticReport.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  get asRelatedFullDocumentDiagnosticReport =>
+      value is RelatedFullDocumentDiagnosticReport
+      ? value as RelatedFullDocumentDiagnosticReport
+      : isRelatedFullDocumentDiagnosticReport
+      ? RelatedFullDocumentDiagnosticReport.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 
   bool get isRelatedUnchangedDocumentDiagnosticReport =>
       value is RelatedUnchangedDocumentDiagnosticReport ||
@@ -294,39 +235,33 @@ extension type const DocumentDiagnosticReport._(Object value) {
           (value as Map<String, dynamic>)['kind'] == 'unchanged';
 
   RelatedUnchangedDocumentDiagnosticReport?
-  get asRelatedUnchangedDocumentDiagnosticReport {
-    if (value is RelatedUnchangedDocumentDiagnosticReport) {
-      return value as RelatedUnchangedDocumentDiagnosticReport;
-    }
-    if (isRelatedUnchangedDocumentDiagnosticReport) {
-      return RelatedUnchangedDocumentDiagnosticReport.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  get asRelatedUnchangedDocumentDiagnosticReport =>
+      value is RelatedUnchangedDocumentDiagnosticReport
+      ? value as RelatedUnchangedDocumentDiagnosticReport
+      : isRelatedUnchangedDocumentDiagnosticReport
+      ? RelatedUnchangedDocumentDiagnosticReport.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 extension type const PrepareRenameResult._(Object value) {
   const factory PrepareRenameResult.fromJson(Object json) =
       PrepareRenameResult._;
 
-  factory PrepareRenameResult.range(Range value) {
-    return PrepareRenameResult._(value.toJson());
-  }
+  factory PrepareRenameResult.range(Range value) =>
+      PrepareRenameResult._(value.toJson());
 
   factory PrepareRenameResult.rangePlaceholder({
     required Range range,
     required String placeholder,
-  }) {
-    return PrepareRenameResult._({
-      'range': range.toJson(),
-      'placeholder': placeholder,
-    });
-  }
+  }) => PrepareRenameResult._({
+    'range': range.toJson(),
+    'placeholder': placeholder,
+  });
 
-  factory PrepareRenameResult.defaultBehavior({required bool defaultBehavior}) {
-    return PrepareRenameResult._({'defaultBehavior': defaultBehavior});
-  }
+  factory PrepareRenameResult.defaultBehavior({
+    required bool defaultBehavior,
+  }) => PrepareRenameResult._({'defaultBehavior': defaultBehavior});
 
   Object toJson() => value;
 
@@ -335,15 +270,11 @@ extension type const PrepareRenameResult._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('start');
 
-  Range? get asRange {
-    if (value is Range) {
-      return value as Range;
-    }
-    if (isRange) {
-      return Range.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  Range? get asRange => value is Range
+      ? value as Range
+      : isRange
+      ? Range.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isRangePlaceholder =>
       value is Map<String, dynamic> &&
@@ -384,15 +315,11 @@ extension type const WorkspaceDocumentDiagnosticReport._(Object value) {
 
   factory WorkspaceDocumentDiagnosticReport.workspaceFullDocumentDiagnosticReport(
     WorkspaceFullDocumentDiagnosticReport value,
-  ) {
-    return WorkspaceDocumentDiagnosticReport._(value.toJson());
-  }
+  ) => WorkspaceDocumentDiagnosticReport._(value.toJson());
 
   factory WorkspaceDocumentDiagnosticReport.workspaceUnchangedDocumentDiagnosticReport(
     WorkspaceUnchangedDocumentDiagnosticReport value,
-  ) {
-    return WorkspaceDocumentDiagnosticReport._(value.toJson());
-  }
+  ) => WorkspaceDocumentDiagnosticReport._(value.toJson());
 
   Object toJson() => value;
 
@@ -402,17 +329,14 @@ extension type const WorkspaceDocumentDiagnosticReport._(Object value) {
           (value as Map<String, dynamic>)['kind'] == 'full';
 
   WorkspaceFullDocumentDiagnosticReport?
-  get asWorkspaceFullDocumentDiagnosticReport {
-    if (value is WorkspaceFullDocumentDiagnosticReport) {
-      return value as WorkspaceFullDocumentDiagnosticReport;
-    }
-    if (isWorkspaceFullDocumentDiagnosticReport) {
-      return WorkspaceFullDocumentDiagnosticReport.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  get asWorkspaceFullDocumentDiagnosticReport =>
+      value is WorkspaceFullDocumentDiagnosticReport
+      ? value as WorkspaceFullDocumentDiagnosticReport
+      : isWorkspaceFullDocumentDiagnosticReport
+      ? WorkspaceFullDocumentDiagnosticReport.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 
   bool get isWorkspaceUnchangedDocumentDiagnosticReport =>
       value is WorkspaceUnchangedDocumentDiagnosticReport ||
@@ -420,17 +344,14 @@ extension type const WorkspaceDocumentDiagnosticReport._(Object value) {
           (value as Map<String, dynamic>)['kind'] == 'unchanged';
 
   WorkspaceUnchangedDocumentDiagnosticReport?
-  get asWorkspaceUnchangedDocumentDiagnosticReport {
-    if (value is WorkspaceUnchangedDocumentDiagnosticReport) {
-      return value as WorkspaceUnchangedDocumentDiagnosticReport;
-    }
-    if (isWorkspaceUnchangedDocumentDiagnosticReport) {
-      return WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  get asWorkspaceUnchangedDocumentDiagnosticReport =>
+      value is WorkspaceUnchangedDocumentDiagnosticReport
+      ? value as WorkspaceUnchangedDocumentDiagnosticReport
+      : isWorkspaceUnchangedDocumentDiagnosticReport
+      ? WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// An event describing a change to a text document. If only a text is provided
@@ -441,19 +362,16 @@ extension type const TextDocumentContentChangeEvent._(Object value) {
 
   factory TextDocumentContentChangeEvent.rangeRangeLengthText({
     required Range range,
-    int? rangeLength,
     required String text,
-  }) {
-    return TextDocumentContentChangeEvent._({
-      'range': range.toJson(),
-      if (rangeLength != null) 'rangeLength': rangeLength,
-      'text': text,
-    });
-  }
+    int? rangeLength,
+  }) => TextDocumentContentChangeEvent._({
+    'range': range.toJson(),
+    'rangeLength': ?rangeLength,
+    'text': text,
+  });
 
-  factory TextDocumentContentChangeEvent.text({required String text}) {
-    return TextDocumentContentChangeEvent._({'text': text});
-  }
+  factory TextDocumentContentChangeEvent.text({required String text}) =>
+      TextDocumentContentChangeEvent._({'text': text});
 
   Object toJson() => value;
 
@@ -500,25 +418,26 @@ extension type const TextDocumentContentChangeEvent._(Object value) {
 /// Note that markdown strings will be sanitized - that means html will be
 /// escaped. @deprecated use MarkupContent instead.
 @Deprecated('use MarkupContent instead.')
-extension type const MarkedString._(Object value) {
+extension type const MarkedString._(
+  @Deprecated('use MarkupContent instead.') Object value
+) {
+  @Deprecated('use MarkupContent instead.')
   const factory MarkedString.fromJson(Object json) = MarkedString._;
 
+  @Deprecated('use MarkupContent instead.')
   const factory MarkedString.string(String value) = MarkedString._;
 
+  @Deprecated('use MarkupContent instead.')
   factory MarkedString.languageValue({
     required String language,
     required String value,
-  }) {
-    return MarkedString._({'language': language, 'value': value});
-  }
+  }) => MarkedString._({'language': language, 'value': value});
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isLanguageValue =>
       value is Map<String, dynamic> &&
@@ -546,15 +465,12 @@ extension type const MarkedString._(Object value) {
 extension type const DocumentFilter._(Object value) {
   const factory DocumentFilter.fromJson(Object json) = DocumentFilter._;
 
-  factory DocumentFilter.textDocumentFilter(TextDocumentFilter value) {
-    return DocumentFilter._(value.toJson());
-  }
+  factory DocumentFilter.textDocumentFilter(TextDocumentFilter value) =>
+      DocumentFilter._(value.toJson());
 
   factory DocumentFilter.notebookCellTextDocumentFilter(
     NotebookCellTextDocumentFilter value,
-  ) {
-    return DocumentFilter._(value.toJson());
-  }
+  ) => DocumentFilter._(value.toJson());
 
   Object toJson() => value;
 
@@ -566,32 +482,23 @@ extension type const DocumentFilter._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('pattern');
 
-  TextDocumentFilter? get asTextDocumentFilter {
-    if (value is TextDocumentFilter) {
-      return value as TextDocumentFilter;
-    }
-    if (isTextDocumentFilter) {
-      return TextDocumentFilter.fromJson(value);
-    }
-    return null;
-  }
+  TextDocumentFilter? get asTextDocumentFilter => value is TextDocumentFilter
+      ? value as TextDocumentFilter
+      : isTextDocumentFilter
+      ? TextDocumentFilter.fromJson(value)
+      : null;
 
   bool get isNotebookCellTextDocumentFilter =>
       value is NotebookCellTextDocumentFilter ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('notebook');
 
-  NotebookCellTextDocumentFilter? get asNotebookCellTextDocumentFilter {
-    if (value is NotebookCellTextDocumentFilter) {
-      return value as NotebookCellTextDocumentFilter;
-    }
-    if (isNotebookCellTextDocumentFilter) {
-      return NotebookCellTextDocumentFilter.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  NotebookCellTextDocumentFilter? get asNotebookCellTextDocumentFilter =>
+      value is NotebookCellTextDocumentFilter
+      ? value as NotebookCellTextDocumentFilter
+      : isNotebookCellTextDocumentFilter
+      ? NotebookCellTextDocumentFilter.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// The glob pattern. Either a string pattern or a relative pattern.
@@ -602,17 +509,14 @@ extension type const GlobPattern._(Object value) {
 
   const factory GlobPattern.pattern(Pattern value) = GlobPattern._;
 
-  factory GlobPattern.relativePattern(RelativePattern value) {
-    return GlobPattern._(value.toJson());
-  }
+  factory GlobPattern.relativePattern(RelativePattern value) =>
+      GlobPattern._(value.toJson());
 
   Object toJson() => value;
 
   bool get isPattern => value is String;
 
-  Pattern? get asPattern {
-    return isPattern ? value as Pattern : null;
-  }
+  Pattern? get asPattern => isPattern ? value as Pattern : null;
 
   bool get isRelativePattern =>
       value is RelativePattern ||
@@ -620,15 +524,11 @@ extension type const GlobPattern._(Object value) {
           (value as Map<String, dynamic>).containsKey('baseUri') &&
           (value as Map<String, dynamic>).containsKey('pattern');
 
-  RelativePattern? get asRelativePattern {
-    if (value is RelativePattern) {
-      return value as RelativePattern;
-    }
-    if (isRelativePattern) {
-      return RelativePattern.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  RelativePattern? get asRelativePattern => value is RelativePattern
+      ? value as RelativePattern
+      : isRelativePattern
+      ? RelativePattern.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// A document filter denotes a document by different properties like the
@@ -658,13 +558,11 @@ extension type const TextDocumentFilter._(Object value) {
     required String language,
     String? scheme,
     String? pattern,
-  }) {
-    return TextDocumentFilter._({
-      'language': language,
-      if (scheme != null) 'scheme': scheme,
-      if (pattern != null) 'pattern': pattern,
-    });
-  }
+  }) => TextDocumentFilter._({
+    'language': language,
+    'scheme': ?scheme,
+    'pattern': ?pattern,
+  });
 
   Object toJson() => value;
 
@@ -699,13 +597,11 @@ extension type const NotebookDocumentFilter._(Object value) {
     required String notebookType,
     String? scheme,
     String? pattern,
-  }) {
-    return NotebookDocumentFilter._({
-      'notebookType': notebookType,
-      if (scheme != null) 'scheme': scheme,
-      if (pattern != null) 'pattern': pattern,
-    });
-  }
+  }) => NotebookDocumentFilter._({
+    'notebookType': notebookType,
+    'scheme': ?scheme,
+    'pattern': ?pattern,
+  });
 
   Object toJson() => value;
 
@@ -735,17 +631,14 @@ extension type const SemanticTokensRegistrationOptionsRange._(Object value) {
   const factory SemanticTokensRegistrationOptionsRange.bool(bool value) =
       SemanticTokensRegistrationOptionsRange._;
 
-  factory SemanticTokensRegistrationOptionsRange.empty() {
-    return SemanticTokensRegistrationOptionsRange._({});
-  }
+  factory SemanticTokensRegistrationOptionsRange.empty() =>
+      const SemanticTokensRegistrationOptionsRange._({});
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isEmpty => value is Map<String, dynamic>;
 
@@ -765,19 +658,14 @@ extension type const SemanticTokensRegistrationOptionsFull._(Object value) {
   const factory SemanticTokensRegistrationOptionsFull.bool(bool value) =
       SemanticTokensRegistrationOptionsFull._;
 
-  factory SemanticTokensRegistrationOptionsFull.delta({bool? delta}) {
-    return SemanticTokensRegistrationOptionsFull._({
-      if (delta != null) 'delta': delta,
-    });
-  }
+  factory SemanticTokensRegistrationOptionsFull.delta({bool? delta}) =>
+      SemanticTokensRegistrationOptionsFull._({'delta': ?delta});
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDelta => value is Map<String, dynamic>;
 
@@ -797,21 +685,16 @@ extension type const WorkspaceEditDocumentChangesItem._(Object value) {
 
   factory WorkspaceEditDocumentChangesItem.textDocumentEdit(
     TextDocumentEdit value,
-  ) {
-    return WorkspaceEditDocumentChangesItem._(value.toJson());
-  }
+  ) => WorkspaceEditDocumentChangesItem._(value.toJson());
 
-  factory WorkspaceEditDocumentChangesItem.createFile(CreateFile value) {
-    return WorkspaceEditDocumentChangesItem._(value.toJson());
-  }
+  factory WorkspaceEditDocumentChangesItem.createFile(CreateFile value) =>
+      WorkspaceEditDocumentChangesItem._(value.toJson());
 
-  factory WorkspaceEditDocumentChangesItem.renameFile(RenameFile value) {
-    return WorkspaceEditDocumentChangesItem._(value.toJson());
-  }
+  factory WorkspaceEditDocumentChangesItem.renameFile(RenameFile value) =>
+      WorkspaceEditDocumentChangesItem._(value.toJson());
 
-  factory WorkspaceEditDocumentChangesItem.deleteFile(DeleteFile value) {
-    return WorkspaceEditDocumentChangesItem._(value.toJson());
-  }
+  factory WorkspaceEditDocumentChangesItem.deleteFile(DeleteFile value) =>
+      WorkspaceEditDocumentChangesItem._(value.toJson());
 
   Object toJson() => value;
 
@@ -821,15 +704,11 @@ extension type const WorkspaceEditDocumentChangesItem._(Object value) {
           (value as Map<String, dynamic>).containsKey('textDocument') &&
           (value as Map<String, dynamic>).containsKey('edits');
 
-  TextDocumentEdit? get asTextDocumentEdit {
-    if (value is TextDocumentEdit) {
-      return value as TextDocumentEdit;
-    }
-    if (isTextDocumentEdit) {
-      return TextDocumentEdit.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  TextDocumentEdit? get asTextDocumentEdit => value is TextDocumentEdit
+      ? value as TextDocumentEdit
+      : isTextDocumentEdit
+      ? TextDocumentEdit.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isCreateFile =>
       value is CreateFile ||
@@ -837,15 +716,11 @@ extension type const WorkspaceEditDocumentChangesItem._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('uri');
 
-  CreateFile? get asCreateFile {
-    if (value is CreateFile) {
-      return value as CreateFile;
-    }
-    if (isCreateFile) {
-      return CreateFile.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  CreateFile? get asCreateFile => value is CreateFile
+      ? value as CreateFile
+      : isCreateFile
+      ? CreateFile.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isRenameFile =>
       value is RenameFile ||
@@ -854,15 +729,11 @@ extension type const WorkspaceEditDocumentChangesItem._(Object value) {
           (value as Map<String, dynamic>).containsKey('oldUri') &&
           (value as Map<String, dynamic>).containsKey('newUri');
 
-  RenameFile? get asRenameFile {
-    if (value is RenameFile) {
-      return value as RenameFile;
-    }
-    if (isRenameFile) {
-      return RenameFile.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  RenameFile? get asRenameFile => value is RenameFile
+      ? value as RenameFile
+      : isRenameFile
+      ? RenameFile.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isDeleteFile =>
       value is DeleteFile ||
@@ -870,15 +741,11 @@ extension type const WorkspaceEditDocumentChangesItem._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('uri');
 
-  DeleteFile? get asDeleteFile {
-    if (value is DeleteFile) {
-      return value as DeleteFile;
-    }
-    if (isDeleteFile) {
-      return DeleteFile.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  DeleteFile? get asDeleteFile => value is DeleteFile
+      ? value as DeleteFile
+      : isDeleteFile
+      ? DeleteFile.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: InlayHintLabel.
@@ -887,31 +754,24 @@ extension type const InlayHintLabel._(Object value) {
 
   const factory InlayHintLabel.string(String value) = InlayHintLabel._;
 
-  factory InlayHintLabel.partList(List<InlayHintLabelPart> value) {
-    return InlayHintLabel._(value.map((e) => e.toJson()).toList());
-  }
+  factory InlayHintLabel.partList(List<InlayHintLabelPart> value) =>
+      InlayHintLabel._(value.map((e) => e.toJson()).toList());
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isPartList => value is List;
 
-  List<InlayHintLabelPart>? get asPartList {
-    if (value is List<InlayHintLabelPart>) {
-      return value as List<InlayHintLabelPart>;
-    }
-    if (isPartList) {
-      return (value as List)
-          .map((e) => InlayHintLabelPart.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<InlayHintLabelPart>? get asPartList => value is List<InlayHintLabelPart>
+      ? value as List<InlayHintLabelPart>
+      : isPartList
+      ? (value as List)
+            .map((e) => InlayHintLabelPart.fromJson(e as Map<String, dynamic>))
+            .toList()
+      : null;
 }
 
 /// Inline union: InlayHintTooltip.
@@ -920,17 +780,14 @@ extension type const InlayHintTooltip._(Object value) {
 
   const factory InlayHintTooltip.string(String value) = InlayHintTooltip._;
 
-  factory InlayHintTooltip.markupContent(MarkupContent value) {
-    return InlayHintTooltip._(value.toJson());
-  }
+  factory InlayHintTooltip.markupContent(MarkupContent value) =>
+      InlayHintTooltip._(value.toJson());
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isMarkupContent =>
       value is MarkupContent ||
@@ -938,15 +795,11 @@ extension type const InlayHintTooltip._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('value');
 
-  MarkupContent? get asMarkupContent {
-    if (value is MarkupContent) {
-      return value as MarkupContent;
-    }
-    if (isMarkupContent) {
-      return MarkupContent.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  MarkupContent? get asMarkupContent => value is MarkupContent
+      ? value as MarkupContent
+      : isMarkupContent
+      ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: InlineCompletionItemInsertText.
@@ -957,17 +810,14 @@ extension type const InlineCompletionItemInsertText._(Object value) {
   const factory InlineCompletionItemInsertText.string(String value) =
       InlineCompletionItemInsertText._;
 
-  factory InlineCompletionItemInsertText.stringValue(StringValue value) {
-    return InlineCompletionItemInsertText._(value.toJson());
-  }
+  factory InlineCompletionItemInsertText.stringValue(StringValue value) =>
+      InlineCompletionItemInsertText._(value.toJson());
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isStringValue =>
       value is StringValue ||
@@ -975,15 +825,11 @@ extension type const InlineCompletionItemInsertText._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('value');
 
-  StringValue? get asStringValue {
-    if (value is StringValue) {
-      return value as StringValue;
-    }
-    if (isStringValue) {
-      return StringValue.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  StringValue? get asStringValue => value is StringValue
+      ? value as StringValue
+      : isStringValue
+      ? StringValue.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: DidChangeConfigurationRegistrationOptionsSection.
@@ -1006,15 +852,11 @@ extension type const DidChangeConfigurationRegistrationOptionsSection._(
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isStringList => value is List;
 
-  List<String>? get asStringList {
-    return isStringList ? value as List<String> : null;
-  }
+  List<String>? get asStringList => isStringList ? value as List<String> : null;
 }
 
 /// Inline union: CompletionItemDocumentation.
@@ -1025,17 +867,14 @@ extension type const CompletionItemDocumentation._(Object value) {
   const factory CompletionItemDocumentation.string(String value) =
       CompletionItemDocumentation._;
 
-  factory CompletionItemDocumentation.markupContent(MarkupContent value) {
-    return CompletionItemDocumentation._(value.toJson());
-  }
+  factory CompletionItemDocumentation.markupContent(MarkupContent value) =>
+      CompletionItemDocumentation._(value.toJson());
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isMarkupContent =>
       value is MarkupContent ||
@@ -1043,15 +882,11 @@ extension type const CompletionItemDocumentation._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('value');
 
-  MarkupContent? get asMarkupContent {
-    if (value is MarkupContent) {
-      return value as MarkupContent;
-    }
-    if (isMarkupContent) {
-      return MarkupContent.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  MarkupContent? get asMarkupContent => value is MarkupContent
+      ? value as MarkupContent
+      : isMarkupContent
+      ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: CompletionItemTextEdit.
@@ -1059,13 +894,11 @@ extension type const CompletionItemTextEdit._(Object value) {
   const factory CompletionItemTextEdit.fromJson(Object json) =
       CompletionItemTextEdit._;
 
-  factory CompletionItemTextEdit.textEdit(TextEdit value) {
-    return CompletionItemTextEdit._(value.toJson());
-  }
+  factory CompletionItemTextEdit.textEdit(TextEdit value) =>
+      CompletionItemTextEdit._(value.toJson());
 
-  factory CompletionItemTextEdit.insertReplaceEdit(InsertReplaceEdit value) {
-    return CompletionItemTextEdit._(value.toJson());
-  }
+  factory CompletionItemTextEdit.insertReplaceEdit(InsertReplaceEdit value) =>
+      CompletionItemTextEdit._(value.toJson());
 
   Object toJson() => value;
 
@@ -1074,47 +907,36 @@ extension type const CompletionItemTextEdit._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('range');
 
-  TextEdit? get asTextEdit {
-    if (value is TextEdit) {
-      return value as TextEdit;
-    }
-    if (isTextEdit) {
-      return TextEdit.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  TextEdit? get asTextEdit => value is TextEdit
+      ? value as TextEdit
+      : isTextEdit
+      ? TextEdit.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isInsertReplaceEdit =>
       value is InsertReplaceEdit ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('insert');
 
-  InsertReplaceEdit? get asInsertReplaceEdit {
-    if (value is InsertReplaceEdit) {
-      return value as InsertReplaceEdit;
-    }
-    if (isInsertReplaceEdit) {
-      return InsertReplaceEdit.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  InsertReplaceEdit? get asInsertReplaceEdit => value is InsertReplaceEdit
+      ? value as InsertReplaceEdit
+      : isInsertReplaceEdit
+      ? InsertReplaceEdit.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: HoverContents.
 extension type const HoverContents._(Object value) {
   const factory HoverContents.fromJson(Object json) = HoverContents._;
 
-  factory HoverContents.markupContent(MarkupContent value) {
-    return HoverContents._(value.toJson());
-  }
+  factory HoverContents.markupContent(MarkupContent value) =>
+      HoverContents._(value.toJson());
 
-  factory HoverContents.markedString(MarkedString value) {
-    return HoverContents._(value.toJson());
-  }
+  factory HoverContents.markedString(MarkedString value) =>
+      HoverContents._(value.toJson());
 
-  factory HoverContents.markedStringList(List<MarkedString> value) {
-    return HoverContents._(value.map((e) => e.toJson()).toList());
-  }
+  factory HoverContents.markedStringList(List<MarkedString> value) =>
+      HoverContents._(value.map((e) => e.toJson()).toList());
 
   Object toJson() => value;
 
@@ -1124,15 +946,11 @@ extension type const HoverContents._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('value');
 
-  MarkupContent? get asMarkupContent {
-    if (value is MarkupContent) {
-      return value as MarkupContent;
-    }
-    if (isMarkupContent) {
-      return MarkupContent.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  MarkupContent? get asMarkupContent => value is MarkupContent
+      ? value as MarkupContent
+      : isMarkupContent
+      ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isMarkedString =>
       value is String ||
@@ -1140,29 +958,19 @@ extension type const HoverContents._(Object value) {
           (value as Map<String, dynamic>).containsKey('language') &&
           (value as Map<String, dynamic>).containsKey('value');
 
-  MarkedString? get asMarkedString {
-    if (value is MarkedString) {
-      return value as MarkedString;
-    }
-    if (isMarkedString) {
-      return MarkedString.fromJson(value);
-    }
-    return null;
-  }
+  MarkedString? get asMarkedString => value is MarkedString
+      ? value as MarkedString
+      : isMarkedString
+      ? MarkedString.fromJson(value)
+      : null;
 
   bool get isMarkedStringList => value is List;
 
-  List<MarkedString>? get asMarkedStringList {
-    if (value is List<MarkedString>) {
-      return value as List<MarkedString>;
-    }
-    if (isMarkedStringList) {
-      return (value as List)
-          .map((e) => MarkedString.fromJson(e as Object))
-          .toList();
-    }
-    return null;
-  }
+  List<MarkedString>? get asMarkedStringList => value is List<MarkedString>
+      ? value as List<MarkedString>
+      : isMarkedStringList
+      ? (value as List).map((e) => MarkedString.fromJson(e as Object)).toList()
+      : null;
 }
 
 /// Inline union: WorkspaceSymbolLocation.
@@ -1170,13 +978,11 @@ extension type const WorkspaceSymbolLocation._(Object value) {
   const factory WorkspaceSymbolLocation.fromJson(Object json) =
       WorkspaceSymbolLocation._;
 
-  factory WorkspaceSymbolLocation.location(Location value) {
-    return WorkspaceSymbolLocation._(value.toJson());
-  }
+  factory WorkspaceSymbolLocation.location(Location value) =>
+      WorkspaceSymbolLocation._(value.toJson());
 
-  factory WorkspaceSymbolLocation.uri({required String uri}) {
-    return WorkspaceSymbolLocation._({'uri': uri});
-  }
+  factory WorkspaceSymbolLocation.uri({required String uri}) =>
+      WorkspaceSymbolLocation._({'uri': uri});
 
   Object toJson() => value;
 
@@ -1185,15 +991,11 @@ extension type const WorkspaceSymbolLocation._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('range');
 
-  Location? get asLocation {
-    if (value is Location) {
-      return value as Location;
-    }
-    if (isLocation) {
-      return Location.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  Location? get asLocation => value is Location
+      ? value as Location
+      : isLocation
+      ? Location.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isUri =>
       value is Map<String, dynamic> &&
@@ -1216,17 +1018,14 @@ extension type const SemanticTokensOptionsRange._(Object value) {
   const factory SemanticTokensOptionsRange.bool(bool value) =
       SemanticTokensOptionsRange._;
 
-  factory SemanticTokensOptionsRange.empty() {
-    return SemanticTokensOptionsRange._({});
-  }
+  factory SemanticTokensOptionsRange.empty() =>
+      const SemanticTokensOptionsRange._({});
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isEmpty => value is Map<String, dynamic>;
 
@@ -1246,17 +1045,14 @@ extension type const SemanticTokensOptionsFull._(Object value) {
   const factory SemanticTokensOptionsFull.bool(bool value) =
       SemanticTokensOptionsFull._;
 
-  factory SemanticTokensOptionsFull.delta({bool? delta}) {
-    return SemanticTokensOptionsFull._({if (delta != null) 'delta': delta});
-  }
+  factory SemanticTokensOptionsFull.delta({bool? delta}) =>
+      SemanticTokensOptionsFull._({'delta': ?delta});
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDelta => value is Map<String, dynamic>;
 
@@ -1274,13 +1070,12 @@ extension type const TextDocumentEditEditsItem._(Object value) {
   const factory TextDocumentEditEditsItem.fromJson(Object json) =
       TextDocumentEditEditsItem._;
 
-  factory TextDocumentEditEditsItem.textEdit(TextEdit value) {
-    return TextDocumentEditEditsItem._(value.toJson());
-  }
+  factory TextDocumentEditEditsItem.textEdit(TextEdit value) =>
+      TextDocumentEditEditsItem._(value.toJson());
 
-  factory TextDocumentEditEditsItem.annotatedTextEdit(AnnotatedTextEdit value) {
-    return TextDocumentEditEditsItem._(value.toJson());
-  }
+  factory TextDocumentEditEditsItem.annotatedTextEdit(
+    AnnotatedTextEdit value,
+  ) => TextDocumentEditEditsItem._(value.toJson());
 
   Object toJson() => value;
 
@@ -1289,30 +1084,22 @@ extension type const TextDocumentEditEditsItem._(Object value) {
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('annotationId');
 
-  TextEdit? get asTextEdit {
-    if (value is TextEdit) {
-      return value as TextEdit;
-    }
-    if (isTextEdit) {
-      return TextEdit.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  TextEdit? get asTextEdit => value is TextEdit
+      ? value as TextEdit
+      : isTextEdit
+      ? TextEdit.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isAnnotatedTextEdit =>
       value is AnnotatedTextEdit ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('annotationId');
 
-  AnnotatedTextEdit? get asAnnotatedTextEdit {
-    if (value is AnnotatedTextEdit) {
-      return value as AnnotatedTextEdit;
-    }
-    if (isAnnotatedTextEdit) {
-      return AnnotatedTextEdit.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  AnnotatedTextEdit? get asAnnotatedTextEdit => value is AnnotatedTextEdit
+      ? value as AnnotatedTextEdit
+      : isAnnotatedTextEdit
+      ? AnnotatedTextEdit.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: InlayHintLabelPartTooltip.
@@ -1323,17 +1110,14 @@ extension type const InlayHintLabelPartTooltip._(Object value) {
   const factory InlayHintLabelPartTooltip.string(String value) =
       InlayHintLabelPartTooltip._;
 
-  factory InlayHintLabelPartTooltip.markupContent(MarkupContent value) {
-    return InlayHintLabelPartTooltip._(value.toJson());
-  }
+  factory InlayHintLabelPartTooltip.markupContent(MarkupContent value) =>
+      InlayHintLabelPartTooltip._(value.toJson());
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isMarkupContent =>
       value is MarkupContent ||
@@ -1341,15 +1125,11 @@ extension type const InlayHintLabelPartTooltip._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('value');
 
-  MarkupContent? get asMarkupContent {
-    if (value is MarkupContent) {
-      return value as MarkupContent;
-    }
-    if (isMarkupContent) {
-      return MarkupContent.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  MarkupContent? get asMarkupContent => value is MarkupContent
+      ? value as MarkupContent
+      : isMarkupContent
+      ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesTextDocumentSync.
@@ -1359,43 +1139,33 @@ extension type const ServerCapabilitiesTextDocumentSync._(Object value) {
 
   factory ServerCapabilitiesTextDocumentSync.textDocumentSyncOptions(
     TextDocumentSyncOptions value,
-  ) {
-    return ServerCapabilitiesTextDocumentSync._(value.toJson());
-  }
+  ) => ServerCapabilitiesTextDocumentSync._(value.toJson());
 
   factory ServerCapabilitiesTextDocumentSync.textDocumentSyncKind(
     TextDocumentSyncKind value,
-  ) {
-    return ServerCapabilitiesTextDocumentSync._(value.value);
-  }
+  ) => ServerCapabilitiesTextDocumentSync._(value.value);
 
   Object toJson() => value;
 
   bool get isTextDocumentSyncOptions =>
       value is TextDocumentSyncOptions || value is Map<String, dynamic>;
 
-  TextDocumentSyncOptions? get asTextDocumentSyncOptions {
-    if (value is TextDocumentSyncOptions) {
-      return value as TextDocumentSyncOptions;
-    }
-    if (isTextDocumentSyncOptions) {
-      return TextDocumentSyncOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  TextDocumentSyncOptions? get asTextDocumentSyncOptions =>
+      value is TextDocumentSyncOptions
+      ? value as TextDocumentSyncOptions
+      : isTextDocumentSyncOptions
+      ? TextDocumentSyncOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isTextDocumentSyncKind =>
       value is TextDocumentSyncKind || value is int;
 
-  TextDocumentSyncKind? get asTextDocumentSyncKind {
-    if (value is TextDocumentSyncKind) {
-      return value as TextDocumentSyncKind;
-    }
-    if (isTextDocumentSyncKind) {
-      return TextDocumentSyncKind.decode(value as int);
-    }
-    return null;
-  }
+  TextDocumentSyncKind? get asTextDocumentSyncKind =>
+      value is TextDocumentSyncKind
+      ? value as TextDocumentSyncKind
+      : isTextDocumentSyncKind
+      ? TextDocumentSyncKind.decode(value as int)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesNotebookDocumentSync.
@@ -1405,15 +1175,11 @@ extension type const ServerCapabilitiesNotebookDocumentSync._(Object value) {
 
   factory ServerCapabilitiesNotebookDocumentSync.notebookDocumentSyncOptions(
     NotebookDocumentSyncOptions value,
-  ) {
-    return ServerCapabilitiesNotebookDocumentSync._(value.toJson());
-  }
+  ) => ServerCapabilitiesNotebookDocumentSync._(value.toJson());
 
   factory ServerCapabilitiesNotebookDocumentSync.notebookDocumentSyncRegistrationOptions(
     NotebookDocumentSyncRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesNotebookDocumentSync._(value.toJson());
-  }
+  ) => ServerCapabilitiesNotebookDocumentSync._(value.toJson());
 
   Object toJson() => value;
 
@@ -1422,34 +1188,26 @@ extension type const ServerCapabilitiesNotebookDocumentSync._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('notebookSelector');
 
-  NotebookDocumentSyncOptions? get asNotebookDocumentSyncOptions {
-    if (value is NotebookDocumentSyncOptions) {
-      return value as NotebookDocumentSyncOptions;
-    }
-    if (isNotebookDocumentSyncOptions) {
-      return NotebookDocumentSyncOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  NotebookDocumentSyncOptions? get asNotebookDocumentSyncOptions =>
+      value is NotebookDocumentSyncOptions
+      ? value as NotebookDocumentSyncOptions
+      : isNotebookDocumentSyncOptions
+      ? NotebookDocumentSyncOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isNotebookDocumentSyncRegistrationOptions =>
       value is NotebookDocumentSyncRegistrationOptions ||
       value is Map<String, dynamic>;
 
   NotebookDocumentSyncRegistrationOptions?
-  get asNotebookDocumentSyncRegistrationOptions {
-    if (value is NotebookDocumentSyncRegistrationOptions) {
-      return value as NotebookDocumentSyncRegistrationOptions;
-    }
-    if (isNotebookDocumentSyncRegistrationOptions) {
-      return NotebookDocumentSyncRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  get asNotebookDocumentSyncRegistrationOptions =>
+      value is NotebookDocumentSyncRegistrationOptions
+      ? value as NotebookDocumentSyncRegistrationOptions
+      : isNotebookDocumentSyncRegistrationOptions
+      ? NotebookDocumentSyncRegistrationOptions.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesHoverProvider.
@@ -1460,30 +1218,23 @@ extension type const ServerCapabilitiesHoverProvider._(Object value) {
   const factory ServerCapabilitiesHoverProvider.bool(bool value) =
       ServerCapabilitiesHoverProvider._;
 
-  factory ServerCapabilitiesHoverProvider.hoverOptions(HoverOptions value) {
-    return ServerCapabilitiesHoverProvider._(value.toJson());
-  }
+  factory ServerCapabilitiesHoverProvider.hoverOptions(HoverOptions value) =>
+      ServerCapabilitiesHoverProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isHoverOptions =>
       value is HoverOptions || value is Map<String, dynamic>;
 
-  HoverOptions? get asHoverOptions {
-    if (value is HoverOptions) {
-      return value as HoverOptions;
-    }
-    if (isHoverOptions) {
-      return HoverOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  HoverOptions? get asHoverOptions => value is HoverOptions
+      ? value as HoverOptions
+      : isHoverOptions
+      ? HoverOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesDeclarationProvider.
@@ -1496,55 +1247,40 @@ extension type const ServerCapabilitiesDeclarationProvider._(Object value) {
 
   factory ServerCapabilitiesDeclarationProvider.declarationOptions(
     DeclarationOptions value,
-  ) {
-    return ServerCapabilitiesDeclarationProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDeclarationProvider._(value.toJson());
 
   factory ServerCapabilitiesDeclarationProvider.declarationRegistrationOptions(
     DeclarationRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesDeclarationProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDeclarationProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDeclarationOptions =>
       value is DeclarationOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  DeclarationOptions? get asDeclarationOptions {
-    if (value is DeclarationOptions) {
-      return value as DeclarationOptions;
-    }
-    if (isDeclarationOptions) {
-      return DeclarationOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  DeclarationOptions? get asDeclarationOptions => value is DeclarationOptions
+      ? value as DeclarationOptions
+      : isDeclarationOptions
+      ? DeclarationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isDeclarationRegistrationOptions =>
       value is DeclarationRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  DeclarationRegistrationOptions? get asDeclarationRegistrationOptions {
-    if (value is DeclarationRegistrationOptions) {
-      return value as DeclarationRegistrationOptions;
-    }
-    if (isDeclarationRegistrationOptions) {
-      return DeclarationRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  DeclarationRegistrationOptions? get asDeclarationRegistrationOptions =>
+      value is DeclarationRegistrationOptions
+      ? value as DeclarationRegistrationOptions
+      : isDeclarationRegistrationOptions
+      ? DeclarationRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesDefinitionProvider.
@@ -1557,30 +1293,22 @@ extension type const ServerCapabilitiesDefinitionProvider._(Object value) {
 
   factory ServerCapabilitiesDefinitionProvider.definitionOptions(
     DefinitionOptions value,
-  ) {
-    return ServerCapabilitiesDefinitionProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDefinitionProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDefinitionOptions =>
       value is DefinitionOptions || value is Map<String, dynamic>;
 
-  DefinitionOptions? get asDefinitionOptions {
-    if (value is DefinitionOptions) {
-      return value as DefinitionOptions;
-    }
-    if (isDefinitionOptions) {
-      return DefinitionOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  DefinitionOptions? get asDefinitionOptions => value is DefinitionOptions
+      ? value as DefinitionOptions
+      : isDefinitionOptions
+      ? DefinitionOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesTypeDefinitionProvider.
@@ -1593,55 +1321,43 @@ extension type const ServerCapabilitiesTypeDefinitionProvider._(Object value) {
 
   factory ServerCapabilitiesTypeDefinitionProvider.typeDefinitionOptions(
     TypeDefinitionOptions value,
-  ) {
-    return ServerCapabilitiesTypeDefinitionProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesTypeDefinitionProvider._(value.toJson());
 
   factory ServerCapabilitiesTypeDefinitionProvider.typeDefinitionRegistrationOptions(
     TypeDefinitionRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesTypeDefinitionProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesTypeDefinitionProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isTypeDefinitionOptions =>
       value is TypeDefinitionOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  TypeDefinitionOptions? get asTypeDefinitionOptions {
-    if (value is TypeDefinitionOptions) {
-      return value as TypeDefinitionOptions;
-    }
-    if (isTypeDefinitionOptions) {
-      return TypeDefinitionOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  TypeDefinitionOptions? get asTypeDefinitionOptions =>
+      value is TypeDefinitionOptions
+      ? value as TypeDefinitionOptions
+      : isTypeDefinitionOptions
+      ? TypeDefinitionOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isTypeDefinitionRegistrationOptions =>
       value is TypeDefinitionRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  TypeDefinitionRegistrationOptions? get asTypeDefinitionRegistrationOptions {
-    if (value is TypeDefinitionRegistrationOptions) {
-      return value as TypeDefinitionRegistrationOptions;
-    }
-    if (isTypeDefinitionRegistrationOptions) {
-      return TypeDefinitionRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  TypeDefinitionRegistrationOptions? get asTypeDefinitionRegistrationOptions =>
+      value is TypeDefinitionRegistrationOptions
+      ? value as TypeDefinitionRegistrationOptions
+      : isTypeDefinitionRegistrationOptions
+      ? TypeDefinitionRegistrationOptions.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesImplementationProvider.
@@ -1654,55 +1370,43 @@ extension type const ServerCapabilitiesImplementationProvider._(Object value) {
 
   factory ServerCapabilitiesImplementationProvider.implementationOptions(
     ImplementationOptions value,
-  ) {
-    return ServerCapabilitiesImplementationProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesImplementationProvider._(value.toJson());
 
   factory ServerCapabilitiesImplementationProvider.implementationRegistrationOptions(
     ImplementationRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesImplementationProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesImplementationProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isImplementationOptions =>
       value is ImplementationOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  ImplementationOptions? get asImplementationOptions {
-    if (value is ImplementationOptions) {
-      return value as ImplementationOptions;
-    }
-    if (isImplementationOptions) {
-      return ImplementationOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  ImplementationOptions? get asImplementationOptions =>
+      value is ImplementationOptions
+      ? value as ImplementationOptions
+      : isImplementationOptions
+      ? ImplementationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isImplementationRegistrationOptions =>
       value is ImplementationRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  ImplementationRegistrationOptions? get asImplementationRegistrationOptions {
-    if (value is ImplementationRegistrationOptions) {
-      return value as ImplementationRegistrationOptions;
-    }
-    if (isImplementationRegistrationOptions) {
-      return ImplementationRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  ImplementationRegistrationOptions? get asImplementationRegistrationOptions =>
+      value is ImplementationRegistrationOptions
+      ? value as ImplementationRegistrationOptions
+      : isImplementationRegistrationOptions
+      ? ImplementationRegistrationOptions.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesReferencesProvider.
@@ -1715,30 +1419,22 @@ extension type const ServerCapabilitiesReferencesProvider._(Object value) {
 
   factory ServerCapabilitiesReferencesProvider.referenceOptions(
     ReferenceOptions value,
-  ) {
-    return ServerCapabilitiesReferencesProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesReferencesProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isReferenceOptions =>
       value is ReferenceOptions || value is Map<String, dynamic>;
 
-  ReferenceOptions? get asReferenceOptions {
-    if (value is ReferenceOptions) {
-      return value as ReferenceOptions;
-    }
-    if (isReferenceOptions) {
-      return ReferenceOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  ReferenceOptions? get asReferenceOptions => value is ReferenceOptions
+      ? value as ReferenceOptions
+      : isReferenceOptions
+      ? ReferenceOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesDocumentHighlightProvider.
@@ -1754,30 +1450,23 @@ extension type const ServerCapabilitiesDocumentHighlightProvider._(
 
   factory ServerCapabilitiesDocumentHighlightProvider.documentHighlightOptions(
     DocumentHighlightOptions value,
-  ) {
-    return ServerCapabilitiesDocumentHighlightProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDocumentHighlightProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDocumentHighlightOptions =>
       value is DocumentHighlightOptions || value is Map<String, dynamic>;
 
-  DocumentHighlightOptions? get asDocumentHighlightOptions {
-    if (value is DocumentHighlightOptions) {
-      return value as DocumentHighlightOptions;
-    }
-    if (isDocumentHighlightOptions) {
-      return DocumentHighlightOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  DocumentHighlightOptions? get asDocumentHighlightOptions =>
+      value is DocumentHighlightOptions
+      ? value as DocumentHighlightOptions
+      : isDocumentHighlightOptions
+      ? DocumentHighlightOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesDocumentSymbolProvider.
@@ -1790,30 +1479,23 @@ extension type const ServerCapabilitiesDocumentSymbolProvider._(Object value) {
 
   factory ServerCapabilitiesDocumentSymbolProvider.documentSymbolOptions(
     DocumentSymbolOptions value,
-  ) {
-    return ServerCapabilitiesDocumentSymbolProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDocumentSymbolProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDocumentSymbolOptions =>
       value is DocumentSymbolOptions || value is Map<String, dynamic>;
 
-  DocumentSymbolOptions? get asDocumentSymbolOptions {
-    if (value is DocumentSymbolOptions) {
-      return value as DocumentSymbolOptions;
-    }
-    if (isDocumentSymbolOptions) {
-      return DocumentSymbolOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  DocumentSymbolOptions? get asDocumentSymbolOptions =>
+      value is DocumentSymbolOptions
+      ? value as DocumentSymbolOptions
+      : isDocumentSymbolOptions
+      ? DocumentSymbolOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesCodeActionProvider.
@@ -1826,30 +1508,22 @@ extension type const ServerCapabilitiesCodeActionProvider._(Object value) {
 
   factory ServerCapabilitiesCodeActionProvider.codeActionOptions(
     CodeActionOptions value,
-  ) {
-    return ServerCapabilitiesCodeActionProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesCodeActionProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isCodeActionOptions =>
       value is CodeActionOptions || value is Map<String, dynamic>;
 
-  CodeActionOptions? get asCodeActionOptions {
-    if (value is CodeActionOptions) {
-      return value as CodeActionOptions;
-    }
-    if (isCodeActionOptions) {
-      return CodeActionOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  CodeActionOptions? get asCodeActionOptions => value is CodeActionOptions
+      ? value as CodeActionOptions
+      : isCodeActionOptions
+      ? CodeActionOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesColorProvider.
@@ -1862,55 +1536,41 @@ extension type const ServerCapabilitiesColorProvider._(Object value) {
 
   factory ServerCapabilitiesColorProvider.documentColorOptions(
     DocumentColorOptions value,
-  ) {
-    return ServerCapabilitiesColorProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesColorProvider._(value.toJson());
 
   factory ServerCapabilitiesColorProvider.documentColorRegistrationOptions(
     DocumentColorRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesColorProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesColorProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDocumentColorOptions =>
       value is DocumentColorOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  DocumentColorOptions? get asDocumentColorOptions {
-    if (value is DocumentColorOptions) {
-      return value as DocumentColorOptions;
-    }
-    if (isDocumentColorOptions) {
-      return DocumentColorOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  DocumentColorOptions? get asDocumentColorOptions =>
+      value is DocumentColorOptions
+      ? value as DocumentColorOptions
+      : isDocumentColorOptions
+      ? DocumentColorOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isDocumentColorRegistrationOptions =>
       value is DocumentColorRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  DocumentColorRegistrationOptions? get asDocumentColorRegistrationOptions {
-    if (value is DocumentColorRegistrationOptions) {
-      return value as DocumentColorRegistrationOptions;
-    }
-    if (isDocumentColorRegistrationOptions) {
-      return DocumentColorRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  DocumentColorRegistrationOptions? get asDocumentColorRegistrationOptions =>
+      value is DocumentColorRegistrationOptions
+      ? value as DocumentColorRegistrationOptions
+      : isDocumentColorRegistrationOptions
+      ? DocumentColorRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesWorkspaceSymbolProvider.
@@ -1924,30 +1584,23 @@ extension type const ServerCapabilitiesWorkspaceSymbolProvider._(Object value) {
 
   factory ServerCapabilitiesWorkspaceSymbolProvider.workspaceSymbolOptions(
     WorkspaceSymbolOptions value,
-  ) {
-    return ServerCapabilitiesWorkspaceSymbolProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesWorkspaceSymbolProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isWorkspaceSymbolOptions =>
       value is WorkspaceSymbolOptions || value is Map<String, dynamic>;
 
-  WorkspaceSymbolOptions? get asWorkspaceSymbolOptions {
-    if (value is WorkspaceSymbolOptions) {
-      return value as WorkspaceSymbolOptions;
-    }
-    if (isWorkspaceSymbolOptions) {
-      return WorkspaceSymbolOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  WorkspaceSymbolOptions? get asWorkspaceSymbolOptions =>
+      value is WorkspaceSymbolOptions
+      ? value as WorkspaceSymbolOptions
+      : isWorkspaceSymbolOptions
+      ? WorkspaceSymbolOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesDocumentFormattingProvider.
@@ -1963,30 +1616,23 @@ extension type const ServerCapabilitiesDocumentFormattingProvider._(
 
   factory ServerCapabilitiesDocumentFormattingProvider.documentFormattingOptions(
     DocumentFormattingOptions value,
-  ) {
-    return ServerCapabilitiesDocumentFormattingProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDocumentFormattingProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDocumentFormattingOptions =>
       value is DocumentFormattingOptions || value is Map<String, dynamic>;
 
-  DocumentFormattingOptions? get asDocumentFormattingOptions {
-    if (value is DocumentFormattingOptions) {
-      return value as DocumentFormattingOptions;
-    }
-    if (isDocumentFormattingOptions) {
-      return DocumentFormattingOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  DocumentFormattingOptions? get asDocumentFormattingOptions =>
+      value is DocumentFormattingOptions
+      ? value as DocumentFormattingOptions
+      : isDocumentFormattingOptions
+      ? DocumentFormattingOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesDocumentRangeFormattingProvider.
@@ -2003,32 +1649,23 @@ extension type const ServerCapabilitiesDocumentRangeFormattingProvider._(
 
   factory ServerCapabilitiesDocumentRangeFormattingProvider.documentRangeFormattingOptions(
     DocumentRangeFormattingOptions value,
-  ) {
-    return ServerCapabilitiesDocumentRangeFormattingProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDocumentRangeFormattingProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isDocumentRangeFormattingOptions =>
       value is DocumentRangeFormattingOptions || value is Map<String, dynamic>;
 
-  DocumentRangeFormattingOptions? get asDocumentRangeFormattingOptions {
-    if (value is DocumentRangeFormattingOptions) {
-      return value as DocumentRangeFormattingOptions;
-    }
-    if (isDocumentRangeFormattingOptions) {
-      return DocumentRangeFormattingOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  DocumentRangeFormattingOptions? get asDocumentRangeFormattingOptions =>
+      value is DocumentRangeFormattingOptions
+      ? value as DocumentRangeFormattingOptions
+      : isDocumentRangeFormattingOptions
+      ? DocumentRangeFormattingOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesRenameProvider.
@@ -2039,30 +1676,23 @@ extension type const ServerCapabilitiesRenameProvider._(Object value) {
   const factory ServerCapabilitiesRenameProvider.bool(bool value) =
       ServerCapabilitiesRenameProvider._;
 
-  factory ServerCapabilitiesRenameProvider.renameOptions(RenameOptions value) {
-    return ServerCapabilitiesRenameProvider._(value.toJson());
-  }
+  factory ServerCapabilitiesRenameProvider.renameOptions(RenameOptions value) =>
+      ServerCapabilitiesRenameProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isRenameOptions =>
       value is RenameOptions || value is Map<String, dynamic>;
 
-  RenameOptions? get asRenameOptions {
-    if (value is RenameOptions) {
-      return value as RenameOptions;
-    }
-    if (isRenameOptions) {
-      return RenameOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  RenameOptions? get asRenameOptions => value is RenameOptions
+      ? value as RenameOptions
+      : isRenameOptions
+      ? RenameOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesFoldingRangeProvider.
@@ -2075,55 +1705,40 @@ extension type const ServerCapabilitiesFoldingRangeProvider._(Object value) {
 
   factory ServerCapabilitiesFoldingRangeProvider.foldingRangeOptions(
     FoldingRangeOptions value,
-  ) {
-    return ServerCapabilitiesFoldingRangeProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesFoldingRangeProvider._(value.toJson());
 
   factory ServerCapabilitiesFoldingRangeProvider.foldingRangeRegistrationOptions(
     FoldingRangeRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesFoldingRangeProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesFoldingRangeProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isFoldingRangeOptions =>
       value is FoldingRangeOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  FoldingRangeOptions? get asFoldingRangeOptions {
-    if (value is FoldingRangeOptions) {
-      return value as FoldingRangeOptions;
-    }
-    if (isFoldingRangeOptions) {
-      return FoldingRangeOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  FoldingRangeOptions? get asFoldingRangeOptions => value is FoldingRangeOptions
+      ? value as FoldingRangeOptions
+      : isFoldingRangeOptions
+      ? FoldingRangeOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isFoldingRangeRegistrationOptions =>
       value is FoldingRangeRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  FoldingRangeRegistrationOptions? get asFoldingRangeRegistrationOptions {
-    if (value is FoldingRangeRegistrationOptions) {
-      return value as FoldingRangeRegistrationOptions;
-    }
-    if (isFoldingRangeRegistrationOptions) {
-      return FoldingRangeRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  FoldingRangeRegistrationOptions? get asFoldingRangeRegistrationOptions =>
+      value is FoldingRangeRegistrationOptions
+      ? value as FoldingRangeRegistrationOptions
+      : isFoldingRangeRegistrationOptions
+      ? FoldingRangeRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesSelectionRangeProvider.
@@ -2136,55 +1751,43 @@ extension type const ServerCapabilitiesSelectionRangeProvider._(Object value) {
 
   factory ServerCapabilitiesSelectionRangeProvider.selectionRangeOptions(
     SelectionRangeOptions value,
-  ) {
-    return ServerCapabilitiesSelectionRangeProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesSelectionRangeProvider._(value.toJson());
 
   factory ServerCapabilitiesSelectionRangeProvider.selectionRangeRegistrationOptions(
     SelectionRangeRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesSelectionRangeProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesSelectionRangeProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isSelectionRangeOptions =>
       value is SelectionRangeOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  SelectionRangeOptions? get asSelectionRangeOptions {
-    if (value is SelectionRangeOptions) {
-      return value as SelectionRangeOptions;
-    }
-    if (isSelectionRangeOptions) {
-      return SelectionRangeOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  SelectionRangeOptions? get asSelectionRangeOptions =>
+      value is SelectionRangeOptions
+      ? value as SelectionRangeOptions
+      : isSelectionRangeOptions
+      ? SelectionRangeOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isSelectionRangeRegistrationOptions =>
       value is SelectionRangeRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  SelectionRangeRegistrationOptions? get asSelectionRangeRegistrationOptions {
-    if (value is SelectionRangeRegistrationOptions) {
-      return value as SelectionRangeRegistrationOptions;
-    }
-    if (isSelectionRangeRegistrationOptions) {
-      return SelectionRangeRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  SelectionRangeRegistrationOptions? get asSelectionRangeRegistrationOptions =>
+      value is SelectionRangeRegistrationOptions
+      ? value as SelectionRangeRegistrationOptions
+      : isSelectionRangeRegistrationOptions
+      ? SelectionRangeRegistrationOptions.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesCallHierarchyProvider.
@@ -2197,55 +1800,41 @@ extension type const ServerCapabilitiesCallHierarchyProvider._(Object value) {
 
   factory ServerCapabilitiesCallHierarchyProvider.callHierarchyOptions(
     CallHierarchyOptions value,
-  ) {
-    return ServerCapabilitiesCallHierarchyProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesCallHierarchyProvider._(value.toJson());
 
   factory ServerCapabilitiesCallHierarchyProvider.callHierarchyRegistrationOptions(
     CallHierarchyRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesCallHierarchyProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesCallHierarchyProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isCallHierarchyOptions =>
       value is CallHierarchyOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  CallHierarchyOptions? get asCallHierarchyOptions {
-    if (value is CallHierarchyOptions) {
-      return value as CallHierarchyOptions;
-    }
-    if (isCallHierarchyOptions) {
-      return CallHierarchyOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  CallHierarchyOptions? get asCallHierarchyOptions =>
+      value is CallHierarchyOptions
+      ? value as CallHierarchyOptions
+      : isCallHierarchyOptions
+      ? CallHierarchyOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isCallHierarchyRegistrationOptions =>
       value is CallHierarchyRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  CallHierarchyRegistrationOptions? get asCallHierarchyRegistrationOptions {
-    if (value is CallHierarchyRegistrationOptions) {
-      return value as CallHierarchyRegistrationOptions;
-    }
-    if (isCallHierarchyRegistrationOptions) {
-      return CallHierarchyRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  CallHierarchyRegistrationOptions? get asCallHierarchyRegistrationOptions =>
+      value is CallHierarchyRegistrationOptions
+      ? value as CallHierarchyRegistrationOptions
+      : isCallHierarchyRegistrationOptions
+      ? CallHierarchyRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesLinkedEditingRangeProvider.
@@ -2261,38 +1850,29 @@ extension type const ServerCapabilitiesLinkedEditingRangeProvider._(
 
   factory ServerCapabilitiesLinkedEditingRangeProvider.linkedEditingRangeOptions(
     LinkedEditingRangeOptions value,
-  ) {
-    return ServerCapabilitiesLinkedEditingRangeProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesLinkedEditingRangeProvider._(value.toJson());
 
   factory ServerCapabilitiesLinkedEditingRangeProvider.linkedEditingRangeRegistrationOptions(
     LinkedEditingRangeRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesLinkedEditingRangeProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesLinkedEditingRangeProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isLinkedEditingRangeOptions =>
       value is LinkedEditingRangeOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  LinkedEditingRangeOptions? get asLinkedEditingRangeOptions {
-    if (value is LinkedEditingRangeOptions) {
-      return value as LinkedEditingRangeOptions;
-    }
-    if (isLinkedEditingRangeOptions) {
-      return LinkedEditingRangeOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  LinkedEditingRangeOptions? get asLinkedEditingRangeOptions =>
+      value is LinkedEditingRangeOptions
+      ? value as LinkedEditingRangeOptions
+      : isLinkedEditingRangeOptions
+      ? LinkedEditingRangeOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isLinkedEditingRangeRegistrationOptions =>
       value is LinkedEditingRangeRegistrationOptions ||
@@ -2300,17 +1880,14 @@ extension type const ServerCapabilitiesLinkedEditingRangeProvider._(
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
   LinkedEditingRangeRegistrationOptions?
-  get asLinkedEditingRangeRegistrationOptions {
-    if (value is LinkedEditingRangeRegistrationOptions) {
-      return value as LinkedEditingRangeRegistrationOptions;
-    }
-    if (isLinkedEditingRangeRegistrationOptions) {
-      return LinkedEditingRangeRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  get asLinkedEditingRangeRegistrationOptions =>
+      value is LinkedEditingRangeRegistrationOptions
+      ? value as LinkedEditingRangeRegistrationOptions
+      : isLinkedEditingRangeRegistrationOptions
+      ? LinkedEditingRangeRegistrationOptions.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesSemanticTokensProvider.
@@ -2320,15 +1897,11 @@ extension type const ServerCapabilitiesSemanticTokensProvider._(Object value) {
 
   factory ServerCapabilitiesSemanticTokensProvider.semanticTokensOptions(
     SemanticTokensOptions value,
-  ) {
-    return ServerCapabilitiesSemanticTokensProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesSemanticTokensProvider._(value.toJson());
 
   factory ServerCapabilitiesSemanticTokensProvider.semanticTokensRegistrationOptions(
     SemanticTokensRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesSemanticTokensProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesSemanticTokensProvider._(value.toJson());
 
   Object toJson() => value;
 
@@ -2337,32 +1910,26 @@ extension type const ServerCapabilitiesSemanticTokensProvider._(Object value) {
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  SemanticTokensOptions? get asSemanticTokensOptions {
-    if (value is SemanticTokensOptions) {
-      return value as SemanticTokensOptions;
-    }
-    if (isSemanticTokensOptions) {
-      return SemanticTokensOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  SemanticTokensOptions? get asSemanticTokensOptions =>
+      value is SemanticTokensOptions
+      ? value as SemanticTokensOptions
+      : isSemanticTokensOptions
+      ? SemanticTokensOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isSemanticTokensRegistrationOptions =>
       value is SemanticTokensRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  SemanticTokensRegistrationOptions? get asSemanticTokensRegistrationOptions {
-    if (value is SemanticTokensRegistrationOptions) {
-      return value as SemanticTokensRegistrationOptions;
-    }
-    if (isSemanticTokensRegistrationOptions) {
-      return SemanticTokensRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  SemanticTokensRegistrationOptions? get asSemanticTokensRegistrationOptions =>
+      value is SemanticTokensRegistrationOptions
+      ? value as SemanticTokensRegistrationOptions
+      : isSemanticTokensRegistrationOptions
+      ? SemanticTokensRegistrationOptions.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesMonikerProvider.
@@ -2375,53 +1942,40 @@ extension type const ServerCapabilitiesMonikerProvider._(Object value) {
 
   factory ServerCapabilitiesMonikerProvider.monikerOptions(
     MonikerOptions value,
-  ) {
-    return ServerCapabilitiesMonikerProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesMonikerProvider._(value.toJson());
 
   factory ServerCapabilitiesMonikerProvider.monikerRegistrationOptions(
     MonikerRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesMonikerProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesMonikerProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isMonikerOptions =>
       value is MonikerOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  MonikerOptions? get asMonikerOptions {
-    if (value is MonikerOptions) {
-      return value as MonikerOptions;
-    }
-    if (isMonikerOptions) {
-      return MonikerOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  MonikerOptions? get asMonikerOptions => value is MonikerOptions
+      ? value as MonikerOptions
+      : isMonikerOptions
+      ? MonikerOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isMonikerRegistrationOptions =>
       value is MonikerRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  MonikerRegistrationOptions? get asMonikerRegistrationOptions {
-    if (value is MonikerRegistrationOptions) {
-      return value as MonikerRegistrationOptions;
-    }
-    if (isMonikerRegistrationOptions) {
-      return MonikerRegistrationOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  MonikerRegistrationOptions? get asMonikerRegistrationOptions =>
+      value is MonikerRegistrationOptions
+      ? value as MonikerRegistrationOptions
+      : isMonikerRegistrationOptions
+      ? MonikerRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesTypeHierarchyProvider.
@@ -2434,55 +1988,41 @@ extension type const ServerCapabilitiesTypeHierarchyProvider._(Object value) {
 
   factory ServerCapabilitiesTypeHierarchyProvider.typeHierarchyOptions(
     TypeHierarchyOptions value,
-  ) {
-    return ServerCapabilitiesTypeHierarchyProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesTypeHierarchyProvider._(value.toJson());
 
   factory ServerCapabilitiesTypeHierarchyProvider.typeHierarchyRegistrationOptions(
     TypeHierarchyRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesTypeHierarchyProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesTypeHierarchyProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isTypeHierarchyOptions =>
       value is TypeHierarchyOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  TypeHierarchyOptions? get asTypeHierarchyOptions {
-    if (value is TypeHierarchyOptions) {
-      return value as TypeHierarchyOptions;
-    }
-    if (isTypeHierarchyOptions) {
-      return TypeHierarchyOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  TypeHierarchyOptions? get asTypeHierarchyOptions =>
+      value is TypeHierarchyOptions
+      ? value as TypeHierarchyOptions
+      : isTypeHierarchyOptions
+      ? TypeHierarchyOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isTypeHierarchyRegistrationOptions =>
       value is TypeHierarchyRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  TypeHierarchyRegistrationOptions? get asTypeHierarchyRegistrationOptions {
-    if (value is TypeHierarchyRegistrationOptions) {
-      return value as TypeHierarchyRegistrationOptions;
-    }
-    if (isTypeHierarchyRegistrationOptions) {
-      return TypeHierarchyRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  TypeHierarchyRegistrationOptions? get asTypeHierarchyRegistrationOptions =>
+      value is TypeHierarchyRegistrationOptions
+      ? value as TypeHierarchyRegistrationOptions
+      : isTypeHierarchyRegistrationOptions
+      ? TypeHierarchyRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesInlineValueProvider.
@@ -2495,55 +2035,40 @@ extension type const ServerCapabilitiesInlineValueProvider._(Object value) {
 
   factory ServerCapabilitiesInlineValueProvider.inlineValueOptions(
     InlineValueOptions value,
-  ) {
-    return ServerCapabilitiesInlineValueProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesInlineValueProvider._(value.toJson());
 
   factory ServerCapabilitiesInlineValueProvider.inlineValueRegistrationOptions(
     InlineValueRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesInlineValueProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesInlineValueProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isInlineValueOptions =>
       value is InlineValueOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  InlineValueOptions? get asInlineValueOptions {
-    if (value is InlineValueOptions) {
-      return value as InlineValueOptions;
-    }
-    if (isInlineValueOptions) {
-      return InlineValueOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  InlineValueOptions? get asInlineValueOptions => value is InlineValueOptions
+      ? value as InlineValueOptions
+      : isInlineValueOptions
+      ? InlineValueOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isInlineValueRegistrationOptions =>
       value is InlineValueRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  InlineValueRegistrationOptions? get asInlineValueRegistrationOptions {
-    if (value is InlineValueRegistrationOptions) {
-      return value as InlineValueRegistrationOptions;
-    }
-    if (isInlineValueRegistrationOptions) {
-      return InlineValueRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  InlineValueRegistrationOptions? get asInlineValueRegistrationOptions =>
+      value is InlineValueRegistrationOptions
+      ? value as InlineValueRegistrationOptions
+      : isInlineValueRegistrationOptions
+      ? InlineValueRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesInlayHintProvider.
@@ -2556,55 +2081,40 @@ extension type const ServerCapabilitiesInlayHintProvider._(Object value) {
 
   factory ServerCapabilitiesInlayHintProvider.inlayHintOptions(
     InlayHintOptions value,
-  ) {
-    return ServerCapabilitiesInlayHintProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesInlayHintProvider._(value.toJson());
 
   factory ServerCapabilitiesInlayHintProvider.inlayHintRegistrationOptions(
     InlayHintRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesInlayHintProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesInlayHintProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isInlayHintOptions =>
       value is InlayHintOptions ||
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  InlayHintOptions? get asInlayHintOptions {
-    if (value is InlayHintOptions) {
-      return value as InlayHintOptions;
-    }
-    if (isInlayHintOptions) {
-      return InlayHintOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  InlayHintOptions? get asInlayHintOptions => value is InlayHintOptions
+      ? value as InlayHintOptions
+      : isInlayHintOptions
+      ? InlayHintOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isInlayHintRegistrationOptions =>
       value is InlayHintRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  InlayHintRegistrationOptions? get asInlayHintRegistrationOptions {
-    if (value is InlayHintRegistrationOptions) {
-      return value as InlayHintRegistrationOptions;
-    }
-    if (isInlayHintRegistrationOptions) {
-      return InlayHintRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  InlayHintRegistrationOptions? get asInlayHintRegistrationOptions =>
+      value is InlayHintRegistrationOptions
+      ? value as InlayHintRegistrationOptions
+      : isInlayHintRegistrationOptions
+      ? InlayHintRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesDiagnosticProvider.
@@ -2614,15 +2124,11 @@ extension type const ServerCapabilitiesDiagnosticProvider._(Object value) {
 
   factory ServerCapabilitiesDiagnosticProvider.diagnosticOptions(
     DiagnosticOptions value,
-  ) {
-    return ServerCapabilitiesDiagnosticProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDiagnosticProvider._(value.toJson());
 
   factory ServerCapabilitiesDiagnosticProvider.diagnosticRegistrationOptions(
     DiagnosticRegistrationOptions value,
-  ) {
-    return ServerCapabilitiesDiagnosticProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesDiagnosticProvider._(value.toJson());
 
   Object toJson() => value;
 
@@ -2631,32 +2137,23 @@ extension type const ServerCapabilitiesDiagnosticProvider._(Object value) {
       value is Map<String, dynamic> &&
           !(value as Map<String, dynamic>).containsKey('documentSelector');
 
-  DiagnosticOptions? get asDiagnosticOptions {
-    if (value is DiagnosticOptions) {
-      return value as DiagnosticOptions;
-    }
-    if (isDiagnosticOptions) {
-      return DiagnosticOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  DiagnosticOptions? get asDiagnosticOptions => value is DiagnosticOptions
+      ? value as DiagnosticOptions
+      : isDiagnosticOptions
+      ? DiagnosticOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isDiagnosticRegistrationOptions =>
       value is DiagnosticRegistrationOptions ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('documentSelector');
 
-  DiagnosticRegistrationOptions? get asDiagnosticRegistrationOptions {
-    if (value is DiagnosticRegistrationOptions) {
-      return value as DiagnosticRegistrationOptions;
-    }
-    if (isDiagnosticRegistrationOptions) {
-      return DiagnosticRegistrationOptions.fromJson(
-        value as Map<String, dynamic>,
-      );
-    }
-    return null;
-  }
+  DiagnosticRegistrationOptions? get asDiagnosticRegistrationOptions =>
+      value is DiagnosticRegistrationOptions
+      ? value as DiagnosticRegistrationOptions
+      : isDiagnosticRegistrationOptions
+      ? DiagnosticRegistrationOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: ServerCapabilitiesInlineCompletionProvider.
@@ -2672,30 +2169,23 @@ extension type const ServerCapabilitiesInlineCompletionProvider._(
 
   factory ServerCapabilitiesInlineCompletionProvider.inlineCompletionOptions(
     InlineCompletionOptions value,
-  ) {
-    return ServerCapabilitiesInlineCompletionProvider._(value.toJson());
-  }
+  ) => ServerCapabilitiesInlineCompletionProvider._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isInlineCompletionOptions =>
       value is InlineCompletionOptions || value is Map<String, dynamic>;
 
-  InlineCompletionOptions? get asInlineCompletionOptions {
-    if (value is InlineCompletionOptions) {
-      return value as InlineCompletionOptions;
-    }
-    if (isInlineCompletionOptions) {
-      return InlineCompletionOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  InlineCompletionOptions? get asInlineCompletionOptions =>
+      value is InlineCompletionOptions
+      ? value as InlineCompletionOptions
+      : isInlineCompletionOptions
+      ? InlineCompletionOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: SignatureInformationDocumentation.
@@ -2706,17 +2196,15 @@ extension type const SignatureInformationDocumentation._(Object value) {
   const factory SignatureInformationDocumentation.string(String value) =
       SignatureInformationDocumentation._;
 
-  factory SignatureInformationDocumentation.markupContent(MarkupContent value) {
-    return SignatureInformationDocumentation._(value.toJson());
-  }
+  factory SignatureInformationDocumentation.markupContent(
+    MarkupContent value,
+  ) => SignatureInformationDocumentation._(value.toJson());
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isMarkupContent =>
       value is MarkupContent ||
@@ -2724,15 +2212,11 @@ extension type const SignatureInformationDocumentation._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('value');
 
-  MarkupContent? get asMarkupContent {
-    if (value is MarkupContent) {
-      return value as MarkupContent;
-    }
-    if (isMarkupContent) {
-      return MarkupContent.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  MarkupContent? get asMarkupContent => value is MarkupContent
+      ? value as MarkupContent
+      : isMarkupContent
+      ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: TextDocumentSyncOptionsSave.
@@ -2743,30 +2227,23 @@ extension type const TextDocumentSyncOptionsSave._(Object value) {
   const factory TextDocumentSyncOptionsSave.bool(bool value) =
       TextDocumentSyncOptionsSave._;
 
-  factory TextDocumentSyncOptionsSave.saveOptions(SaveOptions value) {
-    return TextDocumentSyncOptionsSave._(value.toJson());
-  }
+  factory TextDocumentSyncOptionsSave.saveOptions(SaveOptions value) =>
+      TextDocumentSyncOptionsSave._(value.toJson());
 
   Object toJson() => value;
 
   bool get isBool => value is bool;
 
-  bool? get asBool {
-    return value is bool ? value as bool : null;
-  }
+  bool? get asBool => isBool ? value as bool : null;
 
   bool get isSaveOptions =>
       value is SaveOptions || value is Map<String, dynamic>;
 
-  SaveOptions? get asSaveOptions {
-    if (value is SaveOptions) {
-      return value as SaveOptions;
-    }
-    if (isSaveOptions) {
-      return SaveOptions.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  SaveOptions? get asSaveOptions => value is SaveOptions
+      ? value as SaveOptions
+      : isSaveOptions
+      ? SaveOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: NotebookDocumentSyncOptionsNotebookSelectorItem.
@@ -2780,12 +2257,10 @@ extension type const NotebookDocumentSyncOptionsNotebookSelectorItem._(
   factory NotebookDocumentSyncOptionsNotebookSelectorItem.notebookCells({
     required Object notebook,
     List<Object>? cells,
-  }) {
-    return NotebookDocumentSyncOptionsNotebookSelectorItem._({
-      'notebook': notebook,
-      if (cells != null) 'cells': cells,
-    });
-  }
+  }) => NotebookDocumentSyncOptionsNotebookSelectorItem._({
+    'notebook': notebook,
+    'cells': ?cells,
+  });
 
   Object toJson() => value;
 
@@ -2816,12 +2291,10 @@ extension type const NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem
   factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.notebookCells({
     required Object notebook,
     List<Object>? cells,
-  }) {
-    return NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._({
-      'notebook': notebook,
-      if (cells != null) 'cells': cells,
-    });
-  }
+  }) => NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._({
+    'notebook': notebook,
+    'cells': ?cells,
+  });
 
   Object toJson() => value;
 
@@ -2849,17 +2322,15 @@ extension type const ParameterInformationDocumentation._(Object value) {
   const factory ParameterInformationDocumentation.string(String value) =
       ParameterInformationDocumentation._;
 
-  factory ParameterInformationDocumentation.markupContent(MarkupContent value) {
-    return ParameterInformationDocumentation._(value.toJson());
-  }
+  factory ParameterInformationDocumentation.markupContent(
+    MarkupContent value,
+  ) => ParameterInformationDocumentation._(value.toJson());
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isMarkupContent =>
       value is MarkupContent ||
@@ -2867,15 +2338,11 @@ extension type const ParameterInformationDocumentation._(Object value) {
           (value as Map<String, dynamic>).containsKey('kind') &&
           (value as Map<String, dynamic>).containsKey('value');
 
-  MarkupContent? get asMarkupContent {
-    if (value is MarkupContent) {
-      return value as MarkupContent;
-    }
-    if (isMarkupContent) {
-      return MarkupContent.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  MarkupContent? get asMarkupContent => value is MarkupContent
+      ? value as MarkupContent
+      : isMarkupContent
+      ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: NotebookCellTextDocumentFilterNotebook.
@@ -2888,17 +2355,13 @@ extension type const NotebookCellTextDocumentFilterNotebook._(Object value) {
 
   factory NotebookCellTextDocumentFilterNotebook.notebookDocumentFilter(
     NotebookDocumentFilter value,
-  ) {
-    return NotebookCellTextDocumentFilterNotebook._(value.toJson());
-  }
+  ) => NotebookCellTextDocumentFilterNotebook._(value.toJson());
 
   Object toJson() => value;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 
   bool get isNotebookDocumentFilter =>
       value is Map<String, dynamic> &&
@@ -2908,15 +2371,12 @@ extension type const NotebookCellTextDocumentFilterNotebook._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('pattern');
 
-  NotebookDocumentFilter? get asNotebookDocumentFilter {
-    if (value is NotebookDocumentFilter) {
-      return value as NotebookDocumentFilter;
-    }
-    if (isNotebookDocumentFilter) {
-      return NotebookDocumentFilter.fromJson(value);
-    }
-    return null;
-  }
+  NotebookDocumentFilter? get asNotebookDocumentFilter =>
+      value is NotebookDocumentFilter
+      ? value as NotebookDocumentFilter
+      : isNotebookDocumentFilter
+      ? NotebookDocumentFilter.fromJson(value)
+      : null;
 }
 
 /// Inline union: RelativePatternBaseUri.
@@ -2924,9 +2384,8 @@ extension type const RelativePatternBaseUri._(Object value) {
   const factory RelativePatternBaseUri.fromJson(Object json) =
       RelativePatternBaseUri._;
 
-  factory RelativePatternBaseUri.workspaceFolder(WorkspaceFolder value) {
-    return RelativePatternBaseUri._(value.toJson());
-  }
+  factory RelativePatternBaseUri.workspaceFolder(WorkspaceFolder value) =>
+      RelativePatternBaseUri._(value.toJson());
 
   const factory RelativePatternBaseUri.string(String value) =
       RelativePatternBaseUri._;
@@ -2939,21 +2398,15 @@ extension type const RelativePatternBaseUri._(Object value) {
           (value as Map<String, dynamic>).containsKey('uri') &&
           (value as Map<String, dynamic>).containsKey('name');
 
-  WorkspaceFolder? get asWorkspaceFolder {
-    if (value is WorkspaceFolder) {
-      return value as WorkspaceFolder;
-    }
-    if (isWorkspaceFolder) {
-      return WorkspaceFolder.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  WorkspaceFolder? get asWorkspaceFolder => value is WorkspaceFolder
+      ? value as WorkspaceFolder
+      : isWorkspaceFolder
+      ? WorkspaceFolder.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isString => value is String;
 
-  String? get asString {
-    return value is String ? value as String : null;
-  }
+  String? get asString => isString ? value as String : null;
 }
 
 /// Inline union: ImplementationResult.
@@ -2961,9 +2414,8 @@ extension type const ImplementationResult._(Object value) {
   const factory ImplementationResult.fromJson(Object json) =
       ImplementationResult._;
 
-  factory ImplementationResult.definition(Definition value) {
-    return ImplementationResult._(value.toJson());
-  }
+  factory ImplementationResult.definition(Definition value) =>
+      ImplementationResult._(value.toJson());
 
   const factory ImplementationResult.definitionLinkList(
     List<DefinitionLink> value,
@@ -2978,21 +2430,16 @@ extension type const ImplementationResult._(Object value) {
           (value as Map<String, dynamic>).containsKey('range') ||
       value is List;
 
-  Definition? get asDefinition {
-    if (value is Definition) {
-      return value as Definition;
-    }
-    if (isDefinition) {
-      return Definition.fromJson(value);
-    }
-    return null;
-  }
+  Definition? get asDefinition => value is Definition
+      ? value as Definition
+      : isDefinition
+      ? Definition.fromJson(value)
+      : null;
 
   bool get isDefinitionLinkList => value is List;
 
-  List<DefinitionLink>? get asDefinitionLinkList {
-    return isDefinitionLinkList ? value as List<DefinitionLink> : null;
-  }
+  List<DefinitionLink>? get asDefinitionLinkList =>
+      isDefinitionLinkList ? value as List<DefinitionLink> : null;
 }
 
 /// Inline union: TypeDefinitionResult.
@@ -3000,9 +2447,8 @@ extension type const TypeDefinitionResult._(Object value) {
   const factory TypeDefinitionResult.fromJson(Object json) =
       TypeDefinitionResult._;
 
-  factory TypeDefinitionResult.definition(Definition value) {
-    return TypeDefinitionResult._(value.toJson());
-  }
+  factory TypeDefinitionResult.definition(Definition value) =>
+      TypeDefinitionResult._(value.toJson());
 
   const factory TypeDefinitionResult.definitionLinkList(
     List<DefinitionLink> value,
@@ -3017,30 +2463,24 @@ extension type const TypeDefinitionResult._(Object value) {
           (value as Map<String, dynamic>).containsKey('range') ||
       value is List;
 
-  Definition? get asDefinition {
-    if (value is Definition) {
-      return value as Definition;
-    }
-    if (isDefinition) {
-      return Definition.fromJson(value);
-    }
-    return null;
-  }
+  Definition? get asDefinition => value is Definition
+      ? value as Definition
+      : isDefinition
+      ? Definition.fromJson(value)
+      : null;
 
   bool get isDefinitionLinkList => value is List;
 
-  List<DefinitionLink>? get asDefinitionLinkList {
-    return isDefinitionLinkList ? value as List<DefinitionLink> : null;
-  }
+  List<DefinitionLink>? get asDefinitionLinkList =>
+      isDefinitionLinkList ? value as List<DefinitionLink> : null;
 }
 
 /// Inline union: DeclarationResult.
 extension type const DeclarationResult._(Object value) {
   const factory DeclarationResult.fromJson(Object json) = DeclarationResult._;
 
-  factory DeclarationResult.declaration(Declaration value) {
-    return DeclarationResult._(value.toJson());
-  }
+  factory DeclarationResult.declaration(Declaration value) =>
+      DeclarationResult._(value.toJson());
 
   const factory DeclarationResult.declarationLinkList(
     List<DeclarationLink> value,
@@ -3055,21 +2495,16 @@ extension type const DeclarationResult._(Object value) {
           (value as Map<String, dynamic>).containsKey('range') ||
       value is List;
 
-  Declaration? get asDeclaration {
-    if (value is Declaration) {
-      return value as Declaration;
-    }
-    if (isDeclaration) {
-      return Declaration.fromJson(value);
-    }
-    return null;
-  }
+  Declaration? get asDeclaration => value is Declaration
+      ? value as Declaration
+      : isDeclaration
+      ? Declaration.fromJson(value)
+      : null;
 
   bool get isDeclarationLinkList => value is List;
 
-  List<DeclarationLink>? get asDeclarationLinkList {
-    return isDeclarationLinkList ? value as List<DeclarationLink> : null;
-  }
+  List<DeclarationLink>? get asDeclarationLinkList =>
+      isDeclarationLinkList ? value as List<DeclarationLink> : null;
 }
 
 /// Inline union: SemanticTokensFullDeltaResult.
@@ -3077,15 +2512,12 @@ extension type const SemanticTokensFullDeltaResult._(Object value) {
   const factory SemanticTokensFullDeltaResult.fromJson(Object json) =
       SemanticTokensFullDeltaResult._;
 
-  factory SemanticTokensFullDeltaResult.semanticTokens(SemanticTokens value) {
-    return SemanticTokensFullDeltaResult._(value.toJson());
-  }
+  factory SemanticTokensFullDeltaResult.semanticTokens(SemanticTokens value) =>
+      SemanticTokensFullDeltaResult._(value.toJson());
 
   factory SemanticTokensFullDeltaResult.semanticTokensDelta(
     SemanticTokensDelta value,
-  ) {
-    return SemanticTokensFullDeltaResult._(value.toJson());
-  }
+  ) => SemanticTokensFullDeltaResult._(value.toJson());
 
   Object toJson() => value;
 
@@ -3094,30 +2526,22 @@ extension type const SemanticTokensFullDeltaResult._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('data');
 
-  SemanticTokens? get asSemanticTokens {
-    if (value is SemanticTokens) {
-      return value as SemanticTokens;
-    }
-    if (isSemanticTokens) {
-      return SemanticTokens.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  SemanticTokens? get asSemanticTokens => value is SemanticTokens
+      ? value as SemanticTokens
+      : isSemanticTokens
+      ? SemanticTokens.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isSemanticTokensDelta =>
       value is SemanticTokensDelta ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('edits');
 
-  SemanticTokensDelta? get asSemanticTokensDelta {
-    if (value is SemanticTokensDelta) {
-      return value as SemanticTokensDelta;
-    }
-    if (isSemanticTokensDelta) {
-      return SemanticTokensDelta.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  SemanticTokensDelta? get asSemanticTokensDelta => value is SemanticTokensDelta
+      ? value as SemanticTokensDelta
+      : isSemanticTokensDelta
+      ? SemanticTokensDelta.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: InlineCompletionResult.
@@ -3127,15 +2551,11 @@ extension type const InlineCompletionResult._(Object value) {
 
   factory InlineCompletionResult.inlineCompletionList(
     InlineCompletionList value,
-  ) {
-    return InlineCompletionResult._(value.toJson());
-  }
+  ) => InlineCompletionResult._(value.toJson());
 
   factory InlineCompletionResult.inlineCompletionItemList(
     List<InlineCompletionItem> value,
-  ) {
-    return InlineCompletionResult._(value.map((e) => e.toJson()).toList());
-  }
+  ) => InlineCompletionResult._(value.map((e) => e.toJson()).toList());
 
   Object toJson() => value;
 
@@ -3144,58 +2564,49 @@ extension type const InlineCompletionResult._(Object value) {
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('items');
 
-  InlineCompletionList? get asInlineCompletionList {
-    if (value is InlineCompletionList) {
-      return value as InlineCompletionList;
-    }
-    if (isInlineCompletionList) {
-      return InlineCompletionList.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  InlineCompletionList? get asInlineCompletionList =>
+      value is InlineCompletionList
+      ? value as InlineCompletionList
+      : isInlineCompletionList
+      ? InlineCompletionList.fromJson(value as Map<String, dynamic>)
+      : null;
 
   bool get isInlineCompletionItemList => value is List;
 
-  List<InlineCompletionItem>? get asInlineCompletionItemList {
-    if (value is List<InlineCompletionItem>) {
-      return value as List<InlineCompletionItem>;
-    }
-    if (isInlineCompletionItemList) {
-      return (value as List)
-          .map((e) => InlineCompletionItem.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<InlineCompletionItem>? get asInlineCompletionItemList =>
+      value is List<InlineCompletionItem>
+      ? value as List<InlineCompletionItem>
+      : isInlineCompletionItemList
+      ? (value as List)
+            .map(
+              (e) => InlineCompletionItem.fromJson(e as Map<String, dynamic>),
+            )
+            .toList()
+      : null;
 }
 
 /// Inline union: CompletionResult.
 extension type const CompletionResult._(Object value) {
   const factory CompletionResult.fromJson(Object json) = CompletionResult._;
 
-  factory CompletionResult.completionItemList(List<CompletionItem> value) {
-    return CompletionResult._(value.map((e) => e.toJson()).toList());
-  }
+  factory CompletionResult.completionItemList(List<CompletionItem> value) =>
+      CompletionResult._(value.map((e) => e.toJson()).toList());
 
-  factory CompletionResult.completionList(CompletionList value) {
-    return CompletionResult._(value.toJson());
-  }
+  factory CompletionResult.completionList(CompletionList value) =>
+      CompletionResult._(value.toJson());
 
   Object toJson() => value;
 
   bool get isCompletionItemList => value is List;
 
-  List<CompletionItem>? get asCompletionItemList {
-    if (value is List<CompletionItem>) {
-      return value as List<CompletionItem>;
-    }
-    if (isCompletionItemList) {
-      return (value as List)
-          .map((e) => CompletionItem.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<CompletionItem>? get asCompletionItemList =>
+      value is List<CompletionItem>
+      ? value as List<CompletionItem>
+      : isCompletionItemList
+      ? (value as List)
+            .map((e) => CompletionItem.fromJson(e as Map<String, dynamic>))
+            .toList()
+      : null;
 
   bool get isCompletionList =>
       value is CompletionList ||
@@ -3203,24 +2614,19 @@ extension type const CompletionResult._(Object value) {
           (value as Map<String, dynamic>).containsKey('isIncomplete') &&
           (value as Map<String, dynamic>).containsKey('items');
 
-  CompletionList? get asCompletionList {
-    if (value is CompletionList) {
-      return value as CompletionList;
-    }
-    if (isCompletionList) {
-      return CompletionList.fromJson(value as Map<String, dynamic>);
-    }
-    return null;
-  }
+  CompletionList? get asCompletionList => value is CompletionList
+      ? value as CompletionList
+      : isCompletionList
+      ? CompletionList.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: DefinitionResult.
 extension type const DefinitionResult._(Object value) {
   const factory DefinitionResult.fromJson(Object json) = DefinitionResult._;
 
-  factory DefinitionResult.definition(Definition value) {
-    return DefinitionResult._(value.toJson());
-  }
+  factory DefinitionResult.definition(Definition value) =>
+      DefinitionResult._(value.toJson());
 
   const factory DefinitionResult.definitionLinkList(
     List<DefinitionLink> value,
@@ -3235,21 +2641,16 @@ extension type const DefinitionResult._(Object value) {
           (value as Map<String, dynamic>).containsKey('range') ||
       value is List;
 
-  Definition? get asDefinition {
-    if (value is Definition) {
-      return value as Definition;
-    }
-    if (isDefinition) {
-      return Definition.fromJson(value);
-    }
-    return null;
-  }
+  Definition? get asDefinition => value is Definition
+      ? value as Definition
+      : isDefinition
+      ? Definition.fromJson(value)
+      : null;
 
   bool get isDefinitionLinkList => value is List;
 
-  List<DefinitionLink>? get asDefinitionLinkList {
-    return isDefinitionLinkList ? value as List<DefinitionLink> : null;
-  }
+  List<DefinitionLink>? get asDefinitionLinkList =>
+      isDefinitionLinkList ? value as List<DefinitionLink> : null;
 }
 
 /// Inline union: DocumentSymbolResult.
@@ -3259,13 +2660,10 @@ extension type const DocumentSymbolResult._(Object value) {
 
   factory DocumentSymbolResult.symbolInformationList(
     List<SymbolInformation> value,
-  ) {
-    return DocumentSymbolResult._(value.map((e) => e.toJson()).toList());
-  }
+  ) => DocumentSymbolResult._(value.map((e) => e.toJson()).toList());
 
-  factory DocumentSymbolResult.documentSymbolList(List<DocumentSymbol> value) {
-    return DocumentSymbolResult._(value.map((e) => e.toJson()).toList());
-  }
+  factory DocumentSymbolResult.documentSymbolList(List<DocumentSymbol> value) =>
+      DocumentSymbolResult._(value.map((e) => e.toJson()).toList());
 
   Object toJson() => value;
 
@@ -3277,17 +2675,14 @@ extension type const DocumentSymbolResult._(Object value) {
             'location',
           );
 
-  List<SymbolInformation>? get asSymbolInformationList {
-    if (value is List<SymbolInformation>) {
-      return value as List<SymbolInformation>;
-    }
-    if (isSymbolInformationList) {
-      return (value as List)
-          .map((e) => SymbolInformation.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<SymbolInformation>? get asSymbolInformationList =>
+      value is List<SymbolInformation>
+      ? value as List<SymbolInformation>
+      : isSymbolInformationList
+      ? (value as List)
+            .map((e) => SymbolInformation.fromJson(e as Map<String, dynamic>))
+            .toList()
+      : null;
 
   bool get isDocumentSymbolList =>
       value is List && (value as List).isEmpty ||
@@ -3302,30 +2697,25 @@ extension type const DocumentSymbolResult._(Object value) {
             'selectionRange',
           );
 
-  List<DocumentSymbol>? get asDocumentSymbolList {
-    if (value is List<DocumentSymbol>) {
-      return value as List<DocumentSymbol>;
-    }
-    if (isDocumentSymbolList) {
-      return (value as List)
-          .map((e) => DocumentSymbol.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<DocumentSymbol>? get asDocumentSymbolList =>
+      value is List<DocumentSymbol>
+      ? value as List<DocumentSymbol>
+      : isDocumentSymbolList
+      ? (value as List)
+            .map((e) => DocumentSymbol.fromJson(e as Map<String, dynamic>))
+            .toList()
+      : null;
 }
 
 /// Inline union: SymbolResult.
 extension type const SymbolResult._(Object value) {
   const factory SymbolResult.fromJson(Object json) = SymbolResult._;
 
-  factory SymbolResult.symbolInformationList(List<SymbolInformation> value) {
-    return SymbolResult._(value.map((e) => e.toJson()).toList());
-  }
+  factory SymbolResult.symbolInformationList(List<SymbolInformation> value) =>
+      SymbolResult._(value.map((e) => e.toJson()).toList());
 
-  factory SymbolResult.workspaceSymbolList(List<WorkspaceSymbol> value) {
-    return SymbolResult._(value.map((e) => e.toJson()).toList());
-  }
+  factory SymbolResult.workspaceSymbolList(List<WorkspaceSymbol> value) =>
+      SymbolResult._(value.map((e) => e.toJson()).toList());
 
   Object toJson() => value;
 
@@ -3337,17 +2727,14 @@ extension type const SymbolResult._(Object value) {
             'location',
           );
 
-  List<SymbolInformation>? get asSymbolInformationList {
-    if (value is List<SymbolInformation>) {
-      return value as List<SymbolInformation>;
-    }
-    if (isSymbolInformationList) {
-      return (value as List)
-          .map((e) => SymbolInformation.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<SymbolInformation>? get asSymbolInformationList =>
+      value is List<SymbolInformation>
+      ? value as List<SymbolInformation>
+      : isSymbolInformationList
+      ? (value as List)
+            .map((e) => SymbolInformation.fromJson(e as Map<String, dynamic>))
+            .toList()
+      : null;
 
   bool get isWorkspaceSymbolList =>
       value is List && (value as List).isEmpty ||
@@ -3357,15 +2744,12 @@ extension type const SymbolResult._(Object value) {
             'location',
           );
 
-  List<WorkspaceSymbol>? get asWorkspaceSymbolList {
-    if (value is List<WorkspaceSymbol>) {
-      return value as List<WorkspaceSymbol>;
-    }
-    if (isWorkspaceSymbolList) {
-      return (value as List)
-          .map((e) => WorkspaceSymbol.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return null;
-  }
+  List<WorkspaceSymbol>? get asWorkspaceSymbolList =>
+      value is List<WorkspaceSymbol>
+      ? value as List<WorkspaceSymbol>
+      : isWorkspaceSymbolList
+      ? (value as List)
+            .map((e) => WorkspaceSymbol.fromJson(e as Map<String, dynamic>))
+            .toList()
+      : null;
 }
