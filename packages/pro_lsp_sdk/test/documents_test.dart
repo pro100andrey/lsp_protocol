@@ -29,6 +29,17 @@ void main() {
         expect(doc.lines, ['line1', 'line2', 'line3']);
       });
 
+      test(r'handles Windows \r\n line endings correctly', () {
+        final doc = LspDocument(
+          uri: 'file:///test.dart',
+          languageId: 'dart',
+          version: 1,
+          text: 'line1\r\nline2\r\nline3',
+        );
+
+        expect(doc.lines, ['line1', 'line2', 'line3']);
+      });
+
       test('caches the result', () {
         final doc = LspDocument(
           uri: 'file:///test.dart',

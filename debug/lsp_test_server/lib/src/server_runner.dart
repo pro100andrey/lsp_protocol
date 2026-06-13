@@ -131,15 +131,35 @@ final class ServerRunner {
 
     _server.textDocument.onDidChange((params, context) async {
       logInfo('Document changed: ${params.textDocument.uri}');
-
-      final lastChange = params.contentChanges.lastOrNull;
-      final text =
-          lastChange?.asText?.text ?? lastChange?.asRangeRangeLengthText?.text;
-
-      if (text != null) {
-        _docService.update(params.textDocument.uri, text);
-        _publishDiagnostics(params.textDocument.uri, text);
+      final uri = params.textDocument.uri;
+      final existingText = _docService.get(uri);
+      if (existingText == null) {
+        return;
       }
+
+      var text = existingText;
+      for (final change in params.contentChanges) {
+        final fullText = change.asText;
+        if (fullText != null) {
+          text = fullText.text;
+        } else {
+          final rangeChange = change.asRangeRangeLengthText;
+          if (rangeChange != null) {
+            final startOffset =
+                _positionToOffset(text, rangeChange.range.start);
+            final endOffset =
+                _positionToOffset(text, rangeChange.range.end);
+            text = text.replaceRange(
+              startOffset,
+              endOffset,
+              rangeChange.text,
+            );
+          }
+        }
+      }
+
+      _docService.update(uri, text);
+      _publishDiagnostics(uri, text);
     });
 
     _server.textDocument.onDidClose((params, context) async {
@@ -550,5 +570,22 @@ final class ServerRunner {
     );
 
     stdout.writeln('[ServerRunner] $message');
+  }
+
+  int _positionToOffset(String text, Position position) {
+    var line = 0;
+    var offset = 0;
+    while (line < position.line && offset < text.length) {
+      final nextNewline = text.indexOf('\n', offset);
+      if (nextNewline == -1) {
+        return text.length;
+      }
+      offset = nextNewline + 1;
+      line++;
+    }
+    final lineEnd = text.indexOf('\n', offset);
+    final maxChar = (lineEnd == -1 ? text.length : lineEnd) - offset;
+    final char = position.character.clamp(0, maxChar);
+    return offset + char;
   }
 }

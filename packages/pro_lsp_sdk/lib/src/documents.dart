@@ -28,7 +28,8 @@ final class LspDocument {
   List<String>? _lines;
 
   /// The lines of code in this document.
-  List<String> get lines => _lines ??= text.split('\n');
+  List<String> get lines =>
+      _lines ??= text.replaceAll('\r\n', '\n').split('\n');
 }
 
 /// Manages active/open text documents synchronized from the client.
@@ -71,22 +72,34 @@ final class TextDocumentManager {
         return;
       }
 
-      // Because pro_lsp server defaults to Full Sync, the editor is guaranteed
-      // to send the entire content in the change list (usually one item).
-      final lastChange = changes.last;
-
-      final lastChangeText =
-          lastChange.asText?.text ??
-          lastChange.asRangeRangeLengthText?.text ??
-          '';
-
       final existingDoc = _documents[uri];
       if (existingDoc != null) {
+        var text = existingDoc.text;
+        for (final change in changes) {
+          final fullText = change.asText;
+          if (fullText != null) {
+            text = fullText.text;
+          } else {
+            final rangeChange = change.asRangeRangeLengthText;
+            if (rangeChange != null) {
+              final startOffset =
+                  _positionToOffset(text, rangeChange.range.start);
+              final endOffset =
+                  _positionToOffset(text, rangeChange.range.end);
+              text = text.replaceRange(
+                startOffset,
+                endOffset,
+                rangeChange.text,
+              );
+            }
+          }
+        }
+
         final updated = LspDocument(
           uri: uri,
           languageId: existingDoc.languageId,
           version: params.textDocument.version,
-          text: lastChangeText,
+          text: text,
         );
         _documents[uri] = updated;
         _didChangeController.add(updated);
@@ -205,4 +218,21 @@ final class ClientDocumentManager {
 
   /// Returns all currently open documents.
   List<LspDocument> get all => _documents.values.toList();
+}
+
+int _positionToOffset(String text, Position position) {
+  var line = 0;
+  var offset = 0;
+  while (line < position.line && offset < text.length) {
+    final nextNewline = text.indexOf('\n', offset);
+    if (nextNewline == -1) {
+      return text.length;
+    }
+    offset = nextNewline + 1;
+    line++;
+  }
+  final lineEnd = text.indexOf('\n', offset);
+  final maxChar = (lineEnd == -1 ? text.length : lineEnd) - offset;
+  final char = position.character.clamp(0, maxChar);
+  return offset + char;
 }

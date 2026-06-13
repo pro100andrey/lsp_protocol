@@ -129,6 +129,34 @@ void main() {
           expect(updatedDoc!.text, 'void main() { print("Hello"); }');
           expect(updatedDoc.version, 2);
 
+          // didChange (Incremental Sync)
+          sendClientMessage(
+            jsonEncode(<String, dynamic>{
+              'jsonrpc': '2.0',
+              'method': 'textDocument/didChange',
+              'params': <String, dynamic>{
+                'textDocument': <String, dynamic>{
+                  'uri': 'file:///test.dart',
+                  'version': 3,
+                },
+                'contentChanges': <dynamic>[
+                  <String, dynamic>{
+                    'range': <String, dynamic>{
+                      'start': <String, dynamic>{'line': 0, 'character': 21},
+                      'end': <String, dynamic>{'line': 0, 'character': 26},
+                    },
+                    'text': 'World',
+                  },
+                ],
+              },
+            }),
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 50));
+
+          final incrementalDoc = resolvedDocs.get('file:///test.dart');
+          expect(incrementalDoc!.text, 'void main() { print("World"); }');
+          expect(incrementalDoc.version, 3);
+
           // didClose
           sendClientMessage(
             jsonEncode(<String, dynamic>{
