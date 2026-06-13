@@ -15,7 +15,7 @@ extension ExpressionX on Expression {
     final e = DartEmitter();
 
     return CodeExpression(
-      Code('${accept(e)} as ${type.accept(e)}'),
+      .new('${accept(e)} as ${type.accept(e)}'),
     );
   }
 }
@@ -37,7 +37,7 @@ Code ifStatement(Expression condition, Block ifBlock, [Block? elseBlock]) {
       'if($conditionV){$ifBlockV}'
       '${elseBlockV != null ? 'else {$elseBlockV}' : ''}';
 
-  return Code(ifElse);
+  return .new(ifElse);
 }
 
 /// A wrapper around [Reference] that guarantees a non-null symbol.
@@ -128,9 +128,11 @@ String formatLibrary(Library lib) {
     orderDirectives: true,
     useNullSafetySyntax: true,
   );
+
   final formatter = DartFormatter(
     languageVersion: DartFormatter.latestLanguageVersion,
   );
+
   return formatter.format(lib.accept(emitter).toString());
 }
 
@@ -175,7 +177,9 @@ Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
       : m.startsWith(r'$')
       ? m.substring(1)
       : m;
+
   String lastSeg(String m) => clean(m).split('/').last;
+
   String camelCase(String m) {
     final parts = clean(m).split('/');
 
@@ -245,5 +249,6 @@ bool isRequestResultUnion(MetaReference? result) {
 
     return nonNullItems.length > 1;
   }
+
   return false;
 }

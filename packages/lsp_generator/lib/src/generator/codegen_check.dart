@@ -56,6 +56,7 @@ extension ResolvedTypeCheckX on ResolvedType {
         }
         return expr;
       })(),
+
       MapType() => expr,
       TupleType(:final items) => (() {
         final listExprs = <Expression>[];
@@ -65,6 +66,7 @@ extension ResolvedTypeCheckX on ResolvedType {
         }
         return literalList(listExprs);
       })(),
+
       InlineRecord() => expr,
       NullableType(:final inner) => inner.toWireExpression(expr, ctx),
     };
@@ -223,6 +225,7 @@ extension ResolvedTypeCheckX on ResolvedType {
   ) {
     final actual = type.nonNull;
     final List<String> reqs;
+
     if (actual is ClassType) {
       final cls = ctx.classMap[actual.ref.name];
       reqs = cls != null
@@ -247,6 +250,7 @@ extension ResolvedTypeCheckX on ResolvedType {
     final mapRef = refer('Map<String, dynamic>');
     var cond = val.isA(mapRef);
     final mapVal = val.asA(mapRef);
+
     for (final req in reqs) {
       cond = cond.and(
         mapVal.property('containsKey').call([literalString(req)]),

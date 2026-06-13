@@ -85,7 +85,7 @@ final class ModelGenerator {
       (c) => [...c.properties.map((p) => p.type), ...c.extends$, ...c.mixins$],
     );
 
-    return Library(
+    return .new(
       (b) => b
         ..comments.addAll([_header])
         ..directives.add(
@@ -106,7 +106,7 @@ final class ModelGenerator {
 
   Library buildStructuresCommon() => _buildCategoryLibrary(.common);
 
-  Library _buildCategoryLibrary(_ClassCategory category) => Library(
+  Library _buildCategoryLibrary(_ClassCategory category) => .new(
     (b) => b
       ..comments.addAll([
         _header,
@@ -122,7 +122,7 @@ final class ModelGenerator {
   );
 
   /// Builds a [Library] containing all resolved enumerations.
-  Library buildEnumerations() => Library(
+  Library buildEnumerations() => .new(
     (b) => b
       ..comments.add(_header)
       ..directives.add(.import('package:json_annotation/json_annotation.dart'))
@@ -142,7 +142,7 @@ final class ModelGenerator {
     final notifNames = dartNames(notifications, (n) => n.method);
     final requestNames = dartNames(requests, (r) => r.method);
 
-    return Library(
+    return .new(
       (b) => b
         ..comments.add(_header)
         ..directives.add(
@@ -191,7 +191,7 @@ final class ModelGenerator {
       ..abstract = true
       ..docs.add('/// Base interface for LSP method identifiers.');
     b.methods.add(
-      Method(
+      .new(
         (m) => m
           ..name = 'value'
           ..returns = refer('String')
@@ -209,6 +209,7 @@ final class ModelGenerator {
           !_classNames.contains(a.name) && !_sealedUnionNames.contains(a.name),
     );
     final allTypes = aliases.map((a) => a.type);
+
     return Library(
       (b) => b
         ..comments.add(_header)
@@ -284,7 +285,7 @@ final class ModelGenerator {
       }
     }
 
-    return Library(
+    return .new(
       (b) => b
         ..comments.addAll([
           _header,
@@ -520,7 +521,9 @@ final class ModelGenerator {
       final actualType = p.type is NullableType
           ? (p.type as NullableType).inner
           : p.type;
+
       final isNullable = p.optional || p.type is NullableType;
+
       if (actualType is ListType) {
         return TypeReference(
           (b) => b
@@ -536,6 +539,7 @@ final class ModelGenerator {
         );
       }
     }
+
     return toRef(p.type, nullable: p.optional);
   }
 
@@ -560,12 +564,15 @@ final class ModelGenerator {
     for (final cls in _resolved.classes) {
       for (final prop in _allProperties(cls)) {
         final name = _getInlineUnionName(cls.name, prop.name, prop.type);
+
         if (name != null) {
           final inner = prop.type.nonNull;
+
           if (inner is UnionType) {
             result[name] = inner;
           } else if (inner is ListType) {
             final el = inner.element.nonNull;
+
             if (el is UnionType) {
               result[name] = el;
             }
@@ -578,6 +585,7 @@ final class ModelGenerator {
     final resolver = ModelResolver(_resolved.registry);
     for (final req in _resolved.requests) {
       final resRef = req.result;
+
       if (isRequestResultUnion(resRef)) {
         final orRef = resRef! as OrRef;
         final nonNullItems = orRef.items
@@ -589,6 +597,7 @@ final class ModelGenerator {
           parentName: req.method,
           fieldName: 'result',
         );
+
         if (resolvedType is UnionType) {
           final unionName = requestResultUnionName(req.method);
           result[unionName] = resolvedType;

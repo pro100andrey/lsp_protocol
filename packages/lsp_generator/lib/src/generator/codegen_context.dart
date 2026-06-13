@@ -11,6 +11,7 @@ class CodegenContext {
       if (classNames.contains(alias.name)) {
         continue;
       }
+
       if (alias.type is UnionType) {
         sealedUnionNames.add(alias.name);
       }
@@ -18,7 +19,7 @@ class CodegenContext {
     // 2. scalar union names
     for (final name in sealedUnionNames) {
       final alias = state.aliases.firstWhere((a) => a.name == name);
-      if (classifyUnion(alias.type as UnionType) == CodegenUnionKind.scalar) {
+      if (classifyUnion(alias.type as UnionType) == .scalar) {
         scalarUnionNames.add(name);
       }
     }
@@ -40,18 +41,22 @@ class CodegenContext {
       if (!visited.add(c.name)) {
         return [];
       }
+
       final inherited = <ResolvedProperty>[];
       for (final ext in c.extends$) {
         if (ext is ClassType) {
           inherited.addAll(helper(ext.ref));
         }
       }
+
       for (final mix in c.mixins$) {
         if (mix is ClassType) {
           inherited.addAll(helper(mix.ref));
         }
       }
+
       final ownNames = c.properties.map((p) => p.name).toSet();
+
       return [
         ...inherited.where((p) => !ownNames.contains(p.name)),
         ...c.properties,
@@ -102,11 +107,13 @@ class CodegenContext {
 
   CodegenUnionKind _classifyScalarStruct(List<ResolvedType> structs) {
     final uniqueStructs = structs.map(singleStructKey).toSet();
+
     return uniqueStructs.length == 1 ? .scalarStruct : .mixed;
   }
 
   CodegenUnionKind _classifyStructStruct(List<ResolvedType> structs) {
     final uniqueStructs = structs.map(singleStructKey).toSet();
+
     return uniqueStructs.length >= 2 ? .structStruct : .mixed;
   }
 
@@ -177,6 +184,7 @@ class CodegenContext {
           otherRequired.addAll(requiredSets[j]);
         }
       }
+
       final uniqueProps = requiredSets[i].difference(otherRequired);
       if (uniqueProps.isEmpty) {
         if (elseVariant != null) {

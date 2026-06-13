@@ -56,7 +56,7 @@ extension ModelGeneratorClasses on ModelGenerator {
     // `_Foo` → `_$FooFromJson`, `__Foo` → `_$FooFromJson`.
     final baseName = cls.name.replaceFirst(RegExp('^_+'), '');
 
-    return Class((b) {
+    return .new((b) {
       b.name = cls.name;
       b.annotations.add(tJsonSerializable.call([]));
       b.docs.addAll(
@@ -66,16 +66,18 @@ extension ModelGeneratorClasses on ModelGenerator {
       // Final fields (plain class — no freezed mixin).
       for (final p in allProps) {
         b.fields.add(
-          Field((b) {
+          .new((b) {
             b
               ..modifier = .final$
               ..name = p.name
               ..type = _propertyTypeRef(cls.name, p);
+
             if (p.deprecated != null) {
               b.annotations.add(
                 tDeprecated.call([literalString(p.deprecated!)]),
               );
             }
+
             b.docs.addAll(_docLines(p.documentation, indent: 2));
           }),
         );
@@ -83,7 +85,7 @@ extension ModelGeneratorClasses on ModelGenerator {
 
       // Const constructor — parameters mirror the fields.
       b.constructors.add(
-        Constructor(
+        .new(
           (b) => b
             ..constant = true
             ..optionalParameters.addAll(
@@ -91,7 +93,7 @@ extension ModelGeneratorClasses on ModelGenerator {
                 ...allProps.where((p) => !p.optional),
                 ...allProps.where((p) => p.optional),
               ].map(
-                (p) => Parameter(
+                (p) => .new(
                   (b) => b
                     ..name = p.name
                     ..toThis = true
@@ -105,12 +107,12 @@ extension ModelGeneratorClasses on ModelGenerator {
 
       // fromJson factory delegating to json_serializable's generated function.
       b.constructors.add(
-        Constructor(
+        .new(
           (b) => b
             ..factory = true
             ..name = 'fromJson'
             ..requiredParameters.add(
-              Parameter(
+              .new(
                 (p) => p
                   ..name = 'json'
                   ..type = tMapSD,
@@ -146,7 +148,7 @@ extension ModelGeneratorClasses on ModelGenerator {
   Constructor _buildRedirectingFactory(
     String className,
     List<ResolvedProperty> props,
-  ) => Constructor(
+  ) => .new(
     (b) => b
       ..constant = true
       ..factory = true
@@ -162,23 +164,27 @@ extension ModelGeneratorClasses on ModelGenerator {
           ),
         ].map((p) {
           final typeRef = _propertyTypeRef(className, p);
-          return Parameter((b) {
+
+          return .new((b) {
             final innerType = p.type.nonNull;
             b
               ..name = p.name
               ..type = typeRef
               ..named = true
               ..required = !p.optional && innerType is! StringLiteralType;
+
             if (p.deprecated != null) {
               b.annotations.add(
                 tDeprecated.call([literalString(p.deprecated!)]),
               );
             }
+
             if (innerType is StringLiteralType) {
               b.annotations.add(
                 refer('Default').call([literalString(innerType.value)]),
               );
             }
+
             b.docs.addAll(
               _docLines(
                 p.documentation,
@@ -192,12 +198,12 @@ extension ModelGeneratorClasses on ModelGenerator {
   );
 
   /// Generates a `fromJson` factory constructor for [className].
-  Constructor _fromJsonFactory(String className) => Constructor(
+  Constructor _fromJsonFactory(String className) => .new(
     (b) => b
       ..factory = true
       ..name = 'fromJson'
       ..requiredParameters.add(
-        Parameter(
+        .new(
           (p) => p
             ..name = 'json'
             ..type = tMapSD,
@@ -230,7 +236,7 @@ extension ModelGeneratorClasses on ModelGenerator {
 
     for (final m in members) {
       b.values.add(
-        EnumValue((b) {
+        .new((b) {
           b.name = m.memberName;
           b.arguments.add(
             literalString(m.method, raw: m.method.contains(r'$')),
@@ -241,7 +247,7 @@ extension ModelGeneratorClasses on ModelGenerator {
     }
 
     b.fields.add(
-      Field(
+      .new(
         (b) => b
           ..modifier = .final$
           ..name = 'value'
@@ -251,11 +257,11 @@ extension ModelGeneratorClasses on ModelGenerator {
     );
 
     b.constructors.add(
-      Constructor(
+      .new(
         (b) => b
           ..constant = true
           ..requiredParameters.add(
-            Parameter(
+            .new(
               (b) => b
                 ..name = 'value'
                 ..toThis = true,
@@ -265,7 +271,7 @@ extension ModelGeneratorClasses on ModelGenerator {
     );
 
     b.methods.add(
-      Method(
+      .new(
         (b) => b
           ..static = true
           ..returns = TypeReference(
@@ -275,7 +281,7 @@ extension ModelGeneratorClasses on ModelGenerator {
           )
           ..name = 'decode'
           ..requiredParameters.add(
-            Parameter(
+            .new(
               (b) => b
                 ..name = 'json'
                 ..type = tString,

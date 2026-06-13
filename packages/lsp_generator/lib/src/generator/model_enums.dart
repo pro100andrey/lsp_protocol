@@ -13,7 +13,7 @@ extension ModelGeneratorEnums on ModelGenerator {
         b
           ..name = en.name
           ..constant = true
-          ..representationDeclaration = RepresentationDeclaration(
+          ..representationDeclaration = .new(
             (r) => r
               ..name = 'value'
               ..declaredRepresentationType = refer(valueTypeName),
@@ -49,12 +49,12 @@ extension ModelGeneratorEnums on ModelGenerator {
 
         // fromJson constructor
         b.constructors.add(
-          Constructor(
+          .new(
             (b) => b
               ..factory = true
               ..name = 'fromJson'
               ..requiredParameters.add(
-                Parameter(
+                .new(
                   (b) => b
                     ..name = 'json'
                     ..type = tDynamic,
@@ -86,7 +86,7 @@ extension ModelGeneratorEnums on ModelGenerator {
 
       for (final member in en.members) {
         b.values.add(
-          EnumValue((b) {
+          .new((b) {
             b.name = safeIdentifier(toLowerCamelCase(member.name));
             b.arguments.add(
               isInt
@@ -111,7 +111,7 @@ extension ModelGeneratorEnums on ModelGenerator {
 
       // final T value field.
       b.fields.add(
-        Field(
+        .new(
           (b) => b
             ..modifier = .final$
             ..name = 'value'
@@ -124,7 +124,7 @@ extension ModelGeneratorEnums on ModelGenerator {
 
       // static decode — returns null for unknown values.
       b.methods.add(
-        Method(
+        .new(
           (b) => b
             ..static = true
             ..returns = TypeReference(
@@ -134,7 +134,7 @@ extension ModelGeneratorEnums on ModelGenerator {
             )
             ..name = 'decode'
             ..requiredParameters.add(
-              Parameter(
+              .new(
                 (b) => b
                   ..name = 'json'
                   ..type = refer(valueTypeName),
@@ -150,11 +150,11 @@ extension ModelGeneratorEnums on ModelGenerator {
     });
   }
 
-  Constructor _buildEnumConstructor() => Constructor(
+  Constructor _buildEnumConstructor() => .new(
     (b) => b
       ..constant = true
       ..requiredParameters.add(
-        Parameter(
+        .new(
           (b) => b
             ..name = 'value'
             ..toThis = true,
@@ -162,7 +162,7 @@ extension ModelGeneratorEnums on ModelGenerator {
       ),
   );
 
-  Method _buildEnumToJson(String valueTypeName, Expression expr) => Method(
+  Method _buildEnumToJson(String valueTypeName, Expression expr) => .new(
     (b) => b
       ..name = 'toJson'
       ..returns = refer(valueTypeName)

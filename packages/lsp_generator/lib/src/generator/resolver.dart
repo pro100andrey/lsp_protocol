@@ -273,7 +273,7 @@ final class _ResolvePass extends MetaVisitor {
 
     for (final prop in structure.properties) {
       cls.properties.add(
-        ResolvedProperty(
+        .new(
           name: prop.name,
           type: _r.resolveRef(
             prop.type,

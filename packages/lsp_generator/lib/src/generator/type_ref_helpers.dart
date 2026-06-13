@@ -26,7 +26,7 @@ Reference toRef(ResolvedType type, {bool nullable = false}) {
 RecordType _buildRecordRef(
   List<ResolvedProperty> fields, {
   bool nullable = false,
-}) => RecordType(
+}) => .new(
   (b) {
     b.isNullable = nullable;
     for (final f in fields) {

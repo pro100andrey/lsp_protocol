@@ -30,7 +30,7 @@ extension ModelGeneratorUnions on ModelGenerator {
     ..name = name
     ..constant = true
     ..primaryConstructorName = '_'
-    ..representationDeclaration = RepresentationDeclaration(
+    ..representationDeclaration = .new(
       (r) {
         r
           ..name = 'value'
@@ -58,20 +58,21 @@ extension ModelGeneratorUnions on ModelGenerator {
     Reference representationType,
     String? deprecated,
   ) => b.constructors.add(
-    Constructor(
+    .new(
       (b) {
         b
           ..factory = true
           ..constant = true
           ..name = 'fromJson'
           ..requiredParameters.add(
-            Parameter(
+            .new(
               (b) => b
                 ..name = 'json'
                 ..type = representationType,
             ),
           )
           ..redirect = refer('$name._');
+
         if (deprecated != null) {
           b.annotations.add(tDeprecated.call([literalString(deprecated)]));
         }
@@ -150,7 +151,7 @@ extension ModelGeneratorUnions on ModelGenerator {
     ];
     for (final f in sortedFields) {
       b.optionalParameters.add(
-        Parameter(
+        .new(
           (p) => p
             ..name = f.name
             ..type = toRef(f.type, nullable: f.optional)
@@ -172,6 +173,7 @@ extension ModelGeneratorUnions on ModelGenerator {
         mapEntries.add("'${f.name}': $wireExpr");
       }
     }
+
     final constructorPrefix = fields.isEmpty ? 'const $name._' : '$name._';
     b
       ..lambda = true
@@ -192,7 +194,7 @@ extension ModelGeneratorUnions on ModelGenerator {
     final isSimpleRedirect =
         !isNullType && wireExpr is Reference && wireExpr.symbol == 'value';
 
-    return Constructor((b) {
+    return .new((b) {
       b
         ..factory = true
         ..name = constructorName;
@@ -202,7 +204,7 @@ extension ModelGeneratorUnions on ModelGenerator {
 
       if (!isNullType) {
         b.requiredParameters.add(
-          Parameter(
+          .new(
             (p) => p
               ..name = 'value'
               ..type = toRef(item),
@@ -230,7 +232,7 @@ extension ModelGeneratorUnions on ModelGenerator {
     ExtensionTypeBuilder b,
     Reference representationType,
   ) => b.methods.add(
-    Method(
+    .new(
       (b) => b
         ..name = 'toJson'
         ..returns = representationType
@@ -267,12 +269,12 @@ extension ModelGeneratorUnions on ModelGenerator {
       final typeRef = toRef(item);
       final checkExpr = item.checkExpression(eValue, _ctx, structChecks, ut);
       final val = representationType.symbol == 'Object?'
-          ? const CodeExpression(Code('value!'))
+          ? const CodeExpression(.new('value!'))
           : refer('value');
       final castExpr = item.castExpression(typeRef, capSuffix, val, _ctx);
 
       b.methods.add(
-        Method(
+        .new(
           (b) => b
             ..name = 'is$capSuffix'
             ..returns = tBool
@@ -292,11 +294,11 @@ extension ModelGeneratorUnions on ModelGenerator {
                       : typeRef));
 
       b.methods.add(
-        Method(
+        .new(
           (b) => b
             ..name = 'as$capSuffix'
             ..returns = nullableTypeRef
-            ..type = MethodType.getter
+            ..type = .getter
             ..lambda = castExpr is Expression
             ..body = castExpr is Expression ? castExpr.code : castExpr as Code,
         ),
@@ -306,6 +308,7 @@ extension ModelGeneratorUnions on ModelGenerator {
 
   String _variantSuffix(ResolvedType item, String aliasName) {
     final actual = item.nonNull;
+
     return switch (actual) {
       DartCoreType(:final dartName) => switch (dartName) {
         'int' => 'Int',

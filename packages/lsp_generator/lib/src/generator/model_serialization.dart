@@ -21,6 +21,7 @@ extension ModelGeneratorSerialization on ModelGenerator {
               )}',
         )
         .join(', ');
+
     return '($parts)';
   }
 
@@ -37,8 +38,10 @@ extension ModelGeneratorSerialization on ModelGenerator {
       if (f.optional) {
         return "'${f.name}': ?$jsonValue";
       }
+
       return "'${f.name}': $jsonValue";
     });
+
     return '{${entries.join(', ')}}';
   }
 

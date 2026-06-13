@@ -22,7 +22,7 @@ abstract class ApiGenerator {
         e.key.method: e.value,
     };
 
-    _unionTypeNames = <String>{};
+    _unionTypeNames = {};
     for (final req in resolved.requests) {
       if (isRequestResultUnion(req.result)) {
         _unionTypeNames.add(requestResultUnionName(req.method));
@@ -113,7 +113,7 @@ abstract class ApiGenerator {
       map
           .putIfAbsent(ns, () => [])
           .add(
-            MethodEntry(
+            .new(
               wireMethod: method,
               dartName: dartName,
               params: params,
@@ -167,7 +167,7 @@ abstract class ApiGenerator {
       }
     }
 
-    return GroupedMethods(
+    return .new(
       handlerGroups: handlerGroups,
       senderGroups: senderGroups,
     );
@@ -214,6 +214,7 @@ abstract class ApiGenerator {
     final nonNull = items
         .where((i) => !(i is BaseRef && i.name == 'null'))
         .toList(growable: false);
+
     if (nonNull.isEmpty) {
       return 'void';
     }
@@ -223,6 +224,7 @@ abstract class ApiGenerator {
       if (!hasNull) {
         return t;
       }
+
       return t.endsWith('?') ? t : '$t?';
     }
 
@@ -280,7 +282,7 @@ abstract class ApiGenerator {
       final mapClosure = Method(
         (b) => b
           ..lambda = true
-          ..requiredParameters.add(Parameter((b) => b..name = 'e'))
+          ..requiredParameters.add(.new((b) => b..name = 'e'))
           ..body =
               (isRawObject
                       ? refer('e').asA(tDynamic).property('toJson').call([])
@@ -320,9 +322,11 @@ abstract class ApiGenerator {
     if (resultType == 'Object?' || resultType == 'Object') {
       return [refer('raw').returned.statement];
     }
+
     if (resultType == 'Null' || resultType == 'void') {
       return [];
     }
+
     if (baseType.startsWith('List<')) {
       final innerType = baseType.substring(5, baseType.length - 1);
       if (innerType == 'Object' || innerType == 'Object?') {
@@ -341,6 +345,7 @@ abstract class ApiGenerator {
                 .statement,
           ];
         }
+
         return [castExpr.returned.statement];
       }
 
@@ -349,7 +354,7 @@ abstract class ApiGenerator {
         final mapClosure = Method(
           (b) => b
             ..lambda = true
-            ..requiredParameters.add(Parameter((b) => b..name = 'e'))
+            ..requiredParameters.add(.new((b) => b..name = 'e'))
             ..body = refer(
               innerType,
             ).newInstanceNamed('fromJson', [refer('e').bareAsA(tObject)]).code,
@@ -405,7 +410,7 @@ abstract class ApiGenerator {
               literalNull,
               refer(baseType).newInstanceNamed(
                 'fromJson',
-                [CodeExpression(Code(castExprStr))],
+                [CodeExpression(.new(castExprStr))],
               ),
             )
             .returned
@@ -416,7 +421,7 @@ abstract class ApiGenerator {
       refer(baseType)
           .newInstanceNamed(
             'fromJson',
-            [CodeExpression(Code(castExprStr))],
+            [CodeExpression(.new(castExprStr))],
           )
           .returned
           .statement,
@@ -433,7 +438,7 @@ abstract class ApiGenerator {
     String typeName,
     String varName,
     String sourceVar,
-  ) => Code('final $varName = parseParams($sourceVar, $typeName.fromJson);');
+  ) => .new('final $varName = parseParams($sourceVar, $typeName.fromJson);');
 
   Expression methodRef(String enumType, String wireMethod) {
     final map = enumType == 'RequestMethod'
@@ -467,14 +472,14 @@ abstract class ApiGenerator {
   ) {
     final className = '$side${ApiGenerator.handlerClassName(namespace)}';
 
-    return ExtensionType(
+    return .new(
       (b) => b
         ..name = className
         ..docs.add(
           '/// Registers incoming LSP handlers for the '
           '`$namespace` namespace.',
         )
-        ..representationDeclaration = RepresentationDeclaration(
+        ..representationDeclaration = .new(
           (b) => b
             ..name = '_c'
             ..declaredRepresentationType = refer('LspConnection'),
@@ -497,13 +502,13 @@ abstract class ApiGenerator {
         ? _notificationHandlerBody(entry.wireMethod, paramsType)
         : _requestHandlerBody(entry.wireMethod, paramsType, resultType);
 
-    return Method(
+    return .new(
       (b) => b
         ..name = 'on${capitalize(entry.dartName)}'
         ..returns = handlerMethodReturns(entry.isNotification)
         ..docs.add('/// Registers handler for `${entry.wireMethod}`.')
         ..requiredParameters.add(
-          Parameter(
+          .new(
             (b) => b
               ..name = 'handler'
               ..type = refer(handlerType),
@@ -546,10 +551,10 @@ abstract class ApiGenerator {
 
     final closure = Method(
       (b) => b
-        ..modifier = needsAsync ? MethodModifier.async : null
+        ..modifier = needsAsync ? .async : null
         ..requiredParameters.addAll([
-          Parameter((b) => b..name = 'j'),
-          Parameter((b) => b..name = 'c'),
+          .new((b) => b..name = 'j'),
+          .new((b) => b..name = 'c'),
         ])
         ..body = Block.of(statements),
     ).closure;
@@ -564,7 +569,7 @@ abstract class ApiGenerator {
     final hasParams = paramsType.isNotEmpty;
     final isRawParams = paramsType == 'Object?' || paramsType == 'Object';
 
-    final statements = <Code>[
+    final statements = [
       if (hasParams)
         isRawParams
             ? declareFinal('params').assign(refer('j')).statement
@@ -579,10 +584,10 @@ abstract class ApiGenerator {
 
     final closure = Method(
       (b) => b
-        ..modifier = MethodModifier.async
+        ..modifier = .async
         ..requiredParameters.addAll([
-          Parameter((b) => b..name = 'j'),
-          Parameter((b) => b..name = 'c'),
+          .new((b) => b..name = 'j'),
+          .new((b) => b..name = 'c'),
         ])
         ..body = Block.of(statements),
     ).closure;
@@ -595,14 +600,14 @@ abstract class ApiGenerator {
 
   ExtensionType _buildSenderClass(String namespace, List<MethodEntry> entries) {
     final className = '$side${ApiGenerator.senderClassName(namespace)}';
-    return ExtensionType(
+    return .new(
       (b) => b
         ..name = className
         ..docs.add(
           '/// Sends LSP messages to the ${otherSide.toLowerCase()} for the '
           '`$namespace` namespace.',
         )
-        ..representationDeclaration = RepresentationDeclaration(
+        ..representationDeclaration = .new(
           (b) => b
             ..name = '_c'
             ..declaredRepresentationType = refer('LspConnection'),
@@ -656,7 +661,7 @@ abstract class ApiGenerator {
             methodRef('NotificationMethod', wireMethod),
           ]);
 
-    return Method(
+    return .new(
       (b) => b
         ..name = dartName
         ..returns = refer('void')
@@ -665,7 +670,7 @@ abstract class ApiGenerator {
         )
         ..requiredParameters.addAll([
           if (hasParams)
-            Parameter(
+            .new(
               (b) => b
                 ..name = 'params'
                 ..type = refer(paramsType),
@@ -716,14 +721,14 @@ abstract class ApiGenerator {
     return Method(
       (b) => b
         ..name = dartName
-        ..modifier = MethodModifier.async
+        ..modifier = .async
         ..returns = returnRef
         ..docs.add(
           '/// Sends the `$wireMethod` request to the ${otherSide.toLowerCase()}.',
         )
         ..requiredParameters.addAll([
           if (hasParams)
-            Parameter(
+            .new(
               (b) => b
                 ..name = 'params'
                 ..type = refer(paramsType),
@@ -735,6 +740,7 @@ abstract class ApiGenerator {
 
   ExtensionType _buildProxy(Iterable<String> senderNamespaces) {
     final namespaces = senderNamespaces.toList(growable: false);
+
     return ExtensionType(
       (b) => b
         ..name = proxyName
@@ -746,7 +752,7 @@ abstract class ApiGenerator {
           '/// $proxyExampleDocsCall\n'
           '/// ```',
         )
-        ..representationDeclaration = RepresentationDeclaration(
+        ..representationDeclaration = .new(
           (b) => b
             ..name = '_c'
             ..declaredRepresentationType = refer('LspConnection'),
@@ -761,7 +767,7 @@ abstract class ApiGenerator {
                   : ns;
               final senderClass = '$side${ApiGenerator.senderClassName(ns)}';
 
-              return Method(
+              return .new(
                 (b) => b
                   ..name = propName
                   ..type = .getter

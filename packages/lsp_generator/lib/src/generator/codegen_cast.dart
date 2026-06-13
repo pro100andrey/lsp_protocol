@@ -41,6 +41,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
     }
 
     final typeRef = refer(typeName);
+
     return refer('is$capSuffix').conditional(val.bareAsA(typeRef), literalNull);
   }
 
@@ -50,6 +51,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
     String capSuffix,
   ) {
     final val = refer('value');
+
     return val
         .isA(ref)
         .conditional(
@@ -141,7 +143,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
         Method(
           (m) => m
             ..lambda = true
-            ..requiredParameters.add(Parameter((p) => p..name = 'e'))
+            ..requiredParameters.add(.new((p) => p..name = 'e'))
             ..body = convert(refer('e')).code,
         ).closure,
       ])
@@ -234,7 +236,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
     final recordCode = Code('return (${positionalExprs.join(', ')});');
 
     return Block.of([
-      ifStatement(refer('is$capSuffix'), Block.of([listDecl, recordCode])),
+      ifStatement(refer('is$capSuffix'), .of([listDecl, recordCode])),
       literalNull.returned.statement,
     ]);
   }
