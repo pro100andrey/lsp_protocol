@@ -20,11 +20,11 @@ extension type const SemanticTokenTypes(String value) {
   /// mapped to a specific type like class or enum.
   static const type = SemanticTokenTypes('type');
 
-  static const class_ = SemanticTokenTypes('class');
+  static const class$ = SemanticTokenTypes('class');
 
-  static const enum_ = SemanticTokenTypes('enum');
+  static const enum$ = SemanticTokenTypes('enum');
 
-  static const interface_ = SemanticTokenTypes('interface');
+  static const interface$ = SemanticTokenTypes('interface');
 
   static const struct = SemanticTokenTypes('struct');
 
@@ -44,7 +44,7 @@ extension type const SemanticTokenTypes(String value) {
 
   static const method = SemanticTokenTypes('method');
 
-  static const macro_ = SemanticTokenTypes('macro');
+  static const macro$ = SemanticTokenTypes('macro');
 
   static const keyword = SemanticTokenTypes('keyword');
 
@@ -58,7 +58,7 @@ extension type const SemanticTokenTypes(String value) {
 
   static const regexp = SemanticTokenTypes('regexp');
 
-  static const operator_ = SemanticTokenTypes('operator');
+  static const operator$ = SemanticTokenTypes('operator');
 
   /// @since 3.17.0
   static const decorator = SemanticTokenTypes('decorator');
@@ -80,13 +80,13 @@ extension type const SemanticTokenModifiers(String value) {
 
   static const readonly = SemanticTokenModifiers('readonly');
 
-  static const static_ = SemanticTokenModifiers('static');
+  static const static$ = SemanticTokenModifiers('static');
 
   static const deprecated = SemanticTokenModifiers('deprecated');
 
-  static const abstract_ = SemanticTokenModifiers('abstract');
+  static const abstract$ = SemanticTokenModifiers('abstract');
 
-  static const async_ = SemanticTokenModifiers('async');
+  static const async$ = SemanticTokenModifiers('async');
 
   static const modification = SemanticTokenModifiers('modification');
 
@@ -193,13 +193,13 @@ enum SymbolKind {
   module(2),
   namespace(3),
   package(4),
-  class_(5),
+  class$(5),
   method(6),
   property(7),
   field(8),
   constructor(9),
-  enum_(10),
-  interface_(11),
+  enum$(10),
+  interface$(11),
   function(12),
   variable(13),
   constant(14),
@@ -209,11 +209,11 @@ enum SymbolKind {
   array(18),
   object(19),
   key(20),
-  null_(21),
+  null$(21),
   enumMember(22),
   struct(23),
   event(24),
-  operator_(25),
+  operator$(25),
   typeParameter(26);
 
   const SymbolKind(this.value);
@@ -274,10 +274,10 @@ enum UniquenessLevel {
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum MonikerKind {
   /// The moniker represent a symbol that is imported into a project
-  import_('import'),
+  import('import'),
 
   /// The moniker represents a symbol that is exported from a project
-  export_('export'),
+  export('export'),
 
   /// The moniker represents a symbol that is local to a project (e.g. a local
   /// variable of a function, a class not visible outside the project, ...)
@@ -390,13 +390,13 @@ enum CompletionItemKind {
   constructor(4),
   field(5),
   variable(6),
-  class_(7),
-  interface_(8),
+  class$(7),
+  interface$(8),
   module(9),
   property(10),
   unit(11),
-  value_(12),
-  enum_(13),
+  value$(12),
+  enum$(13),
   keyword(14),
   snippet(15),
   color(16),
@@ -407,7 +407,7 @@ enum CompletionItemKind {
   constant(21),
   struct(22),
   event(23),
-  operator_(24),
+  operator$(24),
   typeParameter(25);
 
   const CompletionItemKind(this.value);

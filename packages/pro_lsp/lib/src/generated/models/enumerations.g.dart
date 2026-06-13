@@ -16,13 +16,13 @@ const _$SymbolKindEnumMap = {
   SymbolKind.module: 2,
   SymbolKind.namespace: 3,
   SymbolKind.package: 4,
-  SymbolKind.class_: 5,
+  SymbolKind.class$: 5,
   SymbolKind.method: 6,
   SymbolKind.property: 7,
   SymbolKind.field: 8,
   SymbolKind.constructor: 9,
-  SymbolKind.enum_: 10,
-  SymbolKind.interface_: 11,
+  SymbolKind.enum$: 10,
+  SymbolKind.interface$: 11,
   SymbolKind.function: 12,
   SymbolKind.variable: 13,
   SymbolKind.constant: 14,
@@ -32,11 +32,11 @@ const _$SymbolKindEnumMap = {
   SymbolKind.array: 18,
   SymbolKind.object: 19,
   SymbolKind.key: 20,
-  SymbolKind.null_: 21,
+  SymbolKind.null$: 21,
   SymbolKind.enumMember: 22,
   SymbolKind.struct: 23,
   SymbolKind.event: 24,
-  SymbolKind.operator_: 25,
+  SymbolKind.operator$: 25,
   SymbolKind.typeParameter: 26,
 };
 
@@ -51,8 +51,8 @@ const _$UniquenessLevelEnumMap = {
 };
 
 const _$MonikerKindEnumMap = {
-  MonikerKind.import_: 'import',
-  MonikerKind.export_: 'export',
+  MonikerKind.import: 'import',
+  MonikerKind.export: 'export',
   MonikerKind.local: 'local',
 };
 
@@ -88,13 +88,13 @@ const _$CompletionItemKindEnumMap = {
   CompletionItemKind.constructor: 4,
   CompletionItemKind.field: 5,
   CompletionItemKind.variable: 6,
-  CompletionItemKind.class_: 7,
-  CompletionItemKind.interface_: 8,
+  CompletionItemKind.class$: 7,
+  CompletionItemKind.interface$: 8,
   CompletionItemKind.module: 9,
   CompletionItemKind.property: 10,
   CompletionItemKind.unit: 11,
-  CompletionItemKind.value_: 12,
-  CompletionItemKind.enum_: 13,
+  CompletionItemKind.value$: 12,
+  CompletionItemKind.enum$: 13,
   CompletionItemKind.keyword: 14,
   CompletionItemKind.snippet: 15,
   CompletionItemKind.color: 16,
@@ -105,7 +105,7 @@ const _$CompletionItemKindEnumMap = {
   CompletionItemKind.constant: 21,
   CompletionItemKind.struct: 22,
   CompletionItemKind.event: 23,
-  CompletionItemKind.operator_: 24,
+  CompletionItemKind.operator$: 24,
   CompletionItemKind.typeParameter: 25,
 };
 
