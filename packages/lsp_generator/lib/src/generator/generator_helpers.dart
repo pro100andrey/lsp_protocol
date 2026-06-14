@@ -78,21 +78,7 @@ extension StringRef on String {
   );
 }
 
-/// Extension providing convenient property access for expressions.
-extension ExpressionExtensions on Expression {
-  /// Accesses a property on this expression.
-  ///
-  /// When [nullSafe] is `true`, uses null-safe property access (`?.`).
-  /// Otherwise uses regular property access (`.`).
-  ///
-  /// Example:
-  /// ```dart
-  /// 'obj'.ref.prop('field') // obj.field
-  /// 'obj'.ref.prop('field', nullSafe: true) // obj?.field
-  /// ```
-  BinaryExpression prop(String name, {bool nullSafe = false}) =>
-      (nullSafe ? nullSafeProperty(name) : property(name)) as BinaryExpression;
-}
+
 
 /// Formats and emits a [Library] as a string.
 String formatLibrary(Library lib) {

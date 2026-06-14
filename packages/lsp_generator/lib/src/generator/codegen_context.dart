@@ -76,15 +76,13 @@ final class CodegenContext {
     final scalars = u.items.where((t) => t is DartCoreType || t is TupleType);
     final structs = u.items.where((t) => t is ClassType || t is InlineRecord);
     final lists = u.items.whereType<ListType>();
-    final others = u.items.where(
-      (t) => switch (t) {
-        DartCoreType() ||
-        TupleType() ||
-        ClassType() ||
-        InlineRecord() ||
-        ListType() => false,
-        _ => true,
-      },
+    final others = u.items.whereNot(
+      (t) =>
+          t is DartCoreType ||
+          t is TupleType ||
+          t is ClassType ||
+          t is InlineRecord ||
+          t is ListType,
     );
 
     if (others.isNotEmpty) {

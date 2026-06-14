@@ -69,8 +69,8 @@ Reference toTypeRef(ResolvedType type) => switch (type) {
   InlineRecord() => TypeReference((b) => b..symbol = 'Object'),
 };
 
-/// Parses a [DartCoreType.dartName] which may be a plain name or a generic
-/// like `'Map<String, Object?>'` (used only for LSPObject/LSPArray mappings).
+/// Maps a [DartCoreType.dartName] to its code_builder [TypeReference]
+/// representation.
 TypeReference _dartCore(String name) => switch (name) {
   'String' => TypeReference((b) => b..symbol = 'String'),
   'int' => TypeReference((b) => b..symbol = 'int'),

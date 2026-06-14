@@ -172,48 +172,51 @@ abstract class ApiGenerator {
           );
     }
 
-    for (final req in resolved.requests) {
-      final dir = req.messageDirection;
-      if (dir == handlerDir || dir == .both) {
+    void process(
+      String method,
+      MessageDirection dir,
+      ResolvedType? params,
+      ResolvedType? result, {
+      required bool isNotification,
+    }) {
+      if (dir == handlerDir || dir == MessageDirection.both) {
         addTo(
           handlerGroups,
-          req.method,
-          req.params,
-          req.result,
-          isNotification: false,
+          method,
+          params,
+          result,
+          isNotification: isNotification,
         );
       }
-      if (dir == senderDir || dir == .both) {
+      if (dir == senderDir || dir == MessageDirection.both) {
         addTo(
           senderGroups,
-          req.method,
-          req.params,
-          req.result,
-          isNotification: false,
+          method,
+          params,
+          result,
+          isNotification: isNotification,
         );
       }
     }
 
+    for (final req in resolved.requests) {
+      process(
+        req.method,
+        req.messageDirection,
+        req.params,
+        req.result,
+        isNotification: false,
+      );
+    }
+
     for (final notif in resolved.notifications) {
-      final dir = notif.messageDirection;
-      if (dir == handlerDir || dir == .both) {
-        addTo(
-          handlerGroups,
-          notif.method,
-          notif.params,
-          null,
-          isNotification: true,
-        );
-      }
-      if (dir == senderDir || dir == .both) {
-        addTo(
-          senderGroups,
-          notif.method,
-          notif.params,
-          null,
-          isNotification: true,
-        );
-      }
+      process(
+        notif.method,
+        notif.messageDirection,
+        notif.params,
+        null,
+        isNotification: true,
+      );
     }
 
     return .new(

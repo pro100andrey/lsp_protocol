@@ -103,15 +103,7 @@ extension ModelGeneratorUnions on ModelGenerator {
     UnionType ut,
     String? deprecated,
   ) {
-    final uniqueItems = <ResolvedType>[];
-    final seenSuffixes = <String>{};
-    for (final item in ut.items) {
-      final suffix = _variantSuffix(item, name);
-      final capSuffix = capitalize(suffix);
-      if (seenSuffixes.add(capSuffix)) {
-        uniqueItems.add(item);
-      }
-    }
+    final uniqueItems = _getUniqueItems(ut, name);
 
     for (final item in uniqueItems) {
       final suffix = _variantSuffix(item, name);
@@ -273,15 +265,7 @@ extension ModelGeneratorUnions on ModelGenerator {
     UnionType ut,
     Reference representationType,
   ) {
-    final uniqueItems = <ResolvedType>[];
-    final seenSuffixes = <String>{};
-    for (final item in ut.items) {
-      final suffix = _variantSuffix(item, name);
-      final capSuffix = capitalize(suffix);
-      if (seenSuffixes.add(capSuffix)) {
-        uniqueItems.add(item);
-      }
-    }
+    final uniqueItems = _getUniqueItems(ut, name);
 
     final structs = uniqueItems
         .where((t) => t is ClassType || t is InlineRecord)
@@ -335,6 +319,19 @@ extension ModelGeneratorUnions on ModelGenerator {
         ),
       );
     }
+  }
+
+  List<ResolvedType> _getUniqueItems(UnionType ut, String name) {
+    final uniqueItems = <ResolvedType>[];
+    final seenSuffixes = <String>{};
+    for (final item in ut.items) {
+      final suffix = _variantSuffix(item, name);
+      final capSuffix = capitalize(suffix);
+      if (seenSuffixes.add(capSuffix)) {
+        uniqueItems.add(item);
+      }
+    }
+    return uniqueItems;
   }
 
   /// Returns a suffix for a union variant, used to construct constructor

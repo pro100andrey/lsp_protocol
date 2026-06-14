@@ -54,42 +54,31 @@ extension ResolvedTypeCheckX on ResolvedType {
     }
 
     return switch (actual) {
-      DartCoreType() => expr,
-
-      StringLiteralType() => expr,
-
-      ClassType() || AliasType() || EnumType() || UnionType() => expr,
-
       ListType(:final element) => (() {
-        if (element.nonNull.hasToJson(ctx) ||
-            element.nonNull.isClosedEnum(ctx)) {
-          final closure = element.nonNull.hasToJson(ctx)
-              ? refer('(e) => e.toJson()')
-              : refer('(e) => e.value');
+          if (element.nonNull.hasToJson(ctx) ||
+              element.nonNull.isClosedEnum(ctx)) {
+            final closure = element.nonNull.hasToJson(ctx)
+                ? refer('(e) => e.toJson()')
+                : refer('(e) => e.value');
 
-          final mapCall = isNullable
-              ? expr.nullSafeProperty('map')
-              : expr.property('map');
+            final mapCall = isNullable
+                ? expr.nullSafeProperty('map')
+                : expr.property('map');
 
-          return mapCall.call([closure]).property('toList').call([]);
-        }
-        return expr;
-      })(),
-
-      MapType() => expr,
-
+            return mapCall.call([closure]).property('toList').call([]);
+          }
+          return expr;
+        })(),
       TupleType(:final items) => (() {
-        final listExprs = <Expression>[];
-        for (var i = 0; i < items.length; i++) {
-          final member = expr.property('\$${i + 1}');
-          listExprs.add(items[i].toWireExpression(member, ctx));
-        }
-        return literalList(listExprs);
-      })(),
-
-      InlineRecord() => expr,
-
+          final listExprs = <Expression>[];
+          for (var i = 0; i < items.length; i++) {
+            final member = expr.property('\$${i + 1}');
+            listExprs.add(items[i].toWireExpression(member, ctx));
+          }
+          return literalList(listExprs);
+        })(),
       NullableType(:final inner) => inner.toWireExpression(expr, ctx),
+      _ => expr,
     };
   }
 
