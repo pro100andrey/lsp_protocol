@@ -510,13 +510,10 @@ final class ModelGenerator {
   Reference _propertyTypeRef(String className, ResolvedProperty p) {
     final inlineUnionName = _getInlineUnionName(className, p.name, p.type);
     if (inlineUnionName != null) {
-      final actualType = p.type is NullableType
-          ? (p.type as NullableType).inner
-          : p.type;
-
+      final actualType = p.type.nonNull;
       final isNullable = p.optional || p.type is NullableType;
 
-      if (actualType is ListType) {
+      if (actualType case ListType()) {
         return TypeReference(
           (b) => b
             ..symbol = 'List'
@@ -560,13 +557,12 @@ final class ModelGenerator {
         if (name != null) {
           final inner = prop.type.nonNull;
 
-          if (inner is UnionType) {
+          if (inner case UnionType()) {
             result[name] = inner;
-          } else if (inner is ListType) {
-            final el = inner.element.nonNull;
-
-            if (el is UnionType) {
-              result[name] = el;
+          } else if (inner case ListType(:final element)) {
+            final innerType = element.nonNull;
+            if (innerType case UnionType()) {
+              result[name] = innerType;
             }
           }
         }
@@ -590,7 +586,7 @@ final class ModelGenerator {
           fieldName: 'result',
         );
 
-        if (resolvedType is UnionType) {
+        if (resolvedType case UnionType()) {
           final unionName = requestResultUnionName(req.method);
           result[unionName] = resolvedType;
         }

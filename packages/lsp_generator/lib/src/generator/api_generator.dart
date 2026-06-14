@@ -29,7 +29,7 @@ abstract class ApiGenerator {
       }
     }
     for (final alias in resolved.aliases) {
-      if (alias.type is UnionType) {
+      if (alias.type case UnionType()) {
         _unionTypeNames.add(alias.name);
       }
     }
@@ -174,14 +174,15 @@ abstract class ApiGenerator {
   bool isUnionType(String typeName) => _unionTypeNames.contains(typeName);
 
   String resultTypeName(MetaReference? result, String wireMethod) {
-    if (result == null) {
+    if (result case null) {
       return 'void';
     }
 
     if (isRequestResultUnion(result)) {
-      final hasNull = (result as OrRef).items.any(
-        (i) => i is BaseRef && i.name == 'null',
-      );
+      final hasNull = switch (result) {
+        OrRef(:final items) => ApiGenerator._hasNull(items),
+        _ => false,
+      };
       final unionName = requestResultUnionName(wireMethod);
       return hasNull ? '$unionName?' : unionName;
     }
@@ -224,6 +225,10 @@ abstract class ApiGenerator {
 
     return hasNull ? 'Object?' : 'Object';
   }
+
+  static bool _hasNull(List<MetaReference> items) => items.any(
+    (i) => i is BaseRef && i.name == 'null',
+  );
 
   static String _baseDartName(String name) => switch (name) {
     'null' => 'Null',

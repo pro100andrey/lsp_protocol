@@ -12,14 +12,15 @@ class CodegenContext {
         continue;
       }
 
-      if (alias.type is UnionType) {
+      if (alias.type case UnionType()) {
         sealedUnionNames.add(alias.name);
       }
     }
     // 2. scalar union names
     for (final name in sealedUnionNames) {
       final alias = state.aliases.firstWhere((a) => a.name == name);
-      if (classifyUnion(alias.type as UnionType) == .scalar) {
+      final ut = alias.type is UnionType ? alias.type as UnionType : null;
+      if (ut != null && classifyUnion(ut) == .scalar) {
         scalarUnionNames.add(name);
       }
     }
@@ -44,14 +45,14 @@ class CodegenContext {
 
       final inherited = <ResolvedProperty>[];
       for (final ext in c.extends$) {
-        if (ext is ClassType) {
-          inherited.addAll(helper(ext.ref));
+        if (ext case ClassType(:final ref)) {
+          inherited.addAll(helper(ref));
         }
       }
 
       for (final mix in c.mixins$) {
-        if (mix is ClassType) {
-          inherited.addAll(helper(mix.ref));
+        if (mix case ClassType(:final ref)) {
+          inherited.addAll(helper(ref));
         }
       }
 
@@ -71,12 +72,14 @@ class CodegenContext {
     final structs = u.items.where((t) => t is ClassType || t is InlineRecord);
     final lists = u.items.whereType<ListType>();
     final others = u.items.where(
-      (t) =>
-          t is! DartCoreType &&
-          t is! TupleType &&
-          t is! ClassType &&
-          t is! InlineRecord &&
-          t is! ListType,
+      (t) => switch (t) {
+        DartCoreType() ||
+        TupleType() ||
+        ClassType() ||
+        InlineRecord() ||
+        ListType() => false,
+        _ => true,
+      },
     );
 
     if (others.isNotEmpty) {

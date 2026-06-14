@@ -150,8 +150,10 @@ final class ModelResolver {
     return InlineRecord(fields: fields);
   }
 
-  static bool _isNull(MetaReference ref) =>
-      ref is BaseRef && ref.name == 'null';
+  static bool _isNull(MetaReference ref) => switch (ref) {
+    BaseRef(name: 'null') => true,
+    _ => false,
+  };
 
   static String _baseRefToDart(String name) => switch (name) {
     'string' => 'String',
@@ -193,9 +195,10 @@ final class _RegisterPass extends MetaVisitor {
 
   @override
   void visitEnumeration(MetaEnumeration enumeration) {
-    final valueType = enumeration.type is BaseRef
-        ? ModelResolver._baseRefToDart((enumeration.type as BaseRef).name)
-        : 'String';
+    final valueType = switch (enumeration.type) {
+      BaseRef(:final name) => ModelResolver._baseRefToDart(name),
+      _ => 'String',
+    };
 
     final members = enumeration.values
         .map(

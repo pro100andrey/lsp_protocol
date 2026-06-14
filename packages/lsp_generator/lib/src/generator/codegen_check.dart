@@ -224,24 +224,18 @@ extension ResolvedTypeCheckX on ResolvedType {
     CodegenContext ctx,
   ) {
     final actual = type.nonNull;
-    final List<String> reqs;
 
-    if (actual is ClassType) {
-      final cls = ctx.classMap[actual.ref.name];
-      reqs = cls != null
-          ? [
-              for (final p in cls.properties)
-                if (!p.optional) p.name,
-            ]
-          : [];
-    } else if (actual is InlineRecord) {
-      reqs = [
-        for (final f in actual.fields)
-          if (!f.optional) f.name,
-      ];
-    } else {
-      reqs = [];
-    }
+    final reqs = switch (actual) {
+      ClassType(:final ref) =>
+        ctx.classMap[ref.name]?.properties
+                .where((p) => !p.optional)
+                .map((p) => p.name)
+                .toList() ??
+            [],
+      InlineRecord(:final fields) =>
+        fields.where((f) => !f.optional).map((f) => f.name).toList(),
+      _ => <String>[],
+    };
 
     if (reqs.isEmpty) {
       return val.isA(refer('Map<String, dynamic>'));
