@@ -861,6 +861,7 @@ abstract class ApiGenerator {
                   ..name = propName
                   ..type = .getter
                   ..returns = refer(senderClass)
+                  ..docs.addAll(_getNamespaceDocs(ns))
                   ..lambda = true
                   ..body = refer(senderClass).call([refer('_c')]).code,
               );
@@ -868,6 +869,94 @@ abstract class ApiGenerator {
           ),
         ),
     );
+  }
+
+  List<String> _getNamespaceDocs(String ns) {
+    final cleanNs = ns == r'$' ? 'protocol' : ns;
+    final other = otherSide.toLowerCase();
+    final self = side.toLowerCase();
+
+    switch (cleanNs) {
+      case 'workspace':
+        return [
+          '/// Accesses workspace-related operations (e.g., configurations,',
+          '/// file events) sent from the $self to the $other.',
+        ];
+      case 'window':
+        return [
+          '/// Accesses user interface operations (e.g., showMessage,',
+          "/// showDocument) sent to the $other's window.",
+        ];
+      case 'client':
+        return [
+          '/// Accesses client-specific capabilities and requests.',
+        ];
+      case 'telemetry':
+        return [
+          '/// Sends telemetry events and logs to the $other.',
+        ];
+      case 'textDocument':
+        if (side == 'Server') {
+          return [
+            '/// Accesses text document operations (e.g., publishing',
+            '/// diagnostics) sent to the client.',
+          ];
+        } else {
+          return [
+            '/// Accesses text document operations (e.g., completions,',
+            '/// definitions, hover requests) sent to the server.',
+          ];
+        }
+      case 'general':
+        return [
+          '/// Accesses general LSP lifecycle notifications or requests.',
+        ];
+      case 'protocol':
+        return [
+          r'/// Accesses system-level protocol messages (e.g. $/progress',
+          r'/// or $/cancelRequest).',
+        ];
+      case 'callHierarchy':
+        return [
+          '/// Accesses call hierarchy operations sent to the $other.',
+        ];
+      case 'typeHierarchy':
+        return [
+          '/// Accesses type hierarchy operations sent to the $other.',
+        ];
+      case 'inlayHint':
+        return [
+          '/// Accesses inlay hint operations sent to the $other.',
+        ];
+      case 'completionItem':
+        return [
+          '/// Accesses completion item resolution requests sent to the $other.',
+        ];
+      case 'codeAction':
+        return [
+          '/// Accesses code action resolution requests sent to the $other.',
+        ];
+      case 'workspaceSymbol':
+        return [
+          '/// Accesses workspace symbol resolution requests sent to the $other.',
+        ];
+      case 'codeLens':
+        return [
+          '/// Accesses code lens resolution requests sent to the $other.',
+        ];
+      case 'documentLink':
+        return [
+          '/// Accesses document link resolution requests sent to the $other.',
+        ];
+      case 'notebookDocument':
+        return [
+          '/// Accesses notebook document operations sent to the $other.',
+        ];
+      default:
+        return [
+          '/// Accesses the `$cleanNs` namespace sender interface.',
+        ];
+    }
   }
 }
 

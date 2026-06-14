@@ -15,32 +15,48 @@ import '../models/unions.dart';
 /// client.server.workspace.didChangeConfiguration(...);
 /// ```
 extension type ClientToServerProxy(LspConnection _c) {
+  /// Accesses text document operations (e.g., completions,
+  /// definitions, hover requests) sent to the server.
   ClientTextDocumentSender get textDocument => ClientTextDocumentSender(_c);
 
+  /// Accesses call hierarchy operations sent to the server.
   ClientCallHierarchySender get callHierarchy => ClientCallHierarchySender(_c);
 
+  /// Accesses workspace-related operations (e.g., configurations,
+  /// file events) sent from the client to the server.
   ClientWorkspaceSender get workspace => ClientWorkspaceSender(_c);
 
+  /// Accesses type hierarchy operations sent to the server.
   ClientTypeHierarchySender get typeHierarchy => ClientTypeHierarchySender(_c);
 
+  /// Accesses inlay hint operations sent to the server.
   ClientInlayHintSender get inlayHint => ClientInlayHintSender(_c);
 
+  /// Accesses general LSP lifecycle notifications or requests.
   ClientGeneralSender get general => ClientGeneralSender(_c);
 
+  /// Accesses completion item resolution requests sent to the server.
   ClientCompletionItemSender get completionItem =>
       ClientCompletionItemSender(_c);
 
+  /// Accesses code action resolution requests sent to the server.
   ClientCodeActionSender get codeAction => ClientCodeActionSender(_c);
 
+  /// Accesses workspace symbol resolution requests sent to the server.
   ClientWorkspaceSymbolSender get workspaceSymbol =>
       ClientWorkspaceSymbolSender(_c);
 
+  /// Accesses code lens resolution requests sent to the server.
   ClientCodeLensSender get codeLens => ClientCodeLensSender(_c);
 
+  /// Accesses document link resolution requests sent to the server.
   ClientDocumentLinkSender get documentLink => ClientDocumentLinkSender(_c);
 
+  /// Accesses user interface operations (e.g., showMessage,
+  /// showDocument) sent to the server's window.
   ClientWindowSender get window => ClientWindowSender(_c);
 
+  /// Accesses notebook document operations sent to the server.
   ClientNotebookDocumentSender get notebookDocument =>
       ClientNotebookDocumentSender(_c);
 }

@@ -106,7 +106,7 @@ final class LspConnection {
 
   // Lifecycle & State
 
-  LspState _state = LspState.uninitialized;
+  LspState _state = .uninitialized;
 
   /// Gets the current lifecycle state of this connection.
   LspState get state => _state;

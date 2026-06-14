@@ -15,16 +15,25 @@ import '../models/unions.dart';
 /// server.client.window.logMessage(LogMessageParams(...));
 /// ```
 extension type ServerToClientProxy(LspConnection _c) {
+  /// Accesses workspace-related operations (e.g., configurations,
+  /// file events) sent from the server to the client.
   ServerWorkspaceSender get workspace => ServerWorkspaceSender(_c);
 
+  /// Accesses user interface operations (e.g., showMessage,
+  /// showDocument) sent to the client's window.
   ServerWindowSender get window => ServerWindowSender(_c);
 
+  /// Accesses client-specific capabilities and requests.
   ServerClientSender get client => ServerClientSender(_c);
 
+  /// Sends telemetry events and logs to the client.
   ServerTelemetrySender get telemetry => ServerTelemetrySender(_c);
 
+  /// Accesses text document operations (e.g., publishing
+  /// diagnostics) sent to the client.
   ServerTextDocumentSender get textDocument => ServerTextDocumentSender(_c);
 
+  /// Accesses general LSP lifecycle notifications or requests.
   ServerGeneralSender get general => ServerGeneralSender(_c);
 }
 
