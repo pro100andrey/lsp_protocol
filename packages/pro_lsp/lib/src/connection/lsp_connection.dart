@@ -120,8 +120,7 @@ final class LspConnection {
       }
     } else {
       if (!_state.isRequestAllowed(method as RequestMethod)) {
-        if (_state == LspState.uninitialized ||
-            _state == LspState.initializing) {
+        if (_state == .uninitialized || _state == .initializing) {
           throw LspException.serverNotInitialized(
             'Server is not initialized. Request: $method',
           );
@@ -206,14 +205,14 @@ final class LspConnection {
 
         // 2. Pre-handler state changes
         if (isRequest) {
-          if (method == RequestMethod.initialize) {
-            _state = LspState.initializing;
-          } else if (method == RequestMethod.shutdown) {
-            _state = LspState.shuttingDown;
-          }
+          _state = switch (method) {
+            RequestMethod.initialize => .initializing,
+            RequestMethod.shutdown => .shuttingDown,
+            _ => _state,
+          };
         } else {
           if (method == NotificationMethod.exit) {
-            _state = LspState.exited;
+            _state = .exited;
           }
         }
 
