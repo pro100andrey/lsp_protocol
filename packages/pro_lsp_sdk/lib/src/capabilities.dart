@@ -165,7 +165,7 @@ extension LspServerCapabilities on LspServer {
     bool interFileDependencies = true,
     bool workspaceDiagnostics = false,
   }) => const CapabilitiesInferer().infer(
-    connection.registeredMethods,
+    connection.registeredMethods.toList(growable: false),
     completionTriggerCharacters: completionTriggerCharacters,
     interFileDependencies: interFileDependencies,
     workspaceDiagnostics: workspaceDiagnostics,

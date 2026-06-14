@@ -17,6 +17,44 @@ import 'lsp_exception.dart';
 /// Wraps a [StreamChannel<Object?>] carrying JSON-RPC 2.0 messages and exposes
 /// typed helpers for registering method handlers and sending outgoing messages.
 ///
+/// ## Lifecycle
+///
+/// The connection progresses through the following states:
+///
+/// 1. [LspState.uninitialized] — initial state, no requests allowed
+/// 2. [LspState.initializing] — after `initialize` request starts
+/// 3. [LspState.initialized] — after `initialize` request completes
+/// 4. [LspState.shuttingDown] — after `shutdown` request starts
+/// 5. [LspState.exited] — after `exit` notification received
+///
+/// State transitions are enforced by [_verifyState] which rejects invalid
+/// requests based on the current state.
+///
+/// ## Cancellation
+///
+/// Request cancellation is tracked via [CancellationToken] instances created
+/// per request. When a `$ /cancelRequest` notification arrives, the active
+/// token is cancelled automatically.
+///
+/// ## Services
+///
+/// [LspConnection] provides a simple service container via [register],
+/// [resolve], and [tryResolve]. Services are available to all handlers
+/// and middlewares registered on this connection.
+///
+/// ## Middleware
+///
+/// Middlewares added via [addMiddleware] wrap all request and notification
+/// handlers. They are composed via [composeMiddlewares] and receive
+/// [LspIncomingRequest] objects.
+///
+/// ## Multicast Notifications
+///
+/// Notifications support multiple handlers. Each call to
+/// [registerNotificationHandler] adds a handler, and all registered
+/// handlers are invoked sequentially for each notification. The returned
+/// unregistration function removes only that specific handler.
+///
 /// [LspConnection] is the single dependency injected into all generated
 /// handler and sender classes. You rarely interact with it directly — the
 /// typed [LspServer] API is the preferred entry point.
@@ -51,6 +89,7 @@ final class LspConnection {
               },
               'id': null,
             });
+
             return null;
           }
         })
@@ -68,19 +107,32 @@ final class LspConnection {
     );
   }
 
+  /// Maps request parameter objects to their JSON-RPC request IDs.
+  ///
+  /// Used to correlate `$/cancelRequest` notifications with the original
+  /// request so handlers can check cancellation status.
   final _requestIds = Expando<Object>();
 
+  /// The underlying JSON-RPC 2.0 peer used for sending and receiving messages.
   late final rpc.Peer _peer;
 
   /// The set of LSP methods that have a registered handler.
-  List<LSPMethod> get registeredMethods =>
-      UnmodifiableListView(_registeredMethods);
+  Set<LSPMethod> get registeredMethods =>
+      UnmodifiableSetView(_registeredMethods);
 
+  /// Internal set tracking which methods have registered handlers.
   final Set<LSPMethod> _registeredMethods = {};
 
+  /// Simple service container mapping types to their implementations.
+  ///
+  /// Services are registered via [register] and resolved via [resolve] or
+  /// [tryResolve]. Available to all handlers and middlewares.
   final Map<Type, Object> _services = {};
 
   /// Multicast notification handlers map.
+  ///
+  /// Maps method names to lists of handler functions. When a notification
+  /// arrives, all registered handlers for that method are invoked sequentially.
   final _notificationHandlers =
       <
         String,
@@ -108,9 +160,11 @@ final class LspConnection {
 
   LspState _state = .uninitialized;
 
-  /// Gets the current lifecycle state of this connection.
-  LspState get state => _state;
-
+  /// Validates that [method] is allowed in the current [_state].
+  ///
+  /// Throws [LspException.invalidRequest] if the method is not permitted.
+  /// Throws [LspException.serverNotInitialized] for requests sent before
+  /// the `initialize` handshake completes.
   void _verifyState(LSPMethod method, {required bool isNotification}) {
     if (isNotification) {
       if (!_state.isNotificationAllowed(method as NotificationMethod)) {
@@ -132,8 +186,15 @@ final class LspConnection {
     }
   }
 
+  /// Gets the current lifecycle state of this connection.
+  ///
+  /// See the [class-level documentation] for the full
+  /// lifecycle description.
+  LspState get state => _state;
+
   // Middleware & Error Handling
 
+  /// List of middleware components that wrap all request/notification handlers.
   final List<LspMiddleware> _middlewares = [];
 
   /// Gets an unmodifiable list of registered middlewares.
@@ -149,14 +210,23 @@ final class LspConnection {
 
   // Cancellation Tracking
 
+  /// Maps request IDs to their active [CancellationToken] instances.
   final _activeCancellations = <Object, CancellationToken>{};
 
+  /// Cancels the request associated with [id].
   void _cancelRequest(Object id) {
     _activeCancellations[id]?.cancel();
   }
 
   // Handler registration
 
+  /// Core handler registration logic for both requests and notifications.
+  ///
+  /// For requests: registers a single handler via the underlying [_peer].
+  /// For notifications: supports multicast by maintaining a list of handlers
+  /// per method name.
+  ///
+  /// Returns an unregistration function for notifications (null for requests).
   void Function()? _registerHandler(
     LSPMethod method, {
     required bool isRequest,
@@ -364,6 +434,9 @@ final class LspConnection {
 
   // Fallback
 
+  /// Fallback handler for unknown methods.
+  ///
+  /// Throws an [LspException] with code [LspErrorCodes.methodNotFound].
   void _handleUnknownMethod(rpc.Parameters params) {
     throw rpc.RpcException(
       LspErrorCodes.methodNotFound,
