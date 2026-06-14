@@ -37,14 +37,11 @@ final class GenerateCommand extends Command<dynamic> {
   Future<void> run() async {
     final outputPath = argResults?['output'] as String? ?? 'packages/pro_lsp';
 
-    final modelFuture = fetchLSPModel(outputPath, logger);
-    final licenseFuture = fetchLSPLicense(outputPath, logger);
+    await fetchLSPLicense(outputPath, logger);
 
-    final metaProtocol = await modelFuture;
-    final resolved = ModelResolver().resolve(metaProtocol);
+    final protocol = await fetchLSPModel(outputPath, logger);
+    final resolved = ModelResolver().resolve(protocol);
     generateCode(resolved, outputPath);
-
-    await licenseFuture;
 
     await runBuildRunner(outputPath, logger);
     await runAnalyzer(outputPath, logger);
