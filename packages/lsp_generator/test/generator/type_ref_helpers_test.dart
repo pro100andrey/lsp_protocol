@@ -80,20 +80,6 @@ void main() {
       );
     });
 
-    test('Map<String, Object?> (LSPObject mapping)', () {
-      expect(
-        _emit(toTypeRef(const DartCoreType(dartName: 'Map<String, Object?>'))),
-        equals('Map<String,Object?>'),
-      );
-    });
-
-    test('List<Object?> (LSPArray mapping)', () {
-      expect(
-        _emit(toTypeRef(const DartCoreType(dartName: 'List<Object?>'))),
-        equals('List<Object?>'),
-      );
-    });
-
     test('unknown name falls through to plain refer', () {
       expect(
         _emit(toTypeRef(const DartCoreType(dartName: 'CustomType'))),

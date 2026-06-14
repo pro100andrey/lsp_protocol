@@ -2410,8 +2410,8 @@ extension type const RelativePatternBaseUri._(Object value) {
 }
 
 /// Inline union: ImplementationResult.
-extension type const ImplementationResult._(Object value) {
-  const factory ImplementationResult.fromJson(Object json) =
+extension type const ImplementationResult._(Object? value) {
+  const factory ImplementationResult.fromJson(Object? json) =
       ImplementationResult._;
 
   factory ImplementationResult.definition(Definition value) =>
@@ -2421,30 +2421,37 @@ extension type const ImplementationResult._(Object value) {
     List<DefinitionLink> value,
   ) = ImplementationResult._;
 
-  Object toJson() => value;
+  factory ImplementationResult.nullValue() =>
+      const ImplementationResult._(null);
+
+  Object? toJson() => value;
 
   bool get isDefinition =>
       value is Location ||
       value is Map<String, dynamic> &&
-          (value as Map<String, dynamic>).containsKey('uri') &&
-          (value as Map<String, dynamic>).containsKey('range') ||
+          (value! as Map<String, dynamic>).containsKey('uri') &&
+          (value! as Map<String, dynamic>).containsKey('range') ||
       value is List;
 
-  Definition? get asDefinition => value is Definition
-      ? value as Definition
+  Definition? get asDefinition => value! is Definition
+      ? value! as Definition
       : isDefinition
-      ? Definition.fromJson(value)
+      ? Definition.fromJson(value!)
       : null;
 
   bool get isDefinitionLinkList => value is List;
 
   List<DefinitionLink>? get asDefinitionLinkList =>
-      isDefinitionLinkList ? value as List<DefinitionLink> : null;
+      isDefinitionLinkList ? value! as List<DefinitionLink> : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }
 
 /// Inline union: TypeDefinitionResult.
-extension type const TypeDefinitionResult._(Object value) {
-  const factory TypeDefinitionResult.fromJson(Object json) =
+extension type const TypeDefinitionResult._(Object? value) {
+  const factory TypeDefinitionResult.fromJson(Object? json) =
       TypeDefinitionResult._;
 
   factory TypeDefinitionResult.definition(Definition value) =>
@@ -2454,30 +2461,37 @@ extension type const TypeDefinitionResult._(Object value) {
     List<DefinitionLink> value,
   ) = TypeDefinitionResult._;
 
-  Object toJson() => value;
+  factory TypeDefinitionResult.nullValue() =>
+      const TypeDefinitionResult._(null);
+
+  Object? toJson() => value;
 
   bool get isDefinition =>
       value is Location ||
       value is Map<String, dynamic> &&
-          (value as Map<String, dynamic>).containsKey('uri') &&
-          (value as Map<String, dynamic>).containsKey('range') ||
+          (value! as Map<String, dynamic>).containsKey('uri') &&
+          (value! as Map<String, dynamic>).containsKey('range') ||
       value is List;
 
-  Definition? get asDefinition => value is Definition
-      ? value as Definition
+  Definition? get asDefinition => value! is Definition
+      ? value! as Definition
       : isDefinition
-      ? Definition.fromJson(value)
+      ? Definition.fromJson(value!)
       : null;
 
   bool get isDefinitionLinkList => value is List;
 
   List<DefinitionLink>? get asDefinitionLinkList =>
-      isDefinitionLinkList ? value as List<DefinitionLink> : null;
+      isDefinitionLinkList ? value! as List<DefinitionLink> : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }
 
 /// Inline union: DeclarationResult.
-extension type const DeclarationResult._(Object value) {
-  const factory DeclarationResult.fromJson(Object json) = DeclarationResult._;
+extension type const DeclarationResult._(Object? value) {
+  const factory DeclarationResult.fromJson(Object? json) = DeclarationResult._;
 
   factory DeclarationResult.declaration(Declaration value) =>
       DeclarationResult._(value.toJson());
@@ -2486,30 +2500,36 @@ extension type const DeclarationResult._(Object value) {
     List<DeclarationLink> value,
   ) = DeclarationResult._;
 
-  Object toJson() => value;
+  factory DeclarationResult.nullValue() => const DeclarationResult._(null);
+
+  Object? toJson() => value;
 
   bool get isDeclaration =>
       value is Location ||
       value is Map<String, dynamic> &&
-          (value as Map<String, dynamic>).containsKey('uri') &&
-          (value as Map<String, dynamic>).containsKey('range') ||
+          (value! as Map<String, dynamic>).containsKey('uri') &&
+          (value! as Map<String, dynamic>).containsKey('range') ||
       value is List;
 
-  Declaration? get asDeclaration => value is Declaration
-      ? value as Declaration
+  Declaration? get asDeclaration => value! is Declaration
+      ? value! as Declaration
       : isDeclaration
-      ? Declaration.fromJson(value)
+      ? Declaration.fromJson(value!)
       : null;
 
   bool get isDeclarationLinkList => value is List;
 
   List<DeclarationLink>? get asDeclarationLinkList =>
-      isDeclarationLinkList ? value as List<DeclarationLink> : null;
+      isDeclarationLinkList ? value! as List<DeclarationLink> : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }
 
 /// Inline union: SemanticTokensFullDeltaResult.
-extension type const SemanticTokensFullDeltaResult._(Object value) {
-  const factory SemanticTokensFullDeltaResult.fromJson(Object json) =
+extension type const SemanticTokensFullDeltaResult._(Object? value) {
+  const factory SemanticTokensFullDeltaResult.fromJson(Object? json) =
       SemanticTokensFullDeltaResult._;
 
   factory SemanticTokensFullDeltaResult.semanticTokens(SemanticTokens value) =>
@@ -2519,34 +2539,42 @@ extension type const SemanticTokensFullDeltaResult._(Object value) {
     SemanticTokensDelta value,
   ) => SemanticTokensFullDeltaResult._(value.toJson());
 
-  Object toJson() => value;
+  factory SemanticTokensFullDeltaResult.nullValue() =>
+      const SemanticTokensFullDeltaResult._(null);
+
+  Object? toJson() => value;
 
   bool get isSemanticTokens =>
       value is SemanticTokens ||
       value is Map<String, dynamic> &&
-          (value as Map<String, dynamic>).containsKey('data');
+          (value! as Map<String, dynamic>).containsKey('data');
 
-  SemanticTokens? get asSemanticTokens => value is SemanticTokens
-      ? value as SemanticTokens
+  SemanticTokens? get asSemanticTokens => value! is SemanticTokens
+      ? value! as SemanticTokens
       : isSemanticTokens
-      ? SemanticTokens.fromJson(value as Map<String, dynamic>)
+      ? SemanticTokens.fromJson(value! as Map<String, dynamic>)
       : null;
 
   bool get isSemanticTokensDelta =>
       value is SemanticTokensDelta ||
       value is Map<String, dynamic> &&
-          (value as Map<String, dynamic>).containsKey('edits');
+          (value! as Map<String, dynamic>).containsKey('edits');
 
-  SemanticTokensDelta? get asSemanticTokensDelta => value is SemanticTokensDelta
-      ? value as SemanticTokensDelta
+  SemanticTokensDelta? get asSemanticTokensDelta =>
+      value! is SemanticTokensDelta
+      ? value! as SemanticTokensDelta
       : isSemanticTokensDelta
-      ? SemanticTokensDelta.fromJson(value as Map<String, dynamic>)
+      ? SemanticTokensDelta.fromJson(value! as Map<String, dynamic>)
       : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }
 
 /// Inline union: InlineCompletionResult.
-extension type const InlineCompletionResult._(Object value) {
-  const factory InlineCompletionResult.fromJson(Object json) =
+extension type const InlineCompletionResult._(Object? value) {
+  const factory InlineCompletionResult.fromJson(Object? json) =
       InlineCompletionResult._;
 
   factory InlineCompletionResult.inlineCompletionList(
@@ -2557,37 +2585,44 @@ extension type const InlineCompletionResult._(Object value) {
     List<InlineCompletionItem> value,
   ) => InlineCompletionResult._(value.map((e) => e.toJson()).toList());
 
-  Object toJson() => value;
+  factory InlineCompletionResult.nullValue() =>
+      const InlineCompletionResult._(null);
+
+  Object? toJson() => value;
 
   bool get isInlineCompletionList =>
       value is InlineCompletionList ||
       value is Map<String, dynamic> &&
-          (value as Map<String, dynamic>).containsKey('items');
+          (value! as Map<String, dynamic>).containsKey('items');
 
   InlineCompletionList? get asInlineCompletionList =>
-      value is InlineCompletionList
-      ? value as InlineCompletionList
+      value! is InlineCompletionList
+      ? value! as InlineCompletionList
       : isInlineCompletionList
-      ? InlineCompletionList.fromJson(value as Map<String, dynamic>)
+      ? InlineCompletionList.fromJson(value! as Map<String, dynamic>)
       : null;
 
   bool get isInlineCompletionItemList => value is List;
 
   List<InlineCompletionItem>? get asInlineCompletionItemList =>
-      value is List<InlineCompletionItem>
-      ? value as List<InlineCompletionItem>
+      value! is List<InlineCompletionItem>
+      ? value! as List<InlineCompletionItem>
       : isInlineCompletionItemList
-      ? (value as List)
+      ? (value! as List)
             .map(
               (e) => InlineCompletionItem.fromJson(e as Map<String, dynamic>),
             )
             .toList()
       : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }
 
 /// Inline union: CompletionResult.
-extension type const CompletionResult._(Object value) {
-  const factory CompletionResult.fromJson(Object json) = CompletionResult._;
+extension type const CompletionResult._(Object? value) {
+  const factory CompletionResult.fromJson(Object? json) = CompletionResult._;
 
   factory CompletionResult.completionItemList(List<CompletionItem> value) =>
       CompletionResult._(value.map((e) => e.toJson()).toList());
@@ -2595,15 +2630,17 @@ extension type const CompletionResult._(Object value) {
   factory CompletionResult.completionList(CompletionList value) =>
       CompletionResult._(value.toJson());
 
-  Object toJson() => value;
+  factory CompletionResult.nullValue() => const CompletionResult._(null);
+
+  Object? toJson() => value;
 
   bool get isCompletionItemList => value is List;
 
   List<CompletionItem>? get asCompletionItemList =>
-      value is List<CompletionItem>
-      ? value as List<CompletionItem>
+      value! is List<CompletionItem>
+      ? value! as List<CompletionItem>
       : isCompletionItemList
-      ? (value as List)
+      ? (value! as List)
             .map((e) => CompletionItem.fromJson(e as Map<String, dynamic>))
             .toList()
       : null;
@@ -2611,19 +2648,23 @@ extension type const CompletionResult._(Object value) {
   bool get isCompletionList =>
       value is CompletionList ||
       value is Map<String, dynamic> &&
-          (value as Map<String, dynamic>).containsKey('isIncomplete') &&
-          (value as Map<String, dynamic>).containsKey('items');
+          (value! as Map<String, dynamic>).containsKey('isIncomplete') &&
+          (value! as Map<String, dynamic>).containsKey('items');
 
-  CompletionList? get asCompletionList => value is CompletionList
-      ? value as CompletionList
+  CompletionList? get asCompletionList => value! is CompletionList
+      ? value! as CompletionList
       : isCompletionList
-      ? CompletionList.fromJson(value as Map<String, dynamic>)
+      ? CompletionList.fromJson(value! as Map<String, dynamic>)
       : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }
 
 /// Inline union: DefinitionResult.
-extension type const DefinitionResult._(Object value) {
-  const factory DefinitionResult.fromJson(Object json) = DefinitionResult._;
+extension type const DefinitionResult._(Object? value) {
+  const factory DefinitionResult.fromJson(Object? json) = DefinitionResult._;
 
   factory DefinitionResult.definition(Definition value) =>
       DefinitionResult._(value.toJson());
@@ -2632,30 +2673,36 @@ extension type const DefinitionResult._(Object value) {
     List<DefinitionLink> value,
   ) = DefinitionResult._;
 
-  Object toJson() => value;
+  factory DefinitionResult.nullValue() => const DefinitionResult._(null);
+
+  Object? toJson() => value;
 
   bool get isDefinition =>
       value is Location ||
       value is Map<String, dynamic> &&
-          (value as Map<String, dynamic>).containsKey('uri') &&
-          (value as Map<String, dynamic>).containsKey('range') ||
+          (value! as Map<String, dynamic>).containsKey('uri') &&
+          (value! as Map<String, dynamic>).containsKey('range') ||
       value is List;
 
-  Definition? get asDefinition => value is Definition
-      ? value as Definition
+  Definition? get asDefinition => value! is Definition
+      ? value! as Definition
       : isDefinition
-      ? Definition.fromJson(value)
+      ? Definition.fromJson(value!)
       : null;
 
   bool get isDefinitionLinkList => value is List;
 
   List<DefinitionLink>? get asDefinitionLinkList =>
-      isDefinitionLinkList ? value as List<DefinitionLink> : null;
+      isDefinitionLinkList ? value! as List<DefinitionLink> : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }
 
 /// Inline union: DocumentSymbolResult.
-extension type const DocumentSymbolResult._(Object value) {
-  const factory DocumentSymbolResult.fromJson(Object json) =
+extension type const DocumentSymbolResult._(Object? value) {
+  const factory DocumentSymbolResult.fromJson(Object? json) =
       DocumentSymbolResult._;
 
   factory DocumentSymbolResult.symbolInformationList(
@@ -2665,51 +2712,62 @@ extension type const DocumentSymbolResult._(Object value) {
   factory DocumentSymbolResult.documentSymbolList(List<DocumentSymbol> value) =>
       DocumentSymbolResult._(value.map((e) => e.toJson()).toList());
 
-  Object toJson() => value;
+  factory DocumentSymbolResult.nullValue() =>
+      const DocumentSymbolResult._(null);
+
+  Object? toJson() => value;
 
   bool get isSymbolInformationList =>
-      value is List && (value as List).isEmpty ||
-      (value as List).first is SymbolInformation ||
-      (value as List).first is Map<String, dynamic> &&
-          ((value as List).first as Map<String, dynamic>).containsKey(
+      value is List && (value! as List).isEmpty ||
+      (value! as List).first is SymbolInformation ||
+      (value! as List).first is Map<String, dynamic> &&
+          ((value! as List).first! as Map<String, dynamic>).containsKey(
             'location',
           );
 
   List<SymbolInformation>? get asSymbolInformationList =>
-      value is List<SymbolInformation>
-      ? value as List<SymbolInformation>
+      value! is List<SymbolInformation>
+      ? value! as List<SymbolInformation>
       : isSymbolInformationList
-      ? (value as List)
+      ? (value! as List)
             .map((e) => SymbolInformation.fromJson(e as Map<String, dynamic>))
             .toList()
       : null;
 
   bool get isDocumentSymbolList =>
-      value is List && (value as List).isEmpty ||
-      (value as List).first is DocumentSymbol ||
-      (value as List).first is Map<String, dynamic> &&
-          ((value as List).first as Map<String, dynamic>).containsKey('name') &&
-          ((value as List).first as Map<String, dynamic>).containsKey('kind') &&
-          ((value as List).first as Map<String, dynamic>).containsKey(
+      value is List && (value! as List).isEmpty ||
+      (value! as List).first is DocumentSymbol ||
+      (value! as List).first is Map<String, dynamic> &&
+          ((value! as List).first! as Map<String, dynamic>).containsKey(
+            'name',
+          ) &&
+          ((value! as List).first! as Map<String, dynamic>).containsKey(
+            'kind',
+          ) &&
+          ((value! as List).first! as Map<String, dynamic>).containsKey(
             'range',
           ) &&
-          ((value as List).first as Map<String, dynamic>).containsKey(
+          ((value! as List).first! as Map<String, dynamic>).containsKey(
             'selectionRange',
           );
 
   List<DocumentSymbol>? get asDocumentSymbolList =>
-      value is List<DocumentSymbol>
-      ? value as List<DocumentSymbol>
+      value! is List<DocumentSymbol>
+      ? value! as List<DocumentSymbol>
       : isDocumentSymbolList
-      ? (value as List)
+      ? (value! as List)
             .map((e) => DocumentSymbol.fromJson(e as Map<String, dynamic>))
             .toList()
       : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }
 
 /// Inline union: SymbolResult.
-extension type const SymbolResult._(Object value) {
-  const factory SymbolResult.fromJson(Object json) = SymbolResult._;
+extension type const SymbolResult._(Object? value) {
+  const factory SymbolResult.fromJson(Object? json) = SymbolResult._;
 
   factory SymbolResult.symbolInformationList(List<SymbolInformation> value) =>
       SymbolResult._(value.map((e) => e.toJson()).toList());
@@ -2717,39 +2775,45 @@ extension type const SymbolResult._(Object value) {
   factory SymbolResult.workspaceSymbolList(List<WorkspaceSymbol> value) =>
       SymbolResult._(value.map((e) => e.toJson()).toList());
 
-  Object toJson() => value;
+  factory SymbolResult.nullValue() => const SymbolResult._(null);
+
+  Object? toJson() => value;
 
   bool get isSymbolInformationList =>
-      value is List && (value as List).isEmpty ||
-      (value as List).first is SymbolInformation ||
-      (value as List).first is Map<String, dynamic> &&
-          ((value as List).first as Map<String, dynamic>).containsKey(
+      value is List && (value! as List).isEmpty ||
+      (value! as List).first is SymbolInformation ||
+      (value! as List).first is Map<String, dynamic> &&
+          ((value! as List).first! as Map<String, dynamic>).containsKey(
             'location',
           );
 
   List<SymbolInformation>? get asSymbolInformationList =>
-      value is List<SymbolInformation>
-      ? value as List<SymbolInformation>
+      value! is List<SymbolInformation>
+      ? value! as List<SymbolInformation>
       : isSymbolInformationList
-      ? (value as List)
+      ? (value! as List)
             .map((e) => SymbolInformation.fromJson(e as Map<String, dynamic>))
             .toList()
       : null;
 
   bool get isWorkspaceSymbolList =>
-      value is List && (value as List).isEmpty ||
-      (value as List).first is WorkspaceSymbol ||
-      (value as List).first is Map<String, dynamic> &&
-          ((value as List).first as Map<String, dynamic>).containsKey(
+      value is List && (value! as List).isEmpty ||
+      (value! as List).first is WorkspaceSymbol ||
+      (value! as List).first is Map<String, dynamic> &&
+          ((value! as List).first! as Map<String, dynamic>).containsKey(
             'location',
           );
 
   List<WorkspaceSymbol>? get asWorkspaceSymbolList =>
-      value is List<WorkspaceSymbol>
-      ? value as List<WorkspaceSymbol>
+      value! is List<WorkspaceSymbol>
+      ? value! as List<WorkspaceSymbol>
       : isWorkspaceSymbolList
-      ? (value as List)
+      ? (value! as List)
             .map((e) => WorkspaceSymbol.fromJson(e as Map<String, dynamic>))
             .toList()
       : null;
+
+  bool get isNull => value == null;
+
+  Object? get asNull => null;
 }

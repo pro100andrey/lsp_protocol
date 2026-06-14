@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ResolvedClass {
 
- String get name; set name(String value); List<ResolvedProperty> get properties; set properties(List<ResolvedProperty> value); List<ResolvedType> get extends$; set extends$(List<ResolvedType> value); List<ResolvedType> get mixins$; set mixins$(List<ResolvedType> value); bool get isAnonymous; set isAnonymous(bool value); String? get documentation; set documentation(String? value); String? get since; set since(String? value); bool get proposed; set proposed(bool value);
+ String get name; set name(String value); List<ResolvedProperty> get properties; set properties(List<ResolvedProperty> value); List<ClassType> get extends$; set extends$(List<ClassType> value); List<ClassType> get mixins$; set mixins$(List<ClassType> value); String? get documentation; set documentation(String? value); String? get since; set since(String? value); bool get proposed; set proposed(bool value);
 /// Create a copy of ResolvedClass
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27,7 +27,7 @@ $ResolvedClassCopyWith<ResolvedClass> get copyWith => _$ResolvedClassCopyWithImp
 
 @override
 String toString() {
-  return 'ResolvedClass(name: $name, properties: $properties, extends\$: ${extends$}, mixins\$: ${mixins$}, isAnonymous: $isAnonymous, documentation: $documentation, since: $since, proposed: $proposed)';
+  return 'ResolvedClass(name: $name, properties: $properties, extends\$: ${extends$}, mixins\$: ${mixins$}, documentation: $documentation, since: $since, proposed: $proposed)';
 }
 
 
@@ -38,7 +38,7 @@ abstract mixin class $ResolvedClassCopyWith<$Res>  {
   factory $ResolvedClassCopyWith(ResolvedClass value, $Res Function(ResolvedClass) _then) = _$ResolvedClassCopyWithImpl;
 @useResult
 $Res call({
- String name, List<ResolvedProperty> properties, List<ResolvedType> extends$, List<ResolvedType> mixins$, bool isAnonymous, String? documentation, String? since, bool proposed
+ String name, List<ResolvedProperty> properties, List<ClassType> extends$, List<ClassType> mixins$, String? documentation, String? since, bool proposed
 });
 
 
@@ -55,14 +55,13 @@ class _$ResolvedClassCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedClass
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? properties = null,Object? extends$ = null,Object? mixins$ = null,Object? isAnonymous = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? properties = null,Object? extends$ = null,Object? mixins$ = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
 as List<ResolvedProperty>,extends$: null == extends$ ? _self.extends$ : extends$ // ignore: cast_nullable_to_non_nullable
-as List<ResolvedType>,mixins$: null == mixins$ ? _self.mixins$ : mixins$ // ignore: cast_nullable_to_non_nullable
-as List<ResolvedType>,isAnonymous: null == isAnonymous ? _self.isAnonymous : isAnonymous // ignore: cast_nullable_to_non_nullable
-as bool,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as List<ClassType>,mixins$: null == mixins$ ? _self.mixins$ : mixins$ // ignore: cast_nullable_to_non_nullable
+as List<ClassType>,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
 as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -150,10 +149,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  List<ResolvedProperty> properties,  List<ResolvedType> extends$,  List<ResolvedType> mixins$,  bool isAnonymous,  String? documentation,  String? since,  bool proposed)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  bool proposed)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ResolvedClass() when $default != null:
-return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.isAnonymous,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.proposed);case _:
   return orElse();
 
 }
@@ -171,10 +170,10 @@ return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.i
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  List<ResolvedProperty> properties,  List<ResolvedType> extends$,  List<ResolvedType> mixins$,  bool isAnonymous,  String? documentation,  String? since,  bool proposed)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  bool proposed)  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedClass():
-return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.isAnonymous,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.proposed);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +190,10 @@ return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.i
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  List<ResolvedProperty> properties,  List<ResolvedType> extends$,  List<ResolvedType> mixins$,  bool isAnonymous,  String? documentation,  String? since,  bool proposed)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  bool proposed)?  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedClass() when $default != null:
-return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.isAnonymous,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.proposed);case _:
   return null;
 
 }
@@ -206,14 +205,13 @@ return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.i
 
 
 class _ResolvedClass extends ResolvedClass {
-   _ResolvedClass({required this.name, required this.properties, this.extends$ = const [], this.mixins$ = const [], this.isAnonymous = false, this.documentation, this.since, this.proposed = false}): super._();
+   _ResolvedClass({required this.name, required this.properties, this.extends$ = const [], this.mixins$ = const [], this.documentation, this.since, this.proposed = false}): super._();
   
 
 @override  String name;
 @override  List<ResolvedProperty> properties;
-@override@JsonKey()  List<ResolvedType> extends$;
-@override@JsonKey()  List<ResolvedType> mixins$;
-@override@JsonKey()  bool isAnonymous;
+@override@JsonKey()  List<ClassType> extends$;
+@override@JsonKey()  List<ClassType> mixins$;
 @override  String? documentation;
 @override  String? since;
 @override@JsonKey()  bool proposed;
@@ -230,7 +228,7 @@ _$ResolvedClassCopyWith<_ResolvedClass> get copyWith => __$ResolvedClassCopyWith
 
 @override
 String toString() {
-  return 'ResolvedClass(name: $name, properties: $properties, extends\$: ${extends$}, mixins\$: ${mixins$}, isAnonymous: $isAnonymous, documentation: $documentation, since: $since, proposed: $proposed)';
+  return 'ResolvedClass(name: $name, properties: $properties, extends\$: ${extends$}, mixins\$: ${mixins$}, documentation: $documentation, since: $since, proposed: $proposed)';
 }
 
 
@@ -241,7 +239,7 @@ abstract mixin class _$ResolvedClassCopyWith<$Res> implements $ResolvedClassCopy
   factory _$ResolvedClassCopyWith(_ResolvedClass value, $Res Function(_ResolvedClass) _then) = __$ResolvedClassCopyWithImpl;
 @override @useResult
 $Res call({
- String name, List<ResolvedProperty> properties, List<ResolvedType> extends$, List<ResolvedType> mixins$, bool isAnonymous, String? documentation, String? since, bool proposed
+ String name, List<ResolvedProperty> properties, List<ClassType> extends$, List<ClassType> mixins$, String? documentation, String? since, bool proposed
 });
 
 
@@ -258,14 +256,13 @@ class __$ResolvedClassCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedClass
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? properties = null,Object? extends$ = null,Object? mixins$ = null,Object? isAnonymous = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? properties = null,Object? extends$ = null,Object? mixins$ = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
   return _then(_ResolvedClass(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
 as List<ResolvedProperty>,extends$: null == extends$ ? _self.extends$ : extends$ // ignore: cast_nullable_to_non_nullable
-as List<ResolvedType>,mixins$: null == mixins$ ? _self.mixins$ : mixins$ // ignore: cast_nullable_to_non_nullable
-as List<ResolvedType>,isAnonymous: null == isAnonymous ? _self.isAnonymous : isAnonymous // ignore: cast_nullable_to_non_nullable
-as bool,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as List<ClassType>,mixins$: null == mixins$ ? _self.mixins$ : mixins$ // ignore: cast_nullable_to_non_nullable
+as List<ClassType>,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
 as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -1125,8 +1122,8 @@ $ResolvedTypeCopyWith<$Res> get type {
 /// @nodoc
 mixin _$ResolvedEnumMember {
 
- String get name;/// Raw value as a string (may be int or string depending on enum kind).
- String get value; String? get documentation; String? get since; String? get deprecated;
+ String get name;/// Raw value (may be int or String depending on enum kind).
+ Object get value; String? get documentation; String? get since; String? get deprecated;
 /// Create a copy of ResolvedEnumMember
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1137,12 +1134,12 @@ $ResolvedEnumMemberCopyWith<ResolvedEnumMember> get copyWith => _$ResolvedEnumMe
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedEnumMember&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.value, value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,value,documentation,since,deprecated);
+int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(value),documentation,since,deprecated);
 
 @override
 String toString() {
@@ -1157,7 +1154,7 @@ abstract mixin class $ResolvedEnumMemberCopyWith<$Res>  {
   factory $ResolvedEnumMemberCopyWith(ResolvedEnumMember value, $Res Function(ResolvedEnumMember) _then) = _$ResolvedEnumMemberCopyWithImpl;
 @useResult
 $Res call({
- String name, String value, String? documentation, String? since, String? deprecated
+ String name, Object value, String? documentation, String? since, String? deprecated
 });
 
 
@@ -1177,8 +1174,7 @@ class _$ResolvedEnumMemberCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,Object? deprecated = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as String,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as String,value: null == value ? _self.value : value ,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
 as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -1266,7 +1262,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String value,  String? documentation,  String? since,  String? deprecated)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  Object value,  String? documentation,  String? since,  String? deprecated)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ResolvedEnumMember() when $default != null:
 return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
@@ -1287,7 +1283,7 @@ return $default(_that.name,_that.value,_that.documentation,_that.since,_that.dep
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String value,  String? documentation,  String? since,  String? deprecated)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  Object value,  String? documentation,  String? since,  String? deprecated)  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedEnumMember():
 return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
@@ -1307,7 +1303,7 @@ return $default(_that.name,_that.value,_that.documentation,_that.since,_that.dep
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String value,  String? documentation,  String? since,  String? deprecated)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  Object value,  String? documentation,  String? since,  String? deprecated)?  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedEnumMember() when $default != null:
 return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
@@ -1326,8 +1322,8 @@ class _ResolvedEnumMember implements ResolvedEnumMember {
   
 
 @override final  String name;
-/// Raw value as a string (may be int or string depending on enum kind).
-@override final  String value;
+/// Raw value (may be int or String depending on enum kind).
+@override final  Object value;
 @override final  String? documentation;
 @override final  String? since;
 @override final  String? deprecated;
@@ -1342,12 +1338,12 @@ _$ResolvedEnumMemberCopyWith<_ResolvedEnumMember> get copyWith => __$ResolvedEnu
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedEnumMember&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.value, value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,value,documentation,since,deprecated);
+int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(value),documentation,since,deprecated);
 
 @override
 String toString() {
@@ -1362,7 +1358,7 @@ abstract mixin class _$ResolvedEnumMemberCopyWith<$Res> implements $ResolvedEnum
   factory _$ResolvedEnumMemberCopyWith(_ResolvedEnumMember value, $Res Function(_ResolvedEnumMember) _then) = __$ResolvedEnumMemberCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String value, String? documentation, String? since, String? deprecated
+ String name, Object value, String? documentation, String? since, String? deprecated
 });
 
 
@@ -1382,8 +1378,7 @@ class __$ResolvedEnumMemberCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,Object? deprecated = freezed,}) {
   return _then(_ResolvedEnumMember(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as String,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as String,value: null == value ? _self.value : value ,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
 as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -1391,6 +1386,736 @@ as String?,
 }
 
 
+}
+
+/// @nodoc
+mixin _$ResolvedRequest {
+
+ String get method; MessageDirection get messageDirection; ResolvedType? get params; ResolvedType? get result; String? get documentation; ResolvedType? get partialResult; ResolvedType? get registrationOptions; String? get since; bool get proposed; String? get registrationMethod; ResolvedType? get errorData;
+/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ResolvedRequestCopyWith<ResolvedRequest> get copyWith => _$ResolvedRequestCopyWithImpl<ResolvedRequest>(this as ResolvedRequest, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedRequest&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&(identical(other.params, params) || other.params == params)&&(identical(other.result, result) || other.result == result)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.partialResult, partialResult) || other.partialResult == partialResult)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod)&&(identical(other.errorData, errorData) || other.errorData == errorData));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,method,messageDirection,params,result,documentation,partialResult,registrationOptions,since,proposed,registrationMethod,errorData);
+
+@override
+String toString() {
+  return 'ResolvedRequest(method: $method, messageDirection: $messageDirection, params: $params, result: $result, documentation: $documentation, partialResult: $partialResult, registrationOptions: $registrationOptions, since: $since, proposed: $proposed, registrationMethod: $registrationMethod, errorData: $errorData)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ResolvedRequestCopyWith<$Res>  {
+  factory $ResolvedRequestCopyWith(ResolvedRequest value, $Res Function(ResolvedRequest) _then) = _$ResolvedRequestCopyWithImpl;
+@useResult
+$Res call({
+ String method, MessageDirection messageDirection, ResolvedType? params, ResolvedType? result, String? documentation, ResolvedType? partialResult, ResolvedType? registrationOptions, String? since, bool proposed, String? registrationMethod, ResolvedType? errorData
+});
+
+
+$ResolvedTypeCopyWith<$Res>? get params;$ResolvedTypeCopyWith<$Res>? get result;$ResolvedTypeCopyWith<$Res>? get partialResult;$ResolvedTypeCopyWith<$Res>? get registrationOptions;$ResolvedTypeCopyWith<$Res>? get errorData;
+
+}
+/// @nodoc
+class _$ResolvedRequestCopyWithImpl<$Res>
+    implements $ResolvedRequestCopyWith<$Res> {
+  _$ResolvedRequestCopyWithImpl(this._self, this._then);
+
+  final ResolvedRequest _self;
+  final $Res Function(ResolvedRequest) _then;
+
+/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? method = null,Object? messageDirection = null,Object? params = freezed,Object? result = freezed,Object? documentation = freezed,Object? partialResult = freezed,Object? registrationOptions = freezed,Object? since = freezed,Object? proposed = null,Object? registrationMethod = freezed,Object? errorData = freezed,}) {
+  return _then(_self.copyWith(
+method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
+as String,messageDirection: null == messageDirection ? _self.messageDirection : messageDirection // ignore: cast_nullable_to_non_nullable
+as MessageDirection,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,result: freezed == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as String?,partialResult: freezed == partialResult ? _self.partialResult : partialResult // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,registrationOptions: freezed == registrationOptions ? _self.registrationOptions : registrationOptions // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
+as bool,registrationMethod: freezed == registrationMethod ? _self.registrationMethod : registrationMethod // ignore: cast_nullable_to_non_nullable
+as String?,errorData: freezed == errorData ? _self.errorData : errorData // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,
+  ));
+}
+/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get result {
+    if (_self.result == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.result!, (value) {
+    return _then(_self.copyWith(result: value));
+  });
+}/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get partialResult {
+    if (_self.partialResult == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.partialResult!, (value) {
+    return _then(_self.copyWith(partialResult: value));
+  });
+}/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get registrationOptions {
+    if (_self.registrationOptions == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.registrationOptions!, (value) {
+    return _then(_self.copyWith(registrationOptions: value));
+  });
+}/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get errorData {
+    if (_self.errorData == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.errorData!, (value) {
+    return _then(_self.copyWith(errorData: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [ResolvedRequest].
+extension ResolvedRequestPatterns on ResolvedRequest {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ResolvedRequest value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ResolvedRequest() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ResolvedRequest value)  $default,){
+final _that = this;
+switch (_that) {
+case _ResolvedRequest():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ResolvedRequest value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ResolvedRequest() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String method,  MessageDirection messageDirection,  ResolvedType? params,  ResolvedType? result,  String? documentation,  ResolvedType? partialResult,  ResolvedType? registrationOptions,  String? since,  bool proposed,  String? registrationMethod,  ResolvedType? errorData)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ResolvedRequest() when $default != null:
+return $default(_that.method,_that.messageDirection,_that.params,_that.result,_that.documentation,_that.partialResult,_that.registrationOptions,_that.since,_that.proposed,_that.registrationMethod,_that.errorData);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String method,  MessageDirection messageDirection,  ResolvedType? params,  ResolvedType? result,  String? documentation,  ResolvedType? partialResult,  ResolvedType? registrationOptions,  String? since,  bool proposed,  String? registrationMethod,  ResolvedType? errorData)  $default,) {final _that = this;
+switch (_that) {
+case _ResolvedRequest():
+return $default(_that.method,_that.messageDirection,_that.params,_that.result,_that.documentation,_that.partialResult,_that.registrationOptions,_that.since,_that.proposed,_that.registrationMethod,_that.errorData);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String method,  MessageDirection messageDirection,  ResolvedType? params,  ResolvedType? result,  String? documentation,  ResolvedType? partialResult,  ResolvedType? registrationOptions,  String? since,  bool proposed,  String? registrationMethod,  ResolvedType? errorData)?  $default,) {final _that = this;
+switch (_that) {
+case _ResolvedRequest() when $default != null:
+return $default(_that.method,_that.messageDirection,_that.params,_that.result,_that.documentation,_that.partialResult,_that.registrationOptions,_that.since,_that.proposed,_that.registrationMethod,_that.errorData);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _ResolvedRequest implements ResolvedRequest {
+  const _ResolvedRequest({required this.method, required this.messageDirection, this.params, this.result, this.documentation, this.partialResult, this.registrationOptions, this.since, this.proposed = false, this.registrationMethod, this.errorData});
+  
+
+@override final  String method;
+@override final  MessageDirection messageDirection;
+@override final  ResolvedType? params;
+@override final  ResolvedType? result;
+@override final  String? documentation;
+@override final  ResolvedType? partialResult;
+@override final  ResolvedType? registrationOptions;
+@override final  String? since;
+@override@JsonKey() final  bool proposed;
+@override final  String? registrationMethod;
+@override final  ResolvedType? errorData;
+
+/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ResolvedRequestCopyWith<_ResolvedRequest> get copyWith => __$ResolvedRequestCopyWithImpl<_ResolvedRequest>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedRequest&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&(identical(other.params, params) || other.params == params)&&(identical(other.result, result) || other.result == result)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.partialResult, partialResult) || other.partialResult == partialResult)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod)&&(identical(other.errorData, errorData) || other.errorData == errorData));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,method,messageDirection,params,result,documentation,partialResult,registrationOptions,since,proposed,registrationMethod,errorData);
+
+@override
+String toString() {
+  return 'ResolvedRequest(method: $method, messageDirection: $messageDirection, params: $params, result: $result, documentation: $documentation, partialResult: $partialResult, registrationOptions: $registrationOptions, since: $since, proposed: $proposed, registrationMethod: $registrationMethod, errorData: $errorData)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ResolvedRequestCopyWith<$Res> implements $ResolvedRequestCopyWith<$Res> {
+  factory _$ResolvedRequestCopyWith(_ResolvedRequest value, $Res Function(_ResolvedRequest) _then) = __$ResolvedRequestCopyWithImpl;
+@override @useResult
+$Res call({
+ String method, MessageDirection messageDirection, ResolvedType? params, ResolvedType? result, String? documentation, ResolvedType? partialResult, ResolvedType? registrationOptions, String? since, bool proposed, String? registrationMethod, ResolvedType? errorData
+});
+
+
+@override $ResolvedTypeCopyWith<$Res>? get params;@override $ResolvedTypeCopyWith<$Res>? get result;@override $ResolvedTypeCopyWith<$Res>? get partialResult;@override $ResolvedTypeCopyWith<$Res>? get registrationOptions;@override $ResolvedTypeCopyWith<$Res>? get errorData;
+
+}
+/// @nodoc
+class __$ResolvedRequestCopyWithImpl<$Res>
+    implements _$ResolvedRequestCopyWith<$Res> {
+  __$ResolvedRequestCopyWithImpl(this._self, this._then);
+
+  final _ResolvedRequest _self;
+  final $Res Function(_ResolvedRequest) _then;
+
+/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? method = null,Object? messageDirection = null,Object? params = freezed,Object? result = freezed,Object? documentation = freezed,Object? partialResult = freezed,Object? registrationOptions = freezed,Object? since = freezed,Object? proposed = null,Object? registrationMethod = freezed,Object? errorData = freezed,}) {
+  return _then(_ResolvedRequest(
+method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
+as String,messageDirection: null == messageDirection ? _self.messageDirection : messageDirection // ignore: cast_nullable_to_non_nullable
+as MessageDirection,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,result: freezed == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as String?,partialResult: freezed == partialResult ? _self.partialResult : partialResult // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,registrationOptions: freezed == registrationOptions ? _self.registrationOptions : registrationOptions // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
+as bool,registrationMethod: freezed == registrationMethod ? _self.registrationMethod : registrationMethod // ignore: cast_nullable_to_non_nullable
+as String?,errorData: freezed == errorData ? _self.errorData : errorData // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,
+  ));
+}
+
+/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get result {
+    if (_self.result == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.result!, (value) {
+    return _then(_self.copyWith(result: value));
+  });
+}/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get partialResult {
+    if (_self.partialResult == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.partialResult!, (value) {
+    return _then(_self.copyWith(partialResult: value));
+  });
+}/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get registrationOptions {
+    if (_self.registrationOptions == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.registrationOptions!, (value) {
+    return _then(_self.copyWith(registrationOptions: value));
+  });
+}/// Create a copy of ResolvedRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get errorData {
+    if (_self.errorData == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.errorData!, (value) {
+    return _then(_self.copyWith(errorData: value));
+  });
+}
+}
+
+/// @nodoc
+mixin _$ResolvedNotification {
+
+ String get method; MessageDirection get messageDirection; ResolvedType? get params; String? get documentation; ResolvedType? get registrationOptions; String? get since; String? get registrationMethod;
+/// Create a copy of ResolvedNotification
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ResolvedNotificationCopyWith<ResolvedNotification> get copyWith => _$ResolvedNotificationCopyWithImpl<ResolvedNotification>(this as ResolvedNotification, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedNotification&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&(identical(other.params, params) || other.params == params)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,method,messageDirection,params,documentation,registrationOptions,since,registrationMethod);
+
+@override
+String toString() {
+  return 'ResolvedNotification(method: $method, messageDirection: $messageDirection, params: $params, documentation: $documentation, registrationOptions: $registrationOptions, since: $since, registrationMethod: $registrationMethod)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ResolvedNotificationCopyWith<$Res>  {
+  factory $ResolvedNotificationCopyWith(ResolvedNotification value, $Res Function(ResolvedNotification) _then) = _$ResolvedNotificationCopyWithImpl;
+@useResult
+$Res call({
+ String method, MessageDirection messageDirection, ResolvedType? params, String? documentation, ResolvedType? registrationOptions, String? since, String? registrationMethod
+});
+
+
+$ResolvedTypeCopyWith<$Res>? get params;$ResolvedTypeCopyWith<$Res>? get registrationOptions;
+
+}
+/// @nodoc
+class _$ResolvedNotificationCopyWithImpl<$Res>
+    implements $ResolvedNotificationCopyWith<$Res> {
+  _$ResolvedNotificationCopyWithImpl(this._self, this._then);
+
+  final ResolvedNotification _self;
+  final $Res Function(ResolvedNotification) _then;
+
+/// Create a copy of ResolvedNotification
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? method = null,Object? messageDirection = null,Object? params = freezed,Object? documentation = freezed,Object? registrationOptions = freezed,Object? since = freezed,Object? registrationMethod = freezed,}) {
+  return _then(_self.copyWith(
+method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
+as String,messageDirection: null == messageDirection ? _self.messageDirection : messageDirection // ignore: cast_nullable_to_non_nullable
+as MessageDirection,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as String?,registrationOptions: freezed == registrationOptions ? _self.registrationOptions : registrationOptions // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,registrationMethod: freezed == registrationMethod ? _self.registrationMethod : registrationMethod // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+/// Create a copy of ResolvedNotification
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of ResolvedNotification
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get registrationOptions {
+    if (_self.registrationOptions == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.registrationOptions!, (value) {
+    return _then(_self.copyWith(registrationOptions: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [ResolvedNotification].
+extension ResolvedNotificationPatterns on ResolvedNotification {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ResolvedNotification value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ResolvedNotification() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ResolvedNotification value)  $default,){
+final _that = this;
+switch (_that) {
+case _ResolvedNotification():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ResolvedNotification value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ResolvedNotification() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String method,  MessageDirection messageDirection,  ResolvedType? params,  String? documentation,  ResolvedType? registrationOptions,  String? since,  String? registrationMethod)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ResolvedNotification() when $default != null:
+return $default(_that.method,_that.messageDirection,_that.params,_that.documentation,_that.registrationOptions,_that.since,_that.registrationMethod);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String method,  MessageDirection messageDirection,  ResolvedType? params,  String? documentation,  ResolvedType? registrationOptions,  String? since,  String? registrationMethod)  $default,) {final _that = this;
+switch (_that) {
+case _ResolvedNotification():
+return $default(_that.method,_that.messageDirection,_that.params,_that.documentation,_that.registrationOptions,_that.since,_that.registrationMethod);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String method,  MessageDirection messageDirection,  ResolvedType? params,  String? documentation,  ResolvedType? registrationOptions,  String? since,  String? registrationMethod)?  $default,) {final _that = this;
+switch (_that) {
+case _ResolvedNotification() when $default != null:
+return $default(_that.method,_that.messageDirection,_that.params,_that.documentation,_that.registrationOptions,_that.since,_that.registrationMethod);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _ResolvedNotification implements ResolvedNotification {
+  const _ResolvedNotification({required this.method, required this.messageDirection, this.params, this.documentation, this.registrationOptions, this.since, this.registrationMethod});
+  
+
+@override final  String method;
+@override final  MessageDirection messageDirection;
+@override final  ResolvedType? params;
+@override final  String? documentation;
+@override final  ResolvedType? registrationOptions;
+@override final  String? since;
+@override final  String? registrationMethod;
+
+/// Create a copy of ResolvedNotification
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ResolvedNotificationCopyWith<_ResolvedNotification> get copyWith => __$ResolvedNotificationCopyWithImpl<_ResolvedNotification>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedNotification&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&(identical(other.params, params) || other.params == params)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,method,messageDirection,params,documentation,registrationOptions,since,registrationMethod);
+
+@override
+String toString() {
+  return 'ResolvedNotification(method: $method, messageDirection: $messageDirection, params: $params, documentation: $documentation, registrationOptions: $registrationOptions, since: $since, registrationMethod: $registrationMethod)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ResolvedNotificationCopyWith<$Res> implements $ResolvedNotificationCopyWith<$Res> {
+  factory _$ResolvedNotificationCopyWith(_ResolvedNotification value, $Res Function(_ResolvedNotification) _then) = __$ResolvedNotificationCopyWithImpl;
+@override @useResult
+$Res call({
+ String method, MessageDirection messageDirection, ResolvedType? params, String? documentation, ResolvedType? registrationOptions, String? since, String? registrationMethod
+});
+
+
+@override $ResolvedTypeCopyWith<$Res>? get params;@override $ResolvedTypeCopyWith<$Res>? get registrationOptions;
+
+}
+/// @nodoc
+class __$ResolvedNotificationCopyWithImpl<$Res>
+    implements _$ResolvedNotificationCopyWith<$Res> {
+  __$ResolvedNotificationCopyWithImpl(this._self, this._then);
+
+  final _ResolvedNotification _self;
+  final $Res Function(_ResolvedNotification) _then;
+
+/// Create a copy of ResolvedNotification
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? method = null,Object? messageDirection = null,Object? params = freezed,Object? documentation = freezed,Object? registrationOptions = freezed,Object? since = freezed,Object? registrationMethod = freezed,}) {
+  return _then(_ResolvedNotification(
+method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
+as String,messageDirection: null == messageDirection ? _self.messageDirection : messageDirection // ignore: cast_nullable_to_non_nullable
+as MessageDirection,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as String?,registrationOptions: freezed == registrationOptions ? _self.registrationOptions : registrationOptions // ignore: cast_nullable_to_non_nullable
+as ResolvedType?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,registrationMethod: freezed == registrationMethod ? _self.registrationMethod : registrationMethod // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of ResolvedNotification
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of ResolvedNotification
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResolvedTypeCopyWith<$Res>? get registrationOptions {
+    if (_self.registrationOptions == null) {
+    return null;
+  }
+
+  return $ResolvedTypeCopyWith<$Res>(_self.registrationOptions!, (value) {
+    return _then(_self.copyWith(registrationOptions: value));
+  });
+}
 }
 
 // dart format on

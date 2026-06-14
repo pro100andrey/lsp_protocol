@@ -71,15 +71,15 @@ void main() {
       expect(v.resolveRef(_base('LSPAny')), isDartCoreType('Object?'));
     });
 
-    test('LSPObject → Map<String, Object?>', () {
-      expect(
-        v.resolveRef(_base('LSPObject')),
-        isDartCoreType('Map<String, Object?>'),
-      );
+    test('LSPObject → MapType', () {
+      final res = v.resolveRef(_base('LSPObject')) as MapType;
+      expect(res.key, isDartCoreType('String'));
+      expect(res.value, isDartCoreType('Object?'));
     });
 
-    test('LSPArray → List<Object?>', () {
-      expect(v.resolveRef(_base('LSPArray')), isDartCoreType('List<Object?>'));
+    test('LSPArray → ListType', () {
+      final res = v.resolveRef(_base('LSPArray')) as ListType;
+      expect(res.element, isDartCoreType('Object?'));
     });
   });
 
@@ -278,8 +278,6 @@ void main() {
 
     // Counts
     test('named structures count', () {
-      // anonymous classes are no longer generated (LiteralRef → InlineRecord)
-      expect(resolved.classes.any((c) => c.isAnonymous), isFalse);
       expect(resolved.classes.length, 324);
     });
 
@@ -296,7 +294,7 @@ void main() {
     });
 
     test('registry size >= named classes + enumerations + aliases', () {
-      final namedClasses = resolved.classes.where((c) => !c.isAnonymous).length;
+      final namedClasses = resolved.classes.length;
       expect(
         resolved.registry.length,
         greaterThanOrEqualTo(namedClasses + 37 + 21),
@@ -384,12 +382,12 @@ void main() {
 
       test('Error has value 1', () {
         final m = en.members.firstWhere((m) => m.name == 'Error');
-        expect(m.value, '1');
+        expect(m.value, 1);
       });
 
       test('Hint has value 4', () {
         final m = en.members.firstWhere((m) => m.name == 'Hint');
-        expect(m.value, '4');
+        expect(m.value, 4);
       });
     });
 
@@ -457,11 +455,5 @@ void main() {
       }
     });
 
-    // Anonymous class extraction
-    test('no anonymous classes — LiteralRef resolves to InlineRecord', () {
-      // Since LiteralRef is now emitted as an inline Dart record, the resolver
-      // no longer adds anonymous ResolvedClass entries to the registry.
-      expect(resolved.classes.any((c) => c.isAnonymous), isFalse);
-    });
   });
 }

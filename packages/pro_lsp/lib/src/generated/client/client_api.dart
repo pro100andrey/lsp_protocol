@@ -57,7 +57,7 @@ extension type ClientWorkspaceHandlers(LspConnection _c) {
 
   /// Registers handler for `workspace/configuration`.
   void onConfiguration(
-    Future<List<Object?>> Function(
+    Future<List<LSPAny>> Function(
       ConfigurationParams params,
       LspRequest context,
     )
@@ -65,7 +65,7 @@ extension type ClientWorkspaceHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.configuration, (j, c) async {
     final params = parseParams(j, ConfigurationParams.fromJson);
     final result = await handler(params, c);
-    return result.map((e) => (e as dynamic).toJson()).toList();
+    return result.map((e) => e.toJson()).toList();
   });
 
   /// Registers handler for `workspace/foldingRange/refresh`.
@@ -212,9 +212,9 @@ extension type ClientClientHandlers(LspConnection _c) {
 extension type ClientTelemetryHandlers(LspConnection _c) {
   /// Registers handler for `telemetry/event`.
   void onEvent(
-    Future<void> Function(Object? params, LspRequest context) handler,
+    Future<void> Function(LSPAny params, LspRequest context) handler,
   ) => _c.registerNotificationHandler(.event, (j, c) async {
-    final params = j;
+    final params = parseParams(j, LSPAny.fromJson);
     await handler(params, c);
   });
 }
@@ -261,19 +261,19 @@ extension type ClientGeneralHandlers(LspConnection _c) {
 /// Sends LSP messages to the server for the `textDocument` namespace.
 extension type ClientTextDocumentSender(LspConnection _c) {
   /// Sends the `textDocument/implementation` request to the server.
-  Future<ImplementationResult?> implementation(
+  Future<ImplementationResult> implementation(
     ImplementationParams params,
   ) async {
     final dynamic raw = await _c.sendRequest(.implementation, params.toJson());
-    return raw == null ? null : ImplementationResult.fromJson(raw as Object);
+    return ImplementationResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/typeDefinition` request to the server.
-  Future<TypeDefinitionResult?> typeDefinition(
+  Future<TypeDefinitionResult> typeDefinition(
     TypeDefinitionParams params,
   ) async {
     final dynamic raw = await _c.sendRequest(.typeDefinition, params.toJson());
-    return raw == null ? null : TypeDefinitionResult.fromJson(raw as Object);
+    return TypeDefinitionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/documentColor` request to the server.
@@ -313,9 +313,9 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/declaration` request to the server.
-  Future<DeclarationResult?> declaration(DeclarationParams params) async {
+  Future<DeclarationResult> declaration(DeclarationParams params) async {
     final dynamic raw = await _c.sendRequest(.declaration, params.toJson());
-    return raw == null ? null : DeclarationResult.fromJson(raw as Object);
+    return DeclarationResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/selectionRange` request to the server.
@@ -358,13 +358,11 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/semanticTokens/full/delta` request to the server.
-  Future<SemanticTokensFullDeltaResult?> semanticTokensFullDelta(
+  Future<SemanticTokensFullDeltaResult> semanticTokensFullDelta(
     SemanticTokensDeltaParams params,
   ) async {
     final dynamic raw = await _c.sendRequest(.delta, params.toJson());
-    return raw == null
-        ? null
-        : SemanticTokensFullDeltaResult.fromJson(raw as Object);
+    return SemanticTokensFullDeltaResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/semanticTokens/range` request to the server.
@@ -448,14 +446,14 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/inlineCompletion` request to the server.
-  Future<InlineCompletionResult?> inlineCompletion(
+  Future<InlineCompletionResult> inlineCompletion(
     InlineCompletionParams params,
   ) async {
     final dynamic raw = await _c.sendRequest(
       .inlineCompletion,
       params.toJson(),
     );
-    return raw == null ? null : InlineCompletionResult.fromJson(raw as Object);
+    return InlineCompletionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/willSaveWaitUntil` request to the server.
@@ -475,9 +473,9 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/completion` request to the server.
-  Future<CompletionResult?> completion(CompletionParams params) async {
+  Future<CompletionResult> completion(CompletionParams params) async {
     final dynamic raw = await _c.sendRequest(.completion, params.toJson());
-    return raw == null ? null : CompletionResult.fromJson(raw as Object);
+    return CompletionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/hover` request to the server.
@@ -495,9 +493,9 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/definition` request to the server.
-  Future<DefinitionResult?> definition(DefinitionParams params) async {
+  Future<DefinitionResult> definition(DefinitionParams params) async {
     final dynamic raw = await _c.sendRequest(.definition, params.toJson());
-    return raw == null ? null : DefinitionResult.fromJson(raw as Object);
+    return DefinitionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/references` request to the server.
@@ -528,11 +526,11 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/documentSymbol` request to the server.
-  Future<DocumentSymbolResult?> documentSymbol(
+  Future<DocumentSymbolResult> documentSymbol(
     DocumentSymbolParams params,
   ) async {
     final dynamic raw = await _c.sendRequest(.documentSymbol, params.toJson());
-    return raw == null ? null : DocumentSymbolResult.fromJson(raw as Object);
+    return DocumentSymbolResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/codeAction` request to the server.
@@ -721,15 +719,15 @@ extension type ClientWorkspaceSender(LspConnection _c) {
   }
 
   /// Sends the `workspace/symbol` request to the server.
-  Future<SymbolResult?> symbol(WorkspaceSymbolParams params) async {
+  Future<SymbolResult> symbol(WorkspaceSymbolParams params) async {
     final dynamic raw = await _c.sendRequest(.symbol, params.toJson());
-    return raw == null ? null : SymbolResult.fromJson(raw as Object);
+    return SymbolResult.fromJson(raw as Object);
   }
 
   /// Sends the `workspace/executeCommand` request to the server.
-  Future<Object?> executeCommand(ExecuteCommandParams params) async {
+  Future<LSPAny?> executeCommand(ExecuteCommandParams params) async {
     final dynamic raw = await _c.sendRequest(.executeCommand, params.toJson());
-    return raw;
+    return raw == null ? null : LSPAny.fromJson(raw as Object);
   }
 
   /// Sends the `workspace/didChangeWorkspaceFolders` notification to the server.

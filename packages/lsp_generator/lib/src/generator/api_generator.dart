@@ -3,7 +3,9 @@ import 'package:code_builder/code_builder.dart';
 import '../../lsp_generator.dart' show ResolveResult;
 import '../models/protocol.dart';
 import '../models/resolved_type.dart';
+import 'codegen_type.dart';
 import 'generator_helpers.dart';
+import 'type_ref_helpers.dart';
 
 /// Abstract base for generating LSP API classes (handlers, senders, proxy).
 ///
@@ -152,15 +154,15 @@ abstract class ApiGenerator {
     void addTo(
       Map<String, List<MethodEntry>> map,
       String method,
-      MetaReference? params,
-      MetaReference? result, {
+      ResolvedType? params,
+      ResolvedType? result, {
       required bool isNotification,
     }) {
       final (ns, dartName) = namespacedMethod(method);
       map
           .putIfAbsent(ns, () => [])
           .add(
-            .new(
+            MethodEntry(
               wireMethod: method,
               dartName: dartName,
               params: params,
@@ -226,99 +228,43 @@ abstract class ApiGenerator {
   /// decoding during request result processing.
   bool isUnionType(String typeName) => _unionTypeNames.contains(typeName);
 
-  /// Resolves the Dart type name for a request result [MetaReference].
+  /// Resolves the Dart type name for a request result [ResolvedType].
   ///
   /// Handles union types, nullable types, arrays, and base type mapping.
   /// Returns `'void'` when the result type is effectively null-only.
-  String resultTypeName(MetaReference? result, String wireMethod) {
-    if (result case null) {
+  String resultTypeName(ResolvedType? result, String wireMethod) {
+    if (result == null) {
+      return 'void';
+    }
+
+    final actual = result.nonNull;
+    if (actual case DartCoreType(dartName: 'Null')) {
       return 'void';
     }
 
     if (isRequestResultUnion(result)) {
-      final hasNull = switch (result) {
-        OrRef(:final items) => ApiGenerator._hasNull(items),
-        _ => false,
-      };
       final unionName = requestResultUnionName(wireMethod);
-      return hasNull ? '$unionName?' : unionName;
+      return result is NullableType ? '$unionName?' : unionName;
     }
 
-    return switch (result) {
-      BaseRef(name: 'null') => 'void',
-      TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
-      ArrayRef(:final element) => 'List<${_innerTypeName(element)}>',
-      OrRef(:final items) => _orTypeName(items),
-      _ => 'Object?',
-    };
+    return ResolvedTypeCodegenX.dartTypeName(result);
   }
-
-  /// Recursively resolves the Dart type name for an array element reference.
-  String _innerTypeName(MetaReference ref) => switch (ref) {
-    TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
-    BaseRef(:final name) => _baseDartName(name),
-    ArrayRef(:final element) => 'List<${_innerTypeName(element)}>',
-    OrRef(:final items) => _orTypeName(items),
-    _ => 'Object?',
-  };
-
-  /// Resolves the Dart type name for an `or` union of [items].
-  ///
-  /// Returns `'void'` for null-only unions, a single type (possibly nullable)
-  /// for one non-null item, or `'Object'` / `'Object?'` for unions with
-  /// multiple non-null variants.
-  String _orTypeName(List<MetaReference> items) {
-    final hasNull = items.any((i) => i is BaseRef && i.name == 'null');
-    final nonNull = items
-        .where((i) => !(i is BaseRef && i.name == 'null'))
-        .toList(growable: false);
-
-    if (nonNull.isEmpty) {
-      return 'void';
-    }
-
-    if (nonNull.length == 1) {
-      final t = _innerTypeName(nonNull.first);
-      if (!hasNull) {
-        return t;
-      }
-
-      return t.endsWith('?') ? t : '$t?';
-    }
-
-    return hasNull ? 'Object?' : 'Object';
-  }
-
-  static bool _hasNull(List<MetaReference> items) => items.any(
-    (i) => i is BaseRef && i.name == 'null',
-  );
-
-  static String _baseDartName(String name) => switch (name) {
-    'null' => 'Null',
-    'string' => 'String',
-    'integer' => 'int',
-    'uinteger' => 'int',
-    'decimal' => 'double',
-    'boolean' => 'bool',
-    'DocumentUri' => 'String',
-    'URI' => 'String',
-    _ => 'Object?',
-  };
 
   /// Resolves the Dart type name for request/notification parameters.
   ///
   /// Returns an empty string when parameters are absent or null-only,
   /// indicating no parameter is needed in the generated method signature.
-  String paramsTypeName(MetaReference? params) {
+  String paramsTypeName(ResolvedType? params) {
     if (params == null) {
       return '';
     }
 
-    return switch (params) {
-      TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
-      BaseRef(name: 'null') => '',
-      _ => 'Object?',
-    };
+    final actual = params.nonNull;
+    if (actual case DartCoreType(dartName: 'Null')) {
+      return '';
+    }
+
+    return ResolvedTypeCodegenX.dartTypeName(params);
   }
 
   /// Builds the handler function type string for a given method signature.
@@ -943,10 +889,10 @@ final class MethodEntry {
   final String dartName;
 
   /// Parameter type reference, or null if the method takes no parameters.
-  final MetaReference? params;
+  final ResolvedType? params;
 
   /// Result type reference, or null if the method has no result.
-  final MetaReference? result;
+  final ResolvedType? result;
 
   /// Whether this entry represents a notification (true) or a request (false).
   final bool isNotification;

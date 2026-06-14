@@ -30,12 +30,8 @@ extension ModelGeneratorEnums on ModelGenerator {
                 ..static = true
                 ..modifier = .constant
                 ..name = safeIdentifier(toLowerCamelCase(member.name))
-                ..assignment = refer(en.name).call([
-                  if (isInt)
-                    literalNum(int.parse(member.value))
-                  else
-                    literalString(member.value),
-                ]).code
+                ..assignment =
+                    refer(en.name).call([literal(member.value)]).code
                 ..docs.addAll(
                   _docLines(
                     member.documentation,
@@ -88,11 +84,7 @@ extension ModelGeneratorEnums on ModelGenerator {
         b.values.add(
           .new((b) {
             b.name = safeIdentifier(toLowerCamelCase(member.name));
-            b.arguments.add(
-              isInt
-                  ? literalNum(int.parse(member.value))
-                  : literalString(member.value),
-            );
+            b.arguments.add(literal(member.value));
             if (member.deprecated != null) {
               b.annotations.add(
                 refer('Deprecated').call([literalString(member.deprecated!)]),

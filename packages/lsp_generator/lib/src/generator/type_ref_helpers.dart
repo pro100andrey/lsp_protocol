@@ -82,29 +82,6 @@ TypeReference _dartCore(String name) => switch (name) {
       ..symbol = 'Object'
       ..isNullable = true,
   ),
-  'Map<String, Object?>' => TypeReference(
-    (b) => b
-      ..symbol = 'Map'
-      ..types.addAll([
-        TypeReference((b) => b..symbol = 'String'),
-        TypeReference(
-          (b) => b
-            ..symbol = 'Object'
-            ..isNullable = true,
-        ),
-      ]),
-  ),
-  'List<Object?>' => TypeReference(
-    (b) => b
-      ..symbol = 'List'
-      ..types.add(
-        TypeReference(
-          (b) => b
-            ..symbol = 'Object'
-            ..isNullable = true,
-        ),
-      ),
-  ),
   _ => TypeReference((b) => b..symbol = name),
 };
 

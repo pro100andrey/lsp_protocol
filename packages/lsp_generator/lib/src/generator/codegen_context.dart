@@ -52,15 +52,11 @@ final class CodegenContext {
 
       final inherited = <ResolvedProperty>[];
       for (final ext in c.extends$) {
-        if (ext case ClassType(:final ref)) {
-          inherited.addAll(helper(ref));
-        }
+        inherited.addAll(helper(ext.ref));
       }
 
       for (final mix in c.mixins$) {
-        if (mix case ClassType(:final ref)) {
-          inherited.addAll(helper(ref));
-        }
+        inherited.addAll(helper(mix.ref));
       }
 
       final ownNames = c.properties.map((p) => p.name).toSet();

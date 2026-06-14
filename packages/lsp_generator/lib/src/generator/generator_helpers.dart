@@ -2,7 +2,8 @@ import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:meta/meta.dart';
 
-import '../models/protocol.dart';
+import '../models/resolved_type.dart';
+import 'type_ref_helpers.dart';
 
 /// Adds helpers that complement [Expression] from `code_builder`.
 extension ExpressionX on Expression {
@@ -219,14 +220,9 @@ String capitalize(String s) =>
 
 /// Returns true if [result] represents a union type with multiple non-null
 /// items, indicating a synthesized union result for a request.
-bool isRequestResultUnion(MetaReference? result) {
-  if (result is OrRef) {
-    final nonNullItems = result.items
-        .where((i) => !(i is BaseRef && i.name == 'null'))
-        .toList(growable: false);
-
-    return nonNullItems.length > 1;
+bool isRequestResultUnion(ResolvedType? result) {
+  if (result == null) {
+    return false;
   }
-
-  return false;
+  return result.nonNull is UnionType;
 }

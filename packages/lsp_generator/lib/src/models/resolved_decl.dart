@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'protocol.dart';
 import 'resolved_type.dart';
 
 part 'resolved_decl.freezed.dart';
@@ -24,9 +25,8 @@ abstract class ResolvedClass with _$ResolvedClass implements ResolvedDecl {
   factory ResolvedClass({
     required String name,
     required List<ResolvedProperty> properties,
-    @Default([]) List<ResolvedType> extends$,
-    @Default([]) List<ResolvedType> mixins$,
-    @Default(false) bool isAnonymous,
+    @Default([]) List<ClassType> extends$,
+    @Default([]) List<ClassType> mixins$,
     String? documentation,
     String? since,
     @Default(false) bool proposed,
@@ -86,10 +86,42 @@ abstract class ResolvedEnumMember with _$ResolvedEnumMember {
   const factory ResolvedEnumMember({
     required String name,
 
-    /// Raw value as a string (may be int or string depending on enum kind).
-    required String value,
+    /// Raw value (may be int or String depending on enum kind).
+    required Object value,
     String? documentation,
     String? since,
     String? deprecated,
   }) = _ResolvedEnumMember;
+}
+
+/// A resolved request endpoint.
+@freezed
+abstract class ResolvedRequest with _$ResolvedRequest {
+  const factory ResolvedRequest({
+    required String method,
+    required MessageDirection messageDirection,
+    ResolvedType? params,
+    ResolvedType? result,
+    String? documentation,
+    ResolvedType? partialResult,
+    ResolvedType? registrationOptions,
+    String? since,
+    @Default(false) bool proposed,
+    String? registrationMethod,
+    ResolvedType? errorData,
+  }) = _ResolvedRequest;
+}
+
+/// A resolved notification endpoint.
+@freezed
+abstract class ResolvedNotification with _$ResolvedNotification {
+  const factory ResolvedNotification({
+    required String method,
+    required MessageDirection messageDirection,
+    ResolvedType? params,
+    String? documentation,
+    ResolvedType? registrationOptions,
+    String? since,
+    String? registrationMethod,
+  }) = _ResolvedNotification;
 }

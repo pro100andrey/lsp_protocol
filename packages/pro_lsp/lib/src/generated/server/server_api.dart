@@ -32,7 +32,7 @@ extension type ServerToClientProxy(LspConnection _c) {
 extension type ServerTextDocumentHandlers(LspConnection _c) {
   /// Registers handler for `textDocument/implementation`.
   void onImplementation(
-    Future<ImplementationResult?> Function(
+    Future<ImplementationResult> Function(
       ImplementationParams params,
       LspRequest context,
     )
@@ -40,12 +40,12 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.implementation, (j, c) async {
     final params = parseParams(j, ImplementationParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `textDocument/typeDefinition`.
   void onTypeDefinition(
-    Future<TypeDefinitionResult?> Function(
+    Future<TypeDefinitionResult> Function(
       TypeDefinitionParams params,
       LspRequest context,
     )
@@ -53,7 +53,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.typeDefinition, (j, c) async {
     final params = parseParams(j, TypeDefinitionParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `textDocument/documentColor`.
@@ -97,7 +97,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
 
   /// Registers handler for `textDocument/declaration`.
   void onDeclaration(
-    Future<DeclarationResult?> Function(
+    Future<DeclarationResult> Function(
       DeclarationParams params,
       LspRequest context,
     )
@@ -105,7 +105,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.declaration, (j, c) async {
     final params = parseParams(j, DeclarationParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `textDocument/selectionRange`.
@@ -149,7 +149,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
 
   /// Registers handler for `textDocument/semanticTokens/full/delta`.
   void onSemanticTokensFullDelta(
-    Future<SemanticTokensFullDeltaResult?> Function(
+    Future<SemanticTokensFullDeltaResult> Function(
       SemanticTokensDeltaParams params,
       LspRequest context,
     )
@@ -157,7 +157,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.delta, (j, c) async {
     final params = parseParams(j, SemanticTokensDeltaParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `textDocument/semanticTokens/range`.
@@ -250,7 +250,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
 
   /// Registers handler for `textDocument/inlineCompletion`.
   void onInlineCompletion(
-    Future<InlineCompletionResult?> Function(
+    Future<InlineCompletionResult> Function(
       InlineCompletionParams params,
       LspRequest context,
     )
@@ -258,7 +258,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.inlineCompletion, (j, c) async {
     final params = parseParams(j, InlineCompletionParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `textDocument/willSaveWaitUntil`.
@@ -276,7 +276,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
 
   /// Registers handler for `textDocument/completion`.
   void onCompletion(
-    Future<CompletionResult?> Function(
+    Future<CompletionResult> Function(
       CompletionParams params,
       LspRequest context,
     )
@@ -284,7 +284,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.completion, (j, c) async {
     final params = parseParams(j, CompletionParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `textDocument/hover`.
@@ -311,7 +311,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
 
   /// Registers handler for `textDocument/definition`.
   void onDefinition(
-    Future<DefinitionResult?> Function(
+    Future<DefinitionResult> Function(
       DefinitionParams params,
       LspRequest context,
     )
@@ -319,7 +319,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.definition, (j, c) async {
     final params = parseParams(j, DefinitionParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `textDocument/references`.
@@ -347,7 +347,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
 
   /// Registers handler for `textDocument/documentSymbol`.
   void onDocumentSymbol(
-    Future<DocumentSymbolResult?> Function(
+    Future<DocumentSymbolResult> Function(
       DocumentSymbolParams params,
       LspRequest context,
     )
@@ -355,7 +355,7 @@ extension type ServerTextDocumentHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.documentSymbol, (j, c) async {
     final params = parseParams(j, DocumentSymbolParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `textDocument/codeAction`.
@@ -600,7 +600,7 @@ extension type ServerWorkspaceHandlers(LspConnection _c) {
 
   /// Registers handler for `workspace/symbol`.
   void onSymbol(
-    Future<SymbolResult?> Function(
+    Future<SymbolResult> Function(
       WorkspaceSymbolParams params,
       LspRequest context,
     )
@@ -608,16 +608,17 @@ extension type ServerWorkspaceHandlers(LspConnection _c) {
   ) => _c.registerRequestHandler(.symbol, (j, c) async {
     final params = parseParams(j, WorkspaceSymbolParams.fromJson);
     final result = await handler(params, c);
-    return result?.toJson();
+    return result.toJson();
   });
 
   /// Registers handler for `workspace/executeCommand`.
   void onExecuteCommand(
-    Future<Object?> Function(ExecuteCommandParams params, LspRequest context)
+    Future<LSPAny?> Function(ExecuteCommandParams params, LspRequest context)
     handler,
-  ) => _c.registerRequestHandler(.executeCommand, (j, c) {
+  ) => _c.registerRequestHandler(.executeCommand, (j, c) async {
     final params = parseParams(j, ExecuteCommandParams.fromJson);
-    return handler(params, c);
+    final result = await handler(params, c);
+    return result?.toJson();
   });
 
   /// Registers handler for `workspace/didChangeWorkspaceFolders`.
@@ -926,9 +927,9 @@ extension type ServerWorkspaceSender(LspConnection _c) {
   }
 
   /// Sends the `workspace/configuration` request to the client.
-  Future<List<Object?>> configuration(ConfigurationParams params) async {
+  Future<List<LSPAny>> configuration(ConfigurationParams params) async {
     final dynamic raw = await _c.sendRequest(.configuration, params.toJson());
-    return (raw as List).cast<Object>().toList();
+    return (raw as List).map((e) => LSPAny.fromJson(e as Object)).toList();
   }
 
   /// Sends the `workspace/foldingRange/refresh` request to the client.
@@ -1023,7 +1024,7 @@ extension type ServerClientSender(LspConnection _c) {
 /// Sends LSP messages to the client for the `telemetry` namespace.
 extension type ServerTelemetrySender(LspConnection _c) {
   /// Sends the `telemetry/event` notification to the client.
-  void event(Object? params) => _c.sendNotification(.event, params);
+  void event(LSPAny params) => _c.sendNotification(.event, params.toJson());
 }
 
 /// Sends LSP messages to the client for the `textDocument` namespace.

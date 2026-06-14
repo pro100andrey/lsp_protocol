@@ -8,10 +8,9 @@ typedef ResolveResult = ({
   List<ResolvedClass> classes,
   List<ResolvedEnum> enumerations,
   List<ResolvedAlias> aliases,
-  List<MetaNotification> notifications,
-  List<MetaRequest> requests,
+  List<ResolvedNotification> notifications,
+  List<ResolvedRequest> requests,
 });
-
 
 /// Two-pass visitor that builds resolved IR from a [MetaProtocol].
 ///
@@ -30,6 +29,8 @@ final class ModelResolver {
   final List<ResolvedClass> _classes = [];
   final List<ResolvedEnum> _enumerations = [];
   final List<ResolvedAlias> _aliases = [];
+  final List<ResolvedNotification> _notifications = [];
+  final List<ResolvedRequest> _requests = [];
 
 
   /// Runs both resolution passes over [protocol].
@@ -42,8 +43,8 @@ final class ModelResolver {
       classes: List.unmodifiable(_classes),
       enumerations: List.unmodifiable(_enumerations),
       aliases: List.unmodifiable(_aliases),
-      notifications: protocol.notifications,
-      requests: protocol.requests,
+      notifications: List.unmodifiable(_notifications),
+      requests: List.unmodifiable(_requests),
     );
   }
 
@@ -62,7 +63,16 @@ final class ModelResolver {
       final ResolvedAlias a => AliasType(ref: a),
       _ => DartCoreType(dartName: name),
     },
-    BaseRef(:final name) => DartCoreType(dartName: _baseRefToDart(name)),
+    BaseRef(:final name) => switch (name) {
+      'LSPObject' => const MapType(
+          key: DartCoreType(dartName: 'String'),
+          value: DartCoreType(dartName: 'Object?'),
+        ),
+      'LSPArray' => const ListType(
+          element: DartCoreType(dartName: 'Object?'),
+        ),
+      _ => DartCoreType(dartName: _baseRefToDart(name)),
+    },
     ArrayRef(:final element) => ListType(
       element: resolveRef(
         element,
@@ -182,8 +192,6 @@ final class ModelResolver {
     'URI' || 'DocumentUri' => 'String',
     'RegExp' => 'String',
     'LSPAny' => 'Object?',
-    'LSPObject' => 'Map<String, Object?>',
-    'LSPArray' => 'List<Object?>',
     _ => name, // fallback: keep as-is
   };
 }
@@ -226,7 +234,7 @@ final class _RegisterPass extends MetaVisitor {
             name: m.name,
             value: switch (m.value) {
               EnumRawValueString(:final raw) => raw,
-              EnumRawValueInteger(:final raw) => raw,
+              EnumRawValueInteger(:final raw) => int.parse(raw),
             },
             documentation: m.documentation,
             since: m.since,
@@ -307,13 +315,13 @@ final class _ResolvePass extends MetaVisitor {
 
     for (final ref in structure.extends$) {
       cls.extends$.add(
-        _r.resolveRef(ref, parentName: structure.name),
+        _r.resolveRef(ref, parentName: structure.name) as ClassType,
       );
     }
 
     for (final ref in structure.mixins$) {
       cls.mixins$.add(
-        _r.resolveRef(ref, parentName: structure.name),
+        _r.resolveRef(ref, parentName: structure.name) as ClassType,
       );
     }
   }
@@ -337,8 +345,78 @@ final class _ResolvePass extends MetaVisitor {
   void visitEnumeration(MetaEnumeration enumeration) {}
 
   @override
-  void visitRequest(MetaRequest request) {}
+  void visitRequest(MetaRequest request) {
+    _r._requests.add(
+      ResolvedRequest(
+        method: request.method,
+        messageDirection: request.messageDirection,
+        params: request.params != null
+            ? _r.resolveRef(
+                request.params!,
+                parentName: request.method,
+                fieldName: 'params',
+              )
+            : null,
+        result: request.result != null
+            ? _r.resolveRef(
+                request.result!,
+                parentName: request.method,
+                fieldName: 'result',
+              )
+            : null,
+        documentation: request.documentation,
+        partialResult: request.partialResult != null
+            ? _r.resolveRef(
+                request.partialResult!,
+                parentName: request.method,
+                fieldName: 'partialResult',
+              )
+            : null,
+        registrationOptions: request.registrationOptions != null
+            ? _r.resolveRef(
+                request.registrationOptions!,
+                parentName: request.method,
+                fieldName: 'registrationOptions',
+              )
+            : null,
+        since: request.since,
+        proposed: request.proposed ?? false,
+        registrationMethod: request.registrationMethod,
+        errorData: request.errorData != null
+            ? _r.resolveRef(
+                request.errorData!,
+                parentName: request.method,
+                fieldName: 'errorData',
+              )
+            : null,
+      ),
+    );
+  }
 
   @override
-  void visitNotification(MetaNotification notification) {}
+  void visitNotification(MetaNotification notification) {
+    _r._notifications.add(
+      ResolvedNotification(
+        method: notification.method,
+        messageDirection: notification.messageDirection,
+        params: notification.params != null
+            ? _r.resolveRef(
+                notification.params!,
+                parentName: notification.method,
+                fieldName: 'params',
+              )
+            : null,
+        documentation: notification.documentation,
+        registrationOptions: notification.registrationOptions != null
+            ? _r.resolveRef(
+                notification.registrationOptions!,
+                parentName: notification.method,
+                fieldName: 'registrationOptions',
+              )
+            : null,
+        since: notification.since,
+        registrationMethod: notification.registrationMethod,
+      ),
+    );
+  }
 }

@@ -24,6 +24,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
     return switch (actual) {
       DartCoreType() => _castDartCore(val, typeName, capSuffix),
       ClassType(:final ref) => _castUnion(
+        val,
         refer(ref.name),
         () => refer(ref.name).newInstanceNamed('fromJson', [
           val.bareAsA(
@@ -37,6 +38,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
         capSuffix,
       ),
       EnumType(:final ref) => _castUnion(
+        val,
         refer(ref.name),
         () => refer(
           ref.name,
@@ -76,19 +78,16 @@ extension ResolvedTypeCodegenX on ResolvedType {
   /// is an instance of the target type and either casting it or performing
   /// a conversion via [conversion].
   Expression _castUnion(
+    Expression val,
     Reference ref,
     Expression Function() conversion,
     String capSuffix,
-  ) {
-    final val = refer('value');
-
-    return val
-        .isA(ref)
-        .conditional(
-          val.bareAsA(ref),
-          refer('is$capSuffix').conditional(conversion(), literalNull),
-        );
-  }
+  ) => val
+      .isA(ref)
+      .conditional(
+        val.bareAsA(ref),
+        refer('is$capSuffix').conditional(conversion(), literalNull),
+      );
 
   /// Generates a cast expression for alias types, delegating to [_castUnion]
   /// for sealed union or scalar union aliases, or to [_castSimple] otherwise.
@@ -102,6 +101,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
     if (ctx.sealedUnionNames.contains(ref.name) ||
         ctx.scalarUnionNames.contains(ref.name)) {
       return _castUnion(
+        val,
         aliasRef,
         () => aliasRef.newInstanceNamed('fromJson', [val]),
         capSuffix,

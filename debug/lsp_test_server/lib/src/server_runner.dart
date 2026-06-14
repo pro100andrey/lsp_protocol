@@ -197,19 +197,19 @@ final class ServerRunner {
 
       final text = _docService.get(params.textDocument.uri);
       if (text == null) {
-        return null;
+        return .nullValue();
       }
 
       final lines = _splitLines(text);
       if (params.position.line >= lines.length) {
-        return null;
+        return .nullValue();
       }
 
       final line = lines[params.position.line];
       final word = _extractWordAtPosition(line, params.position.character);
 
       if (word == null || word.isEmpty) {
-        return null;
+        return .nullValue();
       }
 
       // Find all occurrences of the word in the document

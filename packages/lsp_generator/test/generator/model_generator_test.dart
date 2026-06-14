@@ -35,11 +35,9 @@ String _getStructures(ResolveResult state) =>
 ResolvedClass _cls(
   String name, {
   List<ResolvedProperty> properties = const [],
-  bool isAnonymous = false,
 }) => ResolvedClass(
   name: name,
   properties: properties,
-  isAnonymous: isAnonymous,
 );
 
 ResolvedProperty _prop(
@@ -66,7 +64,7 @@ ResolvedEnum _enum(
   supportsCustomValues: supportsCustomValues,
 );
 
-ResolvedEnumMember _member(String name, String value, {String? doc}) =>
+ResolvedEnumMember _member(String name, Object value, {String? doc}) =>
     ResolvedEnumMember(name: name, value: value, documentation: doc);
 
 ResolvedAlias _alias(String name, ResolvedType type) =>
@@ -76,8 +74,8 @@ ResolveResult _stateWith({
   List<ResolvedClass> classes = const [],
   List<ResolvedEnum> enumerations = const [],
   List<ResolvedAlias> aliases = const [],
-  List<MetaNotification> notifications = const [],
-  List<MetaRequest> requests = const [],
+  List<ResolvedNotification> notifications = const [],
+  List<ResolvedRequest> requests = const [],
 }) => (
   registry: <String, ResolvedDecl>{},
   classes: classes,
@@ -207,14 +205,6 @@ void main() {
       expect(src, isNot(contains("'line': line")));
     });
 
-    test('anonymous classes appear before named classes', () {
-      final anon = _cls(r'Anon$0', isAnonymous: true);
-      final named = _cls('Foo');
-      final state = _stateWith(classes: [named, anon]);
-      final src = _getStructures(state);
-      expect(src.indexOf(r'Anon$0'), lessThan(src.indexOf('Foo')));
-    });
-
     test('nested class factory fromJson uses json_serializable delegation', () {
       final posClass = _cls(
         'Position',
@@ -330,8 +320,8 @@ void main() {
       final state = _stateWith(
         enumerations: [
           _enum('DiagnosticSeverity', 'int', [
-            _member('error', '1'),
-            _member('warning', '2'),
+            _member('error', 1),
+            _member('warning', 2),
           ]),
         ],
       );
@@ -704,8 +694,8 @@ void main() {
         classes: result.classes.toList(),
         enumerations: result.enumerations.toList(),
         aliases: result.aliases.toList(),
-        notifications: <MetaNotification>[],
-        requests: <MetaRequest>[],
+        notifications: <ResolvedNotification>[],
+        requests: <ResolvedRequest>[],
       );
       // ProgressToken is scalar → lives in buildScalarUnions(), not
       // buildUnions().
@@ -794,14 +784,6 @@ void main() {
       // ChangeAnnotationIdentifier is a String alias in LSP 3.17.
       expect(src, contains('typedef ChangeAnnotationIdentifier'));
     });
-
-    test('anonymous classes appear before named classes in structures', () {
-      final src = _getStructures(resolved);
-      // All anonymous classes (isAnonymous == true) have \$ in their name by
-      // convention.Just verify Position (a named class) exists and the output
-      // is not empty.
-      expect(src, contains('abstract class'));
-    });
   });
 
   // @Deprecated annotations
@@ -846,7 +828,6 @@ void main() {
                 deprecated: 'Old.',
               ),
             ],
-            isAnonymous: true,
           ),
         ],
       );

@@ -118,6 +118,7 @@ extension ResolvedTypeCheckX on ResolvedType {
               val,
               val.isA(refer('Map<String, dynamic>')),
               ctx,
+              parentUnion,
             ),
           ),
 
@@ -155,16 +156,18 @@ extension ResolvedTypeCheckX on ResolvedType {
       val,
       val.isA(refer('Map<String, dynamic>')),
       ctx,
+      parentUnion,
     ),
 
     TupleType(:final items) =>
       val
           .isA(refer('List'))
           .and(
-            val
-                .asA(refer('List'))
-                .property('length')
-                .equalTo(literalNum(items.length)),
+            _nullSafeCast(
+              val,
+              refer('List'),
+              parentUnion,
+            ).property('length').equalTo(literalNum(items.length)),
           ),
 
     StringLiteralType() => val.isA(refer('String')),
@@ -197,8 +200,16 @@ extension ResolvedTypeCheckX on ResolvedType {
 
       if (hasMultipleLists) {
         final isList = val.isA(refer('List'));
-        final isEmpty = val.asA(refer('List')).property('isEmpty');
-        final firstItem = val.asA(refer('List')).property('first');
+        final isEmpty = _nullSafeCast(
+          val,
+          refer('List'),
+          parentUnion,
+        ).property('isEmpty');
+        final firstItem = _nullSafeCast(
+          val,
+          refer('List'),
+          parentUnion,
+        ).property('first');
         final elementCheck = element.checkExpression(
           firstItem,
           ctx,
@@ -222,6 +233,7 @@ extension ResolvedTypeCheckX on ResolvedType {
     Expression val,
     Expression fallback,
     CodegenContext ctx,
+    UnionType? parentUnion,
   ) {
     if (structChecks != null) {
       final key = ctx.singleStructKey(actual);
@@ -233,7 +245,7 @@ extension ResolvedTypeCheckX on ResolvedType {
         final isMap = val.isA(mapRef);
 
         if (check.fieldName.isNotEmpty) {
-          final mapVal = val.asA(mapRef);
+          final mapVal = _nullSafeCast(val, mapRef, parentUnion);
           if (check.literalValue != null) {
             final hasLiteral = mapVal
                 .index(literalString(check.fieldName))
@@ -252,7 +264,7 @@ extension ResolvedTypeCheckX on ResolvedType {
 
           for (final other in structChecks) {
             if (other != check && other.fieldName.isNotEmpty) {
-              final mapVal = val.asA(mapRef);
+              final mapVal = _nullSafeCast(val, mapRef, parentUnion);
               final hasKey = mapVal.property('containsKey').call([
                 literalString(other.fieldName),
               ]);
@@ -265,7 +277,7 @@ extension ResolvedTypeCheckX on ResolvedType {
         }
       }
     }
-    return _buildRequiredPropertiesCheck(actual, val, ctx);
+    return _buildRequiredPropertiesCheck(actual, val, ctx, parentUnion);
   }
 
   /// Generates a check expression that validates all required (non-optional)
@@ -274,6 +286,7 @@ extension ResolvedTypeCheckX on ResolvedType {
     ResolvedType type,
     Expression val,
     CodegenContext ctx,
+    UnionType? parentUnion,
   ) {
     final actual = type.nonNull;
 
@@ -297,7 +310,7 @@ extension ResolvedTypeCheckX on ResolvedType {
     }
 
     var cond = val.isA(mapRef);
-    final mapVal = val.asA(mapRef);
+    final mapVal = _nullSafeCast(val, mapRef, parentUnion);
 
     for (final req in reqs) {
       cond = cond.and(
@@ -306,5 +319,25 @@ extension ResolvedTypeCheckX on ResolvedType {
     }
 
     return cond;
+  }
+
+  Expression _nullSafeCast(
+    Expression val,
+    Reference typeRef,
+    UnionType? parentUnion,
+  ) {
+    final hasNull =
+        parentUnion != null &&
+        parentUnion.items.any(
+          (item) => item is DartCoreType && item.dartName == 'Null',
+        );
+
+    final isValueRef = val is Reference && val.symbol == 'value';
+
+    if (isValueRef && !hasNull) {
+      return val.asA(typeRef);
+    }
+
+    return val.nullChecked.asA(typeRef);
   }
 }

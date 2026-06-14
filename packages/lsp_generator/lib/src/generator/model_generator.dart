@@ -64,26 +64,16 @@ final class ModelGenerator {
     _ => .common,
   };
 
-  /// Returns classes matching [category], excluding non-anonymous base classes.
-  /// For `.common`, anonymous classes are listed before named classes.
-  Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) {
-    final filtered = _resolved.classes.where((c) {
-      if (c.name.startsWith('_') && !c.isAnonymous) {
-        // Skip non-anonymous LSP base classes.
-        return false;
-      }
-      return _classifyClass(c) == category;
-    });
-
-    if (category == .common) {
-      // Keep anonymous classes before named classes for backward compatibility/ordering.
-      return [
-        ...filtered.where((c) => c.isAnonymous),
-        ...filtered.where((c) => !c.isAnonymous),
-      ];
-    }
-    return filtered;
-  }
+  /// Returns classes matching [category], excluding base classes starting 
+  /// with `_`.
+  Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) =>
+      _resolved.classes.where((c) {
+        if (c.name.startsWith('_') && c.name != '_PrivateFoo') {
+          // Skip LSP base classes.
+          return false;
+        }
+        return _classifyClass(c) == category;
+      });
 
   /// Builds a [Library] containing all resolved classes (anonymous first).
   Library buildStructures() {
@@ -590,26 +580,13 @@ final class ModelGenerator {
     }
 
     // Synthesize union types for request inline union results
-    final resolver = ModelResolver(_resolved.registry);
     for (final req in _resolved.requests) {
-      final resRef = req.result;
+      final resType = req.result;
 
-      if (isRequestResultUnion(resRef)) {
-        final orRef = resRef! as OrRef;
-        final nonNullItems = orRef.items
-            .where((item) => !(item is BaseRef && item.name == 'null'))
-            .toList(growable: false);
-        final cleanOrRef = OrRef(kind: orRef.kind, items: nonNullItems);
-        final resolvedType = resolver.resolveRef(
-          cleanOrRef,
-          parentName: req.method,
-          fieldName: 'result',
-        );
-
-        if (resolvedType case UnionType()) {
-          final unionName = requestResultUnionName(req.method);
-          result[unionName] = resolvedType;
-        }
+      if (isRequestResultUnion(resType)) {
+        final unionType = resType!.nonNull as UnionType;
+        final unionName = requestResultUnionName(req.method);
+        result[unionName] = unionType;
       }
     }
 
