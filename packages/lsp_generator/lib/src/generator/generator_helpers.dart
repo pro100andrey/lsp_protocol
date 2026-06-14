@@ -78,8 +78,6 @@ extension StringRef on String {
   );
 }
 
-
-
 /// Formats and emits a [Library] as a string.
 String formatLibrary(Library lib) {
   final emitter = DartEmitter.scoped(

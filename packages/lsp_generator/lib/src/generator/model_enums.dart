@@ -30,8 +30,7 @@ extension ModelGeneratorEnums on ModelGenerator {
                 ..static = true
                 ..modifier = .constant
                 ..name = safeIdentifier(toLowerCamelCase(member.name))
-                ..assignment =
-                    refer(en.name).call([literal(member.value)]).code
+                ..assignment = refer(en.name).call([literal(member.value)]).code
                 ..docs.addAll(
                   _docLines(
                     member.documentation,

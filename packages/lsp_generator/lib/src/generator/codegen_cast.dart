@@ -128,34 +128,23 @@ extension ResolvedTypeCodegenX on ResolvedType {
     final elName = dartTypeName(element);
 
     return switch (elActual) {
-      ClassType(:final ref) => (() {
-        final elClassRef = refer(ref.name);
-        final listClass = TypeReference(
-          (b) => b
-            ..symbol = 'List'
-            ..types.add(elClassRef),
-        );
-        final mapExpr = _listMapExpr(val, (e) => _fromJsonExpr(e, elClassRef));
-        return _castBlock(val, listClass, mapExpr, capSuffix);
-      })(),
+      ClassType(:final ref) => _castListBlock(
+        val,
+        refer(ref.name),
+        (e) => _fromJsonExpr(e, refer(ref.name)),
+        capSuffix,
+      ),
       AliasType(:final ref)
           when ctx.sealedUnionNames.contains(ref.name) ||
               ctx.scalarUnionNames.contains(ref.name) =>
-        (() {
-          final elAliasRef = refer(ref.name);
-          final listAlias = TypeReference(
-            (b) => b
-              ..symbol = 'List'
-              ..types.add(elAliasRef),
-          );
-          final mapExpr = _listMapExpr(
-            val,
-            (e) => elAliasRef.newInstanceNamed('fromJson', [
-              e.bareAsA(refer('Object')),
-            ]),
-          );
-          return _castBlock(val, listAlias, mapExpr, capSuffix);
-        })(),
+        _castListBlock(
+          val,
+          refer(ref.name),
+          (e) => refer(ref.name).newInstanceNamed('fromJson', [
+            e.bareAsA(refer('Object')),
+          ]),
+          capSuffix,
+        ),
       _ => _castSimple(
         val,
         capSuffix,
@@ -166,6 +155,21 @@ extension ResolvedTypeCodegenX on ResolvedType {
         ),
       ),
     };
+  }
+
+  Expression _castListBlock(
+    Expression val,
+    Reference elRef,
+    Expression Function(Expression e) convert,
+    String capSuffix,
+  ) {
+    final listClass = TypeReference(
+      (b) => b
+        ..symbol = 'List'
+        ..types.add(elRef),
+    );
+    final mapExpr = _listMapExpr(val, convert);
+    return _castBlock(val, listClass, mapExpr, capSuffix);
   }
 
   /// Creates a `.map().toList()` expression on [val], applying [convert]
@@ -250,9 +254,8 @@ extension ResolvedTypeCodegenX on ResolvedType {
               : castOrCreate;
         })(),
         _ => (() {
-          final fTypeName = f.optional || f.type is NullableType
-              ? '${dartTypeName(fActual)}?'
-              : dartTypeName(fActual);
+          final isNullable = f.optional || f.type is NullableType;
+          final fTypeName = '${dartTypeName(fActual)}${isNullable ? '?' : ''}';
           return mapAccess.bareAsA(refer(fTypeName));
         })(),
       };

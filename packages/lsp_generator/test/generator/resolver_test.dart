@@ -454,6 +454,5 @@ void main() {
         cls.mixins$.forEach(checkType);
       }
     });
-
   });
 }

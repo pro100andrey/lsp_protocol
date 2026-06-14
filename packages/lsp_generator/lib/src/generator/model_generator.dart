@@ -64,7 +64,7 @@ final class ModelGenerator {
     _ => .common,
   };
 
-  /// Returns classes matching [category], excluding base classes starting 
+  /// Returns classes matching [category], excluding base classes starting
   /// with `_`.
   Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) =>
       _resolved.classes.where((c) {

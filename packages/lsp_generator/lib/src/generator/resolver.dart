@@ -32,7 +32,6 @@ final class ModelResolver {
   final List<ResolvedNotification> _notifications = [];
   final List<ResolvedRequest> _requests = [];
 
-
   /// Runs both resolution passes over [protocol].
   ResolveResult resolve(MetaProtocol protocol) {
     _RegisterPass(this).run(protocol);
@@ -65,12 +64,12 @@ final class ModelResolver {
     },
     BaseRef(:final name) => switch (name) {
       'LSPObject' => const MapType(
-          key: DartCoreType(dartName: 'String'),
-          value: DartCoreType(dartName: 'Object?'),
-        ),
+        key: DartCoreType(dartName: 'String'),
+        value: DartCoreType(dartName: 'Object?'),
+      ),
       'LSPArray' => const ListType(
-          element: DartCoreType(dartName: 'Object?'),
-        ),
+        element: DartCoreType(dartName: 'Object?'),
+      ),
       _ => DartCoreType(dartName: _baseRefToDart(name)),
     },
     ArrayRef(:final element) => ListType(
@@ -344,51 +343,41 @@ final class _ResolvePass extends MetaVisitor {
   @override
   void visitEnumeration(MetaEnumeration enumeration) {}
 
+  ResolvedType? _resolveOptionalRef(
+    MetaReference? ref,
+    String parentName,
+    String fieldName,
+  ) => ref != null
+      ? _r.resolveRef(ref, parentName: parentName, fieldName: fieldName)
+      : null;
+
   @override
   void visitRequest(MetaRequest request) {
     _r._requests.add(
       ResolvedRequest(
         method: request.method,
         messageDirection: request.messageDirection,
-        params: request.params != null
-            ? _r.resolveRef(
-                request.params!,
-                parentName: request.method,
-                fieldName: 'params',
-              )
-            : null,
-        result: request.result != null
-            ? _r.resolveRef(
-                request.result!,
-                parentName: request.method,
-                fieldName: 'result',
-              )
-            : null,
+        params: _resolveOptionalRef(request.params, request.method, 'params'),
+        result: _resolveOptionalRef(request.result, request.method, 'result'),
         documentation: request.documentation,
-        partialResult: request.partialResult != null
-            ? _r.resolveRef(
-                request.partialResult!,
-                parentName: request.method,
-                fieldName: 'partialResult',
-              )
-            : null,
-        registrationOptions: request.registrationOptions != null
-            ? _r.resolveRef(
-                request.registrationOptions!,
-                parentName: request.method,
-                fieldName: 'registrationOptions',
-              )
-            : null,
+        partialResult: _resolveOptionalRef(
+          request.partialResult,
+          request.method,
+          'partialResult',
+        ),
+        registrationOptions: _resolveOptionalRef(
+          request.registrationOptions,
+          request.method,
+          'registrationOptions',
+        ),
         since: request.since,
         proposed: request.proposed ?? false,
         registrationMethod: request.registrationMethod,
-        errorData: request.errorData != null
-            ? _r.resolveRef(
-                request.errorData!,
-                parentName: request.method,
-                fieldName: 'errorData',
-              )
-            : null,
+        errorData: _resolveOptionalRef(
+          request.errorData,
+          request.method,
+          'errorData',
+        ),
       ),
     );
   }
@@ -399,21 +388,17 @@ final class _ResolvePass extends MetaVisitor {
       ResolvedNotification(
         method: notification.method,
         messageDirection: notification.messageDirection,
-        params: notification.params != null
-            ? _r.resolveRef(
-                notification.params!,
-                parentName: notification.method,
-                fieldName: 'params',
-              )
-            : null,
+        params: _resolveOptionalRef(
+          notification.params,
+          notification.method,
+          'params',
+        ),
         documentation: notification.documentation,
-        registrationOptions: notification.registrationOptions != null
-            ? _r.resolveRef(
-                notification.registrationOptions!,
-                parentName: notification.method,
-                fieldName: 'registrationOptions',
-              )
-            : null,
+        registrationOptions: _resolveOptionalRef(
+          notification.registrationOptions,
+          notification.method,
+          'registrationOptions',
+        ),
         since: notification.since,
         registrationMethod: notification.registrationMethod,
       ),
