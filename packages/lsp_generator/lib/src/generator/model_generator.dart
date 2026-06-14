@@ -16,11 +16,7 @@ part 'model_enums.dart';
 part 'model_serialization.dart';
 part 'model_unions.dart';
 
-// ---------------------------------------------------------------------------
-
 enum _ClassCategory { capabilities, params, common }
-
-// ---------------------------------------------------------------------------
 
 /// Builds code_builder [Library] objects from a fully resolved [ResolvedState].
 ///
@@ -50,9 +46,7 @@ final class ModelGenerator {
   /// Inline anonymous unions collected from all class properties.
   late final Map<String, UnionType> _inlineUnions = _computeInlineUnions();
 
-  // ---------------------------------------------------------------------------
   // Public API
-  // ---------------------------------------------------------------------------
 
   _ClassCategory _classifyClass(ResolvedClass cls) => switch (cls.name) {
     final s when s.contains('Capabilities') => .capabilities,
@@ -361,9 +355,7 @@ final class ModelGenerator {
     .both => 'both directions',
   };
 
-  // ---------------------------------------------------------------------------
   // Documentation helpers
-  // ---------------------------------------------------------------------------
 
   /// Formats a documentation string into `/// ` doc-comment lines.
   ///

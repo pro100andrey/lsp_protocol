@@ -4,9 +4,7 @@ import 'package:lsp_generator/src/models/resolved_decl.dart';
 import 'package:lsp_generator/src/models/resolved_type.dart';
 import 'package:test/test.dart';
 
-// ---------------------------------------------------------------------------
 // Helpers
-// ---------------------------------------------------------------------------
 
 /// Emit a [Reference] back to a source string.
 String _emit(Reference ref) {
@@ -29,9 +27,7 @@ ResolvedAlias _alias(String name) => ResolvedAlias(
   type: const DartCoreType(dartName: 'String'),
 );
 
-// ---------------------------------------------------------------------------
 // Tests
-// ---------------------------------------------------------------------------
 
 void main() {
   group('toTypeRef — DartCoreType', () {

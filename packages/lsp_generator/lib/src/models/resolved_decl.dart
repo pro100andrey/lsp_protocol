@@ -13,9 +13,7 @@ sealed class ResolvedDecl {
   bool get proposed;
 }
 
-// ---------------------------------------------------------------------------
 // Concrete declarations
-// ---------------------------------------------------------------------------
 
 /// A resolved structure or extracted inline literal.
 ///
@@ -67,9 +65,7 @@ abstract class ResolvedAlias with _$ResolvedAlias implements ResolvedDecl {
   ResolvedAlias._();
 }
 
-// ---------------------------------------------------------------------------
 // Sub-nodes
-// ---------------------------------------------------------------------------
 
 /// A property of a [ResolvedClass].
 @freezed

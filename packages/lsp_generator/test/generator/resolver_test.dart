@@ -7,9 +7,7 @@ import 'package:lsp_generator/src/models/resolved_decl.dart';
 import 'package:lsp_generator/src/models/resolved_type.dart';
 import 'package:test/test.dart';
 
-// ---------------------------------------------------------------------------
 // Helpers
-// ---------------------------------------------------------------------------
 
 MetaReference _base(String name) =>
     MetaReference.base(kind: TypeKind.base$, name: name);
@@ -23,9 +21,7 @@ Matcher isDartCoreType(String name) =>
 Matcher isStringLiteralType(String value) =>
     isA<StringLiteralType>().having((t) => t.value, 'value', value);
 
-// ---------------------------------------------------------------------------
 // Tests
-// ---------------------------------------------------------------------------
 
 void main() {
   // =========================================================================
@@ -280,9 +276,7 @@ void main() {
       visitor = ModelResolver()..resolve(protocol);
     });
 
-    // -----------------------------------------------------------------------
     // Counts
-    // -----------------------------------------------------------------------
     test('named structures count', () {
       // anonymous classes are no longer generated (LiteralRef → InlineRecord)
       expect(visitor.classes.any((c) => c.isAnonymous), isFalse);
@@ -309,9 +303,7 @@ void main() {
       );
     });
 
-    // -----------------------------------------------------------------------
     // Position
-    // -----------------------------------------------------------------------
     group('Position', () {
       late ResolvedClass pos;
       setUp(() => pos = visitor.registry['Position']! as ResolvedClass);
@@ -333,9 +325,7 @@ void main() {
       });
     });
 
-    // -----------------------------------------------------------------------
     // Range
-    // -----------------------------------------------------------------------
     group('Range', () {
       late ResolvedClass range;
       setUp(() => range = visitor.registry['Range']! as ResolvedClass);
@@ -353,9 +343,7 @@ void main() {
       });
     });
 
-    // -----------------------------------------------------------------------
     // TextDocumentItem
-    // -----------------------------------------------------------------------
     group('TextDocumentItem', () {
       late ResolvedClass cls;
       setUp(
@@ -383,9 +371,7 @@ void main() {
       });
     });
 
-    // -----------------------------------------------------------------------
     // DiagnosticSeverity
-    // -----------------------------------------------------------------------
     group('DiagnosticSeverity', () {
       late ResolvedEnum en;
       setUp(
@@ -407,9 +393,7 @@ void main() {
       });
     });
 
-    // -----------------------------------------------------------------------
     // Enums with supportsCustomValues
-    // -----------------------------------------------------------------------
     test('FoldingRangeKind supportsCustomValues', () {
       final en = visitor.registry['FoldingRangeKind']! as ResolvedEnum;
       expect(en.supportsCustomValues, isTrue);
@@ -425,9 +409,7 @@ void main() {
       expect(en.supportsCustomValues, isTrue);
     });
 
-    // -----------------------------------------------------------------------
     // LSPAny alias
-    // -----------------------------------------------------------------------
     test('LSPAny alias is a ResolvedAlias', () {
       expect(visitor.registry['LSPAny'], isA<ResolvedAlias>());
     });
@@ -437,9 +419,7 @@ void main() {
       expect(alias.type, isA<UnionType>());
     });
 
-    // -----------------------------------------------------------------------
     // Cross-reference identity
-    // -----------------------------------------------------------------------
     test('all ClassType refs are identical to registry entries', () {
       void checkType(ResolvedType type) {
         switch (type) {
@@ -477,9 +457,7 @@ void main() {
       }
     });
 
-    // -----------------------------------------------------------------------
     // Anonymous class extraction
-    // -----------------------------------------------------------------------
     test('no anonymous classes — LiteralRef resolves to InlineRecord', () {
       // Since LiteralRef is now emitted as an inline Dart record, the resolver
       // no longer adds anonymous ResolvedClass entries to the registry.

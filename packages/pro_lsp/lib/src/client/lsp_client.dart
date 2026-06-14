@@ -30,9 +30,7 @@ final class LspClient {
   final LspConnection _connection;
   var _isListening = false;
 
-  // -------------------------------------------------------------------------
   // Incoming (server → client) handler namespaces
-  // -------------------------------------------------------------------------
 
   /// Handlers for protocol-level (`$/`) methods.
   late final general = ClientGeneralHandlers(_connection);
@@ -49,9 +47,7 @@ final class LspClient {
   /// Handlers for `workspace/*` (e.g. `applyEdit`).
   late final workspace = ClientWorkspaceHandlers(_connection);
 
-  // -------------------------------------------------------------------------
   // Outgoing (client → server)
-  // -------------------------------------------------------------------------
 
   /// Proxy for all outgoing (client → server) messages.
   late final server = ClientToServerProxy(_connection);
@@ -59,9 +55,7 @@ final class LspClient {
   /// Capabilities of the server, populated after [start].
   ServerCapabilities? serverCapabilities;
 
-  // -------------------------------------------------------------------------
   // High-level API
-  // -------------------------------------------------------------------------
 
   /// Starts the client, performs the `initialize` handshake, and waits for the
   /// server to be ready.
@@ -117,9 +111,7 @@ final class LspClient {
     return result;
   }
 
-  // -------------------------------------------------------------------------
   // Lifecycle & State
-  // -------------------------------------------------------------------------
 
   /// Registered middleware list for request/notification interception.
   List<LspMiddleware> get middlewares => _connection.middlewares;

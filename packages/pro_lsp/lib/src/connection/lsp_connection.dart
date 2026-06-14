@@ -104,9 +104,7 @@ final class LspConnection {
   /// Tries to resolve a registered service, returns null if not found.
   T? tryResolve<T extends Object>() => _services[T] as T?;
 
-  // ---------------------------------------------------------------------------
   // Lifecycle & State
-  // ---------------------------------------------------------------------------
 
   LspState _state = LspState.uninitialized;
 
@@ -135,9 +133,7 @@ final class LspConnection {
     }
   }
 
-  // ---------------------------------------------------------------------------
   // Middleware & Error Handling
-  // ---------------------------------------------------------------------------
 
   final List<LspMiddleware> _middlewares = [];
 
@@ -152,9 +148,7 @@ final class LspConnection {
   /// The error callback triggered on unhandled exceptions in handlers.
   void Function(Object error, StackTrace stackTrace)? onError;
 
-  // ---------------------------------------------------------------------------
   // Cancellation Tracking
-  // ---------------------------------------------------------------------------
 
   final _activeCancellations = <Object, CancellationToken>{};
 
@@ -162,9 +156,7 @@ final class LspConnection {
     _activeCancellations[id]?.cancel();
   }
 
-  // ---------------------------------------------------------------------------
   // Handler registration
-  // ---------------------------------------------------------------------------
 
   void Function()? _registerHandler(
     LSPMethod method, {
@@ -353,9 +345,7 @@ final class LspConnection {
     },
   )!;
 
-  // ---------------------------------------------------------------------------
   // Outgoing
-  // ---------------------------------------------------------------------------
 
   /// Sends a notification to the client (no response expected).
   void sendNotification(NotificationMethod method, [Object? params]) =>
@@ -365,9 +355,7 @@ final class LspConnection {
   Future<Object?> sendRequest(RequestMethod method, [Object? params]) =>
       _peer.sendRequest(method.value, params);
 
-  // ---------------------------------------------------------------------------
   // Lifecycle
-  // ---------------------------------------------------------------------------
 
   /// Starts processing incoming messages.  Returns when the channel closes.
   Future<void> listen() => _peer.listen();
@@ -375,9 +363,7 @@ final class LspConnection {
   /// Closes the underlying channel and stops processing.
   Future<void> close() => _peer.close();
 
-  // ---------------------------------------------------------------------------
   // Fallback
-  // ---------------------------------------------------------------------------
 
   void _handleUnknownMethod(rpc.Parameters params) {
     throw rpc.RpcException(

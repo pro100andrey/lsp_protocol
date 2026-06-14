@@ -33,9 +33,7 @@ final class ModelResolver {
     _ResolvePass(this).run(protocol);
   }
 
-  // ---------------------------------------------------------------------------
   // Helpers used by both passes
-  // ---------------------------------------------------------------------------
 
   /// Converts a [MetaReference] to a [ResolvedType].
   /// Must be called during pass 2 (registry is complete).
@@ -85,9 +83,7 @@ final class ModelResolver {
     StringLiteralRef(:final value) => StringLiteralType(value: value),
   };
 
-  // ---------------------------------------------------------------------------
   // Private resolution helpers
-  // ---------------------------------------------------------------------------
 
   ResolvedType _resolveOr(
     OrRef ref, {
@@ -172,9 +168,7 @@ final class ModelResolver {
   };
 }
 
-// ---------------------------------------------------------------------------
 // Pass 1 — register shell declarations
-// ---------------------------------------------------------------------------
 
 final class _RegisterPass extends MetaVisitor {
   _RegisterPass(this._r);
@@ -256,9 +250,7 @@ final class _RegisterPass extends MetaVisitor {
   void visitNotification(MetaNotification notification) {}
 }
 
-// ---------------------------------------------------------------------------
 // Pass 2 — resolve all MetaReference → ResolvedType
-// ---------------------------------------------------------------------------
 
 final class _ResolvePass extends MetaVisitor {
   _ResolvePass(this._r);

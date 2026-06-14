@@ -38,9 +38,7 @@ final class LspByteStreamChannel {
   }
 }
 
-// ---------------------------------------------------------------------------
 // Incoming — Content-Length parser
-// ---------------------------------------------------------------------------
 
 /// Parses a [Stream<List<int>>] byte stream into LSP message objects.
 ///
@@ -246,9 +244,7 @@ final class _Parser {
   }
 }
 
-// ---------------------------------------------------------------------------
 // Outgoing — Content-Length writer
-// ---------------------------------------------------------------------------
 
 final class _LspMessageSink implements StreamSink<Object?> {
   _LspMessageSink(this._byteSink);

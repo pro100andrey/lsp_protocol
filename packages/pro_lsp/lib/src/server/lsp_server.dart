@@ -70,9 +70,7 @@ final class LspServer {
   /// Access to the underlying low-level connection.
   LspConnection get connection => _connection;
 
-  // -------------------------------------------------------------------------
   // Incoming handler namespaces
-  // -------------------------------------------------------------------------
 
   /// Handlers for `initialize`, `shutdown`, `initialized`, `exit`, and
   /// protocol-level (`$/`) methods.
@@ -114,16 +112,12 @@ final class LspServer {
   /// Handlers for `window/*` client→server notifications.
   late final window = ServerWindowHandlers(_connection);
 
-  // -------------------------------------------------------------------------
   // Outgoing (server → client)
-  // -------------------------------------------------------------------------
 
   /// Proxy for all outgoing (server → client) messages.
   late final client = ServerToClientProxy(_connection);
 
-  // -------------------------------------------------------------------------
   // Dependency Injection (Service Locator)
-  // -------------------------------------------------------------------------
 
   /// Registers a service in the server's connection context.
   void register<T extends Object>(T service) =>
@@ -135,9 +129,7 @@ final class LspServer {
   /// Tries to resolve a registered service, returns null if not found.
   T? tryResolve<T extends Object>() => _connection.tryResolve<T>();
 
-  // -------------------------------------------------------------------------
   // Core properties
-  // -------------------------------------------------------------------------
 
   /// Registered middleware list for request/notification interception.
   List<LspMiddleware> get middlewares => _connection.middlewares;
@@ -157,9 +149,7 @@ final class LspServer {
   set onError(void Function(Object error, StackTrace stackTrace)? value) =>
       _connection.onError = value;
 
-  // -------------------------------------------------------------------------
   // Feature Lifecycle
-  // -------------------------------------------------------------------------
 
   final List<LspFeature> _features = [];
 
@@ -181,9 +171,7 @@ final class LspServer {
     }
   }
 
-  // -------------------------------------------------------------------------
   // Lifecycle
-  // -------------------------------------------------------------------------
 
   /// Starts processing incoming messages.
   ///

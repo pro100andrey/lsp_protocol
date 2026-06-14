@@ -45,9 +45,7 @@ final class ServerRunner {
   }
 
   void _registerHandlers() {
-    // -------------------------------------------------------------------------
     // General
-    // -------------------------------------------------------------------------
     _server.general.onInitialize((params, context) async {
       logInfo('Received initialize request');
 
@@ -109,9 +107,7 @@ final class ServerRunner {
       logInfo('Received exit notification');
     });
 
-    // -------------------------------------------------------------------------
     // Workspace folders
-    // -------------------------------------------------------------------------
 
     _server.workspace.onDidChangeWorkspaceFolders((params, context) async {
       logInfo(
@@ -120,9 +116,7 @@ final class ServerRunner {
       );
     });
 
-    // -------------------------------------------------------------------------
     // Text Document Sync
-    // -------------------------------------------------------------------------
 
     _server.textDocument.onDidOpen((params, context) async {
       logInfo('Document opened: ${params.textDocument.uri}');
@@ -169,9 +163,7 @@ final class ServerRunner {
       _clearDiagnostics(params.textDocument.uri);
     });
 
-    // -------------------------------------------------------------------------
     // textDocument/hover
-    // -------------------------------------------------------------------------
 
     _server.textDocument.onHover((params, context) async {
       logInfo(
@@ -182,9 +174,7 @@ final class ServerRunner {
       return _hoverService.getHover(params);
     });
 
-    // -------------------------------------------------------------------------
     // textDocument/completion
-    // -------------------------------------------------------------------------
 
     _server.textDocument.onCompletion((params, context) async {
       logInfo('Completion request: ${params.textDocument.uri}');
@@ -197,9 +187,7 @@ final class ServerRunner {
       return .completionItemList(items);
     });
 
-    // -------------------------------------------------------------------------
     // textDocument/definition
-    // -------------------------------------------------------------------------
 
     _server.textDocument.onDefinition((params, context) async {
       logInfo(
@@ -256,9 +244,7 @@ final class ServerRunner {
       return DefinitionResult.definition(Definition.locationList(locations));
     });
 
-    // -------------------------------------------------------------------------
     // textDocument/references
-    // -------------------------------------------------------------------------
 
     _server.textDocument.onReferences((params, context) async {
       logInfo(
@@ -308,9 +294,7 @@ final class ServerRunner {
       return locations;
     });
 
-    // -------------------------------------------------------------------------
     // textDocument/documentSymbol
-    // -------------------------------------------------------------------------
 
     _server.textDocument.onDocumentSymbol((params, context) async {
       logInfo('DocumentSymbol request: ${params.textDocument.uri}');
@@ -358,9 +342,7 @@ final class ServerRunner {
       return .documentSymbolList(symbols);
     });
 
-    // -------------------------------------------------------------------------
     // workspace/symbol
-    // -------------------------------------------------------------------------
 
     _server.workspace.onSymbol((params, context) async {
       logInfo('WorkspaceSymbol request: query="${params.query}"');
@@ -403,9 +385,7 @@ final class ServerRunner {
       return .symbolInformationList(allSymbols);
     });
 
-    // -------------------------------------------------------------------------
     // Workspace file operations
-    // -------------------------------------------------------------------------
 
     _server.workspace.onWillCreateFiles((params, context) async {
       logInfo(

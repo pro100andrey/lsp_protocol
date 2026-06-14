@@ -45,9 +45,7 @@ abstract class ApiGenerator {
 
   late final Set<String> _unionTypeNames;
 
-  // -------------------------------------------------------------------------
   // Abstract Configuration Getters
-  // -------------------------------------------------------------------------
 
   String get side;
   String get otherSide;
@@ -60,9 +58,7 @@ abstract class ApiGenerator {
 
   Reference handlerMethodReturns(bool isNotification) => tVoid;
 
-  // -------------------------------------------------------------------------
   // Common Build Entry Point
-  // -------------------------------------------------------------------------
 
   Library buildApi() {
     final groups = groupByNamespace(
@@ -173,9 +169,7 @@ abstract class ApiGenerator {
     );
   }
 
-  // -------------------------------------------------------------------------
   // Helper Methods
-  // -------------------------------------------------------------------------
 
   bool isUnionType(String typeName) => _unionTypeNames.contains(typeName);
 
@@ -462,9 +456,7 @@ abstract class ApiGenerator {
           ? 'general'
           : namespace)}Sender';
 
-  // -------------------------------------------------------------------------
   // AST Generation Methods
-  // -------------------------------------------------------------------------
 
   ExtensionType _buildHandlerClass(
     String namespace,

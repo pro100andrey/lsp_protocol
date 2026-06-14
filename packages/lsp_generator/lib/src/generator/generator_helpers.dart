@@ -93,9 +93,7 @@ extension ExpressionExtensions on Expression {
       (nullSafe ? nullSafeProperty(name) : property(name)) as BinaryExpression;
 }
 
-// ---------------------------------------------------------------------------
 // Common Type and Expression References
-// ---------------------------------------------------------------------------
 
 /// Common type references.
 final tString = refer('String');

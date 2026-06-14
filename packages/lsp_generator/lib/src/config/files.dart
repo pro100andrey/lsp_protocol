@@ -4,9 +4,7 @@ import 'package:path/path.dart' as p;
 
 /// File name constants for all generated output files.
 class Files {
-  // ---------------------------------------------------------------------------
   // Model files
-  // ---------------------------------------------------------------------------
 
   static const structures = 'structures.dart';
   static const structuresCapabilities = 'structures.capabilities.dart';
@@ -18,24 +16,18 @@ class Files {
   static const unions = 'unions.dart';
   static const methods = 'methods.dart';
 
-  // ---------------------------------------------------------------------------
   // Part files
-  // ---------------------------------------------------------------------------
 
   static const structuresFreezed = 'structures.freezed.dart';
   static const structuresG = 'structures.g.dart';
   static const enumerationsG = 'enumerations.g.dart';
   static const methodsG = 'methods.g.dart';
 
-  // ---------------------------------------------------------------------------
   // Server API
-  // ---------------------------------------------------------------------------
 
   static const serverApi = 'server_api.dart';
 
-  // ---------------------------------------------------------------------------
   // Client API
-  // ---------------------------------------------------------------------------
 
   static const clientApi = 'client_api.dart';
 }
@@ -49,9 +41,7 @@ class Files {
 /// outputDir.structuresFile.writeAsStringSync(source);
 /// ```
 extension GeneratedPaths on Directory {
-  // ---------------------------------------------------------------------------
   // Directories
-  // ---------------------------------------------------------------------------
 
   Directory get libDir => Directory(p.join(path, 'lib'));
 
@@ -64,9 +54,7 @@ extension GeneratedPaths on Directory {
   Directory get clientDir =>
       Directory(p.join(libDir.path, 'src', 'generated', 'client'));
 
-  // ---------------------------------------------------------------------------
   // Model files
-  // ---------------------------------------------------------------------------
 
   File get structuresFile => File(p.join(modelsDir.path, Files.structures));
   File get structuresCapabilitiesFile =>
@@ -81,21 +69,15 @@ extension GeneratedPaths on Directory {
   File get unionsFile => File(p.join(modelsDir.path, Files.unions));
   File get methodsFile => File(p.join(modelsDir.path, Files.methods));
 
-  // ---------------------------------------------------------------------------
   // Server API
-  // ---------------------------------------------------------------------------
 
   File get serverApiFile => File(p.join(serverDir.path, Files.serverApi));
 
-  // ---------------------------------------------------------------------------
   // Client API
-  // ---------------------------------------------------------------------------
 
   File get clientApiFile => File(p.join(clientDir.path, Files.clientApi));
 
-  // ---------------------------------------------------------------------------
   // Barrel file
-  // ---------------------------------------------------------------------------
 
   /// Package name extracted from the last path segment.
   String get packageName => p.basename(path);

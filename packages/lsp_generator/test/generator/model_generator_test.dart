@@ -11,9 +11,7 @@ import 'package:lsp_generator/src/models/resolved_type.dart';
 import 'package:lsp_generator/src/resolver/resolved_state.dart';
 import 'package:test/test.dart';
 
-// ---------------------------------------------------------------------------
 // Helpers
-// ---------------------------------------------------------------------------
 
 final _emitter = DartEmitter.scoped(
   orderDirectives: true,
@@ -86,9 +84,7 @@ ResolvedState _stateWith({
   aliases: aliases,
 );
 
-// ---------------------------------------------------------------------------
 // Unit tests — fixture-based
-// ---------------------------------------------------------------------------
 
 void main() {
   group('ModelGenerator.buildStructures()', () {
@@ -498,9 +494,7 @@ void main() {
     });
   });
 
-  // ---------------------------------------------------------------------------
   // buildUnions() — sealed union classes
-  // ---------------------------------------------------------------------------
 
   group('ModelGenerator.buildUnions()', () {
     test('scalar union generates extension type const + getter variants', () {
@@ -724,9 +718,7 @@ void main() {
     });
   });
 
-  // ---------------------------------------------------------------------------
   // Integration — real metaModel.json
-  // ---------------------------------------------------------------------------
 
   group('ModelGenerator integration (real metaModel.json)', () {
     late ResolvedState resolved;
@@ -819,9 +811,7 @@ void main() {
     });
   });
 
-  // -----------------------------------------------------------------------
   // @Deprecated annotations
-  // -----------------------------------------------------------------------
 
   group('@Deprecated annotations', () {
     test(
@@ -917,9 +907,7 @@ void main() {
     });
   });
 
-  // -----------------------------------------------------------------------
   // since / proposed in doc comments
-  // -----------------------------------------------------------------------
 
   group('since and proposed in doc comments', () {
     test('class with only since emits @since tag', () {
@@ -1001,9 +989,7 @@ void main() {
     });
   });
 
-  // -----------------------------------------------------------------------
   // Smoke tests for buildNotificationMethods / buildRequestMethods
-  // -----------------------------------------------------------------------
 
   group('buildNotificationMethods() smoke tests', () {
     late ResolvedState resolved;

@@ -11,9 +11,7 @@ abstract class MetaVisitor {
   /// Entry point. Delegates to [visitProtocol].
   void run(MetaProtocol protocol) => visitProtocol(protocol);
 
-  // ---------------------------------------------------------------------------
   // Top-level hook
-  // ---------------------------------------------------------------------------
 
   void visitProtocol(MetaProtocol protocol) {
     protocol.structures.forEach(visitStructure);
@@ -23,9 +21,7 @@ abstract class MetaVisitor {
     protocol.notifications.forEach(visitNotification);
   }
 
-  // ---------------------------------------------------------------------------
   // Declaration hooks
-  // ---------------------------------------------------------------------------
 
   void visitStructure(MetaStructure structure) {
     structure.properties.forEach(visitProperty);
@@ -81,17 +77,13 @@ abstract class MetaVisitor {
     }
   }
 
-  // ---------------------------------------------------------------------------
   // Property hook
-  // ---------------------------------------------------------------------------
 
   void visitProperty(MetaProperty property) {
     visitRef(property.type);
   }
 
-  // ---------------------------------------------------------------------------
   // Reference dispatcher — sealed switch ensures exhaustiveness
-  // ---------------------------------------------------------------------------
 
   void visitRef(MetaReference ref) {
     switch (ref) {
@@ -116,9 +108,7 @@ abstract class MetaVisitor {
     }
   }
 
-  // ---------------------------------------------------------------------------
   // Structural reference hooks
-  // ---------------------------------------------------------------------------
 
   void visitArrayRef(ArrayRef ref) {
     visitRef(ref.element);
@@ -149,9 +139,7 @@ abstract class MetaVisitor {
     literal.properties.forEach(visitProperty);
   }
 
-  // ---------------------------------------------------------------------------
   // Leaf hooks — no-op by default
-  // ---------------------------------------------------------------------------
 
   void visitTypeRef(TypeRef ref) {}
 
