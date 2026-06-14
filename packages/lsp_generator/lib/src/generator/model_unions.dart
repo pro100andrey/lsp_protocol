@@ -1,6 +1,11 @@
 part of 'model_generator.dart';
 
+/// Extension providing union type generation capabilities for [ModelGenerator],
+/// including sealed union and inline union extension types.
 extension ModelGeneratorUnions on ModelGenerator {
+  /// Builds an extension type for a [UnionType], including representation
+  /// declaration, fromJson factory, variant constructors, toJson method,
+  /// and type-check/getter methods for each variant.
   Spec _buildExtensionTypeUnion(
     String name,
     UnionType ut, {
@@ -11,7 +16,7 @@ extension ModelGeneratorUnions on ModelGenerator {
       (item) => item is DartCoreType && item.dartName == 'Null',
     );
 
-    final representationType = hasNull ? tObjectNullable : tObject;
+    final representationType = hasNull ? refer('Object?') : refer('Object');
 
     _addExtensionTypeStructure(b, name, representationType, deprecated);
     _addExtensionTypeAnnotations(b, docs, deprecated);
@@ -21,6 +26,9 @@ extension ModelGeneratorUnions on ModelGenerator {
     _addExtensionTypeVariantGetters(b, name, ut, representationType);
   });
 
+  /// Adds the extension type structure: name, constant flag, primary
+  /// constructor name, and representation declaration with optional
+  /// deprecation.
   void _addExtensionTypeStructure(
     ExtensionTypeBuilder b,
     String name,
@@ -36,11 +44,14 @@ extension ModelGeneratorUnions on ModelGenerator {
           ..name = 'value'
           ..declaredRepresentationType = representationType;
         if (deprecated != null) {
-          r.annotations.add(tDeprecated.call([literalString(deprecated)]));
+          r.annotations.add(
+            refer('Deprecated').call([literalString(deprecated)]),
+          );
         }
       },
     );
 
+  /// Adds documentation and deprecation annotations to the extension type.
   void _addExtensionTypeAnnotations(
     ExtensionTypeBuilder b,
     List<String> docs,
@@ -48,10 +59,12 @@ extension ModelGeneratorUnions on ModelGenerator {
   ) {
     b.docs.addAll(docs);
     if (deprecated != null) {
-      b.annotations.add(tDeprecated.call([literalString(deprecated)]));
+      b.annotations.add(refer('Deprecated').call([literalString(deprecated)]));
     }
   }
 
+  /// Adds a `fromJson` factory constructor that redirects to the private
+  /// primary constructor.
   void _addExtensionTypeFromJson(
     ExtensionTypeBuilder b,
     String name,
@@ -74,12 +87,16 @@ extension ModelGeneratorUnions on ModelGenerator {
           ..redirect = refer('$name._');
 
         if (deprecated != null) {
-          b.annotations.add(tDeprecated.call([literalString(deprecated)]));
+          b.annotations.add(
+            refer('Deprecated').call([literalString(deprecated)]),
+          );
         }
       },
     ),
   );
 
+  /// Adds variant constructors for each unique union member, handling both
+  /// simple types and inline records.
   void _addExtensionTypeVariantConstructors(
     ExtensionTypeBuilder b,
     String name,
@@ -130,6 +147,8 @@ extension ModelGeneratorUnions on ModelGenerator {
     }
   }
 
+  /// Builds a factory constructor for an inline record variant, creating
+  /// named parameters from record fields and mapping them to a JSON map.
   Constructor _buildInlineRecordConstructor(
     ExtensionTypeBuilder b,
     String name,
@@ -141,7 +160,7 @@ extension ModelGeneratorUnions on ModelGenerator {
       ..factory = true
       ..name = constructorName;
     if (deprecated != null) {
-      b.annotations.add(tDeprecated.call([literalString(deprecated)]));
+      b.annotations.add(refer('Deprecated').call([literalString(deprecated)]));
     }
 
     // Add named parameters: required first, then optional.
@@ -180,6 +199,8 @@ extension ModelGeneratorUnions on ModelGenerator {
       ..body = Code("$constructorPrefix({\n${mapEntries.join(',\n')}\n})");
   });
 
+  /// Builds a factory constructor for a non-record union variant, handling
+  /// both simple redirects and complex wire transformations.
   Constructor _buildVariantConstructor(
     ExtensionTypeBuilder b,
     String name,
@@ -199,7 +220,9 @@ extension ModelGeneratorUnions on ModelGenerator {
         ..factory = true
         ..name = constructorName;
       if (deprecated != null) {
-        b.annotations.add(tDeprecated.call([literalString(deprecated)]));
+        b.annotations.add(
+          refer('Deprecated').call([literalString(deprecated)]),
+        );
       }
 
       if (!isNullType) {
@@ -228,6 +251,7 @@ extension ModelGeneratorUnions on ModelGenerator {
     });
   }
 
+  /// Adds a `toJson` method that returns the underlying representation value.
   void _addExtensionTypeToJson(
     ExtensionTypeBuilder b,
     Reference representationType,
@@ -237,10 +261,12 @@ extension ModelGeneratorUnions on ModelGenerator {
         ..name = 'toJson'
         ..returns = representationType
         ..lambda = true
-        ..body = eValue.code,
+        ..body = refer('value').code,
     ),
   );
 
+  /// Adds type-check (`isXxx`) and cast (`asXxx`) getter methods for each
+  /// union variant, using structural discriminators when available.
   void _addExtensionTypeVariantGetters(
     ExtensionTypeBuilder b,
     String name,
@@ -267,7 +293,12 @@ extension ModelGeneratorUnions on ModelGenerator {
       final suffix = _variantSuffix(item, name);
       final capSuffix = capitalize(suffix);
       final typeRef = toRef(item);
-      final checkExpr = item.checkExpression(eValue, _ctx, structChecks, ut);
+      final checkExpr = item.checkExpression(
+        refer('value'),
+        _ctx,
+        structChecks,
+        ut,
+      );
       final val = representationType.symbol == 'Object?'
           ? const CodeExpression(.new('value!'))
           : refer('value');
@@ -277,7 +308,7 @@ extension ModelGeneratorUnions on ModelGenerator {
         .new(
           (b) => b
             ..name = 'is$capSuffix'
-            ..returns = tBool
+            ..returns = refer('bool')
             ..type = .getter
             ..lambda = true
             ..body = checkExpr.code,
@@ -306,6 +337,8 @@ extension ModelGeneratorUnions on ModelGenerator {
     }
   }
 
+  /// Returns a suffix for a union variant, used to construct constructor
+  /// and getter names (e.g. `isInt`, `asInt`, `isStringList`, `asStringList`).
   String _variantSuffix(ResolvedType item, String aliasName) {
     final actual = item.nonNull;
 

@@ -93,33 +93,6 @@ extension ExpressionExtensions on Expression {
       (nullSafe ? nullSafeProperty(name) : property(name)) as BinaryExpression;
 }
 
-// Common Type and Expression References
-
-/// Common type references.
-final tString = refer('String');
-final tDynamic = refer('dynamic');
-final tObject = refer('Object');
-final tObjectNullable = refer('Object?');
-final tBool = refer('bool');
-final tVoid = refer('void');
-final tNull = refer('Null');
-final tList = refer('List');
-final tMapStringDynamic = refer('Map<String, dynamic>');
-final tMapSD = TypeReference(
-  (b) => b
-    ..symbol = 'Map'
-    ..types.addAll([tString, tDynamic]),
-);
-final tJsonSerializable = refer('JsonSerializable');
-final tJsonEnum = refer('JsonEnum');
-final tDeprecated = refer('Deprecated');
-final tFreezed = refer('freezed');
-
-/// Common expression references.
-final eJson = refer('json');
-final eValue = refer('value');
-final eParams = refer('params');
-
 /// Formats and emits a [Library] as a string.
 String formatLibrary(Library lib) {
   final emitter = DartEmitter.scoped(
@@ -134,7 +107,8 @@ String formatLibrary(Library lib) {
   return formatter.format(lib.accept(emitter).toString());
 }
 
-/// Formats and emits a [Library] as a string
+/// Formats and emits a [Library] as a string, falling back to unformatted
+/// output if the formatter fails.
 String emitLibrary(Library lib) {
   try {
     return formatLibrary(lib);
@@ -147,6 +121,7 @@ String emitLibrary(Library lib) {
   }
 }
 
+/// Set of Dart reserved keywords that should be avoided as identifiers.
 const reservedDartKeywords = {
   'class',
   'enum',
@@ -233,12 +208,17 @@ String requestResultUnionName(String method) {
   return '${capitalized}Result';
 }
 
+/// Converts [name] to lower camelCase (e.g. `'myName'` → `'myName'`,
+/// `'MyName'` → `'myName'`).
 String toLowerCamelCase(String name) =>
     name.isEmpty ? name : name[0].toLowerCase() + name.substring(1);
 
+/// Capitalizes the first character of [s] (e.g. `'myName'` → `'MyName'`).
 String capitalize(String s) =>
     s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
 
+/// Returns true if [result] represents a union type with multiple non-null
+/// items, indicating a synthesized union result for a request.
 bool isRequestResultUnion(MetaReference? result) {
   if (result is OrRef) {
     final nonNullItems = result.items

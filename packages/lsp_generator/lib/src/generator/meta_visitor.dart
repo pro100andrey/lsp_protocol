@@ -13,6 +13,8 @@ abstract class MetaVisitor {
 
   // Top-level hook
 
+  /// Visits all top-level protocol elements: structures, enumerations,
+  /// type aliases, requests, and notifications.
   void visitProtocol(MetaProtocol protocol) {
     protocol.structures.forEach(visitStructure);
     protocol.enumerations.forEach(visitEnumeration);
@@ -23,21 +25,26 @@ abstract class MetaVisitor {
 
   // Declaration hooks
 
+  /// Visits all properties, base classes, and mixins of a [structure].
   void visitStructure(MetaStructure structure) {
     structure.properties.forEach(visitProperty);
     structure.extends$.forEach(visitRef);
     structure.mixins$.forEach(visitRef);
   }
 
+  /// Visits the type and values of an [enumeration].
   void visitEnumeration(MetaEnumeration enumeration) {
     visitRef(enumeration.type);
     enumeration.values.forEach(visitEnumMember);
   }
 
+  /// Visits the underlying type of a [typeAlias].
   void visitTypeAlias(MetaTypeAlias typeAlias) {
     visitRef(typeAlias.type);
   }
 
+  /// Visits all components of a [request]: params, result, partial result,
+  /// registration options, and error data.
   void visitRequest(MetaRequest request) {
     final params = request.params;
     if (params != null) {
@@ -65,6 +72,8 @@ abstract class MetaVisitor {
     }
   }
 
+  /// Visits all components of a [notification]: params and
+  /// registration options.
   void visitNotification(MetaNotification notification) {
     final params = notification.params;
     if (params != null) {
@@ -79,12 +88,15 @@ abstract class MetaVisitor {
 
   // Property hook
 
+  /// Visits the type of a [property].
   void visitProperty(MetaProperty property) {
     visitRef(property.type);
   }
 
   // Reference dispatcher — sealed switch ensures exhaustiveness
 
+  /// Dispatches to the appropriate type-specific visitor method based on
+  /// the concrete [ref] type.
   void visitRef(MetaReference ref) {
     switch (ref) {
       case TypeRef():
@@ -110,31 +122,38 @@ abstract class MetaVisitor {
 
   // Structural reference hooks
 
+  /// Visits the element type of an [ArrayRef].
   void visitArrayRef(ArrayRef ref) {
     visitRef(ref.element);
   }
 
+  /// Visits all items of an [OrRef] (union type).
   void visitOrRef(OrRef ref) {
     ref.items.forEach(visitRef);
   }
 
+  /// Visits all items of an [AndRef] (intersection type).
   void visitAndRef(AndRef ref) {
     ref.items.forEach(visitRef);
   }
 
+  /// Visits both the key and value types of a [MapRef].
   void visitMapRef(MapRef ref) {
     visitRef(ref.key);
     visitRef(ref.value);
   }
 
+  /// Visits all items of a [TupleRef].
   void visitTupleRef(TupleRef ref) {
     ref.items.forEach(visitRef);
   }
 
+  /// Visits the value of a [LiteralRef].
   void visitLiteralRef(LiteralRef ref) {
     visitLiteral(ref.value);
   }
 
+  /// Visits all properties of a [literal].
   void visitLiteral(MetaLiteral literal) {
     literal.properties.forEach(visitProperty);
   }

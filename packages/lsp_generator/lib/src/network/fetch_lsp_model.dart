@@ -8,6 +8,15 @@ import 'package:path/path.dart' as p;
 import '../common/cli_exception.dart';
 import '../models/protocol.dart';
 
+/// Downloads the LSP meta-model from Microsoft's official repository,
+/// parses it into a [MetaProtocol], and saves the raw JSON to [outputDir].
+///
+/// Fetches the meta-model JSON from the specified [version] (defaults to
+/// `'3.17'`) of the Language Server Protocol specification. The parsed
+/// [MetaProtocol] is returned, and the raw `metaModel.json` is saved to
+/// the output directory for reference.
+///
+/// Throws a [CliException] if the download or parsing fails.
 Future<MetaProtocol> fetchLSPModel(
   String outputDir,
   Logger logger, [

@@ -1,6 +1,17 @@
 part of 'codegen_type.dart';
 
+/// Code generation utilities for casting JSON values to resolved Dart types
+/// during deserialization. Provides methods to generate type guards, casts,
+/// and conversions for all supported type variants including core types,
+/// classes, enums, aliases, lists, maps, inline records, and tuples.
+
+/// Extension on [ResolvedType] to generate code for casting JSON values
+/// to the appropriate Dart types during deserialization.
 extension ResolvedTypeCodegenX on ResolvedType {
+  /// Generates a cast expression that converts a JSON value to the target
+  /// [ResolvedType], wrapped with an `is$capSuffix` guard.
+  ///
+  /// Returns a [Spec] containing the conditional cast logic.
   Spec castExpression(
     Reference typeRef,
     String capSuffix,
@@ -15,7 +26,13 @@ extension ResolvedTypeCodegenX on ResolvedType {
       ClassType(:final ref) => _castUnion(
         refer(ref.name),
         () => refer(ref.name).newInstanceNamed('fromJson', [
-          val.bareAsA(tMapSD),
+          val.bareAsA(
+            TypeReference(
+              (b) => b
+                ..symbol = 'Map'
+                ..types.addAll([refer('String'), refer('dynamic')]),
+            ),
+          ),
         ]),
         capSuffix,
       ),
@@ -28,13 +45,23 @@ extension ResolvedTypeCodegenX on ResolvedType {
       ),
       AliasType(:final ref) => _castAlias(val, ref, capSuffix, ctx),
       ListType(:final element) => _castList(val, element, capSuffix, ctx),
-      MapType() => _castSimple(val, capSuffix, tMapSD),
+      MapType() => _castSimple(
+        val,
+        capSuffix,
+        TypeReference(
+          (b) => b
+            ..symbol = 'Map'
+            ..types.addAll([refer('String'), refer('dynamic')]),
+        ),
+      ),
       InlineRecord(:final fields) => _castInlineRecord(val, fields, capSuffix),
       TupleType(:final items) => _castTuple(val, items, capSuffix),
       _ => _castSimple(val, capSuffix, refer(typeName)),
     };
   }
 
+  /// Generates a cast expression for core Dart types (int, String, bool, etc.)
+  /// or null. Returns null when `is$capSuffix` is false.
   Expression _castDartCore(Expression val, String typeName, String capSuffix) {
     if (typeName == 'Null') {
       return literalNull;
@@ -45,6 +72,9 @@ extension ResolvedTypeCodegenX on ResolvedType {
     return refer('is$capSuffix').conditional(val.bareAsA(typeRef), literalNull);
   }
 
+  /// Generates a cast expression for union types, checking if the value
+  /// is an instance of the target type and either casting it or performing
+  /// a conversion via [conversion].
   Expression _castUnion(
     Reference ref,
     Expression Function() conversion,
@@ -60,6 +90,8 @@ extension ResolvedTypeCodegenX on ResolvedType {
         );
   }
 
+  /// Generates a cast expression for alias types, delegating to [_castUnion]
+  /// for sealed union or scalar union aliases, or to [_castSimple] otherwise.
   Expression _castAlias(
     Expression val,
     ResolvedAlias ref,
@@ -78,9 +110,14 @@ extension ResolvedTypeCodegenX on ResolvedType {
     return _castSimple(val, capSuffix, aliasRef);
   }
 
+  /// Generates a simple cast expression that checks `is$capSuffix` and casts
+  /// [val] to [typeRef], returning null when the guard is false.
   Expression _castSimple(Expression val, String capSuffix, Reference typeRef) =>
       refer('is$capSuffix').conditional(val.bareAsA(typeRef), literalNull);
 
+  /// Generates a cast expression for list types, handling class types,
+  /// alias types (sealed union or scalar unions), and simple element types.
+  /// Returns a conditional expression that maps over the list elements.
   Expression _castList(
     Expression val,
     ResolvedType element,
@@ -131,6 +168,8 @@ extension ResolvedTypeCodegenX on ResolvedType {
     };
   }
 
+  /// Creates a `.map().toList()` expression on [val], applying [convert]
+  /// to each element after casting to [List].
   Expression _listMapExpr(
     Expression val,
     Expression Function(Expression e) convert,
@@ -148,6 +187,9 @@ extension ResolvedTypeCodegenX on ResolvedType {
       .property('toList')
       .call([]);
 
+  /// Generates a cast expression for block types (class/alias list elements),
+  /// checking if [val] is an instance of [typeRef] and casting it, or
+  /// performing a map conversion via [mapExpr] when `is$capSuffix` is true.
   Expression _castBlock(
     Expression val,
     Reference typeRef,
@@ -160,11 +202,22 @@ extension ResolvedTypeCodegenX on ResolvedType {
         refer('is$capSuffix').conditional(mapExpr, literalNull),
       );
 
+  /// Generates a `ClassName.fromJson(value)` expression for [expr] using
+  /// [classRef].
   Expression _fromJsonExpr(Expression expr, Reference classRef) =>
       classRef.newInstanceNamed('fromJson', [
-        expr.bareAsA(tMapSD),
+        expr.bareAsA(
+          TypeReference(
+            (b) => b
+              ..symbol = 'Map'
+              ..types.addAll([refer('String'), refer('dynamic')]),
+          ),
+        ),
       ]);
 
+  /// Generates code to cast a JSON map to an inline record type by iterating
+  /// over [fields], casting each field value appropriately, and returning
+  /// a record literal. Returns a [Code] block with an `is$capSuffix` guard.
   Code _castInlineRecord(
     Expression val,
     List<ResolvedProperty> fields,
@@ -217,6 +270,9 @@ extension ResolvedTypeCodegenX on ResolvedType {
     ]);
   }
 
+  /// Generates code to cast a JSON list to a tuple type by iterating over
+  /// [items], casting each element by its index, and returning a record
+  /// literal. Returns a [Code] block with an `is$capSuffix` guard.
   Code _castTuple(Expression val, List<ResolvedType> items, String capSuffix) {
     final listVar = refer('list');
     final listDecl = declareFinal(
@@ -239,6 +295,9 @@ extension ResolvedTypeCodegenX on ResolvedType {
     ]);
   }
 
+  /// Converts a [ResolvedType] to its Dart type name as a String.
+  /// Handles all resolved type variants including core types, classes,
+  /// enums, aliases, collections, unions, tuples, and inline records.
   static String dartTypeName(ResolvedType type) => switch (type) {
     DartCoreType(:final dartName) => dartName,
     ClassType(:final ref) => ref.name,

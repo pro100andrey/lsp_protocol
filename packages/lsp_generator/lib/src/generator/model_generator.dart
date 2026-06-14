@@ -16,7 +16,17 @@ part 'model_enums.dart';
 part 'model_serialization.dart';
 part 'model_unions.dart';
 
-enum _ClassCategory { capabilities, params, common }
+/// Categories for organizing LSP classes into separate output files.
+enum _ClassCategory {
+  /// LSP capability classes (e.g. `TextDocumentSyncCapabilities`).
+  capabilities,
+
+  /// LSP parameter and option classes (e.g. `TextDocumentSyncOptions`).
+  params,
+
+  /// Common LSP types (everything else).
+  common,
+}
 
 /// Builds code_builder [Library] objects from a fully resolved [ResolvedState].
 ///
@@ -48,12 +58,15 @@ final class ModelGenerator {
 
   // Public API
 
+  /// Classifies [cls] into a [_ClassCategory] based on its name pattern.
   _ClassCategory _classifyClass(ResolvedClass cls) => switch (cls.name) {
     final s when s.contains('Capabilities') => .capabilities,
     final s when s.endsWith('Params') || s.endsWith('Options') => .params,
     _ => .common,
   };
 
+  /// Returns classes matching [category], excluding non-anonymous base classes.
+  /// For `.common`, anonymous classes are listed before named classes.
   Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) {
     final filtered = _resolved.classes.where((c) {
       if (c.name.startsWith('_') && !c.isAnonymous) {
@@ -94,10 +107,13 @@ final class ModelGenerator {
     );
   }
 
+  /// Builds a [Library] containing capability classes.
   Library buildStructuresCaps() => _buildCategoryLibrary(.capabilities);
 
+  /// Builds a [Library] containing parameter and option classes.
   Library buildStructuresParams() => _buildCategoryLibrary(.params);
 
+  /// Builds a [Library] containing common LSP classes.
   Library buildStructuresCommon() => _buildCategoryLibrary(.common);
 
   Library _buildCategoryLibrary(_ClassCategory category) => .new(
@@ -232,6 +248,8 @@ final class ModelGenerator {
     isScalar: false,
   );
 
+  /// Builds a [Library] containing extension types for union members,
+  /// including both named sealed unions and inline anonymous unions.
   Library _buildUnionLibrary(
     Iterable<String> unionNames, {
     required bool isScalar,
@@ -349,6 +367,7 @@ final class ModelGenerator {
     ];
   }
 
+  /// Returns a human-readable label for a [MessageDirection].
   String _directionLabel(MessageDirection d) => switch (d) {
     .clientToServer => 'client to server',
     .serverToClient => 'server to client',
@@ -507,6 +526,8 @@ final class ModelGenerator {
     return const [];
   }
 
+  /// Returns the type reference for a [ResolvedProperty], handling inline
+  /// union types by generating a named union type reference.
   Reference _propertyTypeRef(String className, ResolvedProperty p) {
     final inlineUnionName = _getInlineUnionName(className, p.name, p.type);
     if (inlineUnionName != null) {

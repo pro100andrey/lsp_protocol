@@ -85,6 +85,8 @@ final class ModelResolver {
 
   // Private resolution helpers
 
+  /// Resolves an [OrRef] to either a [NullableType] (for T | null) or a
+  /// [UnionType] (for multiple non-null types).
   ResolvedType _resolveOr(
     OrRef ref, {
     required String parentName,
@@ -150,11 +152,13 @@ final class ModelResolver {
     return InlineRecord(fields: fields);
   }
 
+  /// Returns true if [ref] represents a `null` type.
   static bool _isNull(MetaReference ref) => switch (ref) {
     BaseRef(name: 'null') => true,
     _ => false,
   };
 
+  /// Maps LSP base type names to their Dart equivalents.
   static String _baseRefToDart(String name) => switch (name) {
     'string' => 'String',
     'integer' || 'uinteger' => 'int',
@@ -172,6 +176,8 @@ final class ModelResolver {
 
 // Pass 1 — register shell declarations
 
+/// First resolution pass: creates shell [ResolvedDecl] objects and populates
+/// the registry with all named declarations (classes, enums, aliases).
 final class _RegisterPass extends MetaVisitor {
   _RegisterPass(this._r);
   final ModelResolver _r;
@@ -255,6 +261,8 @@ final class _RegisterPass extends MetaVisitor {
 
 // Pass 2 — resolve all MetaReference → ResolvedType
 
+/// Second resolution pass: fills in all resolved type fields by resolving
+/// every [MetaReference] against the registry populated in pass 1.
 final class _ResolvePass extends MetaVisitor {
   _ResolvePass(this._r);
   final ModelResolver _r;

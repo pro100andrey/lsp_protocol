@@ -5,7 +5,16 @@ import '../models/resolved_type.dart';
 import '../resolver/resolved_state.dart';
 import 'generator_helpers.dart';
 
+/// Abstract base for generating LSP API classes (handlers, senders, proxy).
+///
+/// Subclasses configure side-specific details (client/server naming,
+/// message directions, etc.) while this class handles the shared logic
+/// for grouping methods by namespace, resolving type names, and
+/// producing the AST [Library] via [buildApi].
 abstract class ApiGenerator {
+  /// Creates the generator and pre-computes lookup maps for request and
+  /// notification wire methods as well as the set of union type names
+  /// used in the protocol.
   ApiGenerator(this.resolved) {
     requestMethods = {
       for (final e in dartNames(
@@ -35,31 +44,67 @@ abstract class ApiGenerator {
     }
   }
 
+  /// The resolved protocol state containing all requests, notifications, and
+  /// type aliases after direction resolution.
   final ResolvedState resolved;
 
-  /// wire method → `RequestMethod` enum member name.
+  /// Maps each wire method name to the corresponding `RequestMethod` enum
+  /// member name used in generated code.
   late final Map<String, String> requestMethods;
 
-  /// wire method → `NotificationMethod` enum member name.
+  /// Maps each wire method name to the corresponding `NotificationMethod` enum
+  /// member name used in generated code.
   late final Map<String, String> notificationMethods;
 
+  /// Set of union type names that appear as request result types or alias
+  /// types, used to decide whether to call `fromJson` during decoding.
   late final Set<String> _unionTypeNames;
 
   // Abstract Configuration Getters
 
+  /// The side this generator targets, e.g. `"Client"` or `"Server"`.
   String get side;
+
+  /// The opposite side, used for generating human-readable docs and strings.
   String get otherSide;
+
+  /// The name of the proxy extension type (e.g. `"ClientLsp"`).
   String get proxyName;
+
+  /// The access pattern for the proxy example in docs
+  /// (e.g. `"connection.lsp"`).
   String get proxyExampleAccess;
+
+  /// The type name of the example used in proxy docs (e.g. `"LspConnection"`).
   String get proxyExampleType;
+
+  /// The full documentation call expression shown in proxy docs.
   String get proxyExampleDocsCall;
+
+  /// The message direction for handler methods.
   MessageDirection get handlerDirection;
+
+  /// The message direction for sender methods.
   MessageDirection get senderDirection;
 
-  Reference handlerMethodReturns(bool isNotification) => tVoid;
+  /// Returns the return type reference for handler methods.
+  ///
+  /// Override to customize the return type based on whether the method
+  /// handles a notification (typically [refer('void')]) or a request.
+  Reference handlerMethodReturns(bool isNotification) => refer('void');
 
   // Common Build Entry Point
 
+  /// Builds the complete [Library] AST containing the proxy, handler, and
+  /// sender extension types for all namespaces.
+  ///
+  /// The generated library includes:
+  /// 1. A proxy extension type ([_buildProxy]) that provides namespace
+  ///    accessors delegating to sender classes.
+  /// 2. One handler extension type per namespace ([_buildHandlerClass])
+  ///    that registers request/notification handlers on the connection.
+  /// 3. One sender extension type per namespace ([_buildSenderClass])
+  ///    that exposes methods for sending requests and notifications.
   Library buildApi() {
     final groups = groupByNamespace(
       handlerDir: handlerDirection,
@@ -91,6 +136,12 @@ abstract class ApiGenerator {
     );
   }
 
+  /// Groups all resolved requests and notifications by namespace and direction.
+  ///
+  /// Each method entry is placed into [GroupedMethods.handlerGroups] if its
+  /// message direction matches [handlerDir], and into
+  /// [GroupedMethods.senderGroups] if it matches [senderDir]. Methods with
+  /// direction [.both] are included in both maps.
   GroupedMethods groupByNamespace({
     required MessageDirection handlerDir,
     required MessageDirection senderDir,
@@ -171,8 +222,14 @@ abstract class ApiGenerator {
 
   // Helper Methods
 
+  /// Returns whether [typeName] is a union type that requires `fromJson`
+  /// decoding during request result processing.
   bool isUnionType(String typeName) => _unionTypeNames.contains(typeName);
 
+  /// Resolves the Dart type name for a request result [MetaReference].
+  ///
+  /// Handles union types, nullable types, arrays, and base type mapping.
+  /// Returns `'void'` when the result type is effectively null-only.
   String resultTypeName(MetaReference? result, String wireMethod) {
     if (result case null) {
       return 'void';
@@ -196,6 +253,7 @@ abstract class ApiGenerator {
     };
   }
 
+  /// Recursively resolves the Dart type name for an array element reference.
   String _innerTypeName(MetaReference ref) => switch (ref) {
     TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
     BaseRef(:final name) => _baseDartName(name),
@@ -204,6 +262,11 @@ abstract class ApiGenerator {
     _ => 'Object?',
   };
 
+  /// Resolves the Dart type name for an `or` union of [items].
+  ///
+  /// Returns `'void'` for null-only unions, a single type (possibly nullable)
+  /// for one non-null item, or `'Object'` / `'Object?'` for unions with
+  /// multiple non-null variants.
   String _orTypeName(List<MetaReference> items) {
     final hasNull = items.any((i) => i is BaseRef && i.name == 'null');
     final nonNull = items
@@ -242,6 +305,10 @@ abstract class ApiGenerator {
     _ => 'Object?',
   };
 
+  /// Resolves the Dart type name for request/notification parameters.
+  ///
+  /// Returns an empty string when parameters are absent or null-only,
+  /// indicating no parameter is needed in the generated method signature.
   String paramsTypeName(MetaReference? params) {
     if (params == null) {
       return '';
@@ -254,6 +321,12 @@ abstract class ApiGenerator {
     };
   }
 
+  /// Builds the handler function type string for a given method signature.
+  ///
+  /// Returns a type like:
+  /// `Future<ResultType> Function(ParamsType params, LspRequest context)`
+  /// or `Future<void> Function(LspRequest context)` for notifications
+  /// without params.
   String handlerFunctionType({
     required String paramsType,
     required String resultType,
@@ -265,6 +338,12 @@ abstract class ApiGenerator {
     return '$returnType Function($param${comma}LspRequest context)';
   }
 
+  /// Generates return statements for a request handler body.
+  ///
+  /// Awaits the [handlerExpr] result and converts it to JSON:
+  /// - Raw `Object?` results are returned directly.
+  /// - List results are mapped via `.toJson()` on each element.
+  /// - Single-object results have `.toJson()` called on the awaited value.
   List<Code> returnStatements(String resultType, Expression handlerExpr) {
     final isNullable = resultType.endsWith('?');
     final baseType = isNullable
@@ -284,7 +363,9 @@ abstract class ApiGenerator {
           ..requiredParameters.add(.new((b) => b..name = 'e'))
           ..body =
               (isRawObject
-                      ? refer('e').asA(tDynamic).property('toJson').call([])
+                      ? refer(
+                          'e',
+                        ).asA(refer('dynamic')).property('toJson').call([])
                       : refer('e').property('toJson').call([]))
                   .code,
       ).closure;
@@ -312,6 +393,13 @@ abstract class ApiGenerator {
     ];
   }
 
+  /// Generates decode statements for a sender method response.
+  ///
+  /// Converts the raw JSON response (['raw']) into the typed result:
+  /// - Raw `Object?` results are returned directly.
+  /// - Void results produce no statements.
+  /// - List results are cast and mapped via `fromJson`.
+  /// - Single-object results call the type's `fromJson` constructor.
   List<Code> senderDecodeStatements(String resultType) {
     final isNullable = resultType.endsWith('?');
     final baseType = isNullable
@@ -330,9 +418,9 @@ abstract class ApiGenerator {
       final innerType = baseType.substring(5, baseType.length - 1);
       if (innerType == 'Object' || innerType == 'Object?') {
         final castExpr = refer('raw')
-            .asA(tList)
+            .asA(refer('List'))
             .property('cast')
-            .call([], {}, [tObject])
+            .call([], {}, [refer('Object')])
             .property('toList')
             .call([]);
         if (isNullable) {
@@ -354,12 +442,15 @@ abstract class ApiGenerator {
           (b) => b
             ..lambda = true
             ..requiredParameters.add(.new((b) => b..name = 'e'))
-            ..body = refer(
-              innerType,
-            ).newInstanceNamed('fromJson', [refer('e').bareAsA(tObject)]).code,
+            ..body =
+                refer(
+                  innerType,
+                ).newInstanceNamed('fromJson', [
+                  refer('e').bareAsA(refer('Object')),
+                ]).code,
         ).closure;
         final mapExpr = refer('raw')
-            .asA(tList)
+            .asA(refer('List'))
             .property('map')
             .call([mapClosure])
             .property('toList')
@@ -377,7 +468,7 @@ abstract class ApiGenerator {
       }
 
       final castExpr = refer('raw')
-          .asA(tList)
+          .asA(refer('List'))
           .property('cast')
           .call([], {}, [_jsonMapRef()])
           .property('map')
@@ -430,15 +521,22 @@ abstract class ApiGenerator {
   static TypeReference _jsonMapRef() => TypeReference(
     (b) => b
       ..symbol = 'Map'
-      ..types.addAll([tString, tDynamic]),
+      ..types.addAll([refer('String'), refer('dynamic')]),
   );
 
+  /// Generates an assignment expression for parsing parameters from JSON.
+  ///
+  /// Uses the `parseParams` helper with the given type's `fromJson` factory.
   static Code fromJsonAssign(
     String typeName,
     String varName,
     String sourceVar,
   ) => .new('final $varName = parseParams($sourceVar, $typeName.fromJson);');
 
+  /// Resolves a wire method name to its corresponding enum reference.
+  ///
+  /// Looks up [wireMethod] in either [requestMethods] or [notificationMethods]
+  /// based on [enumType]. Returns a literal string for unknown methods.
   Expression methodRef(String enumType, String wireMethod) {
     final map = enumType == 'RequestMethod'
         ? requestMethods
@@ -451,9 +549,15 @@ abstract class ApiGenerator {
     return literalString(wireMethod, raw: wireMethod.contains(r'$'));
   }
 
+  /// Builds the handler class name for a given namespace.
+  ///
+  /// The `general` and `$` namespaces both map to `GeneralHandlers`.
   static String handlerClassName(String namespace) =>
       '${capitalize(namespace == 'general' ? 'general' : namespace)}Handlers';
 
+  /// Builds the sender class name for a given namespace.
+  ///
+  /// The `$` and `general` namespaces both map to `GeneralSender`.
   static String senderClassName(String namespace) =>
       '${capitalize(namespace == r'$'
           ? 'general'
@@ -463,6 +567,12 @@ abstract class ApiGenerator {
 
   // AST Generation Methods
 
+  /// Builds the handler extension type for a single namespace.
+  ///
+  /// Each method in [entries] becomes a handler registration method
+  /// (e.g. `onInitialized`, `onWorkspaceDidChangeFolders`) that calls
+  /// the appropriate `registerRequestHandler` or `registerNotificationHandler`
+  /// on the connection representation.
   ExtensionType _buildHandlerClass(
     String namespace,
     List<MethodEntry> entries,
@@ -485,6 +595,10 @@ abstract class ApiGenerator {
     );
   }
 
+  /// Builds a single handler registration method for a [MethodEntry].
+  ///
+  /// The generated method accepts a handler callback and wires it to the
+  /// connection's request or notification handler registry.
   Method _buildHandlerMethod(MethodEntry entry) {
     final paramsType = paramsTypeName(entry.params);
     final resultType = resultTypeName(entry.result, entry.wireMethod);
@@ -516,6 +630,10 @@ abstract class ApiGenerator {
     );
   }
 
+  /// Generates the body expression for a request handler method.
+  ///
+  /// Parses parameters (if any), invokes the handler, and converts the
+  /// result to JSON for the response.
   Expression _requestHandlerBody(
     String wireMethod,
     String paramsType,
@@ -562,6 +680,10 @@ abstract class ApiGenerator {
     ]);
   }
 
+  /// Generates the body expression for a notification handler method.
+  ///
+  /// Parses parameters (if any) and invokes the handler asynchronously.
+  /// Notifications do not return a value.
   Expression _notificationHandlerBody(String wireMethod, String paramsType) {
     final hasParams = paramsType.isNotEmpty;
     final isRawParams = paramsType == 'Object?' || paramsType == 'Object';
@@ -595,6 +717,10 @@ abstract class ApiGenerator {
     ]);
   }
 
+  /// Builds the sender extension type for a single namespace.
+  ///
+  /// Each method in [entries] becomes a public method that sends a request
+  /// or notification via the connection's `sendRequest` or `sendNotification`.
   ExtensionType _buildSenderClass(String namespace, List<MethodEntry> entries) {
     final className = '$side${ApiGenerator.senderClassName(namespace)}';
     return .new(
@@ -613,6 +739,10 @@ abstract class ApiGenerator {
     );
   }
 
+  /// Builds a single sender method for a [MethodEntry].
+  ///
+  /// Dispatches to [_buildNotificationSenderMethod] or
+  /// [_buildRequestSenderMethod] based on whether the entry is a notification.
   Method _buildSenderMethod(MethodEntry entry) {
     final paramsType = paramsTypeName(entry.params);
     final resultType = entry.isNotification
@@ -640,6 +770,9 @@ abstract class ApiGenerator {
     );
   }
 
+  /// Builds a notification sender method that calls `sendNotification`.
+  ///
+  /// Converts [paramsType] parameters to JSON before sending.
   Method _buildNotificationSenderMethod(
     String dartName,
     String wireMethod,
@@ -647,8 +780,8 @@ abstract class ApiGenerator {
     bool hasParams,
   ) {
     final paramsExpr = (paramsType == 'Object?' || paramsType == 'Object')
-        ? eParams
-        : eParams.property('toJson').call([]);
+        ? refer('params')
+        : refer('params').property('toJson').call([]);
     final sendCall = hasParams
         ? refer('_c').property('sendNotification').call([
             methodRef('NotificationMethod', wireMethod),
@@ -678,6 +811,11 @@ abstract class ApiGenerator {
     );
   }
 
+  /// Builds a request sender method that calls `sendRequest` and decodes
+  /// the result.
+  ///
+  /// Awaits the response and converts the raw JSON to the expected [resultType]
+  /// using [senderDecodeStatements].
   Method _buildRequestSenderMethod(
     String dartName,
     String wireMethod,
@@ -697,7 +835,7 @@ abstract class ApiGenerator {
     final sendCallExpr = hasParams
         ? refer('_c').property('sendRequest').call([
             methodRef('RequestMethod', wireMethod),
-            eParams.property('toJson').call([]),
+            refer('params').property('toJson').call([]),
           ])
         : refer('_c').property('sendRequest').call([
             methodRef('RequestMethod', wireMethod),
@@ -709,7 +847,7 @@ abstract class ApiGenerator {
       else ...[
         declareFinal(
           'raw',
-          type: tDynamic,
+          type: refer('dynamic'),
         ).assign(sendCallExpr.awaited).statement,
         ...senderDecodeStatements(resultType),
       ],
@@ -735,10 +873,15 @@ abstract class ApiGenerator {
     );
   }
 
+  /// Builds the proxy extension type that aggregates all sender classes.
+  ///
+  /// Each namespace gets a getter property that instantiates the corresponding
+  /// sender class with the connection. For example, `client.lsp.workspace`
+  /// returns the `WorkspaceSender` instance.
   ExtensionType _buildProxy(Iterable<String> senderNamespaces) {
     final namespaces = senderNamespaces.toList(growable: false);
 
-    return ExtensionType(
+    return .new(
       (b) => b
         ..name = proxyName
         ..docs.add(
@@ -779,6 +922,11 @@ abstract class ApiGenerator {
   }
 }
 
+/// Represents a single LSP method (request or notification) for code
+/// generation.
+///
+/// Holds the wire protocol method name, the generated Dart method name,
+/// parameter and result type references, and whether it is a notification.
 class MethodEntry {
   const MethodEntry({
     required this.wireMethod,
@@ -788,19 +936,32 @@ class MethodEntry {
     required this.isNotification,
   });
 
+  /// The LSP wire method name (e.g. `"textDocument/completion"`).
   final String wireMethod;
+
+  /// The generated Dart method name (e.g. `"textDocumentCompletion"`).
   final String dartName;
+
+  /// Parameter type reference, or null if the method takes no parameters.
   final MetaReference? params;
+
+  /// Result type reference, or null if the method has no result.
   final MetaReference? result;
+
+  /// Whether this entry represents a notification (true) or a request (false).
   final bool isNotification;
 }
 
+/// Holds method entries grouped by namespace for handlers and senders.
 class GroupedMethods {
   const GroupedMethods({
     required this.handlerGroups,
     required this.senderGroups,
   });
 
+  /// Methods grouped by namespace for handler registration, keyed by namespace.
   final Map<String, List<MethodEntry>> handlerGroups;
+
+  /// Methods grouped by namespace for sender methods, keyed by namespace.
   final Map<String, List<MethodEntry>> senderGroups;
 }

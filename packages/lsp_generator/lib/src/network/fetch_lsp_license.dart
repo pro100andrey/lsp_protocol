@@ -6,6 +6,12 @@ import 'package:path/path.dart' as p;
 
 import '../common/cli_exception.dart';
 
+/// Downloads the LSP protocol license from Microsoft's official repository
+/// and saves it to [outputDir] as `License-code.txt`.
+///
+/// Fetches the license text from the specified [version] (defaults to `'3.17'`)
+/// of the Language Server Protocol. Throws a [CliException] if the download
+/// fails.
 Future<void> fetchLSPLicense(
   String outputDir,
   Logger logger, [

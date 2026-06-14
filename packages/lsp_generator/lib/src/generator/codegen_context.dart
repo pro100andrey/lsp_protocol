@@ -1,5 +1,8 @@
 part of 'codegen_type.dart';
 
+/// Context object holding resolved type information and helper methods for
+/// code generation, including class/union name sets, property resolution,
+/// and union type classification logic.
 class CodegenContext {
   CodegenContext(this.state)
     : classNames = state.classes.map((c) => c.name).toSet(),
@@ -33,10 +36,14 @@ class CodegenContext {
   final Map<String, List<ResolvedProperty>> _allPropertiesCache = {};
   final Map<String, ResolvedClass> classMap;
 
+  /// Returns all properties of [cls] including inherited properties from
+  /// superclasses and mixins, with duplicates removed and properties from
+  /// the class itself taking precedence. Results are cached.
   List<ResolvedProperty> allProperties(ResolvedClass cls) {
     if (_allPropertiesCache.containsKey(cls.name)) {
       return _allPropertiesCache[cls.name]!;
     }
+
     final visited = <String>{};
     List<ResolvedProperty> helper(ResolvedClass c) {
       if (!visited.add(c.name)) {
@@ -67,6 +74,8 @@ class CodegenContext {
     return _allPropertiesCache[cls.name] = helper(cls);
   }
 
+  /// Classifies a [UnionType] into one of the [CodegenUnionKind] categories
+  /// based on its member types (scalar, struct, list, or mixed).
   CodegenUnionKind classifyUnion(UnionType u) {
     final scalars = u.items.where((t) => t is DartCoreType || t is TupleType);
     final structs = u.items.where((t) => t is ClassType || t is InlineRecord);
@@ -108,12 +117,18 @@ class CodegenContext {
     return .mixed;
   }
 
+  /// Classifies a union containing scalars and structs as either
+  /// [CodegenUnionKind.scalarStruct] or [CodegenUnionKind.mixed] based on
+  /// whether all structs share the same discriminator key.
   CodegenUnionKind _classifyScalarStruct(List<ResolvedType> structs) {
     final uniqueStructs = structs.map(singleStructKey).toSet();
 
     return uniqueStructs.length == 1 ? .scalarStruct : .mixed;
   }
 
+  /// Classifies a union containing multiple structs as either
+  /// [CodegenUnionKind.structStruct] or [CodegenUnionKind.mixed] based on
+  /// whether structs have distinct discriminator keys.
   CodegenUnionKind _classifyStructStruct(List<ResolvedType> structs) {
     final uniqueStructs = structs.map(singleStructKey).toSet();
 
@@ -127,6 +142,10 @@ class CodegenContext {
     _ => t.toString(),
   };
 
+  /// Finds a structural discriminator for a list of [variants], returning
+  /// [CodegenUnionCheck] objects that can be used to distinguish between
+  /// union members via field names or literal values. Returns null if no
+  /// discriminator can be determined.
   List<CodegenUnionCheck>? findStructDiscriminator(
     List<ResolvedType> variants,
   ) {
@@ -211,6 +230,8 @@ class CodegenContext {
     return checks;
   }
 
+  /// Returns a map of property names to [ResolvedProperty] objects for a
+  /// [variant], including inherited properties for classes.
   Map<String, ResolvedProperty> _variantPropertiesMap(ResolvedType variant) =>
       switch (variant) {
         ClassType(:final ref) => {
@@ -221,8 +242,27 @@ class CodegenContext {
       };
 }
 
-enum CodegenUnionKind { scalar, scalarStruct, structList, structStruct, mixed }
+/// Categories for classifying union types based on their member types.
+enum CodegenUnionKind {
+  /// Union containing only scalar types (primitives, tuples of scalars).
+  scalar,
 
+  /// Union containing scalars and structs with a shared discriminator key.
+  scalarStruct,
+
+  /// Union containing lists and structs.
+  structList,
+
+  /// Union containing multiple structs with distinct discriminator keys.
+  structStruct,
+
+  /// Union with mixed or ambiguous member types.
+  mixed,
+}
+
+/// A check for distinguishing between union variants, containing a variant
+/// type, an optional field name discriminator, and an optional literal
+/// value to match against.
 typedef CodegenUnionCheck = ({
   ResolvedType variant,
   String fieldName,

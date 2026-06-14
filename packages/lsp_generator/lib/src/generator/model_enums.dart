@@ -25,7 +25,7 @@ extension ModelGeneratorEnums on ModelGenerator {
         // static const values
         for (final member in en.members) {
           b.fields.add(
-            Field(
+            .new(
               (b) => b
                 ..static = true
                 ..modifier = .constant
@@ -57,17 +57,17 @@ extension ModelGeneratorEnums on ModelGenerator {
                 .new(
                   (b) => b
                     ..name = 'json'
-                    ..type = tDynamic,
+                    ..type = refer('dynamic'),
                 ),
               )
               ..body = refer(en.name).call([
-                CodeExpression(Code('json as $valueTypeName')),
+                CodeExpression(.new('json as $valueTypeName')),
               ]).code,
           ),
         );
 
         // toJson method
-        b.methods.add(_buildEnumToJson(valueTypeName, eValue));
+        b.methods.add(_buildEnumToJson(valueTypeName, refer('value')));
       });
     }
 
@@ -75,7 +75,7 @@ extension ModelGeneratorEnums on ModelGenerator {
       b
         ..name = en.name
         ..annotations.add(
-          tJsonEnum.call([], {
+          refer('JsonEnum').call([], {
             'valueField': literalString('value'),
             'alwaysCreate': literalTrue,
           }),
@@ -95,7 +95,7 @@ extension ModelGeneratorEnums on ModelGenerator {
             );
             if (member.deprecated != null) {
               b.annotations.add(
-                tDeprecated.call([literalString(member.deprecated!)]),
+                refer('Deprecated').call([literalString(member.deprecated!)]),
               );
             }
             b.docs.addAll(
@@ -143,13 +143,15 @@ extension ModelGeneratorEnums on ModelGenerator {
             ..lambda = true
             ..body = refer(r'$enumDecodeNullable').call([
               refer('_\$${en.name}EnumMap'),
-              eJson,
+              refer('json'),
             ]).code,
         ),
       );
     });
   }
 
+  /// Builds a const constructor for closed enums that accepts the
+  /// raw wire value.
   Constructor _buildEnumConstructor() => .new(
     (b) => b
       ..constant = true
@@ -162,6 +164,7 @@ extension ModelGeneratorEnums on ModelGenerator {
       ),
   );
 
+  /// Builds a `toJson` method that returns the underlying primitive value.
   Method _buildEnumToJson(String valueTypeName, Expression expr) => .new(
     (b) => b
       ..name = 'toJson'

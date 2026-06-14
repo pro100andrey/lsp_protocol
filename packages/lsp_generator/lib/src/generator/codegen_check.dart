@@ -1,8 +1,15 @@
 part of 'codegen_type.dart';
 
+/// Code generation utilities for checking JSON values against resolved Dart
+/// types during deserialization. Provides methods to generate type guards,
+/// wire conversion expressions, and structural validation checks.
 extension ResolvedTypeCheckX on ResolvedType {
+  /// Returns true if this type has a `toJson()` method for serialization,
+  /// including classes, aliases pointing to known types or custom enum values,
+  /// and enums with custom value support.
   bool hasToJson(CodegenContext ctx) => switch (nonNull) {
     ClassType() => true,
+
     AliasType(:final ref) =>
       ref.name == 'LSPAny' ||
           ctx.classNames.contains(ref.name) ||
@@ -11,18 +18,25 @@ extension ResolvedTypeCheckX on ResolvedType {
           ctx.state.enumerations.any(
             (e) => e.name == ref.name && e.supportsCustomValues,
           ),
+
     EnumType(:final ref) => ref.supportsCustomValues,
     _ => false,
   };
 
+  /// Returns true if this type represents a closed enum (without custom values)
   bool isClosedEnum(CodegenContext ctx) => switch (nonNull) {
     EnumType(:final ref) => !ref.supportsCustomValues,
+
     AliasType(:final ref) => ctx.state.enumerations.any(
       (e) => e.name == ref.name && !e.supportsCustomValues,
     ),
+
     _ => false,
   };
 
+  /// Generates an expression to convert a value to its wire (JSON)
+  /// representation, calling `toJson()` on classes, `.value` on closed enums,
+  /// and recursively processing tuples and lists with custom types.
   Expression toWireExpression(Expression expr, CodegenContext ctx) {
     final isNullable = this is NullableType;
     final actual = nonNull;
@@ -41,23 +55,29 @@ extension ResolvedTypeCheckX on ResolvedType {
 
     return switch (actual) {
       DartCoreType() => expr,
+
       StringLiteralType() => expr,
+
       ClassType() || AliasType() || EnumType() || UnionType() => expr,
+
       ListType(:final element) => (() {
         if (element.nonNull.hasToJson(ctx) ||
             element.nonNull.isClosedEnum(ctx)) {
           final closure = element.nonNull.hasToJson(ctx)
               ? refer('(e) => e.toJson()')
               : refer('(e) => e.value');
+
           final mapCall = isNullable
               ? expr.nullSafeProperty('map')
               : expr.property('map');
+
           return mapCall.call([closure]).property('toList').call([]);
         }
         return expr;
       })(),
 
       MapType() => expr,
+
       TupleType(:final items) => (() {
         final listExprs = <Expression>[];
         for (var i = 0; i < items.length; i++) {
@@ -68,10 +88,14 @@ extension ResolvedTypeCheckX on ResolvedType {
       })(),
 
       InlineRecord() => expr,
+
       NullableType(:final inner) => inner.toWireExpression(expr, ctx),
     };
   }
 
+  /// Generates a boolean expression that checks if [val] is valid for this
+  /// type, including type checks, structural checks for classes/inline records,
+  /// union member validation, and list/tuple element verification.
   Expression checkExpression(
     Expression val,
     CodegenContext ctx, [
@@ -79,8 +103,11 @@ extension ResolvedTypeCheckX on ResolvedType {
     UnionType? parentUnion,
   ]) => switch (nonNull) {
     DartCoreType(dartName: 'Object?') => literalTrue,
+
     DartCoreType(dartName: 'Null') => val.equalTo(literalNull),
+
     DartCoreType(:final dartName) => val.isA(refer(dartName)),
+
     ClassType(:final ref) =>
       val
           .isA(refer(ref.name))
@@ -89,17 +116,20 @@ extension ResolvedTypeCheckX on ResolvedType {
               nonNull,
               structChecks,
               val,
-              val.isA(tMapStringDynamic),
+              val.isA(refer('Map<String, dynamic>')),
               ctx,
             ),
           ),
+
     EnumType(:final ref) =>
       val.isA(refer(ref.name)).or(val.isA(refer(ref.valueType))),
+
     AliasType(:final ref) =>
       ctx.state.aliases
           .firstWhere((a) => a.name == ref.name)
           .type
           .checkExpression(val, ctx, structChecks, parentUnion),
+
     UnionType(:final items) =>
       items
           .skip(1)
@@ -109,6 +139,7 @@ extension ResolvedTypeCheckX on ResolvedType {
               item.checkExpression(val, ctx, structChecks, parentUnion),
             ),
           ),
+
     ListType(:final element) => _checkListType(
       val,
       element,
@@ -116,24 +147,32 @@ extension ResolvedTypeCheckX on ResolvedType {
       parentUnion,
       ctx,
     ),
-    MapType() => val.isA(tMapStringDynamic),
+    MapType() => val.isA(refer('Map<String, dynamic>')),
+
     InlineRecord() => _buildStructCheck(
       nonNull,
       structChecks,
       val,
-      val.isA(tMapStringDynamic),
+      val.isA(refer('Map<String, dynamic>')),
       ctx,
     ),
+
     TupleType(:final items) =>
       val
-          .isA(tList)
+          .isA(refer('List'))
           .and(
-            val.asA(tList).property('length').equalTo(literalNum(items.length)),
+            val
+                .asA(refer('List'))
+                .property('length')
+                .equalTo(literalNum(items.length)),
           ),
-    StringLiteralType() => val.isA(tString),
-    _ => val.isA(tObject),
+
+    StringLiteralType() => val.isA(refer('String')),
+    _ => val.isA(refer('Object')),
   };
 
+  /// Generates a check expression for list types, with special handling for
+  /// union types containing multiple lists to disambiguate by first element.
   Expression _checkListType(
     Expression val,
     ResolvedType element,
@@ -151,26 +190,32 @@ extension ResolvedTypeCheckX on ResolvedType {
                     ?.type,
               _ => t.nonNull,
             };
+
             return resolved is ListType;
           }).length >
           1;
 
       if (hasMultipleLists) {
-        final isList = val.isA(tList);
-        final isEmpty = val.asA(tList).property('isEmpty');
-        final firstItem = val.asA(tList).property('first');
+        final isList = val.isA(refer('List'));
+        final isEmpty = val.asA(refer('List')).property('isEmpty');
+        final firstItem = val.asA(refer('List')).property('first');
         final elementCheck = element.checkExpression(
           firstItem,
           ctx,
           structChecks,
           parentUnion,
         );
+
         return isList.and(isEmpty.or(elementCheck));
       }
     }
-    return val.isA(tList);
+
+    return val.isA(refer('List'));
   }
 
+  /// Generates a structural check for classes and inline records, validating
+  /// against [structChecks] for discriminated unions or falling back to
+  /// required property checks.
   Expression _buildStructCheck(
     ResolvedType actual,
     List<CodegenUnionCheck>? structChecks,
@@ -184,7 +229,7 @@ extension ResolvedTypeCheckX on ResolvedType {
         (c) => ctx.singleStructKey(c.variant) == key,
       );
       if (check != null) {
-        final mapRef = tMapStringDynamic;
+        final mapRef = refer('Map<String, dynamic>');
         final isMap = val.isA(mapRef);
 
         if (check.fieldName.isNotEmpty) {
@@ -193,24 +238,29 @@ extension ResolvedTypeCheckX on ResolvedType {
             final hasLiteral = mapVal
                 .index(literalString(check.fieldName))
                 .equalTo(literalString(check.literalValue!));
+
             return isMap.and(hasLiteral);
           } else {
             final hasKey = mapVal.property('containsKey').call([
               literalString(check.fieldName),
             ]);
+
             return isMap.and(hasKey);
           }
         } else {
           var cond = isMap;
+
           for (final other in structChecks) {
             if (other != check && other.fieldName.isNotEmpty) {
               final mapVal = val.asA(mapRef);
               final hasKey = mapVal.property('containsKey').call([
                 literalString(other.fieldName),
               ]);
+
               cond = cond.and(hasKey.negate());
             }
           }
+
           return cond;
         }
       }
@@ -218,6 +268,8 @@ extension ResolvedTypeCheckX on ResolvedType {
     return _buildRequiredPropertiesCheck(actual, val, ctx);
   }
 
+  /// Generates a check expression that validates all required (non-optional)
+  /// properties exist as keys in the JSON map.
   Expression _buildRequiredPropertiesCheck(
     ResolvedType type,
     Expression val,
@@ -232,16 +284,18 @@ extension ResolvedTypeCheckX on ResolvedType {
                 .map((p) => p.name)
                 .toList() ??
             [],
+
       InlineRecord(:final fields) =>
         fields.where((f) => !f.optional).map((f) => f.name).toList(),
       _ => <String>[],
     };
 
+    final mapRef = refer('Map<String, dynamic>');
+
     if (reqs.isEmpty) {
-      return val.isA(refer('Map<String, dynamic>'));
+      return val.isA(mapRef);
     }
 
-    final mapRef = refer('Map<String, dynamic>');
     var cond = val.isA(mapRef);
     final mapVal = val.asA(mapRef);
 
@@ -250,6 +304,7 @@ extension ResolvedTypeCheckX on ResolvedType {
         mapVal.property('containsKey').call([literalString(req)]),
       );
     }
+
     return cond;
   }
 }

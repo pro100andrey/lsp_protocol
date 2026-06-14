@@ -1,6 +1,11 @@
 part of 'model_generator.dart';
 
+/// Extension providing class generation capabilities for [ModelGenerator].
 extension ModelGeneratorClasses on ModelGenerator {
+  /// Generates a freezed class for [cls], collecting all inherited properties
+  /// and creating redirecting factory + fromJson constructors.
+  /// For underscore-prefixed anonymous structs, generates a plain
+  /// @JsonSerializable class instead.
   Spec _buildClass(ResolvedClass cls) {
     // For underscore-prefixed anonymous structs (e.g.
     // `_InitializeParamsClientInfo`), use plain @JsonSerializable instead
@@ -21,7 +26,7 @@ extension ModelGeneratorClasses on ModelGenerator {
       b
         ..name = cls.name
         ..abstract = true
-        ..annotations.add(tFreezed);
+        ..annotations.add(refer('freezed'));
 
       b.mixins.add(refer('_\$${cls.name}'));
 
@@ -58,7 +63,7 @@ extension ModelGeneratorClasses on ModelGenerator {
 
     return .new((b) {
       b.name = cls.name;
-      b.annotations.add(tJsonSerializable.call([]));
+      b.annotations.add(refer('JsonSerializable').call([]));
       b.docs.addAll(
         _docLines(cls.documentation, since: cls.since, proposed: cls.proposed),
       );
@@ -74,7 +79,7 @@ extension ModelGeneratorClasses on ModelGenerator {
 
             if (p.deprecated != null) {
               b.annotations.add(
-                tDeprecated.call([literalString(p.deprecated!)]),
+                refer('Deprecated').call([literalString(p.deprecated!)]),
               );
             }
 
@@ -115,22 +120,26 @@ extension ModelGeneratorClasses on ModelGenerator {
               .new(
                 (p) => p
                   ..name = 'json'
-                  ..type = tMapSD,
+                  ..type = TypeReference(
+                    (b) => b
+                      ..symbol = 'Map'
+                      ..types.addAll([refer('String'), refer('dynamic')]),
+                  ),
               ),
             )
-            ..body = refer('_\$${baseName}FromJson').call([eJson]).code,
+            ..body = refer('_\$${baseName}FromJson').call([refer('json')]).code,
         ),
       );
 
       // toJson method delegating to json_serializable's generated function.
       b.methods.add(
-        Method(
+        .new(
           (b) => b
             ..name = 'toJson'
             ..returns = TypeReference(
               (b) => b
                 ..symbol = 'Map'
-                ..types.addAll([tString, tDynamic]),
+                ..types.addAll([refer('String'), refer('dynamic')]),
             )
             ..body = refer('_\$${baseName}ToJson').call([refer('this')]).code,
         ),
@@ -175,7 +184,7 @@ extension ModelGeneratorClasses on ModelGenerator {
 
             if (p.deprecated != null) {
               b.annotations.add(
-                tDeprecated.call([literalString(p.deprecated!)]),
+                refer('Deprecated').call([literalString(p.deprecated!)]),
               );
             }
 
@@ -206,10 +215,14 @@ extension ModelGeneratorClasses on ModelGenerator {
         .new(
           (p) => p
             ..name = 'json'
-            ..type = tMapSD,
+            ..type = TypeReference(
+              (b) => b
+                ..symbol = 'Map'
+                ..types.addAll([refer('String'), refer('dynamic')]),
+            ),
         ),
       )
-      ..body = refer('_\$${className}FromJson').call([eJson]).code,
+      ..body = refer('_\$${className}FromJson').call([refer('json')]).code,
   );
 
   /// Builds a method-identifier enum (e.g. `NotificationMethod` or
@@ -228,7 +241,7 @@ extension ModelGeneratorClasses on ModelGenerator {
     );
     b.implements.add(refer('LSPMethod'));
     b.annotations.add(
-      tJsonEnum.call([], {
+      refer('JsonEnum').call([], {
         'valueField': literalString('value'),
         'alwaysCreate': literalTrue,
       }),
@@ -251,7 +264,7 @@ extension ModelGeneratorClasses on ModelGenerator {
         (b) => b
           ..modifier = .final$
           ..name = 'value'
-          ..type = tString
+          ..type = refer('String')
           ..annotations.add(refer('override')),
       ),
     );
@@ -284,7 +297,7 @@ extension ModelGeneratorClasses on ModelGenerator {
             .new(
               (b) => b
                 ..name = 'json'
-                ..type = tString,
+                ..type = refer('String'),
             ),
           )
           ..lambda = true
@@ -293,7 +306,7 @@ extension ModelGeneratorClasses on ModelGenerator {
               '_\$$enumName'
               'EnumMap',
             ),
-            eJson,
+            refer('json'),
           ]).code,
       ),
     );

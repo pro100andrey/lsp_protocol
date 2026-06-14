@@ -23,6 +23,7 @@ Reference toRef(ResolvedType type, {bool nullable = false}) {
 }
 
 /// Builds a code_builder [RecordType] from a list of [ResolvedProperty] fields.
+/// Each field is converted to a named type reference using [toRef].
 RecordType _buildRecordRef(
   List<ResolvedProperty> fields, {
   bool nullable = false,
@@ -107,6 +108,7 @@ TypeReference _dartCore(String name) => switch (name) {
   _ => TypeReference((b) => b..symbol = name),
 };
 
+/// Extension providing a convenience getter to make [Reference] types nullable.
 extension _ReferenceExt on Reference {
   Reference get asNullable => switch (this) {
     final TypeReference r => r.rebuild((b) => b.isNullable = true),

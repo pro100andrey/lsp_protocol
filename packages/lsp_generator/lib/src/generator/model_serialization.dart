@@ -1,5 +1,7 @@
 part of 'model_generator.dart';
 
+/// Extension providing serialization helper methods for [ModelGenerator],
+/// including inline record JSON conversion utilities.
 extension ModelGeneratorSerialization on ModelGenerator {
   /// Builds a Dart expression string that constructs an inline record from a
   /// JSON map (e.g. `(delta: json['delta'] as bool?)`).

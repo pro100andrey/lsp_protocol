@@ -7,6 +7,8 @@ import '../../network/fetch_lsp_license.dart';
 import '../../network/fetch_lsp_model.dart';
 import '../../resolver/resolve_model.dart';
 
+/// CLI command that generates LSP code by fetching the meta-model,
+/// resolving types, generating code, and running build_runner.
 final class GenerateCommand extends Command<dynamic> {
   GenerateCommand({required this.logger}) {
     argParser.addOption(
@@ -26,6 +28,11 @@ final class GenerateCommand extends Command<dynamic> {
 
   final Logger logger;
 
+  /// Executes the full code generation pipeline:
+  /// 1. Fetches the LSP meta-model and license
+  /// 2. Resolves the model
+  /// 3. Generates code
+  /// 4. Runs build_runner and analyzer
   @override
   Future<void> run() async {
     final outputPath = argResults?['output'] as String? ?? 'packages/pro_lsp';
