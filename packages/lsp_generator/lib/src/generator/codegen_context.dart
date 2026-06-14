@@ -3,7 +3,7 @@ part of 'codegen_type.dart';
 /// Context object holding resolved type information and helper methods for
 /// code generation, including class/union name sets, property resolution,
 /// and union type classification logic.
-class CodegenContext {
+final class CodegenContext {
   CodegenContext(this.state)
     : classNames = state.classes.map((c) => c.name).toSet(),
       classMap = {for (final c in state.classes) c.name: c},
@@ -29,7 +29,7 @@ class CodegenContext {
     }
   }
 
-  final ResolvedState state;
+  final ResolveResult state;
   final Set<String> classNames;
   final Set<String> sealedUnionNames;
   final Set<String> scalarUnionNames;

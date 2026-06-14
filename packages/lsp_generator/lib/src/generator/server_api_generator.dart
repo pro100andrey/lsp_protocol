@@ -1,10 +1,10 @@
 import 'package:code_builder/code_builder.dart';
 
 import '../models/protocol.dart';
-import '../resolver/resolved_state.dart' show ResolvedState;
+
 import 'api_generator.dart';
 
-/// Generates the typed LSP server API from a fully resolved [ResolvedState].
+/// Generates the typed LSP server API from a fully resolved `ResolveResult`.
 final class ServerApiGenerator extends ApiGenerator {
   ServerApiGenerator(super.resolved);
 

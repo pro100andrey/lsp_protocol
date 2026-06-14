@@ -4,7 +4,6 @@ import '../config/files.dart';
 import '../models/protocol.dart';
 import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
-import '../resolver/resolved_state.dart';
 import 'codegen_type.dart';
 import 'generator_helpers.dart';
 import 'resolver.dart';
@@ -28,13 +27,13 @@ enum _ClassCategory {
   common,
 }
 
-/// Builds code_builder [Library] objects from a fully resolved [ResolvedState].
+/// Builds code_builder [Library] objects from a fully resolved [ResolveResult].
 ///
 /// Each [Library] can be emitted to a Dart source string via [DartEmitter].
 final class ModelGenerator {
   ModelGenerator(this._resolved);
 
-  final ResolvedState _resolved;
+  final ResolveResult _resolved;
 
   late final _ctx = CodegenContext(_resolved);
 

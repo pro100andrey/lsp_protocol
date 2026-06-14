@@ -3,9 +3,9 @@ import 'package:mason_logger/mason_logger.dart';
 
 import '../../emitter/generate_code.dart';
 import '../../emitter/run_process.dart';
+import '../../generator/resolver.dart';
 import '../../network/fetch_lsp_license.dart';
 import '../../network/fetch_lsp_model.dart';
-import '../../resolver/resolve_model.dart';
 
 /// CLI command that generates LSP code by fetching the meta-model,
 /// resolving types, generating code, and running build_runner.
@@ -41,8 +41,8 @@ final class GenerateCommand extends Command<dynamic> {
     final licenseFuture = fetchLSPLicense(outputPath, logger);
 
     final metaProtocol = await modelFuture;
-    final resolvedModel = resolveModel(metaProtocol);
-    generateCode(resolvedModel, outputPath);
+    final resolved = ModelResolver().resolve(metaProtocol);
+    generateCode(resolved, outputPath);
 
     await licenseFuture;
 

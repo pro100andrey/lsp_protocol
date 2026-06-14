@@ -1,8 +1,8 @@
 import 'package:code_builder/code_builder.dart';
 
+import '../../lsp_generator.dart' show ResolveResult;
 import '../models/protocol.dart';
 import '../models/resolved_type.dart';
-import '../resolver/resolved_state.dart';
 import 'generator_helpers.dart';
 
 /// Abstract base for generating LSP API classes (handlers, senders, proxy).
@@ -46,7 +46,7 @@ abstract class ApiGenerator {
 
   /// The resolved protocol state containing all requests, notifications, and
   /// type aliases after direction resolution.
-  final ResolvedState resolved;
+  final ResolveResult resolved;
 
   /// Maps each wire method name to the corresponding `RequestMethod` enum
   /// member name used in generated code.
@@ -927,7 +927,7 @@ abstract class ApiGenerator {
 ///
 /// Holds the wire protocol method name, the generated Dart method name,
 /// parameter and result type references, and whether it is a notification.
-class MethodEntry {
+final class MethodEntry {
   const MethodEntry({
     required this.wireMethod,
     required this.dartName,
@@ -953,7 +953,7 @@ class MethodEntry {
 }
 
 /// Holds method entries grouped by namespace for handlers and senders.
-class GroupedMethods {
+final class GroupedMethods {
   const GroupedMethods({
     required this.handlerGroups,
     required this.senderGroups,

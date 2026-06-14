@@ -5,7 +5,7 @@
 ///
 /// Unlike [Exception] or [StateError], this is caught in `run` and results
 /// in returning an exit code rather than crashing.
-class CliException implements Exception {
+final class CliException implements Exception {
   /// Creates an exception with the given [message].
   ///
   /// [reason] is an optional additional error description.

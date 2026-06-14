@@ -8,7 +8,6 @@ import 'package:lsp_generator/src/generator/resolver.dart';
 import 'package:lsp_generator/src/models/protocol.dart';
 import 'package:lsp_generator/src/models/resolved_decl.dart';
 import 'package:lsp_generator/src/models/resolved_type.dart';
-import 'package:lsp_generator/src/resolver/resolved_state.dart';
 import 'package:test/test.dart';
 
 // Helpers
@@ -30,7 +29,7 @@ String _allStructuresSrc(ModelGenerator visitor) => [
   _format(visitor.buildStructuresCommon()),
 ].join('\n');
 
-String _getStructures(ResolvedState state) =>
+String _getStructures(ResolveResult state) =>
     _allStructuresSrc(ModelGenerator(state));
 
 ResolvedClass _cls(
@@ -73,15 +72,19 @@ ResolvedEnumMember _member(String name, String value, {String? doc}) =>
 ResolvedAlias _alias(String name, ResolvedType type) =>
     ResolvedAlias(name: name, type: type);
 
-ResolvedState _stateWith({
+ResolveResult _stateWith({
   List<ResolvedClass> classes = const [],
   List<ResolvedEnum> enumerations = const [],
   List<ResolvedAlias> aliases = const [],
-}) => ResolvedState(
-  registry: const {},
+  List<MetaNotification> notifications = const [],
+  List<MetaRequest> requests = const [],
+}) => (
+  registry: <String, ResolvedDecl>{},
   classes: classes,
   enumerations: enumerations,
   aliases: aliases,
+  notifications: notifications,
+  requests: requests,
 );
 
 // Unit tests — fixture-based
@@ -686,13 +689,7 @@ void main() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
-      final resolver = ModelResolver()..resolve(protocol);
-      final resolved = ResolvedState(
-        registry: resolver.registry,
-        classes: resolver.classes.toList(),
-        enumerations: resolver.enumerations.toList(),
-        aliases: resolver.aliases.toList(),
-      );
+      final resolved = ModelResolver().resolve(protocol);
       final lib = ModelGenerator(resolved).buildUnions();
       expect(() => _format(lib), returnsNormally);
     });
@@ -701,12 +698,14 @@ void main() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
-      final resolver = ModelResolver()..resolve(protocol);
-      final resolved = ResolvedState(
-        registry: resolver.registry,
-        classes: resolver.classes.toList(),
-        enumerations: resolver.enumerations.toList(),
-        aliases: resolver.aliases.toList(),
+      final result = ModelResolver().resolve(protocol);
+      final resolved = (
+        registry: result.registry,
+        classes: result.classes.toList(),
+        enumerations: result.enumerations.toList(),
+        aliases: result.aliases.toList(),
+        notifications: <MetaNotification>[],
+        requests: <MetaRequest>[],
       );
       // ProgressToken is scalar → lives in buildScalarUnions(), not
       // buildUnions().
@@ -721,20 +720,14 @@ void main() {
   // Integration — real metaModel.json
 
   group('ModelGenerator integration (real metaModel.json)', () {
-    late ResolvedState resolved;
+    late ResolveResult resolved;
 
     setUpAll(() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
 
-      final resolver = ModelResolver()..resolve(protocol);
-      resolved = ResolvedState(
-        registry: resolver.registry,
-        classes: resolver.classes.toList(),
-        enumerations: resolver.enumerations.toList(),
-        aliases: resolver.aliases.toList(),
-      );
+      resolved = ModelResolver().resolve(protocol);
     });
 
     test('buildStructures() emits valid formattable Dart', () {
@@ -992,21 +985,13 @@ void main() {
   // Smoke tests for buildNotificationMethods / buildRequestMethods
 
   group('buildNotificationMethods() smoke tests', () {
-    late ResolvedState resolved;
+    late ResolveResult resolved;
 
     setUpAll(() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
-      final resolver = ModelResolver()..resolve(protocol);
-      resolved = ResolvedState(
-        registry: resolver.registry,
-        classes: resolver.classes.toList(),
-        enumerations: resolver.enumerations.toList(),
-        aliases: resolver.aliases.toList(),
-        notifications: protocol.notifications,
-        requests: protocol.requests,
-      );
+      resolved = ModelResolver().resolve(protocol);
     });
 
     test('emits NotificationMethod enum', () {

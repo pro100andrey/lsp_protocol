@@ -1,11 +1,10 @@
 import 'package:code_builder/code_builder.dart';
 
 import '../models/protocol.dart';
-import '../resolver/resolved_state.dart' show ResolvedState;
 import 'api_generator.dart';
 
 /// Generates the typed LSP client API (`LspClient`, `LspClientExtensions`,
-/// etc.) from a fully resolved [ResolvedState].
+/// etc.) from a fully resolved `ResolveResult`.
 ///
 /// The client API exposes:
 ///  * `LspClient` — the main entry point for sending requests, notifications,

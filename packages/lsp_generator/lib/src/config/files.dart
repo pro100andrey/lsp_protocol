@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 /// File name constants for all generated output files.
-class Files {
+final class Files {
   // Model files
 
   static const structures = 'structures.dart';

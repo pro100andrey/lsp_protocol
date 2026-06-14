@@ -267,38 +267,38 @@ void main() {
   // Integration tests — real metaModel.json
   // =========================================================================
   group('real metaModel.json', () {
-    late ModelResolver visitor;
+    late ResolveResult resolved;
 
     setUpAll(() {
       final file = File('../pro_lsp/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);
-      visitor = ModelResolver()..resolve(protocol);
+      resolved = ModelResolver().resolve(protocol);
     });
 
     // Counts
     test('named structures count', () {
       // anonymous classes are no longer generated (LiteralRef → InlineRecord)
-      expect(visitor.classes.any((c) => c.isAnonymous), isFalse);
-      expect(visitor.classes.length, 324);
+      expect(resolved.classes.any((c) => c.isAnonymous), isFalse);
+      expect(resolved.classes.length, 324);
     });
 
     test('total classes (named + anonymous) count matches resolve output', () {
-      expect(visitor.classes.length, greaterThanOrEqualTo(37 + 21));
+      expect(resolved.classes.length, greaterThanOrEqualTo(37 + 21));
     });
 
     test('enumerations count', () {
-      expect(visitor.enumerations.length, 37);
+      expect(resolved.enumerations.length, 37);
     });
 
     test('aliases count', () {
-      expect(visitor.aliases.length, 21);
+      expect(resolved.aliases.length, 21);
     });
 
     test('registry size >= named classes + enumerations + aliases', () {
-      final namedClasses = visitor.classes.where((c) => !c.isAnonymous).length;
+      final namedClasses = resolved.classes.where((c) => !c.isAnonymous).length;
       expect(
-        visitor.registry.length,
+        resolved.registry.length,
         greaterThanOrEqualTo(namedClasses + 37 + 21),
       );
     });
@@ -306,7 +306,7 @@ void main() {
     // Position
     group('Position', () {
       late ResolvedClass pos;
-      setUp(() => pos = visitor.registry['Position']! as ResolvedClass);
+      setUp(() => pos = resolved.registry['Position']! as ResolvedClass);
 
       test('is in registry', () {
         expect(pos, isNotNull);
@@ -328,18 +328,18 @@ void main() {
     // Range
     group('Range', () {
       late ResolvedClass range;
-      setUp(() => range = visitor.registry['Range']! as ResolvedClass);
+      setUp(() => range = resolved.registry['Range']! as ResolvedClass);
 
       test('start → ClassType pointing to registry Position', () {
         final start = range.properties.firstWhere((p) => p.name == 'start');
         final ct = start.type as ClassType;
-        expect(identical(ct.ref, visitor.registry['Position']), isTrue);
+        expect(identical(ct.ref, resolved.registry['Position']), isTrue);
       });
 
       test('end → ClassType pointing to registry Position', () {
         final end = range.properties.firstWhere((p) => p.name == 'end');
         final ct = end.type as ClassType;
-        expect(identical(ct.ref, visitor.registry['Position']), isTrue);
+        expect(identical(ct.ref, resolved.registry['Position']), isTrue);
       });
     });
 
@@ -347,7 +347,7 @@ void main() {
     group('TextDocumentItem', () {
       late ResolvedClass cls;
       setUp(
-        () => cls = visitor.registry['TextDocumentItem']! as ResolvedClass,
+        () => cls = resolved.registry['TextDocumentItem']! as ResolvedClass,
       );
 
       test('uri → String', () {
@@ -375,7 +375,7 @@ void main() {
     group('DiagnosticSeverity', () {
       late ResolvedEnum en;
       setUp(
-        () => en = visitor.registry['DiagnosticSeverity']! as ResolvedEnum,
+        () => en = resolved.registry['DiagnosticSeverity']! as ResolvedEnum,
       );
 
       test('valueType is int', () {
@@ -395,27 +395,27 @@ void main() {
 
     // Enums with supportsCustomValues
     test('FoldingRangeKind supportsCustomValues', () {
-      final en = visitor.registry['FoldingRangeKind']! as ResolvedEnum;
+      final en = resolved.registry['FoldingRangeKind']! as ResolvedEnum;
       expect(en.supportsCustomValues, isTrue);
     });
 
     test('CodeActionKind supportsCustomValues', () {
-      final en = visitor.registry['CodeActionKind']! as ResolvedEnum;
+      final en = resolved.registry['CodeActionKind']! as ResolvedEnum;
       expect(en.supportsCustomValues, isTrue);
     });
 
     test('SemanticTokenTypes supportsCustomValues', () {
-      final en = visitor.registry['SemanticTokenTypes']! as ResolvedEnum;
+      final en = resolved.registry['SemanticTokenTypes']! as ResolvedEnum;
       expect(en.supportsCustomValues, isTrue);
     });
 
     // LSPAny alias
     test('LSPAny alias is a ResolvedAlias', () {
-      expect(visitor.registry['LSPAny'], isA<ResolvedAlias>());
+      expect(resolved.registry['LSPAny'], isA<ResolvedAlias>());
     });
 
     test('LSPAny alias type is a UnionType (or+null items)', () {
-      final alias = visitor.registry['LSPAny']! as ResolvedAlias;
+      final alias = resolved.registry['LSPAny']! as ResolvedAlias;
       expect(alias.type, isA<UnionType>());
     });
 
@@ -425,7 +425,7 @@ void main() {
         switch (type) {
           case ClassType(:final ref):
             expect(
-              identical(ref, visitor.registry[ref.name]),
+              identical(ref, resolved.registry[ref.name]),
               isTrue,
               reason: 'ClassType(${ref.name}) not identical to registry entry',
             );
@@ -448,7 +448,7 @@ void main() {
         }
       }
 
-      for (final cls in visitor.classes) {
+      for (final cls in resolved.classes) {
         for (final prop in cls.properties) {
           checkType(prop.type);
         }
@@ -461,7 +461,7 @@ void main() {
     test('no anonymous classes — LiteralRef resolves to InlineRecord', () {
       // Since LiteralRef is now emitted as an inline Dart record, the resolver
       // no longer adds anonymous ResolvedClass entries to the registry.
-      expect(visitor.classes.any((c) => c.isAnonymous), isFalse);
+      expect(resolved.classes.any((c) => c.isAnonymous), isFalse);
     });
   });
 }

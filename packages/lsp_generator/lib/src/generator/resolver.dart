@@ -3,6 +3,16 @@ import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
 import 'meta_visitor.dart';
 
+typedef ResolveResult = ({
+  Map<String, ResolvedDecl> registry,
+  List<ResolvedClass> classes,
+  List<ResolvedEnum> enumerations,
+  List<ResolvedAlias> aliases,
+  List<MetaNotification> notifications,
+  List<MetaRequest> requests,
+});
+
+
 /// Two-pass visitor that builds resolved IR from a [MetaProtocol].
 ///
 /// Pass 1 — register pass: creates shell [ResolvedDecl] objects and
@@ -21,16 +31,20 @@ final class ModelResolver {
   final List<ResolvedEnum> _enumerations = [];
   final List<ResolvedAlias> _aliases = [];
 
-  Map<String, ResolvedDecl> get registry => Map.unmodifiable(_registry);
-  List<ResolvedClass> get classes => List.unmodifiable(_classes);
-  List<ResolvedEnum> get enumerations => List.unmodifiable(_enumerations);
-  List<ResolvedAlias> get aliases => List.unmodifiable(_aliases);
 
   /// Runs both resolution passes over [protocol].
-  /// After this call, inspect [registry], [classes], [enumerations], [aliases].
-  void resolve(MetaProtocol protocol) {
+  ResolveResult resolve(MetaProtocol protocol) {
     _RegisterPass(this).run(protocol);
     _ResolvePass(this).run(protocol);
+
+    return (
+      registry: Map.unmodifiable(_registry),
+      classes: List.unmodifiable(_classes),
+      enumerations: List.unmodifiable(_enumerations),
+      aliases: List.unmodifiable(_aliases),
+      notifications: protocol.notifications,
+      requests: protocol.requests,
+    );
   }
 
   // Helpers used by both passes
