@@ -8,6 +8,18 @@ part of 'codegen_type.dart';
 /// Extension on [ResolvedType] to generate code for casting JSON values
 /// to the appropriate Dart types during deserialization.
 extension ResolvedTypeCodegenX on ResolvedType {
+  static final _mapStringDynamic = TypeReference(
+    (b) => b
+      ..symbol = 'Map'
+      ..types.addAll([refer('String'), refer('dynamic')]),
+  );
+
+  static TypeReference _listOf(Reference type) => TypeReference(
+    (b) => b
+      ..symbol = 'List'
+      ..types.add(type),
+  );
+
   /// Generates a cast expression that converts a JSON value to the target
   /// [ResolvedType], wrapped with an `is$capSuffix` guard.
   ///
@@ -27,13 +39,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
         val,
         refer(ref.name),
         () => refer(ref.name).newInstanceNamed('fromJson', [
-          val.bareAsA(
-            TypeReference(
-              (b) => b
-                ..symbol = 'Map'
-                ..types.addAll([refer('String'), refer('dynamic')]),
-            ),
-          ),
+          val.bareAsA(_mapStringDynamic),
         ]),
         capSuffix,
       ),
@@ -47,15 +53,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
       ),
       AliasType(:final ref) => _castAlias(val, ref, capSuffix, ctx),
       ListType(:final element) => _castList(val, element, capSuffix, ctx),
-      MapType() => _castSimple(
-        val,
-        capSuffix,
-        TypeReference(
-          (b) => b
-            ..symbol = 'Map'
-            ..types.addAll([refer('String'), refer('dynamic')]),
-        ),
-      ),
+      MapType() => _castSimple(val, capSuffix, _mapStringDynamic),
       InlineRecord(:final fields) => _castInlineRecord(val, fields, capSuffix),
       TupleType(:final items) => _castTuple(val, items, capSuffix),
       _ => _castSimple(val, capSuffix, refer(typeName)),
@@ -145,15 +143,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
           ]),
           capSuffix,
         ),
-      _ => _castSimple(
-        val,
-        capSuffix,
-        TypeReference(
-          (b) => b
-            ..symbol = 'List'
-            ..types.add(refer(elName)),
-        ),
-      ),
+      _ => _castSimple(val, capSuffix, _listOf(refer(elName))),
     };
   }
 
@@ -163,13 +153,8 @@ extension ResolvedTypeCodegenX on ResolvedType {
     Expression Function(Expression e) convert,
     String capSuffix,
   ) {
-    final listClass = TypeReference(
-      (b) => b
-        ..symbol = 'List'
-        ..types.add(elRef),
-    );
     final mapExpr = _listMapExpr(val, convert);
-    return _castBlock(val, listClass, mapExpr, capSuffix);
+    return _castBlock(val, _listOf(elRef), mapExpr, capSuffix);
   }
 
   /// Creates a `.map().toList()` expression on [val], applying [convert]
@@ -209,15 +194,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
   /// Generates a `ClassName.fromJson(value)` expression for [expr] using
   /// [classRef].
   Expression _fromJsonExpr(Expression expr, Reference classRef) =>
-      classRef.newInstanceNamed('fromJson', [
-        expr.bareAsA(
-          TypeReference(
-            (b) => b
-              ..symbol = 'Map'
-              ..types.addAll([refer('String'), refer('dynamic')]),
-          ),
-        ),
-      ]);
+      classRef.newInstanceNamed('fromJson', [expr.bareAsA(_mapStringDynamic)]);
 
   /// Generates code to cast a JSON map to an inline record type by iterating
   /// over [fields], casting each field value appropriately, and returning

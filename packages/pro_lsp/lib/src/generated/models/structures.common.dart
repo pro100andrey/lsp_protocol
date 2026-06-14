@@ -713,8 +713,6 @@ abstract class CompletionItem with _$CompletionItem {
     /// of the edit's replace range, that means it must be contained and
     /// starting at the same position.
     ///
-    /// additional type `InsertReplaceEdit`
-    ///
     /// Type: `TextEdit` | `InsertReplaceEdit`
     CompletionItemTextEdit? textEdit,
 
@@ -1125,8 +1123,6 @@ abstract class DocumentLink with _$DocumentLink {
 
 /// The result returned from the apply workspace edit request.
 ///
-/// renamed from ApplyWorkspaceEditResponse
-///
 /// @since 3.17 renamed from ApplyWorkspaceEditResponse
 @freezed
 abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
@@ -1368,8 +1364,6 @@ abstract class Color with _$Color {
 /// Positions are line end character agnostic. So you can not specify a position
 /// that denotes `\r|\n` or `\n|` where `|` represents the character offset.
 ///
-/// - support for negotiated position encoding.
-///
 /// @since 3.17.0 - support for negotiated position encoding.
 @freezed
 abstract class Position with _$Position {
@@ -1438,10 +1432,7 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
     /// The text document to change.
     required OptionalVersionedTextDocumentIdentifier textDocument,
 
-    /// The edits to be applied.
-    ///
-    /// - support for AnnotatedTextEdit. This is guarded using a client
-    /// capability.
+    /// The edits to be applied. client capability.
     required List<TextDocumentEditEditsItem> edits,
   }) = _TextDocumentEdit;
 
@@ -2081,8 +2072,6 @@ abstract class FileEvent with _$FileEvent {
 abstract class FileSystemWatcher with _$FileSystemWatcher {
   const factory FileSystemWatcher({
     /// The glob pattern to watch. See `GlobPattern` for more detail.
-    ///
-    /// support for relative patterns.
     required GlobPattern globPattern,
 
     /// The kind of events of interest. If omitted it defaults to

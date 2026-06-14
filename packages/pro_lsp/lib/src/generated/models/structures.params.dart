@@ -2030,8 +2030,6 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
     bool? workDoneProgress,
 
     /// Renames should be checked and tested before being executed.
-    ///
-    /// 3.12.0
     bool? prepareProvider,
   }) = _RenameRegistrationOptions;
 
@@ -2666,8 +2664,6 @@ abstract class RenameOptions with _$RenameOptions {
     bool? workDoneProgress,
 
     /// Renames should be checked and tested before being executed.
-    ///
-    /// 3.12.0
     bool? prepareProvider,
   }) = _RenameOptions;
 

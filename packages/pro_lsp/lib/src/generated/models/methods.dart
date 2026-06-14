@@ -371,10 +371,8 @@ enum RequestMethod implements LSPMethod {
 
   /// A request to list project-wide symbols matching the query string given by
   /// the `WorkspaceSymbolParams`. The response is of type `SymbolInformation`
-  /// or a Thenable that resolves to such.
-  ///
-  /// - support for WorkspaceSymbol in the returned data. Clients need to
-  /// advertise support for WorkspaceSymbols via the client capability
+  /// or a Thenable that resolves to such. need to advertise support for
+  /// WorkspaceSymbols via the client capability
   /// `workspace.symbol.resolveSupport`.
   symbol('workspace/symbol'),
 
@@ -414,8 +412,6 @@ enum RequestMethod implements LSPMethod {
   rename('textDocument/rename'),
 
   /// A request to test and perform the setup necessary for a rename.
-  ///
-  /// - support for default behavior
   prepareRename('textDocument/prepareRename'),
 
   /// A request send from the client to the server to execute a command. The

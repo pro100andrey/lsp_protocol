@@ -459,8 +459,6 @@ extension type const MarkedString._(
 /// A document filter describes a top level text document or a notebook cell
 /// document.
 ///
-/// - proposed support for NotebookCellTextDocumentFilter.
-///
 /// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
 extension type const DocumentFilter._(Object value) {
   const factory DocumentFilter.fromJson(Object json) = DocumentFilter._;

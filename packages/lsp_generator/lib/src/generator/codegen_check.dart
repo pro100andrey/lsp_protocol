@@ -173,18 +173,15 @@ extension ResolvedTypeCheckX on ResolvedType {
     CodegenContext ctx,
   ) {
     if (parentUnion != null) {
-      final hasMultipleLists =
-          parentUnion.items.where((t) {
-            final resolved = switch (t.nonNull) {
-              AliasType(:final ref) =>
-                ctx.state.aliases
-                    .firstWhereOrNull((a) => a.name == ref.name)
-                    ?.type,
-              _ => t.nonNull,
-            };
+      ResolvedType resolveAlias(ResolvedType t) => switch (t.nonNull) {
+        AliasType(:final ref) =>
+          ctx.state.aliases.firstWhereOrNull((a) => a.name == ref.name)?.type ??
+              t.nonNull,
+        _ => t.nonNull,
+      };
 
-            return resolved is ListType;
-          }).length >
+      final hasMultipleLists =
+          parentUnion.items.where((t) => resolveAlias(t) is ListType).length >
           1;
 
       if (hasMultipleLists) {

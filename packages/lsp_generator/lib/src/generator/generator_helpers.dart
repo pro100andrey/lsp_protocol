@@ -124,28 +124,30 @@ const reservedDartKeywords = {
 String safeIdentifier(String name) =>
     reservedDartKeywords.contains(name) ? '$name\$' : name;
 
+/// Strips a leading `$` or `$/` prefix from an LSP method string.
+String stripMethodPrefix(String method) => method.startsWith(r'$/')
+    ? method.substring(2)
+    : method.startsWith(r'$')
+    ? method.substring(1)
+    : method;
+
+/// Converts an LSP method path segment to camelCase.
+/// e.g. `'textDocument/didOpen'` → `'textDocumentDidOpen'`.
+String toMethodCamelCase(String method) {
+  final parts = stripMethodPrefix(method).split('/');
+  return [
+    parts.first,
+    ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
+  ].join();
+}
+
 /// Maps each item in [items] to a unique Dart identifier derived from its
 /// LSP method string (e.g. `textDocument/didOpen` → `didOpen`).
 ///
 /// Uses the last path segment when it is unique across all items; falls back
 /// to the full camelCase path on collisions.
 Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
-  String clean(String m) => m.startsWith(r'$/')
-      ? m.substring(2)
-      : m.startsWith(r'$')
-      ? m.substring(1)
-      : m;
-
-  String lastSeg(String m) => clean(m).split('/').last;
-
-  String camelCase(String m) {
-    final parts = clean(m).split('/');
-
-    return [
-      parts.first,
-      ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
-    ].join();
-  }
+  String lastSeg(String m) => stripMethodPrefix(m).split('/').last;
 
   final lastSegs = {for (final x in items) x: lastSeg(getMethod(x))};
   final counts = <String, int>{};
@@ -156,19 +158,16 @@ Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
   return {
     for (final x in items)
       x: safeIdentifier(
-        counts[lastSegs[x]!]! > 1 ? camelCase(getMethod(x)) : lastSegs[x]!,
+        counts[lastSegs[x]!]! > 1
+            ? toMethodCamelCase(getMethod(x))
+            : lastSegs[x]!,
       ),
   };
 }
 
 /// Extracts (namespace, dartMethodName) from a wire method string.
 (String, String) namespacedMethod(String method) {
-  final clean = method.startsWith(r'$/')
-      ? method.substring(2)
-      : method.startsWith(r'$')
-      ? method.substring(1)
-      : method;
-
+  final clean = stripMethodPrefix(method);
   final slashIdx = clean.indexOf('/');
   if (slashIdx == -1) {
     return ('general', safeIdentifier(clean));
@@ -177,12 +176,12 @@ Map<T, String> dartNames<T>(List<T> items, String Function(T) getMethod) {
   final ns = clean.substring(0, slashIdx);
   final rest = clean.substring(slashIdx + 1);
   final parts = rest.split('/');
-  final camel = [
+  final camelRest = [
     parts.first,
     ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
   ].join();
 
-  return (ns, safeIdentifier(camel));
+  return (ns, safeIdentifier(camelRest));
 }
 
 /// Returns the synthesized union name for a request's inline union result.

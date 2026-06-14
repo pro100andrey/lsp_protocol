@@ -388,19 +388,14 @@ final class ModelGenerator {
     bool proposed = false,
     List<String> extra = const [],
   }) {
-    // Structured tags — single source of truth used for both empty
-    // and non-empty body paths.
     final tags = [
       if (since != null) '/// @since $since',
       if (proposed) '/// @proposed',
     ];
 
-    // Strip any @since / @proposed already embedded in the documentation text —
-    // they are re-emitted from the structured fields so they appear
-    // exactly once.
     final body = (input ?? '')
-        .replaceAll(RegExp(r'@since\s+\S+'), '')
-        .replaceAll('@proposed', '')
+        .replaceAll(RegExp(r'\s*@since\s+.*?(?=\n|$)'), '')
+        .replaceAll(RegExp(r'\s*@proposed\s*.*?(?=\n|$)'), '')
         .replaceAll('<', '&lt;')
         .replaceAll('>', '&gt;')
         .trim();
@@ -412,7 +407,6 @@ final class ModelGenerator {
     const prefix = '/// ';
     final maxContent = maxWidth - prefix.length - indent;
 
-    // Resolve {@link Target} / {@link Target displayText} → Dart cross-refs.
     final resolved = body.replaceAllMapped(
       RegExp(r'\{@link\s+(\S+?)(?:\s+([^}]*?))?\}'),
       (m) {
@@ -421,16 +415,13 @@ final class ModelGenerator {
         if (rawDisplay.isEmpty) {
           return '`$target`';
         }
-        // Single valid Dart identifier → use as reference.
         if (RegExp(r'^\w+$').hasMatch(rawDisplay)) {
           return '`$rawDisplay`';
         }
-        // Multi-word / non-identifier → link to the type part only.
         return '`${target.split('.').first}`';
       },
     );
 
-    // Normalise line endings; split into non-empty paragraphs.
     final paragraphs = resolved
         .replaceAll('\r\n', '\n')
         .replaceAll('\r', '\n')
@@ -441,54 +432,12 @@ final class ModelGenerator {
 
     final lines = <String>[];
     for (final paragraph in paragraphs) {
-      if (lines.isNotEmpty) {
-        lines.add('///');
-      }
-
-      // Collapse intra-paragraph newlines to spaces, then word-wrap.
-      final words = paragraph.replaceAll('\n', ' ').split(RegExp(r'\s+'));
-      final buf = StringBuffer();
-      for (final word in words) {
-        if (buf.isEmpty) {
-          buf.write(word);
-        } else if (buf.length + 1 + word.length <= maxContent) {
-          buf
-            ..write(' ')
-            ..write(word);
-        } else {
-          lines.add('$prefix$buf');
-          buf
-            ..clear()
-            ..write(word);
-        }
-      }
-      if (buf.isNotEmpty) {
-        lines.add('$prefix$buf');
-      }
+      _wrapParagraph(paragraph, lines, prefix, maxContent);
     }
 
     if (extra.isNotEmpty) {
-      lines.add('///');
       for (final paragraph in extra) {
-        final words = paragraph.replaceAll('\n', ' ').split(RegExp(r'\s+'));
-        final buf = StringBuffer();
-        for (final word in words) {
-          if (buf.isEmpty) {
-            buf.write(word);
-          } else if (buf.length + 1 + word.length <= maxContent) {
-            buf
-              ..write(' ')
-              ..write(word);
-          } else {
-            lines.add('$prefix$buf');
-            buf
-              ..clear()
-              ..write(word);
-          }
-        }
-        if (buf.isNotEmpty) {
-          lines.add('$prefix$buf');
-        }
+        _wrapParagraph(paragraph, lines, prefix, maxContent);
       }
     }
 
@@ -498,6 +447,38 @@ final class ModelGenerator {
         ..addAll(tags);
     }
     return lines;
+  }
+
+  /// Word-wraps [paragraph] and appends the result to [lines] using [prefix]
+  /// with maximum content width [maxContent].
+  void _wrapParagraph(
+    String paragraph,
+    List<String> lines,
+    String prefix,
+    int maxContent,
+  ) {
+    if (lines.isNotEmpty) {
+      lines.add('///');
+    }
+    final words = paragraph.replaceAll('\n', ' ').split(RegExp(r'\s+'));
+    final buf = StringBuffer();
+    for (final word in words) {
+      if (buf.isEmpty) {
+        buf.write(word);
+      } else if (buf.length + 1 + word.length <= maxContent) {
+        buf
+          ..write(' ')
+          ..write(word);
+      } else {
+        lines.add('$prefix$buf');
+        buf
+          ..clear()
+          ..write(word);
+      }
+    }
+    if (buf.isNotEmpty) {
+      lines.add('$prefix$buf');
+    }
   }
 
   /// If [type] is an inline [UnionType] (i.e. not a named alias), returns a

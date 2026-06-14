@@ -347,18 +347,9 @@ extension ModelGeneratorUnions on ModelGenerator {
         'double' => 'Double',
         _ => dartName,
       },
-      ClassType(:final ref) =>
-        ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
-            ? ref.name.substring(aliasName.length)
-            : ref.name,
-      AliasType(:final ref) =>
-        ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
-            ? ref.name.substring(aliasName.length)
-            : ref.name,
-      EnumType(:final ref) =>
-        ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
-            ? ref.name.substring(aliasName.length)
-            : ref.name,
+      ClassType(:final ref) => _stripAliasPrefix(ref.name, aliasName),
+      AliasType(:final ref) => _stripAliasPrefix(ref.name, aliasName),
+      EnumType(:final ref) => _stripAliasPrefix(ref.name, aliasName),
       ListType(:final element) => '${_variantSuffix(element, aliasName)}List',
       MapType() => 'Map',
       InlineRecord(:final fields) =>
@@ -371,4 +362,10 @@ extension ModelGeneratorUnions on ModelGenerator {
       _ => 'Unknown',
     };
   }
+
+  /// Strips [aliasName] prefix from [name] when [name] starts with it.
+  String _stripAliasPrefix(String name, String aliasName) =>
+      name.startsWith(aliasName) && name.length > aliasName.length
+      ? name.substring(aliasName.length)
+      : name;
 }

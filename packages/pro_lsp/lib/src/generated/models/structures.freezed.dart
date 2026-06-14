@@ -15294,8 +15294,6 @@ mixin _$CompletionItem {
 /// of the edit's replace range, that means it must be contained and
 /// starting at the same position.
 ///
-/// additional type `InsertReplaceEdit`
-///
 /// Type: `TextEdit` | `InsertReplaceEdit`
  CompletionItemTextEdit? get textEdit;/// The edit text used if the completion item is part of a CompletionList
 /// and CompletionList defines an item default for the text edit range.
@@ -15514,8 +15512,6 @@ class _CompletionItem implements CompletionItem {
 /// `InsertReplaceEdit` is returned the edit's insert range must be a prefix
 /// of the edit's replace range, that means it must be contained and
 /// starting at the same position.
-///
-/// additional type `InsertReplaceEdit`
 ///
 /// Type: `TextEdit` | `InsertReplaceEdit`
 @override final  CompletionItemTextEdit? textEdit;
@@ -19915,10 +19911,7 @@ as String,
 mixin _$TextDocumentEdit {
 
 /// The text document to change.
- OptionalVersionedTextDocumentIdentifier get textDocument;/// The edits to be applied.
-///
-/// - support for AnnotatedTextEdit. This is guarded using a client
-/// capability.
+ OptionalVersionedTextDocumentIdentifier get textDocument;/// The edits to be applied. client capability.
  List<TextDocumentEditEditsItem> get edits;
 /// Create a copy of TextDocumentEdit
 /// with the given fields replaced by the non-null parameter values.
@@ -19999,15 +19992,9 @@ class _TextDocumentEdit implements TextDocumentEdit {
 
 /// The text document to change.
 @override final  OptionalVersionedTextDocumentIdentifier textDocument;
-/// The edits to be applied.
-///
-/// - support for AnnotatedTextEdit. This is guarded using a client
-/// capability.
+/// The edits to be applied. client capability.
  final  List<TextDocumentEditEditsItem> _edits;
-/// The edits to be applied.
-///
-/// - support for AnnotatedTextEdit. This is guarded using a client
-/// capability.
+/// The edits to be applied. client capability.
 @override List<TextDocumentEditEditsItem> get edits {
   if (_edits is EqualUnmodifiableListView) return _edits;
   // ignore: implicit_dynamic_type
@@ -24671,8 +24658,6 @@ as FileChangeType,
 mixin _$FileSystemWatcher {
 
 /// The glob pattern to watch. See `GlobPattern` for more detail.
-///
-/// support for relative patterns.
  GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to
 /// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
  WatchKind? get kind;
@@ -24745,8 +24730,6 @@ class _FileSystemWatcher implements FileSystemWatcher {
   factory _FileSystemWatcher.fromJson(Map<String, dynamic> json) => _$FileSystemWatcherFromJson(json);
 
 /// The glob pattern to watch. See `GlobPattern` for more detail.
-///
-/// support for relative patterns.
 @override final  GlobPattern globPattern;
 /// The kind of events of interest. If omitted it defaults to
 /// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
@@ -46050,8 +46033,6 @@ mixin _$RenameRegistrationOptions {
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Renames should be checked and tested before being executed.
-///
-/// 3.12.0
  bool? get prepareProvider;
 /// Create a copy of RenameRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -46137,8 +46118,6 @@ class _RenameRegistrationOptions implements RenameRegistrationOptions {
 
 @override final  bool? workDoneProgress;
 /// Renames should be checked and tested before being executed.
-///
-/// 3.12.0
 @override final  bool? prepareProvider;
 
 /// Create a copy of RenameRegistrationOptions
@@ -52603,8 +52582,6 @@ as List<String>?,
 mixin _$RenameOptions {
 
  bool? get workDoneProgress;/// Renames should be checked and tested before being executed.
-///
-/// 3.12.0
  bool? get prepareProvider;
 /// Create a copy of RenameOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -52676,8 +52653,6 @@ class _RenameOptions implements RenameOptions {
 
 @override final  bool? workDoneProgress;
 /// Renames should be checked and tested before being executed.
-///
-/// 3.12.0
 @override final  bool? prepareProvider;
 
 /// Create a copy of RenameOptions
