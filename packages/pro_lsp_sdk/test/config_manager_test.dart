@@ -22,11 +22,11 @@ void main() {
         clientOutgoing.sink,
       );
       server = LspServer.fromChannel(serverChannel);
-      config = LspConfigurationManager(server);
+      config = LspConfigurationManager();
     });
 
     tearDown(() async {
-      config.close();
+      await config.dispose();
       await server.close();
       await clientIncoming.close();
       await clientOutgoing.close();
@@ -39,7 +39,7 @@ void main() {
         onDone: done.complete,
       );
 
-      config.close();
+      await config.dispose();
 
       await Future<void>.delayed(const Duration(milliseconds: 50));
       expect(done.isCompleted, isTrue);
@@ -79,8 +79,8 @@ void main() {
             const InitializeResult(capabilities: ServerCapabilities()),
       );
 
+      server.registerFeature(config);
       unawaited(server.listen());
-      config.bind();
 
       // Send initialize request from client to transition state to initialized
       const initReq =
@@ -123,14 +123,14 @@ void main() {
       await sub.cancel();
     });
 
-    test('unbind() cancels server notification subscription', () async {
+    test('dispose() cancels server notification subscription', () async {
       server.general.onInitialize(
         (params, _) async =>
             const InitializeResult(capabilities: ServerCapabilities()),
       );
 
+      server.registerFeature(config);
       unawaited(server.listen());
-      config.bind();
 
       // Send initialize to transition state
       const initReq =
@@ -142,8 +142,8 @@ void main() {
       );
       await Future<void>.delayed(const Duration(milliseconds: 50));
 
-      // Unbind
-      config.unbind();
+      // Dispose the config
+      await config.dispose();
 
       // Now send workspace/didChangeConfiguration, should NOT trigger onChange stream
       var onChangeTriggered = false;
@@ -160,6 +160,120 @@ void main() {
       await Future<void>.delayed(const Duration(milliseconds: 50));
 
       expect(onChangeTriggered, isFalse);
+      await sub.cancel();
+    });
+
+    test('getSection de-duplicates concurrent in-flight requests', () async {
+      var requestCount = 0;
+      final sub = clientOutgoing.stream.listen((bytes) {
+        final raw = utf8.decode(bytes);
+        if (raw.contains('"method":"workspace/configuration"')) {
+          requestCount++;
+          final idMatch = RegExp(r'"id":\s*(\d+)').firstMatch(raw);
+          if (idMatch != null) {
+            final id = idMatch.group(1);
+            // Wait 20ms before sending response to keep it in-flight
+            Future.delayed(const Duration(milliseconds: 20), () {
+              final resp =
+                  '{"jsonrpc":"2.0","id":$id,"result":[{"tabSize":4}]}';
+              clientIncoming.add(
+                utf8.encode('Content-Length: ${resp.length}\r\n\r\n$resp'),
+              );
+            });
+          }
+        }
+      });
+
+      server.general.onInitialize(
+        (params, _) async =>
+            const InitializeResult(capabilities: ServerCapabilities()),
+      );
+
+      server.registerFeature(config);
+      unawaited(server.listen());
+
+      // Transition to initialized
+      const initReq =
+          '{"jsonrpc":"2.0","id":1,"method":"initialize",'
+          '"params":{"capabilities":{},"processId":null,"rootUri":null,'
+          '"workspaceFolders":null}}';
+      clientIncoming.add(
+        utf8.encode('Content-Length: ${initReq.length}\r\n\r\n$initReq'),
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 10));
+
+      // Trigger two concurrent requests
+      final futures = await Future.wait([
+        config.getSection<Map<String, dynamic>>('editor'),
+        config.getSection<Map<String, dynamic>>('editor'),
+      ]);
+
+      expect(futures[0], equals({'tabSize': 4}));
+      expect(futures[1], equals({'tabSize': 4}));
+      expect(requestCount, 1); // Only one network request was triggered
+
+      await sub.cancel();
+    });
+
+    test(
+      'getSection supports scopeUri and tracks them independently',
+      () async {
+        final requestedScopes = <String?>[];
+        final sub = clientOutgoing.stream.listen((bytes) {
+          final raw = utf8.decode(bytes);
+          if (raw.contains('"method":"workspace/configuration"')) {
+            final scopeMatch =
+                RegExp(r'"scopeUri":\s*"([^"]+)"').firstMatch(raw);
+            requestedScopes.add(scopeMatch?.group(1));
+
+            final idMatch = RegExp(r'"id":\s*(\d+)').firstMatch(raw);
+            if (idMatch != null) {
+              final id = idMatch.group(1);
+              final val = scopeMatch != null ? scopeMatch.group(1) : 'global';
+              final resp =
+                  '{"jsonrpc":"2.0","id":$id,"result":["value-$val"]}';
+              clientIncoming.add(
+                utf8.encode('Content-Length: ${resp.length}\r\n\r\n$resp'),
+              );
+            }
+          }
+        });
+
+        server.general.onInitialize(
+          (params, _) async =>
+              const InitializeResult(capabilities: ServerCapabilities()),
+        );
+
+        server.registerFeature(config);
+        unawaited(server.listen());
+
+        // Transition to initialized
+        const initReq =
+            '{"jsonrpc":"2.0","id":1,"method":"initialize",'
+            '"params":{"capabilities":{},"processId":null,"rootUri":null,'
+            '"workspaceFolders":null}}';
+        clientIncoming.add(
+          utf8.encode('Content-Length: ${initReq.length}\r\n\r\n$initReq'),
+        );
+        await Future<void>.delayed(const Duration(milliseconds: 10));
+
+        // Query global and scoped configs
+        final valGlobal = await config.getSection<String>('editor');
+        final valDocA = await config.getSection<String>(
+          'editor',
+          scopeUri: 'file:///a.dart',
+        );
+        final valDocB = await config.getSection<String>(
+          'editor',
+          scopeUri: 'file:///b.dart',
+        );
+
+      expect(valGlobal, equals('value-global'));
+      expect(valDocA, equals('value-file:///a.dart'));
+      expect(valDocB, equals('value-file:///b.dart'));
+
+      expect(requestedScopes, equals([null, 'file:///a.dart', 'file:///b.dart']));
+
       await sub.cancel();
     });
   });

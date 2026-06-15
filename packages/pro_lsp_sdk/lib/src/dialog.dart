@@ -4,21 +4,28 @@ import 'package:pro_lsp/pro_lsp.dart';
 
 /// Helper to interact with the client IDE's UI for showing messages,
 /// asking for confirmation/input, or opening files.
-final class LspDialogHelper {
-  LspDialogHelper(this._server);
+final class LspDialogHelper extends LspFeature {
+  LspDialogHelper([LspServer? server]) : _server = server;
 
-  final LspServer _server;
+  LspServer? _server;
+
+  @override
+  void register(LspServer server) {
+    _server = server;
+  }
 
   /// Shows a simple notification message in the editor UI.
   void showMessage({
     required MessageType type,
     required String message,
   }) {
-    _server.client.window.showMessage(
-      ShowMessageParams(
-        type: type,
-        message: message,
-      ),
+    final server = _server;
+    if (server == null) {
+      throw StateError('LspDialogHelper is not registered on any server.');
+    }
+
+    server.client.window.showMessage(
+      .new(type: type, message: message),
     );
   }
 
@@ -39,16 +46,17 @@ final class LspDialogHelper {
     required String message,
     required List<String> actions,
   }) async {
+    final server = _server;
+    if (server == null) {
+      throw StateError('LspDialogHelper is not registered on any server.');
+    }
+
     final actionItems = actions
         .map((title) => MessageActionItem(title: title))
         .toList(growable: false);
 
-    final response = await _server.client.window.showMessageRequest(
-      .new(
-        type: type,
-        message: message,
-        actions: actionItems,
-      ),
+    final response = await server.client.window.showMessageRequest(
+      .new(type: type, message: message, actions: actionItems),
     );
 
     return response?.title;
@@ -65,12 +73,24 @@ final class LspDialogHelper {
     bool? external,
     bool? takeFocus,
     Range? selection,
-  }) => _server.client.window.showDocument(
-    .new(
-      uri: uri,
-      external: external,
-      takeFocus: takeFocus,
-      selection: selection,
-    ),
-  );
+  }) {
+    final server = _server;
+    if (server == null) {
+      throw StateError('LspDialogHelper is not registered on any server.');
+    }
+
+    return server.client.window.showDocument(
+      .new(
+        uri: uri,
+        external: external,
+        takeFocus: takeFocus,
+        selection: selection,
+      ),
+    );
+  }
+
+  @override
+  FutureOr<void> dispose() {
+    _server = null;
+  }
 }

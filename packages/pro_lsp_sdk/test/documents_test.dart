@@ -103,7 +103,7 @@ void main() {
       expect(manager.all, isEmpty);
     });
 
-    test('unbind() cancels registrations on server', () async {
+    test('dispose() cancels registrations on server', () async {
       final clientIncoming = StreamController<List<int>>.broadcast();
       final clientOutgoing = StreamController<List<int>>.broadcast();
       final serverChannel = StreamChannel<List<int>>(
@@ -119,8 +119,8 @@ void main() {
         ),
       );
 
+      server.registerFeature(manager);
       unawaited(server.listen());
-      manager.bind(server);
 
       // Send initialize to transition state
       const initReq =
@@ -132,8 +132,8 @@ void main() {
       );
       await Future<void>.delayed(const Duration(milliseconds: 50));
 
-      // Unbind
-      manager.unbind();
+      // Dispose the manager
+      await manager.dispose();
 
       // Send didOpen notification
       const openReq =
@@ -146,7 +146,6 @@ void main() {
 
       expect(manager.get('file:///test.dart'), isNull);
 
-      manager.close();
       await server.close();
       await clientIncoming.close();
       await clientOutgoing.close();

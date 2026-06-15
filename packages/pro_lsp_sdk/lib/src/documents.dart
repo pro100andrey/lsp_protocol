@@ -24,18 +24,17 @@ final class LspDocument {
   /// The content of the document.
   final String text;
 
-  List<String>? _lines;
-  List<int>? _lineStarts;
-
   /// The lines of code in this document.
   List<String> get lines => _lines ??= text.split('\n');
+  List<String>? _lines;
 
   /// The character offsets of the start of each line in [text].
   List<int> get lineStarts => _lineStarts ??= _computeLineStarts(text);
+  List<int>? _lineStarts;
 }
 
 /// Manages active/open text documents synchronized from the client.
-final class TextDocumentManager {
+final class TextDocumentManager extends LspFeature {
   TextDocumentManager();
 
   final Map<String, LspDocument> _documents = {};
@@ -56,10 +55,12 @@ final class TextDocumentManager {
   Stream<LspDocument> get onDidClose => _didCloseController.stream;
 
   /// Binds listeners to the server's textDocument handlers to capture updates.
-  void bind(LspServer server) {
+  @override
+  void register(LspServer server) {
     if (_registrations.isNotEmpty) {
       return;
     }
+
     _registrations
       ..add(
         server.textDocument.onDidOpen((params, context) async {
@@ -137,47 +138,33 @@ final class TextDocumentManager {
       );
   }
 
-  /// Unbinds document manager listeners from the server.
-  void unbind() {
-    for (final dispose in _registrations) {
-      dispose();
-    }
-    _registrations.clear();
-  }
-
   /// Retrieves the document matching the given [uri].
   LspDocument? get(String uri) => _documents[uri];
 
   /// Returns all currently open documents.
   List<LspDocument> get all => _documents.values.toList();
 
-  /// Closes all event streams and unbinds listeners.
-  void close() {
-    unbind();
+  @override
+  FutureOr<void> dispose() async {
+    for (final dispose in _registrations) {
+      dispose();
+    }
+    _registrations.clear();
     _documents.clear();
-    unawaited(_didOpenController.close());
-    unawaited(_didChangeController.close());
-    unawaited(_didCloseController.close());
+
+    await _didOpenController.close();
+    await _didChangeController.close();
+    await _didCloseController.close();
   }
 }
 
 /// Manages text documents on the client side and synchronizes them with the
 /// server.
 final class ClientDocumentManager {
-  ClientDocumentManager();
+  ClientDocumentManager(this._client);
 
   final Map<String, LspDocument> _documents = {};
-  LspClient? _client;
-
-  /// Binds this manager to an [LspClient] to enable automatic sync.
-  void bind(LspClient client) {
-    _client = client;
-  }
-
-  /// Unbinds this manager from the client.
-  void unbind() {
-    _client = null;
-  }
+  final LspClient _client;
 
   /// Opens a document and notifies the server via `textDocument/didOpen`.
   void open({
@@ -189,17 +176,19 @@ final class ClientDocumentManager {
     if (_documents.containsKey(uri)) {
       return;
     }
+
     final doc = LspDocument(
       uri: uri,
       languageId: languageId,
       version: version,
       text: text,
     );
+
     _documents[uri] = doc;
 
-    _client?.server.textDocument.didOpen(
-      DidOpenTextDocumentParams(
-        textDocument: TextDocumentItem(
+    _client.server.textDocument.didOpen(
+      .new(
+        textDocument: .new(
           uri: uri,
           languageId: languageId,
           version: version,
@@ -221,22 +210,17 @@ final class ClientDocumentManager {
 
     final newVersion = version ?? existing.version + 1;
 
-    _documents[uri] = LspDocument(
+    _documents[uri] = .new(
       uri: uri,
       languageId: existing.languageId,
       version: newVersion,
       text: text,
     );
 
-    _client?.server.textDocument.didChange(
-      DidChangeTextDocumentParams(
-        textDocument: VersionedTextDocumentIdentifier(
-          uri: uri,
-          version: newVersion,
-        ),
-        contentChanges: [
-          .text(text: text),
-        ],
+    _client.server.textDocument.didChange(
+      .new(
+        textDocument: .new(uri: uri, version: newVersion),
+        contentChanges: [.text(text: text)],
       ),
     );
   }
@@ -244,10 +228,8 @@ final class ClientDocumentManager {
   /// Closes a document and notifies the server via `textDocument/didClose`.
   void close(String uri) {
     _documents.remove(uri);
-    _client?.server.textDocument.didClose(
-      DidCloseTextDocumentParams(
-        textDocument: TextDocumentIdentifier(uri: uri),
-      ),
+    _client.server.textDocument.didClose(
+      .new(textDocument: .new(uri: uri)),
     );
   }
 
@@ -257,10 +239,9 @@ final class ClientDocumentManager {
   /// Returns all currently open documents.
   List<LspDocument> get all => _documents.values.toList();
 
-  /// Closes all open documents and unbinds from the client.
+  /// Closes all open documents.
   void closeAll() {
     _documents.clear();
-    unbind();
   }
 }
 
@@ -273,21 +254,26 @@ int _positionToOffset(String text, List<int> starts, Position position) {
   final nextOffset = (position.line + 1 < starts.length)
       ? starts[position.line + 1]
       : text.length;
+
   var lineLength = nextOffset - offset;
+
   if (lineLength > 0 && text.codeUnitAt(nextOffset - 1) == 10) {
     lineLength--;
+
     if (lineLength > 0 && text.codeUnitAt(nextOffset - 2) == 13) {
       lineLength--;
     }
   }
+
   final char = position.character.clamp(0, lineLength);
 
   return offset + char;
 }
 
 List<int> _computeLineStarts(String text) {
-  final starts = <int>[0];
+  final starts = [0];
   var offset = 0;
+
   while (offset < text.length) {
     final next = text.indexOf('\n', offset);
     if (next == -1) {

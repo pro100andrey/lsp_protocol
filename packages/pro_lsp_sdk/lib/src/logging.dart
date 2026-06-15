@@ -1,27 +1,25 @@
 import 'dart:async';
+import 'dart:io';
 
-import 'package:logging/logging.dart' as log;
+import 'package:logging/logging.dart';
 import 'package:pro_lsp/pro_lsp.dart';
 
 /// Adapts the standard Dart `package:logging` framework to forward log events
 /// directly to the LSP client via `window/logMessage`.
-final class LspLoggingAdapter {
-  LspLoggingAdapter(this._server);
+final class ClientLoggingFeature extends LspFeature {
+  ClientLoggingFeature();
 
-  final LspServer _server;
-  StreamSubscription<log.LogRecord>? _subscription;
+  Logger? logger;
+  Level level = .ALL;
+  StreamSubscription<LogRecord>? _subscription;
 
-  /// Binds the logger adapter to the global logger stream or a specific logger.
-  ///
-  /// [logger] allows specifying a target Logger instance to listen to. Defaults
-  ///  to `Logger.root`.[level] defines the minimum severity level to forward.
-  /// Defaults to [log.Level.ALL].
-  void bind({log.Logger? logger, log.Level level = .ALL}) {
+  @override
+  void register(LspServer server) {
     if (_subscription != null) {
       return;
     }
 
-    final targetLogger = logger ?? log.Logger.root;
+    final targetLogger = logger ?? .root;
     _subscription = targetLogger.onRecord.listen((record) {
       if (record.level < level) {
         return;
@@ -38,51 +36,118 @@ final class LspLoggingAdapter {
       final lspType = _mapLevelToMessageType(record.level);
       final message = _formatMessage(record);
 
-      _server.client.window.logMessage(
-        LogMessageParams(
-          type: lspType,
-          message: message,
-        ),
+      server.client.window.logMessage(
+        .new(type: lspType, message: message),
       );
     });
   }
 
-  /// Unbinds this adapter from the logger stream.
-  void unbind() {
-    unawaited(_subscription?.cancel());
+  @override
+  FutureOr<void> dispose() async {
+    await _subscription?.cancel();
     _subscription = null;
   }
 
-  /// Closes the adapter.
-  void close() {
-    unbind();
-  }
+  MessageType _mapLevelToMessageType(Level level) => switch (level) {
+    >= .SEVERE => .error,
+    >= .WARNING => .warning,
+    >= .INFO => .info,
+    _ => .log,
+  };
 
-  MessageType _mapLevelToMessageType(log.Level level) {
-    if (level >= .SEVERE) {
-      return MessageType.error;
-    } else if (level >= .WARNING) {
-      return MessageType.warning;
-    } else if (level >= .INFO) {
-      return MessageType.info;
-    } else {
-      return MessageType.log;
-    }
-  }
-
-  String _formatMessage(log.LogRecord record) {
+  String _formatMessage(LogRecord record) {
     final buffer = StringBuffer();
     if (record.loggerName.isNotEmpty) {
       buffer.write('[${record.loggerName}] ');
     }
+
     buffer.write(record.message);
+
     if (record.error != null) {
       buffer.write('\nError: ${record.error}');
     }
+
     if (record.stackTrace != null) {
       buffer.write('\nStack Trace:\n${record.stackTrace}');
     }
-    
+
     return buffer.toString();
+  }
+}
+
+/// Captures server logs and writes them to a local file.
+final class FileLoggingFeature extends LspFeature {
+  FileLoggingFeature({
+    required this.logFile,
+    this.logger,
+    this.level = .ALL,
+  });
+
+  /// The local file where logs will be appended.
+  final File logFile;
+
+  /// Optional specific logger to listen to (defaults to root logger).
+  final Logger? logger;
+
+  /// Minimum severity level to log.
+  final Level level;
+
+  IOSink? _sink;
+  StreamSubscription<LogRecord>? _subscription;
+
+  @override
+  void register(LspServer server) {
+    _bind();
+  }
+
+  void _bind() {
+    if (_subscription != null) {
+      return;
+    }
+
+    try {
+      // Ensure the parent directory exists
+      logFile.parent.createSync(recursive: true);
+      _sink = logFile.openWrite(mode: FileMode.writeOnlyAppend);
+    } on Object catch (e) {
+      // Fallback to writing error to stderr if opening the file fails
+      stderr.writeln('Failed to open log file ${logFile.path}: $e');
+      return;
+    }
+
+    final targetLogger = logger ?? .root;
+    _subscription = targetLogger.onRecord.listen((record) {
+      if (record.level < level) {
+        return;
+      }
+
+      final time = DateTime.now().toIso8601String();
+      final message = _formatMessage(record);
+      _sink?.writeln(
+        '[$time] [${record.level.name}] [${record.loggerName}] $message',
+      );
+    });
+  }
+
+  String _formatMessage(LogRecord record) {
+    final buffer = StringBuffer()..write(record.message);
+    if (record.error != null) {
+      buffer.write('\nError: ${record.error}');
+    }
+
+    if (record.stackTrace != null) {
+      buffer.write('\nStack Trace:\n${record.stackTrace}');
+    }
+
+    return buffer.toString();
+  }
+
+  @override
+  FutureOr<void> dispose() async {
+    await _subscription?.cancel();
+    _subscription = null;
+    await _sink?.flush();
+    await _sink?.close();
+    _sink = null;
   }
 }

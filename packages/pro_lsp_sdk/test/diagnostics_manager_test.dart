@@ -23,7 +23,8 @@ void main() {
         clientOutgoing.sink,
       );
       server = LspServer.fromChannel(serverChannel);
-      diagnostics = DiagnosticsManager(server);
+      diagnostics = DiagnosticsManager();
+      server.registerFeature(diagnostics);
 
       final clientByteChannel = StreamChannel<List<int>>(
         clientOutgoing.stream,
@@ -38,13 +39,13 @@ void main() {
     });
 
     tearDown(() async {
-      diagnostics.close();
+      await diagnostics.dispose();
       await server.close();
       await clientIncoming.close();
       await clientOutgoing.close();
     });
 
-    test('close() cancels all timers', () {
+    test('dispose() cancels all timers', () async {
       // Publish a diagnostic with a long debounce
       diagnostics
         ..debounceDuration = const Duration(seconds: 10)
@@ -56,9 +57,9 @@ void main() {
             ),
             message: 'error',
           ),
-        ])
-        // Close should cancel the timer
-        ..close();
+        ]);
+      // Dispose should cancel the timer
+      await diagnostics.dispose();
     });
 
     test('multiple URIs are tracked independently', () async {

@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:pro_lsp/pro_lsp.dart';
 
 /// Manages dynamic workspace folders synchronized from the client.
-final class WorkspaceFoldersManager {
-  WorkspaceFoldersManager(this._server);
+final class WorkspaceFoldersManager extends LspFeature {
+  WorkspaceFoldersManager();
 
-  final LspServer _server;
   final _folders = <WorkspaceFolder>[];
   final _didChangeController =
       StreamController<List<WorkspaceFolder>>.broadcast();
@@ -18,14 +17,13 @@ final class WorkspaceFoldersManager {
   /// A stream that emits the list of workspace folders whenever they change.
   Stream<List<WorkspaceFolder>> get onChange => _didChangeController.stream;
 
-  /// Binds workspace folder change listener to the server's workspace
-  /// notifications.
-  void bind() {
+  @override
+  void register(LspServer server) {
     if (_registration != null) {
       return;
     }
 
-    _registration = _server.workspace.onDidChangeWorkspaceFolders((
+    _registration = server.workspace.onDidChangeWorkspaceFolders((
       params,
       context,
     ) async {
@@ -43,21 +41,17 @@ final class WorkspaceFoldersManager {
   /// Sets the initial folders, e.g. after the initialize request handshake.
   void setInitialFolders(List<WorkspaceFolder>? initialFolders) {
     _folders.clear();
+
     if (initialFolders != null) {
       _folders.addAll(initialFolders);
     }
   }
 
-  /// Unbinds workspace folder notifications.
-  void unbind() {
+  @override
+  FutureOr<void> dispose() async {
     _registration?.call();
     _registration = null;
-  }
-
-  /// Closes change streams and unbinds listeners.
-  void close() {
-    unbind();
-    unawaited(_didChangeController.close());
+    await _didChangeController.close();
   }
 }
 
@@ -70,7 +64,7 @@ final class WatchedFilesManager {
 
   /// Whether dynamic registration of watched files is supported by the client.
   ///
-  /// Requires [InitializeParams] to be registered in the server's connection 
+  /// Requires [InitializeParams] to be registered in the server's connection
   /// locator (e.g. `server.register(params)` in `onInitialize`).
   bool get isSupported {
     final params = _server.connection.tryResolve<InitializeParams>();
@@ -89,7 +83,7 @@ final class WatchedFilesManager {
   /// Registers a list of file watch patterns on the client.
   ///
   /// Returns a registration ID string that can be used to unregister later.
-  /// Throws [UnsupportedError] if the client does not support dynamic 
+  /// Throws [UnsupportedError] if the client does not support dynamic
   /// registration.
   Future<String> register({
     required List<FileSystemWatcher> watchers,
@@ -99,6 +93,7 @@ final class WatchedFilesManager {
         'Client does not support dynamic registration of watched files.',
       );
     }
+    
     final registrationId = 'dynamic-watcher-${_registrationIdCounter++}';
     await _server.client.client.registerCapability(
       .new(

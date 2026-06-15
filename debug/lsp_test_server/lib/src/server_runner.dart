@@ -47,7 +47,8 @@ final class ServerRunner {
   final CompletionService _completionService;
   final HoverService _hoverService;
 
-  late final LspLoggingAdapter _loggingAdapter;
+  late final ClientLoggingFeature _loggingAdapter;
+  late final FileLoggingFeature _fileLogger;
   late final DiagnosticsManager _diagnosticsManager;
   late final LspConfigurationManager _configManager;
   late final WorkspaceFoldersManager _workspaceFoldersManager;
@@ -58,21 +59,34 @@ final class ServerRunner {
   final _logger = log.Logger('ServerRunner');
 
   void _initManagers() {
-    _loggingAdapter = LspLoggingAdapter(_server);
-    _diagnosticsManager = DiagnosticsManager(_server);
-    _configManager = LspConfigurationManager(_server);
-    _workspaceFoldersManager = WorkspaceFoldersManager(_server);
+    _loggingAdapter = ClientLoggingFeature();
+    _fileLogger = FileLoggingFeature(logFile: File('.lsp_server.log'));
+    _diagnosticsManager = DiagnosticsManager();
+    _configManager = LspConfigurationManager();
+    _workspaceFoldersManager = WorkspaceFoldersManager();
     _watchedFilesManager = WatchedFilesManager(_server);
-    _progressManager = WorkDoneProgressManager(_server.connection);
-    _dialogHelper = LspDialogHelper(_server);
+    _progressManager = WorkDoneProgressManager();
+    _dialogHelper = LspDialogHelper();
+
+    // Register LspFeatures on the server so they get automated register/dispose lifecycle
+    _server
+      ..registerFeature(_loggingAdapter)
+      ..registerFeature(_fileLogger)
+      ..registerFeature(_diagnosticsManager)
+      ..registerFeature(_configManager)
+      ..registerFeature(_workspaceFoldersManager)
+      ..registerFeature(_progressManager)
+      ..registerFeature(_dialogHelper)
+      ..registerFeature(_docService);
   }
 
   /// Registers all handlers and starts listening on stdio.
   Future<void> run() async {
-    // Configure standard logger to print to stdout for debugging
+    // Configure standard logger to print to stderr for debugging
+    // (stdout is reserved for LSP JSON-RPC messages)
     log.Logger.root.level = log.Level.ALL;
-    final stdoutSubscription = log.Logger.root.onRecord.listen((record) {
-      stdout.writeln(
+    final stderrSubscription = log.Logger.root.onRecord.listen((record) {
+      stderr.writeln(
         '[${record.level.name}] [${record.loggerName}] ${record.message}',
       );
     });
@@ -82,27 +96,11 @@ final class ServerRunner {
       await _server.listen();
     } finally {
       // Clean up resources immediately when connection ends
-      _loggingAdapter.close();
-      _diagnosticsManager.close();
-      _configManager.close();
-      _workspaceFoldersManager.close();
-      _progressManager.cancelAll();
-      await stdoutSubscription.cancel();
+      await stderrSubscription.cancel();
     }
   }
 
   void _registerHandlers() {
-    // 1. Bind Logging Adapter (so Logger messages go to the client window)
-    _loggingAdapter.bind();
-
-    // 2. Bind TextDocumentManager to start capturing open/change events
-    _docService.bind(_server);
-
-    // 3. Bind WorkspaceFoldersManager
-    _workspaceFoldersManager.bind();
-
-    // 4. Bind LspConfigurationManager
-    _configManager.bind();
 
     // Listen to document changes to publish diagnostics
     _docService.onDidChange.listen((doc) {
@@ -221,13 +219,6 @@ final class ServerRunner {
 
     _server.general.onExit((context) async {
       _logger.info('Received exit notification');
-
-      // Clean up resources
-      _loggingAdapter.close();
-      _diagnosticsManager.close();
-      _configManager.close();
-      _workspaceFoldersManager.close();
-      _progressManager.cancelAll();
     });
 
     // textDocument/hover

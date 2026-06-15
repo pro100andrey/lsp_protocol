@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:logging/logging.dart' as log;
 import 'package:pro_lsp/pro_lsp.dart';
@@ -67,7 +68,7 @@ void main() {
   });
 
   group('WorkspaceFoldersManager', () {
-    test('tracks and adds/removes folders', () {
+    test('tracks and adds/removes folders', () async {
       final clientIncoming = StreamController<List<int>>.broadcast();
       final clientOutgoing = StreamController<List<int>>.broadcast();
       final serverChannel = StreamChannel<List<int>>(
@@ -75,7 +76,7 @@ void main() {
         clientOutgoing.sink,
       );
       final server = LspServer.fromChannel(serverChannel);
-      final manager = WorkspaceFoldersManager(server);
+      final manager = WorkspaceFoldersManager();
 
       expect(manager.folders, isEmpty);
 
@@ -86,14 +87,14 @@ void main() {
       expect(manager.folders, hasLength(1));
       expect(manager.folders.first.name, 'proj1');
 
-      manager.close();
+      await manager.dispose();
       server.close().ignore();
       clientIncoming.close().ignore();
       clientOutgoing.close().ignore();
     });
   });
 
-  group('LspLoggingAdapter', () {
+  group('ClientLoggingFeature', () {
     test('adapts log record to showMessage', () async {
       final clientIncoming = StreamController<List<int>>.broadcast();
       final clientOutgoing = StreamController<List<int>>.broadcast();
@@ -102,7 +103,7 @@ void main() {
         clientOutgoing.sink,
       );
       final server = LspServer.fromChannel(serverChannel);
-      final adapter = LspLoggingAdapter(server);
+      final adapter = ClientLoggingFeature()..level = log.Level.INFO;
 
       final completer = Completer<void>();
       clientOutgoing.stream.listen((bytes) {
@@ -111,7 +112,7 @@ void main() {
         }
       });
 
-      adapter.bind(level: log.Level.INFO);
+      server.registerFeature(adapter);
 
       log.Logger('test-logger').info('test message');
 
@@ -120,10 +121,38 @@ void main() {
         Future<void>.delayed(const Duration(milliseconds: 100)),
       ]);
 
-      adapter.close();
+      await adapter.dispose();
       await server.close();
       await clientIncoming.close();
       await clientOutgoing.close();
+    });
+  });
+
+  group('FileLoggingFeature', () {
+    test('writes log record to file', () async {
+      final tempDir = Directory.systemTemp.createTempSync();
+      final logFile = File('${tempDir.path}/test_server.log');
+
+      final feature = FileLoggingFeature(
+        logFile: logFile,
+        level: log.Level.INFO,
+      );
+
+      final server = LspServer()..registerFeature(feature);
+
+      log.Logger('test-file-logger').info('file log message');
+
+      // Allow async write to complete
+      await Future<void>.delayed(const Duration(milliseconds: 50));
+
+      expect(logFile.existsSync(), isTrue);
+      final content = logFile.readAsStringSync();
+      expect(content, contains('file log message'));
+      expect(content, contains('[INFO]'));
+
+      await feature.dispose();
+      await server.close();
+      tempDir.deleteSync(recursive: true);
     });
   });
 

@@ -80,8 +80,9 @@ void main() {
         'synchronizes document lifecycle using TextDocumentManager',
         () async {
           final documents = TextDocumentManager();
-          server.register<TextDocumentManager>(documents);
-          documents.bind(server);
+          server
+            ..registerFeature(documents)
+            ..register<TextDocumentManager>(documents);
 
           await performInitialization();
 
@@ -180,8 +181,10 @@ void main() {
 
     group('Diagnostics via DI', () {
       test('publishes diagnostics with debouncing', () async {
-        final diagnostics = DiagnosticsManager(server);
-        server.register<DiagnosticsManager>(diagnostics);
+        final diagnostics = DiagnosticsManager();
+        server
+          ..registerFeature(diagnostics)
+          ..register<DiagnosticsManager>(diagnostics);
 
         await performInitialization();
 
@@ -225,16 +228,17 @@ void main() {
         final clearParamsParams = clearParams['params'] as Map<String, dynamic>;
         expect(clearParamsParams['diagnostics'] as List, isEmpty);
 
-        resolvedDiag.close();
+        await resolvedDiag.dispose();
         await subscription.cancel();
       });
     });
 
     group('Configuration via DI', () {
       test('queries and caches configs', () async {
-        final config = LspConfigurationManager(server);
-        server.register<LspConfigurationManager>(config);
-        config.bind();
+        final config = LspConfigurationManager();
+        server
+          ..registerFeature(config)
+          ..register<LspConfigurationManager>(config);
 
         await performInitialization();
 
@@ -285,7 +289,7 @@ void main() {
         );
         expect(tabSize3, equals({'editor.tabSize': 2}));
 
-        resolvedConfig.close();
+        await resolvedConfig.dispose();
         await subscription.cancel();
       });
     });
