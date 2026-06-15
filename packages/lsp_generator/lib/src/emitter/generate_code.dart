@@ -30,18 +30,10 @@ final _apiExports = [
 
 /// Infrastructure exports for the main barrel (pro_lsp only).
 final _mainBarrelSourceExports = [
-  'src/connection/lsp_connection.dart',
-  'src/connection/lsp_exception.dart',
-  'src/server/lsp_server.dart',
-  'src/transport/lsp_byte_stream_channel.dart',
-];
-
-/// Infrastructure exports for the client barrel (pro_lsp only).
-/// Does NOT include lsp_server.dart to avoid TextDocumentHandlers conflict.
-final _clientBarrelSourceExports = [
   'src/client/lsp_client.dart',
   'src/connection/lsp_connection.dart',
   'src/connection/lsp_exception.dart',
+  'src/server/lsp_server.dart',
   'src/transport/lsp_byte_stream_channel.dart',
 ];
 
@@ -76,7 +68,6 @@ void _writeGeneratedFiles(ModelGenerator mg, String outputDir) {
 
 void _writeBarrelFiles(String outputDir) {
   final dir = Directory(outputDir);
-  _writeBarrel(dir, _modelExports, dir.barrelFile);
 
   if (dir.packageName == kProLspPackage) {
     final mainBarrelExports = [
@@ -85,9 +76,8 @@ void _writeBarrelFiles(String outputDir) {
       ..._mainBarrelSourceExports,
     ];
     _writeBarrel(dir, mainBarrelExports, dir.barrelFile);
-
-    final clientBarrelFile = File('${dir.path}/lib/pro_lsp_client.dart');
-    _writeBarrel(dir, _clientBarrelSourceExports, clientBarrelFile);
+  } else {
+    _writeBarrel(dir, _modelExports, dir.barrelFile);
   }
 }
 

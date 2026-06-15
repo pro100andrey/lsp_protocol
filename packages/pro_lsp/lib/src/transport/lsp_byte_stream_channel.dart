@@ -6,31 +6,101 @@ import 'dart:typed_data';
 
 import 'package:stream_channel/stream_channel.dart';
 
-/// Creates a [StreamChannel<Object?>] that speaks the LSP byte-framing
-/// protocol (Content-Length headers) over an underlying byte channel.
+/// A [StreamChannel] implementation that speaks the LSP byte-framing protocol.
 ///
-/// Typical usage (stdio transport):
+/// The Language Server Protocol (LSP) uses a simple byte-framing protocol
+/// based on HTTP-like headers to delimit JSON-RPC messages:
+///
+/// ```
+/// Content-Length: <length>\r\n
+/// \r\n
+/// <JSON body>
+/// ```
+///
+/// This channel wraps an underlying byte stream (e.g. stdin/stdout) and
+/// transparently handles:
+///
+/// - **Parsing** incoming bytes into JSON-RPC message objects
+/// - **Framing** outgoing JSON-RPC messages with Content-Length headers
+///
+/// ## Protocol Details
+///
+/// Each message consists of:
+///
+/// 1. A header line: `Content-Length: <N>\r\n`
+/// 2. A blank line: `\r\n`
+/// 3. The JSON body: exactly `<N>` bytes
+///
+/// The parser handles partial messages, multiple messages in a single chunk,
+/// and buffers bytes until a complete message is available.
+///
+/// ## Usage
+///
+/// **Stdio transport (standard LSP process):**
 /// ```dart
 /// final channel = LspByteStreamChannel.fromStdio();
+/// final server = LspServer.fromChannel(channel);
+/// await server.listen();
+/// ```
+///
+/// **Custom transport (TCP, pipes, etc.):**
+/// ```dart
+/// final tcpSocket = await Socket.connect('localhost', 6000);
+/// final channel = LspByteStreamChannel.fromByteChannel(
+///   StreamChannel<List<int>>(tcpSocket, tcpSocket),
+/// );
+/// final server = LspServer.fromChannel(channel);
+/// await server.listen();
+/// ```
+///
+/// **Testing with in-memory channels:**
+/// ```dart
+/// final channel = LspByteStreamChannel.fromByteChannel(myChannel);
+/// // Use with LspServer.fromChannel(channel)
 /// ```
 final class LspByteStreamChannel {
   LspByteStreamChannel._();
 
-  /// Wraps the process's stdin/stdout streams with LSP framing.
+  /// Creates a channel using the process's stdin/stdout as the byte transport.
+  ///
+  /// This is the standard LSP process communication model. The server
+  /// reads from stdin and writes to stdout, which is how most LSP clients
+  /// communicate with language servers.
+  ///
+  /// Example:
+  /// ```dart
+  /// void main() async {
+  ///   final server = LspServer();
+  ///   // ... configure handlers ...
+  ///   await server.listen();
+  /// }
+  /// ```
   static StreamChannel<Object?> fromStdio() =>
       fromByteChannel(StreamChannel<List<int>>(stdin, stdout));
 
-  /// Wraps an arbitrary [StreamChannel<List<int>>] with LSP framing.
+  /// Wraps an arbitrary [StreamChannel<List<int>>] with LSP byte-framing.
   ///
-  /// Incoming bytes are parsed as LSP messages (Content-Length header + JSON
-  /// body) and emitted as [Object?] values on the returned channel's stream.
+  /// The returned channel transparently handles:
   ///
-  /// Outgoing [Object?] values are encoded with Content-Length framing and
-  /// passed to `channel.sink` as `List<int>` byte chunks.
+  /// - **Parsing** incoming bytes into JSON-RPC message objects
+  ///   - Detects `Content-Length` headers
+  ///   - Extracts the exact JSON body length
+  ///   - Decodes UTF-8 and parses JSON
+  /// - **Framing** outgoing JSON-RPC message objects
+  ///   - Encodes to JSON with UTF-8
+  ///   - Prepends `Content-Length: <N>\r\n\r\n` header
+  ///
+  /// ## Error Handling
+  ///
+  /// - Malformed headers (missing or invalid `Content-Length`) produce
+  ///   a [FormatException] on the stream's error channel
+  /// - Invalid JSON bodies produce a [FormatException] on the error channel
+  /// - Maximum message size is 50MB ([_Parser.kMaxMessageSize])
   static StreamChannel<Object?> fromByteChannel(
     StreamChannel<List<int>> channel,
   ) {
     final parser = _Parser(channel.stream);
+
     return StreamChannel<Object?>.withGuarantees(
       parser.stream,
       _LspMessageSink(channel.sink),
@@ -42,9 +112,26 @@ final class LspByteStreamChannel {
 
 /// Parses a [Stream<List<int>>] byte stream into LSP message objects.
 ///
-/// Accumulates bytes in a buffer, detects the `\r\n\r\n` header terminator,
-/// extracts the Content-Length value, then emits the exact JSON body as a
-/// decoded [Object?].
+/// Implements the LSP byte-framing protocol parser:
+///
+/// 1. Accumulates incoming bytes in a resizable buffer
+/// 2. Detects the `\r\n\r\n` header terminator
+/// 3. Parses the `Content-Length` header value
+/// 4. Collects exactly `<Content-Length>` bytes for the JSON body
+/// 5. Decodes UTF-8 and parses JSON, emitting the result
+///
+/// ## Buffer Management
+///
+/// Uses a circular buffer with automatic compaction and growth:
+/// - Starts with 4KB capacity
+/// - Doubles when growth is needed
+/// - Compacts remaining bytes when space is available
+/// - Shrinks back to 4KB when the buffer becomes empty
+///
+/// ## Message Size Limit
+///
+/// Maximum message size is 50MB ([kMaxMessageSize]). Messages exceeding
+/// this limit are rejected with a [FormatException].
 final class _Parser {
   _Parser(Stream<List<int>> stream) {
     _subscription = stream.listen(
@@ -62,7 +149,6 @@ final class _Parser {
   var _buffer = Uint8List(4096);
   var _readIndex = 0;
   var _writeIndex = 0;
-
   var _headerMode = true;
   var _contentLength = -1;
 
@@ -75,49 +161,39 @@ final class _Parser {
       return;
     }
 
-    // Reset indices to start of buffer if it is empty to avoid compaction/grow
     if (_readIndex == _writeIndex) {
       _readIndex = 0;
       _writeIndex = 0;
-      // Shrink buffer if it had grown large but is now empty
+
       if (_buffer.length > 4096) {
         _buffer = Uint8List(4096);
       }
     }
 
-    final neededCapacity = _writeIndex + chunk.length;
-    if (neededCapacity > _buffer.length) {
-      final activeLength = _writeIndex - _readIndex;
+    final activeLength = _writeIndex - _readIndex;
+    if (_writeIndex + chunk.length > _buffer.length) {
       if (_readIndex > 0 && activeLength + chunk.length <= _buffer.length) {
-        // Compact: shift remaining active bytes to start
         _buffer.setRange(0, activeLength, _buffer, _readIndex);
-        _readIndex = 0;
-        _writeIndex = activeLength;
       } else {
-        // Grow: double capacity or resize to fit active bytes + new chunk
         var newSize = _buffer.length * 2;
         while (newSize < activeLength + chunk.length) {
           newSize *= 2;
         }
-        final newBuffer = Uint8List(newSize);
-        if (activeLength > 0) {
-          newBuffer.setRange(0, activeLength, _buffer, _readIndex);
-        }
-        _buffer = newBuffer;
-        _readIndex = 0;
-        _writeIndex = activeLength;
+        _buffer = Uint8List(newSize)
+          ..setRange(0, activeLength, _buffer, _readIndex);
       }
+      _readIndex = 0;
+      _writeIndex = activeLength;
     }
 
     _buffer.setAll(_writeIndex, chunk);
     _writeIndex += chunk.length;
 
     while (true) {
-      final available = _writeIndex - _readIndex;
       if (_headerMode) {
         final headerEnd = _findHeaderEnd(chunk.length);
         if (headerEnd == -1) {
-          break; // Header is not yet complete
+          break;
         }
 
         try {
@@ -131,19 +207,17 @@ final class _Parser {
         _readIndex = headerEnd;
         _headerMode = false;
       } else {
-        if (available < _contentLength) {
+        if (_writeIndex - _readIndex < _contentLength) {
           break; // Message body is not yet complete
         }
 
-        final bodyStr = utf8.decoder.convert(
-          _buffer,
-          _readIndex,
-          _readIndex + _contentLength,
-        );
-
         try {
-          final bodyObj = jsonDecode(bodyStr);
-          _streamCtl.add(bodyObj);
+          final bodyStr = utf8.decoder.convert(
+            _buffer,
+            _readIndex,
+            _readIndex + _contentLength,
+          );
+          _streamCtl.add(jsonDecode(bodyStr));
         } on FormatException catch (e, st) {
           _streamCtl.addError(e, st);
         }
@@ -173,37 +247,32 @@ final class _Parser {
   }
 
   int _parseContentLengthFromBytes(int headerEnd) {
-    final limit = headerEnd - 15; // Length of 'content-length:'
-    int? prefixIndex;
-
-    for (var i = _readIndex; i <= limit; i++) {
+    for (var i = _readIndex; i <= headerEnd - 15; i++) {
       if (_isContentLengthPrefix(i)) {
-        prefixIndex = i;
-        break;
-      }
-    }
-
-    if (prefixIndex != null) {
-      var start = prefixIndex + 15;
-      while (start < headerEnd &&
-          (_buffer[start] == 32 || _buffer[start] == 9)) {
-        start++;
-      }
-      var end = start;
-      while (end < headerEnd && _buffer[end] >= 48 && _buffer[end] <= 57) {
-        end++;
-      }
-      if (end > start) {
-        var length = 0;
-        for (var i = start; i < end; i++) {
-          length = length * 10 + (_buffer[i] - 48);
-          if (length > kMaxMessageSize) {
-            throw FormatException(
-              'Content-Length $length exceeds limit of $kMaxMessageSize bytes',
-            );
-          }
+        var start = i + 15;
+        while (start < headerEnd &&
+            (_buffer[start] == 32 || _buffer[start] == 9)) {
+          start++;
         }
-        return length;
+
+        var end = start;
+        while (end < headerEnd && _buffer[end] >= 48 && _buffer[end] <= 57) {
+          end++;
+        }
+
+        if (end > start) {
+          var length = 0;
+          for (var j = start; j < end; j++) {
+            length = length * 10 + (_buffer[j] - 48);
+            if (length > kMaxMessageSize) {
+              throw FormatException(
+                'Content-Length $length exceeds limit of '
+                '$kMaxMessageSize bytes',
+              );
+            }
+          }
+          return length;
+        }
       }
     }
     throw const FormatException('Content-Length header missing or malformed');
@@ -211,41 +280,37 @@ final class _Parser {
 
   bool _isContentLengthPrefix(int index) {
     const chars = [
-      99,
-      111,
-      110,
-      116,
-      101,
-      110,
-      116,
-      45,
-      108,
-      101,
-      110,
-      103,
-      116,
-      104,
-      58,
+      99, 111, 110, 116, 101, 110, 116, 45, 108, 101, 110, 103, 116, 104, 58, //
     ];
     for (var i = 0; i < chars.length; i++) {
       final b = _buffer[index + i];
-      final target = chars[i];
-      if (target == 45 || target == 58) {
-        if (b != target) {
-          return false;
-        }
-      } else {
-        if ((b | 32) != target) {
-          return false; // Case-insensitive ASCII match
-        }
+      final t = chars[i];
+
+      if (b != t && (t < 97 || t > 122 || (b | 32) != t)) {
+        return false;
       }
     }
+
     return true;
   }
 }
 
 // Outgoing — Content-Length writer
 
+/// Implements [StreamSink<Object?>] with LSP byte-framing for outgoing
+/// messages.
+///
+/// When [add] is called with a JSON-encodable object, this sink:
+///
+/// 1. Encodes the object to JSON using [JsonUtf8Encoder]
+/// 2. Computes the byte length of the encoded body
+/// 3. Prepends the header: `Content-Length: <N>\r\n\r\n`
+/// 4. Writes the complete frame (header + body) as a single [Uint8List]
+///    to the underlying [_byteSink]
+///
+/// The header is encoded using ASCII, and the body is encoded using UTF-8
+/// (via [JsonUtf8Encoder]). The resulting frame is always written atomically
+/// as a single [Uint8List] to avoid partial messages.
 final class _LspMessageSink implements StreamSink<Object?> {
   _LspMessageSink(this._byteSink);
 

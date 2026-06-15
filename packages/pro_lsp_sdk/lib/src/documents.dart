@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:pro_lsp/pro_lsp_client.dart';
 
 /// Represents an open text document in the virtual file system of the LSP
 /// server.

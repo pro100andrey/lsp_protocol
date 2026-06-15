@@ -1,5 +1,6 @@
 // GENERATED — do not edit.
 
+export 'src/client/lsp_client.dart';
 export 'src/connection/lsp_connection.dart';
 export 'src/connection/lsp_exception.dart';
 export 'src/generated/client/client_api.dart';

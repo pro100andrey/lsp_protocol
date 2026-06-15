@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:pro_lsp/pro_lsp_client.dart';
 import 'package:stream_channel/stream_channel.dart';
 import 'package:test/test.dart';
 
