@@ -20,11 +20,13 @@ int? _parseSocketPort(List<String> args) {
   if (idx == -1 || idx + 1 >= args.length) {
     return null;
   }
-  return int.tryParse(args[idx + 1]);
+  
+  return .tryParse(args[idx + 1]);
 }
 
 Future<void> _runSocket(int port) async {
   final serverSocket = await ServerSocket.bind('127.0.0.1', port);
+
   stderr.writeln('[lsp_test_server] Listening on port $port');
 
   await for (final socket in serverSocket) {
@@ -32,7 +34,9 @@ Future<void> _runSocket(int port) async {
       '[lsp_test_server] Client connected from '
       '${socket.remoteAddress.address}:${socket.remotePort}',
     );
+
     final channel = StreamChannel<List<int>>(socket, socket);
+
     unawaited(
       ServerRunner.fromChannel(channel).run().whenComplete(() {
         socket.destroy();

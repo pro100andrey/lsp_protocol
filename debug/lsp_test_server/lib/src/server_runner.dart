@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:logging/logging.dart' as log;
+import 'package:logging/logging.dart';
 import 'package:pro_lsp/pro_lsp.dart';
 import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
 import 'package:stream_channel/stream_channel.dart';
@@ -47,7 +47,7 @@ final class ServerRunner {
   final CompletionService _completionService;
   final HoverService _hoverService;
 
-  late final ClientLoggingFeature _loggingAdapter;
+  late final ClientLoggingFeature _clientLogging;
   late final FileLoggingFeature _fileLogger;
   late final DiagnosticsManager _diagnosticsManager;
   late final LspConfigurationManager _configManager;
@@ -56,10 +56,10 @@ final class ServerRunner {
   late final WorkDoneProgressManager _progressManager;
   late final LspDialogHelper _dialogHelper;
 
-  final _logger = log.Logger('ServerRunner');
+  final _logger = Logger('ServerRunner');
 
   void _initManagers() {
-    _loggingAdapter = ClientLoggingFeature();
+    _clientLogging = ClientLoggingFeature();
     _fileLogger = FileLoggingFeature(logFile: File('.lsp_server.log'));
     _diagnosticsManager = DiagnosticsManager();
     _configManager = LspConfigurationManager();
@@ -70,7 +70,7 @@ final class ServerRunner {
 
     // Register LspFeatures on the server so they get automated register/dispose lifecycle
     _server
-      ..registerFeature(_loggingAdapter)
+      ..registerFeature(_clientLogging)
       ..registerFeature(_fileLogger)
       ..registerFeature(_diagnosticsManager)
       ..registerFeature(_configManager)
@@ -84,8 +84,8 @@ final class ServerRunner {
   Future<void> run() async {
     // Configure standard logger to print to stderr for debugging
     // (stdout is reserved for LSP JSON-RPC messages)
-    log.Logger.root.level = log.Level.ALL;
-    final stderrSubscription = log.Logger.root.onRecord.listen((record) {
+    Logger.root.level = .ALL;
+    final stderrSubscription = Logger.root.onRecord.listen((record) {
       stderr.writeln(
         '[${record.level.name}] [${record.loggerName}] ${record.message}',
       );
