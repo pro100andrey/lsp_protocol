@@ -79,7 +79,7 @@ final class LspConnection {
                   'params': final Object params,
                 }) {
                   if (params case Map() || List()) {
-                    _requestIds[params] = id;
+                    _requestIds[_IdentityKey(params)] = id;
                   }
                 } else if (item case {
                   'method': final String method,
@@ -92,12 +92,12 @@ final class LspConnection {
               'id': final Object id,
               'method': String _,
             }) {
-              // Single request: Map request ID using Expando so handlers can
-              // map it to cancellation without mutating parameter maps
-              // (GC-safe).
+              // Single request: Map request ID using identity key so handlers
+              // can map it to cancellation reliably (Expando uses weak refs
+              // which can be GC'd before lookup).
               final params = decoded['params'];
               if (params case Map() || List()) {
-                _requestIds[params!] = id;
+                _requestIds[_IdentityKey(params)] = id;
               }
             } else if (decoded case {
               'method': final String method,
@@ -141,7 +141,7 @@ final class LspConnection {
   ///
   /// Used to correlate `$/cancelRequest` notifications with the original
   /// request so handlers can check cancellation status.
-  final _requestIds = Expando<Object>();
+  final _requestIds = <_IdentityKey, Object>{};
 
   /// The underlying JSON-RPC 2.0 peer used for sending and receiving messages.
   late final Peer _peer;
@@ -193,6 +193,12 @@ final class LspConnection {
   /// Throws [LspException.serverNotInitialized] for requests sent before
   /// the `initialize` handshake completes.
   void _verifyState(LSPMethod method, {required bool isNotification}) {
+    // Fast path: .initialized allows all requests (except initialize) and
+    // all notifications. This is the most common state.
+    if (_state == .initialized) {
+      return;
+    }
+
     if (isNotification) {
       if (!_state.isNotificationAllowed(method as NotificationMethod)) {
         throw LspException.invalidRequest(
@@ -272,6 +278,7 @@ final class LspConnection {
     required Future<Object?> Function(Object? params, LspRequest context)
     handler,
   }) {
+    final methodStr = method.value;
     _registeredMethods.add(method);
 
     LspNotificationHandler? multicastItem;
@@ -280,12 +287,13 @@ final class LspConnection {
       // For notifications, JSON-RPC only permits a single registered
       // method handler. We register the first listener on the peer,
       // and subsequent listeners are added to _notificationHandlers.
-      final methodStr = method.value;
       final list = _notificationHandlers.putIfAbsent(methodStr, () => []);
       multicastItem = (params, context) async {
         await handler(params, context);
       };
+
       list.add(multicastItem);
+
       if (list.length > 1) {
         return () {
           list.remove(multicastItem);
@@ -297,23 +305,23 @@ final class LspConnection {
       }
     }
 
-    _peer.registerMethod(method.value, (Parameters params) async {
+    _peer.registerMethod(methodStr, (Parameters params) async {
       final rawVal = params.value;
       Object? requestId;
 
       if (isRequest) {
         if (rawVal case Map() || List()) {
-          requestId = _requestIds[rawVal as Object];
+          requestId = _requestIds[_IdentityKey(rawVal)];
         }
       }
 
-      final token = CancellationToken();
+      final token = isRequest ? CancellationToken() : CancellationToken.noop;
       if (isRequest && requestId != null) {
         _activeCancellations[requestId] = token;
       }
 
       final context = LspRequest(
-        method: method.value,
+        method: methodStr,
         cancellationToken: token,
         id: requestId,
         connection: this,
@@ -337,7 +345,7 @@ final class LspConnection {
         }
 
         final Object? response;
-        final handlers = _notificationHandlers[method.value] ?? [];
+        final handlers = _notificationHandlers[methodStr] ?? [];
 
         // Bind the cancellation token to the Zone so nested async operations
         // can obtain it via CancellationToken.current.
@@ -348,7 +356,7 @@ final class LspConnection {
             }
 
             final request = LspIncomingRequest(
-              method: method.value,
+              method: methodStr,
               params: rawVal,
               requestId: requestId,
             );
@@ -371,7 +379,7 @@ final class LspConnection {
               }
             } else {
               final request = LspIncomingRequest(
-                method: method.value,
+                method: methodStr,
                 params: rawVal,
                 requestId: requestId,
               );
@@ -440,6 +448,7 @@ final class LspConnection {
       } finally {
         if (requestId != null) {
           _activeCancellations.remove(requestId);
+          _requestIds.remove(_IdentityKey(rawVal));
         }
 
         token.dispose();
@@ -448,12 +457,12 @@ final class LspConnection {
 
     if (!isRequest) {
       return () {
-        final list = _notificationHandlers[method.value];
+        final list = _notificationHandlers[methodStr];
         if (list != null) {
           list.remove(multicastItem);
 
           if (list.isEmpty) {
-            _notificationHandlers.remove(method.value);
+            _notificationHandlers.remove(methodStr);
             _registeredMethods.remove(method);
           }
         }
@@ -522,4 +531,22 @@ final class LspConnection {
       'Method not found: ${params.method}',
     ).toRpcException();
   }
+}
+
+/// Identity-based key wrapper for reliable request ID lookups.
+///
+/// Unlike [Expando] which uses weak references and can return null after GC,
+/// this uses strong references with identity-based equality.
+final class _IdentityKey {
+  const _IdentityKey(this._obj);
+
+  final Object? _obj;
+
+  @override
+  int get hashCode => _obj == null ? 0 : identityHashCode(_obj);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _IdentityKey && identical(_obj, other._obj);
 }

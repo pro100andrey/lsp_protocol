@@ -34,46 +34,36 @@ import '../connection/lsp_exception.dart';
 /// Tokens are created per-request by the handler registration logic
 /// and stored in the current [Zone] via [CancellationToken.current]
 /// for easy access.
-final class CancellationToken {
-  CancellationToken();
+abstract final class CancellationToken {
+  /// Creates a new cancellation token for a request.
+  factory CancellationToken() = DefaultCancellationToken;
 
-  var _isCancelled = false;
-
-  final _onCancelled = StreamController<void>.broadcast();
+  /// No-op token for notifications that don't support cancellation.
+  static final CancellationToken noop = _NoopCancellationToken._();
 
   /// Whether [cancel] has been called on this token.
   ///
   /// Once `true`, it remains `true` for the lifetime of the token.
-  bool get isCancelled => _isCancelled;
+  bool get isCancelled;
 
   /// A broadcast stream that emits a value when [cancel] is called.
   ///
   /// Multiple listeners can attach to this stream. The stream is closed
   /// automatically when [cancel] is invoked.
-  Stream<void> get onCancelled => _onCancelled.stream;
+  Stream<void> get onCancelled;
 
   /// Cancels this token, notifying all [onCancelled] listeners.
   ///
   /// This method is idempotent — calling it multiple times has no additional
   /// effect after the first call.
-  void cancel() {
-    if (_isCancelled) {
-      return;
-    }
-
-    _isCancelled = true;
-    _onCancelled.add(null);
-    _onCancelled.close().ignore();
-  }
+  void cancel();
 
   /// Disposes the token, closing the [onCancelled] stream controller.
   ///
   /// Must be called when the token is no longer needed to prevent resource
   /// leaks. In the LSP connection, this is done automatically in the `finally`
   /// block of the handler registration.
-  void dispose() {
-    unawaited(_onCancelled.close());
-  }
+  void dispose();
 
   /// Throws an [LspException.requestCancelled] if [cancel] has been called.
   ///
@@ -86,11 +76,7 @@ final class CancellationToken {
   /// token.throwIfCancelled(); // throws if cancelled
   /// await processItem(item);
   /// ```
-  void throwIfCancelled() {
-    if (_isCancelled) {
-      throw LspException.requestCancelled('Request cancelled by the client');
-    }
-  }
+  void throwIfCancelled();
 
   /// Returns the cancellation token associated with the current [Zone].
   ///
@@ -102,4 +88,59 @@ final class CancellationToken {
   /// which means this code is not running inside a request handler.
   static CancellationToken? get current =>
       Zone.current[#cancellationToken] as CancellationToken?;
+}
+
+/// Default implementation of [CancellationToken].
+final class DefaultCancellationToken implements CancellationToken {
+  var _isCancelled = false;
+
+  final _onCancelled = StreamController<void>.broadcast();
+
+  @override
+  bool get isCancelled => _isCancelled;
+
+  @override
+  Stream<void> get onCancelled => _onCancelled.stream;
+
+  @override
+  void cancel() {
+    if (_isCancelled) {
+      return;
+    }
+    _isCancelled = true;
+    _onCancelled.add(null);
+    _onCancelled.close().ignore();
+  }
+
+  @override
+  void dispose() {
+    unawaited(_onCancelled.close());
+  }
+
+  @override
+  void throwIfCancelled() {
+    if (_isCancelled) {
+      throw LspException.requestCancelled('Request cancelled by the client');
+    }
+  }
+}
+
+/// No-op implementation of [CancellationToken] for notifications.
+final class _NoopCancellationToken implements CancellationToken {
+  _NoopCancellationToken._();
+
+  @override
+  bool get isCancelled => false;
+
+  @override
+  Stream<void> get onCancelled => const Stream<void>.empty();
+
+  @override
+  void cancel() {}
+
+  @override
+  void dispose() {}
+
+  @override
+  void throwIfCancelled() {}
 }
