@@ -21,8 +21,9 @@ void main() {
         clientIncoming.stream,
         clientOutgoing.sink,
       );
-      final lspChannel = LspByteStreamChannel.fromByteChannel(serverChannel);
-      connection = LspConnection(lspChannel);
+      connection = LspConnection(
+        LspByteStreamChannel.fromByteChannel(serverChannel).channel,
+      );
 
       final clientByteChannel = StreamChannel<List<int>>(
         clientOutgoing.stream,
@@ -30,7 +31,7 @@ void main() {
       );
       clientLspChannel = LspByteStreamChannel.fromByteChannel(
         clientByteChannel,
-      );
+      ).channel;
       clientLspStream = clientLspChannel.stream
           .cast<Map<String, dynamic>>()
           .asBroadcastStream();
@@ -46,6 +47,7 @@ void main() {
       final progress = LspProgress(
         connection,
         const ProgressToken.string('token-1'),
+        () {},
       );
       await progress.begin(
         title: 'Building',
@@ -81,6 +83,7 @@ void main() {
       final progress = LspProgress(
         connection,
         const ProgressToken.string('token-1'),
+        () {},
       );
       await progress.begin(title: 'Title');
       progress.report(message: 'Still working...', percentage: 75);
@@ -106,6 +109,7 @@ void main() {
       final progress = LspProgress(
         connection,
         const ProgressToken.string('token-1'),
+        () {},
       );
       await progress.begin(title: 'Title');
       progress.end(message: 'Done!');
@@ -127,6 +131,7 @@ void main() {
       final progress = LspProgress(
         connection,
         const ProgressToken.string('simple-token'),
+        () {},
       );
       await progress.begin(title: 'Simple');
 

@@ -11,6 +11,7 @@ void main() {
     late StreamController<List<int>> outgoingController;
     late StreamChannel<List<int>> byteChannel;
     late StreamChannel<Object?> lspChannel;
+    late LspByteStreamChannelResult result;
 
     setUp(() {
       incomingController = StreamController<List<int>>.broadcast();
@@ -19,7 +20,8 @@ void main() {
         incomingController.stream,
         outgoingController.sink,
       );
-      lspChannel = LspByteStreamChannel.fromByteChannel(byteChannel);
+      result = LspByteStreamChannel.fromByteChannel(byteChannel);
+      lspChannel = result.channel;
     });
 
     tearDown(() async {

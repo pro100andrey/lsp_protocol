@@ -1,5 +1,9 @@
 export 'src/capabilities.dart';
 export 'src/config.dart';
 export 'src/diagnostics.dart';
+export 'src/dialog.dart';
 export 'src/documents.dart';
+export 'src/logging.dart';
 export 'src/progress_manager.dart';
+export 'src/semantic_tokens.dart';
+export 'src/workspace.dart';

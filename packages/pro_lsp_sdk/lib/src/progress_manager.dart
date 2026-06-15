@@ -4,10 +4,11 @@ import 'package:pro_lsp/pro_lsp.dart';
 
 /// Represents a work done progress session initiated by the server.
 final class LspProgress {
-  LspProgress(this._connection, this._token);
+  LspProgress(this._connection, this._token, this._onEnd);
 
   final LspConnection _connection;
   final ProgressToken _token;
+  final void Function() _onEnd;
 
   var _isStarted = false;
   var _isCompleted = false;
@@ -88,6 +89,7 @@ final class LspProgress {
       return;
     }
     _isCompleted = true;
+    _onEnd();
 
     final endValue = WorkDoneProgressEnd(
       message: message,
@@ -116,6 +118,7 @@ final class WorkDoneProgressManager {
 
   final LspConnection _connection;
   var _nextProgressId = 0;
+  final Set<LspProgress> _progresses = {};
 
   /// Creates a new progress session, requests the client to create a token,
   /// and returns an [LspProgress] instance.
@@ -132,7 +135,10 @@ final class WorkDoneProgressManager {
       WorkDoneProgressCreateParams(token: token).toJson(),
     );
 
-    final progress = LspProgress(_connection, token);
+    LspProgress? progress;
+    void onEnd() => _progresses.removeWhere((p) => identical(p, progress));
+    progress = LspProgress(_connection, token, onEnd);
+    _progresses.add(progress);
     await progress.begin(
       title: title,
       message: message,
@@ -141,4 +147,14 @@ final class WorkDoneProgressManager {
     );
     return progress;
   }
+
+  /// Cancels all active progress sessions.
+  void cancelAll() {
+    for (final progress in _progresses.toList()) {
+      progress.cancel();
+    }
+  }
+
+  /// Returns the number of active progress sessions.
+  int get activeCount => _progresses.length;
 }

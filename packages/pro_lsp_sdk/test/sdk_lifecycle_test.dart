@@ -30,7 +30,7 @@ void main() {
       );
       clientLspChannel = LspByteStreamChannel.fromByteChannel(
         clientByteChannel,
-      );
+      ).channel;
       clientLspStream = clientLspChannel.stream
           .cast<Map<String, dynamic>>()
           .asBroadcastStream();

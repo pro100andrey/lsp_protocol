@@ -24,7 +24,7 @@ final class LspClient {
   /// Creates a client from an arbitrary byte [StreamChannel].
   LspClient.fromChannel(StreamChannel<List<int>> channel)
     : _connection = LspConnection(
-        LspByteStreamChannel.fromByteChannel(channel),
+        LspByteStreamChannel.fromByteChannel(channel).channel,
       );
 
   final LspConnection _connection;

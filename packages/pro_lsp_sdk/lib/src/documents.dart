@@ -25,10 +25,14 @@ final class LspDocument {
   final String text;
 
   List<String>? _lines;
+  List<int>? _lineStarts;
 
   /// The lines of code in this document.
   List<String> get lines =>
       _lines ??= text.replaceAll('\r\n', '\n').split('\n');
+
+  /// The character offsets of the start of each line in [text].
+  List<int> get lineStarts => _lineStarts ??= _computeLineStarts(text);
 }
 
 /// Manages active/open text documents synchronized from the client.
@@ -82,19 +86,25 @@ final class TextDocumentManager {
           final existingDoc = _documents[uri];
           if (existingDoc != null) {
             var text = existingDoc.text;
+            List<int>? currentLineStarts = existingDoc.lineStarts;
+
             for (final change in changes) {
               final fullText = change.asText;
               if (fullText != null) {
                 text = fullText.text;
+                currentLineStarts = null;
               } else {
                 final rangeChange = change.asRangeRangeLengthText;
                 if (rangeChange != null) {
+                  final starts = currentLineStarts ??= _computeLineStarts(text);
                   final startOffset = _positionToOffset(
                     text,
+                    starts,
                     rangeChange.range.start,
                   );
                   final endOffset = _positionToOffset(
                     text,
+                    starts,
                     rangeChange.range.end,
                   );
                   text = text.replaceRange(
@@ -102,6 +112,7 @@ final class TextDocumentManager {
                     endOffset,
                     rangeChange.text,
                   );
+                  currentLineStarts = null; // Invalidate for subsequent changes
                 }
               }
             }
@@ -144,6 +155,7 @@ final class TextDocumentManager {
   /// Closes all event streams and unbinds listeners.
   void close() {
     unbind();
+    _documents.clear();
     unawaited(_didOpenController.close());
     unawaited(_didChangeController.close());
     unawaited(_didCloseController.close());
@@ -245,21 +257,47 @@ final class ClientDocumentManager {
 
   /// Returns all currently open documents.
   List<LspDocument> get all => _documents.values.toList();
+
+  /// Closes all open documents and unbinds from the client.
+  void closeAll() {
+    _documents.clear();
+    unbind();
+  }
 }
 
-int _positionToOffset(String text, Position position) {
-  var line = 0;
-  var offset = 0;
-  while (line < position.line && offset < text.length) {
-    final nextNewline = text.indexOf('\n', offset);
-    if (nextNewline == -1) {
-      return text.length;
-    }
-    offset = nextNewline + 1;
-    line++;
+int _positionToOffset(String text, List<int> starts, Position position) {
+  if (position.line >= starts.length) {
+    return text.length;
   }
-  final lineEnd = text.indexOf('\n', offset);
-  final maxChar = (lineEnd == -1 ? text.length : lineEnd) - offset;
-  final char = position.character.clamp(0, maxChar);
+
+  final offset = starts[position.line];
+  final nextOffset = (position.line + 1 < starts.length)
+      ? starts[position.line + 1]
+      : text.length;
+  var lineLength = nextOffset - offset;
+  if (lineLength > 0 && text.codeUnitAt(nextOffset - 1) == 10) {
+    lineLength--;
+    if (lineLength > 0 && text.codeUnitAt(nextOffset - 2) == 13) {
+      lineLength--;
+    }
+  }
+  final char = position.character.clamp(0, lineLength);
+
   return offset + char;
+}
+
+List<int> _computeLineStarts(String text) {
+  final starts = <int>[0];
+  var offset = 0;
+  while (offset < text.length) {
+    final next = text.indexOf('\n', offset);
+    if (next == -1) {
+      break;
+    }
+
+    offset = next + 1;
+    starts.add(offset);
+  }
+
+  return starts;
 }

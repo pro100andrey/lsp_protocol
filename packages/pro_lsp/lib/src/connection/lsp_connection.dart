@@ -311,7 +311,7 @@ final class LspConnection {
 
       if (isRequest) {
         if (rawVal case Map() || List()) {
-          requestId = _requestIds[_IdentityKey(rawVal)];
+          requestId = _requestIds.remove(_IdentityKey(rawVal));
         }
       }
 
@@ -519,7 +519,15 @@ final class LspConnection {
   Future<void> listen() => _peer.listen();
 
   /// Closes the underlying channel and stops processing.
-  Future<void> close() => _peer.close();
+  Future<void> close() {
+    _requestIds.clear();
+    _activeCancellations.clear();
+    _notificationHandlers.clear();
+    _registeredMethods.clear();
+    _middlewares.clear();
+    _services.clear();
+    return _peer.close();
+  }
 
   // Fallback
 
@@ -527,6 +535,10 @@ final class LspConnection {
   ///
   /// Throws an [LspException] with code [LspErrorCodes.methodNotFound].
   void _handleUnknownMethod(Parameters params) {
+    final rawVal = params.value;
+    if (rawVal case Map() || List()) {
+      _requestIds.remove(_IdentityKey(rawVal));
+    }
     throw LspException.methodNotFound(
       'Method not found: ${params.method}',
     ).toRpcException();

@@ -63,8 +63,13 @@ export 'middleware.dart';
 ///
 /// **Custom transport (testing, TCP, pipes):**
 /// ```dart
-/// final server = LspServer.fromChannel(myChannel);
-/// await server.listen();
+/// final result = LspByteStreamChannel.fromByteChannel(myChannel);
+/// final server = LspServer.fromChannel(result.channel);
+/// try {
+///   await server.listen();
+/// } finally {
+///   await result.cleanup();
+/// }
 /// ```
 ///
 /// **Sending messages to the client:**
@@ -115,7 +120,7 @@ final class LspServer {
   /// ```
   LspServer.fromChannel(StreamChannel<List<int>> channel)
     : _connection = LspConnection(
-        LspByteStreamChannel.fromByteChannel(channel),
+        LspByteStreamChannel.fromByteChannel(channel).channel,
       );
 
   final LspConnection _connection;
@@ -362,6 +367,7 @@ final class LspServer {
         }
       }
     }
+    _features.clear();
 
     await _connection.close();
   }

@@ -46,17 +46,21 @@ import 'package:stream_channel/stream_channel.dart';
 /// **Custom transport (TCP, pipes, etc.):**
 /// ```dart
 /// final tcpSocket = await Socket.connect('localhost', 6000);
-/// final channel = LspByteStreamChannel.fromByteChannel(
+/// final result = LspByteStreamChannel.fromByteChannel(
 ///   StreamChannel<List<int>>(tcpSocket, tcpSocket),
 /// );
-/// final server = LspServer.fromChannel(channel);
-/// await server.listen();
+/// final server = LspServer.fromChannel(result.channel);
+/// try {
+///   await server.listen();
+/// } finally {
+///   await result.cleanup();
+/// }
 /// ```
 ///
 /// **Testing with in-memory channels:**
 /// ```dart
-/// final channel = LspByteStreamChannel.fromByteChannel(myChannel);
-/// // Use with LspServer.fromChannel(channel)
+/// final result = LspByteStreamChannel.fromByteChannel(myChannel);
+/// // Use with LspServer.fromChannel(result.channel)
 /// ```
 final class LspByteStreamChannel {
   LspByteStreamChannel._();
@@ -76,19 +80,14 @@ final class LspByteStreamChannel {
   /// }
   /// ```
   static StreamChannel<Object?> fromStdio() =>
-      fromByteChannel(StreamChannel<List<int>>(stdin, stdout));
+      fromByteChannel(StreamChannel<List<int>>(stdin, stdout)).channel;
 
   /// Wraps an arbitrary [StreamChannel<List<int>>] with LSP byte-framing.
   ///
-  /// The returned channel transparently handles:
-  ///
-  /// - **Parsing** incoming bytes into JSON-RPC message objects
-  ///   - Detects `Content-Length` headers
-  ///   - Extracts the exact JSON body length
-  ///   - Decodes UTF-8 and parses JSON
-  /// - **Framing** outgoing JSON-RPC message objects
-  ///   - Encodes to JSON with UTF-8
-  ///   - Prepends `Content-Length: <N>\r\n\r\n` header
+  /// The returned [LspByteStreamChannelResult] contains:
+  /// - [LspByteStreamChannelResult.channel]: the LSP-framed stream channel
+  /// - [LspByteStreamChannelResult.cleanup]:
+  ///   function to cancel the input subscription
   ///
   /// ## Error Handling
   ///
@@ -96,16 +95,50 @@ final class LspByteStreamChannel {
   ///   a [FormatException] on the stream's error channel
   /// - Invalid JSON bodies produce a [FormatException] on the error channel
   /// - Maximum message size is 50MB ([_Parser.kMaxMessageSize])
-  static StreamChannel<Object?> fromByteChannel(
+  ///
+  /// ## Disposal
+  ///
+  /// Always call [LspByteStreamChannelResult.cleanup] when done, especially
+  /// for non-stdio transports (TCP, pipes, etc.):
+  /// ```dart
+  /// final result = LspByteStreamChannel.fromByteChannel(myChannel);
+  /// try {
+  ///   // use result.channel...
+  /// } finally {
+  ///   await result.cleanup();
+  /// }
+  /// ```
+  static LspByteStreamChannelResult fromByteChannel(
     StreamChannel<List<int>> channel,
   ) {
     final parser = _Parser(channel.stream);
 
-    return StreamChannel<Object?>.withGuarantees(
-      parser.stream,
-      _LspMessageSink(channel.sink),
+    return LspByteStreamChannelResult(
+      StreamChannel<Object?>.withGuarantees(
+        parser.stream,
+        _LspMessageSink(channel.sink, onClosed: parser.close),
+      ),
+      parser.close,
     );
   }
+}
+
+/// Result of [LspByteStreamChannel.fromByteChannel] containing the framed
+/// channel and a cleanup function.
+///
+/// Use [channel] for LSP communication and call [cleanup] when done
+/// (especially for non-stdio transports like TCP sockets) to cancel
+/// the input subscription and prevent resource leaks.
+final class LspByteStreamChannelResult {
+  LspByteStreamChannelResult(this.channel, this.cleanup);
+
+  /// The LSP-framed stream channel for JSON-RPC communication.
+  final StreamChannel<Object?> channel;
+
+  /// Cleanup function that cancels the input subscription.
+  ///
+  /// Call this when done with the channel to prevent resource leaks.
+  final Future<void> Function() cleanup;
 }
 
 // Incoming — Content-Length parser
@@ -312,9 +345,10 @@ final class _Parser {
 /// (via [JsonUtf8Encoder]). The resulting frame is always written atomically
 /// as a single [Uint8List] to avoid partial messages.
 final class _LspMessageSink implements StreamSink<Object?> {
-  _LspMessageSink(this._byteSink);
+  _LspMessageSink(this._byteSink, {this.onClosed});
 
   final StreamSink<List<int>> _byteSink;
+  final FutureOr<void> Function()? onClosed;
   static final _encoder = JsonUtf8Encoder();
 
   @override
@@ -339,7 +373,15 @@ final class _LspMessageSink implements StreamSink<Object?> {
   }
 
   @override
-  Future<void> close() => _byteSink.close();
+  Future<void> close() async {
+    if (onClosed != null) {
+      final result = onClosed!();
+      if (result is Future) {
+        await result;
+      }
+    }
+    await _byteSink.close();
+  }
 
   @override
   Future<void> get done => _byteSink.done;
