@@ -140,7 +140,7 @@ abstract class LspMiddleware {
   /// without calling [next].
   ///
   /// The return value is the response that will be sent back to the client.
-  Future<dynamic> call(LspIncomingRequest request, LspNext next);
+  Future<Object?> call(LspIncomingRequest request, LspNext next);
 
   /// Wraps a function signature into an [LspMiddleware] instance for backward
   /// compatibility.
@@ -155,7 +155,7 @@ abstract class LspMiddleware {
   /// ));
   /// ```
   static LspMiddleware fromFunction(
-    Future<dynamic> Function(LspIncomingRequest request, LspNext next) fn,
+    Future<Object?> Function(LspIncomingRequest request, LspNext next) fn,
   ) => _FunctionalMiddleware(fn);
 }
 

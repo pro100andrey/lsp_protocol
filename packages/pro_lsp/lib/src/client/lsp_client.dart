@@ -19,15 +19,18 @@ export '../generated/client/client_api.dart';
 /// [server] proxy for outgoing messages.
 final class LspClient {
   /// Creates a client using stdin/stdout as the byte transport.
-  LspClient() : _connection = LspConnection(LspByteStreamChannel.fromStdio());
+  LspClient() : this._(LspByteStreamChannel.fromStdio());
 
   /// Creates a client from an arbitrary byte [StreamChannel].
   LspClient.fromChannel(StreamChannel<List<int>> channel)
-    : _connection = LspConnection(
-        LspByteStreamChannel.fromByteChannel(channel).channel,
-      );
+    : this._(LspByteStreamChannel.fromByteChannel(channel));
+
+  LspClient._(LspByteStreamChannelResult result)
+    : _connection = LspConnection(result.channel),
+      _cleanup = result.cleanup;
 
   final LspConnection _connection;
+  final FutureOr<void> Function()? _cleanup;
   var _isListening = false;
 
   // Incoming (server → client) handler namespaces
@@ -144,5 +147,6 @@ final class LspClient {
   Future<void> close() async {
     _isListening = false;
     await _connection.close();
+    await _cleanup?.call();
   }
 }

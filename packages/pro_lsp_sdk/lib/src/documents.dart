@@ -9,8 +9,8 @@ final class LspDocument {
     required this.uri,
     required this.languageId,
     required this.version,
-    required this.text,
-  });
+    required String text,
+  }) : text = text.replaceAll('\r\n', '\n');
 
   /// The document's associated URI.
   final String uri;
@@ -28,8 +28,7 @@ final class LspDocument {
   List<int>? _lineStarts;
 
   /// The lines of code in this document.
-  List<String> get lines =>
-      _lines ??= text.replaceAll('\r\n', '\n').split('\n');
+  List<String> get lines => _lines ??= text.split('\n');
 
   /// The character offsets of the start of each line in [text].
   List<int> get lineStarts => _lineStarts ??= _computeLineStarts(text);

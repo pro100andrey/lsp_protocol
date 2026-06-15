@@ -135,9 +135,12 @@ final class WorkDoneProgressManager {
       WorkDoneProgressCreateParams(token: token).toJson(),
     );
 
-    LspProgress? progress;
-    void onEnd() => _progresses.removeWhere((p) => identical(p, progress));
-    progress = LspProgress(_connection, token, onEnd);
+    late final LspProgress progress;
+    progress = LspProgress(
+      _connection,
+      token,
+      () => _progresses.remove(progress),
+    );
     _progresses.add(progress);
     await progress.begin(
       title: title,

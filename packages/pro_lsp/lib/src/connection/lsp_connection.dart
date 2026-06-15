@@ -417,26 +417,10 @@ final class LspConnection {
 
         return response;
       } on LspException catch (e) {
-        // State recovery: if initialize or shutdown request fails, revert
-        // state.
-        if (isRequest) {
-          if (method == RequestMethod.initialize) {
-            _state = .uninitialized;
-          } else if (method == RequestMethod.shutdown) {
-            _state = .initialized;
-          }
-        }
+        _revertStateOnFailure(method, isRequest: isRequest);
         throw e.toRpcException();
       } catch (e, stackTrace) {
-        // State recovery: if initialize or shutdown request fails, revert
-        // state.
-        if (isRequest) {
-          if (method == RequestMethod.initialize) {
-            _state = .uninitialized;
-          } else if (method == RequestMethod.shutdown) {
-            _state = .initialized;
-          }
-        }
+        _revertStateOnFailure(method, isRequest: isRequest);
 
         onError?.call(e, stackTrace);
 
@@ -527,6 +511,16 @@ final class LspConnection {
     _middlewares.clear();
     _services.clear();
     return _peer.close();
+  }
+
+  void _revertStateOnFailure(LSPMethod method, {required bool isRequest}) {
+    if (isRequest) {
+      if (method == RequestMethod.initialize) {
+        _state = .uninitialized;
+      } else if (method == RequestMethod.shutdown) {
+        _state = .initialized;
+      }
+    }
   }
 
   // Fallback

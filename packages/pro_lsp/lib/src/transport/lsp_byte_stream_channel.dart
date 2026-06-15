@@ -79,8 +79,8 @@ final class LspByteStreamChannel {
   ///   await server.listen();
   /// }
   /// ```
-  static StreamChannel<Object?> fromStdio() =>
-      fromByteChannel(StreamChannel<List<int>>(stdin, stdout)).channel;
+  static LspByteStreamChannelResult fromStdio() =>
+      fromByteChannel(StreamChannel<List<int>>(stdin, stdout));
 
   /// Wraps an arbitrary [StreamChannel<List<int>>] with LSP byte-framing.
   ///
@@ -266,7 +266,7 @@ final class _Parser {
     // Only search starting from the newly appended chunk
     // (plus boundary overlap)
     final start = math.max(_readIndex, _writeIndex - lastChunkLength - 3);
-    final limit = _writeIndex - 3;
+    final limit = math.max(0, _writeIndex - 3);
     for (var i = start; i < limit; i++) {
       if (_buffer[i] == 13 && // \r
           _buffer[i + 1] == 10 && // \n

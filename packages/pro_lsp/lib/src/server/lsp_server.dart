@@ -101,29 +101,18 @@ export 'middleware.dart';
 /// ```
 final class LspServer {
   /// Creates a server using stdin/stdout as the byte transport.
-  ///
-  /// This is the standard LSP process communication model. The server
-  /// reads from stdin and writes to stdout, which is how most LSP clients
-  /// communicate with language servers.
-  LspServer() : _connection = LspConnection(LspByteStreamChannel.fromStdio());
+  LspServer() : this._(LspByteStreamChannel.fromStdio());
 
   /// Creates a server from an arbitrary byte [StreamChannel].
-  ///
-  /// Useful for testing or alternative transports such as TCP sockets,
-  /// named pipes, or in-memory channels.
-  ///
-  /// Example with an in-memory channel for testing:
-  /// ```dart
-  /// final channel = StreamChannel.withFixedCapacity();
-  /// final server = LspServer.fromChannel(channel.outer);
-  /// // ... configure server ...
-  /// ```
   LspServer.fromChannel(StreamChannel<List<int>> channel)
-    : _connection = LspConnection(
-        LspByteStreamChannel.fromByteChannel(channel).channel,
-      );
+    : this._(LspByteStreamChannel.fromByteChannel(channel));
+
+  LspServer._(LspByteStreamChannelResult result)
+    : _connection = LspConnection(result.channel),
+      _cleanup = result.cleanup;
 
   final LspConnection _connection;
+  final FutureOr<void> Function()? _cleanup;
   var _isListening = false;
 
   /// Access to the underlying low-level [LspConnection].
@@ -370,5 +359,6 @@ final class LspServer {
     _features.clear();
 
     await _connection.close();
+    await _cleanup?.call();
   }
 }

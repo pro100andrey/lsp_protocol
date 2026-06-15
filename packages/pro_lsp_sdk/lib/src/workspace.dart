@@ -75,7 +75,7 @@ final class WatchedFilesManager {
   bool get isSupported {
     final params = _server.connection.tryResolve<InitializeParams>();
     if (params == null) {
-      return true; // Fallback to true if we cannot check
+      return false; // Fail-safe fallback to false if we cannot check
     }
 
     return params
