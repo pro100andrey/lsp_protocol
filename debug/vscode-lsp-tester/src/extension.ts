@@ -126,7 +126,13 @@ class LspTesterSession {
   async restart(): Promise<void> {
     clearTimeout(this.reconnectTimer);
     this.stopping = true;
-    await this.client?.stop();
+    try {
+      if (this.client) {
+        await this.client.stop();
+      }
+    } catch (err) {
+      // Ignore stopping errors if the client is already disposed/not running
+    }
     this.start();
     vscode.window.showInformationMessage("LSP Tester: server restarted.");
   }
@@ -134,7 +140,13 @@ class LspTesterSession {
   async stop(): Promise<void> {
     clearTimeout(this.reconnectTimer);
     this.stopping = true;
-    await this.client?.stop();
+    try {
+      if (this.client) {
+        await this.client.stop();
+      }
+    } catch (err) {
+      // Ignore
+    }
   }
 
   showOutput(): void {
@@ -212,7 +224,7 @@ class LspTesterSession {
     const clientOptions: LanguageClientOptions = {
       // Activate only for plain-text files — sufficient for testing all LSP
       // features without conflicting with the official Dart extension.
-      documentSelector: [{ scheme: "file", language: "plaintext" }],
+      documentSelector: [{ scheme: "file", language: "lsptxt" }],
       outputChannelName: "LSP Test Server",
       traceOutputChannel: this.traceOutputChannel,
       middleware: this.createMiddleware(),

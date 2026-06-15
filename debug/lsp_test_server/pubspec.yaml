@@ -8,8 +8,11 @@ environment:
   sdk: ^3.11.4
 
 dependencies:
+  logging: ^1.3.0
   pro_lsp:
     path: ../../packages/pro_lsp
+  pro_lsp_sdk:
+    path: ../../packages/pro_lsp_sdk
   stream_channel: ^2.1.4
 
 dev_dependencies:

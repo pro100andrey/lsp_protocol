@@ -1,10 +1,12 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:logging/logging.dart' as log;
 import 'package:pro_lsp/pro_lsp.dart';
+import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
 import 'package:stream_channel/stream_channel.dart';
 
 import 'services/completion_service.dart';
-import 'services/document_service.dart';
 import 'services/hover_service.dart';
 
 /// Registers all LSP handlers.
@@ -21,152 +23,216 @@ import 'services/hover_service.dart';
 final class ServerRunner {
   ServerRunner()
     : _server = LspServer(),
-      _docService = DocumentService(),
+      _docService = TextDocumentManager(),
       _completionService = CompletionService(),
-      _hoverService = HoverService();
+      _hoverService = HoverService() {
+    _initManagers();
+  }
 
   /// Creates a server backed by an arbitrary byte [channel] (e.g. a TCP
   /// socket).
   ServerRunner.fromChannel(StreamChannel<List<int>> channel)
     : _server = LspServer.fromChannel(channel),
-      _docService = DocumentService(),
+      _docService = TextDocumentManager(),
       _completionService = CompletionService(),
-      _hoverService = HoverService();
+      _hoverService = HoverService() {
+    _initManagers();
+  }
+
+  static const legendTypes = ['comment', 'function', 'variable', 'keyword'];
+  static const legendModifiers = ['declaration', 'documentation'];
 
   final LspServer _server;
-  final DocumentService _docService;
+  final TextDocumentManager _docService;
   final CompletionService _completionService;
   final HoverService _hoverService;
 
+  late final LspLoggingAdapter _loggingAdapter;
+  late final DiagnosticsManager _diagnosticsManager;
+  late final LspConfigurationManager _configManager;
+  late final WorkspaceFoldersManager _workspaceFoldersManager;
+  late final WatchedFilesManager _watchedFilesManager;
+  late final WorkDoneProgressManager _progressManager;
+  late final LspDialogHelper _dialogHelper;
+
+  final _logger = log.Logger('ServerRunner');
+
+  void _initManagers() {
+    _loggingAdapter = LspLoggingAdapter(_server);
+    _diagnosticsManager = DiagnosticsManager(_server);
+    _configManager = LspConfigurationManager(_server);
+    _workspaceFoldersManager = WorkspaceFoldersManager(_server);
+    _watchedFilesManager = WatchedFilesManager(_server);
+    _progressManager = WorkDoneProgressManager(_server.connection);
+    _dialogHelper = LspDialogHelper(_server);
+  }
+
   /// Registers all handlers and starts listening on stdio.
   Future<void> run() async {
-    _registerHandlers();
-    await _server.listen();
+    // Configure standard logger to print to stdout for debugging
+    log.Logger.root.level = log.Level.ALL;
+    final stdoutSubscription = log.Logger.root.onRecord.listen((record) {
+      stdout.writeln(
+        '[${record.level.name}] [${record.loggerName}] ${record.message}',
+      );
+    });
+
+    try {
+      _registerHandlers();
+      await _server.listen();
+    } finally {
+      // Clean up resources immediately when connection ends
+      _loggingAdapter.close();
+      _diagnosticsManager.close();
+      _configManager.close();
+      _workspaceFoldersManager.close();
+      _progressManager.cancelAll();
+      await stdoutSubscription.cancel();
+    }
   }
 
   void _registerHandlers() {
+    // 1. Bind Logging Adapter (so Logger messages go to the client window)
+    _loggingAdapter.bind();
+
+    // 2. Bind TextDocumentManager to start capturing open/change events
+    _docService.bind(_server);
+
+    // 3. Bind WorkspaceFoldersManager
+    _workspaceFoldersManager.bind();
+
+    // 4. Bind LspConfigurationManager
+    _configManager.bind();
+
+    // Listen to document changes to publish diagnostics
+    _docService.onDidChange.listen((doc) {
+      _logger.info('Document changed: ${doc.uri}');
+      unawaited(_publishDiagnostics(doc));
+    });
+
+    _docService.onDidClose.listen((doc) {
+      _logger.info('Document closed: ${doc.uri}');
+      _diagnosticsManager.clear(doc.uri);
+    });
+
+    _docService.onDidOpen.listen((doc) {
+      _logger.info('Document opened: ${doc.uri}');
+      unawaited(_publishDiagnostics(doc));
+    });
+
+    // Listen to configuration changes to recompute diagnostics
+    _configManager.onChange.listen((_) {
+      _logger.info(
+        'Configuration changed, recomputing diagnostics for all documents...',
+      );
+      for (final doc in _docService.all) {
+        unawaited(_publishDiagnostics(doc));
+      }
+    });
+
+    // Listen to workspace folder changes
+    _workspaceFoldersManager.onChange.listen((folders) {
+      _logger.info(
+        'Workspace folders changed. Current folders: '
+        '${folders.map((f) => f.name).join(', ')}',
+      );
+    });
+
     // General
     _server.general.onInitialize((params, context) async {
-      logInfo('Received initialize request');
+      _logger.info('Received initialize request');
 
-      const fileOptions = FileOperationRegistrationOptions(
-        filters: [
-          .new(
-            pattern: .new(glob: '**/*.txt', matches: .file),
-          ),
-        ],
+      // Set initial workspace folders in the manager
+      _workspaceFoldersManager.setInitialFolders(params.workspaceFolders);
+
+      // Register initialize params so WatchedFilesManager can resolve it later
+      _server.connection.register(params);
+
+      // Infer capabilities from registered handlers
+      final inferred = _server.inferCapabilities(
+        completionTriggerCharacters: ['.', ':', '_'],
       );
 
-      const fileOperations = FileOperationOptions(
-        willCreate: fileOptions,
-        willRename: fileOptions,
-        willDelete: fileOptions,
-        didCreate: fileOptions,
-        didRename: fileOptions,
-        didDelete: fileOptions,
-      );
-
-      return .new(
-        capabilities: .new(
-          positionEncoding: .uTF16,
-          hoverProvider: const .bool(true),
-          completionProvider: const .new(
-            triggerCharacters: ['.', ':', '_'],
-          ),
-          definitionProvider: const .bool(true),
-          referencesProvider: const .bool(true),
-          documentSymbolProvider: const .bool(true),
-          workspaceSymbolProvider: const .bool(true),
-          textDocumentSync: .textDocumentSyncOptions(
-            const .new(
-              change: .full,
-              openClose: true,
-            ),
-          ),
-          workspace: (
-            workspaceFolders: const .new(
-              supported: true,
-              changeNotifications: .bool(true),
-            ),
-            fileOperations: fileOperations,
+      // Customize capabilities with manual sync and semantic tokens
+      final customized = inferred.copyWith(
+        textDocumentSync: .textDocumentSyncOptions(
+          const .new(
+            change: .full,
+            openClose: true,
           ),
         ),
+        semanticTokensProvider: .semanticTokensOptions(
+          const SemanticTokensOptions(
+            legend: SemanticTokensLegend(
+              tokenTypes: legendTypes,
+              tokenModifiers: legendModifiers,
+            ),
+            full: .bool(true),
+          ),
+        ),
+      );
+
+      return InitializeResult(
+        capabilities: customized,
         serverInfo: (name: 'lsp-test-server', version: '0.2.0'),
       );
     });
 
     _server.general.onInitialized((_, context) async {
-      logInfo('Received initialized notification');
+      _logger.info('Received initialized notification');
+
+      // Send a welcome dialog message to the user via LspDialogHelper
+      _dialogHelper.showMessage(
+        type: MessageType.info,
+        message: 'Welcome to LSP Test Server powered by pro_lsp_sdk!',
+      );
+
+      // Register file watching dynamically if supported
+      try {
+        if (_watchedFilesManager.isSupported) {
+          final registrationId = await _watchedFilesManager.register(
+            watchers: [
+              const FileSystemWatcher(
+                globPattern: GlobPattern.pattern('**/*.txt'),
+                kind: WatchKind(7),
+              ),
+            ],
+          );
+          _logger.info(
+            'Dynamically registered file watcher with ID: $registrationId',
+          );
+        } else {
+          _logger.warning(
+            'Client does not support dynamic registration of watched files.',
+          );
+        }
+      } on Object catch (e, st) {
+        _logger.severe(
+          'Failed to dynamically register watched files capability',
+          e,
+          st,
+        );
+      }
     });
 
     _server.general.onShutdown((context) async {
-      logInfo('Received shutdown request');
+      _logger.info('Received shutdown request');
     });
 
     _server.general.onExit((context) async {
-      logInfo('Received exit notification');
-    });
+      _logger.info('Received exit notification');
 
-    // Workspace folders
-
-    _server.workspace.onDidChangeWorkspaceFolders((params, context) async {
-      logInfo(
-        'Workspace folders changed: '
-        '${params.event.added.map((e) => e.name).join(', ')}',
-      );
-    });
-
-    // Text Document Sync
-
-    _server.textDocument.onDidOpen((params, context) async {
-      logInfo('Document opened: ${params.textDocument.uri}');
-      _docService.open(params.textDocument.uri, params.textDocument.text);
-    });
-
-    _server.textDocument.onDidChange((params, context) async {
-      logInfo('Document changed: ${params.textDocument.uri}');
-      final uri = params.textDocument.uri;
-      final existingText = _docService.get(uri);
-      if (existingText == null) {
-        return;
-      }
-
-      var text = existingText;
-      for (final change in params.contentChanges) {
-        final fullText = change.asText;
-        if (fullText != null) {
-          text = fullText.text;
-        } else {
-          final rangeChange = change.asRangeRangeLengthText;
-          if (rangeChange != null) {
-            final startOffset = _positionToOffset(
-              text,
-              rangeChange.range.start,
-            );
-            final endOffset = _positionToOffset(text, rangeChange.range.end);
-            text = text.replaceRange(
-              startOffset,
-              endOffset,
-              rangeChange.text,
-            );
-          }
-        }
-      }
-
-      _docService.update(uri, text);
-      _publishDiagnostics(uri, text);
-    });
-
-    _server.textDocument.onDidClose((params, context) async {
-      logInfo('Document closed: ${params.textDocument.uri}');
-      _docService.close(params.textDocument.uri);
-      _clearDiagnostics(params.textDocument.uri);
+      // Clean up resources
+      _loggingAdapter.close();
+      _diagnosticsManager.close();
+      _configManager.close();
+      _workspaceFoldersManager.close();
+      _progressManager.cancelAll();
     });
 
     // textDocument/hover
-
     _server.textDocument.onHover((params, context) async {
-      logInfo(
+      _logger.info(
         'Hover request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
@@ -175,137 +241,169 @@ final class ServerRunner {
     });
 
     // textDocument/completion
-
     _server.textDocument.onCompletion((params, context) async {
-      logInfo('Completion request: ${params.textDocument.uri}');
-      final documentText = _docService.get(params.textDocument.uri);
+      _logger.info('Completion request: ${params.textDocument.uri}');
+      final doc = _docService.get(params.textDocument.uri);
       final items = _completionService.getCompletions(
         params,
-        documentText: documentText,
+        documentText: doc?.text,
       );
 
       return .completionItemList(items);
     });
 
     // textDocument/definition
-
     _server.textDocument.onDefinition((params, context) async {
-      logInfo(
+      _logger.info(
         'Definition request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
 
-      final text = _docService.get(params.textDocument.uri);
-      if (text == null) {
-        return .nullValue();
-      }
+      // Start progress indicator using WorkDoneProgressManager
+      final progress = await _progressManager.create(
+        title: 'Finding definition',
+        message: 'Searching...',
+      );
 
-      final lines = _splitLines(text);
-      if (params.position.line >= lines.length) {
-        return .nullValue();
-      }
+      try {
+        // Simulate a small delay to make the progress indicator visible
+        await Future.delayed(const Duration(milliseconds: 150));
 
-      final line = lines[params.position.line];
-      final word = _extractWordAtPosition(line, params.position.character);
-
-      if (word == null || word.isEmpty) {
-        return .nullValue();
-      }
-
-      // Find all occurrences of the word in the document
-      final locations = <Location>[];
-      for (var i = 0; i < lines.length; i++) {
-        final lineText = lines[i];
-        var startIndex = 0;
-        while (true) {
-          final index = lineText.indexOf(word, startIndex);
-          if (index == -1) {
-            break;
-          }
-
-          locations.add(
-            .new(
-              uri: params.textDocument.uri,
-              range: .new(
-                start: .new(line: i, character: index),
-                end: .new(line: i, character: index + word.length),
-              ),
-            ),
-          );
-          startIndex = index + 1;
+        final doc = _docService.get(params.textDocument.uri);
+        if (doc == null) {
+          return .nullValue();
         }
-      }
 
-      if (locations.length == 1) {
-        return DefinitionResult.definition(
-          Definition.location(locations.first),
-        );
+        final lines = doc.lines;
+        if (params.position.line >= lines.length) {
+          return .nullValue();
+        }
+
+        final line = lines[params.position.line];
+        final word = _extractWordAtPosition(line, params.position.character);
+
+        if (word == null || word.isEmpty) {
+          return .nullValue();
+        }
+
+        progress.report(message: 'Analyzing symbol "$word"...', percentage: 50);
+
+        // Find all occurrences of the word in the document
+        final locations = <Location>[];
+        for (var i = 0; i < lines.length; i++) {
+          final lineText = lines[i];
+          var startIndex = 0;
+          while (true) {
+            final index = lineText.indexOf(word, startIndex);
+            if (index == -1) {
+              break;
+            }
+
+            locations.add(
+              .new(
+                uri: params.textDocument.uri,
+                range: .new(
+                  start: .new(line: i, character: index),
+                  end: .new(line: i, character: index + word.length),
+                ),
+              ),
+            );
+            startIndex = index + 1;
+          }
+        }
+
+        progress.report(message: 'Done.', percentage: 100);
+
+        if (locations.length == 1) {
+          return DefinitionResult.definition(
+            Definition.location(locations.first),
+          );
+        }
+        return DefinitionResult.definition(Definition.locationList(locations));
+      } finally {
+        progress.end(message: 'Finished definition search.');
       }
-      return DefinitionResult.definition(Definition.locationList(locations));
     });
 
     // textDocument/references
-
     _server.textDocument.onReferences((params, context) async {
-      logInfo(
+      _logger.info(
         'References request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
 
-      final text = _docService.get(params.textDocument.uri);
-      if (text == null) {
-        return [];
-      }
+      // Start progress indicator using WorkDoneProgressManager
+      final progress = await _progressManager.create(
+        title: 'Finding references',
+        message: 'Searching...',
+      );
 
-      final lines = _splitLines(text);
-      if (params.position.line >= lines.length) {
-        return [];
-      }
+      try {
+        // Simulate a small delay to make the progress indicator visible
+        await Future.delayed(const Duration(milliseconds: 150));
 
-      final line = lines[params.position.line];
-      final word = _extractWordAtPosition(line, params.position.character);
-
-      if (word == null || word.isEmpty) {
-        return [];
-      }
-
-      final locations = <Location>[];
-      for (var i = 0; i < lines.length; i++) {
-        final lineText = lines[i];
-        var startIndex = 0;
-        while (true) {
-          final index = lineText.indexOf(word, startIndex);
-          if (index == -1) {
-            break;
-          }
-          locations.add(
-            .new(
-              uri: params.textDocument.uri,
-              range: .new(
-                start: .new(line: i, character: index),
-                end: .new(line: i, character: index + word.length),
-              ),
-            ),
-          );
-          startIndex = index + 1;
+        final doc = _docService.get(params.textDocument.uri);
+        if (doc == null) {
+          return [];
         }
-      }
 
-      return locations;
+        final lines = doc.lines;
+        if (params.position.line >= lines.length) {
+          return [];
+        }
+
+        final line = lines[params.position.line];
+        final word = _extractWordAtPosition(line, params.position.character);
+
+        if (word == null || word.isEmpty) {
+          return [];
+        }
+
+        progress.report(
+          message: 'Finding references for "$word"...',
+          percentage: 50,
+        );
+
+        final locations = <Location>[];
+        for (var i = 0; i < lines.length; i++) {
+          final lineText = lines[i];
+          var startIndex = 0;
+          while (true) {
+            final index = lineText.indexOf(word, startIndex);
+            if (index == -1) {
+              break;
+            }
+            locations.add(
+              .new(
+                uri: params.textDocument.uri,
+                range: .new(
+                  start: .new(line: i, character: index),
+                  end: .new(line: i, character: index + word.length),
+                ),
+              ),
+            );
+            startIndex = index + 1;
+          }
+        }
+
+        progress.report(message: 'Done.', percentage: 100);
+        return locations;
+      } finally {
+        progress.end(message: 'Finished references search.');
+      }
     });
 
     // textDocument/documentSymbol
-
     _server.textDocument.onDocumentSymbol((params, context) async {
-      logInfo('DocumentSymbol request: ${params.textDocument.uri}');
+      _logger.info('DocumentSymbol request: ${params.textDocument.uri}');
 
-      final text = _docService.get(params.textDocument.uri);
-      if (text == null) {
+      final doc = _docService.get(params.textDocument.uri);
+      if (doc == null) {
         return .documentSymbolList([]);
       }
 
       final symbols = <DocumentSymbol>[];
-      final lines = _splitLines(text);
+      final lines = doc.lines;
 
       for (var i = 0; i < lines.length; i++) {
         final line = lines[i];
@@ -343,15 +441,13 @@ final class ServerRunner {
     });
 
     // workspace/symbol
-
     _server.workspace.onSymbol((params, context) async {
-      logInfo('WorkspaceSymbol request: query="${params.query}"');
+      _logger.info('WorkspaceSymbol request: query="${params.query}"');
 
       final allSymbols = <SymbolInformation>[];
-      for (final entry in _docService.documents.entries) {
-        final uri = entry.key;
-        final text = entry.value;
-        final lines = _splitLines(text);
+      for (final doc in _docService.all) {
+        final uri = doc.uri;
+        final lines = doc.lines;
 
         for (var i = 0; i < lines.length; i++) {
           final line = lines[i];
@@ -385,17 +481,76 @@ final class ServerRunner {
       return .symbolInformationList(allSymbols);
     });
 
-    // Workspace file operations
+    // textDocument/semanticTokens/full
+    _server.textDocument.onSemanticTokensFull((params, context) async {
+      _logger.info('SemanticTokens request: ${params.textDocument.uri}');
 
+      final doc = _docService.get(params.textDocument.uri);
+      if (doc == null) {
+        return null;
+      }
+
+      final builder = SemanticTokensBuilder(
+        legendTypes: legendTypes,
+        legendModifiers: legendModifiers,
+      );
+
+      final lines = doc.lines;
+      for (var i = 0; i < lines.length; i++) {
+        final line = lines[i];
+
+        // 1. Highlight comments
+        if (line.trim().startsWith('//')) {
+          final startIdx = line.indexOf('//');
+          builder.addNamed(
+            line: i,
+            char: startIdx,
+            length: line.length - startIdx,
+            type: 'comment',
+          );
+          continue; // skip other rules for comment lines
+        }
+
+        // 2. Highlight functions (patterns like "funcName(")
+        final trimmed = line.trim();
+        if (trimmed.contains('(') && trimmed.contains(')')) {
+          final name = trimmed.split('(').first.trim();
+          if (name.isNotEmpty && !_isComment(line)) {
+            final startIdx = line.indexOf(name);
+            builder.addNamed(
+              line: i,
+              char: startIdx,
+              length: name.length,
+              type: 'function',
+              modifiers: ['declaration'],
+            );
+          }
+        }
+
+        // 3. Highlight keywords (e.g., `TODO` or `FIXME`)
+        if (line.contains('TODO')) {
+          final startIdx = line.indexOf('TODO');
+          builder.addNamed(line: i, char: startIdx, length: 4, type: 'keyword');
+        }
+        if (line.contains('FIXME')) {
+          final startIdx = line.indexOf('FIXME');
+          builder.addNamed(line: i, char: startIdx, length: 5, type: 'keyword');
+        }
+      }
+
+      return SemanticTokens(data: builder.build());
+    });
+
+    // Workspace file operations
     _server.workspace.onWillCreateFiles((params, context) async {
-      logInfo(
+      _logger.info(
         'Files will be created: ${params.files.map((f) => f.uri).join(', ')}',
       );
       return const WorkspaceEdit();
     });
 
     _server.workspace.onWillRenameFiles((params, context) async {
-      logInfo(
+      _logger.info(
         'Files will be renamed: '
         '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
       );
@@ -403,35 +558,40 @@ final class ServerRunner {
     });
 
     _server.workspace.onWillDeleteFiles((params, context) async {
-      logInfo(
+      _logger.info(
         'Files will be deleted: ${params.files.map((f) => f.uri).join(', ')}',
       );
       return const WorkspaceEdit();
     });
 
     _server.workspace.onDidCreateFiles((params, context) async {
-      logInfo(
+      _logger.info(
         'Files created: ${params.files.map((f) => f.uri).join(', ')}',
       );
     });
 
     _server.workspace.onDidRenameFiles((params, context) async {
-      logInfo(
+      _logger.info(
         'Files renamed: '
         '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
       );
     });
 
     _server.workspace.onDidDeleteFiles((params, context) async {
-      logInfo(
+      _logger.info(
         'Files deleted: ${params.files.map((f) => f.uri).join(', ')}',
       );
     });
   }
 
-  void _publishDiagnostics(String uri, String text) {
+  Future<void> _publishDiagnostics(LspDocument doc) async {
     final diagnostics = <Diagnostic>[];
-    final lines = _splitLines(text);
+    final lines = doc.lines;
+
+    // Read maxLineLength dynamically from configuration manager
+    final maxLineLength =
+        await _configManager.getSection<int>('lspTester.maxLineLength') ??
+            120;
 
     for (var i = 0; i < lines.length; i++) {
       final line = lines[i];
@@ -471,12 +631,14 @@ final class ServerRunner {
       }
 
       // Check for very long lines
-      if (line.length > 120) {
+      if (line.length > maxLineLength) {
         diagnostics.add(
           Diagnostic(
-            message: 'Line is too long (${line.length} characters)',
+            message:
+                'Line is too long (${line.length} characters, '
+                'limit is $maxLineLength)',
             range: Range(
-              start: Position(line: i, character: 120),
+              start: Position(line: i, character: maxLineLength),
               end: Position(line: i, character: line.length),
             ),
             severity: DiagnosticSeverity.information,
@@ -487,27 +649,7 @@ final class ServerRunner {
       }
     }
 
-    final version = _docService.getVersion(uri);
-
-    _server.client.textDocument.publishDiagnostics(
-      PublishDiagnosticsParams(
-        uri: uri,
-        diagnostics: diagnostics,
-        version: version,
-      ),
-    );
-  }
-
-  void _clearDiagnostics(String uri) {
-    final version = _docService.getVersion(uri);
-
-    _server.client.textDocument.publishDiagnostics(
-      PublishDiagnosticsParams(
-        uri: uri,
-        diagnostics: [],
-        version: version,
-      ),
-    );
+    _diagnosticsManager.publish(doc.uri, diagnostics);
   }
 
   String? _extractWordAtPosition(String line, int character) {
@@ -553,32 +695,4 @@ final class ServerRunner {
         trimmed.startsWith('/*') ||
         trimmed.startsWith('*');
   }
-
-  void logInfo(String message) {
-    _server.client.window.logMessage(
-      .new(type: .log, message: '[ServerRunner] $message'),
-    );
-
-    stdout.writeln('[ServerRunner] $message');
-  }
-
-  int _positionToOffset(String text, Position position) {
-    var line = 0;
-    var offset = 0;
-    while (line < position.line && offset < text.length) {
-      final nextNewline = text.indexOf('\n', offset);
-      if (nextNewline == -1) {
-        return text.length;
-      }
-      offset = nextNewline + 1;
-      line++;
-    }
-    final lineEnd = text.indexOf('\n', offset);
-    final maxChar = (lineEnd == -1 ? text.length : lineEnd) - offset;
-    final char = position.character.clamp(0, maxChar);
-    return offset + char;
-  }
-
-  List<String> _splitLines(String text) =>
-      text.replaceAll('\r\n', '\n').split('\n');
 }
