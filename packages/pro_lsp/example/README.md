@@ -2,7 +2,7 @@
 
 This directory contains a basic example demonstrating how to initialize and run a Language Server.
 
-* **[main.dart](main.dart)**: A minimal, self-contained Language Server communicating over standard input/output (stdin/stdout) with support for the initialize handshake and hover documentation.
+* **[main.dart](basic/main.dart)**: A minimal, self-contained Language Server communicating over standard input/output (stdin/stdout) with support for the initialize handshake and hover documentation.
 
 ## Full Debugging Workspace
 
