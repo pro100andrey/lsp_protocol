@@ -82,7 +82,7 @@ final class DiagnosticsFeature extends LspFeature {
         if (isCommented(line, index)) {
           diagnostics.add(
             .new(
-              message: 'TODO: This needs to be implemented',
+              message: 'TODO: This needs to be implemented (Sveta)',
               range: .new(
                 start: .new(line: i, character: index),
                 end: .new(line: i, character: index + 4),

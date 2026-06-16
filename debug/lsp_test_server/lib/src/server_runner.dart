@@ -13,8 +13,6 @@ import 'features/hover_feature.dart';
 import 'features/references_feature.dart';
 import 'features/semantic_tokens_feature.dart';
 import 'features/symbols_feature.dart';
-import 'services/completion_service.dart';
-import 'services/hover_service.dart';
 
 /// Registers all LSP handlers and features.
 ///
@@ -30,9 +28,7 @@ import 'services/hover_service.dart';
 final class ServerRunner {
   ServerRunner()
     : _server = .new(),
-      _docService = .new(),
-      _completionService = .new(),
-      _hoverService = .new() {
+      _docService = .new() {
     _initManagers();
   }
 
@@ -40,16 +36,12 @@ final class ServerRunner {
   /// socket).
   ServerRunner.fromChannel(StreamChannel<List<int>> channel)
     : _server = .fromChannel(channel),
-      _docService = .new(),
-      _completionService = .new(),
-      _hoverService = .new() {
+      _docService = .new() {
     _initManagers();
   }
 
   final LspServer _server;
   final TextDocumentManager _docService;
-  final CompletionService _completionService;
-  final HoverService _hoverService;
 
   late final ClientLoggingFeature _clientLogging;
   late final FileLoggingFeature _fileLogger;
@@ -85,10 +77,9 @@ final class ServerRunner {
         watchedFilesManager: _watchedFilesManager,
         dialogHelper: _dialogHelper,
       ))
-      ..registerFeature(HoverFeature(hoverService: _hoverService))
+      ..registerFeature(HoverFeature(docService: _docService))
       ..registerFeature(CompletionFeature(
         docService: _docService,
-        completionService: _completionService,
       ))
       ..registerFeature(DefinitionFeature(
         docService: _docService,
