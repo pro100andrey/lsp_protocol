@@ -22,20 +22,20 @@ import 'services/hover_service.dart';
 ///     await runner.run();
 final class ServerRunner {
   ServerRunner()
-    : _server = LspServer(),
-      _docService = TextDocumentManager(),
-      _completionService = CompletionService(),
-      _hoverService = HoverService() {
+    : _server = .new(),
+      _docService = .new(),
+      _completionService = .new(),
+      _hoverService = .new() {
     _initManagers();
   }
 
   /// Creates a server backed by an arbitrary byte [channel] (e.g. a TCP
   /// socket).
   ServerRunner.fromChannel(StreamChannel<List<int>> channel)
-    : _server = LspServer.fromChannel(channel),
-      _docService = TextDocumentManager(),
-      _completionService = CompletionService(),
-      _hoverService = HoverService() {
+    : _server = .fromChannel(channel),
+      _docService = .new(),
+      _completionService = .new(),
+      _hoverService = .new() {
     _initManagers();
   }
 
@@ -59,14 +59,14 @@ final class ServerRunner {
   final _logger = Logger('ServerRunner');
 
   void _initManagers() {
-    _clientLogging = ClientLoggingFeature();
-    _fileLogger = FileLoggingFeature(logFile: File('.lsp_server.log'));
-    _diagnosticsManager = DiagnosticsManager();
-    _configManager = LspConfigurationManager();
-    _workspaceFoldersManager = WorkspaceFoldersManager();
-    _watchedFilesManager = WatchedFilesManager(_server);
-    _progressManager = WorkDoneProgressManager();
-    _dialogHelper = LspDialogHelper();
+    _clientLogging = .new();
+    _fileLogger = .new(logFile: File('.lsp_server.log'));
+    _diagnosticsManager = .new();
+    _configManager = .new();
+    _workspaceFoldersManager = .new();
+    _watchedFilesManager = .new(_server);
+    _progressManager = .new();
+    _dialogHelper = .new();
 
     // Register LspFeatures on the server so they get automated register/dispose lifecycle
     _server
@@ -101,7 +101,6 @@ final class ServerRunner {
   }
 
   void _registerHandlers() {
-
     // Listen to document changes to publish diagnostics
     _docService.onDidChange.listen((doc) {
       _logger.info('Document changed: ${doc.uri}');
@@ -154,14 +153,11 @@ final class ServerRunner {
       // Customize capabilities with manual sync and semantic tokens
       final customized = inferred.copyWith(
         textDocumentSync: .textDocumentSyncOptions(
-          const .new(
-            change: .full,
-            openClose: true,
-          ),
+          const .new(change: .full, openClose: true),
         ),
         semanticTokensProvider: .semanticTokensOptions(
-          const SemanticTokensOptions(
-            legend: SemanticTokensLegend(
+          const .new(
+            legend: .new(
               tokenTypes: legendTypes,
               tokenModifiers: legendModifiers,
             ),
@@ -170,7 +166,7 @@ final class ServerRunner {
         ),
       );
 
-      return InitializeResult(
+      return .new(
         capabilities: customized,
         serverInfo: (name: 'lsp-test-server', version: '0.2.0'),
       );
@@ -181,7 +177,7 @@ final class ServerRunner {
 
       // Send a welcome dialog message to the user via LspDialogHelper
       _dialogHelper.showMessage(
-        type: MessageType.info,
+        type: .info,
         message: 'Welcome to LSP Test Server powered by pro_lsp_sdk!',
       );
 
@@ -190,8 +186,8 @@ final class ServerRunner {
         if (_watchedFilesManager.isSupported) {
           final registrationId = await _watchedFilesManager.register(
             watchers: [
-              const FileSystemWatcher(
-                globPattern: GlobPattern.pattern('**/*.txt'),
+              const .new(
+                globPattern: .pattern('**/*.txt'),
                 kind: WatchKind(7),
               ),
             ],
@@ -306,11 +302,11 @@ final class ServerRunner {
         progress.report(message: 'Done.', percentage: 100);
 
         if (locations.length == 1) {
-          return DefinitionResult.definition(
-            Definition.location(locations.first),
+          return .definition(
+            .location(locations.first),
           );
         }
-        return DefinitionResult.definition(Definition.locationList(locations));
+        return .definition(.locationList(locations));
       } finally {
         progress.end(message: 'Finished definition search.');
       }
@@ -529,7 +525,7 @@ final class ServerRunner {
         }
       }
 
-      return SemanticTokens(data: builder.build());
+      return .new(data: builder.build());
     });
 
     // Workspace file operations
@@ -537,7 +533,7 @@ final class ServerRunner {
       _logger.info(
         'Files will be created: ${params.files.map((f) => f.uri).join(', ')}',
       );
-      return const WorkspaceEdit();
+      return const .new();
     });
 
     _server.workspace.onWillRenameFiles((params, context) async {
@@ -545,14 +541,14 @@ final class ServerRunner {
         'Files will be renamed: '
         '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
       );
-      return const WorkspaceEdit();
+      return const .new();
     });
 
     _server.workspace.onWillDeleteFiles((params, context) async {
       _logger.info(
         'Files will be deleted: ${params.files.map((f) => f.uri).join(', ')}',
       );
-      return const WorkspaceEdit();
+      return const .new();
     });
 
     _server.workspace.onDidCreateFiles((params, context) async {
@@ -581,8 +577,7 @@ final class ServerRunner {
 
     // Read maxLineLength dynamically from configuration manager
     final maxLineLength =
-        await _configManager.getSection<int>('lspTester.maxLineLength') ??
-            120;
+        await _configManager.getSection<int>('lspTester.maxLineLength') ?? 120;
 
     for (var i = 0; i < lines.length; i++) {
       final line = lines[i];
@@ -591,14 +586,14 @@ final class ServerRunner {
       if (line.contains('TODO')) {
         final index = line.indexOf('TODO');
         diagnostics.add(
-          Diagnostic(
+          .new(
             message: 'TODO: This needs to be implemented',
-            range: Range(
-              start: Position(line: i, character: index),
-              end: Position(line: i, character: index + 4),
+            range: .new(
+              start: .new(line: i, character: index),
+              end: .new(line: i, character: index + 4),
             ),
-            severity: DiagnosticSeverity.warning,
-            code: const DiagnosticCode.string('todo'),
+            severity: .warning,
+            code: const .string('todo'),
             source: 'lsp-test-server',
           ),
         );
@@ -608,14 +603,14 @@ final class ServerRunner {
       if (line.contains('FIXME')) {
         final index = line.indexOf('FIXME');
         diagnostics.add(
-          Diagnostic(
+          .new(
             message: 'FIXME: This is a bug that needs to be fixed',
-            range: Range(
-              start: Position(line: i, character: index),
-              end: Position(line: i, character: index + 5),
+            range: .new(
+              start: .new(line: i, character: index),
+              end: .new(line: i, character: index + 5),
             ),
-            severity: DiagnosticSeverity.error,
-            code: const DiagnosticCode.string('fixme'),
+            severity: .error,
+            code: const .string('fixme'),
             source: 'lsp-test-server',
           ),
         );
@@ -624,16 +619,16 @@ final class ServerRunner {
       // Check for very long lines
       if (line.length > maxLineLength) {
         diagnostics.add(
-          Diagnostic(
+          .new(
             message:
                 'Line is too long (${line.length} characters, '
                 'limit is $maxLineLength)',
-            range: Range(
-              start: Position(line: i, character: maxLineLength),
-              end: Position(line: i, character: line.length),
+            range: .new(
+              start: .new(line: i, character: maxLineLength),
+              end: .new(line: i, character: line.length),
             ),
-            severity: DiagnosticSeverity.information,
-            code: const DiagnosticCode.string('long-line'),
+            severity: .information,
+            code: const .string('long-line'),
             source: 'lsp-test-server',
           ),
         );
