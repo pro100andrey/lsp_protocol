@@ -8,7 +8,7 @@ Unified LSP 3.17 Dart bindings and server API implementation. `pro_lsp` is a lig
 
 * **Complete LSP 3.17 Specification (Freezed-backed)**: Type-safe Dart models generated directly from the official Microsoft LSP meta-model (structures, unions, enums, scalar unions) supporting `copyWith`, deep equality checks (`==`), and JSON mapping.
 * **Pluggable Architecture (`LspFeature`)**: Decouple large servers into cohesive, modular feature components (e.g., Hover, Completion, Diagnostics).
-* **Connection Lifecycle Management**: Automatic state machine tracking (uninitialized, initialized, shutdown, exiting) to reject out-of-order messages according to the LSP spec.
+* **Connection Lifecycle Management**: Automatic state machine tracking (uninitialized, initializing, initialized, shuttingDown, exited) to reject out-of-order messages according to the LSP spec.
 * **Middleware Support**: Intercept, measure, modify, or log requests and notifications before they hit your handlers.
 * **Built-in Service Registry (DI)**: Register dependencies directly on the server connection and resolve them inside the handler context.
 * **Framing & Transport Agnostic**: Runs on standard I/O streams, TCP sockets, or custom byte streams out of the box using `LspByteStreamChannel`.
@@ -92,10 +92,19 @@ The `LspServer` is the orchestrator for the server side.
 
 Handlers for incoming client requests and notifications are grouped into spec-compliant namespaces:
 
-* **`general`**: Lifecycle methods (`onInitialize`, `onInitialized`, `onShutdown`, `onExit`).
-* **`textDocument`**: Code intelligence events (`onCompletion`, `onHover`, `onDefinition` for `textDocument/definition`, `onReferences` for `textDocument/references`, `onDocumentSymbol`, `onSemanticTokensFull`).
-* **`workspace`**: Workspace-wide actions and queries (`onSymbol` for `workspace/symbol`, `onExecuteCommand`, `onDidChangeConfiguration`, `onWillRenameFiles`, etc.).
-* **`window`**: Handlers for client-side window notifications.
+* **`general`**: Lifecycle methods (`onInitialize`, `onInitialized`, `onShutdown`, `onExit`) and protocol notifications (`onCancelRequest`, `onProgress`).
+* **`textDocument`**: Document-scoped events (`onDidOpen`, `onDidChange`, `onHover`, `onCompletion`, `onDefinition`, `onReferences`, `onDocumentSymbol`, `onSemanticTokensFull`, `onFormatting`, etc.).
+* **`workspace`**: Workspace-wide actions and queries (`onSymbol`, `onExecuteCommand`, `onDidChangeConfiguration`, `onDidChangeWatchedFiles`, `onWillRenameFiles`, etc.).
+* **`window`**: UI notifications from the client (`onWorkDoneProgressCancel`).
+* **`callHierarchy`**: Call hierarchy providers (`onPrepareCallHierarchy`, `onIncomingCalls`, `onOutgoingCalls`).
+* **`typeHierarchy`**: Type hierarchy providers (`onPrepareTypeHierarchy`, `onSupertypes`, `onSubtypes`).
+* **`notebookDocument`**: Notebook-specific lifecycle events (`onDidOpen`, `onDidChange`, `onDidSave`, `onDidClose`).
+* **`completionItem`**: Lazy resolution for completion items (`onResolve`).
+* **`codeAction`**: Lazy resolution for code actions (`onResolve`).
+* **`codeLens`**: Lazy resolution for code lenses (`onResolve`).
+* **`documentLink`**: Lazy resolution for document links (`onResolve`).
+* **`inlayHint`**: Inlay hint resolution (`onInlayHint`, `onResolve`).
+* **`workspaceSymbol`**: Workspace symbol resolution (`onResolve`).
 
 #### Capability Inference (via `pro_lsp_sdk`)
 
@@ -242,7 +251,7 @@ class HoverFeature extends LspFeature {
   }
 
   @override
-  void dispose() {
+  FutureOr<void> dispose() {
     // Cancel subscriptions or clean up analysis cache here
   }
 }
@@ -272,12 +281,14 @@ server.textDocument.onCompletion((params, context) async {
 
 Register middlewares to intercept request inputs/outputs. Great for logging, performance profiling, error catching, and authorization checks.
 
+Middlewares can be class-based or created from a function using `LspMiddleware.fromFunction`.
+
 ```dart
 class LoggingMiddleware extends LspMiddleware {
   @override
-  FutureOr<LspResponse> handle(
+  Future<Object?> call(
     LspIncomingRequest request,
-    FutureOr<LspResponse> Function(LspIncomingRequest) next,
+    LspNext next,
   ) async {
     final stopwatch = Stopwatch()..start();
     print('[LSP] Incoming request: ${request.method}');
@@ -295,7 +306,18 @@ class LoggingMiddleware extends LspMiddleware {
 server.connection.addMiddleware(LoggingMiddleware());
 ```
 
-### 4. Request Cancellation (`CancellationToken`)
+### 4. Handler Context (`LspRequest`)
+
+Every handler receives an `LspRequest` object as its second parameter. This object provides:
+
+* **`method`**: The LSP method name (e.g., `'textDocument/hover'`).
+* **`id`**: The JSON-RPC request ID (null for notifications).
+* **`isNotification`**: Boolean flag to check if the message is a notification.
+* **`cancellationToken`**: Used to check if the client cancelled the request.
+* **`connection`**: Access to the underlying `LspConnection`.
+* **`resolve<T>()` / `tryResolve<T>()`**: Resolve dependencies from the service container.
+
+### 5. Request Cancellation (`CancellationToken`)
 
 For long-running operations (such as finding references, compiling workspace symbols, or building complex autocompletions), the client editor can send a `$/cancelRequest` notification to abort the computation.
 
@@ -319,13 +341,14 @@ server.textDocument.onReferences((params, context) async {
 
 When `throwIfCancelled()` is triggered, the server automatically stops executing the handler, frees resources, and returns a standard `LspErrorCodes.requestCancelled` error to the client.
 
-### 5. Connection Lifecycle State Machine
+### 6. Connection Lifecycle State Machine
 
-The LSP specification strictly mandates a lifecycle sequence (`uninitialized` -> `initialized` -> `shutdown` -> `exited`). Under the hood, `pro_lsp` tracks this connection state automatically:
+The LSP specification strictly mandates a lifecycle sequence (`uninitialized` -> `initializing` -> `initialized` -> `shuttingDown` -> `exited`). Under the hood, `pro_lsp` tracks this connection state automatically:
 
 * **Before Initialization**: If the client sends any request other than `initialize` (e.g. `textDocument/hover`), the server rejects it with an `LspErrorCodes.serverNotInitialized` (`-32002`) error and does not trigger your handlers.
-* **After Shutdown**: Once the `shutdown` request is processed, the server moves to the shutdown state. Subsequent requests are rejected with a JSON-RPC error.
-* **Exit**: When the client sends the `exit` notification, the server terminates connection processing and closes the streams cleanly.
+* **Initialization**: While processing the `initialize` request, the server is in the `initializing` state.
+* **After Shutdown**: Once the `shutdown` request is processed, the server moves to the `shuttingDown` state. Subsequent requests are rejected with a JSON-RPC error.
+* **Exit**: When the client sends the `exit` notification, the server moves to the `exited` state, terminates connection processing, and closes the streams cleanly.
 
 ---
 
@@ -339,14 +362,21 @@ import 'package:stream_channel/stream_channel.dart';
 import 'package:pro_lsp/pro_lsp.dart';
 
 void main() async {
-  final socket = await Socket.connect('localhost', 3000);
-  final channel = StreamChannel<List<int>>(socket, socket);
-  final framed = LspByteStreamChannel.fromByteChannel(channel);
+  final serverSocket = await ServerSocket.bind('localhost', 3000);
+  await for (final socket in serverSocket) {
+    // Socket is a Stream<Uint8List> and an IOSink (StreamConsumer<List<int>>)
+    final channel = StreamChannel<List<int>>(socket.cast<List<int>>(), socket);
+    final framed = LspByteStreamChannel.fromByteChannel(channel);
 
-  final server = LspServer.fromChannel(framed.channel);
-  
-  // Set up handlers...
-  await server.listen();
+    final server = LspServer.fromChannel(framed.channel);
+    
+    try {
+      // Set up handlers and listen
+      await server.listen();
+    } finally {
+      await framed.cleanup();
+    }
+  }
 }
 ```
 
