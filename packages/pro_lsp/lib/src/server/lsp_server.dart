@@ -42,11 +42,12 @@ export 'middleware.dart';
 /// void main() async {
 ///   final server = LspServer();
 ///
-///   server.general.onInitialize((params) async {
-///     return InitializeResult(
-///       capabilities: server.inferCapabilities(
-///         completionTriggerCharacters: ['.', ':'],
+///   server.general.onInitialize((params, context) async {
+///     return const InitializeResult(
+///       capabilities: ServerCapabilities(
+///         hoverProvider: .bool(true),
 ///       ),
+///       serverInfo: (name: 'my-dart-lsp', version: '1.0.0'),
 ///     );
 ///   });
 ///

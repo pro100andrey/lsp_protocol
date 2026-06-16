@@ -38,29 +38,17 @@ import 'package:stream_channel/stream_channel.dart';
 ///
 /// **Stdio transport (standard LSP process):**
 /// ```dart
-/// final channel = LspByteStreamChannel.fromStdio();
-/// final server = LspServer.fromChannel(channel);
+/// final server = LspServer(); // Automatically binds to stdin/stdout
 /// await server.listen();
 /// ```
 ///
 /// **Custom transport (TCP, pipes, etc.):**
 /// ```dart
 /// final tcpSocket = await Socket.connect('localhost', 6000);
-/// final result = LspByteStreamChannel.fromByteChannel(
+/// final server = LspServer.fromChannel(
 ///   StreamChannel<List<int>>(tcpSocket, tcpSocket),
 /// );
-/// final server = LspServer.fromChannel(result.channel);
-/// try {
-///   await server.listen();
-/// } finally {
-///   await result.cleanup();
-/// }
-/// ```
-///
-/// **Testing with in-memory channels:**
-/// ```dart
-/// final result = LspByteStreamChannel.fromByteChannel(myChannel);
-/// // Use with LspServer.fromChannel(result.channel)
+/// await server.listen();
 /// ```
 final class LspByteStreamChannel {
   LspByteStreamChannel._();
