@@ -1,15 +1,22 @@
-import 'dart:async';
 import 'dart:io';
 
-import 'package:logging/logging.dart';
 import 'package:pro_lsp/pro_lsp.dart';
 import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
 import 'package:stream_channel/stream_channel.dart';
 
+import 'features/completion_feature.dart';
+import 'features/definition_feature.dart';
+import 'features/diagnostics_feature.dart';
+import 'features/file_operations_feature.dart';
+import 'features/general_feature.dart';
+import 'features/hover_feature.dart';
+import 'features/references_feature.dart';
+import 'features/semantic_tokens_feature.dart';
+import 'features/symbols_feature.dart';
 import 'services/completion_service.dart';
 import 'services/hover_service.dart';
 
-/// Registers all LSP handlers.
+/// Registers all LSP handlers and features.
 ///
 /// Usage:
 ///
@@ -39,9 +46,6 @@ final class ServerRunner {
     _initManagers();
   }
 
-  static const legendTypes = ['comment', 'function', 'variable', 'keyword'];
-  static const legendModifiers = ['declaration', 'documentation'];
-
   final LspServer _server;
   final TextDocumentManager _docService;
   final CompletionService _completionService;
@@ -55,8 +59,6 @@ final class ServerRunner {
   late final WatchedFilesManager _watchedFilesManager;
   late final WorkDoneProgressManager _progressManager;
   late final LspDialogHelper _dialogHelper;
-
-  final _logger = Logger('ServerRunner');
 
   void _initManagers() {
     _clientLogging = .new();
@@ -77,613 +79,37 @@ final class ServerRunner {
       ..registerFeature(_workspaceFoldersManager)
       ..registerFeature(_progressManager)
       ..registerFeature(_dialogHelper)
-      ..registerFeature(_docService);
+      ..registerFeature(_docService)
+      ..registerFeature(GeneralFeature(
+        workspaceFoldersManager: _workspaceFoldersManager,
+        watchedFilesManager: _watchedFilesManager,
+        dialogHelper: _dialogHelper,
+      ))
+      ..registerFeature(HoverFeature(hoverService: _hoverService))
+      ..registerFeature(CompletionFeature(
+        docService: _docService,
+        completionService: _completionService,
+      ))
+      ..registerFeature(DefinitionFeature(
+        docService: _docService,
+        progressManager: _progressManager,
+      ))
+      ..registerFeature(ReferencesFeature(
+        docService: _docService,
+        progressManager: _progressManager,
+      ))
+      ..registerFeature(SymbolsFeature(docService: _docService))
+      ..registerFeature(SemanticTokensFeature(docService: _docService))
+      ..registerFeature(FileOperationsFeature())
+      ..registerFeature(DiagnosticsFeature(
+        docService: _docService,
+        diagnosticsManager: _diagnosticsManager,
+        configManager: _configManager,
+      ));
   }
 
-  /// Registers all handlers and starts listening on stdio.
+  /// Starts listening on stdio/channel.
   Future<void> run() async {
-    try {
-      _registerHandlers();
-      await _server.listen();
-    } finally {
-      // Clean up resources immediately when connection ends
-    }
-  }
-
-  void _registerHandlers() {
-    // Listen to document changes to publish diagnostics
-    _docService.onDidChange.listen((doc) {
-      _logger.info('Document changed: ${doc.uri}');
-      unawaited(_publishDiagnostics(doc));
-    });
-
-    _docService.onDidClose.listen((doc) {
-      _logger.info('Document closed: ${doc.uri}');
-      _diagnosticsManager.clear(doc.uri);
-    });
-
-    _docService.onDidOpen.listen((doc) {
-      _logger.info('Document opened: ${doc.uri}');
-      unawaited(_publishDiagnostics(doc));
-    });
-
-    // Listen to configuration changes to recompute diagnostics
-    _configManager.onChange.listen((_) {
-      _logger.info(
-        'Configuration changed, recomputing diagnostics for all documents...',
-      );
-      for (final doc in _docService.all) {
-        unawaited(_publishDiagnostics(doc));
-      }
-    });
-
-    // Listen to workspace folder changes
-    _workspaceFoldersManager.onChange.listen((folders) {
-      _logger.info(
-        'Workspace folders changed. Current folders: '
-        '${folders.map((f) => f.name).join(', ')}',
-      );
-    });
-
-    // General
-    _server.general.onInitialize((params, context) async {
-      _logger.info('[id:${context.id}] Received initialize request');
-
-      // Set initial workspace folders in the manager
-      _workspaceFoldersManager.setInitialFolders(params.workspaceFolders);
-
-      // Register initialize params so WatchedFilesManager can resolve it later
-      _server.connection.register(params);
-
-      // Infer capabilities from registered handlers
-      final inferred = _server.inferCapabilities(
-        completionTriggerCharacters: ['.', ':', '_'],
-      );
-
-      // Customize capabilities with manual sync and semantic tokens
-      final customized = inferred.copyWith(
-        textDocumentSync: .textDocumentSyncOptions(
-          const .new(change: .full, openClose: true),
-        ),
-        semanticTokensProvider: .semanticTokensOptions(
-          const .new(
-            legend: .new(
-              tokenTypes: legendTypes,
-              tokenModifiers: legendModifiers,
-            ),
-            full: .bool(true),
-          ),
-        ),
-      );
-
-      return .new(
-        capabilities: customized,
-        serverInfo: (name: 'lsp-test-server', version: '0.2.0'),
-      );
-    });
-
-    _server.general.onInitialized((_, context) async {
-      _logger.info('[id:${context.id}] Received initialized notification');
-
-      // Send a welcome dialog message to the user via LspDialogHelper
-      _dialogHelper.showMessage(
-        type: .info,
-        message: 'Welcome to LSP Test Server powered by pro_lsp_sdk!',
-      );
-
-      // Register file watching dynamically if supported
-      try {
-        if (_watchedFilesManager.isSupported) {
-          final registrationId = await _watchedFilesManager.register(
-            watchers: [
-              const .new(
-                globPattern: .pattern('**/*.txt'),
-                kind: WatchKind(7),
-              ),
-            ],
-          );
-          _logger.info(
-            '[id:${context.id}] Dynamically registered file watcher with ID: '
-            '$registrationId',
-          );
-        } else {
-          _logger.warning(
-            '[id:${context.id}] Client does not support dynamic registration '
-            'of watched files.',
-          );
-        }
-      } on Object catch (e, st) {
-        _logger.severe(
-          '[id:${context.id}] Failed to dynamically register watched files '
-          'capability',
-          e,
-          st,
-        );
-      }
-    });
-
-    _server.general.onShutdown((context) async {
-      _logger.info('[id:${context.id}] Received shutdown request');
-    });
-
-    _server.general.onExit((context) async {
-      _logger.info('[id:${context.id}] Received exit notification');
-    });
-
-    // textDocument/hover
-    _server.textDocument.onHover((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Hover request: ${params.textDocument.uri}, '
-        'position ${params.position.line}:${params.position.character}',
-      );
-
-      return _hoverService.getHover(params);
-    });
-
-    // textDocument/completion
-    _server.textDocument.onCompletion((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Completion request: ${params.textDocument.uri}',
-      );
-      final doc = _docService.get(params.textDocument.uri);
-      final items = _completionService.getCompletions(
-        params,
-        documentText: doc?.text,
-      );
-
-      return .completionItemList(items);
-    });
-
-    // textDocument/definition
-    _server.textDocument.onDefinition((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Definition request: ${params.textDocument.uri}, '
-        'position ${params.position.line}:${params.position.character}',
-      );
-
-      // Start progress indicator using WorkDoneProgressManager
-      final progress = await _progressManager.create(
-        title: 'Finding definition',
-        message: 'Searching...',
-      );
-
-      try {
-        // Simulate a small delay to make the progress indicator visible
-        await Future.delayed(const Duration(milliseconds: 150));
-
-        final doc = _docService.get(params.textDocument.uri);
-        if (doc == null) {
-          return .nullValue();
-        }
-
-        final lines = doc.lines;
-        if (params.position.line >= lines.length) {
-          return .nullValue();
-        }
-
-        final line = lines[params.position.line];
-        final word = _extractWordAtPosition(line, params.position.character);
-
-        if (word == null || word.isEmpty) {
-          return .nullValue();
-        }
-
-        progress.report(message: 'Analyzing symbol "$word"...', percentage: 50);
-
-        // Find all occurrences of the word in the document
-        final locations = <Location>[];
-        for (var i = 0; i < lines.length; i++) {
-          final lineText = lines[i];
-          var startIndex = 0;
-          while (true) {
-            final index = lineText.indexOf(word, startIndex);
-            if (index == -1) {
-              break;
-            }
-
-            locations.add(
-              .new(
-                uri: params.textDocument.uri,
-                range: .new(
-                  start: .new(line: i, character: index),
-                  end: .new(line: i, character: index + word.length),
-                ),
-              ),
-            );
-            startIndex = index + 1;
-          }
-        }
-
-        progress.report(message: 'Done.', percentage: 100);
-
-        if (locations.length == 1) {
-          return .definition(
-            .location(locations.first),
-          );
-        }
-        return .definition(.locationList(locations));
-      } finally {
-        progress.end(message: 'Finished definition search.');
-      }
-    });
-
-    // textDocument/references
-    _server.textDocument.onReferences((params, context) async {
-      _logger.info(
-        '[id:${context.id}] References request: ${params.textDocument.uri}, '
-        'position ${params.position.line}:${params.position.character}',
-      );
-
-      // Start progress indicator using WorkDoneProgressManager
-      final progress = await _progressManager.create(
-        title: 'Finding references',
-        message: 'Searching...',
-      );
-
-      try {
-        // Simulate a small delay to make the progress indicator visible
-        await Future.delayed(const Duration(milliseconds: 150));
-
-        final doc = _docService.get(params.textDocument.uri);
-        if (doc == null) {
-          return [];
-        }
-
-        final lines = doc.lines;
-        if (params.position.line >= lines.length) {
-          return [];
-        }
-
-        final line = lines[params.position.line];
-        final word = _extractWordAtPosition(line, params.position.character);
-
-        if (word == null || word.isEmpty) {
-          return [];
-        }
-
-        progress.report(
-          message: 'Finding references for "$word"...',
-          percentage: 50,
-        );
-
-        final locations = <Location>[];
-        for (var i = 0; i < lines.length; i++) {
-          final lineText = lines[i];
-          var startIndex = 0;
-          while (true) {
-            final index = lineText.indexOf(word, startIndex);
-            if (index == -1) {
-              break;
-            }
-            locations.add(
-              .new(
-                uri: params.textDocument.uri,
-                range: .new(
-                  start: .new(line: i, character: index),
-                  end: .new(line: i, character: index + word.length),
-                ),
-              ),
-            );
-            startIndex = index + 1;
-          }
-        }
-
-        progress.report(message: 'Done.', percentage: 100);
-        return locations;
-      } finally {
-        progress.end(message: 'Finished references search.');
-      }
-    });
-
-    // textDocument/documentSymbol
-    _server.textDocument.onDocumentSymbol((params, context) async {
-      _logger.info(
-        '[id:${context.id}] DocumentSymbol request: ${params.textDocument.uri}',
-      );
-
-      final doc = _docService.get(params.textDocument.uri);
-      if (doc == null) {
-        return .documentSymbolList([]);
-      }
-
-      final symbols = <DocumentSymbol>[];
-      final lines = doc.lines;
-
-      for (var i = 0; i < lines.length; i++) {
-        final line = lines[i];
-        final trimmed = line.trim();
-
-        // Detect function-like patterns
-        if (trimmed.contains('(') &&
-            trimmed.contains(')') &&
-            (trimmed.contains('=') || trimmed.contains('=>'))) {
-          final name = trimmed.split('(').first.trim();
-          if (name.isNotEmpty && !_isComment(line)) {
-            symbols.add(
-              .new(
-                name: name,
-                detail: trimmed,
-                kind: .function,
-                range: .new(
-                  start: .new(line: i, character: 0),
-                  end: .new(line: i, character: line.length),
-                ),
-                selectionRange: .new(
-                  start: .new(line: i, character: trimmed.indexOf(name)),
-                  end: .new(
-                    line: i,
-                    character: trimmed.indexOf(name) + name.length,
-                  ),
-                ),
-              ),
-            );
-          }
-        }
-      }
-
-      return .documentSymbolList(symbols);
-    });
-
-    // workspace/symbol
-    _server.workspace.onSymbol((params, context) async {
-      _logger.info(
-        '[id:${context.id}] WorkspaceSymbol request: query="${params.query}"',
-      );
-
-      final allSymbols = <SymbolInformation>[];
-      for (final doc in _docService.all) {
-        final uri = doc.uri;
-        final lines = doc.lines;
-
-        for (var i = 0; i < lines.length; i++) {
-          final line = lines[i];
-          final trimmed = line.trim();
-
-          if (trimmed.contains('(') &&
-              trimmed.contains(')') &&
-              (trimmed.contains('=') || trimmed.contains('=>'))) {
-            final name = trimmed.split('(').first.trim();
-            if (name.isNotEmpty &&
-                !_isComment(line) &&
-                name.toLowerCase().contains(params.query.toLowerCase())) {
-              allSymbols.add(
-                .new(
-                  name: name,
-                  kind: .function,
-                  location: .new(
-                    uri: uri,
-                    range: .new(
-                      start: .new(line: i, character: 0),
-                      end: .new(line: i, character: line.length),
-                    ),
-                  ),
-                ),
-              );
-            }
-          }
-        }
-      }
-
-      return .symbolInformationList(allSymbols);
-    });
-
-    // textDocument/semanticTokens/full
-    _server.textDocument.onSemanticTokensFull((params, context) async {
-      _logger.info(
-        '[id:${context.id}] SemanticTokens request: ${params.textDocument.uri}',
-      );
-
-      final doc = _docService.get(params.textDocument.uri);
-      if (doc == null) {
-        return null;
-      }
-
-      final builder = SemanticTokensBuilder(
-        legendTypes: legendTypes,
-        legendModifiers: legendModifiers,
-      );
-
-      final lines = doc.lines;
-      for (var i = 0; i < lines.length; i++) {
-        final line = lines[i];
-
-        // 1. Highlight comments
-        if (line.trim().startsWith('//')) {
-          final startIdx = line.indexOf('//');
-          builder.addNamed(
-            line: i,
-            char: startIdx,
-            length: line.length - startIdx,
-            type: 'comment',
-          );
-          continue; // skip other rules for comment lines
-        }
-
-        // 2. Highlight functions (patterns like "funcName(")
-        final trimmed = line.trim();
-        if (trimmed.contains('(') && trimmed.contains(')')) {
-          final name = trimmed.split('(').first.trim();
-          if (name.isNotEmpty && !_isComment(line)) {
-            final startIdx = line.indexOf(name);
-            builder.addNamed(
-              line: i,
-              char: startIdx,
-              length: name.length,
-              type: 'function',
-              modifiers: ['declaration'],
-            );
-          }
-        }
-
-        // 3. Highlight keywords (e.g., `TODO` or `FIXME`)
-        if (line.contains('TODO')) {
-          final startIdx = line.indexOf('TODO');
-          builder.addNamed(line: i, char: startIdx, length: 4, type: 'keyword');
-        }
-        if (line.contains('FIXME')) {
-          final startIdx = line.indexOf('FIXME');
-          builder.addNamed(line: i, char: startIdx, length: 5, type: 'keyword');
-        }
-      }
-
-      return .new(data: builder.build());
-    });
-
-    // Workspace file operations
-    _server.workspace.onWillCreateFiles((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Files will be created: '
-        '${params.files.map((f) => f.uri).join(', ')}',
-      );
-      return const .new();
-    });
-
-    _server.workspace.onWillRenameFiles((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Files will be renamed: '
-        '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
-      );
-      return const .new();
-    });
-
-    _server.workspace.onWillDeleteFiles((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Files will be deleted: '
-        '${params.files.map((f) => f.uri).join(', ')}',
-      );
-      return const .new();
-    });
-
-    _server.workspace.onDidCreateFiles((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Files created: '
-        '${params.files.map((f) => f.uri).join(', ')}',
-      );
-    });
-
-    _server.workspace.onDidRenameFiles((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Files renamed: '
-        '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
-      );
-    });
-
-    _server.workspace.onDidDeleteFiles((params, context) async {
-      _logger.info(
-        '[id:${context.id}] Files deleted: '
-        '${params.files.map((f) => f.uri).join(', ')}',
-      );
-    });
-  }
-
-  Future<void> _publishDiagnostics(LspDocument doc) async {
-    final diagnostics = <Diagnostic>[];
-    final lines = doc.lines;
-
-    // Read maxLineLength dynamically from configuration manager
-    final maxLineLength =
-        await _configManager.getSection<int>('lspTester.maxLineLength') ?? 120;
-
-    for (var i = 0; i < lines.length; i++) {
-      final line = lines[i];
-
-      // Check for `TODO comments`
-      if (line.contains('TODO')) {
-        final index = line.indexOf('TODO');
-        diagnostics.add(
-          .new(
-            message: 'TODO: This needs to be implemented',
-            range: .new(
-              start: .new(line: i, character: index),
-              end: .new(line: i, character: index + 4),
-            ),
-            severity: .warning,
-            code: const .string('todo'),
-            source: 'lsp-test-server',
-          ),
-        );
-      }
-
-      // Check for `FIXME comments`
-      if (line.contains('FIXME')) {
-        final index = line.indexOf('FIXME');
-        diagnostics.add(
-          .new(
-            message: 'FIXME: This is a bug that needs to be fixed',
-            range: .new(
-              start: .new(line: i, character: index),
-              end: .new(line: i, character: index + 5),
-            ),
-            severity: .error,
-            code: const .string('fixme'),
-            source: 'lsp-test-server',
-          ),
-        );
-      }
-
-      // Check for very long lines
-      if (line.length > maxLineLength) {
-        diagnostics.add(
-          .new(
-            message:
-                'Line is too long (${line.length} characters, '
-                'limit is $maxLineLength)',
-            range: .new(
-              start: .new(line: i, character: maxLineLength),
-              end: .new(line: i, character: line.length),
-            ),
-            severity: .information,
-            code: const .string('long-line'),
-            source: 'lsp-test-server',
-          ),
-        );
-      }
-    }
-
-    _diagnosticsManager.publish(doc.uri, diagnostics);
-  }
-
-  String? _extractWordAtPosition(String line, int character) {
-    if (character >= line.length) {
-      return null;
-    }
-
-    var start = character;
-    var end = character;
-
-    // Expand left
-    while (start > 0 && _isWordCharacter(line[start - 1])) {
-      start--;
-    }
-
-    // Expand right
-    while (end < line.length && _isWordCharacter(line[end])) {
-      end++;
-    }
-
-    if (start == character && !_isWordCharacter(line[character])) {
-      return null;
-    }
-
-    return line.substring(start, end);
-  }
-
-  bool _isWordCharacter(String char) {
-    if (char.isEmpty) {
-      return false;
-    }
-    final code = char.codeUnitAt(0);
-    return (code >= 97 && code <= 122) || // a-z
-        (code >= 65 && code <= 90) || // A-Z
-        (code >= 48 && code <= 57) || // 0-9
-        code == 95; // _
-  }
-
-  bool _isComment(String line) {
-    final trimmed = line.trim();
-    return trimmed.startsWith('//') ||
-        trimmed.startsWith('#') ||
-        trimmed.startsWith('/*') ||
-        trimmed.startsWith('*');
+    await _server.listen();
   }
 }
