@@ -7,6 +7,7 @@ This directory contains a basic example demonstrating how to initialize and run 
 ## Full Debugging Workspace
 
 For a complete, rich demonstration containing:
+
 1. A multi-endpoint Dart LSP test server implementing diagnostics (linters), semantic tokens, definition/references search, progress indicator managers, and dynamic file watching.
 2. A matching VS Code Extension client that establishes a connection with the test server, displays message boxes, and shows real-time server statistics.
 
