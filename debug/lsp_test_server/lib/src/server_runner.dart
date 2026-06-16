@@ -82,21 +82,11 @@ final class ServerRunner {
 
   /// Registers all handlers and starts listening on stdio.
   Future<void> run() async {
-    // Configure standard logger to print to stderr for debugging
-    // (stdout is reserved for LSP JSON-RPC messages)
-    Logger.root.level = .ALL;
-    final stderrSubscription = Logger.root.onRecord.listen((record) {
-      stderr.writeln(
-        '[${record.level.name}] [${record.loggerName}] ${record.message}',
-      );
-    });
-
     try {
       _registerHandlers();
       await _server.listen();
     } finally {
       // Clean up resources immediately when connection ends
-      await stderrSubscription.cancel();
     }
   }
 
@@ -137,7 +127,7 @@ final class ServerRunner {
 
     // General
     _server.general.onInitialize((params, context) async {
-      _logger.info('Received initialize request');
+      _logger.info('[id:${context.id}] Received initialize request');
 
       // Set initial workspace folders in the manager
       _workspaceFoldersManager.setInitialFolders(params.workspaceFolders);
@@ -173,7 +163,7 @@ final class ServerRunner {
     });
 
     _server.general.onInitialized((_, context) async {
-      _logger.info('Received initialized notification');
+      _logger.info('[id:${context.id}] Received initialized notification');
 
       // Send a welcome dialog message to the user via LspDialogHelper
       _dialogHelper.showMessage(
@@ -193,16 +183,19 @@ final class ServerRunner {
             ],
           );
           _logger.info(
-            'Dynamically registered file watcher with ID: $registrationId',
+            '[id:${context.id}] Dynamically registered file watcher with ID: '
+            '$registrationId',
           );
         } else {
           _logger.warning(
-            'Client does not support dynamic registration of watched files.',
+            '[id:${context.id}] Client does not support dynamic registration '
+            'of watched files.',
           );
         }
       } on Object catch (e, st) {
         _logger.severe(
-          'Failed to dynamically register watched files capability',
+          '[id:${context.id}] Failed to dynamically register watched files '
+          'capability',
           e,
           st,
         );
@@ -210,17 +203,17 @@ final class ServerRunner {
     });
 
     _server.general.onShutdown((context) async {
-      _logger.info('Received shutdown request');
+      _logger.info('[id:${context.id}] Received shutdown request');
     });
 
     _server.general.onExit((context) async {
-      _logger.info('Received exit notification');
+      _logger.info('[id:${context.id}] Received exit notification');
     });
 
     // textDocument/hover
     _server.textDocument.onHover((params, context) async {
       _logger.info(
-        'Hover request: ${params.textDocument.uri}, '
+        '[id:${context.id}] Hover request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
 
@@ -229,7 +222,9 @@ final class ServerRunner {
 
     // textDocument/completion
     _server.textDocument.onCompletion((params, context) async {
-      _logger.info('Completion request: ${params.textDocument.uri}');
+      _logger.info(
+        '[id:${context.id}] Completion request: ${params.textDocument.uri}',
+      );
       final doc = _docService.get(params.textDocument.uri);
       final items = _completionService.getCompletions(
         params,
@@ -242,7 +237,7 @@ final class ServerRunner {
     // textDocument/definition
     _server.textDocument.onDefinition((params, context) async {
       _logger.info(
-        'Definition request: ${params.textDocument.uri}, '
+        '[id:${context.id}] Definition request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
 
@@ -315,7 +310,7 @@ final class ServerRunner {
     // textDocument/references
     _server.textDocument.onReferences((params, context) async {
       _logger.info(
-        'References request: ${params.textDocument.uri}, '
+        '[id:${context.id}] References request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
 
@@ -382,7 +377,9 @@ final class ServerRunner {
 
     // textDocument/documentSymbol
     _server.textDocument.onDocumentSymbol((params, context) async {
-      _logger.info('DocumentSymbol request: ${params.textDocument.uri}');
+      _logger.info(
+        '[id:${context.id}] DocumentSymbol request: ${params.textDocument.uri}',
+      );
 
       final doc = _docService.get(params.textDocument.uri);
       if (doc == null) {
@@ -429,7 +426,9 @@ final class ServerRunner {
 
     // workspace/symbol
     _server.workspace.onSymbol((params, context) async {
-      _logger.info('WorkspaceSymbol request: query="${params.query}"');
+      _logger.info(
+        '[id:${context.id}] WorkspaceSymbol request: query="${params.query}"',
+      );
 
       final allSymbols = <SymbolInformation>[];
       for (final doc in _docService.all) {
@@ -470,7 +469,9 @@ final class ServerRunner {
 
     // textDocument/semanticTokens/full
     _server.textDocument.onSemanticTokensFull((params, context) async {
-      _logger.info('SemanticTokens request: ${params.textDocument.uri}');
+      _logger.info(
+        '[id:${context.id}] SemanticTokens request: ${params.textDocument.uri}',
+      );
 
       final doc = _docService.get(params.textDocument.uri);
       if (doc == null) {
@@ -531,14 +532,15 @@ final class ServerRunner {
     // Workspace file operations
     _server.workspace.onWillCreateFiles((params, context) async {
       _logger.info(
-        'Files will be created: ${params.files.map((f) => f.uri).join(', ')}',
+        '[id:${context.id}] Files will be created: '
+        '${params.files.map((f) => f.uri).join(', ')}',
       );
       return const .new();
     });
 
     _server.workspace.onWillRenameFiles((params, context) async {
       _logger.info(
-        'Files will be renamed: '
+        '[id:${context.id}] Files will be renamed: '
         '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
       );
       return const .new();
@@ -546,27 +548,30 @@ final class ServerRunner {
 
     _server.workspace.onWillDeleteFiles((params, context) async {
       _logger.info(
-        'Files will be deleted: ${params.files.map((f) => f.uri).join(', ')}',
+        '[id:${context.id}] Files will be deleted: '
+        '${params.files.map((f) => f.uri).join(', ')}',
       );
       return const .new();
     });
 
     _server.workspace.onDidCreateFiles((params, context) async {
       _logger.info(
-        'Files created: ${params.files.map((f) => f.uri).join(', ')}',
+        '[id:${context.id}] Files created: '
+        '${params.files.map((f) => f.uri).join(', ')}',
       );
     });
 
     _server.workspace.onDidRenameFiles((params, context) async {
       _logger.info(
-        'Files renamed: '
+        '[id:${context.id}] Files renamed: '
         '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
       );
     });
 
     _server.workspace.onDidDeleteFiles((params, context) async {
       _logger.info(
-        'Files deleted: ${params.files.map((f) => f.uri).join(', ')}',
+        '[id:${context.id}] Files deleted: '
+        '${params.files.map((f) => f.uri).join(', ')}',
       );
     });
   }

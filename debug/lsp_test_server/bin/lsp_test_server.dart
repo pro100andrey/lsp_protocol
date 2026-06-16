@@ -1,10 +1,20 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:logging/logging.dart';
 import 'package:lsp_test_server/src/server_runner.dart';
 import 'package:stream_channel/stream_channel.dart';
 
 Future<void> main(List<String> args) async {
+  // Configure standard logger to print to stderr for debugging
+  // (stdout is reserved for LSP JSON-RPC messages)
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((record) {
+    stderr.writeln(
+      '[${record.level.name}] [${record.loggerName}] ${record.message}',
+    );
+  });
+
   final socketPort = _parseSocketPort(args);
 
   if (socketPort != null) {

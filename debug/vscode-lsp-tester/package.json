@@ -38,8 +38,30 @@
       {
         "command": "lspTester.showLog",
         "title": "LSP Tester: Show Request/Response Log"
+      },
+      {
+        "command": "lspTester.clearStats",
+        "title": "LSP Tester: Clear Statistics",
+        "icon": "$(trash)"
       }
     ],
+    "views": {
+      "explorer": [
+        {
+          "id": "lspTester.statsView",
+          "name": "LSP Server Stats"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "lspTester.clearStats",
+          "when": "view == lspTester.statsView",
+          "group": "navigation"
+        }
+      ]
+    },
     "configuration": {
       "title": "LSP Tester",
       "properties": {
