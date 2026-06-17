@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:pro_lsp/pro_lsp.dart';
 import 'package:stream_channel/stream_channel.dart';
@@ -179,6 +180,105 @@ void main() {
 
       await completer.future;
       expect(caughtError, isA<FormatException>());
+    });
+
+    test(
+      'parses a large message that outgrows the initial 4KB buffer',
+      () async {
+        final message = jsonEncode(<String, dynamic>{
+          'jsonrpc': '2.0',
+          'method': 'big',
+          'params': <String, dynamic>{'data': 'x' * 10000},
+        });
+        final bodyBytes = utf8.encode(message);
+        final frame = [
+          ...ascii.encode('Content-Length: ${bodyBytes.length}\r\n\r\n'),
+          ...bodyBytes,
+        ];
+
+        final received = <Object?>[];
+        final done = lspChannel.stream.forEach(received.add);
+
+        // Feed in small chunks to force buffer growth and compaction.
+        for (var i = 0; i < frame.length; i += 1000) {
+          incomingController.add(
+            frame.sublist(i, math.min(i + 1000, frame.length)),
+          );
+        }
+        await incomingController.close();
+        await done;
+
+        expect(received, hasLength(1));
+        expect(received[0], jsonDecode(message));
+      },
+    );
+
+    test(
+      'emits a FormatException for an invalid body but keeps parsing',
+      () async {
+        const bad = '{not valid json';
+        final badBody = utf8.encode(bad);
+        final badFrame = [
+          ...ascii.encode('Content-Length: ${badBody.length}\r\n\r\n'),
+          ...badBody,
+        ];
+
+        const good = '{"jsonrpc":"2.0","method":"recovered"}';
+        final goodBody = utf8.encode(good);
+        final goodFrame = [
+          ...ascii.encode('Content-Length: ${goodBody.length}\r\n\r\n'),
+          ...goodBody,
+        ];
+
+        final received = <Object?>[];
+        final errors = <Object>[];
+        final done = Completer<void>();
+        lspChannel.stream.listen(
+          received.add,
+          onError: errors.add,
+          onDone: done.complete,
+        );
+
+        incomingController
+          ..add(badFrame)
+          ..add(goodFrame);
+        await incomingController.close();
+        await done.future;
+
+        expect(errors, hasLength(1));
+        expect(errors.single, isA<FormatException>());
+        // The parser recovers and still delivers the following valid message.
+        expect(received, [jsonDecode(good)]);
+      },
+    );
+
+    test('sink.addStream frames every message', () async {
+      final written = <List<int>>[];
+      outgoingController.stream.listen(written.add);
+
+      await lspChannel.sink.addStream(
+        Stream<Object?>.fromIterable(<Object?>[
+          <String, dynamic>{'id': 1},
+          <String, dynamic>{'id': 2},
+        ]),
+      );
+
+      final decoded = utf8.decode(written.expand((x) => x).toList());
+      expect(RegExp('Content-Length:').allMatches(decoded), hasLength(2));
+      expect(decoded, contains('"id":1'));
+      expect(decoded, contains('"id":2'));
+    });
+
+    test('sink.addError forwards to the underlying byte sink', () async {
+      final gotError = Completer<Object>();
+      outgoingController.stream.listen(
+        (_) {},
+        onError: gotError.complete,
+      );
+
+      lspChannel.sink.addError(const FormatException('boom'));
+
+      expect(await gotError.future, isA<FormatException>());
     });
   });
 }

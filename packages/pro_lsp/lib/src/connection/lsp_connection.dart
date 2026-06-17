@@ -213,14 +213,20 @@ final class LspConnection {
       return;
     }
 
+    // Custom (non-spec) methods are not part of the typed state machine, so
+    // `method is! RequestMethod/NotificationMethod` for them. Outside the
+    // `.initialized` fast path above they are treated as not-yet-allowed, which
+    // surfaces as serverNotInitialized (requests) or invalidRequest
+    // (notifications) — custom traffic is only valid once initialized.
     if (isNotification) {
-      if (!_state.isNotificationAllowed(method as NotificationMethod)) {
+      if (method is! NotificationMethod ||
+          !_state.isNotificationAllowed(method)) {
         throw LspException.invalidRequest(
           'Notification $method is not allowed in state $_state',
         );
       }
     } else {
-      if (!_state.isRequestAllowed(method as RequestMethod)) {
+      if (method is! RequestMethod || !_state.isRequestAllowed(method)) {
         if (_state == .uninitialized || _state == .initializing) {
           throw LspException.serverNotInitialized(
             'Server is not initialized. Request: $method',
@@ -501,11 +507,51 @@ final class LspConnection {
     },
   )!;
 
+  /// Registers a handler for a *custom* (non-spec) request method.
+  ///
+  /// Escape hatch for proprietary protocol extensions (e.g. `$/myExtension`)
+  /// that are not part of the generated [RequestMethod] enum. Provide any
+  /// [LSPMethod] implementation whose [LSPMethod.value] is the wire method
+  /// name. Custom requests are only accepted once the connection is
+  /// [LspState.initialized]; before that they are rejected as
+  /// `serverNotInitialized`.
+  ///
+  /// For spec methods, prefer the typed namespace handlers on `LspServer`.
+  void registerCustomRequestHandler(
+    LSPMethod method,
+    Future<Object?> Function(Object? params, LspRequest context) handler,
+  ) => _registerHandler(method, isRequest: true, handler: handler);
+
+  /// Registers a handler for a *custom* (non-spec) notification method.
+  ///
+  /// Escape hatch for proprietary protocol extensions not present in the
+  /// generated [NotificationMethod] enum. Like spec notifications, this
+  /// supports multicast — returns a function that unregisters this handler.
+  /// Custom notifications are only accepted once [LspState.initialized].
+  void Function() registerCustomNotificationHandler(
+    LSPMethod method,
+    Future<void> Function(Object? params, LspRequest context) handler,
+  ) => _registerHandler(
+    method,
+    isRequest: false,
+    handler: (params, context) async {
+      await handler(params, context);
+      return null;
+    },
+  )!;
+
   // Outgoing
 
   /// Sends a notification to the client (no response expected).
   void sendNotification(NotificationMethod method, [Object? params]) =>
       _peer.sendNotification(method.value, params);
+
+  /// Sends a *custom* (non-spec) notification by its wire [method] name.
+  ///
+  /// Escape hatch for proprietary extensions; counterpart to
+  /// [registerCustomNotificationHandler].
+  void sendCustomNotification(String method, [Object? params]) =>
+      _peer.sendNotification(method, params);
 
   /// Sends a request to the other side and returns the decoded response value.
   ///
@@ -525,8 +571,27 @@ final class LspConnection {
     Object? params, {
     CancellationToken? token,
     Duration? timeout,
+  }) => _sendRequest(method.value, params, token: token, timeout: timeout);
+
+  /// Sends a *custom* (non-spec) request by its wire [method] name.
+  ///
+  /// Escape hatch for proprietary extensions; counterpart to
+  /// [registerCustomRequestHandler]. Cancellation and [timeout] behave exactly
+  /// as in [sendRequest].
+  Future<Object?> sendCustomRequest(
+    String method,
+    Object? params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) => _sendRequest(method, params, token: token, timeout: timeout);
+
+  Future<Object?> _sendRequest(
+    String method,
+    Object? params, {
+    CancellationToken? token,
+    Duration? timeout,
   }) async {
-    final responseFuture = _peer.sendRequest(method.value, params);
+    final responseFuture = _peer.sendRequest(method, params);
     // _generateOutgoingId ran synchronously inside sendRequest above, so this
     // is exactly this request's wire ID.
     final id = _lastOutgoingId;
@@ -549,7 +614,7 @@ final class LspConnection {
         onTimeout: () {
           _sendCancel(id);
           throw LspException.requestCancelled(
-            'Request ${method.value} timed out after $timeout',
+            'Request $method timed out after $timeout',
           );
         },
       );

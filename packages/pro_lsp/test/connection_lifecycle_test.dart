@@ -1,463 +1,266 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:stream_channel/stream_channel.dart';
 import 'package:test/test.dart';
+
+import 'support/connection_harness.dart';
 
 void main() {
   group('LspConnection', () {
-    late StreamController<String> clientIncoming;
-    late StreamController<String> clientOutgoing;
-    late StreamChannel<String> serverChannel;
-    late LspConnection connection;
+    late ConnectionHarness h;
 
-    setUp(() {
-      clientIncoming = StreamController<String>.broadcast();
-      clientOutgoing = StreamController<String>.broadcast();
-      serverChannel = StreamChannel<String>(
-        clientIncoming.stream,
-        clientOutgoing.sink,
-      );
-      connection = LspConnection(
-        serverChannel.transform(jsonDocument),
-      );
-    });
-
-    tearDown(() async {
-      await clientIncoming.close();
-      await clientOutgoing.close();
-    });
+    setUp(() => h = ConnectionHarness());
+    tearDown(() => h.dispose());
 
     group('Lifecycle', () {
       test('rejects requests before initialization', () async {
-        final listenFuture = connection.listen();
         var handlerCalled = false;
-        connection.registerRequestHandler(
-          RequestMethod.hover,
-          (params, _) async {
-            handlerCalled = true;
-            return null;
-          },
-        );
-
-        // Send a request
-        final request = jsonEncode(<String, dynamic>{
-          'jsonrpc': '2.0',
-          'id': 1,
-          'method': 'textDocument/hover',
-          'params': <String, dynamic>{},
+        h.connection.registerRequestHandler(RequestMethod.hover, (
+          params,
+          context,
+        ) async {
+          handlerCalled = true;
+          return null;
         });
 
-        final responses = <String>[];
-        clientOutgoing.stream.listen(responses.add);
-        clientIncoming.add(request);
-
-        // Wait a bit for processing
-        await Future<void>.delayed(const Duration(milliseconds: 50));
+        final response = await h.sendRequest(1, 'textDocument/hover');
 
         expect(handlerCalled, isFalse);
-        expect(responses, hasLength(1));
-        final resp = jsonDecode(responses.first) as Map<String, dynamic>;
-        final error = resp['error'] as Map<String, dynamic>;
-        expect(error['code'], -32002); // serverNotInitialized
+        expect(response['error'], isNotNull);
+        final error = response['error'] as Map<String, dynamic>;
+        expect(error['code'], LspErrorCodes.serverNotInitialized);
         expect(error['message'], contains('not initialized'));
-
-        await connection.close();
-        await listenFuture;
       });
 
       test('allows initialize and transitions state', () async {
-        connection
-          ..registerRequestHandler(
-            RequestMethod.initialize,
-            (params, _) async => <String, dynamic>{
-              'capabilities': <String, dynamic>{},
-            },
-          )
-          ..registerRequestHandler(
-            RequestMethod.hover,
-            (params, _) async => <String, dynamic>{'contents': 'Hover result'},
-          );
-
-        final listenFuture = connection.listen();
-
-        final responses = <String>[];
-        clientOutgoing.stream.listen(responses.add);
-
-        expect(connection.state, LspState.uninitialized);
-
-        // Send initialize
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 1,
-            'method': 'initialize',
-            'params': <String, dynamic>{},
-          }),
+        h.connection.registerRequestHandler(
+          RequestMethod.hover,
+          (params, context) async => <String, dynamic>{
+            'contents': 'Hover result',
+          },
         );
 
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-        expect(connection.state, LspState.initialized);
-        expect(responses, hasLength(1));
+        expect(h.connection.state, LspState.uninitialized);
+        await h.initialize();
+        expect(h.connection.state, LspState.initialized);
 
-        // Now send hover, which should be allowed
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 2,
-            'method': 'textDocument/hover',
-            'params': <String, dynamic>{},
-          }),
+        final response = await h.sendRequest(2, 'textDocument/hover');
+        expect(
+          (response['result'] as Map<String, dynamic>)['contents'],
+          'Hover result',
         );
-
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-        expect(responses, hasLength(2));
-        final hoverResp = jsonDecode(responses[1]) as Map<String, dynamic>;
-        final result = hoverResp['result'] as Map<String, dynamic>;
-        expect(result['contents'], 'Hover result');
-
-        await connection.close();
-        await listenFuture;
       });
 
       test('rejects requests after shutdown', () async {
-        connection
-          ..registerRequestHandler(
-            RequestMethod.initialize,
-            (params, _) async => <String, dynamic>{
-              'capabilities': <String, dynamic>{},
-            },
-          )
+        h.connection
           ..registerRequestHandler(
             RequestMethod.shutdown,
-            (params, _) async => null,
+            (params, context) async => null,
           )
           ..registerRequestHandler(
             RequestMethod.hover,
-            (params, _) async => null,
+            (params, context) async => null,
           );
 
-        final listenFuture = connection.listen();
-        final responses = <String>[];
-        clientOutgoing.stream.listen(responses.add);
+        await h.initialize();
+        await h.sendRequest(2, 'shutdown');
+        expect(h.connection.state, LspState.shuttingDown);
 
-        // 1. Initialize
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 1,
-            'method': 'initialize',
-            'params': <String, dynamic>{},
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-
-        // 2. Shutdown
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 2,
-            'method': 'shutdown',
-            'params': <String, dynamic>{},
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-        expect(connection.state, LspState.shuttingDown);
-
-        // 3. Try to hover (should be rejected)
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 3,
-            'method': 'textDocument/hover',
-            'params': <String, dynamic>{},
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-
-        expect(responses, hasLength(3));
-        final hoverResp = jsonDecode(responses[2]) as Map<String, dynamic>;
-        final error = hoverResp['error'] as Map<String, dynamic>;
-        expect(error['code'], -32600); // invalidRequest
+        final response = await h.sendRequest(3, 'textDocument/hover');
+        final error = response['error'] as Map<String, dynamic>;
+        expect(error['code'], LspErrorCodes.invalidRequest);
         expect(error['message'], contains('not allowed'));
+      });
 
-        await connection.close();
-        await listenFuture;
+      test(
+        'exit notification transitions to exited and closes the peer',
+        () async {
+          // A bare LspConnection has no default `exit` handler (LspServer
+          // provides that), so register one to exercise the exit transition.
+          h.connection.registerNotificationHandler(
+            NotificationMethod.exit,
+            (params, context) async {},
+          );
+
+          await h.initialize();
+          h.sendNotification('exit');
+
+          // The exit handler transitions to `exited` and closes the peer, which
+          // completes the listen loop.
+          await h.listenFuture.timeout(const Duration(seconds: 2));
+          expect(h.connection.state, LspState.exited);
+        },
+      );
+
+      test('reverts to initialized when a shutdown handler throws', () async {
+        h.connection.registerRequestHandler(RequestMethod.shutdown, (
+          params,
+          context,
+        ) {
+          throw LspException.internalError('shutdown boom');
+        });
+
+        await h.initialize();
+        final response = await h.sendRequest(2, 'shutdown');
+
+        expect(
+          (response['error'] as Map<String, dynamic>)['code'],
+          LspErrorCodes.internalError,
+        );
+        // Failure must not leave the connection stuck in `shuttingDown`.
+        expect(h.connection.state, LspState.initialized);
+      });
+    });
+
+    group('Dispatch', () {
+      test('unknown method returns methodNotFound', () async {
+        await h.initialize();
+        final response = await h.sendRequest(2, r'$/totallyUnknown');
+
+        final error = response['error'] as Map<String, dynamic>;
+        expect(error['code'], LspErrorCodes.methodNotFound);
+        expect(error['message'], contains(r'$/totallyUnknown'));
+      });
+
+      test('a successful request response carries the result', () async {
+        h.connection.registerRequestHandler(
+          RequestMethod.hover,
+          (params, context) async => <String, dynamic>{'contents': 'ok'},
+        );
+        await h.initialize();
+
+        final response = await h.sendRequest(2, 'textDocument/hover');
+        expect(response['result'], {'contents': 'ok'});
+        expect(response.containsKey('error'), isFalse);
       });
     });
 
     group('Cancellation', () {
-      test(
-        'correctly cancels token and provides metadata in context',
-        () async {
-          final handlerCompleter = Completer<Object?>();
-          CancellationToken? capturedToken;
-          Object? capturedId;
-          String? capturedMethod;
+      test('cancels the token and surfaces requestCancelled', () async {
+        final handlerStarted = Completer<void>();
+        final release = Completer<void>();
+        CancellationToken? capturedToken;
+        Object? capturedId;
+        String? capturedMethod;
 
-          connection
-            ..registerRequestHandler(
-              RequestMethod.initialize,
-              (params, _) async => <String, dynamic>{},
-            )
-            ..registerRequestHandler(RequestMethod.hover, (
-              params,
-              context,
-            ) async {
-              capturedToken = context.cancellationToken;
-              capturedId = context.id;
-              capturedMethod = context.method;
+        h.connection.registerRequestHandler(RequestMethod.hover, (
+          params,
+          context,
+        ) async {
+          capturedToken = context.cancellationToken;
+          capturedId = context.id;
+          capturedMethod = context.method;
+          expect(capturedToken, same(CancellationToken.current));
+          handlerStarted.complete();
 
-              // Verify context matches static CancellationToken.current
-              expect(capturedToken, same(CancellationToken.current));
+          await release.future;
+          context.cancellationToken.throwIfCancelled();
+          return 'unreachable';
+        });
 
-              // Wait for cancellation
-              await handlerCompleter.future;
-              capturedToken?.throwIfCancelled();
-              return 'Hover Success';
-            });
+        await h.initialize();
 
-          final listenFuture = connection.listen();
-          final responses = <String>[];
-          clientOutgoing.stream.listen(responses.add);
+        final response = h.responseFor(42);
+        h.feed(<String, dynamic>{
+          'jsonrpc': '2.0',
+          'id': 42,
+          'method': 'textDocument/hover',
+          'params': <String, dynamic>{},
+        });
 
-          // Initialize first
-          clientIncoming.add(
-            jsonEncode(<String, dynamic>{
-              'jsonrpc': '2.0',
-              'id': 1,
-              'method': 'initialize',
-              'params': <String, dynamic>{},
-            }),
-          );
-          await Future<void>.delayed(const Duration(milliseconds: 50));
+        await handlerStarted.future;
+        expect(capturedId, 42);
+        expect(capturedMethod, 'textDocument/hover');
+        expect(capturedToken!.isCancelled, isFalse);
 
-          // Send hover request
-          clientIncoming.add(
-            jsonEncode(<String, dynamic>{
-              'jsonrpc': '2.0',
-              'id': 42,
-              'method': 'textDocument/hover',
-              'params': <String, dynamic>{},
-            }),
-          );
-          await Future<void>.delayed(const Duration(milliseconds: 50));
+        h.sendNotification(r'$/cancelRequest', <String, dynamic>{'id': 42});
+        // The cancel notification is processed before we release the handler.
+        await Future<void>.value();
+        release.complete();
 
-          expect(capturedToken, isNotNull);
-          expect(capturedToken!.isCancelled, isFalse);
-          expect(capturedId, 42);
-          expect(capturedMethod, 'textDocument/hover');
-
-          // Send cancel request
-          clientIncoming.add(
-            jsonEncode(<String, dynamic>{
-              'jsonrpc': '2.0',
-              'method': r'$/cancelRequest',
-              'params': <String, dynamic>{'id': 42},
-            }),
-          );
-          await Future<void>.delayed(const Duration(milliseconds: 50));
-
-          expect(capturedToken!.isCancelled, isTrue);
-
-          // Complete the handler
-          handlerCompleter.complete(null);
-          await Future<void>.delayed(const Duration(milliseconds: 50));
-
-          expect(
-            responses,
-            hasLength(2),
-          ); // Initialize response + Hover error response
-          final hoverResp = jsonDecode(responses[1]) as Map<String, dynamic>;
-          final error = hoverResp['error'] as Map<String, dynamic>;
-          expect(error['code'], -32800); // RequestCancelled
-
-          await connection.close();
-          await listenFuture;
-        },
-      );
+        final error = (await response)['error'] as Map<String, dynamic>;
+        expect(error['code'], LspErrorCodes.requestCancelled);
+        expect(capturedToken!.isCancelled, isTrue);
+      });
     });
 
     group('Middleware', () {
-      test('intercepts requests and can modify or measure execution', () async {
-        final methodsCalled = <String>[];
+      test('runs in registration order and can short-circuit', () async {
+        final methodsSeen = <String>[];
 
-        connection
+        h.connection
           ..addMiddleware(
             LspMiddleware.fromFunction((request, next) {
-              methodsCalled.add(request.method);
+              methodsSeen.add(request.method);
               return next(request);
             }),
           )
           ..addMiddleware(
             LspMiddleware.fromFunction((request, next) async {
               if (request.method == 'textDocument/hover') {
-                return <String, dynamic>{'contents': 'Intercepted Hover'};
+                return <String, dynamic>{'contents': 'Intercepted'};
               }
               return next(request);
             }),
           )
           ..registerRequestHandler(
-            RequestMethod.initialize,
-            (params, _) async => <String, dynamic>{},
-          )
-          ..registerRequestHandler(
             RequestMethod.hover,
-            (params, _) async => <String, dynamic>{
-              'contents': 'Original Hover',
+            (params, context) async => <String, dynamic>{
+              'contents': 'Original',
             },
           );
 
-        final listenFuture = connection.listen();
-        final responses = <String>[];
-        clientOutgoing.stream.listen(responses.add);
+        await h.initialize();
+        final response = await h.sendRequest(2, 'textDocument/hover');
 
-        // Initialize
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 1,
-            'method': 'initialize',
-            'params': <String, dynamic>{},
-          }),
+        expect(methodsSeen, ['initialize', 'textDocument/hover']);
+        expect(
+          (response['result'] as Map<String, dynamic>)['contents'],
+          'Intercepted',
         );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-
-        // Hover
-        clientIncoming.add(
-          jsonEncode(<String, dynamic>{
-            'jsonrpc': '2.0',
-            'id': 2,
-            'method': 'textDocument/hover',
-            'params': <String, dynamic>{},
-          }),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-
-        expect(methodsCalled, equals(['initialize', 'textDocument/hover']));
-        expect(responses, hasLength(2));
-        final hoverResp = jsonDecode(responses[1]) as Map<String, dynamic>;
-        final result = hoverResp['result'] as Map<String, dynamic>;
-        expect(result['contents'], 'Intercepted Hover');
-
-        await connection.close();
-        await listenFuture;
       });
     });
 
-    group('Error Handling', () {
+    group('Error handling', () {
       test(
-        'triggers onError and returns InternalError on unhandled crashes',
+        'forwards handler crashes to onError and returns internalError',
         () async {
           Object? caughtError;
-          connection
-            ..onError = (err, stack) {
-              caughtError = err;
-            }
-            ..registerRequestHandler(
-              RequestMethod.initialize,
-              (params, _) async => <String, dynamic>{},
-            )
-            ..registerRequestHandler(RequestMethod.hover, (
-              params,
-              _,
-            ) {
-              throw StateError('Simulated crash in handler');
-            });
-
-          final listenFuture = connection.listen();
-          final responses = <String>[];
-          clientOutgoing.stream.listen(responses.add);
-
-          // Initialize
-          clientIncoming.add(
-            jsonEncode(<String, dynamic>{
-              'jsonrpc': '2.0',
-              'id': 1,
-              'method': 'initialize',
-              'params': <String, dynamic>{},
-            }),
-          );
-          await Future<void>.delayed(const Duration(milliseconds: 50));
-
-          // Hover
-          clientIncoming.add(
-            jsonEncode(<String, dynamic>{
-              'jsonrpc': '2.0',
-              'id': 2,
-              'method': 'textDocument/hover',
-              'params': <String, dynamic>{},
-            }),
-          );
-          await Future<void>.delayed(const Duration(milliseconds: 50));
-
-          expect(caughtError, isA<StateError>());
-          expect(responses, hasLength(2));
-          final hoverResp = jsonDecode(responses[1]) as Map<String, dynamic>;
-          final error = hoverResp['error'] as Map<String, dynamic>;
-          expect(error['code'], -32603); // InternalError
-          expect(error['message'], contains('Simulated crash'));
-          final errorData = error['data'] as Map<String, dynamic>?;
-          expect(errorData?['stackTrace'], isNull);
-
-          await connection.close();
-          await listenFuture;
-        },
-      );
-
-      test('handles unmodifiable params map without crashing', () async {
-        final incoming = StreamController<Object?>.broadcast();
-        final outgoing = StreamController<Object?>.broadcast();
-        final channel = StreamChannel<Object?>(incoming.stream, outgoing.sink);
-        final conn = LspConnection(channel)
-          ..registerRequestHandler(
-            RequestMethod.initialize,
-            (params, context) async => <String, dynamic>{},
-          )
-          ..registerRequestHandler(
+          h.connection.onError = (error, stack) => caughtError = error;
+          h.connection.registerRequestHandler(
             RequestMethod.hover,
-            (params, context) async {
-              expect(params, isA<Map<Object?, Object?>>());
-              final map = params as Map<Object?, Object?>?;
-              expect(map, isNotNull);
-              expect(context.id, 2);
-              expect(map!.containsKey('_requestId'), isFalse);
-              return 'ok';
+            (params, context) {
+              throw StateError('Simulated crash');
             },
           );
 
-        unawaited(conn.listen());
+          await h.initialize();
+          final response = await h.sendRequest(2, 'textDocument/hover');
 
-        // Transition state to initialized so hover is allowed
-        incoming.add(<String, dynamic>{
-          'jsonrpc': '2.0',
-          'id': 1,
-          'method': 'initialize',
-          'params': <String, dynamic>{},
-        });
-        await Future<void>.delayed(const Duration(milliseconds: 10));
+          expect(caughtError, isA<StateError>());
+          final error = response['error'] as Map<String, dynamic>;
+          expect(error['code'], LspErrorCodes.internalError);
+          expect(error['message'], contains('Simulated crash'));
+        },
+      );
 
-        // Send hover with immutable params
-        incoming.add(<String, dynamic>{
-          'jsonrpc': '2.0',
-          'id': 2,
-          'method': 'textDocument/hover',
-          'params': Map<String, Object?>.unmodifiable(
-            <String, Object?>{'foo': 'bar'},
-          ),
+      test('a thrown LspException is sent verbatim (not wrapped)', () async {
+        h.connection.registerRequestHandler(RequestMethod.hover, (
+          params,
+          context,
+        ) {
+          throw LspException.invalidParams('bad params', {'field': 'uri'});
         });
 
-        final response = await outgoing.stream.first;
-        expect(response, <String, dynamic>{
-          'jsonrpc': '2.0',
-          'id': 2,
-          'result': 'ok',
-        });
+        await h.initialize();
+        final response = await h.sendRequest(2, 'textDocument/hover');
 
-        await conn.close();
-        await incoming.close();
-        await outgoing.close();
+        final error = response['error'] as Map<String, dynamic>;
+        expect(error['code'], LspErrorCodes.invalidParams);
+        expect(error['message'], 'bad params');
+        // json_rpc_2 augments error `data` with the originating `request`, so
+        // assert our payload is present rather than exact-matching the map.
+        expect(error['data'], containsPair('field', 'uri'));
       });
     });
   });

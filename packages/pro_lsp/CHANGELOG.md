@@ -24,6 +24,23 @@
 * Removed a stale `ignore_for_file: remove_deprecations_in_breaking_versions`
   from the generated model files (it suppressed a lint that never fired).
   Generated code only; no API or behavior change.
+* **Breaking:** `LspClient.start` no longer takes an untyped `clientInfo`
+  `Map`. Pass a typed `clientInfo: (name: ..., version: ...)` record and the
+  new `processId` argument separately (previously `processId` was smuggled
+  inside the map). This removes a runtime cast that could throw on a malformed
+  map.
+* Custom (non-spec) protocol methods are now supported via
+  `LspConnection.registerCustomRequestHandler` /
+  `registerCustomNotificationHandler` and `sendCustomRequest` /
+  `sendCustomNotification`. The typed enum-based handlers remain the
+  recommended path for spec methods.
+* Feature-disposal errors with no `onError` configured are now written to
+  `stderr` instead of `stdout` — printing to `stdout` corrupts the JSON-RPC
+  stream on the stdio transport.
+* Documentation fixes: corrected the `onError` description (errors are not
+  logged to stdout), the `LspFeature` example (removed a non-compiling
+  custom-method snippet), and clarified that `LspClient.start` and `listen`
+  are mutually exclusive entry points.
 
 ## 0.1.1
 

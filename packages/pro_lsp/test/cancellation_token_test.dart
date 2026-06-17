@@ -96,4 +96,23 @@ void main() {
       expect(identical(capturedToken, token), isTrue);
     });
   });
+
+  group('CancellationToken.noop', () {
+    test('is never cancelled and ignores cancel()', () {
+      final noop = CancellationToken.noop..cancel();
+      expect(noop.isCancelled, isFalse);
+    });
+
+    test('throwIfCancelled never throws', () {
+      expect(CancellationToken.noop.throwIfCancelled, returnsNormally);
+    });
+
+    test('onCancelled is an empty stream', () async {
+      expect(await CancellationToken.noop.onCancelled.isEmpty, isTrue);
+    });
+
+    test('dispose is a no-op', () {
+      expect(CancellationToken.noop.dispose, returnsNormally);
+    });
+  });
 }

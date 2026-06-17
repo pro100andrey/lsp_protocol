@@ -64,13 +64,23 @@ final class LspClient {
   /// server to be ready.
   ///
   /// This is the recommended way to start an LSP client as it handles the
-  /// mandatory protocol sequence automatically.
+  /// mandatory protocol sequence automatically. It begins listening internally,
+  /// so do **not** also call [listen] — the two are mutually exclusive entry
+  /// points (calling either after the client is already listening throws a
+  /// [StateError]). Use the lower-level [listen] only when you intend to drive
+  /// the `initialize`/`initialized` handshake yourself.
+  ///
+  /// [clientInfo] identifies this client to the server (e.g.
+  /// `(name: 'my-editor', version: '1.0.0')`). [processId] is the parent
+  /// process ID reported to the server; it defaults to the current process
+  /// [pid].
   Future<InitializeResult> start({
     required ClientCapabilities capabilities,
     String? rootUri,
     List<WorkspaceFolder>? workspaceFolders,
     Object? initializationOptions,
-    Map<String, Object?>? clientInfo,
+    ({String name, String? version})? clientInfo,
+    int? processId,
   }) async {
     if (_isListening) {
       throw StateError('Client has already started listening.');
@@ -85,19 +95,14 @@ final class LspClient {
     try {
       result = await server.general.initialize(
         InitializeParams(
-          processId: clientInfo?['processId'] as int? ?? pid,
+          processId: processId ?? pid,
           capabilities: capabilities,
           rootUri: rootUri,
           workspaceFolders: workspaceFolders,
           initializationOptions: initializationOptions != null
               ? LSPAny.fromJson(initializationOptions)
               : null,
-          clientInfo: clientInfo != null
-              ? (
-                  name: clientInfo['name']! as String,
-                  version: clientInfo['version'] as String?,
-                )
-              : null,
+          clientInfo: clientInfo,
         ),
       );
     } catch (e) {
@@ -134,7 +139,12 @@ final class LspClient {
   set onError(void Function(Object error, StackTrace stackTrace)? value) =>
       _connection.onError = value;
 
-  /// Starts processing incoming messages.
+  /// Starts processing incoming messages without performing the handshake.
+  ///
+  /// Low-level alternative to [start]: use it when you want to send the
+  /// `initialize` request and `initialized` notification yourself (e.g. to
+  /// customize the sequence). Most callers should use [start] instead. Throws a
+  /// [StateError] if the client is already listening (including after [start]).
   Future<void> listen() {
     if (_isListening) {
       throw StateError('Client has already started listening.');

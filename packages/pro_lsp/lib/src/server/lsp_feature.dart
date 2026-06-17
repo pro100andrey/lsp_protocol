@@ -13,23 +13,16 @@ import 'lsp_server.dart';
 /// Create a feature by extending [LspFeature] and implementing [register]:
 ///
 /// ```dart
-/// class MyCustomFeature extends LspFeature {
+/// class CompletionFeature extends LspFeature {
 ///   final List<StreamSubscription> _subscriptions = [];
 ///
 ///   @override
 ///   void register(LspServer server) {
-///     // Register handlers for custom methods
-///     server.connection.registerRequestHandler(
-///       CustomMethods.myMethod,
-///       (params, context) async {
-///         return MyResult(data: 'processed');
-///       },
-///     );
-///
-///     // Or register namespace handlers
+///     // Group related spec handlers behind one feature.
 ///     server.textDocument.onCompletion((params, context) async {
 ///       return CompletionList(items: []);
 ///     });
+///     server.completionItem.onResolve((item, context) async => item);
 ///   }
 ///
 ///   @override
@@ -41,6 +34,10 @@ import 'lsp_server.dart';
 ///   }
 /// }
 /// ```
+///
+/// Handlers are keyed by the generated `RequestMethod`/`NotificationMethod`
+/// enums, so a feature registers handlers for *spec* methods only — there is
+/// no supported path for registering arbitrary, non-spec method strings.
 ///
 /// Register the feature before the server starts listening:
 ///
@@ -63,7 +60,7 @@ import 'lsp_server.dart';
 /// If [register] throws, the feature is automatically removed from the
 /// server's feature list and the exception propagates to the caller.
 /// Errors during [dispose] are routed through the server's [LspServer.onError]
-/// callback, or printed to stdout if no callback is configured.
+/// callback, or written to stderr if no callback is configured.
 abstract class LspFeature {
   const LspFeature();
 

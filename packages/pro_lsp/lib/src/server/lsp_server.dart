@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:stream_channel/stream_channel.dart';
 
@@ -204,6 +205,14 @@ final class LspServer {
   /// server.register(MyDatabaseClient(connectionStr));
   /// server.register(MyConfigLoader());
   /// ```
+  ///
+  /// This is a minimal type-keyed container, not a full DI framework. Be aware:
+  ///
+  /// - Services are keyed by the **static** type argument [T]. `register(impl)`
+  ///   keys by the variable's static type, so to resolve by an interface you
+  ///   must register explicitly: `server.register<MyApi>(impl)`.
+  /// - Registering the same [T] twice silently overwrites the previous service.
+  /// - There is no unregister; services live until the connection closes.
   void register<T extends Object>(T service) =>
       _connection.register<T>(service);
 
@@ -242,9 +251,12 @@ final class LspServer {
 
   /// Gets the error callback triggered on unhandled exceptions in handlers.
   ///
-  /// When a handler throws an exception that is not an LSP protocol exception,
-  /// this callback is invoked with the error and stack trace. If not set,
-  /// errors are logged to stdout.
+  /// When a *request* handler throws a non-`LspException`, the error is sent to
+  /// the client as a JSON-RPC `internalError` response *and* forwarded here (if
+  /// set). When a *notification* handler throws, there is no response to send,
+  /// so the error is only forwarded here — if this is unset, notification
+  /// errors are silently swallowed. Feature-disposal errors during [close] are
+  /// also routed here. Set this early in setup so nothing goes unnoticed.
   void Function(Object error, StackTrace stackTrace)? get onError =>
       _connection.onError;
 
@@ -361,7 +373,7 @@ final class LspServer {
   /// closes the underlying connection.
   ///
   /// Feature disposal errors are routed through [onError] if configured,
-  /// otherwise logged to stdout.
+  /// otherwise written to stderr.
   Future<void> close() async {
     for (final feature in _features) {
       try {
@@ -371,9 +383,9 @@ final class LspServer {
         if (errorHandler != null) {
           errorHandler(e, stackTrace);
         } else {
-          // Fallback to print when no custom onError handler is configured.
-          // ignore: avoid_print
-          print('Error disposing feature $feature: $e\n$stackTrace');
+          // Fall back to stderr, never stdout: on the stdio transport stdout
+          // is the JSON-RPC channel, so writing there corrupts the protocol.
+          stderr.writeln('Error disposing feature $feature: $e\n$stackTrace');
         }
       }
     }

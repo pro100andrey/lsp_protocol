@@ -179,5 +179,36 @@ void main() {
         expect(await def, {'which': 'definition'});
       },
     );
+
+    test(
+      r'a token cancelled before send fires $/cancelRequest immediately',
+      () async {
+        final token = CancellationToken()..cancel();
+        final requestSent = nextMessage('textDocument/hover');
+        final cancelSent = nextMessage(r'$/cancelRequest');
+
+        final future = connection.sendRequest(
+          RequestMethod.hover,
+          {'a': 1},
+          token: token,
+        );
+
+        final req = await requestSent;
+        expect((await cancelSent)['params'], {'id': req['id']});
+
+        incoming.add(
+          jsonEncode(<String, dynamic>{
+            'jsonrpc': '2.0',
+            'id': req['id'],
+            'error': <String, dynamic>{'code': -32800, 'message': 'cancelled'},
+          }),
+        );
+
+        await expectLater(
+          future,
+          throwsA(isA<LspException>().having((e) => e.code, 'code', -32800)),
+        );
+      },
+    );
   });
 }

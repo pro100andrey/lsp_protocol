@@ -55,6 +55,23 @@ class _ThrowingRegisterFeature extends LspFeature {
   }
 }
 
+/// Uses the inherited no-op [LspFeature.dispose].
+class _DefaultDisposeFeature extends LspFeature {
+  var _registered = false;
+
+  @override
+  void register(LspServer server) {
+    _registered = true;
+  }
+}
+
+final class _Dep {
+  _Dep(this.value);
+  final String value;
+}
+
+final class _Absent {}
+
 void main() {
   group('LspServer Feature Lifecycle', () {
     test(
@@ -229,5 +246,50 @@ void main() {
 
       await client.close();
     });
+  });
+
+  group('LspServer accessors', () {
+    LspServer makeServer() =>
+        LspServer.fromChannel(StreamChannelController<List<int>>().local);
+
+    test('connection getter exposes the underlying LspConnection', () {
+      expect(makeServer().connection, isA<LspConnection>());
+    });
+
+    test('register / resolve / tryResolve delegate to the connection', () {
+      final server = makeServer()..register(_Dep('v'));
+      expect(server.resolve<_Dep>().value, 'v');
+      expect(server.tryResolve<_Dep>(), isNotNull);
+      expect(server.tryResolve<_Absent>(), isNull);
+      expect(server.resolve<_Absent>, throwsStateError);
+    });
+
+    test('onError getter returns the configured callback', () {
+      final server = makeServer();
+      void handler(Object error, StackTrace stack) {}
+      server.onError = handler;
+      expect(server.onError, same(handler));
+    });
+
+    test('state getter reflects the connection state', () {
+      expect(makeServer().state, LspState.uninitialized);
+    });
+  });
+
+  group('LspServer feature with default dispose', () {
+    test(
+      'a feature using the inherited no-op dispose closes cleanly',
+      () async {
+        final server = LspServer.fromChannel(
+          StreamChannelController<List<int>>().local,
+        );
+        final feature = _DefaultDisposeFeature();
+        server.registerFeature(feature);
+        expect(feature._registered, isTrue);
+
+        // close() invokes the inherited no-op dispose without error.
+        await expectLater(server.close(), completes);
+      },
+    );
   });
 }
