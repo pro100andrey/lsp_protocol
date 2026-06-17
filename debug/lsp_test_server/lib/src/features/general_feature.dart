@@ -32,29 +32,20 @@ final class GeneralFeature extends LspFeature {
       // Register initialize params so WatchedFilesManager can resolve it later
       server.connection.register(params);
 
-      // Infer capabilities from registered handlers
-      final inferred = server.inferCapabilities(
+      // Infer capabilities from registered handlers. The kit fills in
+      // text-document sync (full + openClose by default) and the semantic
+      // tokens provider once given the server-defined legend — no manual
+      // copyWith needed.
+      final capabilities = server.inferCapabilities(
         completionTriggerCharacters: ['.', ':', '_'],
-      );
-
-      // Customize capabilities with manual sync and semantic tokens
-      final customized = inferred.copyWith(
-        textDocumentSync: .textDocumentSyncOptions(
-          const .new(change: .full, openClose: true),
-        ),
-        semanticTokensProvider: .semanticTokensOptions(
-          const .new(
-            legend: .new(
-              tokenTypes: SemanticTokensFeature.legendTypes,
-              tokenModifiers: SemanticTokensFeature.legendModifiers,
-            ),
-            full: .bool(true),
-          ),
+        semanticTokensLegend: const SemanticTokensLegend(
+          tokenTypes: SemanticTokensFeature.legendTypes,
+          tokenModifiers: SemanticTokensFeature.legendModifiers,
         ),
       );
 
       return .new(
-        capabilities: customized,
+        capabilities: capabilities,
         serverInfo: (name: 'lsp-test-server', version: '0.2.0'),
       );
     });

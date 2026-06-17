@@ -10,7 +10,7 @@ final class LspDocument {
     required this.languageId,
     required this.version,
     required String text,
-  }) : text = text.replaceAll('\r\n', '\n');
+  }) : text = text.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
 
   /// The document's associated URI.
   final String uri;
@@ -239,8 +239,14 @@ final class ClientDocumentManager {
   /// Returns all currently open documents.
   List<LspDocument> get all => _documents.values.toList();
 
-  /// Closes all open documents.
+  /// Closes all open documents, notifying the server via `textDocument/didClose`
+  /// for each one.
   void closeAll() {
+    for (final uri in _documents.keys.toList(growable: false)) {
+      _client.server.textDocument.didClose(
+        .new(textDocument: .new(uri: uri)),
+      );
+    }
     _documents.clear();
   }
 }
