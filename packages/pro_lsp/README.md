@@ -59,7 +59,7 @@ Or add it manually to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  pro_lsp: ^0.1.1
+  pro_lsp: ^0.1.2
 ```
 
 ---
@@ -209,7 +209,7 @@ server.general.onShutdown((context) async {
 
 ### Logging and debugging
 
-Handler and feature-disposal errors are routed to `server.onError`. **The default writes to `stdout`, which corrupts a stdio server** — always set your own:
+Handler and feature-disposal errors are routed to `server.onError`, which is **unset by default** — so notification-handler errors are silently swallowed (request-handler errors are still returned to the client as JSON-RPC errors). Set it to surface them, and log to `stderr`, **never `stdout`** — on a stdio server `stdout` *is* the protocol channel, so writing there corrupts the JSON-RPC stream:
 
 ```dart
 server.onError = (error, stack) {
