@@ -6,13 +6,13 @@ Monorepo for Dart LSP (Language Server Protocol) tools.
 
 - [`lsp_generator`](packages/lsp_generator/): Generates Dart classes from the official LSP `metaModel.json`.
 - [`pro_lsp`](packages/pro_lsp/): Core framework containing generated LSP 3.17 models and the transport-agnostic server/client implementation. ([README](packages/pro_lsp/README.md))
-- [`pro_lsp_sdk`](packages/pro_lsp_sdk/): High-level SDK extension for `pro_lsp` providing Virtual File System (VFS), diagnostics management, and configuration caches.
+- [`pro_lsp_kit`](packages/pro_lsp_kit/): High-level toolkit for `pro_lsp` providing Virtual File System (VFS), diagnostics management, and configuration caches.
 
 ## Debug & Testing
 
 Additional tools and resources for testing can be found in the [`debug/`](debug/) directory:
 
-- [`lsp_test_server`](debug/lsp_test_server/): Reference LSP server implementation used for validating protocol bindings and SDK features.
+- [`lsp_test_server`](debug/lsp_test_server/): Reference LSP server implementation used for validating protocol bindings and pro_lsp_kit features.
 - [`vscode-lsp-tester`](debug/vscode-lsp-tester/): VS Code extension for live testing and inspecting the `lsp_test_server` via TCP.
 - [`project`](debug/project/): Sample LSP project files for testing.
 

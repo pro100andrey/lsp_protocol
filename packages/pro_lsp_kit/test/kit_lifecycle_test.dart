@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
+import 'package:pro_lsp_kit/pro_lsp_kit.dart';
 import 'package:stream_channel/stream_channel.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('SDK Integration Lifecycle', () {
+  group('Kit Integration Lifecycle', () {
     late StreamController<List<int>> clientIncoming;
     late StreamController<List<int>> clientOutgoing;
     late StreamChannel<List<int>> serverChannel;

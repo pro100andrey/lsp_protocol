@@ -1,5 +1,5 @@
-name: pro_lsp_sdk
-description: SDK extension package for pro_lsp providing document synchronization VFS, diagnostic managers, and configuration caches.
+name: pro_lsp_kit
+description: Toolkit package for pro_lsp providing document synchronization VFS, diagnostic managers, and configuration caches.
 publish_to: none
 version: 0.1.0
 

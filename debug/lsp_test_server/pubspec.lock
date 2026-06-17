@@ -79,11 +79,11 @@ packages:
       path: "../../packages/pro_lsp"
       relative: true
     source: path
-    version: "0.1.0"
-  pro_lsp_sdk:
+    version: "0.1.2"
+  pro_lsp_kit:
     dependency: "direct main"
     description:
-      path: "../../packages/pro_lsp_sdk"
+      path: "../../packages/pro_lsp_kit"
       relative: true
     source: path
     version: "0.1.0"

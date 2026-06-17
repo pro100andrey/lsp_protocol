@@ -15,7 +15,7 @@ jobs:
         package:
           - packages/lsp_generator
           - packages/pro_lsp
-          - packages/pro_lsp_sdk
+          - packages/pro_lsp_kit
     defaults:
       run:
         working-directory: ${{ matrix.package }}

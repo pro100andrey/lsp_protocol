@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:logging/logging.dart';
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
+import 'package:pro_lsp_kit/pro_lsp_kit.dart';
 
 import 'shared.dart';
 

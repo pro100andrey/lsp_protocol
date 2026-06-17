@@ -1,6 +1,6 @@
 import 'package:logging/logging.dart';
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:pro_lsp_sdk/pro_lsp_sdk.dart';
+import 'package:pro_lsp_kit/pro_lsp_kit.dart';
 
 import 'semantic_tokens_feature.dart';
 import 'shared.dart';
@@ -65,7 +65,7 @@ final class GeneralFeature extends LspFeature {
       // Send a welcome dialog message to the user via LspDialogHelper
       _dialogHelper.showMessage(
         type: .info,
-        message: 'Welcome to LSP Test Server powered by pro_lsp_sdk!',
+        message: 'Welcome to LSP Test Server powered by pro_lsp_kit!',
       );
 
       // Register file watching dynamically if supported
