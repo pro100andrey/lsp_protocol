@@ -817,21 +817,20 @@ void main() {
 
     test('deprecated property keeps @Deprecated on private'
         ' JsonSerializable class field', () {
-      final state = _stateWith(
-        classes: [
-          _cls(
-            '_PrivateFoo',
-            properties: [
-              _prop(
-                'oldField',
-                const DartCoreType(dartName: 'String'),
-                deprecated: 'Old.',
-              ),
-            ],
+      // Underscore-prefixed classes are emitted as plain @JsonSerializable
+      // (not @freezed). buildSingleClass exercises that path directly, since
+      // such base classes are skipped by the category-based structure builders.
+      final cls = _cls(
+        '_AnonymousStruct',
+        properties: [
+          _prop(
+            'oldField',
+            const DartCoreType(dartName: 'String'),
+            deprecated: 'Old.',
           ),
         ],
       );
-      final src = _getStructures(state);
+      final src = _format(ModelGenerator(_stateWith()).buildSingleClass(cls));
       expect(src, contains("@Deprecated('Old.')"));
     });
 

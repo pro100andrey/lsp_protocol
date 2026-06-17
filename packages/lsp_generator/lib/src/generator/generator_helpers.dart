@@ -106,17 +106,62 @@ String emitLibrary(Library lib) {
   }
 }
 
-/// Set of Dart reserved keywords that should be avoided as identifiers.
+/// Set of names that must not be used as bare identifiers in generated code.
+///
+/// Contains every Dart *reserved word* — these are compile errors in any
+/// identifier position, so an LSP member or property with such a name must be
+/// escaped (e.g. `in`, `is`, `default`, `void`).
+///
+/// It also retains the built-in identifiers that occur as real LSP enum values
+/// (`static`, `abstract`, `async`, `interface`, `operator` — used by
+/// `SemanticTokenTypes`/`SemanticTokenModifiers`) and the `value`/`macro`
+/// names that collide with freezed / json_serializable generation. These are
+/// kept for API stability with the already-published generated output, even
+/// though they are technically legal as member names.
 const reservedDartKeywords = {
+  // Dart reserved words — illegal as identifiers anywhere.
+  'assert',
+  'break',
+  'case',
+  'catch',
   'class',
+  'const',
+  'continue',
+  'default',
+  'do',
+  'else',
   'enum',
+  'extends',
+  'false',
+  'final',
+  'finally',
+  'for',
+  'if',
+  'in',
+  'is',
+  'new',
   'null',
-  'value',
+  'rethrow',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'var',
+  'void',
+  'while',
+  'with',
+  // Built-in identifiers that appear as LSP enum values — escaped historically;
+  // kept for stability with the published generated output.
   'static',
   'abstract',
   'async',
   'interface',
   'operator',
+  // Project-specific collisions with freezed / json_serializable generation.
+  'value',
   'macro',
 };
 
