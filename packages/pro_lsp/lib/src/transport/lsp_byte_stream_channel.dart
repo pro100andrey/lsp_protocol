@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:stream_channel/stream_channel.dart';
@@ -212,7 +211,7 @@ final class _Parser {
 
     while (true) {
       if (_headerMode) {
-        final headerEnd = _findHeaderEnd(chunk.length);
+        final headerEnd = _findHeaderEnd();
         if (headerEnd == -1) {
           break;
         }
@@ -250,12 +249,12 @@ final class _Parser {
     }
   }
 
-  int _findHeaderEnd(int lastChunkLength) {
-    // Only search starting from the newly appended chunk
-    // (plus boundary overlap)
-    final start = math.max(_readIndex, _writeIndex - lastChunkLength - 3);
-    final limit = math.max(0, _writeIndex - 3);
-    for (var i = start; i < limit; i++) {
+  int _findHeaderEnd() {
+    // In header mode the active region [_readIndex, _writeIndex) only ever
+    // holds unterminated header bytes (the previous body was already consumed
+    // before we returned to header mode), so this scan is over a tiny range.
+    final limit = _writeIndex - 3;
+    for (var i = _readIndex; i < limit; i++) {
       if (_buffer[i] == 13 && // \r
           _buffer[i + 1] == 10 && // \n
           _buffer[i + 2] == 13 && // \r

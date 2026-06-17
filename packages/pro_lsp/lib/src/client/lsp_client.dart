@@ -3,12 +3,10 @@ import 'dart:io';
 
 import 'package:stream_channel/stream_channel.dart';
 
-import '../connection/lsp_connection.dart';
+import '../connection/lsp_endpoint.dart';
 import '../generated/client/client_api.dart';
 import '../generated/models/structures.dart';
 import '../generated/models/unions.dart';
-import '../server/lsp_state.dart';
-import '../server/middleware.dart';
 import '../transport/lsp_byte_stream_channel.dart';
 
 export '../generated/client/client_api.dart';
@@ -17,7 +15,7 @@ export '../generated/client/client_api.dart';
 ///
 /// Provides namespace-grouped handler registration (incoming from server) and a
 /// [server] proxy for outgoing messages.
-final class LspClient {
+final class LspClient extends LspEndpoint {
   /// Creates a client using stdin/stdout as the byte transport.
   LspClient() : this._(LspByteStreamChannel.fromStdio());
 
@@ -25,35 +23,31 @@ final class LspClient {
   LspClient.fromChannel(StreamChannel<List<int>> channel)
     : this._(LspByteStreamChannel.fromByteChannel(channel));
 
-  LspClient._(LspByteStreamChannelResult result)
-    : _connection = LspConnection(result.channel),
-      _cleanup = result.cleanup;
+  LspClient._(super.result);
 
-  final LspConnection _connection;
-  final FutureOr<void> Function()? _cleanup;
   var _isListening = false;
 
   // Incoming (server → client) handler namespaces
 
   /// Handlers for protocol-level (`$/`) methods.
-  late final general = ClientGeneralHandlers(_connection);
+  late final general = ClientGeneralHandlers(connection);
 
   /// Handlers for `window/*` server→client notifications.
-  late final window = ClientWindowHandlers(_connection);
+  late final window = ClientWindowHandlers(connection);
 
   /// Handlers for `client/*` server→client notifications.
-  late final client = ClientClientHandlers(_connection);
+  late final client = ClientClientHandlers(connection);
 
   /// Handlers for `textDocument/*` (e.g. `publishDiagnostics`).
-  late final textDocument = ClientTextDocumentHandlers(_connection);
+  late final textDocument = ClientTextDocumentHandlers(connection);
 
   /// Handlers for `workspace/*` (e.g. `applyEdit`).
-  late final workspace = ClientWorkspaceHandlers(_connection);
+  late final workspace = ClientWorkspaceHandlers(connection);
 
   // Outgoing (client → server)
 
   /// Proxy for all outgoing (client → server) messages.
-  late final server = ClientToServerProxy(_connection);
+  late final server = ClientToServerProxy(connection);
 
   /// Capabilities of the server, populated after [start].
   ServerCapabilities? serverCapabilities;
@@ -88,7 +82,7 @@ final class LspClient {
     _isListening = true;
 
     // Start listening
-    unawaited(_connection.listen());
+    unawaited(connection.listen());
 
     // 1. Send initialize
     InitializeResult result;
@@ -107,7 +101,7 @@ final class LspClient {
       );
     } catch (e) {
       _isListening = false;
-      await _connection.close();
+      await connection.close();
       rethrow;
     }
 
@@ -121,24 +115,6 @@ final class LspClient {
 
   // Lifecycle & State
 
-  /// Registered middleware list for request/notification interception.
-  List<LspMiddleware> get middlewares => _connection.middlewares;
-
-  /// Adds a middleware to this client.
-  void addMiddleware(LspMiddleware middleware) =>
-      _connection.addMiddleware(middleware);
-
-  /// Gets the current lifecycle state of the LSP client.
-  LspState get state => _connection.state;
-
-  /// Gets the error callback triggered on unhandled exceptions in handlers.
-  void Function(Object error, StackTrace stackTrace)? get onError =>
-      _connection.onError;
-
-  /// Sets the error callback triggered on unhandled exceptions in handlers.
-  set onError(void Function(Object error, StackTrace stackTrace)? value) =>
-      _connection.onError = value;
-
   /// Starts processing incoming messages without performing the handshake.
   ///
   /// Low-level alternative to [start]: use it when you want to send the
@@ -150,13 +126,11 @@ final class LspClient {
       throw StateError('Client has already started listening.');
     }
     _isListening = true;
-    return _connection.listen();
+    return connection.listen();
   }
 
-  /// Closes the connection and stops processing.
-  Future<void> close() async {
+  @override
+  Future<void> beforeClose() async {
     _isListening = false;
-    await _connection.close();
-    await _cleanup?.call();
   }
 }

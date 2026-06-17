@@ -280,18 +280,12 @@ final class LspConnection {
 
   /// Core handler registration logic for both requests and notifications.
   ///
-  /// For requests: registers a single handler via the underlying [_peer].
-  /// For notifications: supports multicast by maintaining a list of handlers
-  /// per method name.
+  /// For requests: registers a single handler dispatched via
+  /// [_dispatchRequest]. For notifications: supports multicast by maintaining a
+  /// list of handlers per method name, dispatched via [_dispatchNotification].
   ///
-  /// Returns an unregistration function for notifications (null for requests).
-  /// Helper method to execute a handler inside a Zone with a
-  /// [CancellationToken].
-  Future<Object?> _runHandler(
-    CancellationToken token,
-    Future<Object?> Function() body,
-  ) => runZoned(body, zoneValues: {#cancellationToken: token});
-
+  /// Returns an unregistration function for notifications (`null` for
+  /// requests).
   void Function()? _registerHandler(
     LSPMethod method, {
     required bool isRequest,
@@ -301,179 +295,193 @@ final class LspConnection {
     final methodStr = method.value;
     _registeredMethods.add(method);
 
-    LspNotificationHandler? multicastItem;
-
-    if (!isRequest) {
-      // For notifications, JSON-RPC only permits a single registered
-      // method handler. We register the first listener on the peer,
-      // and subsequent listeners are added to _notificationHandlers.
-      final list = _notificationHandlers.putIfAbsent(methodStr, () => []);
-      multicastItem = (params, context) async {
-        await handler(params, context);
-      };
-
-      list.add(multicastItem);
-
-      if (list.length > 1) {
-        return () {
-          list.remove(multicastItem);
-          if (list.isEmpty) {
-            _notificationHandlers.remove(methodStr);
-            _registeredMethods.remove(method);
-          }
-        };
-      }
+    if (isRequest) {
+      _peer.registerMethod(
+        methodStr,
+        (Parameters params) =>
+            _dispatchRequest(method, methodStr, params.value, handler),
+      );
+      return null;
     }
 
-    _peer.registerMethod(methodStr, (Parameters params) async {
-      final rawVal = params.value;
-      Object? requestId;
+    // For notifications, JSON-RPC only permits a single registered method
+    // handler. We register the first listener on the peer; subsequent listeners
+    // are appended to _notificationHandlers and picked up on dispatch.
+    final list = _notificationHandlers.putIfAbsent(methodStr, () => []);
+    Future<void> multicastItem(Object? params, LspRequest context) async {
+      await handler(params, context);
+    }
 
-      if (isRequest) {
-        if (rawVal case Map() || List()) {
-          requestId = _requestIds.remove(_IdentityKey(rawVal));
+    list.add(multicastItem);
+
+    if (list.length == 1) {
+      _peer.registerMethod(
+        methodStr,
+        (Parameters params) =>
+            _dispatchNotification(method, methodStr, params.value),
+      );
+    }
+
+    return () {
+      final current = _notificationHandlers[methodStr];
+      if (current != null) {
+        current.remove(multicastItem);
+        if (current.isEmpty) {
+          _notificationHandlers.remove(methodStr);
+          _registeredMethods.remove(method);
         }
       }
+    };
+  }
 
-      final token = isRequest ? CancellationToken() : CancellationToken.noop;
-      if (isRequest && requestId != null) {
-        _activeCancellations[requestId] = token;
-      }
+  /// Dispatches an incoming *request* to [handler] with full cancellation,
+  /// state-machine, and middleware support.
+  Future<Object?> _dispatchRequest(
+    LSPMethod method,
+    String methodStr,
+    Object? rawVal,
+    Future<Object?> Function(Object? params, LspRequest context) handler,
+  ) async {
+    Object? requestId;
+    if (rawVal case Map() || List()) {
+      requestId = _requestIds.remove(_IdentityKey(rawVal));
+    }
 
-      final context = LspRequest(
-        method: methodStr,
-        cancellationToken: token,
-        id: requestId,
-        connection: this,
+    final token = CancellationToken();
+    if (requestId != null) {
+      _activeCancellations[requestId] = token;
+    }
+
+    final context = LspRequest(
+      method: methodStr,
+      cancellationToken: token,
+      id: requestId,
+      connection: this,
+    );
+
+    try {
+      _verifyState(method, isNotification: false);
+
+      _state = switch (method) {
+        RequestMethod.initialize => .initializing,
+        RequestMethod.shutdown => .shuttingDown,
+        _ => _state,
+      };
+
+      // Bind the cancellation token to the Zone so nested async operations can
+      // obtain it via CancellationToken.current.
+      final response = await runZoned(
+        () {
+          if (_middlewares.isEmpty) {
+            return handler(rawVal, context);
+          }
+
+          final request = LspIncomingRequest(
+            method: methodStr,
+            params: rawVal,
+            requestId: requestId,
+          );
+
+          return composeMiddlewares(
+            _middlewares,
+            (req) => handler(req.params, context),
+          )(request);
+        },
+        zoneValues: {#cancellationToken: token},
       );
 
-      try {
-        // 1. Verify state permissions
-        _verifyState(method, isNotification: !isRequest);
-
-        // 2. Pre-handler state changes
-        if (isRequest) {
-          _state = switch (method) {
-            RequestMethod.initialize => .initializing,
-            RequestMethod.shutdown => .shuttingDown,
-            _ => _state,
-          };
-        } else {
-          if (method == NotificationMethod.exit) {
-            _state = .exited;
-          }
-        }
-
-        final Object? response;
-        final handlers = _notificationHandlers[methodStr] ?? [];
-
-        // Bind the cancellation token to the Zone so nested async operations
-        // can obtain it via CancellationToken.current.
-        response = await _runHandler(token, () async {
-          if (isRequest) {
-            if (_middlewares.isEmpty) {
-              return handler(rawVal, context);
-            }
-
-            final request = LspIncomingRequest(
-              method: methodStr,
-              params: rawVal,
-              requestId: requestId,
-            );
-
-            return composeMiddlewares(
-              _middlewares,
-              (req) => handler(req.params, context),
-            )(request);
-          } else {
-            // Multicast execution: execute all registered notification
-            // handlers. Errors in individual handlers are isolated and
-            // sent to onError.
-            if (_middlewares.isEmpty) {
-              for (final h in handlers) {
-                try {
-                  await h(rawVal, context);
-                } on Object catch (e, stackTrace) {
-                  onError?.call(e, stackTrace);
-                }
-              }
-            } else {
-              final request = LspIncomingRequest(
-                method: methodStr,
-                params: rawVal,
-                requestId: requestId,
-              );
-
-              await composeMiddlewares(
-                _middlewares,
-                (req) async {
-                  for (final h in handlers) {
-                    try {
-                      await h(req.params, context);
-                    } on Object catch (e, stackTrace) {
-                      onError?.call(e, stackTrace);
-                    }
-                  }
-
-                  return null;
-                },
-              )(request);
-            }
-
-            return null;
-          }
-        });
-
-        // 3. Post-handler state changes / actions
-        if (isRequest) {
-          if (method == RequestMethod.initialize) {
-            _state = .initialized;
-          }
-        } else {
-          if (method == NotificationMethod.exit) {
-            await close();
-          }
-        }
-
-        return response;
-      } on LspException catch (e) {
-        _revertStateOnFailure(method, isRequest: isRequest);
-        throw e.toRpcException();
-      } catch (e, stackTrace) {
-        _revertStateOnFailure(method, isRequest: isRequest);
-
-        onError?.call(e, stackTrace);
-
-        throw RpcException(
-          LspErrorCodes.internalError,
-          'Internal error processing '
-          '${isRequest ? "request" : "notification"}: $e',
-        );
-      } finally {
-        if (requestId != null) {
-          _activeCancellations.remove(requestId);
-          _requestIds.remove(_IdentityKey(rawVal));
-        }
-
-        token.dispose();
+      if (method == RequestMethod.initialize) {
+        _state = .initialized;
       }
-    });
 
-    if (!isRequest) {
-      return () {
-        final list = _notificationHandlers[methodStr];
-        if (list != null) {
-          list.remove(multicastItem);
-
-          if (list.isEmpty) {
-            _notificationHandlers.remove(methodStr);
-            _registeredMethods.remove(method);
-          }
-        }
-      };
+      return response;
+    } on LspException catch (e) {
+      _revertStateOnFailure(method, isRequest: true);
+      throw e.toRpcException();
+    } catch (e, stackTrace) {
+      _revertStateOnFailure(method, isRequest: true);
+      onError?.call(e, stackTrace);
+      throw RpcException(
+        LspErrorCodes.internalError,
+        'Internal error processing request: $e',
+      );
+    } finally {
+      // requestId was already removed from _requestIds above; only the active
+      // cancellation entry and the token still need releasing.
+      if (requestId != null) {
+        _activeCancellations.remove(requestId);
+      }
+      token.dispose();
     }
+  }
 
-    return null;
+  /// Dispatches an incoming *notification* to every registered multicast
+  /// handler. Notifications are not cancelable, so there is no per-request
+  /// token or Zone — keeping this path allocation-light for high-frequency
+  /// traffic (`didChange`, `didOpen`, …).
+  Future<Object?> _dispatchNotification(
+    LSPMethod method,
+    String methodStr,
+    Object? rawVal,
+  ) async {
+    final context = LspRequest(
+      method: methodStr,
+      cancellationToken: CancellationToken.noop,
+      connection: this,
+    );
+
+    try {
+      _verifyState(method, isNotification: true);
+
+      if (method == NotificationMethod.exit) {
+        _state = .exited;
+      }
+
+      final handlers = _notificationHandlers[methodStr] ?? const [];
+      if (_middlewares.isEmpty) {
+        await _runNotificationHandlers(handlers, rawVal, context);
+      } else {
+        final request = LspIncomingRequest(
+          method: methodStr,
+          params: rawVal,
+        );
+        await composeMiddlewares(_middlewares, (req) async {
+          await _runNotificationHandlers(handlers, req.params, context);
+          return null;
+        })(request);
+      }
+
+      if (method == NotificationMethod.exit) {
+        await close();
+      }
+
+      return null;
+    } on LspException catch (e) {
+      throw e.toRpcException();
+    } catch (e, stackTrace) {
+      onError?.call(e, stackTrace);
+      throw RpcException(
+        LspErrorCodes.internalError,
+        'Internal error processing notification: $e',
+      );
+    }
+  }
+
+  /// Runs each multicast notification handler in sequence, isolating
+  /// per-handler errors to [onError] so one failing listener doesn't stop the
+  /// others.
+  Future<void> _runNotificationHandlers(
+    List<LspNotificationHandler> handlers,
+    Object? params,
+    LspRequest context,
+  ) async {
+    for (final h in handlers) {
+      try {
+        await h(params, context);
+      } on Object catch (e, stackTrace) {
+        onError?.call(e, stackTrace);
+      }
+    }
   }
 
   /// Registers a handler for an LSP *request* (client → server).
@@ -501,10 +509,7 @@ final class LspConnection {
   ) => _registerHandler(
     method,
     isRequest: false,
-    handler: (params, context) async {
-      await handler(params, context);
-      return null;
-    },
+    handler: _asRequestHandler(handler),
   )!;
 
   /// Registers a handler for a *custom* (non-spec) request method.
@@ -534,11 +539,19 @@ final class LspConnection {
   ) => _registerHandler(
     method,
     isRequest: false,
-    handler: (params, context) async {
-      await handler(params, context);
-      return null;
-    },
+    handler: _asRequestHandler(handler),
   )!;
+
+  /// Adapts a `void`-returning notification [handler] to the
+  /// `Object?`-returning shape [_registerHandler] expects (notifications have
+  /// no response value).
+  static Future<Object?> Function(Object? params, LspRequest context)
+  _asRequestHandler(
+    Future<void> Function(Object? params, LspRequest context) handler,
+  ) => (params, context) async {
+    await handler(params, context);
+    return null;
+  };
 
   // Outgoing
 
