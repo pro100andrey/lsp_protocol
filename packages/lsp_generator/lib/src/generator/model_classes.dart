@@ -94,10 +94,7 @@ extension ModelGeneratorClasses on ModelGenerator {
           (b) => b
             ..constant = true
             ..optionalParameters.addAll(
-              [
-                ...allProps.where((p) => !p.optional),
-                ...allProps.where((p) => p.optional),
-              ].map(
+              sortByRequired(allProps, (p) => !p.optional).map(
                 (p) => .new(
                   (b) => b
                     ..name = p.name
@@ -120,11 +117,7 @@ extension ModelGeneratorClasses on ModelGenerator {
               .new(
                 (p) => p
                   ..name = 'json'
-                  ..type = TypeReference(
-                    (b) => b
-                      ..symbol = 'Map'
-                      ..types.addAll([refer('String'), refer('dynamic')]),
-                  ),
+                  ..type = jsonMapRef,
               ),
             )
             ..body = refer('_\$${baseName}FromJson').call([refer('json')]).code,
@@ -136,11 +129,7 @@ extension ModelGeneratorClasses on ModelGenerator {
         .new(
           (b) => b
             ..name = 'toJson'
-            ..returns = TypeReference(
-              (b) => b
-                ..symbol = 'Map'
-                ..types.addAll([refer('String'), refer('dynamic')]),
-            )
+            ..returns = jsonMapRef
             ..body = refer('_\$${baseName}ToJson').call([refer('this')]).code,
         ),
       );
@@ -164,14 +153,10 @@ extension ModelGeneratorClasses on ModelGenerator {
       // Prepend `_` to className: for `Foo` → `_Foo`; for `_Foo` → `__Foo`.
       ..redirect = refer('_$className')
       ..optionalParameters.addAll(
-        [
-          ...props.where(
-            (p) => !p.optional && p.type.nonNull is! StringLiteralType,
-          ),
-          ...props.where(
-            (p) => p.optional || p.type.nonNull is StringLiteralType,
-          ),
-        ].map((p) {
+        sortByRequired(
+          props,
+          (p) => !p.optional && p.type.nonNull is! StringLiteralType,
+        ).map((p) {
           final typeRef = _propertyTypeRef(className, p);
 
           return .new((b) {
@@ -215,11 +200,7 @@ extension ModelGeneratorClasses on ModelGenerator {
         .new(
           (p) => p
             ..name = 'json'
-            ..type = TypeReference(
-              (b) => b
-                ..symbol = 'Map'
-                ..types.addAll([refer('String'), refer('dynamic')]),
-            ),
+            ..type = jsonMapRef,
         ),
       )
       ..body = refer('_\$${className}FromJson').call([refer('json')]).code,

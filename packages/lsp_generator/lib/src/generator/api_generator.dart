@@ -420,7 +420,7 @@ abstract class ApiGenerator {
       final castExpr = refer('raw')
           .asA(refer('List'))
           .property('cast')
-          .call([], {}, [_jsonMapRef()])
+          .call([], {}, [jsonMapRef])
           .property('map')
           .call([refer(innerType).property('fromJson')])
           .property('toList')
@@ -468,12 +468,6 @@ abstract class ApiGenerator {
     ];
   }
 
-  static TypeReference _jsonMapRef() => TypeReference(
-    (b) => b
-      ..symbol = 'Map'
-      ..types.addAll([refer('String'), refer('dynamic')]),
-  );
-
   /// Generates an assignment expression for parsing parameters from JSON.
   ///
   /// Uses the `parseParams` helper with the given type's `fromJson` factory.
@@ -501,19 +495,20 @@ abstract class ApiGenerator {
 
   /// Builds the handler class name for a given namespace.
   ///
-  /// The `general` and `$` namespaces both map to `GeneralHandlers`.
+  /// `$/` methods never reach here as a `$` namespace (they resolve to
+  /// `general`), so no special-casing is needed.
   static String handlerClassName(String namespace) =>
-      '${capitalize(namespace == 'general' ? 'general' : namespace)}Handlers';
+      '${capitalize(namespace)}Handlers';
 
   /// Builds the sender class name for a given namespace.
   ///
   /// The `$` and `general` namespaces both map to `GeneralSender`.
-  static String senderClassName(String namespace) =>
-      '${capitalize(namespace == r'$'
-          ? 'general'
-          : namespace == 'general'
-          ? 'general'
-          : namespace)}Sender';
+  static String senderClassName(String namespace) {
+    final ns = namespace == r'$' || namespace == 'general'
+        ? 'general'
+        : namespace;
+    return '${capitalize(ns)}Sender';
+  }
 
   // AST Generation Methods
 
@@ -875,11 +870,7 @@ abstract class ApiGenerator {
         ..methods.addAll(
           namespaces.map(
             (ns) {
-              final propName = ns == r'$'
-                  ? 'protocol'
-                  : ns == 'general'
-                  ? 'general'
-                  : ns;
+              final propName = ns == r'$' ? 'protocol' : ns;
               final senderClass = '$side${ApiGenerator.senderClassName(ns)}';
 
               return .new(

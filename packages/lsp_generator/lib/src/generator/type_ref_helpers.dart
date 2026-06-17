@@ -3,6 +3,14 @@ import 'package:code_builder/code_builder.dart';
 import '../models/resolved_decl.dart' show ResolvedProperty;
 import '../models/resolved_type.dart';
 
+/// A `Map<String, dynamic>` type reference — the JSON object shape used
+/// pervasively in generated `fromJson`/`toJson` signatures and casts.
+final jsonMapRef = TypeReference(
+  (b) => b
+    ..symbol = 'Map'
+    ..types.addAll([refer('String'), refer('dynamic')]),
+);
+
 /// Converts a [ResolvedType] from the IR into a code_builder [Reference].
 ///
 /// For most types this returns a [TypeReference]. For [InlineRecord] types use

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:meta/meta.dart';
@@ -97,7 +99,14 @@ String formatLibrary(Library lib) {
 String emitLibrary(Library lib) {
   try {
     return formatLibrary(lib);
-  } on Object catch (_) {
+  } on Object catch (e) {
+    // Formatting usually only fails when the emitted source has a syntax the
+    // formatter rejects — exactly the case worth knowing about. Still emit the
+    // unformatted output so it can be inspected, but don't hide the failure.
+    stderr.writeln(
+      'warning: dart_style failed to format a generated library; emitting '
+      'unformatted output. Cause: $e',
+    );
     final emitter = DartEmitter.scoped(
       orderDirectives: true,
       useNullSafetySyntax: true,
@@ -245,6 +254,16 @@ String toLowerCamelCase(String name) =>
 /// Capitalizes the first character of [s] (e.g. `'myName'` → `'MyName'`).
 String capitalize(String s) =>
     s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
+
+/// Orders [items] so that required ones (per [isRequired]) come first,
+/// followed by the rest, each group preserving its original relative order.
+///
+/// Mirrors the LSP convention of emitting required constructor parameters
+/// before optional ones.
+List<T> sortByRequired<T>(Iterable<T> items, bool Function(T) isRequired) => [
+  ...items.where(isRequired),
+  ...items.where((e) => !isRequired(e)),
+];
 
 /// Returns true if [result] represents a union type with multiple non-null
 /// items, indicating a synthesized union result for a request.
