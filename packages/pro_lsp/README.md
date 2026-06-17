@@ -506,4 +506,4 @@ void main() async {
 
 ## License
 
-MIT — see `License-code.txt` for details.
+MIT — see [`LICENSE`](LICENSE) for details.

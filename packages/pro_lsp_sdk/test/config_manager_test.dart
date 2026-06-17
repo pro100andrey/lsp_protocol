@@ -222,16 +222,16 @@ void main() {
         final sub = clientOutgoing.stream.listen((bytes) {
           final raw = utf8.decode(bytes);
           if (raw.contains('"method":"workspace/configuration"')) {
-            final scopeMatch =
-                RegExp(r'"scopeUri":\s*"([^"]+)"').firstMatch(raw);
+            final scopeMatch = RegExp(
+              r'"scopeUri":\s*"([^"]+)"',
+            ).firstMatch(raw);
             requestedScopes.add(scopeMatch?.group(1));
 
             final idMatch = RegExp(r'"id":\s*(\d+)').firstMatch(raw);
             if (idMatch != null) {
               final id = idMatch.group(1);
               final val = scopeMatch != null ? scopeMatch.group(1) : 'global';
-              final resp =
-                  '{"jsonrpc":"2.0","id":$id,"result":["value-$val"]}';
+              final resp = '{"jsonrpc":"2.0","id":$id,"result":["value-$val"]}';
               clientIncoming.add(
                 utf8.encode('Content-Length: ${resp.length}\r\n\r\n$resp'),
               );
@@ -268,13 +268,17 @@ void main() {
           scopeUri: 'file:///b.dart',
         );
 
-      expect(valGlobal, equals('value-global'));
-      expect(valDocA, equals('value-file:///a.dart'));
-      expect(valDocB, equals('value-file:///b.dart'));
+        expect(valGlobal, equals('value-global'));
+        expect(valDocA, equals('value-file:///a.dart'));
+        expect(valDocB, equals('value-file:///b.dart'));
 
-      expect(requestedScopes, equals([null, 'file:///a.dart', 'file:///b.dart']));
+        expect(
+          requestedScopes,
+          equals([null, 'file:///a.dart', 'file:///b.dart']),
+        );
 
-      await sub.cancel();
-    });
+        await sub.cancel();
+      },
+    );
   });
 }

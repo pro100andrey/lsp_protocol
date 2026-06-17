@@ -782,19 +782,21 @@ abstract class ApiGenerator {
               ..types.add(refer(resultType)),
           );
 
-    final sendCallExpr = refer('_c').property('sendRequest').call(
-      [
-        methodRef('RequestMethod', wireMethod),
-        if (hasParams)
-          refer('params').property('toJson').call([])
-        else
-          literalNull,
-      ],
-      {
-        'token': refer('token'),
-        'timeout': refer('timeout'),
-      },
-    );
+    final sendCallExpr = refer('_c')
+        .property('sendRequest')
+        .call(
+          [
+            methodRef('RequestMethod', wireMethod),
+            if (hasParams)
+              refer('params').property('toJson').call([])
+            else
+              literalNull,
+          ],
+          {
+            'token': refer('token'),
+            'timeout': refer('timeout'),
+          },
+        );
 
     final bodyStatements = <Code>[
       if (isVoidResult)

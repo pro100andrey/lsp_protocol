@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.2
 
 * `LspServer` now provides spec-compliant default `shutdown` and `exit`
   handlers when you don't register your own — `shutdown` succeeds and `exit`

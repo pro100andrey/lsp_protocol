@@ -61,7 +61,7 @@ void main() {
           );
 
       final result = builder.build();
-      // DeltaLine=1, DeltaChar=2, Length=4, Type=1 (function), 
+      // DeltaLine=1, DeltaChar=2, Length=4, Type=1 (function),
       // Mod=2 (1 << 1 for static)
       expect(result, [1, 2, 4, 1, 2]);
     });

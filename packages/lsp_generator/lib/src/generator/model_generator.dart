@@ -116,8 +116,7 @@ final class ModelGenerator {
     (b) => b
       ..comments.addAll([
         _header,
-        if (category == .params)
-          'ignore_for_file: lines_longer_than_80_chars',
+        if (category == .params) 'ignore_for_file: lines_longer_than_80_chars',
       ])
       ..directives.add(.partOf(Files.structures))
       ..body.addAll(_classesForCategory(category).map(_buildClass)),

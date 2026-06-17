@@ -69,7 +69,7 @@ final class CapabilitiesInferer {
           (m is NotificationMethod && m.value.startsWith('workspace/')) ||
           (m is RequestMethod && m.value.startsWith('workspace/')),
     );
-    
+
     final hasFileOps = registeredMethods.any(
       (m) =>
           m == NotificationMethod.didCreateFiles ||

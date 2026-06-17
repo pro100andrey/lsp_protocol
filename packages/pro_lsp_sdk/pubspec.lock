@@ -231,7 +231,7 @@ packages:
       path: "../pro_lsp"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.1.2"
   pub_semver:
     dependency: transitive
     description:

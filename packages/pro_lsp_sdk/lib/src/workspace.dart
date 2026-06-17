@@ -161,7 +161,7 @@ final class WatchedFilesManager {
         'Client does not support dynamic registration of watched files.',
       );
     }
-    
+
     final registrationId = 'dynamic-watcher-${_registrationIdCounter++}';
     await _server.client.client.registerCapability(
       .new(

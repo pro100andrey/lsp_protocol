@@ -1,6 +1,6 @@
 name: pro_lsp
 description: Unified LSP 3.17 Dart bindings and client/server API implementation
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/pro100andrey/lsp_protocol/tree/main/packages/pro_lsp
 issue_tracker: https://github.com/pro100andrey/lsp_protocol/issues
 topics:

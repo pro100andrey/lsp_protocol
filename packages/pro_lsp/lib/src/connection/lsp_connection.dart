@@ -612,7 +612,7 @@ final class LspConnection {
     if (rawVal case Map() || List()) {
       _requestIds.remove(_IdentityKey(rawVal));
     }
-    
+
     throw LspException.methodNotFound(
       'Method not found: ${params.method}',
     ).toRpcException();
