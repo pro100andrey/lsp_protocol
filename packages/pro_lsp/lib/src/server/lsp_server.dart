@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:stream_channel/stream_channel.dart';
 
 import '../connection/lsp_connection.dart';
+import '../generated/models/methods.dart';
 import '../generated/server/server_api.dart';
 import '../transport/lsp_byte_stream_channel.dart';
 import 'lsp_feature.dart';
@@ -328,10 +329,29 @@ final class LspServer {
       throw StateError('Server has already started listening.');
     }
     _isListening = true;
+    _ensureLifecycleDefaults();
     try {
       await _connection.listen();
     } finally {
       await close();
+    }
+  }
+
+  /// Registers spec-compliant default `shutdown` and `exit` handlers when the
+  /// user has not supplied their own.
+  ///
+  /// The default `shutdown` simply succeeds (returns `null`); the connection
+  /// transitions to [LspState.shuttingDown] on its own. The default `exit`
+  /// closes the connection. Register [general]'s `onShutdown`/`onExit` before
+  /// [listen] to override either — your handler then runs instead and you stay
+  /// responsible for the expected behavior (e.g. closing on `exit`).
+  void _ensureLifecycleDefaults() {
+    final registered = _connection.registeredMethods;
+    if (!registered.contains(RequestMethod.shutdown)) {
+      general.onShutdown((context) async {});
+    }
+    if (!registered.contains(NotificationMethod.exit)) {
+      general.onExit((context) async {});
     }
   }
 

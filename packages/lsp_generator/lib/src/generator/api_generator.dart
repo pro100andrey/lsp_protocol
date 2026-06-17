@@ -130,6 +130,7 @@ abstract class ApiGenerator {
           .import('dart:async'),
           .import('../../connection/lsp_connection.dart'),
           .import('../../connection/lsp_exception.dart'),
+          .import('../../server/cancellation_token.dart'),
           .import('../../server/lsp_request.dart'),
           .import('../models/structures.dart'),
           .import('../models/unions.dart'),
@@ -781,14 +782,19 @@ abstract class ApiGenerator {
               ..types.add(refer(resultType)),
           );
 
-    final sendCallExpr = hasParams
-        ? refer('_c').property('sendRequest').call([
-            methodRef('RequestMethod', wireMethod),
-            refer('params').property('toJson').call([]),
-          ])
-        : refer('_c').property('sendRequest').call([
-            methodRef('RequestMethod', wireMethod),
-          ]);
+    final sendCallExpr = refer('_c').property('sendRequest').call(
+      [
+        methodRef('RequestMethod', wireMethod),
+        if (hasParams)
+          refer('params').property('toJson').call([])
+        else
+          literalNull,
+      ],
+      {
+        'token': refer('token'),
+        'timeout': refer('timeout'),
+      },
+    );
 
     final bodyStatements = <Code>[
       if (isVoidResult)
@@ -807,9 +813,13 @@ abstract class ApiGenerator {
         ..name = dartName
         ..modifier = .async
         ..returns = returnRef
-        ..docs.add(
+        ..docs.addAll([
           '/// Sends the `$wireMethod` request to the ${otherSide.toLowerCase()}.',
-        )
+          '///',
+          r'/// Pass [token] to cancel the request (sends `$/cancelRequest`) or',
+          '/// [timeout] to abort it automatically. Peer error responses are',
+          '/// thrown as [LspException].',
+        ])
         ..requiredParameters.addAll([
           if (hasParams)
             .new(
@@ -817,6 +827,20 @@ abstract class ApiGenerator {
                 ..name = 'params'
                 ..type = refer(paramsType),
             ),
+        ])
+        ..optionalParameters.addAll([
+          .new(
+            (b) => b
+              ..name = 'token'
+              ..named = true
+              ..type = refer('CancellationToken?'),
+          ),
+          .new(
+            (b) => b
+              ..name = 'timeout'
+              ..named = true
+              ..type = refer('Duration?'),
+          ),
         ])
         ..body = Block.of(bodyStatements),
     );

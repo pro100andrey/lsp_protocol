@@ -116,12 +116,8 @@ final class ModelGenerator {
     (b) => b
       ..comments.addAll([
         _header,
-        if (category == .params) ...[
+        if (category == .params)
           'ignore_for_file: lines_longer_than_80_chars',
-          'ignore_for_file: remove_deprecations_in_breaking_versions',
-        ],
-        if (category == .common)
-          'ignore_for_file: remove_deprecations_in_breaking_versions',
       ])
       ..directives.add(.partOf(Files.structures))
       ..body.addAll(_classesForCategory(category).map(_buildClass)),
@@ -301,7 +297,6 @@ final class ModelGenerator {
             'ignore_for_file: lines_longer_than_80_chars',
             'ignore_for_file: deprecated_consistency',
             'ignore_for_file: deprecated_member_use_from_same_package',
-            'ignore_for_file: remove_deprecations_in_breaking_versions',
           ],
         ])
         ..directives.addAll(

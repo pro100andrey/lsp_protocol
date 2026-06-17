@@ -124,6 +124,7 @@ final class LspConnection {
 
     _peer = Peer.withoutJson(
       StreamChannel<Object?>(decodedStream, channel.sink),
+      idGenerator: _generateOutgoingId,
     );
 
     _peer.registerFallback(_handleUnknownMethod);
@@ -145,6 +146,19 @@ final class LspConnection {
 
   /// The underlying JSON-RPC 2.0 peer used for sending and receiving messages.
   late final Peer _peer;
+
+  /// Monotonic counter for outgoing JSON-RPC request IDs.
+  var _outgoingIdCounter = 0;
+
+  /// ID assigned to the most recently generated outgoing request.
+  ///
+  /// [Peer] calls [_generateOutgoingId] synchronously inside `sendRequest`
+  /// before it returns, so [sendRequest] can read this immediately afterwards
+  /// to learn the request's wire ID and cancel it via `$/cancelRequest`.
+  late Object _lastOutgoingId;
+
+  /// ID generator passed to [Peer.withoutJson]; records [_lastOutgoingId].
+  Object _generateOutgoingId() => _lastOutgoingId = _outgoingIdCounter++;
 
   /// The set of LSP methods that have a registered handler.
   Set<LSPMethod> get registeredMethods =>
@@ -493,17 +507,82 @@ final class LspConnection {
   void sendNotification(NotificationMethod method, [Object? params]) =>
       _peer.sendNotification(method.value, params);
 
-  /// Sends a request to the client and returns the decoded response value.
-  Future<dynamic> sendRequest(RequestMethod method, [Object? params]) =>
-      _peer.sendRequest(method.value, params);
+  /// Sends a request to the other side and returns the decoded response value.
+  ///
+  /// Pass [token] to make the request cancelable: when the token fires, a
+  /// `$/cancelRequest` notification is sent with the request's wire ID, and the
+  /// returned future completes with [LspException.requestCancelled] once the
+  /// peer acknowledges the cancellation.
+  ///
+  /// Pass [timeout] to abort automatically after a duration; this also sends
+  /// `$/cancelRequest` and throws [LspException.requestCancelled].
+  ///
+  /// Error responses from the peer surface as [LspException] (carrying the
+  /// JSON-RPC `code`, `message`, and `data`), never as the underlying
+  /// `RpcException` from the transport.
+  Future<Object?> sendRequest(
+    RequestMethod method,
+    Object? params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final responseFuture = _peer.sendRequest(method.value, params);
+    // _generateOutgoingId ran synchronously inside sendRequest above, so this
+    // is exactly this request's wire ID.
+    final id = _lastOutgoingId;
+
+    StreamSubscription<void>? cancelSub;
+    if (token != null) {
+      if (token.isCancelled) {
+        _sendCancel(id);
+      } else {
+        cancelSub = token.onCancelled.listen((_) => _sendCancel(id));
+      }
+    }
+
+    try {
+      if (timeout == null) {
+        return await responseFuture;
+      }
+      return await responseFuture.timeout(
+        timeout,
+        onTimeout: () {
+          _sendCancel(id);
+          throw LspException.requestCancelled(
+            'Request ${method.value} timed out after $timeout',
+          );
+        },
+      );
+    } on RpcException catch (e) {
+      throw LspException(e.code, e.message, e.data);
+    } finally {
+      await cancelSub?.cancel();
+    }
+  }
+
+  /// Sends a `$/cancelRequest` notification for the outgoing request [id].
+  ///
+  /// No-op once the connection is closed.
+  void _sendCancel(Object id) {
+    if (_closed) {
+      return;
+    }
+    _peer.sendNotification(NotificationMethod.cancelRequest.value, {
+      'id': id,
+    });
+  }
 
   // Lifecycle
+
+  /// Whether [close] has been called.
+  var _closed = false;
 
   /// Starts processing incoming messages.  Returns when the channel closes.
   Future<void> listen() => _peer.listen();
 
   /// Closes the underlying channel and stops processing.
   Future<void> close() {
+    _closed = true;
     _requestIds.clear();
     _activeCancellations.clear();
     _notificationHandlers.clear();
