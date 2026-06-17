@@ -130,6 +130,7 @@ abstract class ApiGenerator {
           .import('dart:async'),
           .import('../../connection/lsp_connection.dart'),
           .import('../../connection/lsp_exception.dart'),
+          .import('../../server/cancellation_token.dart'),
           .import('../../server/lsp_request.dart'),
           .import('../models/structures.dart'),
           .import('../models/unions.dart'),
@@ -419,7 +420,7 @@ abstract class ApiGenerator {
       final castExpr = refer('raw')
           .asA(refer('List'))
           .property('cast')
-          .call([], {}, [_jsonMapRef()])
+          .call([], {}, [jsonMapRef])
           .property('map')
           .call([refer(innerType).property('fromJson')])
           .property('toList')
@@ -467,12 +468,6 @@ abstract class ApiGenerator {
     ];
   }
 
-  static TypeReference _jsonMapRef() => TypeReference(
-    (b) => b
-      ..symbol = 'Map'
-      ..types.addAll([refer('String'), refer('dynamic')]),
-  );
-
   /// Generates an assignment expression for parsing parameters from JSON.
   ///
   /// Uses the `parseParams` helper with the given type's `fromJson` factory.
@@ -500,19 +495,20 @@ abstract class ApiGenerator {
 
   /// Builds the handler class name for a given namespace.
   ///
-  /// The `general` and `$` namespaces both map to `GeneralHandlers`.
+  /// `$/` methods never reach here as a `$` namespace (they resolve to
+  /// `general`), so no special-casing is needed.
   static String handlerClassName(String namespace) =>
-      '${capitalize(namespace == 'general' ? 'general' : namespace)}Handlers';
+      '${capitalize(namespace)}Handlers';
 
   /// Builds the sender class name for a given namespace.
   ///
   /// The `$` and `general` namespaces both map to `GeneralSender`.
-  static String senderClassName(String namespace) =>
-      '${capitalize(namespace == r'$'
-          ? 'general'
-          : namespace == 'general'
-          ? 'general'
-          : namespace)}Sender';
+  static String senderClassName(String namespace) {
+    final ns = namespace == r'$' || namespace == 'general'
+        ? 'general'
+        : namespace;
+    return '${capitalize(ns)}Sender';
+  }
 
   // AST Generation Methods
 
@@ -781,14 +777,21 @@ abstract class ApiGenerator {
               ..types.add(refer(resultType)),
           );
 
-    final sendCallExpr = hasParams
-        ? refer('_c').property('sendRequest').call([
+    final sendCallExpr = refer('_c')
+        .property('sendRequest')
+        .call(
+          [
             methodRef('RequestMethod', wireMethod),
-            refer('params').property('toJson').call([]),
-          ])
-        : refer('_c').property('sendRequest').call([
-            methodRef('RequestMethod', wireMethod),
-          ]);
+            if (hasParams)
+              refer('params').property('toJson').call([])
+            else
+              literalNull,
+          ],
+          {
+            'token': refer('token'),
+            'timeout': refer('timeout'),
+          },
+        );
 
     final bodyStatements = <Code>[
       if (isVoidResult)
@@ -807,9 +810,13 @@ abstract class ApiGenerator {
         ..name = dartName
         ..modifier = .async
         ..returns = returnRef
-        ..docs.add(
+        ..docs.addAll([
           '/// Sends the `$wireMethod` request to the ${otherSide.toLowerCase()}.',
-        )
+          '///',
+          r'/// Pass [token] to cancel the request (sends `$/cancelRequest`) or',
+          '/// [timeout] to abort it automatically. Peer error responses are',
+          '/// thrown as [LspException].',
+        ])
         ..requiredParameters.addAll([
           if (hasParams)
             .new(
@@ -817,6 +824,20 @@ abstract class ApiGenerator {
                 ..name = 'params'
                 ..type = refer(paramsType),
             ),
+        ])
+        ..optionalParameters.addAll([
+          .new(
+            (b) => b
+              ..name = 'token'
+              ..named = true
+              ..type = refer('CancellationToken?'),
+          ),
+          .new(
+            (b) => b
+              ..name = 'timeout'
+              ..named = true
+              ..type = refer('Duration?'),
+          ),
         ])
         ..body = Block.of(bodyStatements),
     );
@@ -849,11 +870,7 @@ abstract class ApiGenerator {
         ..methods.addAll(
           namespaces.map(
             (ns) {
-              final propName = ns == r'$'
-                  ? 'protocol'
-                  : ns == 'general'
-                  ? 'general'
-                  : ns;
+              final propName = ns == r'$' ? 'protocol' : ns;
               final senderClass = '$side${ApiGenerator.senderClassName(ns)}';
 
               return .new(

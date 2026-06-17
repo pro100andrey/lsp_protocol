@@ -2,11 +2,19 @@ import 'dart:async';
 
 import 'package:pro_lsp/pro_lsp.dart';
 
-/// Manages and caches configuration settings retrieved from the client.
-final class LspConfigurationManager extends LspFeature {
-  LspConfigurationManager([this._server]);
+import 'feature_base.dart';
 
-  LspServer? _server;
+/// Manages and caches configuration settings retrieved from the client.
+final class LspConfigurationManager extends ServerBoundFeature {
+  /// Creates a configuration manager.
+  ///
+  /// [now] supplies the current time used for failure cooldowns; override it in
+  /// tests to make the cooldown window deterministic. Defaults to
+  /// [DateTime.now].
+  LspConfigurationManager({DateTime Function()? now})
+    : _now = now ?? DateTime.now;
+
+  final DateTime Function() _now;
 
   var _cacheEpoch = 0;
   void Function()? _registration;
@@ -15,12 +23,16 @@ final class LspConfigurationManager extends LspFeature {
   final _failedCooldowns = <String, DateTime>{};
   final _inFlight = <String, Future<Object?>>{};
 
+  /// How long to wait before retrying a section whose fetch failed.
+  // ignore: omit_obvious_property_types
+  Duration failureCooldown = const Duration(seconds: 5);
+
   /// A stream that fires whenever the client's configuration changes.
   Stream<void> get onChange => _changeListeners.stream;
 
   @override
   void register(LspServer server) {
-    _server = server;
+    super.register(server);
 
     if (_registration != null) {
       return;
@@ -45,13 +57,6 @@ final class LspConfigurationManager extends LspFeature {
   ///
   /// Specify the return type [T] expected for the section.
   Future<T?> getSection<T>(String section, {String? scopeUri}) async {
-    final server = _server;
-    if (server == null) {
-      throw StateError(
-        'LspConfigurationManager is not registered on any server.',
-      );
-    }
-
     final cacheKey = scopeUri != null ? '$scopeUri#$section' : section;
 
     if (_cache.containsKey(cacheKey)) {
@@ -59,7 +64,7 @@ final class LspConfigurationManager extends LspFeature {
     }
 
     // Check if request for this section is on cooldown due to a recent failure
-    final now = DateTime.now();
+    final now = _now();
     final cooldown = _failedCooldowns[cacheKey];
     if (cooldown != null && now.isBefore(cooldown)) {
       return null;
@@ -76,13 +81,7 @@ final class LspConfigurationManager extends LspFeature {
     }
 
     final startEpoch = _cacheEpoch;
-    final future = _fetchSection(
-      server,
-      section,
-      scopeUri,
-      startEpoch,
-      cacheKey,
-    );
+    final future = _fetchSection(section, scopeUri, startEpoch, cacheKey);
 
     _inFlight[cacheKey] = future;
 
@@ -98,7 +97,6 @@ final class LspConfigurationManager extends LspFeature {
   }
 
   Future<Object?> _fetchSection(
-    LspServer server,
     String section,
     String? scopeUri,
     int startEpoch,
@@ -118,8 +116,8 @@ final class LspConfigurationManager extends LspFeature {
         return val;
       }
     } on Object catch (_) {
-      // Apply a cooldown of 5 seconds before allowing a retry for this section
-      _failedCooldowns[cacheKey] = .now().add(const .new(seconds: 5));
+      // Apply a cooldown before allowing a retry for this section.
+      _failedCooldowns[cacheKey] = _now().add(failureCooldown);
 
       rethrow;
     }
@@ -133,5 +131,6 @@ final class LspConfigurationManager extends LspFeature {
     _registration = null;
     _inFlight.clear();
     await _changeListeners.close();
+    await super.dispose();
   }
 }

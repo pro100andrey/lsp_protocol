@@ -30,7 +30,7 @@ int? _parseSocketPort(List<String> args) {
   if (idx == -1 || idx + 1 >= args.length) {
     return null;
   }
-  
+
   return .tryParse(args[idx + 1]);
 }
 

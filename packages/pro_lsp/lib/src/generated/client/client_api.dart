@@ -4,6 +4,7 @@ import 'dart:async';
 
 import '../../connection/lsp_connection.dart';
 import '../../connection/lsp_exception.dart';
+import '../../server/cancellation_token.dart';
 import '../../server/lsp_request.dart';
 import '../models/structures.dart';
 import '../models/unions.dart';
@@ -277,26 +278,59 @@ extension type ClientGeneralHandlers(LspConnection _c) {
 /// Sends LSP messages to the server for the `textDocument` namespace.
 extension type ClientTextDocumentSender(LspConnection _c) {
   /// Sends the `textDocument/implementation` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<ImplementationResult> implementation(
-    ImplementationParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.implementation, params.toJson());
+    ImplementationParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .implementation,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return ImplementationResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/typeDefinition` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<TypeDefinitionResult> typeDefinition(
-    TypeDefinitionParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.typeDefinition, params.toJson());
+    TypeDefinitionParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .typeDefinition,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return TypeDefinitionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/documentColor` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<ColorInformation>> documentColor(
-    DocumentColorParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.documentColor, params.toJson());
+    DocumentColorParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .documentColor,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return (raw as List)
         .cast<Map<String, dynamic>>()
         .map(ColorInformation.fromJson)
@@ -304,12 +338,20 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/colorPresentation` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<ColorPresentation>> colorPresentation(
-    ColorPresentationParams params,
-  ) async {
+    ColorPresentationParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .colorPresentation,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return (raw as List)
         .cast<Map<String, dynamic>>()
@@ -318,8 +360,21 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/foldingRange` request to the server.
-  Future<List<FoldingRange>?> foldingRange(FoldingRangeParams params) async {
-    final dynamic raw = await _c.sendRequest(.foldingRange, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<FoldingRange>?> foldingRange(
+    FoldingRangeParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .foldingRange,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -329,16 +384,40 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/declaration` request to the server.
-  Future<DeclarationResult> declaration(DeclarationParams params) async {
-    final dynamic raw = await _c.sendRequest(.declaration, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<DeclarationResult> declaration(
+    DeclarationParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .declaration,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return DeclarationResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/selectionRange` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<SelectionRange>?> selectionRange(
-    SelectionRangeParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.selectionRange, params.toJson());
+    SelectionRangeParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .selectionRange,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -348,12 +427,20 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/prepareCallHierarchy` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<CallHierarchyItem>?> prepareCallHierarchy(
-    CallHierarchyPrepareParams params,
-  ) async {
+    CallHierarchyPrepareParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .prepareCallHierarchy,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return raw == null
         ? null
@@ -364,40 +451,81 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/semanticTokens/full` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<SemanticTokens?> semanticTokensFull(
-    SemanticTokensParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.full, params.toJson());
+    SemanticTokensParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .full,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : SemanticTokens.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `textDocument/semanticTokens/full/delta` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<SemanticTokensFullDeltaResult> semanticTokensFullDelta(
-    SemanticTokensDeltaParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.delta, params.toJson());
+    SemanticTokensDeltaParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .delta,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return SemanticTokensFullDeltaResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/semanticTokens/range` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<SemanticTokens?> semanticTokensRange(
-    SemanticTokensRangeParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.range, params.toJson());
+    SemanticTokensRangeParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .range,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : SemanticTokens.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `textDocument/linkedEditingRange` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<LinkedEditingRanges?> linkedEditingRange(
-    LinkedEditingRangeParams params,
-  ) async {
+    LinkedEditingRangeParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .linkedEditingRange,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return raw == null
         ? null
@@ -405,8 +533,21 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/moniker` request to the server.
-  Future<List<Moniker>?> moniker(MonikerParams params) async {
-    final dynamic raw = await _c.sendRequest(.moniker, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<Moniker>?> moniker(
+    MonikerParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .moniker,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -416,12 +557,20 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/prepareTypeHierarchy` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<TypeHierarchyItem>?> prepareTypeHierarchy(
-    TypeHierarchyPrepareParams params,
-  ) async {
+    TypeHierarchyPrepareParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .prepareTypeHierarchy,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return raw == null
         ? null
@@ -432,16 +581,42 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/inlineValue` request to the server.
-  Future<List<InlineValue>?> inlineValue(InlineValueParams params) async {
-    final dynamic raw = await _c.sendRequest(.inlineValue, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<InlineValue>?> inlineValue(
+    InlineValueParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .inlineValue,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List).map((e) => InlineValue.fromJson(e as Object)).toList();
   }
 
   /// Sends the `textDocument/inlayHint` request to the server.
-  Future<List<InlayHint>?> inlayHint(InlayHintParams params) async {
-    final dynamic raw = await _c.sendRequest(.inlayHint, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<InlayHint>?> inlayHint(
+    InlayHintParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .inlayHint,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -451,34 +626,58 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/diagnostic` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<DocumentDiagnosticReport> diagnostic(
-    DocumentDiagnosticParams params,
-  ) async {
+    DocumentDiagnosticParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .textDocumentDiagnostic,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return DocumentDiagnosticReport.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/inlineCompletion` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<InlineCompletionResult> inlineCompletion(
-    InlineCompletionParams params,
-  ) async {
+    InlineCompletionParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .inlineCompletion,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return InlineCompletionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/willSaveWaitUntil` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<TextEdit>?> willSaveWaitUntil(
-    WillSaveTextDocumentParams params,
-  ) async {
+    WillSaveTextDocumentParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .willSaveWaitUntil,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return raw == null
         ? null
@@ -489,34 +688,99 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/completion` request to the server.
-  Future<CompletionResult> completion(CompletionParams params) async {
-    final dynamic raw = await _c.sendRequest(.completion, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<CompletionResult> completion(
+    CompletionParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .completion,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return CompletionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/hover` request to the server.
-  Future<Hover?> hover(HoverParams params) async {
-    final dynamic raw = await _c.sendRequest(.hover, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<Hover?> hover(
+    HoverParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .hover,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null ? null : Hover.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `textDocument/signatureHelp` request to the server.
-  Future<SignatureHelp?> signatureHelp(SignatureHelpParams params) async {
-    final dynamic raw = await _c.sendRequest(.signatureHelp, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<SignatureHelp?> signatureHelp(
+    SignatureHelpParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .signatureHelp,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : SignatureHelp.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `textDocument/definition` request to the server.
-  Future<DefinitionResult> definition(DefinitionParams params) async {
-    final dynamic raw = await _c.sendRequest(.definition, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<DefinitionResult> definition(
+    DefinitionParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .definition,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return DefinitionResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/references` request to the server.
-  Future<List<Location>?> references(ReferenceParams params) async {
-    final dynamic raw = await _c.sendRequest(.references, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<Location>?> references(
+    ReferenceParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .references,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -526,12 +790,20 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/documentHighlight` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<DocumentHighlight>?> documentHighlight(
-    DocumentHighlightParams params,
-  ) async {
+    DocumentHighlightParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .documentHighlight,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return raw == null
         ? null
@@ -542,22 +814,59 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/documentSymbol` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<DocumentSymbolResult> documentSymbol(
-    DocumentSymbolParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.documentSymbol, params.toJson());
+    DocumentSymbolParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .documentSymbol,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return DocumentSymbolResult.fromJson(raw as Object);
   }
 
   /// Sends the `textDocument/codeAction` request to the server.
-  Future<List<Object>?> codeAction(CodeActionParams params) async {
-    final dynamic raw = await _c.sendRequest(.codeAction, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<Object>?> codeAction(
+    CodeActionParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .codeAction,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null ? null : (raw as List).cast<Object>().toList();
   }
 
   /// Sends the `textDocument/codeLens` request to the server.
-  Future<List<CodeLens>?> codeLens(CodeLensParams params) async {
-    final dynamic raw = await _c.sendRequest(.codeLens, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<CodeLens>?> codeLens(
+    CodeLensParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .codeLens,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -567,8 +876,21 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/documentLink` request to the server.
-  Future<List<DocumentLink>?> documentLink(DocumentLinkParams params) async {
-    final dynamic raw = await _c.sendRequest(.documentLink, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<DocumentLink>?> documentLink(
+    DocumentLinkParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .documentLink,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -578,8 +900,21 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/formatting` request to the server.
-  Future<List<TextEdit>?> formatting(DocumentFormattingParams params) async {
-    final dynamic raw = await _c.sendRequest(.formatting, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<List<TextEdit>?> formatting(
+    DocumentFormattingParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .formatting,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -589,10 +924,21 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/rangeFormatting` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<TextEdit>?> rangeFormatting(
-    DocumentRangeFormattingParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.rangeFormatting, params.toJson());
+    DocumentRangeFormattingParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .rangeFormatting,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -602,12 +948,20 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/rangesFormatting` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<TextEdit>?> rangesFormatting(
-    DocumentRangesFormattingParams params,
-  ) async {
+    DocumentRangesFormattingParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .rangesFormatting,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return raw == null
         ? null
@@ -618,12 +972,20 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/onTypeFormatting` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<TextEdit>?> onTypeFormatting(
-    DocumentOnTypeFormattingParams params,
-  ) async {
+    DocumentOnTypeFormattingParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .onTypeFormatting,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return raw == null
         ? null
@@ -634,16 +996,42 @@ extension type ClientTextDocumentSender(LspConnection _c) {
   }
 
   /// Sends the `textDocument/rename` request to the server.
-  Future<WorkspaceEdit?> rename(RenameParams params) async {
-    final dynamic raw = await _c.sendRequest(.rename, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<WorkspaceEdit?> rename(
+    RenameParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .rename,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : WorkspaceEdit.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `textDocument/prepareRename` request to the server.
-  Future<PrepareRenameResult?> prepareRename(PrepareRenameParams params) async {
-    final dynamic raw = await _c.sendRequest(.prepareRename, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<PrepareRenameResult?> prepareRename(
+    PrepareRenameParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .prepareRename,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null ? null : PrepareRenameResult.fromJson(raw as Object);
   }
 
@@ -671,10 +1059,21 @@ extension type ClientTextDocumentSender(LspConnection _c) {
 /// Sends LSP messages to the server for the `callHierarchy` namespace.
 extension type ClientCallHierarchySender(LspConnection _c) {
   /// Sends the `callHierarchy/incomingCalls` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<CallHierarchyIncomingCall>?> incomingCalls(
-    CallHierarchyIncomingCallsParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.incomingCalls, params.toJson());
+    CallHierarchyIncomingCallsParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .incomingCalls,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -684,10 +1083,21 @@ extension type ClientCallHierarchySender(LspConnection _c) {
   }
 
   /// Sends the `callHierarchy/outgoingCalls` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<CallHierarchyOutgoingCall>?> outgoingCalls(
-    CallHierarchyOutgoingCallsParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.outgoingCalls, params.toJson());
+    CallHierarchyOutgoingCallsParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .outgoingCalls,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -700,49 +1110,122 @@ extension type ClientCallHierarchySender(LspConnection _c) {
 /// Sends LSP messages to the server for the `workspace` namespace.
 extension type ClientWorkspaceSender(LspConnection _c) {
   /// Sends the `workspace/willCreateFiles` request to the server.
-  Future<WorkspaceEdit?> willCreateFiles(CreateFilesParams params) async {
-    final dynamic raw = await _c.sendRequest(.willCreateFiles, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<WorkspaceEdit?> willCreateFiles(
+    CreateFilesParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .willCreateFiles,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : WorkspaceEdit.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `workspace/willRenameFiles` request to the server.
-  Future<WorkspaceEdit?> willRenameFiles(RenameFilesParams params) async {
-    final dynamic raw = await _c.sendRequest(.willRenameFiles, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<WorkspaceEdit?> willRenameFiles(
+    RenameFilesParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .willRenameFiles,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : WorkspaceEdit.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `workspace/willDeleteFiles` request to the server.
-  Future<WorkspaceEdit?> willDeleteFiles(DeleteFilesParams params) async {
-    final dynamic raw = await _c.sendRequest(.willDeleteFiles, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<WorkspaceEdit?> willDeleteFiles(
+    DeleteFilesParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .willDeleteFiles,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : WorkspaceEdit.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `workspace/diagnostic` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<WorkspaceDiagnosticReport> diagnostic(
-    WorkspaceDiagnosticParams params,
-  ) async {
+    WorkspaceDiagnosticParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .workspaceDiagnostic,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return WorkspaceDiagnosticReport.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `workspace/symbol` request to the server.
-  Future<SymbolResult> symbol(WorkspaceSymbolParams params) async {
-    final dynamic raw = await _c.sendRequest(.symbol, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<SymbolResult> symbol(
+    WorkspaceSymbolParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .symbol,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return SymbolResult.fromJson(raw as Object);
   }
 
   /// Sends the `workspace/executeCommand` request to the server.
-  Future<LSPAny?> executeCommand(ExecuteCommandParams params) async {
-    final dynamic raw = await _c.sendRequest(.executeCommand, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<LSPAny?> executeCommand(
+    ExecuteCommandParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .executeCommand,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null ? null : LSPAny.fromJson(raw as Object);
   }
 
@@ -774,10 +1257,21 @@ extension type ClientWorkspaceSender(LspConnection _c) {
 /// Sends LSP messages to the server for the `typeHierarchy` namespace.
 extension type ClientTypeHierarchySender(LspConnection _c) {
   /// Sends the `typeHierarchy/supertypes` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<TypeHierarchyItem>?> supertypes(
-    TypeHierarchySupertypesParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.supertypes, params.toJson());
+    TypeHierarchySupertypesParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .supertypes,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -787,10 +1281,21 @@ extension type ClientTypeHierarchySender(LspConnection _c) {
   }
 
   /// Sends the `typeHierarchy/subtypes` request to the server.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
   Future<List<TypeHierarchyItem>?> subtypes(
-    TypeHierarchySubtypesParams params,
-  ) async {
-    final dynamic raw = await _c.sendRequest(.subtypes, params.toJson());
+    TypeHierarchySubtypesParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .subtypes,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return raw == null
         ? null
         : (raw as List)
@@ -803,10 +1308,20 @@ extension type ClientTypeHierarchySender(LspConnection _c) {
 /// Sends LSP messages to the server for the `inlayHint` namespace.
 extension type ClientInlayHintSender(LspConnection _c) {
   /// Sends the `inlayHint/resolve` request to the server.
-  Future<InlayHint> resolve(InlayHint params) async {
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<InlayHint> resolve(
+    InlayHint params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .inlayHintResolve,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return InlayHint.fromJson(raw as Map<String, dynamic>);
   }
@@ -815,14 +1330,31 @@ extension type ClientInlayHintSender(LspConnection _c) {
 /// Sends LSP messages to the server for the `general` namespace.
 extension type ClientGeneralSender(LspConnection _c) {
   /// Sends the `initialize` request to the server.
-  Future<InitializeResult> initialize(InitializeParams params) async {
-    final dynamic raw = await _c.sendRequest(.initialize, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<InitializeResult> initialize(
+    InitializeParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .initialize,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return InitializeResult.fromJson(raw as Map<String, dynamic>);
   }
 
   /// Sends the `shutdown` request to the server.
-  Future<void> shutdown() async {
-    await _c.sendRequest(.shutdown);
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<void> shutdown({CancellationToken? token, Duration? timeout}) async {
+    await _c.sendRequest(.shutdown, null, token: token, timeout: timeout);
   }
 
   /// Sends the `initialized` notification to the server.
@@ -848,10 +1380,20 @@ extension type ClientGeneralSender(LspConnection _c) {
 /// Sends LSP messages to the server for the `completionItem` namespace.
 extension type ClientCompletionItemSender(LspConnection _c) {
   /// Sends the `completionItem/resolve` request to the server.
-  Future<CompletionItem> resolve(CompletionItem params) async {
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<CompletionItem> resolve(
+    CompletionItem params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .completionItemResolve,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return CompletionItem.fromJson(raw as Map<String, dynamic>);
   }
@@ -860,10 +1402,20 @@ extension type ClientCompletionItemSender(LspConnection _c) {
 /// Sends LSP messages to the server for the `codeAction` namespace.
 extension type ClientCodeActionSender(LspConnection _c) {
   /// Sends the `codeAction/resolve` request to the server.
-  Future<CodeAction> resolve(CodeAction params) async {
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<CodeAction> resolve(
+    CodeAction params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .codeActionResolve,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return CodeAction.fromJson(raw as Map<String, dynamic>);
   }
@@ -872,10 +1424,20 @@ extension type ClientCodeActionSender(LspConnection _c) {
 /// Sends LSP messages to the server for the `workspaceSymbol` namespace.
 extension type ClientWorkspaceSymbolSender(LspConnection _c) {
   /// Sends the `workspaceSymbol/resolve` request to the server.
-  Future<WorkspaceSymbol> resolve(WorkspaceSymbol params) async {
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<WorkspaceSymbol> resolve(
+    WorkspaceSymbol params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .workspaceSymbolResolve,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return WorkspaceSymbol.fromJson(raw as Map<String, dynamic>);
   }
@@ -884,8 +1446,21 @@ extension type ClientWorkspaceSymbolSender(LspConnection _c) {
 /// Sends LSP messages to the server for the `codeLens` namespace.
 extension type ClientCodeLensSender(LspConnection _c) {
   /// Sends the `codeLens/resolve` request to the server.
-  Future<CodeLens> resolve(CodeLens params) async {
-    final dynamic raw = await _c.sendRequest(.codeLensResolve, params.toJson());
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<CodeLens> resolve(
+    CodeLens params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    final dynamic raw = await _c.sendRequest(
+      .codeLensResolve,
+      params.toJson(),
+      token: token,
+      timeout: timeout,
+    );
     return CodeLens.fromJson(raw as Map<String, dynamic>);
   }
 }
@@ -893,10 +1468,20 @@ extension type ClientCodeLensSender(LspConnection _c) {
 /// Sends LSP messages to the server for the `documentLink` namespace.
 extension type ClientDocumentLinkSender(LspConnection _c) {
   /// Sends the `documentLink/resolve` request to the server.
-  Future<DocumentLink> resolve(DocumentLink params) async {
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<DocumentLink> resolve(
+    DocumentLink params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
     final dynamic raw = await _c.sendRequest(
       .documentLinkResolve,
       params.toJson(),
+      token: token,
+      timeout: timeout,
     );
     return DocumentLink.fromJson(raw as Map<String, dynamic>);
   }

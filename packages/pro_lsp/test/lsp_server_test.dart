@@ -55,6 +55,23 @@ class _ThrowingRegisterFeature extends LspFeature {
   }
 }
 
+/// Uses the inherited no-op [LspFeature.dispose].
+class _DefaultDisposeFeature extends LspFeature {
+  var _registered = false;
+
+  @override
+  void register(LspServer server) {
+    _registered = true;
+  }
+}
+
+final class _Dep {
+  _Dep(this.value);
+  final String value;
+}
+
+final class _Absent {}
+
 void main() {
   group('LspServer Feature Lifecycle', () {
     test(
@@ -160,6 +177,63 @@ void main() {
     });
   });
 
+  group('LspServer lifecycle defaults', () {
+    LspServer makeServer(StreamChannel<List<int>> channel) =>
+        LspServer.fromChannel(channel)
+          ..general.onInitialize(
+            (p, c) async =>
+                const InitializeResult(capabilities: ServerCapabilities()),
+          );
+
+    test('responds to shutdown by default (no methodNotFound)', () async {
+      final controller = StreamChannelController<List<int>>();
+      final server = makeServer(controller.local);
+      final client = LspClient.fromChannel(controller.foreign);
+
+      unawaited(server.listen());
+      await client.start(capabilities: const ClientCapabilities());
+
+      await expectLater(client.server.general.shutdown(), completes);
+
+      client.server.general.exit();
+      await client.close();
+    });
+
+    test('exit closes the server by default', () async {
+      final controller = StreamChannelController<List<int>>();
+      final server = makeServer(controller.local);
+      final client = LspClient.fromChannel(controller.foreign);
+
+      final listenDone = server.listen();
+      await client.start(capabilities: const ClientCapabilities());
+
+      client.server.general.exit();
+
+      // The default exit handler closes the connection, so listen() returns.
+      await listenDone.timeout(const Duration(seconds: 2));
+      await client.close();
+    });
+
+    test('a user-registered onShutdown overrides the default', () async {
+      final controller = StreamChannelController<List<int>>();
+      var called = false;
+      final server = makeServer(controller.local)
+        ..general.onShutdown((c) async {
+          called = true;
+        });
+      final client = LspClient.fromChannel(controller.foreign);
+
+      unawaited(server.listen());
+      await client.start(capabilities: const ClientCapabilities());
+
+      await client.server.general.shutdown();
+      expect(called, isTrue);
+
+      client.server.general.exit();
+      await client.close();
+    });
+  });
+
   group('LspClient Double Listen', () {
     test('LspClient listen() or start() twice throws StateError', () async {
       final controller = StreamChannelController<List<int>>();
@@ -172,5 +246,50 @@ void main() {
 
       await client.close();
     });
+  });
+
+  group('LspServer accessors', () {
+    LspServer makeServer() =>
+        LspServer.fromChannel(StreamChannelController<List<int>>().local);
+
+    test('connection getter exposes the underlying LspConnection', () {
+      expect(makeServer().connection, isA<LspConnection>());
+    });
+
+    test('register / resolve / tryResolve delegate to the connection', () {
+      final server = makeServer()..register(_Dep('v'));
+      expect(server.resolve<_Dep>().value, 'v');
+      expect(server.tryResolve<_Dep>(), isNotNull);
+      expect(server.tryResolve<_Absent>(), isNull);
+      expect(server.resolve<_Absent>, throwsStateError);
+    });
+
+    test('onError getter returns the configured callback', () {
+      final server = makeServer();
+      void handler(Object error, StackTrace stack) {}
+      server.onError = handler;
+      expect(server.onError, same(handler));
+    });
+
+    test('state getter reflects the connection state', () {
+      expect(makeServer().state, LspState.uninitialized);
+    });
+  });
+
+  group('LspServer feature with default dispose', () {
+    test(
+      'a feature using the inherited no-op dispose closes cleanly',
+      () async {
+        final server = LspServer.fromChannel(
+          StreamChannelController<List<int>>().local,
+        );
+        final feature = _DefaultDisposeFeature();
+        server.registerFeature(feature);
+        expect(feature._registered, isTrue);
+
+        // close() invokes the inherited no-op dispose without error.
+        await expectLater(server.close(), completes);
+      },
+    );
   });
 }

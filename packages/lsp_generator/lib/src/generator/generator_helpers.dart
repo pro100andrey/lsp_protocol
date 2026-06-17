@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:meta/meta.dart';
@@ -97,7 +99,14 @@ String formatLibrary(Library lib) {
 String emitLibrary(Library lib) {
   try {
     return formatLibrary(lib);
-  } on Object catch (_) {
+  } on Object catch (e) {
+    // Formatting usually only fails when the emitted source has a syntax the
+    // formatter rejects — exactly the case worth knowing about. Still emit the
+    // unformatted output so it can be inspected, but don't hide the failure.
+    stderr.writeln(
+      'warning: dart_style failed to format a generated library; emitting '
+      'unformatted output. Cause: $e',
+    );
     final emitter = DartEmitter.scoped(
       orderDirectives: true,
       useNullSafetySyntax: true,
@@ -106,17 +115,62 @@ String emitLibrary(Library lib) {
   }
 }
 
-/// Set of Dart reserved keywords that should be avoided as identifiers.
+/// Set of names that must not be used as bare identifiers in generated code.
+///
+/// Contains every Dart *reserved word* — these are compile errors in any
+/// identifier position, so an LSP member or property with such a name must be
+/// escaped (e.g. `in`, `is`, `default`, `void`).
+///
+/// It also retains the built-in identifiers that occur as real LSP enum values
+/// (`static`, `abstract`, `async`, `interface`, `operator` — used by
+/// `SemanticTokenTypes`/`SemanticTokenModifiers`) and the `value`/`macro`
+/// names that collide with freezed / json_serializable generation. These are
+/// kept for API stability with the already-published generated output, even
+/// though they are technically legal as member names.
 const reservedDartKeywords = {
+  // Dart reserved words — illegal as identifiers anywhere.
+  'assert',
+  'break',
+  'case',
+  'catch',
   'class',
+  'const',
+  'continue',
+  'default',
+  'do',
+  'else',
   'enum',
+  'extends',
+  'false',
+  'final',
+  'finally',
+  'for',
+  'if',
+  'in',
+  'is',
+  'new',
   'null',
-  'value',
+  'rethrow',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'var',
+  'void',
+  'while',
+  'with',
+  // Built-in identifiers that appear as LSP enum values — escaped historically;
+  // kept for stability with the published generated output.
   'static',
   'abstract',
   'async',
   'interface',
   'operator',
+  // Project-specific collisions with freezed / json_serializable generation.
+  'value',
   'macro',
 };
 
@@ -200,6 +254,16 @@ String toLowerCamelCase(String name) =>
 /// Capitalizes the first character of [s] (e.g. `'myName'` → `'MyName'`).
 String capitalize(String s) =>
     s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
+
+/// Orders [items] so that required ones (per [isRequired]) come first,
+/// followed by the rest, each group preserving its original relative order.
+///
+/// Mirrors the LSP convention of emitting required constructor parameters
+/// before optional ones.
+List<T> sortByRequired<T>(Iterable<T> items, bool Function(T) isRequired) => [
+  ...items.where(isRequired),
+  ...items.where((e) => !isRequired(e)),
+];
 
 /// Returns true if [result] represents a union type with multiple non-null
 /// items, indicating a synthesized union result for a request.

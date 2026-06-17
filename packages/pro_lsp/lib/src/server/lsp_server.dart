@@ -1,13 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:stream_channel/stream_channel.dart';
 
-import '../connection/lsp_connection.dart';
+import '../connection/lsp_endpoint.dart';
+import '../generated/models/methods.dart';
 import '../generated/server/server_api.dart';
 import '../transport/lsp_byte_stream_channel.dart';
 import 'lsp_feature.dart';
-import 'lsp_state.dart';
-import 'middleware.dart';
 
 export '../generated/server/server_api.dart';
 export 'cancellation_token.dart';
@@ -100,7 +100,7 @@ export 'middleware.dart';
 /// ```dart
 /// server.registerFeature(MyCustomFeature());
 /// ```
-final class LspServer {
+final class LspServer extends LspEndpoint {
   /// Creates a server using stdin/stdout as the byte transport.
   LspServer() : this._(LspByteStreamChannel.fromStdio());
 
@@ -108,80 +108,67 @@ final class LspServer {
   LspServer.fromChannel(StreamChannel<List<int>> channel)
     : this._(LspByteStreamChannel.fromByteChannel(channel));
 
-  LspServer._(LspByteStreamChannelResult result)
-    : _connection = LspConnection(result.channel),
-      _cleanup = result.cleanup;
+  LspServer._(super.result);
 
-  final LspConnection _connection;
-  final FutureOr<void> Function()? _cleanup;
   var _isListening = false;
-
-  /// Access to the underlying low-level [LspConnection].
-  ///
-  /// Provides direct access to the connection's service container,
-  /// middleware list, and methods for sending outgoing messages.
-  ///
-  /// Prefer using the namespace handlers ([general], [textDocument], etc.)
-  /// for typed access to LSP methods.
-  LspConnection get connection => _connection;
 
   // Incoming handler namespaces
 
   /// Handlers for protocol-level methods: `initialize`, `shutdown`,
   /// `initialized`, `exit`, and `$/`.
-  late final general = ServerGeneralHandlers(_connection);
+  late final general = ServerGeneralHandlers(connection);
 
   /// Handlers for `textDocument/*` requests and notifications.
   ///
   /// The largest namespace, covering most LSP functionality including
   /// completion, hover, diagnostics, formatting, references, definitions,
   /// signatures, and more.
-  late final textDocument = ServerTextDocumentHandlers(_connection);
+  late final textDocument = ServerTextDocumentHandlers(connection);
 
   /// Handlers for `workspace/*` requests and notifications.
   ///
   /// Covers workspace-wide operations such as symbol search, execution,
   /// configuration changes, folding ranges, and code actions.
-  late final workspace = ServerWorkspaceHandlers(_connection);
+  late final workspace = ServerWorkspaceHandlers(connection);
 
   /// Handlers for `callHierarchy/*` requests.
-  late final callHierarchy = ServerCallHierarchyHandlers(_connection);
+  late final callHierarchy = ServerCallHierarchyHandlers(connection);
 
   /// Handlers for `typeHierarchy/*` requests.
-  late final typeHierarchy = ServerTypeHierarchyHandlers(_connection);
+  late final typeHierarchy = ServerTypeHierarchyHandlers(connection);
 
   /// Handlers for `notebookDocument/*` notifications.
-  late final notebookDocument = ServerNotebookDocumentHandlers(_connection);
+  late final notebookDocument = ServerNotebookDocumentHandlers(connection);
 
   /// Handlers for `completionItem/resolve` — called to resolve additional
   /// data for a selected completion item.
-  late final completionItem = ServerCompletionItemHandlers(_connection);
+  late final completionItem = ServerCompletionItemHandlers(connection);
 
   /// Handlers for `codeAction/resolve` — called to resolve additional
   /// data for a selected code action.
-  late final codeAction = ServerCodeActionHandlers(_connection);
+  late final codeAction = ServerCodeActionHandlers(connection);
 
   /// Handlers for `codeLens/resolve` — called to resolve additional
   /// data for a selected code lens.
-  late final codeLens = ServerCodeLensHandlers(_connection);
+  late final codeLens = ServerCodeLensHandlers(connection);
 
   /// Handlers for `documentLink/resolve` — called to resolve additional
   /// data for a selected document link.
-  late final documentLink = ServerDocumentLinkHandlers(_connection);
+  late final documentLink = ServerDocumentLinkHandlers(connection);
 
   /// Handlers for `inlayHint/resolve` — called to resolve additional
   /// data for a selected inlay hint.
-  late final inlayHint = ServerInlayHintHandlers(_connection);
+  late final inlayHint = ServerInlayHintHandlers(connection);
 
   /// Handlers for `workspaceSymbol/resolve` — called to resolve additional
   /// data for a selected workspace symbol.
-  late final workspaceSymbol = ServerWorkspaceSymbolHandlers(_connection);
+  late final workspaceSymbol = ServerWorkspaceSymbolHandlers(connection);
 
   /// Handlers for `window/*` client→server notifications.
   ///
   /// Covers window-related notifications such as log messages,
   /// progress reports, and telemetry events.
-  late final window = ServerWindowHandlers(_connection);
+  late final window = ServerWindowHandlers(connection);
 
   // Outgoing (server → client)
 
@@ -189,7 +176,7 @@ final class LspServer {
   ///
   /// Use this to send notifications and requests to the LSP client,
   /// such as log messages, progress reports, or telemetry events.
-  late final client = ServerToClientProxy(_connection);
+  late final client = ServerToClientProxy(connection);
 
   // Dependency Injection (Service Locator)
 
@@ -203,60 +190,24 @@ final class LspServer {
   /// server.register(MyDatabaseClient(connectionStr));
   /// server.register(MyConfigLoader());
   /// ```
-  void register<T extends Object>(T service) =>
-      _connection.register<T>(service);
+  ///
+  /// This is a minimal type-keyed container, not a full DI framework. Be aware:
+  ///
+  /// - Services are keyed by the **static** type argument [T]. `register(impl)`
+  ///   keys by the variable's static type, so to resolve by an interface you
+  ///   must register explicitly: `server.register<MyApi>(impl)`.
+  /// - Registering the same [T] twice silently overwrites the previous service.
+  /// - There is no unregister; services live until the connection closes.
+  void register<T extends Object>(T service) => connection.register<T>(service);
 
   /// Resolves a registered service from the server's connection context.
   ///
   /// Throws [StateError] if no service of type [T] is registered.
   /// Prefer [tryResolve] when the service may not be present.
-  T resolve<T extends Object>() => _connection.resolve<T>();
+  T resolve<T extends Object>() => connection.resolve<T>();
 
   /// Tries to resolve a registered service, returns `null` if not found.
-  T? tryResolve<T extends Object>() => _connection.tryResolve<T>();
-
-  // Core properties
-
-  /// Registered middleware list for request/notification interception.
-  ///
-  /// Middlewares are executed in order for every incoming request or
-  /// notification. Add them before starting the server.
-  List<LspMiddleware> get middlewares => _connection.middlewares;
-
-  /// Adds a middleware to this server.
-  ///
-  /// Middlewares are executed in the order they are added. Each middleware
-  /// can inspect, modify, or short-circuit the request/response cycle.
-  ///
-  /// Example:
-  /// ```dart
-  /// server.addMiddleware(LoggingMiddleware());
-  /// server.addMiddleware(TimingMiddleware());
-  /// ```
-  void addMiddleware(LspMiddleware middleware) =>
-      _connection.addMiddleware(middleware);
-
-  /// Gets the current lifecycle state of the LSP server.
-  LspState get state => _connection.state;
-
-  /// Gets the error callback triggered on unhandled exceptions in handlers.
-  ///
-  /// When a handler throws an exception that is not an LSP protocol exception,
-  /// this callback is invoked with the error and stack trace. If not set,
-  /// errors are logged to stdout.
-  void Function(Object error, StackTrace stackTrace)? get onError =>
-      _connection.onError;
-
-  /// Sets the error callback triggered on unhandled exceptions in handlers.
-  ///
-  /// Configure this early in your server setup to handle unexpected errors:
-  /// ```dart
-  /// server.onError = (error, stackTrace) {
-  ///   logger.error('Handler error: $error', stackTrace);
-  /// };
-  /// ```
-  set onError(void Function(Object error, StackTrace stackTrace)? value) =>
-      _connection.onError = value;
+  T? tryResolve<T extends Object>() => connection.tryResolve<T>();
 
   // Feature Lifecycle
 
@@ -310,7 +261,7 @@ final class LspServer {
   ///
   /// ## Error Handling
   ///
-  /// Connection-level errors are handled by [LspConnection]. Handler-level
+  /// Connection-level errors are handled by `LspConnection`. Handler-level
   /// errors are routed through the [onError] callback.
   ///
   /// ## Example
@@ -328,21 +279,39 @@ final class LspServer {
       throw StateError('Server has already started listening.');
     }
     _isListening = true;
+    _ensureLifecycleDefaults();
     try {
-      await _connection.listen();
+      await connection.listen();
     } finally {
       await close();
     }
   }
 
-  /// Closes the connection and stops processing.
+  /// Registers spec-compliant default `shutdown` and `exit` handlers when the
+  /// user has not supplied their own.
   ///
-  /// Disposes all registered features in the order they were added, then
-  /// closes the underlying connection.
+  /// The default `shutdown` simply succeeds (returns `null`); the connection
+  /// transitions to `LspState.shuttingDown` on its own. The default `exit`
+  /// closes the connection. Register [general]'s `onShutdown`/`onExit` before
+  /// [listen] to override either — your handler then runs instead and you stay
+  /// responsible for the expected behavior (e.g. closing on `exit`).
+  void _ensureLifecycleDefaults() {
+    final registered = connection.registeredMethods;
+    if (!registered.contains(RequestMethod.shutdown)) {
+      general.onShutdown((context) async {});
+    }
+    if (!registered.contains(NotificationMethod.exit)) {
+      general.onExit((context) async {});
+    }
+  }
+
+  /// Disposes all registered features in the order they were added, before the
+  /// base [close] tears down the connection and transport.
   ///
   /// Feature disposal errors are routed through [onError] if configured,
-  /// otherwise logged to stdout.
-  Future<void> close() async {
+  /// otherwise written to stderr.
+  @override
+  Future<void> beforeClose() async {
     for (final feature in _features) {
       try {
         await feature.dispose();
@@ -351,15 +320,12 @@ final class LspServer {
         if (errorHandler != null) {
           errorHandler(e, stackTrace);
         } else {
-          // Fallback to print when no custom onError handler is configured.
-          // ignore: avoid_print
-          print('Error disposing feature $feature: $e\n$stackTrace');
+          // Fall back to stderr, never stdout: on the stdio transport stdout
+          // is the JSON-RPC channel, so writing there corrupts the protocol.
+          stderr.writeln('Error disposing feature $feature: $e\n$stackTrace');
         }
       }
     }
     _features.clear();
-
-    await _connection.close();
-    await _cleanup?.call();
   }
 }

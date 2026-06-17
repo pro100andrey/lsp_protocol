@@ -1,0 +1,8 @@
+# Files kept in the repo but excluded from the published package.
+
+# The LSP meta-model (~385 KB) is only consumed by the code generator's golden
+# test; package consumers never need it.
+metaModel.json
+
+# Internal micro-benchmark harness, not part of the public API.
+benchmark/

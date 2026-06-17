@@ -156,10 +156,7 @@ extension ModelGeneratorUnions on ModelGenerator {
     }
 
     // Add named parameters: required first, then optional.
-    final sortedFields = [
-      ...fields.where((f) => !f.optional),
-      ...fields.where((f) => f.optional),
-    ];
+    final sortedFields = sortByRequired(fields, (f) => !f.optional);
     for (final f in sortedFields) {
       b.optionalParameters.add(
         .new(

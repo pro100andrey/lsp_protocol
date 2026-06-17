@@ -10,7 +10,7 @@ final class LspDocument {
     required this.languageId,
     required this.version,
     required String text,
-  }) : text = text.replaceAll('\r\n', '\n');
+  }) : text = text.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
 
   /// The document's associated URI.
   final String uri;
@@ -155,93 +155,6 @@ final class TextDocumentManager extends LspFeature {
     await _didOpenController.close();
     await _didChangeController.close();
     await _didCloseController.close();
-  }
-}
-
-/// Manages text documents on the client side and synchronizes them with the
-/// server.
-final class ClientDocumentManager {
-  ClientDocumentManager(this._client);
-
-  final Map<String, LspDocument> _documents = {};
-  final LspClient _client;
-
-  /// Opens a document and notifies the server via `textDocument/didOpen`.
-  void open({
-    required String uri,
-    required String languageId,
-    required String text,
-    int version = 1,
-  }) {
-    if (_documents.containsKey(uri)) {
-      return;
-    }
-
-    final doc = LspDocument(
-      uri: uri,
-      languageId: languageId,
-      version: version,
-      text: text,
-    );
-
-    _documents[uri] = doc;
-
-    _client.server.textDocument.didOpen(
-      .new(
-        textDocument: .new(
-          uri: uri,
-          languageId: languageId,
-          version: version,
-          text: text,
-        ),
-      ),
-    );
-  }
-
-  /// Updates a document's content and notifies the server via
-  /// `textDocument/didChange`.
-  ///
-  /// Currently performs a Full Sync (sending the entire [text]).
-  void update(String uri, String text, {int? version}) {
-    final existing = _documents[uri];
-    if (existing == null) {
-      return;
-    }
-
-    final newVersion = version ?? existing.version + 1;
-
-    _documents[uri] = .new(
-      uri: uri,
-      languageId: existing.languageId,
-      version: newVersion,
-      text: text,
-    );
-
-    _client.server.textDocument.didChange(
-      .new(
-        textDocument: .new(uri: uri, version: newVersion),
-        contentChanges: [.text(text: text)],
-      ),
-    );
-  }
-
-  /// Closes a document and notifies the server via `textDocument/didClose`.
-  void close(String uri) {
-    _documents.remove(uri);
-    _client.server.textDocument.didClose(
-      .new(textDocument: .new(uri: uri)),
-    );
-  }
-
-  /// Retrieves the document matching the given [uri].
-  LspDocument? get(String uri) => _documents[uri];
-
-  /// Returns all currently open documents.
-  List<LspDocument> get all => _documents.values.toList();
-
-  /// Closes all open documents.
-  void closeAll() {
-    _documents.clear();
   }
 }
 

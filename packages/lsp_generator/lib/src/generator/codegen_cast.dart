@@ -8,12 +8,6 @@ part of 'codegen_type.dart';
 /// Extension on [ResolvedType] to generate code for casting JSON values
 /// to the appropriate Dart types during deserialization.
 extension ResolvedTypeCodegenX on ResolvedType {
-  static final _mapStringDynamic = TypeReference(
-    (b) => b
-      ..symbol = 'Map'
-      ..types.addAll([refer('String'), refer('dynamic')]),
-  );
-
   static TypeReference _listOf(Reference type) => TypeReference(
     (b) => b
       ..symbol = 'List'
@@ -39,7 +33,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
         val,
         refer(ref.name),
         () => refer(ref.name).newInstanceNamed('fromJson', [
-          val.bareAsA(_mapStringDynamic),
+          val.bareAsA(jsonMapRef),
         ]),
         capSuffix,
       ),
@@ -53,7 +47,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
       ),
       AliasType(:final ref) => _castAlias(val, ref, capSuffix, ctx),
       ListType(:final element) => _castList(val, element, capSuffix, ctx),
-      MapType() => _castSimple(val, capSuffix, _mapStringDynamic),
+      MapType() => _castSimple(val, capSuffix, jsonMapRef),
       InlineRecord(:final fields) => _castInlineRecord(val, fields, capSuffix),
       TupleType(:final items) => _castTuple(val, items, capSuffix),
       _ => _castSimple(val, capSuffix, refer(typeName)),
@@ -194,7 +188,7 @@ extension ResolvedTypeCodegenX on ResolvedType {
   /// Generates a `ClassName.fromJson(value)` expression for [expr] using
   /// [classRef].
   Expression _fromJsonExpr(Expression expr, Reference classRef) =>
-      classRef.newInstanceNamed('fromJson', [expr.bareAsA(_mapStringDynamic)]);
+      classRef.newInstanceNamed('fromJson', [expr.bareAsA(jsonMapRef)]);
 
   /// Generates code to cast a JSON map to an inline record type by iterating
   /// over [fields], casting each field value appropriately, and returning

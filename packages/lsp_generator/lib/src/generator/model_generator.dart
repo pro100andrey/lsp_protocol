@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:meta/meta.dart' show visibleForTesting;
 
 import '../config/files.dart';
 import '../models/protocol.dart';
@@ -64,16 +65,22 @@ final class ModelGenerator {
     _ => .common,
   };
 
-  /// Returns classes matching [category], excluding base classes starting
-  /// with `_`.
+  /// Returns classes matching [category], excluding underscore-prefixed base
+  /// classes (e.g. `_InitializeParams`).
+  ///
+  /// LSP base classes are flattened into their subclasses via
+  /// [_allProperties], so they must not be emitted standalone.
   Iterable<ResolvedClass> _classesForCategory(_ClassCategory category) =>
-      _resolved.classes.where((c) {
-        if (c.name.startsWith('_') && c.name != '_PrivateFoo') {
-          // Skip LSP base classes.
-          return false;
-        }
-        return _classifyClass(c) == category;
-      });
+      _resolved.classes.where(
+        (c) => !c.name.startsWith('_') && _classifyClass(c) == category,
+      );
+
+  /// Builds a [Library] containing only [cls], for exercising [_buildClass]
+  /// (including the underscore-prefixed `@JsonSerializable` path) in isolation.
+  @visibleForTesting
+  Library buildSingleClass(ResolvedClass cls) => Library(
+    (b) => b.body.add(_buildClass(cls)),
+  );
 
   /// Builds a [Library] containing all resolved classes (anonymous first).
   Library buildStructures() {
@@ -109,12 +116,7 @@ final class ModelGenerator {
     (b) => b
       ..comments.addAll([
         _header,
-        if (category == .params) ...[
-          'ignore_for_file: lines_longer_than_80_chars',
-          'ignore_for_file: remove_deprecations_in_breaking_versions',
-        ],
-        if (category == .common)
-          'ignore_for_file: remove_deprecations_in_breaking_versions',
+        if (category == .params) 'ignore_for_file: lines_longer_than_80_chars',
       ])
       ..directives.add(.partOf(Files.structures))
       ..body.addAll(_classesForCategory(category).map(_buildClass)),
@@ -294,7 +296,6 @@ final class ModelGenerator {
             'ignore_for_file: lines_longer_than_80_chars',
             'ignore_for_file: deprecated_consistency',
             'ignore_for_file: deprecated_member_use_from_same_package',
-            'ignore_for_file: remove_deprecations_in_breaking_versions',
           ],
         ])
         ..directives.addAll(

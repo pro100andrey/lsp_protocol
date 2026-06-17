@@ -1,50 +1,5 @@
 import 'package:pro_lsp/pro_lsp.dart';
 
-/// Simplifies registering and unregistering server capabilities dynamically.
-final class CapabilityManager {
-  CapabilityManager(this._server);
-
-  final LspServer _server;
-  var _registrationIdCounter = 0;
-
-  /// Dynamically registers a capability on the client for the specified
-  /// [method].
-  ///
-  /// Returns a registration ID string that can be used to unregister later.
-  Future<String> register({
-    required String method,
-    LSPAny? registerOptions,
-  }) async {
-    final registrationId = 'dynamic-registration-${_registrationIdCounter++}';
-    await _server.client.client.registerCapability(
-      .new(
-        registrations: [
-          .new(
-            id: registrationId,
-            method: method,
-            registerOptions: registerOptions,
-          ),
-        ],
-      ),
-    );
-    return registrationId;
-  }
-
-  /// Dynamically unregisters a capability by its [registrationId] and [method].
-  Future<void> unregister({
-    required String registrationId,
-    required String method,
-  }) async {
-    await _server.client.client.unregisterCapability(
-      .new(
-        unregisterations: [
-          .new(id: registrationId, method: method),
-        ],
-      ),
-    );
-  }
-}
-
 /// Pure utility class to infer [ServerCapabilities] based on a set of
 /// registered methods.
 final class CapabilitiesInferer {
@@ -58,18 +13,29 @@ final class CapabilitiesInferer {
   /// can affect diagnostics in other files. Defaults to `true`.
   /// [workspaceDiagnostics] tells the client the server supports workspace-wide
   /// diagnostics. Defaults to `false`.
+  /// [syncKind] is the document-sync mode advertised (always with
+  /// `openClose: true`). Defaults to [TextDocumentSyncKind.full].
+  /// [completionResolveProvider] advertises support for
+  /// `completionItem/resolve`. Defaults to `false`.
+  /// [semanticTokensLegend] must be supplied to advertise semantic tokens —
+  /// the legend is server-defined and cannot be inferred. When provided, the
+  /// provider is announced for whichever of `full`/`range` request methods are
+  /// registered.
   ServerCapabilities infer(
     List<LSPMethod> registeredMethods, {
     List<String> completionTriggerCharacters = const ['.', ':', ' '],
     bool interFileDependencies = true,
     bool workspaceDiagnostics = false,
+    TextDocumentSyncKind syncKind = .full,
+    bool completionResolveProvider = false,
+    SemanticTokensLegend? semanticTokensLegend,
   }) {
     final hasWorkspaceMethods = registeredMethods.any(
       (m) =>
           (m is NotificationMethod && m.value.startsWith('workspace/')) ||
           (m is RequestMethod && m.value.startsWith('workspace/')),
     );
-    
+
     final hasFileOps = registeredMethods.any(
       (m) =>
           m == NotificationMethod.didCreateFiles ||
@@ -85,9 +51,15 @@ final class CapabilitiesInferer {
 
     return ServerCapabilities(
       positionEncoding: .uTF16,
+      textDocumentSync: .textDocumentSyncOptions(
+        .new(openClose: true, change: syncKind),
+      ),
       hoverProvider: allow(.hover) ? const .bool(true) : null,
       completionProvider: allow(.completion)
-          ? .new(triggerCharacters: completionTriggerCharacters)
+          ? .new(
+              triggerCharacters: completionTriggerCharacters,
+              resolveProvider: completionResolveProvider,
+            )
           : null,
       definitionProvider: allow(.definition) ? const .bool(true) : null,
       typeDefinitionProvider: allow(.typeDefinition) ? const .bool(true) : null,
@@ -115,6 +87,19 @@ final class CapabilitiesInferer {
           : null,
       inlineValueProvider: allow(.inlineValue) ? const .bool(true) : null,
       inlayHintProvider: allow(.inlayHint) ? const .bool(true) : null,
+      semanticTokensProvider:
+          (semanticTokensLegend != null &&
+              (allow(.full) || allow(.range) || allow(.delta)))
+          ? .semanticTokensOptions(
+              SemanticTokensOptions(
+                legend: semanticTokensLegend,
+                full: (allow(.full) || allow(.delta))
+                    ? const .bool(true)
+                    : null,
+                range: allow(.range) ? const .bool(true) : null,
+              ),
+            )
+          : null,
       diagnosticProvider: allow(.textDocumentDiagnostic)
           ? .diagnosticOptions(
               .new(
@@ -165,10 +150,16 @@ extension LspServerCapabilities on LspServer {
     List<String> completionTriggerCharacters = const ['.', ':', ' '],
     bool interFileDependencies = true,
     bool workspaceDiagnostics = false,
+    TextDocumentSyncKind syncKind = .full,
+    bool completionResolveProvider = false,
+    SemanticTokensLegend? semanticTokensLegend,
   }) => const CapabilitiesInferer().infer(
     connection.registeredMethods.toList(growable: false),
     completionTriggerCharacters: completionTriggerCharacters,
     interFileDependencies: interFileDependencies,
     workspaceDiagnostics: workspaceDiagnostics,
+    syncKind: syncKind,
+    completionResolveProvider: completionResolveProvider,
+    semanticTokensLegend: semanticTokensLegend,
   );
 }
