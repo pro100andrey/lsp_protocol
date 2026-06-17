@@ -163,6 +163,12 @@ final class _Parser {
 
   static const int kMaxMessageSize = 50 * 1024 * 1024; // 50MB
 
+  /// Maximum size of the header block (everything up to and including the
+  /// `\r\n\r\n` terminator). LSP headers are a handful of bytes; this cap stops
+  /// a peer from exhausting memory (and CPU) by streaming a header that never
+  /// terminates.
+  static const int kMaxHeaderSize = 8 * 1024; // 8KB
+
   final _streamCtl = StreamController<Object?>();
   Stream<Object?> get stream => _streamCtl.stream;
 
@@ -213,6 +219,19 @@ final class _Parser {
       if (_headerMode) {
         final headerEnd = _findHeaderEnd();
         if (headerEnd == -1) {
+          // No terminator yet. Guard against a peer that streams an
+          // unbounded header and never sends `\r\n\r\n`: cap the buffered
+          // header bytes and tear down rather than growing forever.
+          if (_writeIndex - _readIndex > kMaxHeaderSize) {
+            _streamCtl.addError(
+              const FormatException(
+                'LSP header exceeds $kMaxHeaderSize bytes with no '
+                r'`\r\n\r\n` terminator',
+              ),
+            );
+            unawaited(_subscription.cancel());
+            unawaited(_streamCtl.close());
+          }
           break;
         }
 

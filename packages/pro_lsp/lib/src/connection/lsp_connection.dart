@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:json_rpc_2/json_rpc_2.dart';
+import 'package:meta/meta.dart';
 import 'package:stream_channel/stream_channel.dart';
 
 import '../../pro_lsp.dart' show LspServer;
@@ -64,46 +65,23 @@ typedef LspNotificationHandler =
 /// typed [LspServer] API is the preferred entry point.
 final class LspConnection {
   LspConnection(StreamChannel<Object?> channel) {
-    // Intercept incoming stream to extract request IDs and handle cancelRequest
+    // Intercept the incoming stream to record request ids (for cancellation
+    // correlation) and to handle `$/cancelRequest` before it reaches the peer.
+    // A batch is a JSON list whose elements are each handled individually.
     final decodedStream = channel.stream
         .map((event) {
           try {
             final decoded = event;
             if (decoded is List) {
-              // Batch requests are received as a JSON list. We iterate and map
-              // each individual request ID and handle batch cancellation
-              // requests.
               for (final item in decoded) {
-                if (item case {
-                  'id': final Object id,
-                  'params': final Object params,
-                }) {
-                  if (params case Map() || List()) {
-                    _requestIds[_IdentityKey(params)] = id;
-                  }
-                } else if (item case {
-                  'method': final String method,
-                  'params': {'id': final Object cancelId},
-                } when method == NotificationMethod.cancelRequest.value) {
-                  _cancelRequest(cancelId);
+                if (item is Map) {
+                  _recordRequestId(item);
+                  _maybeCancelRequest(item);
                 }
               }
-            } else if (decoded case {
-              'id': final Object id,
-              'method': String _,
-            }) {
-              // Single request: Map request ID using identity key so handlers
-              // can map it to cancellation reliably (Expando uses weak refs
-              // which can be GC'd before lookup).
-              final params = decoded['params'];
-              if (params case Map() || List()) {
-                _requestIds[_IdentityKey(params)] = id;
-              }
-            } else if (decoded case {
-              'method': final String method,
-              'params': {'id': final Object cancelId},
-            } when method == NotificationMethod.cancelRequest.value) {
-              _cancelRequest(cancelId);
+            } else if (decoded is Map) {
+              _recordRequestId(decoded);
+              _maybeCancelRequest(decoded);
             }
             return decoded;
           } on Object catch (e) {
@@ -143,6 +121,44 @@ final class LspConnection {
   /// Used to correlate `$/cancelRequest` notifications with the original
   /// request so handlers can check cancellation status.
   final _requestIds = <_IdentityKey, Object>{};
+
+  /// Number of recorded request-id correlations awaiting dispatch.
+  ///
+  /// Exposed only so tests can assert the [_requestIds] map does not leak
+  /// entries for messages the peer rejects before dispatch.
+  @visibleForTesting
+  int get pendingRequestIdCount => _requestIds.length;
+
+  /// Records a request's wire id keyed by its `params` identity so a later
+  /// `$/cancelRequest` can be correlated to the in-flight request.
+  ///
+  /// Only records messages the peer will actually dispatch under strict
+  /// JSON-RPC 2.0 (the [Peer] is created with `strictProtocolChecks: true`):
+  /// a valid `'2.0'` version, a `String` method, a `String`/`num` id, and
+  /// object/array params. Messages the peer rejects before dispatch never reach
+  /// [_dispatchRequest]/[_handleUnknownMethod] — the only places that remove an
+  /// entry — so recording them would leak permanently.
+  void _recordRequestId(Map<Object?, Object?> message) {
+    final params = message['params'];
+    final id = message['id'];
+    if ((params is Map || params is List) &&
+        message['jsonrpc'] == '2.0' &&
+        message['method'] is String &&
+        (id is String || id is num)) {
+      _requestIds[_IdentityKey(params)] = id!;
+    }
+  }
+
+  /// Handles a `$/cancelRequest` notification observed on the raw stream by
+  /// cancelling the targeted in-flight request before the peer sees it.
+  void _maybeCancelRequest(Map<Object?, Object?> message) {
+    if (message case {
+      'method': final String method,
+      'params': {'id': final Object cancelId},
+    } when method == NotificationMethod.cancelRequest.value) {
+      _cancelRequest(cancelId);
+    }
+  }
 
   /// The underlying JSON-RPC 2.0 peer used for sending and receiving messages.
   late final Peer _peer;
@@ -655,11 +671,19 @@ final class LspConnection {
   /// Whether [close] has been called.
   var _closed = false;
 
+  /// Memoizes [close] so repeated calls are idempotent.
+  Future<void>? _closeFuture;
+
   /// Starts processing incoming messages.  Returns when the channel closes.
   Future<void> listen() => _peer.listen();
 
   /// Closes the underlying channel and stops processing.
-  Future<void> close() {
+  ///
+  /// Idempotent: the `exit` notification handler and `listen()`'s teardown can
+  /// both reach here, but the underlying close runs exactly once.
+  Future<void> close() => _closeFuture ??= _close();
+
+  Future<void> _close() {
     _closed = true;
     _requestIds.clear();
     _activeCancellations.clear();

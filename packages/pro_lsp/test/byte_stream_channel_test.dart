@@ -182,6 +182,93 @@ void main() {
       expect(caughtError, isA<FormatException>());
     });
 
+    test('rejects an unterminated header that exceeds the size cap '
+        '(DoS guard)', () async {
+      Object? caughtError;
+      final completer = Completer<void>();
+      lspChannel.stream.listen(
+        (_) {},
+        onError: (Object e) => caughtError = e,
+        onDone: completer.complete,
+      );
+
+      // Stream a header that never sends the `\r\n\r\n` terminator, in chunks,
+      // past the 8KB cap. The parser must tear down instead of buffering
+      // forever.
+      final chunk = ascii.encode('X-Junk: ${'A' * 1024}\r\n');
+      for (
+        var sent = 0;
+        sent <= 8 * 1024 && !completer.isCompleted;
+        sent += chunk.length
+      ) {
+        incomingController.add(chunk);
+        await Future<void>.delayed(Duration.zero); // let the parser run
+      }
+      await incomingController.close();
+
+      await completer.future;
+      expect(
+        caughtError,
+        isA<FormatException>().having(
+          (e) => e.toString(),
+          'message',
+          contains('exceeds'),
+        ),
+      );
+    });
+
+    test('parses a message with Content-Length: 0 by recovering and '
+        'continuing', () async {
+      const good = '{"jsonrpc":"2.0","method":"after-empty"}';
+      final goodBody = utf8.encode(good);
+      final frames = <int>[
+        ...ascii.encode('Content-Length: 0\r\n\r\n'),
+        ...ascii.encode('Content-Length: ${goodBody.length}\r\n\r\n'),
+        ...goodBody,
+      ];
+
+      final received = <Object?>[];
+      final errors = <Object>[];
+      final done = Completer<void>();
+      lspChannel.stream.listen(
+        received.add,
+        onError: errors.add,
+        onDone: done.complete,
+      );
+
+      incomingController.add(frames);
+      await incomingController.close();
+      await done.future;
+
+      // The empty body fails to JSON-decode but the parser recovers and still
+      // delivers the following valid message.
+      expect(errors, hasLength(1));
+      expect(received, [jsonDecode(good)]);
+    });
+
+    test(r'parses a frame split inside the \r\n\r\n terminator', () async {
+      const message = '{"jsonrpc":"2.0","method":"split-terminator"}';
+      final body = utf8.encode(message);
+      final frame = [
+        ...ascii.encode('Content-Length: ${body.length}\r\n\r\n'),
+        ...body,
+      ];
+
+      final received = <Object?>[];
+      final done = lspChannel.stream.forEach(received.add);
+
+      // Split exactly between the two CRLFs of the terminator.
+      final headerEnd =
+          frame.indexOf(13, frame.indexOf(13) + 1) + 1; // after \r\n\r
+      incomingController
+        ..add(frame.sublist(0, headerEnd))
+        ..add(frame.sublist(headerEnd));
+      await incomingController.close();
+      await done;
+
+      expect(received, [jsonDecode(message)]);
+    });
+
     test(
       'parses a large message that outgrows the initial 4KB buffer',
       () async {

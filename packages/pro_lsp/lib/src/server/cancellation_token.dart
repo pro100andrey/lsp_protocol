@@ -80,9 +80,13 @@ abstract final class CancellationToken {
 
   /// Returns the cancellation token associated with the current [Zone].
   ///
-  /// Each incoming request gets its own [CancellationToken] stored in the
+  /// Each incoming *request* gets its own [CancellationToken] stored in the
   /// zone set up during request handling. This allows handlers and middleware
   /// to access the token without threading it through every method signature.
+  ///
+  /// Notification handlers are not cancelable and run *outside* a cancellation
+  /// zone, so `current` returns `null` there — use the request context's
+  /// [CancellationToken] (the no-op token) instead.
   ///
   /// Returns `null` if the current zone does not have an associated token,
   /// which means this code is not running inside a request handler.
