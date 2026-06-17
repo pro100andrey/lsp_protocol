@@ -9,10 +9,9 @@ environment:
 
 dependencies:
   logging: ^1.3.0
+  meta: ^1.18.3
   pro_lsp:
     path: ../../packages/pro_lsp
-  pro_lsp_kit:
-    path: ../../packages/pro_lsp_kit
   stream_channel: ^2.1.4
 
 dev_dependencies:

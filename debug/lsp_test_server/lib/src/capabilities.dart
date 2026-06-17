@@ -1,50 +1,5 @@
 import 'package:pro_lsp/pro_lsp.dart';
 
-/// Simplifies registering and unregistering server capabilities dynamically.
-final class CapabilityManager {
-  CapabilityManager(this._server);
-
-  final LspServer _server;
-  var _registrationIdCounter = 0;
-
-  /// Dynamically registers a capability on the client for the specified
-  /// [method].
-  ///
-  /// Returns a registration ID string that can be used to unregister later.
-  Future<String> register({
-    required String method,
-    LSPAny? registerOptions,
-  }) async {
-    final registrationId = 'dynamic-registration-${_registrationIdCounter++}';
-    await _server.client.client.registerCapability(
-      .new(
-        registrations: [
-          .new(
-            id: registrationId,
-            method: method,
-            registerOptions: registerOptions,
-          ),
-        ],
-      ),
-    );
-    return registrationId;
-  }
-
-  /// Dynamically unregisters a capability by its [registrationId] and [method].
-  Future<void> unregister({
-    required String registrationId,
-    required String method,
-  }) async {
-    await _server.client.client.unregisterCapability(
-      .new(
-        unregisterations: [
-          .new(id: registrationId, method: method),
-        ],
-      ),
-    );
-  }
-}
-
 /// Pure utility class to infer [ServerCapabilities] based on a set of
 /// registered methods.
 final class CapabilitiesInferer {

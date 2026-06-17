@@ -18,8 +18,9 @@ final class FileOperationsFeature extends LspFeature {
     });
 
     server.workspace.onWillRenameFiles((params, context) async {
-      final filesStr =
-          params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ');
+      final filesStr = params.files
+          .map((f) => '${f.oldUri} -> ${f.newUri}')
+          .join(', ');
       _logger.info('${context.prefix} Files will be renamed: $filesStr');
       return const .new();
     });
@@ -40,8 +41,9 @@ final class FileOperationsFeature extends LspFeature {
     });
 
     server.workspace.onDidRenameFiles((params, context) async {
-      final filesStr =
-          params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ');
+      final filesStr = params.files
+          .map((f) => '${f.oldUri} -> ${f.newUri}')
+          .join(', ');
       _logger.info('${context.prefix} Files renamed: $filesStr');
     });
 

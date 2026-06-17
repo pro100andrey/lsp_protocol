@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:pro_lsp_kit/pro_lsp_kit.dart';
 import 'package:stream_channel/stream_channel.dart';
 
 import 'features/completion_feature.dart';
@@ -13,6 +12,7 @@ import 'features/hover_feature.dart';
 import 'features/references_feature.dart';
 import 'features/semantic_tokens_feature.dart';
 import 'features/symbols_feature.dart';
+import 'lsp_support.dart';
 
 /// Registers all LSP handlers and features.
 ///
@@ -26,9 +26,7 @@ import 'features/symbols_feature.dart';
 ///     final runner = ServerRunner.fromChannel(channel);
 ///     await runner.run();
 final class ServerRunner {
-  ServerRunner()
-    : _server = .new(),
-      _docService = .new() {
+  ServerRunner() : _server = .new(), _docService = .new() {
     _initManagers();
   }
 
@@ -72,31 +70,41 @@ final class ServerRunner {
       ..registerFeature(_progressManager)
       ..registerFeature(_dialogHelper)
       ..registerFeature(_docService)
-      ..registerFeature(GeneralFeature(
-        workspaceFoldersManager: _workspaceFoldersManager,
-        watchedFilesManager: _watchedFilesManager,
-        dialogHelper: _dialogHelper,
-      ))
+      ..registerFeature(
+        GeneralFeature(
+          workspaceFoldersManager: _workspaceFoldersManager,
+          watchedFilesManager: _watchedFilesManager,
+          dialogHelper: _dialogHelper,
+        ),
+      )
       ..registerFeature(HoverFeature(docService: _docService))
-      ..registerFeature(CompletionFeature(
-        docService: _docService,
-      ))
-      ..registerFeature(DefinitionFeature(
-        docService: _docService,
-        progressManager: _progressManager,
-      ))
-      ..registerFeature(ReferencesFeature(
-        docService: _docService,
-        progressManager: _progressManager,
-      ))
+      ..registerFeature(
+        CompletionFeature(
+          docService: _docService,
+        ),
+      )
+      ..registerFeature(
+        DefinitionFeature(
+          docService: _docService,
+          progressManager: _progressManager,
+        ),
+      )
+      ..registerFeature(
+        ReferencesFeature(
+          docService: _docService,
+          progressManager: _progressManager,
+        ),
+      )
       ..registerFeature(SymbolsFeature(docService: _docService))
       ..registerFeature(SemanticTokensFeature(docService: _docService))
       ..registerFeature(FileOperationsFeature())
-      ..registerFeature(DiagnosticsFeature(
-        docService: _docService,
-        diagnosticsManager: _diagnosticsManager,
-        configManager: _configManager,
-      ));
+      ..registerFeature(
+        DiagnosticsFeature(
+          docService: _docService,
+          diagnosticsManager: _diagnosticsManager,
+          configManager: _configManager,
+        ),
+      );
   }
 
   /// Starts listening on stdio/channel.

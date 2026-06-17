@@ -16,7 +16,7 @@ void main() {
       }
     });
 
-    test('initialize advertises capabilities inferred via the kit', () async {
+    test('initialize advertises capabilities inferred from handlers', () async {
       final controller = StreamChannelController<List<int>>();
       final runner = ServerRunner.fromChannel(controller.local);
       final client = LspClient.fromChannel(controller.foreign);

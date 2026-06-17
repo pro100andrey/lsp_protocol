@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:logging/logging.dart';
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:pro_lsp_kit/pro_lsp_kit.dart';
+import '../lsp_support.dart';
 
 import 'shared.dart';
 
@@ -118,7 +118,8 @@ final class DiagnosticsFeature extends LspFeature {
       if (line.length > maxLineLength) {
         diagnostics.add(
           .new(
-            message: 'Line is too long (${line.length} characters, '
+            message:
+                'Line is too long (${line.length} characters, '
                 'limit is $maxLineLength)',
             range: .new(
               start: .new(line: i, character: maxLineLength),

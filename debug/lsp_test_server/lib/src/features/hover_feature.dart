@@ -1,6 +1,6 @@
 import 'package:logging/logging.dart';
 import 'package:pro_lsp/pro_lsp.dart';
-import 'package:pro_lsp_kit/pro_lsp_kit.dart';
+import '../lsp_support.dart';
 
 import 'shared.dart';
 
@@ -92,7 +92,7 @@ final class HoverFeature extends LspFeature {
               '---\n\n'
               '$customDoc\n\n'
               '---\n'
-              '*Powered by `pro_lsp_kit`*',
+              '*Powered by `pro_lsp`*',
         ),
       ),
     );
