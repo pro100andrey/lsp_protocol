@@ -112,31 +112,15 @@ final class ModelGenerator {
   /// Builds a [Library] containing common LSP classes.
   Library buildStructuresCommon() => _buildCategoryLibrary(.common);
 
-  Library _buildCategoryLibrary(_ClassCategory category) {
-    final classes = _classesForCategory(category).toList();
-    // Deprecated members are mandated by the LSP meta-model (legacy spec fields
-    // kept for wire compatibility) and cannot be removed, so the lint demanding
-    // their removal in breaking versions never applies. Only emit the ignore
-    // for categories that actually contain a deprecated member, otherwise the
-    // unused ignore itself trips `unnecessary_ignore`. Check the flattened
-    // property set (matching what `_buildClass` emits) so deprecations
-    // inherited from underscore-prefixed base classes are counted too.
-    final hasDeprecated = classes.any(
-      (c) => _ctx.allProperties(c).any((p) => p.deprecated != null),
-    );
-    return .new(
-      (b) => b
-        ..comments.addAll([
-          _header,
-          if (hasDeprecated)
-            'ignore_for_file: remove_deprecations_in_breaking_versions',
-          if (category == .params)
-            'ignore_for_file: lines_longer_than_80_chars',
-        ])
-        ..directives.add(.partOf(Files.structures))
-        ..body.addAll(classes.map(_buildClass)),
-    );
-  }
+  Library _buildCategoryLibrary(_ClassCategory category) => .new(
+    (b) => b
+      ..comments.addAll([
+        _header,
+        if (category == .params) 'ignore_for_file: lines_longer_than_80_chars',
+      ])
+      ..directives.add(.partOf(Files.structures))
+      ..body.addAll(_classesForCategory(category).map(_buildClass)),
+  );
 
   /// Builds a [Library] containing all resolved enumerations.
   Library buildEnumerations() => .new(
@@ -312,7 +296,6 @@ final class ModelGenerator {
             'ignore_for_file: lines_longer_than_80_chars',
             'ignore_for_file: deprecated_consistency',
             'ignore_for_file: deprecated_member_use_from_same_package',
-            'ignore_for_file: remove_deprecations_in_breaking_versions',
           ],
         ])
         ..directives.addAll(

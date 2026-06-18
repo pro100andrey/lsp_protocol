@@ -44,7 +44,33 @@ abstract class ApiGenerator {
         _unionTypeNames.add(alias.name);
       }
     }
+
+    // Unions whose representation includes `null` (a `Null` member) generate a
+    // `fromJson(Object? json)` — this mirrors `model_unions`' `hasNull` check.
+    // A sender decoding such a result must cast `raw as Object?`, otherwise a
+    // legitimate null response (e.g. `textDocument/definition` with nothing
+    // under the cursor) throws `type 'Null' is not a subtype of type 'Object'`.
+    _nullableUnionTypeNames = {};
+    for (final req in resolved.requests) {
+      if (isRequestResultUnion(req.result)) {
+        final union = req.result!.nonNull as UnionType;
+        if (_unionHasNull(union)) {
+          _nullableUnionTypeNames.add(requestResultUnionName(req.method));
+        }
+      }
+    }
+    for (final alias in resolved.aliases) {
+      if (alias.type case final UnionType union when _unionHasNull(union)) {
+        _nullableUnionTypeNames.add(alias.name);
+      }
+    }
   }
+
+  /// Whether [union]'s members include the `Null` core type, matching the
+  /// `hasNull` test in `model_unions` that drives the `Object?` representation.
+  static bool _unionHasNull(UnionType union) => union.items.any(
+    (item) => item is DartCoreType && item.dartName == 'Null',
+  );
 
   /// The resolved protocol state containing all requests, notifications, and
   /// type aliases after direction resolution.
@@ -61,6 +87,11 @@ abstract class ApiGenerator {
   /// Set of union type names that appear as request result types or alias
   /// types, used to decide whether to call `fromJson` during decoding.
   late final Set<String> _unionTypeNames;
+
+  /// Subset of [_unionTypeNames] whose representation includes `null` (so their
+  /// `fromJson` accepts `Object?`). Senders cast `raw as Object?` for these so
+  /// a null response decodes to the union's null variant instead of crashing.
+  late final Set<String> _nullableUnionTypeNames;
 
   // Abstract Configuration Getters
 
@@ -439,7 +470,9 @@ abstract class ApiGenerator {
 
     final isUnion = isUnionType(baseType);
     final castExprStr = isUnion
-        ? 'raw as Object'
+        ? (_nullableUnionTypeNames.contains(baseType)
+              ? 'raw as Object?'
+              : 'raw as Object')
         : 'raw as Map<String, dynamic>';
 
     if (isNullable) {

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.1
+
+* **Fixed: nullable-union request results crashed on a `null` response.** Typed
+  senders for results whose union includes `null` (e.g. `textDocument/definition`,
+  `completion`, `implementation`, `typeDefinition`, `declaration`,
+  `documentSymbol`, `inlineCompletion`, `semanticTokens/full/delta`,
+  `workspace/symbol`) cast the raw payload as non-null `Object` before
+  `fromJson`. When the server legitimately returned `null` (e.g. nothing
+  resolves under the cursor) this threw `type 'Null' is not a subtype of type
+  'Object'`. The code generator now casts `raw as Object?` for unions whose
+  representation is nullable, so a `null` response decodes to the union's null
+  variant. Non-nullable union results (`textDocument/diagnostic`,
+  `prepareRename`) are unchanged. Generated code only — no API change.
+
 ## 0.2.0
 
 * **Fixed (behavior change): `LspClient` now receives server→client messages.**

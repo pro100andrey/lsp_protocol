@@ -293,7 +293,7 @@ extension type ClientTextDocumentSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return ImplementationResult.fromJson(raw as Object);
+    return ImplementationResult.fromJson(raw as Object?);
   }
 
   /// Sends the `textDocument/typeDefinition` request to the server.
@@ -312,7 +312,7 @@ extension type ClientTextDocumentSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return TypeDefinitionResult.fromJson(raw as Object);
+    return TypeDefinitionResult.fromJson(raw as Object?);
   }
 
   /// Sends the `textDocument/documentColor` request to the server.
@@ -399,7 +399,7 @@ extension type ClientTextDocumentSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return DeclarationResult.fromJson(raw as Object);
+    return DeclarationResult.fromJson(raw as Object?);
   }
 
   /// Sends the `textDocument/selectionRange` request to the server.
@@ -487,7 +487,7 @@ extension type ClientTextDocumentSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return SemanticTokensFullDeltaResult.fromJson(raw as Object);
+    return SemanticTokensFullDeltaResult.fromJson(raw as Object?);
   }
 
   /// Sends the `textDocument/semanticTokens/range` request to the server.
@@ -660,7 +660,7 @@ extension type ClientTextDocumentSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return InlineCompletionResult.fromJson(raw as Object);
+    return InlineCompletionResult.fromJson(raw as Object?);
   }
 
   /// Sends the `textDocument/willSaveWaitUntil` request to the server.
@@ -703,7 +703,7 @@ extension type ClientTextDocumentSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return CompletionResult.fromJson(raw as Object);
+    return CompletionResult.fromJson(raw as Object?);
   }
 
   /// Sends the `textDocument/hover` request to the server.
@@ -762,7 +762,7 @@ extension type ClientTextDocumentSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return DefinitionResult.fromJson(raw as Object);
+    return DefinitionResult.fromJson(raw as Object?);
   }
 
   /// Sends the `textDocument/references` request to the server.
@@ -829,7 +829,7 @@ extension type ClientTextDocumentSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return DocumentSymbolResult.fromJson(raw as Object);
+    return DocumentSymbolResult.fromJson(raw as Object?);
   }
 
   /// Sends the `textDocument/codeAction` request to the server.
@@ -1207,7 +1207,7 @@ extension type ClientWorkspaceSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return SymbolResult.fromJson(raw as Object);
+    return SymbolResult.fromJson(raw as Object?);
   }
 
   /// Sends the `workspace/executeCommand` request to the server.
@@ -1226,7 +1226,7 @@ extension type ClientWorkspaceSender(LspConnection _c) {
       token: token,
       timeout: timeout,
     );
-    return raw == null ? null : LSPAny.fromJson(raw as Object);
+    return raw == null ? null : LSPAny.fromJson(raw as Object?);
   }
 
   /// Sends the `workspace/didChangeWorkspaceFolders` notification to the server.

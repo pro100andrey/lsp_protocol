@@ -1,5 +1,4 @@
 // GENERATED — do not edit.
-// ignore_for_file: remove_deprecations_in_breaking_versions
 // ignore_for_file: lines_longer_than_80_chars
 
 part of 'structures.dart';

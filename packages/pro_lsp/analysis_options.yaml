@@ -1,10 +1,20 @@
 include: package:pro_lints/recommended.yaml
 
 
-analyzer: 
+analyzer:
   exclude:
-    - "**/*.g.dart"  
+    - "**/*.g.dart"
     - "**/*.freezed.dart"
+
+linter:
+  rules:
+    # The entire public surface is generated from the LSP meta-model, and the
+    # only `@Deprecated` members are spec-mandated legacy fields kept for wire
+    # compatibility — they can never be removed. This lint also fires only on
+    # breaking version bumps, so a per-file ignore is unnecessary on patch
+    # releases (tripping `unnecessary_ignore`). Disabling it package-wide is
+    # both correct here and version-independent.
+    remove_deprecations_in_breaking_versions: false
 
 formatter:
   trailing_commas: preserve
