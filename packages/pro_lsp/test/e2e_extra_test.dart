@@ -155,7 +155,7 @@ void main() {
         ),
       );
       final p = await got.future.timeout(timeout);
-      expect(p.settings.value, isNotNull);
+      expect((p.settings.value! as Map)['k'], 'v');
     });
 
     test('didChangeWatchedFiles reaches the server', () async {
@@ -514,7 +514,7 @@ void main() {
       );
       openDoc(client);
       final p = await got.future.timeout(timeout);
-      expect(p.value, isNotNull);
+      expect((p.value! as Map)['e'], 'x');
     });
   });
 }

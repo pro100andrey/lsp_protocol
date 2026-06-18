@@ -18,6 +18,7 @@ void main() {
             ),
           );
         unawaited(server.listen());
+        addTearDown(server.close);
 
         final client = LspClient.fromChannel(controller.foreign);
         final result = await client.start(
@@ -43,6 +44,7 @@ void main() {
               throw LspException.internalError('init refused'),
         );
       unawaited(server.listen());
+      addTearDown(server.close);
 
       final client = LspClient.fromChannel(controller.foreign);
 
@@ -71,6 +73,7 @@ void main() {
                 const InitializeResult(capabilities: ServerCapabilities()),
           );
         unawaited(server.listen());
+        addTearDown(server.close);
 
         final received = Completer<PublishDiagnosticsParams>();
         final client = LspClient.fromChannel(controller.foreign)
@@ -108,6 +111,7 @@ void main() {
               const InitializeResult(capabilities: ServerCapabilities()),
         );
       unawaited(server.listen());
+      addTearDown(server.close);
 
       final client = LspClient.fromChannel(controller.foreign);
       await client.start(capabilities: const ClientCapabilities());
