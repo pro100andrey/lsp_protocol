@@ -1,0 +1,22 @@
+{
+  // Base ruleset: all rules on, with a few intentional opt-outs.
+  "default": true,
+
+  // Line length is not enforced: prose wraps for readability, but Markdown
+  // tables, fenced Dart examples, and long URLs routinely exceed any column
+  // limit and can't be wrapped without breaking rendering.
+  "MD013": false,
+
+  // The method reference uses a bold direction/type label (e.g.
+  // "**client → server · request**") under each H3. It's a deliberate caption,
+  // not a heading — keeping it out of headings avoids polluting the anchor/TOC.
+  "MD036": false,
+
+  // Unordered-list marker style is not enforced (was previously disabled
+  // per-file via an inline comment).
+  "MD004": false,
+
+  // Allow raw HTML — only used for markdownlint control comments and the
+  // occasional <br>.
+  "MD033": false
+}
