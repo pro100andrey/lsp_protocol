@@ -34,7 +34,7 @@ void main() async {
 > **Never write to `stdout` from a stdio server.** On stdio, `stdout` *is* the
 > protocol channel — a stray `print()` corrupts the JSON-RPC stream. Log to
 > `stderr` or a file, and set `server.onError`. See
-> [Building a server → Logging](docs/guides/server.md#logging-and-debugging).
+> [Building a server → Logging](doc/guides/server.md#logging-and-debugging).
 
 ---
 
@@ -75,32 +75,32 @@ start with `.`.
 
 ## Documentation
 
-The full guide lives in [**`docs/`**](docs/README.md). Start there for concepts,
+The full guide lives in [**`doc/`**](doc/README.md). Start there for concepts,
 end-to-end walkthroughs, and a **per-method tutorial** covering every LSP request
 and notification with "what / when / example".
 
 **Guides**
 
-* [Getting started](docs/getting-started.md) — install, first server, first client
-* [Core concepts](docs/concepts.md) — handlers, senders, context, lifecycle
-* [Building a server](docs/guides/server.md) — capabilities, talking back, lifecycle, logging
-* [Building a client](docs/guides/client.md) — handshake, calling the server, receiving messages
-* [Working with models](docs/guides/models.md) — Freezed structures, unions, enums
-* [Error handling](docs/guides/errors.md) — `LspException`, error codes
-* [Cancellation](docs/guides/cancellation.md) — incoming and outgoing
-* [Testing](docs/guides/testing.md) — in-memory client↔server
-* [Transports](docs/guides/transports.md) — stdio, sockets, custom framing
-* [Advanced](docs/guides/advanced.md) — features, dependency injection, middleware
+* [Getting started](doc/getting-started.md) — install, first server, first client
+* [Core concepts](doc/concepts.md) — handlers, senders, context, lifecycle
+* [Building a server](doc/guides/server.md) — capabilities, talking back, lifecycle, logging
+* [Building a client](doc/guides/client.md) — handshake, calling the server, receiving messages
+* [Working with models](doc/guides/models.md) — Freezed structures, unions, enums
+* [Error handling](doc/guides/errors.md) — `LspException`, error codes
+* [Cancellation](doc/guides/cancellation.md) — incoming and outgoing
+* [Testing](doc/guides/testing.md) — in-memory client↔server
+* [Transports](doc/guides/transports.md) — stdio, sockets, custom framing
+* [Advanced](doc/guides/advanced.md) — features, dependency injection, middleware
 
-**Method reference** ([catalog](docs/methods/README.md))
+**Method reference** ([catalog](doc/methods/README.md))
 
-* [Lifecycle & protocol](docs/methods/lifecycle.md) — initialize, shutdown, progress, trace
-* [Document sync](docs/methods/text-document-sync.md) — didOpen / didChange / didClose / save
-* [Language features](docs/methods/language-features.md) — hover, definition, completion, …
-* [Call & type hierarchy](docs/methods/hierarchies.md)
-* [Workspace](docs/methods/workspace.md) — symbols, commands, files, configuration, refresh
-* [Window](docs/methods/window.md) — messages, progress, show document
-* [Notebooks](docs/methods/notebooks.md)
+* [Lifecycle & protocol](doc/methods/lifecycle.md) — initialize, shutdown, progress, trace
+* [Document sync](doc/methods/text-document-sync.md) — didOpen / didChange / didClose / save
+* [Language features](doc/methods/language-features.md) — hover, definition, completion, …
+* [Call & type hierarchy](doc/methods/hierarchies.md)
+* [Workspace](doc/methods/workspace.md) — symbols, commands, files, configuration, refresh
+* [Window](doc/methods/window.md) — messages, progress, show document
+* [Notebooks](doc/methods/notebooks.md)
 
 ---
 

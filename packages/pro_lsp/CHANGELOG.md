@@ -23,7 +23,7 @@
   handler namespaces on the client. Previously `telemetry/event` could only be
   handled by reaching into `connection` directly.
 * Documentation restructured: `README.md` is now a concise overview (pitch,
-  quick start, install) that links into a new [`docs/`](docs/README.md) tree —
+  quick start, install) that links into a new [`doc/`](doc/README.md) tree —
   task-oriented guides plus a per-method reference covering every LSP request
   and notification with "what / when / example". Examples are distilled from the
   package's end-to-end tests, so they track the current API.
