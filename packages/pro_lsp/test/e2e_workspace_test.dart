@@ -59,8 +59,7 @@ void main() {
           server.workspace.onDiagnostic(
             (params, context) async => WorkspaceDiagnosticReport(
               items: [
-                WorkspaceDocumentDiagnosticReport
-                    .workspaceFullDocumentDiagnosticReport(
+                WorkspaceDocumentDiagnosticReport.workspaceFullDocumentDiagnosticReport(
                   const WorkspaceFullDocumentDiagnosticReport(
                     items: [],
                     uri: 'file:///a.dart',

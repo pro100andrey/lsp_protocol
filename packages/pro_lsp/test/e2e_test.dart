@@ -23,22 +23,24 @@ void main() {
       expect(client.serverCapabilities?.hoverProvider, isNotNull);
     });
 
-    test('shutdown then exit transitions the server through its lifecycle',
-        () async {
-      final exited = Completer<void>();
-      final (:server, :client) = await connect(
-        configureServer: (server) {
-          server.general.onExit((context) async => exited.complete());
-        },
-      );
+    test(
+      'shutdown then exit transitions the server through its lifecycle',
+      () async {
+        final exited = Completer<void>();
+        final (:server, :client) = await connect(
+          configureServer: (server) {
+            server.general.onExit((context) async => exited.complete());
+          },
+        );
 
-      await client.server.general.shutdown();
-      expect(server.state, LspState.shuttingDown);
+        await client.server.general.shutdown();
+        expect(server.state, LspState.shuttingDown);
 
-      client.server.general.exit();
-      await exited.future.timeout(const Duration(seconds: 5));
-      expect(server.state, LspState.exited);
-    });
+        client.server.general.exit();
+        await exited.future.timeout(const Duration(seconds: 5));
+        expect(server.state, LspState.exited);
+      },
+    );
   });
 
   group('E2E client→server requests', () {
@@ -102,33 +104,35 @@ void main() {
       expect(result.asDefinition!.asLocation!.uri, 'file:///b.dart');
     });
 
-    test('a server error surfaces as a typed LspException on the client',
-        () async {
-      final (:server, :client) = await connect(
-        configureServer: (server) {
-          server.textDocument.onHover(
-            (params, context) async =>
-                throw LspException.invalidParams('bad position'),
-          );
-        },
-      );
+    test(
+      'a server error surfaces as a typed LspException on the client',
+      () async {
+        final (:server, :client) = await connect(
+          configureServer: (server) {
+            server.textDocument.onHover(
+              (params, context) async =>
+                  throw LspException.invalidParams('bad position'),
+            );
+          },
+        );
 
-      await expectLater(
-        client.server.textDocument.hover(
-          const HoverParams(
-            textDocument: TextDocumentIdentifier(uri: 'file:///a.dart'),
-            position: Position(line: 0, character: 0),
+        await expectLater(
+          client.server.textDocument.hover(
+            const HoverParams(
+              textDocument: TextDocumentIdentifier(uri: 'file:///a.dart'),
+              position: Position(line: 0, character: 0),
+            ),
           ),
-        ),
-        throwsA(
-          isA<LspException>().having(
-            (e) => e.code,
-            'code',
-            LspErrorCodes.invalidParams,
+          throwsA(
+            isA<LspException>().having(
+              (e) => e.code,
+              'code',
+              LspErrorCodes.invalidParams,
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   });
 
   group('E2E document sync', () {
@@ -186,82 +190,87 @@ void main() {
   });
 
   group('E2E server→client notifications', () {
-    test(r'publishDiagnostics, window/*, and $/progress all reach the client',
-        () async {
-      final diagnostics = Completer<PublishDiagnosticsParams>();
-      final showMessage = Completer<ShowMessageParams>();
-      final logMessage = Completer<LogMessageParams>();
-      final progress = Completer<ProgressParams>();
+    test(
+      r'publishDiagnostics, window/*, and $/progress all reach the client',
+      () async {
+        final diagnostics = Completer<PublishDiagnosticsParams>();
+        final showMessage = Completer<ShowMessageParams>();
+        final logMessage = Completer<LogMessageParams>();
+        final progress = Completer<ProgressParams>();
 
-      final (:server, :client) = await connect(
-        configureServer: (server) {
-          // Use didOpen as the trigger: the client is fully `initialized` by
-          // the time it sends didOpen, so these server→client messages are
-          // accepted by the client's state machine.
-          server.textDocument.onDidOpen((params, context) async {
-            server.client.window.showMessage(
-              const ShowMessageParams(
-                type: MessageType.info,
-                message: 'opened',
-              ),
-            );
-            server.client.window.logMessage(
-              const LogMessageParams(
-                type: MessageType.log,
-                message: 'log line',
-              ),
-            );
-            server.client.general.progress(
-              const ProgressParams(
-                token: ProgressToken.string('tok-1'),
-                value: LSPAny.string('begin'),
-              ),
-            );
-            server.client.textDocument.publishDiagnostics(
-              const PublishDiagnosticsParams(
-                uri: 'file:///a.dart',
-                diagnostics: [],
-              ),
-            );
-          });
-        },
-        configureClient: (client) {
-          client.textDocument.onPublishDiagnostics(
-            (params, context) async => diagnostics.complete(params),
-          );
-          client.window
-            ..onShowMessage((params, context) async {
-              showMessage.complete(params);
-            })
-            ..onLogMessage((params, context) async {
-              logMessage.complete(params);
+        final (:server, :client) = await connect(
+          configureServer: (server) {
+            // Use didOpen as the trigger: the client is fully `initialized` by
+            // the time it sends didOpen, so these server→client messages are
+            // accepted by the client's state machine.
+            server.textDocument.onDidOpen((params, context) async {
+              server.client.window.showMessage(
+                const ShowMessageParams(
+                  type: MessageType.info,
+                  message: 'opened',
+                ),
+              );
+              server.client.window.logMessage(
+                const LogMessageParams(
+                  type: MessageType.log,
+                  message: 'log line',
+                ),
+              );
+              server.client.general.progress(
+                const ProgressParams(
+                  token: ProgressToken.string('tok-1'),
+                  value: LSPAny.string('begin'),
+                ),
+              );
+              server.client.textDocument.publishDiagnostics(
+                const PublishDiagnosticsParams(
+                  uri: 'file:///a.dart',
+                  diagnostics: [],
+                ),
+              );
             });
-          client.general.onProgress(
-            (params, context) async => progress.complete(params),
-          );
-        },
-      );
+          },
+          configureClient: (client) {
+            client.textDocument.onPublishDiagnostics(
+              (params, context) async => diagnostics.complete(params),
+            );
+            client.window
+              ..onShowMessage((params, context) async {
+                showMessage.complete(params);
+              })
+              ..onLogMessage((params, context) async {
+                logMessage.complete(params);
+              });
+            client.general.onProgress(
+              (params, context) async => progress.complete(params),
+            );
+          },
+        );
 
-      client.server.textDocument.didOpen(
-        const DidOpenTextDocumentParams(
-          textDocument: TextDocumentItem(
-            uri: 'file:///a.dart',
-            languageId: 'dart',
-            version: 1,
-            text: '',
+        client.server.textDocument.didOpen(
+          const DidOpenTextDocumentParams(
+            textDocument: TextDocumentItem(
+              uri: 'file:///a.dart',
+              languageId: 'dart',
+              version: 1,
+              text: '',
+            ),
           ),
-        ),
-      );
+        );
 
-      const timeout = Duration(seconds: 5);
-      expect((await diagnostics.future.timeout(timeout)).uri, 'file:///a.dart');
-      expect((await showMessage.future.timeout(timeout)).message, 'opened');
-      expect((await logMessage.future.timeout(timeout)).message, 'log line');
-      expect(
-        (await progress.future.timeout(timeout)).token,
-        const ProgressToken.string('tok-1'),
-      );
-    });
+        const timeout = Duration(seconds: 5);
+        expect(
+          (await diagnostics.future.timeout(timeout)).uri,
+          'file:///a.dart',
+        );
+        expect((await showMessage.future.timeout(timeout)).message, 'opened');
+        expect((await logMessage.future.timeout(timeout)).message, 'log line');
+        expect(
+          (await progress.future.timeout(timeout)).token,
+          const ProgressToken.string('tok-1'),
+        );
+      },
+    );
   });
 
   group('E2E server→client requests', () {

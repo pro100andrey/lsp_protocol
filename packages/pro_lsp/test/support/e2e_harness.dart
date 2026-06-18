@@ -5,10 +5,11 @@ import 'package:stream_channel/stream_channel.dart';
 import 'package:test/test.dart';
 
 /// Signature of the `connect` helper returned by [e2eHarness].
-typedef E2EConnect = Future<({LspServer server, LspClient client})> Function({
-  void Function(LspServer server)? configureServer,
-  void Function(LspClient client)? configureClient,
-});
+typedef E2EConnect =
+    Future<({LspServer server, LspClient client})> Function({
+      void Function(LspServer server)? configureServer,
+      void Function(LspClient client)? configureClient,
+    });
 
 /// Installs an end-to-end harness for the current test group and returns a
 /// `connect` helper.

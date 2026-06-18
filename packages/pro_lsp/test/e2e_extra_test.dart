@@ -421,8 +421,9 @@ void main() {
         },
         configureClient: (client) {
           client.workspace.onWorkspaceFolders(
-            (context) async =>
-                const [WorkspaceFolder(uri: 'file:///w', name: 'w')],
+            (context) async => const [
+              WorkspaceFolder(uri: 'file:///w', name: 'w'),
+            ],
           );
         },
       );

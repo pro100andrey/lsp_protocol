@@ -126,8 +126,8 @@ void main() {
           server.textDocument.onSemanticTokensFullDelta(
             (params, context) async =>
                 SemanticTokensFullDeltaResult.semanticTokens(
-              const SemanticTokens(data: [0, 0, 3, 1, 0]),
-            ),
+                  const SemanticTokens(data: [0, 0, 3, 1, 0]),
+                ),
           );
         },
       );
@@ -181,10 +181,9 @@ void main() {
         configureServer: (server) {
           server.textDocument.onDiagnostic(
             (params, context) async =>
-                DocumentDiagnosticReport
-                    .relatedFullDocumentDiagnosticReport(
-              const RelatedFullDocumentDiagnosticReport(items: []),
-            ),
+                DocumentDiagnosticReport.relatedFullDocumentDiagnosticReport(
+                  const RelatedFullDocumentDiagnosticReport(items: []),
+                ),
           );
         },
       );
@@ -202,12 +201,12 @@ void main() {
           server.textDocument.onInlineCompletion(
             (params, context) async =>
                 InlineCompletionResult.inlineCompletionItemList(
-              const [
-                InlineCompletionItem(
-                  insertText: InlineCompletionItemInsertText.string('xyz'),
+                  const [
+                    InlineCompletionItem(
+                      insertText: InlineCompletionItemInsertText.string('xyz'),
+                    ),
+                  ],
                 ),
-              ],
-            ),
           );
         },
       );
@@ -247,8 +246,7 @@ void main() {
       final (:server, :client) = await connect(
         configureServer: (server) {
           server.textDocument.onDocumentSymbol(
-            (params, context) async =>
-                DocumentSymbolResult.documentSymbolList(
+            (params, context) async => DocumentSymbolResult.documentSymbolList(
               const [
                 DocumentSymbol(
                   name: 'C',
@@ -313,8 +311,9 @@ void main() {
       final (:server, :client) = await connect(
         configureServer: (server) {
           server.textDocument.onFoldingRange(
-            (params, context) async =>
-                const [FoldingRange(startLine: 0, endLine: 10)],
+            (params, context) async => const [
+              FoldingRange(startLine: 0, endLine: 10),
+            ],
           );
         },
       );
@@ -372,8 +371,7 @@ void main() {
       final (:server, :client) = await connect(
         configureServer: (server) {
           server.textDocument.onColorPresentation(
-            (params, context) async =>
-                const [ColorPresentation(label: '#f00')],
+            (params, context) async => const [ColorPresentation(label: '#f00')],
           );
         },
       );
