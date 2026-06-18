@@ -262,6 +262,16 @@ final class LspConnection {
   /// lifecycle description.
   LspState get state => _state;
 
+  /// Marks this connection [LspState.initialized] from the *client* side.
+  ///
+  /// The state machine advances on an *incoming* `initialize` request (the
+  /// server role). A client drives the handshake by *sending* `initialize`, so
+  /// it never receives one and must advance its own state explicitly —
+  /// otherwise [_verifyState] rejects every incoming server→client message
+  /// (`textDocument/publishDiagnostics`, `window/*`, `$/progress`, …) as
+  /// `serverNotInitialized`/`invalidRequest` and the handler is never called.
+  void markInitialized() => _state = .initialized;
+
   // Middleware & Error Handling
 
   /// List of middleware components that wrap all request/notification handlers.

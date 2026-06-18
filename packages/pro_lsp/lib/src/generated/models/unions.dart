@@ -2,6 +2,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: deprecated_consistency
 // ignore_for_file: deprecated_member_use_from_same_package
+// ignore_for_file: remove_deprecations_in_breaking_versions
 
 import 'enumerations.dart';
 import 'structures.dart';

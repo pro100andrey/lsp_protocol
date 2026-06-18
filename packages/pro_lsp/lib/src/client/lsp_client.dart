@@ -44,6 +44,9 @@ final class LspClient extends LspEndpoint {
   /// Handlers for `workspace/*` (e.g. `applyEdit`).
   late final workspace = ClientWorkspaceHandlers(connection);
 
+  /// Handlers for `telemetry/*` (e.g. `telemetry/event`).
+  late final telemetry = ClientTelemetryHandlers(connection);
+
   // Outgoing (client → server)
 
   /// Proxy for all outgoing (client → server) messages.
@@ -109,6 +112,11 @@ final class LspClient extends LspEndpoint {
 
     // 2. Send initialized notification
     server.general.initialized(const InitializedParams());
+
+    // 3. Advance our own connection state so incoming server→client messages
+    //    pass _verifyState. The state machine only auto-advances on an
+    //    *incoming* initialize request, which a client never receives.
+    connection.markInitialized();
 
     return result;
   }

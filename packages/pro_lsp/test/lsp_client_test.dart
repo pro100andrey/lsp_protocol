@@ -61,6 +61,45 @@ void main() {
       await client.close();
     });
 
+    test(
+      'client receives server→client notifications after the handshake',
+      () async {
+        final controller = StreamChannelController<List<int>>();
+        final server = LspServer.fromChannel(controller.local)
+          ..general.onInitialize(
+            (params, context) async =>
+                const InitializeResult(capabilities: ServerCapabilities()),
+          );
+        unawaited(server.listen());
+
+        final received = Completer<PublishDiagnosticsParams>();
+        final client = LspClient.fromChannel(controller.foreign)
+          ..textDocument.onPublishDiagnostics((params, context) async {
+            received.complete(params);
+          });
+
+        await client.start(capabilities: const ClientCapabilities());
+
+        // After start() the client's own connection must be `initialized`,
+        // otherwise _verifyState rejects every incoming server→client message.
+        expect(client.state, LspState.initialized);
+
+        server.client.textDocument.publishDiagnostics(
+          const PublishDiagnosticsParams(
+            uri: 'file:///main.dart',
+            diagnostics: [],
+          ),
+        );
+
+        final params = await received.future.timeout(
+          const Duration(seconds: 5),
+        );
+        expect(params.uri, 'file:///main.dart');
+
+        await client.close();
+      },
+    );
+
     test('start twice throws StateError', () async {
       final controller = StreamChannelController<List<int>>();
       final server = LspServer.fromChannel(controller.local)

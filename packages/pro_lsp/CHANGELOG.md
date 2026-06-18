@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.2.0
+
+* **Fixed (behavior change): `LspClient` now receives server→client messages.**
+  Previously the connection's lifecycle state advanced only on an *incoming*
+  `initialize` request (the server role). A client drives the handshake by
+  *sending* `initialize`, so its state stayed `uninitialized` and every incoming
+  server→client message (`textDocument/publishDiagnostics`, `window/*`,
+  `$/progress`, `workspace/configuration`, `window/showMessageRequest`,
+  `client/registerCapability`, …) was rejected by the state machine and silently
+  dropped — handlers were never invoked. `LspClient.start()` now advances its own
+  state after the handshake, so these handlers fire as expected. If you relied on
+  the previous (broken) behavior of these notifications never arriving, this is a
+  behavior change.
+* **Added:** `LspConnection.markInitialized()` — marks a connection
+  `initialized` from the *client* side (the state machine only auto-advances on
+  an incoming `initialize`, which a client never receives). Called automatically
+  by `LspClient.start()`; exposed for callers that drive the handshake manually
+  via the low-level `listen()`.
+* **Added:** `LspClient.telemetry` namespace getter
+  (`ClientTelemetryHandlers`), completing the set of incoming server→client
+  handler namespaces on the client. Previously `telemetry/event` could only be
+  handled by reaching into `connection` directly.
+* Documentation restructured: `README.md` is now a concise overview (pitch,
+  quick start, install) that links into a new [`docs/`](docs/README.md) tree —
+  task-oriented guides plus a per-method reference covering every LSP request
+  and notification with "what / when / example". Examples are distilled from the
+  package's end-to-end tests, so they track the current API.
+* Generated model files that contain LSP-mandated `@Deprecated` members again
+  carry `ignore_for_file: remove_deprecations_in_breaking_versions`. The 0.1.2
+  removal was premature — that lint only fires on a breaking version bump, which
+  this release is; the deprecations come from the LSP meta-model and cannot be
+  dropped. The generator now emits the ignore only for the model files that
+  actually contain a deprecated member. Generated code only; no API change.
+
 ## 0.1.2
 
 * `LspServer` now provides spec-compliant default `shutdown` and `exit`
