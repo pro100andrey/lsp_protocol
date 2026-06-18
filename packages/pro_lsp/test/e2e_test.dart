@@ -104,6 +104,29 @@ void main() {
       expect(result.asDefinition!.asLocation!.uri, 'file:///b.dart');
     });
 
+    test('definition decodes a null result without crashing', () async {
+      // Regression: a nullable-union result sender cast `raw as Object`, so a
+      // legitimate null response (nothing resolves under the cursor) threw
+      // "type 'Null' is not a subtype of type 'Object'". It must decode to the
+      // union's null variant instead.
+      final (:server, :client) = await connect(
+        configureServer: (server) {
+          server.textDocument.onDefinition(
+            (params, context) async => DefinitionResult.nullValue(),
+          );
+        },
+      );
+
+      final result = await client.server.textDocument.definition(
+        const DefinitionParams(
+          textDocument: TextDocumentIdentifier(uri: 'file:///a.dart'),
+          position: Position(line: 0, character: 0),
+        ),
+      );
+
+      expect(result.isNull, isTrue);
+    });
+
     test(
       'a server error surfaces as a typed LspException on the client',
       () async {
