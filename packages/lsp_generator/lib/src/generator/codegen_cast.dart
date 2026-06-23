@@ -129,19 +129,17 @@ extension ResolvedTypeCodegenX on ResolvedType {
       AliasType(:final ref)
           when ctx.sealedUnionNames.contains(ref.name) ||
               ctx.scalarUnionNames.contains(ref.name) =>
-        // NOTE: list elements are cast to non-nullable `Object`. If a
-        // *nullable* union (members include `null`) ever appears as a list
-        // element, a `null` entry would crash here — the list analogue of
-        // the scalar bug fixed in 932e210. As of LSP 3.18 no such type
-        // exists (`LSPAny` is the only nullable union and it maps to
-        // `Object?`, not a sealed/scalar union), so this stays `Object`.
-        // Thread the union's hasNull signal through and emit `Object?` if
-        // that ever changes.
+        // A nullable union (members include `null`) decodes from `Object?`,
+        // so a `null` list element survives instead of crashing — the list
+        // analogue of the scalar bug fixed in 932e210. `containsNull` is the
+        // single source of truth (see resolved_type.dart). As of LSP 3.18 no
+        // sealed/scalar union in a list is nullable, so this stays `Object`
+        // there; the check future-proofs it.
         _castListBlock(
           val,
           refer(ref.name),
           (e) => refer(ref.name).newInstanceNamed('fromJson', [
-            e.bareAsA(refer('Object')),
+            e.bareAsA(refer(ref.type.containsNull ? 'Object?' : 'Object')),
           ]),
           capSuffix,
         ),

@@ -276,21 +276,20 @@ void main() {
       resolved = ModelResolver().resolve(protocol);
     });
 
-    // Counts (LSP 3.18 meta-model)
+    // Counts — floors, not exact values. The metaModel only grows across LSP
+    // versions, so `>=` catches a resolver that silently drops declarations
+    // without breaking on every spec bump. The golden test owns byte-for-byte
+    // reproduction of the actual output.
     test('named structures count', () {
-      expect(resolved.classes.length, 387);
-    });
-
-    test('total classes (named + anonymous) count matches resolve output', () {
-      expect(resolved.classes.length, greaterThanOrEqualTo(40 + 23));
+      expect(resolved.classes.length, greaterThanOrEqualTo(387));
     });
 
     test('enumerations count', () {
-      expect(resolved.enumerations.length, 40);
+      expect(resolved.enumerations.length, greaterThanOrEqualTo(40));
     });
 
     test('aliases count', () {
-      expect(resolved.aliases.length, 23);
+      expect(resolved.aliases.length, greaterThanOrEqualTo(23));
     });
 
     test('registry size >= named classes + enumerations + aliases', () {

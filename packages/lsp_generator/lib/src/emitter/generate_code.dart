@@ -4,10 +4,9 @@ import 'package:code_builder/code_builder.dart';
 
 import '../../lsp_generator.dart' show ResolveResult;
 import '../config/files.dart';
-import '../generator/client_api_generator.dart';
+import '../generator/api_generator.dart';
 import '../generator/generator_helpers.dart';
 import '../generator/model_generator.dart';
-import '../generator/server_api_generator.dart';
 
 /// Package name for which special barrel/API files are generated.
 const kProLspPackage = 'pro_lsp';
@@ -98,9 +97,9 @@ void _writeApiFiles(ResolveResult rs, String outputDir) {
   dir.serverDir.createSync(recursive: true);
   dir.clientDir.createSync(recursive: true);
 
-  final serverLib = ServerApiGenerator(rs).buildServerApi();
+  final serverLib = ApiGenerator(rs, SideConfig.server).buildApi();
   dir.serverApiFile.writeAsStringSync(formatLibrary(serverLib));
 
-  final clientLib = ClientApiGenerator(rs).buildClientApi();
+  final clientLib = ApiGenerator(rs, SideConfig.client).buildApi();
   dir.clientApiFile.writeAsStringSync(formatLibrary(clientLib));
 }

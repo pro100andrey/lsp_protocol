@@ -5,19 +5,22 @@ import '../models/protocol.dart';
 import '../models/resolved_type.dart';
 import 'codegen_type.dart';
 import 'generator_helpers.dart';
+import 'side_config.dart';
 import 'type_ref_helpers.dart';
 
-/// Abstract base for generating LSP API classes (handlers, senders, proxy).
+export 'side_config.dart' show SideConfig;
+
+/// Generates LSP API classes (handlers, senders, proxy) for one side.
 ///
-/// Subclasses configure side-specific details (client/server naming,
-/// message directions, etc.) while this class handles the shared logic
-/// for grouping methods by namespace, resolving type names, and
-/// producing the AST [Library] via [buildApi].
-abstract class ApiGenerator {
-  /// Creates the generator and pre-computes lookup maps for request and
-  /// notification wire methods as well as the set of union type names
-  /// used in the protocol.
-  ApiGenerator(this.resolved) {
+/// Side-specific details (client/server naming, message directions, etc.) come
+/// from the injected [SideConfig]; this class handles the shared logic for
+/// grouping methods by namespace, resolving type names, and producing the AST
+/// [Library] via [buildApi].
+final class ApiGenerator {
+  /// Creates the generator for [config]'s side and pre-computes lookup maps for
+  /// request and notification wire methods as well as the set of union type
+  /// names used in the protocol.
+  ApiGenerator(this.resolved, this.config) {
     requestMethods = {
       for (final e in dartNames(
         resolved.requests,
@@ -25,6 +28,7 @@ abstract class ApiGenerator {
       ).entries)
         e.key.method: e.value,
     };
+
     notificationMethods = {
       for (final e in dartNames(
         resolved.notifications,
@@ -34,11 +38,13 @@ abstract class ApiGenerator {
     };
 
     _unionTypeNames = {};
+
     for (final req in resolved.requests) {
       if (isRequestResultUnion(req.result)) {
         _unionTypeNames.add(requestResultUnionName(req.method));
       }
     }
+
     for (final alias in resolved.aliases) {
       if (alias.type case UnionType()) {
         _unionTypeNames.add(alias.name);
@@ -54,23 +60,17 @@ abstract class ApiGenerator {
     for (final req in resolved.requests) {
       if (isRequestResultUnion(req.result)) {
         final union = req.result!.nonNull as UnionType;
-        if (_unionHasNull(union)) {
+        if (union.containsNull) {
           _nullableUnionTypeNames.add(requestResultUnionName(req.method));
         }
       }
     }
     for (final alias in resolved.aliases) {
-      if (alias.type case final UnionType union when _unionHasNull(union)) {
+      if (alias.type case final UnionType union when union.containsNull) {
         _nullableUnionTypeNames.add(alias.name);
       }
     }
   }
-
-  /// Whether [union]'s members include the `Null` core type, matching the
-  /// `hasNull` test in `model_unions` that drives the `Object?` representation.
-  static bool _unionHasNull(UnionType union) => union.items.any(
-    (item) => item is DartCoreType && item.dartName == 'Null',
-  );
 
   /// The resolved protocol state containing all requests, notifications, and
   /// type aliases after direction resolution.
@@ -93,38 +93,40 @@ abstract class ApiGenerator {
   /// a null response decodes to the union's null variant instead of crashing.
   late final Set<String> _nullableUnionTypeNames;
 
-  // Abstract Configuration Getters
+  /// Side-specific configuration (naming, directions, proxy details).
+  final SideConfig config;
+
+  // Side-specific values, delegated to [config].
 
   /// The side this generator targets, e.g. `"Client"` or `"Server"`.
-  String get side;
+  String get side => config.side;
 
   /// The opposite side, used for generating human-readable docs and strings.
-  String get otherSide;
+  String get otherSide => config.otherSide;
 
-  /// The name of the proxy extension type (e.g. `"ClientLsp"`).
-  String get proxyName;
+  /// The name of the proxy extension type (e.g. `"ClientToServerProxy"`).
+  String get proxyName => config.proxyName;
 
   /// The access pattern for the proxy example in docs
-  /// (e.g. `"connection.lsp"`).
-  String get proxyExampleAccess;
+  /// (e.g. `"client.server"`).
+  String get proxyExampleAccess => config.proxyExampleAccess;
 
-  /// The type name of the example used in proxy docs (e.g. `"LspConnection"`).
-  String get proxyExampleType;
+  /// The type name of the example used in proxy docs (e.g. `"LspClient"`).
+  String get proxyExampleType => config.proxyExampleType;
 
   /// The full documentation call expression shown in proxy docs.
-  String get proxyExampleDocsCall;
+  String get proxyExampleDocsCall => config.proxyExampleDocsCall;
 
   /// The message direction for handler methods.
-  MessageDirection get handlerDirection;
+  MessageDirection get handlerDirection => config.handlerDirection;
 
   /// The message direction for sender methods.
-  MessageDirection get senderDirection;
+  MessageDirection get senderDirection => config.senderDirection;
 
-  /// Returns the return type reference for handler methods.
-  ///
-  /// Override to customize the return type based on whether the method
-  /// handles a notification (typically [refer('void')]) or a request.
-  Reference handlerMethodReturns(bool isNotification) => refer('void');
+  /// The return type reference for handler methods, given whether the method
+  /// handles a notification or a request.
+  Reference handlerMethodReturns(bool isNotification) =>
+      config.handlerMethodReturns(isNotification);
 
   // Common Build Entry Point
 
@@ -211,7 +213,7 @@ abstract class ApiGenerator {
       ResolvedType? result, {
       required bool isNotification,
     }) {
-      if (dir == handlerDir || dir == MessageDirection.both) {
+      if (dir == handlerDir || dir == .both) {
         addTo(
           handlerGroups,
           method,
@@ -220,7 +222,7 @@ abstract class ApiGenerator {
           isNotification: isNotification,
         );
       }
-      if (dir == senderDir || dir == MessageDirection.both) {
+      if (dir == senderDir || dir == .both) {
         addTo(
           senderGroups,
           method,
@@ -316,6 +318,7 @@ abstract class ApiGenerator {
     final returnType = isNotification ? 'Future<void>' : 'Future<$resultType>';
     final param = paramsType.isNotEmpty ? '$paramsType params' : '';
     final comma = param.isNotEmpty ? ', ' : '';
+
     return '$returnType Function($param${comma}LspRequest context)';
   }
 
@@ -359,6 +362,7 @@ abstract class ApiGenerator {
           : refer(
               'result',
             ).property('map').call([mapClosure]).property('toList').call([]);
+
       return [
         declareFinal('result').assign(handlerExpr.awaited).statement,
         listExpr.returned.statement,
@@ -368,6 +372,7 @@ abstract class ApiGenerator {
     final toJson = isNullable
         ? refer('result').nullSafeProperty('toJson').call([])
         : refer('result').property('toJson').call([]);
+        
     return [
       declareFinal('result').assign(handlerExpr.awaited).statement,
       toJson.returned.statement,

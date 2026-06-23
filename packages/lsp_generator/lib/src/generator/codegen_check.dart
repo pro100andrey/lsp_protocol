@@ -312,11 +312,7 @@ extension ResolvedTypeCheckX on ResolvedType {
     Reference typeRef,
     UnionType? parentUnion,
   ) {
-    final hasNull =
-        parentUnion != null &&
-        parentUnion.items.any(
-          (item) => item is DartCoreType && item.dartName == 'Null',
-        );
+    final hasNull = parentUnion?.containsNull ?? false;
 
     final isValueRef = val is Reference && val.symbol == 'value';
 

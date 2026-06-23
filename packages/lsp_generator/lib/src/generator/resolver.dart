@@ -119,13 +119,16 @@ final class ModelResolver {
   }) {
     final items = ref.items;
 
-    // Detect OrRef([T, null]) → NullableType(T)
-    final nullItems = items.where(_isNull).toList(growable: false);
+    // Detect OrRef([T, null]) → NullableType(T). A single non-null member
+    // alongside one or more nulls collapses to `T?`; everything else (two or
+    // more non-null members) stays a UnionType, which still reports
+    // `containsNull` if any null member remains.
     final nonNullItems = items
         .where((i) => !_isNull(i))
         .toList(growable: false);
+    final hasNull = items.any(_isNull);
 
-    if (nullItems.length == 1 && nonNullItems.length == 1) {
+    if (nonNullItems.length == 1 && hasNull) {
       return NullableType(
         inner: resolveRef(
           nonNullItems.first,
