@@ -74,6 +74,9 @@ const _$RequestMethodEnumMap = {
   RequestMethod.workspaceDiagnostic: 'workspace/diagnostic',
   RequestMethod.workspaceDiagnosticRefresh: 'workspace/diagnostic/refresh',
   RequestMethod.inlineCompletion: 'textDocument/inlineCompletion',
+  RequestMethod.textDocumentContent: 'workspace/textDocumentContent',
+  RequestMethod.workspaceTextDocumentContentRefresh:
+      'workspace/textDocumentContent/refresh',
   RequestMethod.registerCapability: 'client/registerCapability',
   RequestMethod.unregisterCapability: 'client/unregisterCapability',
   RequestMethod.initialize: 'initialize',

@@ -129,6 +129,14 @@ extension ResolvedTypeCodegenX on ResolvedType {
       AliasType(:final ref)
           when ctx.sealedUnionNames.contains(ref.name) ||
               ctx.scalarUnionNames.contains(ref.name) =>
+        // NOTE: list elements are cast to non-nullable `Object`. If a
+        // *nullable* union (members include `null`) ever appears as a list
+        // element, a `null` entry would crash here — the list analogue of
+        // the scalar bug fixed in 932e210. As of LSP 3.18 no such type
+        // exists (`LSPAny` is the only nullable union and it maps to
+        // `Object?`, not a sealed/scalar union), so this stays `Object`.
+        // Thread the union's hasNull signal through and emit `Object?` if
+        // that ever changes.
         _castListBlock(
           val,
           refer(ref.name),

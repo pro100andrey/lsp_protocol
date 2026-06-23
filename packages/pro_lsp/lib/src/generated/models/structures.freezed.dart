@@ -124,7 +124,7 @@ mixin _$ServerCapabilities {
 ///
 /// Type: `bool` | `InlineCompletionOptions`
  ServerCapabilitiesInlineCompletionProvider? get inlineCompletionProvider;/// Workspace specific server capabilities.
- ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace;/// Experimental server capabilities.
+ WorkspaceOptions? get workspace;/// Experimental server capabilities.
  LSPAny? get experimental;
 /// Create a copy of ServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -158,11 +158,11 @@ abstract mixin class $ServerCapabilitiesCopyWith<$Res>  {
   factory $ServerCapabilitiesCopyWith(ServerCapabilities value, $Res Function(ServerCapabilities) _then) = _$ServerCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- PositionEncodingKind? positionEncoding, ServerCapabilitiesTextDocumentSync? textDocumentSync, ServerCapabilitiesNotebookDocumentSync? notebookDocumentSync, CompletionOptions? completionProvider, ServerCapabilitiesHoverProvider? hoverProvider, SignatureHelpOptions? signatureHelpProvider, ServerCapabilitiesDeclarationProvider? declarationProvider, ServerCapabilitiesDefinitionProvider? definitionProvider, ServerCapabilitiesTypeDefinitionProvider? typeDefinitionProvider, ServerCapabilitiesImplementationProvider? implementationProvider, ServerCapabilitiesReferencesProvider? referencesProvider, ServerCapabilitiesDocumentHighlightProvider? documentHighlightProvider, ServerCapabilitiesDocumentSymbolProvider? documentSymbolProvider, ServerCapabilitiesCodeActionProvider? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, ServerCapabilitiesColorProvider? colorProvider, ServerCapabilitiesWorkspaceSymbolProvider? workspaceSymbolProvider, ServerCapabilitiesDocumentFormattingProvider? documentFormattingProvider, ServerCapabilitiesDocumentRangeFormattingProvider? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, ServerCapabilitiesRenameProvider? renameProvider, ServerCapabilitiesFoldingRangeProvider? foldingRangeProvider, ServerCapabilitiesSelectionRangeProvider? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, ServerCapabilitiesCallHierarchyProvider? callHierarchyProvider, ServerCapabilitiesLinkedEditingRangeProvider? linkedEditingRangeProvider, ServerCapabilitiesSemanticTokensProvider? semanticTokensProvider, ServerCapabilitiesMonikerProvider? monikerProvider, ServerCapabilitiesTypeHierarchyProvider? typeHierarchyProvider, ServerCapabilitiesInlineValueProvider? inlineValueProvider, ServerCapabilitiesInlayHintProvider? inlayHintProvider, ServerCapabilitiesDiagnosticProvider? diagnosticProvider, ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
+ PositionEncodingKind? positionEncoding, ServerCapabilitiesTextDocumentSync? textDocumentSync, ServerCapabilitiesNotebookDocumentSync? notebookDocumentSync, CompletionOptions? completionProvider, ServerCapabilitiesHoverProvider? hoverProvider, SignatureHelpOptions? signatureHelpProvider, ServerCapabilitiesDeclarationProvider? declarationProvider, ServerCapabilitiesDefinitionProvider? definitionProvider, ServerCapabilitiesTypeDefinitionProvider? typeDefinitionProvider, ServerCapabilitiesImplementationProvider? implementationProvider, ServerCapabilitiesReferencesProvider? referencesProvider, ServerCapabilitiesDocumentHighlightProvider? documentHighlightProvider, ServerCapabilitiesDocumentSymbolProvider? documentSymbolProvider, ServerCapabilitiesCodeActionProvider? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, ServerCapabilitiesColorProvider? colorProvider, ServerCapabilitiesWorkspaceSymbolProvider? workspaceSymbolProvider, ServerCapabilitiesDocumentFormattingProvider? documentFormattingProvider, ServerCapabilitiesDocumentRangeFormattingProvider? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, ServerCapabilitiesRenameProvider? renameProvider, ServerCapabilitiesFoldingRangeProvider? foldingRangeProvider, ServerCapabilitiesSelectionRangeProvider? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, ServerCapabilitiesCallHierarchyProvider? callHierarchyProvider, ServerCapabilitiesLinkedEditingRangeProvider? linkedEditingRangeProvider, ServerCapabilitiesSemanticTokensProvider? semanticTokensProvider, ServerCapabilitiesMonikerProvider? monikerProvider, ServerCapabilitiesTypeHierarchyProvider? typeHierarchyProvider, ServerCapabilitiesInlineValueProvider? inlineValueProvider, ServerCapabilitiesInlayHintProvider? inlayHintProvider, ServerCapabilitiesDiagnosticProvider? diagnosticProvider, ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider, WorkspaceOptions? workspace, LSPAny? experimental
 });
 
 
-$CompletionOptionsCopyWith<$Res>? get completionProvider;$SignatureHelpOptionsCopyWith<$Res>? get signatureHelpProvider;$CodeLensOptionsCopyWith<$Res>? get codeLensProvider;$DocumentLinkOptionsCopyWith<$Res>? get documentLinkProvider;$DocumentOnTypeFormattingOptionsCopyWith<$Res>? get documentOnTypeFormattingProvider;$ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider;
+$CompletionOptionsCopyWith<$Res>? get completionProvider;$SignatureHelpOptionsCopyWith<$Res>? get signatureHelpProvider;$CodeLensOptionsCopyWith<$Res>? get codeLensProvider;$DocumentLinkOptionsCopyWith<$Res>? get documentLinkProvider;$DocumentOnTypeFormattingOptionsCopyWith<$Res>? get documentOnTypeFormattingProvider;$ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider;$WorkspaceOptionsCopyWith<$Res>? get workspace;
 
 }
 /// @nodoc
@@ -212,7 +212,7 @@ as ServerCapabilitiesInlineValueProvider?,inlayHintProvider: freezed == inlayHin
 as ServerCapabilitiesInlayHintProvider?,diagnosticProvider: freezed == diagnosticProvider ? _self.diagnosticProvider : diagnosticProvider // ignore: cast_nullable_to_non_nullable
 as ServerCapabilitiesDiagnosticProvider?,inlineCompletionProvider: freezed == inlineCompletionProvider ? _self.inlineCompletionProvider : inlineCompletionProvider // ignore: cast_nullable_to_non_nullable
 as ServerCapabilitiesInlineCompletionProvider?,workspace: freezed == workspace ? _self.workspace : workspace // ignore: cast_nullable_to_non_nullable
-as ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})?,experimental: freezed == experimental ? _self.experimental : experimental // ignore: cast_nullable_to_non_nullable
+as WorkspaceOptions?,experimental: freezed == experimental ? _self.experimental : experimental // ignore: cast_nullable_to_non_nullable
 as LSPAny?,
   ));
 }
@@ -287,6 +287,18 @@ $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider {
 
   return $ExecuteCommandOptionsCopyWith<$Res>(_self.executeCommandProvider!, (value) {
     return _then(_self.copyWith(executeCommandProvider: value));
+  });
+}/// Create a copy of ServerCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WorkspaceOptionsCopyWith<$Res>? get workspace {
+    if (_self.workspace == null) {
+    return null;
+  }
+
+  return $WorkspaceOptionsCopyWith<$Res>(_self.workspace!, (value) {
+    return _then(_self.copyWith(workspace: value));
   });
 }
 }
@@ -443,7 +455,7 @@ class _ServerCapabilities implements ServerCapabilities {
 /// Type: `bool` | `InlineCompletionOptions`
 @override final  ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider;
 /// Workspace specific server capabilities.
-@override final  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace;
+@override final  WorkspaceOptions? workspace;
 /// Experimental server capabilities.
 @override final  LSPAny? experimental;
 
@@ -480,11 +492,11 @@ abstract mixin class _$ServerCapabilitiesCopyWith<$Res> implements $ServerCapabi
   factory _$ServerCapabilitiesCopyWith(_ServerCapabilities value, $Res Function(_ServerCapabilities) _then) = __$ServerCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- PositionEncodingKind? positionEncoding, ServerCapabilitiesTextDocumentSync? textDocumentSync, ServerCapabilitiesNotebookDocumentSync? notebookDocumentSync, CompletionOptions? completionProvider, ServerCapabilitiesHoverProvider? hoverProvider, SignatureHelpOptions? signatureHelpProvider, ServerCapabilitiesDeclarationProvider? declarationProvider, ServerCapabilitiesDefinitionProvider? definitionProvider, ServerCapabilitiesTypeDefinitionProvider? typeDefinitionProvider, ServerCapabilitiesImplementationProvider? implementationProvider, ServerCapabilitiesReferencesProvider? referencesProvider, ServerCapabilitiesDocumentHighlightProvider? documentHighlightProvider, ServerCapabilitiesDocumentSymbolProvider? documentSymbolProvider, ServerCapabilitiesCodeActionProvider? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, ServerCapabilitiesColorProvider? colorProvider, ServerCapabilitiesWorkspaceSymbolProvider? workspaceSymbolProvider, ServerCapabilitiesDocumentFormattingProvider? documentFormattingProvider, ServerCapabilitiesDocumentRangeFormattingProvider? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, ServerCapabilitiesRenameProvider? renameProvider, ServerCapabilitiesFoldingRangeProvider? foldingRangeProvider, ServerCapabilitiesSelectionRangeProvider? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, ServerCapabilitiesCallHierarchyProvider? callHierarchyProvider, ServerCapabilitiesLinkedEditingRangeProvider? linkedEditingRangeProvider, ServerCapabilitiesSemanticTokensProvider? semanticTokensProvider, ServerCapabilitiesMonikerProvider? monikerProvider, ServerCapabilitiesTypeHierarchyProvider? typeHierarchyProvider, ServerCapabilitiesInlineValueProvider? inlineValueProvider, ServerCapabilitiesInlayHintProvider? inlayHintProvider, ServerCapabilitiesDiagnosticProvider? diagnosticProvider, ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
+ PositionEncodingKind? positionEncoding, ServerCapabilitiesTextDocumentSync? textDocumentSync, ServerCapabilitiesNotebookDocumentSync? notebookDocumentSync, CompletionOptions? completionProvider, ServerCapabilitiesHoverProvider? hoverProvider, SignatureHelpOptions? signatureHelpProvider, ServerCapabilitiesDeclarationProvider? declarationProvider, ServerCapabilitiesDefinitionProvider? definitionProvider, ServerCapabilitiesTypeDefinitionProvider? typeDefinitionProvider, ServerCapabilitiesImplementationProvider? implementationProvider, ServerCapabilitiesReferencesProvider? referencesProvider, ServerCapabilitiesDocumentHighlightProvider? documentHighlightProvider, ServerCapabilitiesDocumentSymbolProvider? documentSymbolProvider, ServerCapabilitiesCodeActionProvider? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, ServerCapabilitiesColorProvider? colorProvider, ServerCapabilitiesWorkspaceSymbolProvider? workspaceSymbolProvider, ServerCapabilitiesDocumentFormattingProvider? documentFormattingProvider, ServerCapabilitiesDocumentRangeFormattingProvider? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, ServerCapabilitiesRenameProvider? renameProvider, ServerCapabilitiesFoldingRangeProvider? foldingRangeProvider, ServerCapabilitiesSelectionRangeProvider? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, ServerCapabilitiesCallHierarchyProvider? callHierarchyProvider, ServerCapabilitiesLinkedEditingRangeProvider? linkedEditingRangeProvider, ServerCapabilitiesSemanticTokensProvider? semanticTokensProvider, ServerCapabilitiesMonikerProvider? monikerProvider, ServerCapabilitiesTypeHierarchyProvider? typeHierarchyProvider, ServerCapabilitiesInlineValueProvider? inlineValueProvider, ServerCapabilitiesInlayHintProvider? inlayHintProvider, ServerCapabilitiesDiagnosticProvider? diagnosticProvider, ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider, WorkspaceOptions? workspace, LSPAny? experimental
 });
 
 
-@override $CompletionOptionsCopyWith<$Res>? get completionProvider;@override $SignatureHelpOptionsCopyWith<$Res>? get signatureHelpProvider;@override $CodeLensOptionsCopyWith<$Res>? get codeLensProvider;@override $DocumentLinkOptionsCopyWith<$Res>? get documentLinkProvider;@override $DocumentOnTypeFormattingOptionsCopyWith<$Res>? get documentOnTypeFormattingProvider;@override $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider;
+@override $CompletionOptionsCopyWith<$Res>? get completionProvider;@override $SignatureHelpOptionsCopyWith<$Res>? get signatureHelpProvider;@override $CodeLensOptionsCopyWith<$Res>? get codeLensProvider;@override $DocumentLinkOptionsCopyWith<$Res>? get documentLinkProvider;@override $DocumentOnTypeFormattingOptionsCopyWith<$Res>? get documentOnTypeFormattingProvider;@override $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider;@override $WorkspaceOptionsCopyWith<$Res>? get workspace;
 
 }
 /// @nodoc
@@ -534,7 +546,7 @@ as ServerCapabilitiesInlineValueProvider?,inlayHintProvider: freezed == inlayHin
 as ServerCapabilitiesInlayHintProvider?,diagnosticProvider: freezed == diagnosticProvider ? _self.diagnosticProvider : diagnosticProvider // ignore: cast_nullable_to_non_nullable
 as ServerCapabilitiesDiagnosticProvider?,inlineCompletionProvider: freezed == inlineCompletionProvider ? _self.inlineCompletionProvider : inlineCompletionProvider // ignore: cast_nullable_to_non_nullable
 as ServerCapabilitiesInlineCompletionProvider?,workspace: freezed == workspace ? _self.workspace : workspace // ignore: cast_nullable_to_non_nullable
-as ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})?,experimental: freezed == experimental ? _self.experimental : experimental // ignore: cast_nullable_to_non_nullable
+as WorkspaceOptions?,experimental: freezed == experimental ? _self.experimental : experimental // ignore: cast_nullable_to_non_nullable
 as LSPAny?,
   ));
 }
@@ -610,6 +622,18 @@ $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider {
 
   return $ExecuteCommandOptionsCopyWith<$Res>(_self.executeCommandProvider!, (value) {
     return _then(_self.copyWith(executeCommandProvider: value));
+  });
+}/// Create a copy of ServerCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WorkspaceOptionsCopyWith<$Res>? get workspace {
+    if (_self.workspace == null) {
+    return null;
+  }
+
+  return $WorkspaceOptionsCopyWith<$Res>(_self.workspace!, (value) {
+    return _then(_self.copyWith(workspace: value));
   });
 }
 }
@@ -897,163 +921,6 @@ $GeneralClientCapabilitiesCopyWith<$Res>? get general {
 
 
 /// @nodoc
-mixin _$WorkspaceFoldersServerCapabilities {
-
-/// The server has support for workspace folders
- bool? get supported;/// Whether the server wants to receive workspace folder change
-/// notifications.
-///
-/// If a string is provided the string is treated as an ID under which the
-/// notification is registered on the client side. The ID can be used to
-/// unregister for these events using the `client/unregisterCapability`
-/// request.
-///
-/// Type: `String` | `bool`
- WorkspaceFoldersServerCapabilitiesChangeNotifications? get changeNotifications;
-/// Create a copy of WorkspaceFoldersServerCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$WorkspaceFoldersServerCapabilitiesCopyWith<WorkspaceFoldersServerCapabilities> get copyWith => _$WorkspaceFoldersServerCapabilitiesCopyWithImpl<WorkspaceFoldersServerCapabilities>(this as WorkspaceFoldersServerCapabilities, _$identity);
-
-  /// Serializes this WorkspaceFoldersServerCapabilities to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceFoldersServerCapabilities&&(identical(other.supported, supported) || other.supported == supported)&&(identical(other.changeNotifications, changeNotifications) || other.changeNotifications == changeNotifications));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,supported,changeNotifications);
-
-@override
-String toString() {
-  return 'WorkspaceFoldersServerCapabilities(supported: $supported, changeNotifications: $changeNotifications)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>  {
-  factory $WorkspaceFoldersServerCapabilitiesCopyWith(WorkspaceFoldersServerCapabilities value, $Res Function(WorkspaceFoldersServerCapabilities) _then) = _$WorkspaceFoldersServerCapabilitiesCopyWithImpl;
-@useResult
-$Res call({
- bool? supported, WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications
-});
-
-
-
-
-}
-/// @nodoc
-class _$WorkspaceFoldersServerCapabilitiesCopyWithImpl<$Res>
-    implements $WorkspaceFoldersServerCapabilitiesCopyWith<$Res> {
-  _$WorkspaceFoldersServerCapabilitiesCopyWithImpl(this._self, this._then);
-
-  final WorkspaceFoldersServerCapabilities _self;
-  final $Res Function(WorkspaceFoldersServerCapabilities) _then;
-
-/// Create a copy of WorkspaceFoldersServerCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? supported = freezed,Object? changeNotifications = freezed,}) {
-  return _then(_self.copyWith(
-supported: freezed == supported ? _self.supported : supported // ignore: cast_nullable_to_non_nullable
-as bool?,changeNotifications: freezed == changeNotifications ? _self.changeNotifications : changeNotifications // ignore: cast_nullable_to_non_nullable
-as WorkspaceFoldersServerCapabilitiesChangeNotifications?,
-  ));
-}
-
-}
-
-
-
-/// @nodoc
-@JsonSerializable()
-
-class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapabilities {
-  const _WorkspaceFoldersServerCapabilities({this.supported, this.changeNotifications});
-  factory _WorkspaceFoldersServerCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
-
-/// The server has support for workspace folders
-@override final  bool? supported;
-/// Whether the server wants to receive workspace folder change
-/// notifications.
-///
-/// If a string is provided the string is treated as an ID under which the
-/// notification is registered on the client side. The ID can be used to
-/// unregister for these events using the `client/unregisterCapability`
-/// request.
-///
-/// Type: `String` | `bool`
-@override final  WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications;
-
-/// Create a copy of WorkspaceFoldersServerCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$WorkspaceFoldersServerCapabilitiesCopyWith<_WorkspaceFoldersServerCapabilities> get copyWith => __$WorkspaceFoldersServerCapabilitiesCopyWithImpl<_WorkspaceFoldersServerCapabilities>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$WorkspaceFoldersServerCapabilitiesToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceFoldersServerCapabilities&&(identical(other.supported, supported) || other.supported == supported)&&(identical(other.changeNotifications, changeNotifications) || other.changeNotifications == changeNotifications));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,supported,changeNotifications);
-
-@override
-String toString() {
-  return 'WorkspaceFoldersServerCapabilities(supported: $supported, changeNotifications: $changeNotifications)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$WorkspaceFoldersServerCapabilitiesCopyWith<$Res> implements $WorkspaceFoldersServerCapabilitiesCopyWith<$Res> {
-  factory _$WorkspaceFoldersServerCapabilitiesCopyWith(_WorkspaceFoldersServerCapabilities value, $Res Function(_WorkspaceFoldersServerCapabilities) _then) = __$WorkspaceFoldersServerCapabilitiesCopyWithImpl;
-@override @useResult
-$Res call({
- bool? supported, WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications
-});
-
-
-
-
-}
-/// @nodoc
-class __$WorkspaceFoldersServerCapabilitiesCopyWithImpl<$Res>
-    implements _$WorkspaceFoldersServerCapabilitiesCopyWith<$Res> {
-  __$WorkspaceFoldersServerCapabilitiesCopyWithImpl(this._self, this._then);
-
-  final _WorkspaceFoldersServerCapabilities _self;
-  final $Res Function(_WorkspaceFoldersServerCapabilities) _then;
-
-/// Create a copy of WorkspaceFoldersServerCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? supported = freezed,Object? changeNotifications = freezed,}) {
-  return _then(_WorkspaceFoldersServerCapabilities(
-supported: freezed == supported ? _self.supported : supported // ignore: cast_nullable_to_non_nullable
-as bool?,changeNotifications: freezed == changeNotifications ? _self.changeNotifications : changeNotifications // ignore: cast_nullable_to_non_nullable
-as WorkspaceFoldersServerCapabilitiesChangeNotifications?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
 mixin _$WorkspaceClientCapabilities {
 
 /// The client supports applying batch edits to the workspace by supporting
@@ -1082,7 +949,8 @@ mixin _$WorkspaceClientCapabilities {
 /// workspace.
  DiagnosticWorkspaceClientCapabilities? get diagnostics;/// Capabilities specific to the folding range requests scoped to the
 /// workspace.
- FoldingRangeWorkspaceClientCapabilities? get foldingRange;
+ FoldingRangeWorkspaceClientCapabilities? get foldingRange;/// Capabilities specific to the `workspace/textDocumentContent` request.
+ TextDocumentContentClientCapabilities? get textDocumentContent;
 /// Create a copy of WorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1095,16 +963,16 @@ $WorkspaceClientCapabilitiesCopyWith<WorkspaceClientCapabilities> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceClientCapabilities&&(identical(other.applyEdit, applyEdit) || other.applyEdit == applyEdit)&&(identical(other.workspaceEdit, workspaceEdit) || other.workspaceEdit == workspaceEdit)&&(identical(other.didChangeConfiguration, didChangeConfiguration) || other.didChangeConfiguration == didChangeConfiguration)&&(identical(other.didChangeWatchedFiles, didChangeWatchedFiles) || other.didChangeWatchedFiles == didChangeWatchedFiles)&&(identical(other.symbol, symbol) || other.symbol == symbol)&&(identical(other.executeCommand, executeCommand) || other.executeCommand == executeCommand)&&(identical(other.workspaceFolders, workspaceFolders) || other.workspaceFolders == workspaceFolders)&&(identical(other.configuration, configuration) || other.configuration == configuration)&&(identical(other.semanticTokens, semanticTokens) || other.semanticTokens == semanticTokens)&&(identical(other.codeLens, codeLens) || other.codeLens == codeLens)&&(identical(other.fileOperations, fileOperations) || other.fileOperations == fileOperations)&&(identical(other.inlineValue, inlineValue) || other.inlineValue == inlineValue)&&(identical(other.inlayHint, inlayHint) || other.inlayHint == inlayHint)&&(identical(other.diagnostics, diagnostics) || other.diagnostics == diagnostics)&&(identical(other.foldingRange, foldingRange) || other.foldingRange == foldingRange));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceClientCapabilities&&(identical(other.applyEdit, applyEdit) || other.applyEdit == applyEdit)&&(identical(other.workspaceEdit, workspaceEdit) || other.workspaceEdit == workspaceEdit)&&(identical(other.didChangeConfiguration, didChangeConfiguration) || other.didChangeConfiguration == didChangeConfiguration)&&(identical(other.didChangeWatchedFiles, didChangeWatchedFiles) || other.didChangeWatchedFiles == didChangeWatchedFiles)&&(identical(other.symbol, symbol) || other.symbol == symbol)&&(identical(other.executeCommand, executeCommand) || other.executeCommand == executeCommand)&&(identical(other.workspaceFolders, workspaceFolders) || other.workspaceFolders == workspaceFolders)&&(identical(other.configuration, configuration) || other.configuration == configuration)&&(identical(other.semanticTokens, semanticTokens) || other.semanticTokens == semanticTokens)&&(identical(other.codeLens, codeLens) || other.codeLens == codeLens)&&(identical(other.fileOperations, fileOperations) || other.fileOperations == fileOperations)&&(identical(other.inlineValue, inlineValue) || other.inlineValue == inlineValue)&&(identical(other.inlayHint, inlayHint) || other.inlayHint == inlayHint)&&(identical(other.diagnostics, diagnostics) || other.diagnostics == diagnostics)&&(identical(other.foldingRange, foldingRange) || other.foldingRange == foldingRange)&&(identical(other.textDocumentContent, textDocumentContent) || other.textDocumentContent == textDocumentContent));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,applyEdit,workspaceEdit,didChangeConfiguration,didChangeWatchedFiles,symbol,executeCommand,workspaceFolders,configuration,semanticTokens,codeLens,fileOperations,inlineValue,inlayHint,diagnostics,foldingRange);
+int get hashCode => Object.hash(runtimeType,applyEdit,workspaceEdit,didChangeConfiguration,didChangeWatchedFiles,symbol,executeCommand,workspaceFolders,configuration,semanticTokens,codeLens,fileOperations,inlineValue,inlayHint,diagnostics,foldingRange,textDocumentContent);
 
 @override
 String toString() {
-  return 'WorkspaceClientCapabilities(applyEdit: $applyEdit, workspaceEdit: $workspaceEdit, didChangeConfiguration: $didChangeConfiguration, didChangeWatchedFiles: $didChangeWatchedFiles, symbol: $symbol, executeCommand: $executeCommand, workspaceFolders: $workspaceFolders, configuration: $configuration, semanticTokens: $semanticTokens, codeLens: $codeLens, fileOperations: $fileOperations, inlineValue: $inlineValue, inlayHint: $inlayHint, diagnostics: $diagnostics, foldingRange: $foldingRange)';
+  return 'WorkspaceClientCapabilities(applyEdit: $applyEdit, workspaceEdit: $workspaceEdit, didChangeConfiguration: $didChangeConfiguration, didChangeWatchedFiles: $didChangeWatchedFiles, symbol: $symbol, executeCommand: $executeCommand, workspaceFolders: $workspaceFolders, configuration: $configuration, semanticTokens: $semanticTokens, codeLens: $codeLens, fileOperations: $fileOperations, inlineValue: $inlineValue, inlayHint: $inlayHint, diagnostics: $diagnostics, foldingRange: $foldingRange, textDocumentContent: $textDocumentContent)';
 }
 
 
@@ -1115,11 +983,11 @@ abstract mixin class $WorkspaceClientCapabilitiesCopyWith<$Res>  {
   factory $WorkspaceClientCapabilitiesCopyWith(WorkspaceClientCapabilities value, $Res Function(WorkspaceClientCapabilities) _then) = _$WorkspaceClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? applyEdit, WorkspaceEditClientCapabilities? workspaceEdit, DidChangeConfigurationClientCapabilities? didChangeConfiguration, DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles, WorkspaceSymbolClientCapabilities? symbol, ExecuteCommandClientCapabilities? executeCommand, bool? workspaceFolders, bool? configuration, SemanticTokensWorkspaceClientCapabilities? semanticTokens, CodeLensWorkspaceClientCapabilities? codeLens, FileOperationClientCapabilities? fileOperations, InlineValueWorkspaceClientCapabilities? inlineValue, InlayHintWorkspaceClientCapabilities? inlayHint, DiagnosticWorkspaceClientCapabilities? diagnostics, FoldingRangeWorkspaceClientCapabilities? foldingRange
+ bool? applyEdit, WorkspaceEditClientCapabilities? workspaceEdit, DidChangeConfigurationClientCapabilities? didChangeConfiguration, DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles, WorkspaceSymbolClientCapabilities? symbol, ExecuteCommandClientCapabilities? executeCommand, bool? workspaceFolders, bool? configuration, SemanticTokensWorkspaceClientCapabilities? semanticTokens, CodeLensWorkspaceClientCapabilities? codeLens, FileOperationClientCapabilities? fileOperations, InlineValueWorkspaceClientCapabilities? inlineValue, InlayHintWorkspaceClientCapabilities? inlayHint, DiagnosticWorkspaceClientCapabilities? diagnostics, FoldingRangeWorkspaceClientCapabilities? foldingRange, TextDocumentContentClientCapabilities? textDocumentContent
 });
 
 
-$WorkspaceEditClientCapabilitiesCopyWith<$Res>? get workspaceEdit;$DidChangeConfigurationClientCapabilitiesCopyWith<$Res>? get didChangeConfiguration;$DidChangeWatchedFilesClientCapabilitiesCopyWith<$Res>? get didChangeWatchedFiles;$WorkspaceSymbolClientCapabilitiesCopyWith<$Res>? get symbol;$ExecuteCommandClientCapabilitiesCopyWith<$Res>? get executeCommand;$SemanticTokensWorkspaceClientCapabilitiesCopyWith<$Res>? get semanticTokens;$CodeLensWorkspaceClientCapabilitiesCopyWith<$Res>? get codeLens;$FileOperationClientCapabilitiesCopyWith<$Res>? get fileOperations;$InlineValueWorkspaceClientCapabilitiesCopyWith<$Res>? get inlineValue;$InlayHintWorkspaceClientCapabilitiesCopyWith<$Res>? get inlayHint;$DiagnosticWorkspaceClientCapabilitiesCopyWith<$Res>? get diagnostics;$FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>? get foldingRange;
+$WorkspaceEditClientCapabilitiesCopyWith<$Res>? get workspaceEdit;$DidChangeConfigurationClientCapabilitiesCopyWith<$Res>? get didChangeConfiguration;$DidChangeWatchedFilesClientCapabilitiesCopyWith<$Res>? get didChangeWatchedFiles;$WorkspaceSymbolClientCapabilitiesCopyWith<$Res>? get symbol;$ExecuteCommandClientCapabilitiesCopyWith<$Res>? get executeCommand;$SemanticTokensWorkspaceClientCapabilitiesCopyWith<$Res>? get semanticTokens;$CodeLensWorkspaceClientCapabilitiesCopyWith<$Res>? get codeLens;$FileOperationClientCapabilitiesCopyWith<$Res>? get fileOperations;$InlineValueWorkspaceClientCapabilitiesCopyWith<$Res>? get inlineValue;$InlayHintWorkspaceClientCapabilitiesCopyWith<$Res>? get inlayHint;$DiagnosticWorkspaceClientCapabilitiesCopyWith<$Res>? get diagnostics;$FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>? get foldingRange;$TextDocumentContentClientCapabilitiesCopyWith<$Res>? get textDocumentContent;
 
 }
 /// @nodoc
@@ -1132,7 +1000,7 @@ class _$WorkspaceClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? applyEdit = freezed,Object? workspaceEdit = freezed,Object? didChangeConfiguration = freezed,Object? didChangeWatchedFiles = freezed,Object? symbol = freezed,Object? executeCommand = freezed,Object? workspaceFolders = freezed,Object? configuration = freezed,Object? semanticTokens = freezed,Object? codeLens = freezed,Object? fileOperations = freezed,Object? inlineValue = freezed,Object? inlayHint = freezed,Object? diagnostics = freezed,Object? foldingRange = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? applyEdit = freezed,Object? workspaceEdit = freezed,Object? didChangeConfiguration = freezed,Object? didChangeWatchedFiles = freezed,Object? symbol = freezed,Object? executeCommand = freezed,Object? workspaceFolders = freezed,Object? configuration = freezed,Object? semanticTokens = freezed,Object? codeLens = freezed,Object? fileOperations = freezed,Object? inlineValue = freezed,Object? inlayHint = freezed,Object? diagnostics = freezed,Object? foldingRange = freezed,Object? textDocumentContent = freezed,}) {
   return _then(_self.copyWith(
 applyEdit: freezed == applyEdit ? _self.applyEdit : applyEdit // ignore: cast_nullable_to_non_nullable
 as bool?,workspaceEdit: freezed == workspaceEdit ? _self.workspaceEdit : workspaceEdit // ignore: cast_nullable_to_non_nullable
@@ -1149,7 +1017,8 @@ as FileOperationClientCapabilities?,inlineValue: freezed == inlineValue ? _self.
 as InlineValueWorkspaceClientCapabilities?,inlayHint: freezed == inlayHint ? _self.inlayHint : inlayHint // ignore: cast_nullable_to_non_nullable
 as InlayHintWorkspaceClientCapabilities?,diagnostics: freezed == diagnostics ? _self.diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
 as DiagnosticWorkspaceClientCapabilities?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
-as FoldingRangeWorkspaceClientCapabilities?,
+as FoldingRangeWorkspaceClientCapabilities?,textDocumentContent: freezed == textDocumentContent ? _self.textDocumentContent : textDocumentContent // ignore: cast_nullable_to_non_nullable
+as TextDocumentContentClientCapabilities?,
   ));
 }
 /// Create a copy of WorkspaceClientCapabilities
@@ -1296,6 +1165,18 @@ $FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>? get foldingRange {
   return $FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>(_self.foldingRange!, (value) {
     return _then(_self.copyWith(foldingRange: value));
   });
+}/// Create a copy of WorkspaceClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentContentClientCapabilitiesCopyWith<$Res>? get textDocumentContent {
+    if (_self.textDocumentContent == null) {
+    return null;
+  }
+
+  return $TextDocumentContentClientCapabilitiesCopyWith<$Res>(_self.textDocumentContent!, (value) {
+    return _then(_self.copyWith(textDocumentContent: value));
+  });
 }
 }
 
@@ -1305,7 +1186,7 @@ $FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>? get foldingRange {
 @JsonSerializable()
 
 class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
-  const _WorkspaceClientCapabilities({this.applyEdit, this.workspaceEdit, this.didChangeConfiguration, this.didChangeWatchedFiles, this.symbol, this.executeCommand, this.workspaceFolders, this.configuration, this.semanticTokens, this.codeLens, this.fileOperations, this.inlineValue, this.inlayHint, this.diagnostics, this.foldingRange});
+  const _WorkspaceClientCapabilities({this.applyEdit, this.workspaceEdit, this.didChangeConfiguration, this.didChangeWatchedFiles, this.symbol, this.executeCommand, this.workspaceFolders, this.configuration, this.semanticTokens, this.codeLens, this.fileOperations, this.inlineValue, this.inlayHint, this.diagnostics, this.foldingRange, this.textDocumentContent});
   factory _WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceClientCapabilitiesFromJson(json);
 
 /// The client supports applying batch edits to the workspace by supporting
@@ -1349,6 +1230,8 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
 /// Capabilities specific to the folding range requests scoped to the
 /// workspace.
 @override final  FoldingRangeWorkspaceClientCapabilities? foldingRange;
+/// Capabilities specific to the `workspace/textDocumentContent` request.
+@override final  TextDocumentContentClientCapabilities? textDocumentContent;
 
 /// Create a copy of WorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -1363,16 +1246,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceClientCapabilities&&(identical(other.applyEdit, applyEdit) || other.applyEdit == applyEdit)&&(identical(other.workspaceEdit, workspaceEdit) || other.workspaceEdit == workspaceEdit)&&(identical(other.didChangeConfiguration, didChangeConfiguration) || other.didChangeConfiguration == didChangeConfiguration)&&(identical(other.didChangeWatchedFiles, didChangeWatchedFiles) || other.didChangeWatchedFiles == didChangeWatchedFiles)&&(identical(other.symbol, symbol) || other.symbol == symbol)&&(identical(other.executeCommand, executeCommand) || other.executeCommand == executeCommand)&&(identical(other.workspaceFolders, workspaceFolders) || other.workspaceFolders == workspaceFolders)&&(identical(other.configuration, configuration) || other.configuration == configuration)&&(identical(other.semanticTokens, semanticTokens) || other.semanticTokens == semanticTokens)&&(identical(other.codeLens, codeLens) || other.codeLens == codeLens)&&(identical(other.fileOperations, fileOperations) || other.fileOperations == fileOperations)&&(identical(other.inlineValue, inlineValue) || other.inlineValue == inlineValue)&&(identical(other.inlayHint, inlayHint) || other.inlayHint == inlayHint)&&(identical(other.diagnostics, diagnostics) || other.diagnostics == diagnostics)&&(identical(other.foldingRange, foldingRange) || other.foldingRange == foldingRange));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceClientCapabilities&&(identical(other.applyEdit, applyEdit) || other.applyEdit == applyEdit)&&(identical(other.workspaceEdit, workspaceEdit) || other.workspaceEdit == workspaceEdit)&&(identical(other.didChangeConfiguration, didChangeConfiguration) || other.didChangeConfiguration == didChangeConfiguration)&&(identical(other.didChangeWatchedFiles, didChangeWatchedFiles) || other.didChangeWatchedFiles == didChangeWatchedFiles)&&(identical(other.symbol, symbol) || other.symbol == symbol)&&(identical(other.executeCommand, executeCommand) || other.executeCommand == executeCommand)&&(identical(other.workspaceFolders, workspaceFolders) || other.workspaceFolders == workspaceFolders)&&(identical(other.configuration, configuration) || other.configuration == configuration)&&(identical(other.semanticTokens, semanticTokens) || other.semanticTokens == semanticTokens)&&(identical(other.codeLens, codeLens) || other.codeLens == codeLens)&&(identical(other.fileOperations, fileOperations) || other.fileOperations == fileOperations)&&(identical(other.inlineValue, inlineValue) || other.inlineValue == inlineValue)&&(identical(other.inlayHint, inlayHint) || other.inlayHint == inlayHint)&&(identical(other.diagnostics, diagnostics) || other.diagnostics == diagnostics)&&(identical(other.foldingRange, foldingRange) || other.foldingRange == foldingRange)&&(identical(other.textDocumentContent, textDocumentContent) || other.textDocumentContent == textDocumentContent));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,applyEdit,workspaceEdit,didChangeConfiguration,didChangeWatchedFiles,symbol,executeCommand,workspaceFolders,configuration,semanticTokens,codeLens,fileOperations,inlineValue,inlayHint,diagnostics,foldingRange);
+int get hashCode => Object.hash(runtimeType,applyEdit,workspaceEdit,didChangeConfiguration,didChangeWatchedFiles,symbol,executeCommand,workspaceFolders,configuration,semanticTokens,codeLens,fileOperations,inlineValue,inlayHint,diagnostics,foldingRange,textDocumentContent);
 
 @override
 String toString() {
-  return 'WorkspaceClientCapabilities(applyEdit: $applyEdit, workspaceEdit: $workspaceEdit, didChangeConfiguration: $didChangeConfiguration, didChangeWatchedFiles: $didChangeWatchedFiles, symbol: $symbol, executeCommand: $executeCommand, workspaceFolders: $workspaceFolders, configuration: $configuration, semanticTokens: $semanticTokens, codeLens: $codeLens, fileOperations: $fileOperations, inlineValue: $inlineValue, inlayHint: $inlayHint, diagnostics: $diagnostics, foldingRange: $foldingRange)';
+  return 'WorkspaceClientCapabilities(applyEdit: $applyEdit, workspaceEdit: $workspaceEdit, didChangeConfiguration: $didChangeConfiguration, didChangeWatchedFiles: $didChangeWatchedFiles, symbol: $symbol, executeCommand: $executeCommand, workspaceFolders: $workspaceFolders, configuration: $configuration, semanticTokens: $semanticTokens, codeLens: $codeLens, fileOperations: $fileOperations, inlineValue: $inlineValue, inlayHint: $inlayHint, diagnostics: $diagnostics, foldingRange: $foldingRange, textDocumentContent: $textDocumentContent)';
 }
 
 
@@ -1383,11 +1266,11 @@ abstract mixin class _$WorkspaceClientCapabilitiesCopyWith<$Res> implements $Wor
   factory _$WorkspaceClientCapabilitiesCopyWith(_WorkspaceClientCapabilities value, $Res Function(_WorkspaceClientCapabilities) _then) = __$WorkspaceClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? applyEdit, WorkspaceEditClientCapabilities? workspaceEdit, DidChangeConfigurationClientCapabilities? didChangeConfiguration, DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles, WorkspaceSymbolClientCapabilities? symbol, ExecuteCommandClientCapabilities? executeCommand, bool? workspaceFolders, bool? configuration, SemanticTokensWorkspaceClientCapabilities? semanticTokens, CodeLensWorkspaceClientCapabilities? codeLens, FileOperationClientCapabilities? fileOperations, InlineValueWorkspaceClientCapabilities? inlineValue, InlayHintWorkspaceClientCapabilities? inlayHint, DiagnosticWorkspaceClientCapabilities? diagnostics, FoldingRangeWorkspaceClientCapabilities? foldingRange
+ bool? applyEdit, WorkspaceEditClientCapabilities? workspaceEdit, DidChangeConfigurationClientCapabilities? didChangeConfiguration, DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles, WorkspaceSymbolClientCapabilities? symbol, ExecuteCommandClientCapabilities? executeCommand, bool? workspaceFolders, bool? configuration, SemanticTokensWorkspaceClientCapabilities? semanticTokens, CodeLensWorkspaceClientCapabilities? codeLens, FileOperationClientCapabilities? fileOperations, InlineValueWorkspaceClientCapabilities? inlineValue, InlayHintWorkspaceClientCapabilities? inlayHint, DiagnosticWorkspaceClientCapabilities? diagnostics, FoldingRangeWorkspaceClientCapabilities? foldingRange, TextDocumentContentClientCapabilities? textDocumentContent
 });
 
 
-@override $WorkspaceEditClientCapabilitiesCopyWith<$Res>? get workspaceEdit;@override $DidChangeConfigurationClientCapabilitiesCopyWith<$Res>? get didChangeConfiguration;@override $DidChangeWatchedFilesClientCapabilitiesCopyWith<$Res>? get didChangeWatchedFiles;@override $WorkspaceSymbolClientCapabilitiesCopyWith<$Res>? get symbol;@override $ExecuteCommandClientCapabilitiesCopyWith<$Res>? get executeCommand;@override $SemanticTokensWorkspaceClientCapabilitiesCopyWith<$Res>? get semanticTokens;@override $CodeLensWorkspaceClientCapabilitiesCopyWith<$Res>? get codeLens;@override $FileOperationClientCapabilitiesCopyWith<$Res>? get fileOperations;@override $InlineValueWorkspaceClientCapabilitiesCopyWith<$Res>? get inlineValue;@override $InlayHintWorkspaceClientCapabilitiesCopyWith<$Res>? get inlayHint;@override $DiagnosticWorkspaceClientCapabilitiesCopyWith<$Res>? get diagnostics;@override $FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>? get foldingRange;
+@override $WorkspaceEditClientCapabilitiesCopyWith<$Res>? get workspaceEdit;@override $DidChangeConfigurationClientCapabilitiesCopyWith<$Res>? get didChangeConfiguration;@override $DidChangeWatchedFilesClientCapabilitiesCopyWith<$Res>? get didChangeWatchedFiles;@override $WorkspaceSymbolClientCapabilitiesCopyWith<$Res>? get symbol;@override $ExecuteCommandClientCapabilitiesCopyWith<$Res>? get executeCommand;@override $SemanticTokensWorkspaceClientCapabilitiesCopyWith<$Res>? get semanticTokens;@override $CodeLensWorkspaceClientCapabilitiesCopyWith<$Res>? get codeLens;@override $FileOperationClientCapabilitiesCopyWith<$Res>? get fileOperations;@override $InlineValueWorkspaceClientCapabilitiesCopyWith<$Res>? get inlineValue;@override $InlayHintWorkspaceClientCapabilitiesCopyWith<$Res>? get inlayHint;@override $DiagnosticWorkspaceClientCapabilitiesCopyWith<$Res>? get diagnostics;@override $FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>? get foldingRange;@override $TextDocumentContentClientCapabilitiesCopyWith<$Res>? get textDocumentContent;
 
 }
 /// @nodoc
@@ -1400,7 +1283,7 @@ class __$WorkspaceClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? applyEdit = freezed,Object? workspaceEdit = freezed,Object? didChangeConfiguration = freezed,Object? didChangeWatchedFiles = freezed,Object? symbol = freezed,Object? executeCommand = freezed,Object? workspaceFolders = freezed,Object? configuration = freezed,Object? semanticTokens = freezed,Object? codeLens = freezed,Object? fileOperations = freezed,Object? inlineValue = freezed,Object? inlayHint = freezed,Object? diagnostics = freezed,Object? foldingRange = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? applyEdit = freezed,Object? workspaceEdit = freezed,Object? didChangeConfiguration = freezed,Object? didChangeWatchedFiles = freezed,Object? symbol = freezed,Object? executeCommand = freezed,Object? workspaceFolders = freezed,Object? configuration = freezed,Object? semanticTokens = freezed,Object? codeLens = freezed,Object? fileOperations = freezed,Object? inlineValue = freezed,Object? inlayHint = freezed,Object? diagnostics = freezed,Object? foldingRange = freezed,Object? textDocumentContent = freezed,}) {
   return _then(_WorkspaceClientCapabilities(
 applyEdit: freezed == applyEdit ? _self.applyEdit : applyEdit // ignore: cast_nullable_to_non_nullable
 as bool?,workspaceEdit: freezed == workspaceEdit ? _self.workspaceEdit : workspaceEdit // ignore: cast_nullable_to_non_nullable
@@ -1417,7 +1300,8 @@ as FileOperationClientCapabilities?,inlineValue: freezed == inlineValue ? _self.
 as InlineValueWorkspaceClientCapabilities?,inlayHint: freezed == inlayHint ? _self.inlayHint : inlayHint // ignore: cast_nullable_to_non_nullable
 as InlayHintWorkspaceClientCapabilities?,diagnostics: freezed == diagnostics ? _self.diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
 as DiagnosticWorkspaceClientCapabilities?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
-as FoldingRangeWorkspaceClientCapabilities?,
+as FoldingRangeWorkspaceClientCapabilities?,textDocumentContent: freezed == textDocumentContent ? _self.textDocumentContent : textDocumentContent // ignore: cast_nullable_to_non_nullable
+as TextDocumentContentClientCapabilities?,
   ));
 }
 
@@ -1565,6 +1449,18 @@ $FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>? get foldingRange {
   return $FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>(_self.foldingRange!, (value) {
     return _then(_self.copyWith(foldingRange: value));
   });
+}/// Create a copy of WorkspaceClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentContentClientCapabilitiesCopyWith<$Res>? get textDocumentContent {
+    if (_self.textDocumentContent == null) {
+    return null;
+  }
+
+  return $TextDocumentContentClientCapabilitiesCopyWith<$Res>(_self.textDocumentContent!, (value) {
+    return _then(_self.copyWith(textDocumentContent: value));
+  });
 }
 }
 
@@ -1573,7 +1469,8 @@ $FoldingRangeWorkspaceClientCapabilitiesCopyWith<$Res>? get foldingRange {
 mixin _$TextDocumentClientCapabilities {
 
 /// Defines which synchronization capabilities the client supports.
- TextDocumentSyncClientCapabilities? get synchronization;/// Capabilities specific to the `textDocument/completion` request.
+ TextDocumentSyncClientCapabilities? get synchronization;/// Defines which filters the client supports.
+ TextDocumentFilterClientCapabilities? get filters;/// Capabilities specific to the `textDocument/completion` request.
  CompletionClientCapabilities? get completion;/// Capabilities specific to the `textDocument/hover` request.
  HoverClientCapabilities? get hover;/// Capabilities specific to the `textDocument/signatureHelp` request.
  SignatureHelpClientCapabilities? get signatureHelp;/// Capabilities specific to the `textDocument/declaration` request.
@@ -1618,16 +1515,16 @@ $TextDocumentClientCapabilitiesCopyWith<TextDocumentClientCapabilities> get copy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentClientCapabilities&&(identical(other.synchronization, synchronization) || other.synchronization == synchronization)&&(identical(other.completion, completion) || other.completion == completion)&&(identical(other.hover, hover) || other.hover == hover)&&(identical(other.signatureHelp, signatureHelp) || other.signatureHelp == signatureHelp)&&(identical(other.declaration, declaration) || other.declaration == declaration)&&(identical(other.definition, definition) || other.definition == definition)&&(identical(other.typeDefinition, typeDefinition) || other.typeDefinition == typeDefinition)&&(identical(other.implementation, implementation) || other.implementation == implementation)&&(identical(other.references, references) || other.references == references)&&(identical(other.documentHighlight, documentHighlight) || other.documentHighlight == documentHighlight)&&(identical(other.documentSymbol, documentSymbol) || other.documentSymbol == documentSymbol)&&(identical(other.codeAction, codeAction) || other.codeAction == codeAction)&&(identical(other.codeLens, codeLens) || other.codeLens == codeLens)&&(identical(other.documentLink, documentLink) || other.documentLink == documentLink)&&(identical(other.colorProvider, colorProvider) || other.colorProvider == colorProvider)&&(identical(other.formatting, formatting) || other.formatting == formatting)&&(identical(other.rangeFormatting, rangeFormatting) || other.rangeFormatting == rangeFormatting)&&(identical(other.onTypeFormatting, onTypeFormatting) || other.onTypeFormatting == onTypeFormatting)&&(identical(other.rename, rename) || other.rename == rename)&&(identical(other.foldingRange, foldingRange) || other.foldingRange == foldingRange)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&(identical(other.publishDiagnostics, publishDiagnostics) || other.publishDiagnostics == publishDiagnostics)&&(identical(other.callHierarchy, callHierarchy) || other.callHierarchy == callHierarchy)&&(identical(other.semanticTokens, semanticTokens) || other.semanticTokens == semanticTokens)&&(identical(other.linkedEditingRange, linkedEditingRange) || other.linkedEditingRange == linkedEditingRange)&&(identical(other.moniker, moniker) || other.moniker == moniker)&&(identical(other.typeHierarchy, typeHierarchy) || other.typeHierarchy == typeHierarchy)&&(identical(other.inlineValue, inlineValue) || other.inlineValue == inlineValue)&&(identical(other.inlayHint, inlayHint) || other.inlayHint == inlayHint)&&(identical(other.diagnostic, diagnostic) || other.diagnostic == diagnostic)&&(identical(other.inlineCompletion, inlineCompletion) || other.inlineCompletion == inlineCompletion));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentClientCapabilities&&(identical(other.synchronization, synchronization) || other.synchronization == synchronization)&&(identical(other.filters, filters) || other.filters == filters)&&(identical(other.completion, completion) || other.completion == completion)&&(identical(other.hover, hover) || other.hover == hover)&&(identical(other.signatureHelp, signatureHelp) || other.signatureHelp == signatureHelp)&&(identical(other.declaration, declaration) || other.declaration == declaration)&&(identical(other.definition, definition) || other.definition == definition)&&(identical(other.typeDefinition, typeDefinition) || other.typeDefinition == typeDefinition)&&(identical(other.implementation, implementation) || other.implementation == implementation)&&(identical(other.references, references) || other.references == references)&&(identical(other.documentHighlight, documentHighlight) || other.documentHighlight == documentHighlight)&&(identical(other.documentSymbol, documentSymbol) || other.documentSymbol == documentSymbol)&&(identical(other.codeAction, codeAction) || other.codeAction == codeAction)&&(identical(other.codeLens, codeLens) || other.codeLens == codeLens)&&(identical(other.documentLink, documentLink) || other.documentLink == documentLink)&&(identical(other.colorProvider, colorProvider) || other.colorProvider == colorProvider)&&(identical(other.formatting, formatting) || other.formatting == formatting)&&(identical(other.rangeFormatting, rangeFormatting) || other.rangeFormatting == rangeFormatting)&&(identical(other.onTypeFormatting, onTypeFormatting) || other.onTypeFormatting == onTypeFormatting)&&(identical(other.rename, rename) || other.rename == rename)&&(identical(other.foldingRange, foldingRange) || other.foldingRange == foldingRange)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&(identical(other.publishDiagnostics, publishDiagnostics) || other.publishDiagnostics == publishDiagnostics)&&(identical(other.callHierarchy, callHierarchy) || other.callHierarchy == callHierarchy)&&(identical(other.semanticTokens, semanticTokens) || other.semanticTokens == semanticTokens)&&(identical(other.linkedEditingRange, linkedEditingRange) || other.linkedEditingRange == linkedEditingRange)&&(identical(other.moniker, moniker) || other.moniker == moniker)&&(identical(other.typeHierarchy, typeHierarchy) || other.typeHierarchy == typeHierarchy)&&(identical(other.inlineValue, inlineValue) || other.inlineValue == inlineValue)&&(identical(other.inlayHint, inlayHint) || other.inlayHint == inlayHint)&&(identical(other.diagnostic, diagnostic) || other.diagnostic == diagnostic)&&(identical(other.inlineCompletion, inlineCompletion) || other.inlineCompletion == inlineCompletion));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,synchronization,completion,hover,signatureHelp,declaration,definition,typeDefinition,implementation,references,documentHighlight,documentSymbol,codeAction,codeLens,documentLink,colorProvider,formatting,rangeFormatting,onTypeFormatting,rename,foldingRange,selectionRange,publishDiagnostics,callHierarchy,semanticTokens,linkedEditingRange,moniker,typeHierarchy,inlineValue,inlayHint,diagnostic,inlineCompletion]);
+int get hashCode => Object.hashAll([runtimeType,synchronization,filters,completion,hover,signatureHelp,declaration,definition,typeDefinition,implementation,references,documentHighlight,documentSymbol,codeAction,codeLens,documentLink,colorProvider,formatting,rangeFormatting,onTypeFormatting,rename,foldingRange,selectionRange,publishDiagnostics,callHierarchy,semanticTokens,linkedEditingRange,moniker,typeHierarchy,inlineValue,inlayHint,diagnostic,inlineCompletion]);
 
 @override
 String toString() {
-  return 'TextDocumentClientCapabilities(synchronization: $synchronization, completion: $completion, hover: $hover, signatureHelp: $signatureHelp, declaration: $declaration, definition: $definition, typeDefinition: $typeDefinition, implementation: $implementation, references: $references, documentHighlight: $documentHighlight, documentSymbol: $documentSymbol, codeAction: $codeAction, codeLens: $codeLens, documentLink: $documentLink, colorProvider: $colorProvider, formatting: $formatting, rangeFormatting: $rangeFormatting, onTypeFormatting: $onTypeFormatting, rename: $rename, foldingRange: $foldingRange, selectionRange: $selectionRange, publishDiagnostics: $publishDiagnostics, callHierarchy: $callHierarchy, semanticTokens: $semanticTokens, linkedEditingRange: $linkedEditingRange, moniker: $moniker, typeHierarchy: $typeHierarchy, inlineValue: $inlineValue, inlayHint: $inlayHint, diagnostic: $diagnostic, inlineCompletion: $inlineCompletion)';
+  return 'TextDocumentClientCapabilities(synchronization: $synchronization, filters: $filters, completion: $completion, hover: $hover, signatureHelp: $signatureHelp, declaration: $declaration, definition: $definition, typeDefinition: $typeDefinition, implementation: $implementation, references: $references, documentHighlight: $documentHighlight, documentSymbol: $documentSymbol, codeAction: $codeAction, codeLens: $codeLens, documentLink: $documentLink, colorProvider: $colorProvider, formatting: $formatting, rangeFormatting: $rangeFormatting, onTypeFormatting: $onTypeFormatting, rename: $rename, foldingRange: $foldingRange, selectionRange: $selectionRange, publishDiagnostics: $publishDiagnostics, callHierarchy: $callHierarchy, semanticTokens: $semanticTokens, linkedEditingRange: $linkedEditingRange, moniker: $moniker, typeHierarchy: $typeHierarchy, inlineValue: $inlineValue, inlayHint: $inlayHint, diagnostic: $diagnostic, inlineCompletion: $inlineCompletion)';
 }
 
 
@@ -1638,11 +1535,11 @@ abstract mixin class $TextDocumentClientCapabilitiesCopyWith<$Res>  {
   factory $TextDocumentClientCapabilitiesCopyWith(TextDocumentClientCapabilities value, $Res Function(TextDocumentClientCapabilities) _then) = _$TextDocumentClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- TextDocumentSyncClientCapabilities? synchronization, CompletionClientCapabilities? completion, HoverClientCapabilities? hover, SignatureHelpClientCapabilities? signatureHelp, DeclarationClientCapabilities? declaration, DefinitionClientCapabilities? definition, TypeDefinitionClientCapabilities? typeDefinition, ImplementationClientCapabilities? implementation, ReferenceClientCapabilities? references, DocumentHighlightClientCapabilities? documentHighlight, DocumentSymbolClientCapabilities? documentSymbol, CodeActionClientCapabilities? codeAction, CodeLensClientCapabilities? codeLens, DocumentLinkClientCapabilities? documentLink, DocumentColorClientCapabilities? colorProvider, DocumentFormattingClientCapabilities? formatting, DocumentRangeFormattingClientCapabilities? rangeFormatting, DocumentOnTypeFormattingClientCapabilities? onTypeFormatting, RenameClientCapabilities? rename, FoldingRangeClientCapabilities? foldingRange, SelectionRangeClientCapabilities? selectionRange, PublishDiagnosticsClientCapabilities? publishDiagnostics, CallHierarchyClientCapabilities? callHierarchy, SemanticTokensClientCapabilities? semanticTokens, LinkedEditingRangeClientCapabilities? linkedEditingRange, MonikerClientCapabilities? moniker, TypeHierarchyClientCapabilities? typeHierarchy, InlineValueClientCapabilities? inlineValue, InlayHintClientCapabilities? inlayHint, DiagnosticClientCapabilities? diagnostic, InlineCompletionClientCapabilities? inlineCompletion
+ TextDocumentSyncClientCapabilities? synchronization, TextDocumentFilterClientCapabilities? filters, CompletionClientCapabilities? completion, HoverClientCapabilities? hover, SignatureHelpClientCapabilities? signatureHelp, DeclarationClientCapabilities? declaration, DefinitionClientCapabilities? definition, TypeDefinitionClientCapabilities? typeDefinition, ImplementationClientCapabilities? implementation, ReferenceClientCapabilities? references, DocumentHighlightClientCapabilities? documentHighlight, DocumentSymbolClientCapabilities? documentSymbol, CodeActionClientCapabilities? codeAction, CodeLensClientCapabilities? codeLens, DocumentLinkClientCapabilities? documentLink, DocumentColorClientCapabilities? colorProvider, DocumentFormattingClientCapabilities? formatting, DocumentRangeFormattingClientCapabilities? rangeFormatting, DocumentOnTypeFormattingClientCapabilities? onTypeFormatting, RenameClientCapabilities? rename, FoldingRangeClientCapabilities? foldingRange, SelectionRangeClientCapabilities? selectionRange, PublishDiagnosticsClientCapabilities? publishDiagnostics, CallHierarchyClientCapabilities? callHierarchy, SemanticTokensClientCapabilities? semanticTokens, LinkedEditingRangeClientCapabilities? linkedEditingRange, MonikerClientCapabilities? moniker, TypeHierarchyClientCapabilities? typeHierarchy, InlineValueClientCapabilities? inlineValue, InlayHintClientCapabilities? inlayHint, DiagnosticClientCapabilities? diagnostic, InlineCompletionClientCapabilities? inlineCompletion
 });
 
 
-$TextDocumentSyncClientCapabilitiesCopyWith<$Res>? get synchronization;$CompletionClientCapabilitiesCopyWith<$Res>? get completion;$HoverClientCapabilitiesCopyWith<$Res>? get hover;$SignatureHelpClientCapabilitiesCopyWith<$Res>? get signatureHelp;$DeclarationClientCapabilitiesCopyWith<$Res>? get declaration;$DefinitionClientCapabilitiesCopyWith<$Res>? get definition;$TypeDefinitionClientCapabilitiesCopyWith<$Res>? get typeDefinition;$ImplementationClientCapabilitiesCopyWith<$Res>? get implementation;$ReferenceClientCapabilitiesCopyWith<$Res>? get references;$DocumentHighlightClientCapabilitiesCopyWith<$Res>? get documentHighlight;$DocumentSymbolClientCapabilitiesCopyWith<$Res>? get documentSymbol;$CodeActionClientCapabilitiesCopyWith<$Res>? get codeAction;$CodeLensClientCapabilitiesCopyWith<$Res>? get codeLens;$DocumentLinkClientCapabilitiesCopyWith<$Res>? get documentLink;$DocumentColorClientCapabilitiesCopyWith<$Res>? get colorProvider;$DocumentFormattingClientCapabilitiesCopyWith<$Res>? get formatting;$DocumentRangeFormattingClientCapabilitiesCopyWith<$Res>? get rangeFormatting;$DocumentOnTypeFormattingClientCapabilitiesCopyWith<$Res>? get onTypeFormatting;$RenameClientCapabilitiesCopyWith<$Res>? get rename;$FoldingRangeClientCapabilitiesCopyWith<$Res>? get foldingRange;$SelectionRangeClientCapabilitiesCopyWith<$Res>? get selectionRange;$PublishDiagnosticsClientCapabilitiesCopyWith<$Res>? get publishDiagnostics;$CallHierarchyClientCapabilitiesCopyWith<$Res>? get callHierarchy;$SemanticTokensClientCapabilitiesCopyWith<$Res>? get semanticTokens;$LinkedEditingRangeClientCapabilitiesCopyWith<$Res>? get linkedEditingRange;$MonikerClientCapabilitiesCopyWith<$Res>? get moniker;$TypeHierarchyClientCapabilitiesCopyWith<$Res>? get typeHierarchy;$InlineValueClientCapabilitiesCopyWith<$Res>? get inlineValue;$InlayHintClientCapabilitiesCopyWith<$Res>? get inlayHint;$DiagnosticClientCapabilitiesCopyWith<$Res>? get diagnostic;$InlineCompletionClientCapabilitiesCopyWith<$Res>? get inlineCompletion;
+$TextDocumentSyncClientCapabilitiesCopyWith<$Res>? get synchronization;$TextDocumentFilterClientCapabilitiesCopyWith<$Res>? get filters;$CompletionClientCapabilitiesCopyWith<$Res>? get completion;$HoverClientCapabilitiesCopyWith<$Res>? get hover;$SignatureHelpClientCapabilitiesCopyWith<$Res>? get signatureHelp;$DeclarationClientCapabilitiesCopyWith<$Res>? get declaration;$DefinitionClientCapabilitiesCopyWith<$Res>? get definition;$TypeDefinitionClientCapabilitiesCopyWith<$Res>? get typeDefinition;$ImplementationClientCapabilitiesCopyWith<$Res>? get implementation;$ReferenceClientCapabilitiesCopyWith<$Res>? get references;$DocumentHighlightClientCapabilitiesCopyWith<$Res>? get documentHighlight;$DocumentSymbolClientCapabilitiesCopyWith<$Res>? get documentSymbol;$CodeActionClientCapabilitiesCopyWith<$Res>? get codeAction;$CodeLensClientCapabilitiesCopyWith<$Res>? get codeLens;$DocumentLinkClientCapabilitiesCopyWith<$Res>? get documentLink;$DocumentColorClientCapabilitiesCopyWith<$Res>? get colorProvider;$DocumentFormattingClientCapabilitiesCopyWith<$Res>? get formatting;$DocumentRangeFormattingClientCapabilitiesCopyWith<$Res>? get rangeFormatting;$DocumentOnTypeFormattingClientCapabilitiesCopyWith<$Res>? get onTypeFormatting;$RenameClientCapabilitiesCopyWith<$Res>? get rename;$FoldingRangeClientCapabilitiesCopyWith<$Res>? get foldingRange;$SelectionRangeClientCapabilitiesCopyWith<$Res>? get selectionRange;$PublishDiagnosticsClientCapabilitiesCopyWith<$Res>? get publishDiagnostics;$CallHierarchyClientCapabilitiesCopyWith<$Res>? get callHierarchy;$SemanticTokensClientCapabilitiesCopyWith<$Res>? get semanticTokens;$LinkedEditingRangeClientCapabilitiesCopyWith<$Res>? get linkedEditingRange;$MonikerClientCapabilitiesCopyWith<$Res>? get moniker;$TypeHierarchyClientCapabilitiesCopyWith<$Res>? get typeHierarchy;$InlineValueClientCapabilitiesCopyWith<$Res>? get inlineValue;$InlayHintClientCapabilitiesCopyWith<$Res>? get inlayHint;$DiagnosticClientCapabilitiesCopyWith<$Res>? get diagnostic;$InlineCompletionClientCapabilitiesCopyWith<$Res>? get inlineCompletion;
 
 }
 /// @nodoc
@@ -1655,10 +1552,11 @@ class _$TextDocumentClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of TextDocumentClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? synchronization = freezed,Object? completion = freezed,Object? hover = freezed,Object? signatureHelp = freezed,Object? declaration = freezed,Object? definition = freezed,Object? typeDefinition = freezed,Object? implementation = freezed,Object? references = freezed,Object? documentHighlight = freezed,Object? documentSymbol = freezed,Object? codeAction = freezed,Object? codeLens = freezed,Object? documentLink = freezed,Object? colorProvider = freezed,Object? formatting = freezed,Object? rangeFormatting = freezed,Object? onTypeFormatting = freezed,Object? rename = freezed,Object? foldingRange = freezed,Object? selectionRange = freezed,Object? publishDiagnostics = freezed,Object? callHierarchy = freezed,Object? semanticTokens = freezed,Object? linkedEditingRange = freezed,Object? moniker = freezed,Object? typeHierarchy = freezed,Object? inlineValue = freezed,Object? inlayHint = freezed,Object? diagnostic = freezed,Object? inlineCompletion = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? synchronization = freezed,Object? filters = freezed,Object? completion = freezed,Object? hover = freezed,Object? signatureHelp = freezed,Object? declaration = freezed,Object? definition = freezed,Object? typeDefinition = freezed,Object? implementation = freezed,Object? references = freezed,Object? documentHighlight = freezed,Object? documentSymbol = freezed,Object? codeAction = freezed,Object? codeLens = freezed,Object? documentLink = freezed,Object? colorProvider = freezed,Object? formatting = freezed,Object? rangeFormatting = freezed,Object? onTypeFormatting = freezed,Object? rename = freezed,Object? foldingRange = freezed,Object? selectionRange = freezed,Object? publishDiagnostics = freezed,Object? callHierarchy = freezed,Object? semanticTokens = freezed,Object? linkedEditingRange = freezed,Object? moniker = freezed,Object? typeHierarchy = freezed,Object? inlineValue = freezed,Object? inlayHint = freezed,Object? diagnostic = freezed,Object? inlineCompletion = freezed,}) {
   return _then(_self.copyWith(
 synchronization: freezed == synchronization ? _self.synchronization : synchronization // ignore: cast_nullable_to_non_nullable
-as TextDocumentSyncClientCapabilities?,completion: freezed == completion ? _self.completion : completion // ignore: cast_nullable_to_non_nullable
+as TextDocumentSyncClientCapabilities?,filters: freezed == filters ? _self.filters : filters // ignore: cast_nullable_to_non_nullable
+as TextDocumentFilterClientCapabilities?,completion: freezed == completion ? _self.completion : completion // ignore: cast_nullable_to_non_nullable
 as CompletionClientCapabilities?,hover: freezed == hover ? _self.hover : hover // ignore: cast_nullable_to_non_nullable
 as HoverClientCapabilities?,signatureHelp: freezed == signatureHelp ? _self.signatureHelp : signatureHelp // ignore: cast_nullable_to_non_nullable
 as SignatureHelpClientCapabilities?,declaration: freezed == declaration ? _self.declaration : declaration // ignore: cast_nullable_to_non_nullable
@@ -1702,6 +1600,18 @@ $TextDocumentSyncClientCapabilitiesCopyWith<$Res>? get synchronization {
 
   return $TextDocumentSyncClientCapabilitiesCopyWith<$Res>(_self.synchronization!, (value) {
     return _then(_self.copyWith(synchronization: value));
+  });
+}/// Create a copy of TextDocumentClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentFilterClientCapabilitiesCopyWith<$Res>? get filters {
+    if (_self.filters == null) {
+    return null;
+  }
+
+  return $TextDocumentFilterClientCapabilitiesCopyWith<$Res>(_self.filters!, (value) {
+    return _then(_self.copyWith(filters: value));
   });
 }/// Create a copy of TextDocumentClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -2072,11 +1982,13 @@ $InlineCompletionClientCapabilitiesCopyWith<$Res>? get inlineCompletion {
 @JsonSerializable()
 
 class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities {
-  const _TextDocumentClientCapabilities({this.synchronization, this.completion, this.hover, this.signatureHelp, this.declaration, this.definition, this.typeDefinition, this.implementation, this.references, this.documentHighlight, this.documentSymbol, this.codeAction, this.codeLens, this.documentLink, this.colorProvider, this.formatting, this.rangeFormatting, this.onTypeFormatting, this.rename, this.foldingRange, this.selectionRange, this.publishDiagnostics, this.callHierarchy, this.semanticTokens, this.linkedEditingRange, this.moniker, this.typeHierarchy, this.inlineValue, this.inlayHint, this.diagnostic, this.inlineCompletion});
+  const _TextDocumentClientCapabilities({this.synchronization, this.filters, this.completion, this.hover, this.signatureHelp, this.declaration, this.definition, this.typeDefinition, this.implementation, this.references, this.documentHighlight, this.documentSymbol, this.codeAction, this.codeLens, this.documentLink, this.colorProvider, this.formatting, this.rangeFormatting, this.onTypeFormatting, this.rename, this.foldingRange, this.selectionRange, this.publishDiagnostics, this.callHierarchy, this.semanticTokens, this.linkedEditingRange, this.moniker, this.typeHierarchy, this.inlineValue, this.inlayHint, this.diagnostic, this.inlineCompletion});
   factory _TextDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$TextDocumentClientCapabilitiesFromJson(json);
 
 /// Defines which synchronization capabilities the client supports.
 @override final  TextDocumentSyncClientCapabilities? synchronization;
+/// Defines which filters the client supports.
+@override final  TextDocumentFilterClientCapabilities? filters;
 /// Capabilities specific to the `textDocument/completion` request.
 @override final  CompletionClientCapabilities? completion;
 /// Capabilities specific to the `textDocument/hover` request.
@@ -2153,16 +2065,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentClientCapabilities&&(identical(other.synchronization, synchronization) || other.synchronization == synchronization)&&(identical(other.completion, completion) || other.completion == completion)&&(identical(other.hover, hover) || other.hover == hover)&&(identical(other.signatureHelp, signatureHelp) || other.signatureHelp == signatureHelp)&&(identical(other.declaration, declaration) || other.declaration == declaration)&&(identical(other.definition, definition) || other.definition == definition)&&(identical(other.typeDefinition, typeDefinition) || other.typeDefinition == typeDefinition)&&(identical(other.implementation, implementation) || other.implementation == implementation)&&(identical(other.references, references) || other.references == references)&&(identical(other.documentHighlight, documentHighlight) || other.documentHighlight == documentHighlight)&&(identical(other.documentSymbol, documentSymbol) || other.documentSymbol == documentSymbol)&&(identical(other.codeAction, codeAction) || other.codeAction == codeAction)&&(identical(other.codeLens, codeLens) || other.codeLens == codeLens)&&(identical(other.documentLink, documentLink) || other.documentLink == documentLink)&&(identical(other.colorProvider, colorProvider) || other.colorProvider == colorProvider)&&(identical(other.formatting, formatting) || other.formatting == formatting)&&(identical(other.rangeFormatting, rangeFormatting) || other.rangeFormatting == rangeFormatting)&&(identical(other.onTypeFormatting, onTypeFormatting) || other.onTypeFormatting == onTypeFormatting)&&(identical(other.rename, rename) || other.rename == rename)&&(identical(other.foldingRange, foldingRange) || other.foldingRange == foldingRange)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&(identical(other.publishDiagnostics, publishDiagnostics) || other.publishDiagnostics == publishDiagnostics)&&(identical(other.callHierarchy, callHierarchy) || other.callHierarchy == callHierarchy)&&(identical(other.semanticTokens, semanticTokens) || other.semanticTokens == semanticTokens)&&(identical(other.linkedEditingRange, linkedEditingRange) || other.linkedEditingRange == linkedEditingRange)&&(identical(other.moniker, moniker) || other.moniker == moniker)&&(identical(other.typeHierarchy, typeHierarchy) || other.typeHierarchy == typeHierarchy)&&(identical(other.inlineValue, inlineValue) || other.inlineValue == inlineValue)&&(identical(other.inlayHint, inlayHint) || other.inlayHint == inlayHint)&&(identical(other.diagnostic, diagnostic) || other.diagnostic == diagnostic)&&(identical(other.inlineCompletion, inlineCompletion) || other.inlineCompletion == inlineCompletion));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentClientCapabilities&&(identical(other.synchronization, synchronization) || other.synchronization == synchronization)&&(identical(other.filters, filters) || other.filters == filters)&&(identical(other.completion, completion) || other.completion == completion)&&(identical(other.hover, hover) || other.hover == hover)&&(identical(other.signatureHelp, signatureHelp) || other.signatureHelp == signatureHelp)&&(identical(other.declaration, declaration) || other.declaration == declaration)&&(identical(other.definition, definition) || other.definition == definition)&&(identical(other.typeDefinition, typeDefinition) || other.typeDefinition == typeDefinition)&&(identical(other.implementation, implementation) || other.implementation == implementation)&&(identical(other.references, references) || other.references == references)&&(identical(other.documentHighlight, documentHighlight) || other.documentHighlight == documentHighlight)&&(identical(other.documentSymbol, documentSymbol) || other.documentSymbol == documentSymbol)&&(identical(other.codeAction, codeAction) || other.codeAction == codeAction)&&(identical(other.codeLens, codeLens) || other.codeLens == codeLens)&&(identical(other.documentLink, documentLink) || other.documentLink == documentLink)&&(identical(other.colorProvider, colorProvider) || other.colorProvider == colorProvider)&&(identical(other.formatting, formatting) || other.formatting == formatting)&&(identical(other.rangeFormatting, rangeFormatting) || other.rangeFormatting == rangeFormatting)&&(identical(other.onTypeFormatting, onTypeFormatting) || other.onTypeFormatting == onTypeFormatting)&&(identical(other.rename, rename) || other.rename == rename)&&(identical(other.foldingRange, foldingRange) || other.foldingRange == foldingRange)&&(identical(other.selectionRange, selectionRange) || other.selectionRange == selectionRange)&&(identical(other.publishDiagnostics, publishDiagnostics) || other.publishDiagnostics == publishDiagnostics)&&(identical(other.callHierarchy, callHierarchy) || other.callHierarchy == callHierarchy)&&(identical(other.semanticTokens, semanticTokens) || other.semanticTokens == semanticTokens)&&(identical(other.linkedEditingRange, linkedEditingRange) || other.linkedEditingRange == linkedEditingRange)&&(identical(other.moniker, moniker) || other.moniker == moniker)&&(identical(other.typeHierarchy, typeHierarchy) || other.typeHierarchy == typeHierarchy)&&(identical(other.inlineValue, inlineValue) || other.inlineValue == inlineValue)&&(identical(other.inlayHint, inlayHint) || other.inlayHint == inlayHint)&&(identical(other.diagnostic, diagnostic) || other.diagnostic == diagnostic)&&(identical(other.inlineCompletion, inlineCompletion) || other.inlineCompletion == inlineCompletion));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,synchronization,completion,hover,signatureHelp,declaration,definition,typeDefinition,implementation,references,documentHighlight,documentSymbol,codeAction,codeLens,documentLink,colorProvider,formatting,rangeFormatting,onTypeFormatting,rename,foldingRange,selectionRange,publishDiagnostics,callHierarchy,semanticTokens,linkedEditingRange,moniker,typeHierarchy,inlineValue,inlayHint,diagnostic,inlineCompletion]);
+int get hashCode => Object.hashAll([runtimeType,synchronization,filters,completion,hover,signatureHelp,declaration,definition,typeDefinition,implementation,references,documentHighlight,documentSymbol,codeAction,codeLens,documentLink,colorProvider,formatting,rangeFormatting,onTypeFormatting,rename,foldingRange,selectionRange,publishDiagnostics,callHierarchy,semanticTokens,linkedEditingRange,moniker,typeHierarchy,inlineValue,inlayHint,diagnostic,inlineCompletion]);
 
 @override
 String toString() {
-  return 'TextDocumentClientCapabilities(synchronization: $synchronization, completion: $completion, hover: $hover, signatureHelp: $signatureHelp, declaration: $declaration, definition: $definition, typeDefinition: $typeDefinition, implementation: $implementation, references: $references, documentHighlight: $documentHighlight, documentSymbol: $documentSymbol, codeAction: $codeAction, codeLens: $codeLens, documentLink: $documentLink, colorProvider: $colorProvider, formatting: $formatting, rangeFormatting: $rangeFormatting, onTypeFormatting: $onTypeFormatting, rename: $rename, foldingRange: $foldingRange, selectionRange: $selectionRange, publishDiagnostics: $publishDiagnostics, callHierarchy: $callHierarchy, semanticTokens: $semanticTokens, linkedEditingRange: $linkedEditingRange, moniker: $moniker, typeHierarchy: $typeHierarchy, inlineValue: $inlineValue, inlayHint: $inlayHint, diagnostic: $diagnostic, inlineCompletion: $inlineCompletion)';
+  return 'TextDocumentClientCapabilities(synchronization: $synchronization, filters: $filters, completion: $completion, hover: $hover, signatureHelp: $signatureHelp, declaration: $declaration, definition: $definition, typeDefinition: $typeDefinition, implementation: $implementation, references: $references, documentHighlight: $documentHighlight, documentSymbol: $documentSymbol, codeAction: $codeAction, codeLens: $codeLens, documentLink: $documentLink, colorProvider: $colorProvider, formatting: $formatting, rangeFormatting: $rangeFormatting, onTypeFormatting: $onTypeFormatting, rename: $rename, foldingRange: $foldingRange, selectionRange: $selectionRange, publishDiagnostics: $publishDiagnostics, callHierarchy: $callHierarchy, semanticTokens: $semanticTokens, linkedEditingRange: $linkedEditingRange, moniker: $moniker, typeHierarchy: $typeHierarchy, inlineValue: $inlineValue, inlayHint: $inlayHint, diagnostic: $diagnostic, inlineCompletion: $inlineCompletion)';
 }
 
 
@@ -2173,11 +2085,11 @@ abstract mixin class _$TextDocumentClientCapabilitiesCopyWith<$Res> implements $
   factory _$TextDocumentClientCapabilitiesCopyWith(_TextDocumentClientCapabilities value, $Res Function(_TextDocumentClientCapabilities) _then) = __$TextDocumentClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- TextDocumentSyncClientCapabilities? synchronization, CompletionClientCapabilities? completion, HoverClientCapabilities? hover, SignatureHelpClientCapabilities? signatureHelp, DeclarationClientCapabilities? declaration, DefinitionClientCapabilities? definition, TypeDefinitionClientCapabilities? typeDefinition, ImplementationClientCapabilities? implementation, ReferenceClientCapabilities? references, DocumentHighlightClientCapabilities? documentHighlight, DocumentSymbolClientCapabilities? documentSymbol, CodeActionClientCapabilities? codeAction, CodeLensClientCapabilities? codeLens, DocumentLinkClientCapabilities? documentLink, DocumentColorClientCapabilities? colorProvider, DocumentFormattingClientCapabilities? formatting, DocumentRangeFormattingClientCapabilities? rangeFormatting, DocumentOnTypeFormattingClientCapabilities? onTypeFormatting, RenameClientCapabilities? rename, FoldingRangeClientCapabilities? foldingRange, SelectionRangeClientCapabilities? selectionRange, PublishDiagnosticsClientCapabilities? publishDiagnostics, CallHierarchyClientCapabilities? callHierarchy, SemanticTokensClientCapabilities? semanticTokens, LinkedEditingRangeClientCapabilities? linkedEditingRange, MonikerClientCapabilities? moniker, TypeHierarchyClientCapabilities? typeHierarchy, InlineValueClientCapabilities? inlineValue, InlayHintClientCapabilities? inlayHint, DiagnosticClientCapabilities? diagnostic, InlineCompletionClientCapabilities? inlineCompletion
+ TextDocumentSyncClientCapabilities? synchronization, TextDocumentFilterClientCapabilities? filters, CompletionClientCapabilities? completion, HoverClientCapabilities? hover, SignatureHelpClientCapabilities? signatureHelp, DeclarationClientCapabilities? declaration, DefinitionClientCapabilities? definition, TypeDefinitionClientCapabilities? typeDefinition, ImplementationClientCapabilities? implementation, ReferenceClientCapabilities? references, DocumentHighlightClientCapabilities? documentHighlight, DocumentSymbolClientCapabilities? documentSymbol, CodeActionClientCapabilities? codeAction, CodeLensClientCapabilities? codeLens, DocumentLinkClientCapabilities? documentLink, DocumentColorClientCapabilities? colorProvider, DocumentFormattingClientCapabilities? formatting, DocumentRangeFormattingClientCapabilities? rangeFormatting, DocumentOnTypeFormattingClientCapabilities? onTypeFormatting, RenameClientCapabilities? rename, FoldingRangeClientCapabilities? foldingRange, SelectionRangeClientCapabilities? selectionRange, PublishDiagnosticsClientCapabilities? publishDiagnostics, CallHierarchyClientCapabilities? callHierarchy, SemanticTokensClientCapabilities? semanticTokens, LinkedEditingRangeClientCapabilities? linkedEditingRange, MonikerClientCapabilities? moniker, TypeHierarchyClientCapabilities? typeHierarchy, InlineValueClientCapabilities? inlineValue, InlayHintClientCapabilities? inlayHint, DiagnosticClientCapabilities? diagnostic, InlineCompletionClientCapabilities? inlineCompletion
 });
 
 
-@override $TextDocumentSyncClientCapabilitiesCopyWith<$Res>? get synchronization;@override $CompletionClientCapabilitiesCopyWith<$Res>? get completion;@override $HoverClientCapabilitiesCopyWith<$Res>? get hover;@override $SignatureHelpClientCapabilitiesCopyWith<$Res>? get signatureHelp;@override $DeclarationClientCapabilitiesCopyWith<$Res>? get declaration;@override $DefinitionClientCapabilitiesCopyWith<$Res>? get definition;@override $TypeDefinitionClientCapabilitiesCopyWith<$Res>? get typeDefinition;@override $ImplementationClientCapabilitiesCopyWith<$Res>? get implementation;@override $ReferenceClientCapabilitiesCopyWith<$Res>? get references;@override $DocumentHighlightClientCapabilitiesCopyWith<$Res>? get documentHighlight;@override $DocumentSymbolClientCapabilitiesCopyWith<$Res>? get documentSymbol;@override $CodeActionClientCapabilitiesCopyWith<$Res>? get codeAction;@override $CodeLensClientCapabilitiesCopyWith<$Res>? get codeLens;@override $DocumentLinkClientCapabilitiesCopyWith<$Res>? get documentLink;@override $DocumentColorClientCapabilitiesCopyWith<$Res>? get colorProvider;@override $DocumentFormattingClientCapabilitiesCopyWith<$Res>? get formatting;@override $DocumentRangeFormattingClientCapabilitiesCopyWith<$Res>? get rangeFormatting;@override $DocumentOnTypeFormattingClientCapabilitiesCopyWith<$Res>? get onTypeFormatting;@override $RenameClientCapabilitiesCopyWith<$Res>? get rename;@override $FoldingRangeClientCapabilitiesCopyWith<$Res>? get foldingRange;@override $SelectionRangeClientCapabilitiesCopyWith<$Res>? get selectionRange;@override $PublishDiagnosticsClientCapabilitiesCopyWith<$Res>? get publishDiagnostics;@override $CallHierarchyClientCapabilitiesCopyWith<$Res>? get callHierarchy;@override $SemanticTokensClientCapabilitiesCopyWith<$Res>? get semanticTokens;@override $LinkedEditingRangeClientCapabilitiesCopyWith<$Res>? get linkedEditingRange;@override $MonikerClientCapabilitiesCopyWith<$Res>? get moniker;@override $TypeHierarchyClientCapabilitiesCopyWith<$Res>? get typeHierarchy;@override $InlineValueClientCapabilitiesCopyWith<$Res>? get inlineValue;@override $InlayHintClientCapabilitiesCopyWith<$Res>? get inlayHint;@override $DiagnosticClientCapabilitiesCopyWith<$Res>? get diagnostic;@override $InlineCompletionClientCapabilitiesCopyWith<$Res>? get inlineCompletion;
+@override $TextDocumentSyncClientCapabilitiesCopyWith<$Res>? get synchronization;@override $TextDocumentFilterClientCapabilitiesCopyWith<$Res>? get filters;@override $CompletionClientCapabilitiesCopyWith<$Res>? get completion;@override $HoverClientCapabilitiesCopyWith<$Res>? get hover;@override $SignatureHelpClientCapabilitiesCopyWith<$Res>? get signatureHelp;@override $DeclarationClientCapabilitiesCopyWith<$Res>? get declaration;@override $DefinitionClientCapabilitiesCopyWith<$Res>? get definition;@override $TypeDefinitionClientCapabilitiesCopyWith<$Res>? get typeDefinition;@override $ImplementationClientCapabilitiesCopyWith<$Res>? get implementation;@override $ReferenceClientCapabilitiesCopyWith<$Res>? get references;@override $DocumentHighlightClientCapabilitiesCopyWith<$Res>? get documentHighlight;@override $DocumentSymbolClientCapabilitiesCopyWith<$Res>? get documentSymbol;@override $CodeActionClientCapabilitiesCopyWith<$Res>? get codeAction;@override $CodeLensClientCapabilitiesCopyWith<$Res>? get codeLens;@override $DocumentLinkClientCapabilitiesCopyWith<$Res>? get documentLink;@override $DocumentColorClientCapabilitiesCopyWith<$Res>? get colorProvider;@override $DocumentFormattingClientCapabilitiesCopyWith<$Res>? get formatting;@override $DocumentRangeFormattingClientCapabilitiesCopyWith<$Res>? get rangeFormatting;@override $DocumentOnTypeFormattingClientCapabilitiesCopyWith<$Res>? get onTypeFormatting;@override $RenameClientCapabilitiesCopyWith<$Res>? get rename;@override $FoldingRangeClientCapabilitiesCopyWith<$Res>? get foldingRange;@override $SelectionRangeClientCapabilitiesCopyWith<$Res>? get selectionRange;@override $PublishDiagnosticsClientCapabilitiesCopyWith<$Res>? get publishDiagnostics;@override $CallHierarchyClientCapabilitiesCopyWith<$Res>? get callHierarchy;@override $SemanticTokensClientCapabilitiesCopyWith<$Res>? get semanticTokens;@override $LinkedEditingRangeClientCapabilitiesCopyWith<$Res>? get linkedEditingRange;@override $MonikerClientCapabilitiesCopyWith<$Res>? get moniker;@override $TypeHierarchyClientCapabilitiesCopyWith<$Res>? get typeHierarchy;@override $InlineValueClientCapabilitiesCopyWith<$Res>? get inlineValue;@override $InlayHintClientCapabilitiesCopyWith<$Res>? get inlayHint;@override $DiagnosticClientCapabilitiesCopyWith<$Res>? get diagnostic;@override $InlineCompletionClientCapabilitiesCopyWith<$Res>? get inlineCompletion;
 
 }
 /// @nodoc
@@ -2190,10 +2102,11 @@ class __$TextDocumentClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of TextDocumentClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? synchronization = freezed,Object? completion = freezed,Object? hover = freezed,Object? signatureHelp = freezed,Object? declaration = freezed,Object? definition = freezed,Object? typeDefinition = freezed,Object? implementation = freezed,Object? references = freezed,Object? documentHighlight = freezed,Object? documentSymbol = freezed,Object? codeAction = freezed,Object? codeLens = freezed,Object? documentLink = freezed,Object? colorProvider = freezed,Object? formatting = freezed,Object? rangeFormatting = freezed,Object? onTypeFormatting = freezed,Object? rename = freezed,Object? foldingRange = freezed,Object? selectionRange = freezed,Object? publishDiagnostics = freezed,Object? callHierarchy = freezed,Object? semanticTokens = freezed,Object? linkedEditingRange = freezed,Object? moniker = freezed,Object? typeHierarchy = freezed,Object? inlineValue = freezed,Object? inlayHint = freezed,Object? diagnostic = freezed,Object? inlineCompletion = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? synchronization = freezed,Object? filters = freezed,Object? completion = freezed,Object? hover = freezed,Object? signatureHelp = freezed,Object? declaration = freezed,Object? definition = freezed,Object? typeDefinition = freezed,Object? implementation = freezed,Object? references = freezed,Object? documentHighlight = freezed,Object? documentSymbol = freezed,Object? codeAction = freezed,Object? codeLens = freezed,Object? documentLink = freezed,Object? colorProvider = freezed,Object? formatting = freezed,Object? rangeFormatting = freezed,Object? onTypeFormatting = freezed,Object? rename = freezed,Object? foldingRange = freezed,Object? selectionRange = freezed,Object? publishDiagnostics = freezed,Object? callHierarchy = freezed,Object? semanticTokens = freezed,Object? linkedEditingRange = freezed,Object? moniker = freezed,Object? typeHierarchy = freezed,Object? inlineValue = freezed,Object? inlayHint = freezed,Object? diagnostic = freezed,Object? inlineCompletion = freezed,}) {
   return _then(_TextDocumentClientCapabilities(
 synchronization: freezed == synchronization ? _self.synchronization : synchronization // ignore: cast_nullable_to_non_nullable
-as TextDocumentSyncClientCapabilities?,completion: freezed == completion ? _self.completion : completion // ignore: cast_nullable_to_non_nullable
+as TextDocumentSyncClientCapabilities?,filters: freezed == filters ? _self.filters : filters // ignore: cast_nullable_to_non_nullable
+as TextDocumentFilterClientCapabilities?,completion: freezed == completion ? _self.completion : completion // ignore: cast_nullable_to_non_nullable
 as CompletionClientCapabilities?,hover: freezed == hover ? _self.hover : hover // ignore: cast_nullable_to_non_nullable
 as HoverClientCapabilities?,signatureHelp: freezed == signatureHelp ? _self.signatureHelp : signatureHelp // ignore: cast_nullable_to_non_nullable
 as SignatureHelpClientCapabilities?,declaration: freezed == declaration ? _self.declaration : declaration // ignore: cast_nullable_to_non_nullable
@@ -2238,6 +2151,18 @@ $TextDocumentSyncClientCapabilitiesCopyWith<$Res>? get synchronization {
 
   return $TextDocumentSyncClientCapabilitiesCopyWith<$Res>(_self.synchronization!, (value) {
     return _then(_self.copyWith(synchronization: value));
+  });
+}/// Create a copy of TextDocumentClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextDocumentFilterClientCapabilitiesCopyWith<$Res>? get filters {
+    if (_self.filters == null) {
+    return null;
+  }
+
+  return $TextDocumentFilterClientCapabilitiesCopyWith<$Res>(_self.filters!, (value) {
+    return _then(_self.copyWith(filters: value));
   });
 }/// Create a copy of TextDocumentClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -2967,7 +2892,7 @@ mixin _$GeneralClientCapabilities {
 /// Client capability that signals how the client handles stale requests
 /// (e.g. a request for which the client will not process the response
 /// anymore since the information is outdated).
- ({bool cancel, List<String> retryOnContentModified})? get staleRequestSupport;/// Client capabilities specific to regular expressions.
+ StaleRequestSupportOptions? get staleRequestSupport;/// Client capabilities specific to regular expressions.
  RegularExpressionsClientCapabilities? get regularExpressions;/// Client capabilities specific to the client's markdown parser.
  MarkdownClientCapabilities? get markdown;/// The position encodings supported by the client. Client and server have
 /// to agree on the same position encoding to ensure that offsets (e.g.
@@ -3016,11 +2941,11 @@ abstract mixin class $GeneralClientCapabilitiesCopyWith<$Res>  {
   factory $GeneralClientCapabilitiesCopyWith(GeneralClientCapabilities value, $Res Function(GeneralClientCapabilities) _then) = _$GeneralClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown, List<PositionEncodingKind>? positionEncodings
+ StaleRequestSupportOptions? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown, List<PositionEncodingKind>? positionEncodings
 });
 
 
-$RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions;$MarkdownClientCapabilitiesCopyWith<$Res>? get markdown;
+$StaleRequestSupportOptionsCopyWith<$Res>? get staleRequestSupport;$RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions;$MarkdownClientCapabilitiesCopyWith<$Res>? get markdown;
 
 }
 /// @nodoc
@@ -3036,13 +2961,25 @@ class _$GeneralClientCapabilitiesCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? staleRequestSupport = freezed,Object? regularExpressions = freezed,Object? markdown = freezed,Object? positionEncodings = freezed,}) {
   return _then(_self.copyWith(
 staleRequestSupport: freezed == staleRequestSupport ? _self.staleRequestSupport : staleRequestSupport // ignore: cast_nullable_to_non_nullable
-as ({bool cancel, List<String> retryOnContentModified})?,regularExpressions: freezed == regularExpressions ? _self.regularExpressions : regularExpressions // ignore: cast_nullable_to_non_nullable
+as StaleRequestSupportOptions?,regularExpressions: freezed == regularExpressions ? _self.regularExpressions : regularExpressions // ignore: cast_nullable_to_non_nullable
 as RegularExpressionsClientCapabilities?,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
 as MarkdownClientCapabilities?,positionEncodings: freezed == positionEncodings ? _self.positionEncodings : positionEncodings // ignore: cast_nullable_to_non_nullable
 as List<PositionEncodingKind>?,
   ));
 }
 /// Create a copy of GeneralClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StaleRequestSupportOptionsCopyWith<$Res>? get staleRequestSupport {
+    if (_self.staleRequestSupport == null) {
+    return null;
+  }
+
+  return $StaleRequestSupportOptionsCopyWith<$Res>(_self.staleRequestSupport!, (value) {
+    return _then(_self.copyWith(staleRequestSupport: value));
+  });
+}/// Create a copy of GeneralClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -3081,7 +3018,7 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
 /// Client capability that signals how the client handles stale requests
 /// (e.g. a request for which the client will not process the response
 /// anymore since the information is outdated).
-@override final  ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport;
+@override final  StaleRequestSupportOptions? staleRequestSupport;
 /// Client capabilities specific to regular expressions.
 @override final  RegularExpressionsClientCapabilities? regularExpressions;
 /// Client capabilities specific to the client's markdown parser.
@@ -3157,11 +3094,11 @@ abstract mixin class _$GeneralClientCapabilitiesCopyWith<$Res> implements $Gener
   factory _$GeneralClientCapabilitiesCopyWith(_GeneralClientCapabilities value, $Res Function(_GeneralClientCapabilities) _then) = __$GeneralClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown, List<PositionEncodingKind>? positionEncodings
+ StaleRequestSupportOptions? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown, List<PositionEncodingKind>? positionEncodings
 });
 
 
-@override $RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions;@override $MarkdownClientCapabilitiesCopyWith<$Res>? get markdown;
+@override $StaleRequestSupportOptionsCopyWith<$Res>? get staleRequestSupport;@override $RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions;@override $MarkdownClientCapabilitiesCopyWith<$Res>? get markdown;
 
 }
 /// @nodoc
@@ -3177,7 +3114,7 @@ class __$GeneralClientCapabilitiesCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? staleRequestSupport = freezed,Object? regularExpressions = freezed,Object? markdown = freezed,Object? positionEncodings = freezed,}) {
   return _then(_GeneralClientCapabilities(
 staleRequestSupport: freezed == staleRequestSupport ? _self.staleRequestSupport : staleRequestSupport // ignore: cast_nullable_to_non_nullable
-as ({bool cancel, List<String> retryOnContentModified})?,regularExpressions: freezed == regularExpressions ? _self.regularExpressions : regularExpressions // ignore: cast_nullable_to_non_nullable
+as StaleRequestSupportOptions?,regularExpressions: freezed == regularExpressions ? _self.regularExpressions : regularExpressions // ignore: cast_nullable_to_non_nullable
 as RegularExpressionsClientCapabilities?,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
 as MarkdownClientCapabilities?,positionEncodings: freezed == positionEncodings ? _self._positionEncodings : positionEncodings // ignore: cast_nullable_to_non_nullable
 as List<PositionEncodingKind>?,
@@ -3185,6 +3122,18 @@ as List<PositionEncodingKind>?,
 }
 
 /// Create a copy of GeneralClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StaleRequestSupportOptionsCopyWith<$Res>? get staleRequestSupport {
+    if (_self.staleRequestSupport == null) {
+    return null;
+  }
+
+  return $StaleRequestSupportOptionsCopyWith<$Res>(_self.staleRequestSupport!, (value) {
+    return _then(_self.copyWith(staleRequestSupport: value));
+  });
+}/// Create a copy of GeneralClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -3213,6 +3162,163 @@ $MarkdownClientCapabilitiesCopyWith<$Res>? get markdown {
 
 
 /// @nodoc
+mixin _$WorkspaceFoldersServerCapabilities {
+
+/// The server has support for workspace folders
+ bool? get supported;/// Whether the server wants to receive workspace folder change
+/// notifications.
+///
+/// If a string is provided the string is treated as an ID under which the
+/// notification is registered on the client side. The ID can be used to
+/// unregister for these events using the `client/unregisterCapability`
+/// request.
+///
+/// Type: `String` | `bool`
+ WorkspaceFoldersServerCapabilitiesChangeNotifications? get changeNotifications;
+/// Create a copy of WorkspaceFoldersServerCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WorkspaceFoldersServerCapabilitiesCopyWith<WorkspaceFoldersServerCapabilities> get copyWith => _$WorkspaceFoldersServerCapabilitiesCopyWithImpl<WorkspaceFoldersServerCapabilities>(this as WorkspaceFoldersServerCapabilities, _$identity);
+
+  /// Serializes this WorkspaceFoldersServerCapabilities to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceFoldersServerCapabilities&&(identical(other.supported, supported) || other.supported == supported)&&(identical(other.changeNotifications, changeNotifications) || other.changeNotifications == changeNotifications));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,supported,changeNotifications);
+
+@override
+String toString() {
+  return 'WorkspaceFoldersServerCapabilities(supported: $supported, changeNotifications: $changeNotifications)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>  {
+  factory $WorkspaceFoldersServerCapabilitiesCopyWith(WorkspaceFoldersServerCapabilities value, $Res Function(WorkspaceFoldersServerCapabilities) _then) = _$WorkspaceFoldersServerCapabilitiesCopyWithImpl;
+@useResult
+$Res call({
+ bool? supported, WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications
+});
+
+
+
+
+}
+/// @nodoc
+class _$WorkspaceFoldersServerCapabilitiesCopyWithImpl<$Res>
+    implements $WorkspaceFoldersServerCapabilitiesCopyWith<$Res> {
+  _$WorkspaceFoldersServerCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final WorkspaceFoldersServerCapabilities _self;
+  final $Res Function(WorkspaceFoldersServerCapabilities) _then;
+
+/// Create a copy of WorkspaceFoldersServerCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? supported = freezed,Object? changeNotifications = freezed,}) {
+  return _then(_self.copyWith(
+supported: freezed == supported ? _self.supported : supported // ignore: cast_nullable_to_non_nullable
+as bool?,changeNotifications: freezed == changeNotifications ? _self.changeNotifications : changeNotifications // ignore: cast_nullable_to_non_nullable
+as WorkspaceFoldersServerCapabilitiesChangeNotifications?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapabilities {
+  const _WorkspaceFoldersServerCapabilities({this.supported, this.changeNotifications});
+  factory _WorkspaceFoldersServerCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
+
+/// The server has support for workspace folders
+@override final  bool? supported;
+/// Whether the server wants to receive workspace folder change
+/// notifications.
+///
+/// If a string is provided the string is treated as an ID under which the
+/// notification is registered on the client side. The ID can be used to
+/// unregister for these events using the `client/unregisterCapability`
+/// request.
+///
+/// Type: `String` | `bool`
+@override final  WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications;
+
+/// Create a copy of WorkspaceFoldersServerCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WorkspaceFoldersServerCapabilitiesCopyWith<_WorkspaceFoldersServerCapabilities> get copyWith => __$WorkspaceFoldersServerCapabilitiesCopyWithImpl<_WorkspaceFoldersServerCapabilities>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WorkspaceFoldersServerCapabilitiesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceFoldersServerCapabilities&&(identical(other.supported, supported) || other.supported == supported)&&(identical(other.changeNotifications, changeNotifications) || other.changeNotifications == changeNotifications));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,supported,changeNotifications);
+
+@override
+String toString() {
+  return 'WorkspaceFoldersServerCapabilities(supported: $supported, changeNotifications: $changeNotifications)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WorkspaceFoldersServerCapabilitiesCopyWith<$Res> implements $WorkspaceFoldersServerCapabilitiesCopyWith<$Res> {
+  factory _$WorkspaceFoldersServerCapabilitiesCopyWith(_WorkspaceFoldersServerCapabilities value, $Res Function(_WorkspaceFoldersServerCapabilities) _then) = __$WorkspaceFoldersServerCapabilitiesCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? supported, WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications
+});
+
+
+
+
+}
+/// @nodoc
+class __$WorkspaceFoldersServerCapabilitiesCopyWithImpl<$Res>
+    implements _$WorkspaceFoldersServerCapabilitiesCopyWith<$Res> {
+  __$WorkspaceFoldersServerCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final _WorkspaceFoldersServerCapabilities _self;
+  final $Res Function(_WorkspaceFoldersServerCapabilities) _then;
+
+/// Create a copy of WorkspaceFoldersServerCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? supported = freezed,Object? changeNotifications = freezed,}) {
+  return _then(_WorkspaceFoldersServerCapabilities(
+supported: freezed == supported ? _self.supported : supported // ignore: cast_nullable_to_non_nullable
+as bool?,changeNotifications: freezed == changeNotifications ? _self.changeNotifications : changeNotifications // ignore: cast_nullable_to_non_nullable
+as WorkspaceFoldersServerCapabilitiesChangeNotifications?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$WorkspaceEditClientCapabilities {
 
 /// The client supports versioned document changes in `WorkspaceEdit`s
@@ -3226,7 +3332,9 @@ mixin _$WorkspaceEditClientCapabilities {
 /// character.
  bool? get normalizesLineEndings;/// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
- ({bool? groupsOnLabel})? get changeAnnotationSupport;
+ ChangeAnnotationsSupportOptions? get changeAnnotationSupport;/// Whether the client supports `WorkspaceEditMetadata` in `WorkspaceEdit`s.
+ bool? get metadataSupport;/// Whether the client supports snippets as text edits.
+ bool? get snippetEditSupport;
 /// Create a copy of WorkspaceEditClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3239,16 +3347,16 @@ $WorkspaceEditClientCapabilitiesCopyWith<WorkspaceEditClientCapabilities> get co
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceEditClientCapabilities&&(identical(other.documentChanges, documentChanges) || other.documentChanges == documentChanges)&&const DeepCollectionEquality().equals(other.resourceOperations, resourceOperations)&&(identical(other.failureHandling, failureHandling) || other.failureHandling == failureHandling)&&(identical(other.normalizesLineEndings, normalizesLineEndings) || other.normalizesLineEndings == normalizesLineEndings)&&(identical(other.changeAnnotationSupport, changeAnnotationSupport) || other.changeAnnotationSupport == changeAnnotationSupport));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceEditClientCapabilities&&(identical(other.documentChanges, documentChanges) || other.documentChanges == documentChanges)&&const DeepCollectionEquality().equals(other.resourceOperations, resourceOperations)&&(identical(other.failureHandling, failureHandling) || other.failureHandling == failureHandling)&&(identical(other.normalizesLineEndings, normalizesLineEndings) || other.normalizesLineEndings == normalizesLineEndings)&&(identical(other.changeAnnotationSupport, changeAnnotationSupport) || other.changeAnnotationSupport == changeAnnotationSupport)&&(identical(other.metadataSupport, metadataSupport) || other.metadataSupport == metadataSupport)&&(identical(other.snippetEditSupport, snippetEditSupport) || other.snippetEditSupport == snippetEditSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,documentChanges,const DeepCollectionEquality().hash(resourceOperations),failureHandling,normalizesLineEndings,changeAnnotationSupport);
+int get hashCode => Object.hash(runtimeType,documentChanges,const DeepCollectionEquality().hash(resourceOperations),failureHandling,normalizesLineEndings,changeAnnotationSupport,metadataSupport,snippetEditSupport);
 
 @override
 String toString() {
-  return 'WorkspaceEditClientCapabilities(documentChanges: $documentChanges, resourceOperations: $resourceOperations, failureHandling: $failureHandling, normalizesLineEndings: $normalizesLineEndings, changeAnnotationSupport: $changeAnnotationSupport)';
+  return 'WorkspaceEditClientCapabilities(documentChanges: $documentChanges, resourceOperations: $resourceOperations, failureHandling: $failureHandling, normalizesLineEndings: $normalizesLineEndings, changeAnnotationSupport: $changeAnnotationSupport, metadataSupport: $metadataSupport, snippetEditSupport: $snippetEditSupport)';
 }
 
 
@@ -3259,11 +3367,11 @@ abstract mixin class $WorkspaceEditClientCapabilitiesCopyWith<$Res>  {
   factory $WorkspaceEditClientCapabilitiesCopyWith(WorkspaceEditClientCapabilities value, $Res Function(WorkspaceEditClientCapabilities) _then) = _$WorkspaceEditClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, ({bool? groupsOnLabel})? changeAnnotationSupport
+ bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, ChangeAnnotationsSupportOptions? changeAnnotationSupport, bool? metadataSupport, bool? snippetEditSupport
 });
 
 
-
+$ChangeAnnotationsSupportOptionsCopyWith<$Res>? get changeAnnotationSupport;
 
 }
 /// @nodoc
@@ -3276,17 +3384,31 @@ class _$WorkspaceEditClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceEditClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentChanges = freezed,Object? resourceOperations = freezed,Object? failureHandling = freezed,Object? normalizesLineEndings = freezed,Object? changeAnnotationSupport = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentChanges = freezed,Object? resourceOperations = freezed,Object? failureHandling = freezed,Object? normalizesLineEndings = freezed,Object? changeAnnotationSupport = freezed,Object? metadataSupport = freezed,Object? snippetEditSupport = freezed,}) {
   return _then(_self.copyWith(
 documentChanges: freezed == documentChanges ? _self.documentChanges : documentChanges // ignore: cast_nullable_to_non_nullable
 as bool?,resourceOperations: freezed == resourceOperations ? _self.resourceOperations : resourceOperations // ignore: cast_nullable_to_non_nullable
 as List<ResourceOperationKind>?,failureHandling: freezed == failureHandling ? _self.failureHandling : failureHandling // ignore: cast_nullable_to_non_nullable
 as FailureHandlingKind?,normalizesLineEndings: freezed == normalizesLineEndings ? _self.normalizesLineEndings : normalizesLineEndings // ignore: cast_nullable_to_non_nullable
 as bool?,changeAnnotationSupport: freezed == changeAnnotationSupport ? _self.changeAnnotationSupport : changeAnnotationSupport // ignore: cast_nullable_to_non_nullable
-as ({bool? groupsOnLabel})?,
+as ChangeAnnotationsSupportOptions?,metadataSupport: freezed == metadataSupport ? _self.metadataSupport : metadataSupport // ignore: cast_nullable_to_non_nullable
+as bool?,snippetEditSupport: freezed == snippetEditSupport ? _self.snippetEditSupport : snippetEditSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
+/// Create a copy of WorkspaceEditClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ChangeAnnotationsSupportOptionsCopyWith<$Res>? get changeAnnotationSupport {
+    if (_self.changeAnnotationSupport == null) {
+    return null;
+  }
 
+  return $ChangeAnnotationsSupportOptionsCopyWith<$Res>(_self.changeAnnotationSupport!, (value) {
+    return _then(_self.copyWith(changeAnnotationSupport: value));
+  });
+}
 }
 
 
@@ -3295,7 +3417,7 @@ as ({bool? groupsOnLabel})?,
 @JsonSerializable()
 
 class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilities {
-  const _WorkspaceEditClientCapabilities({this.documentChanges, final  List<ResourceOperationKind>? resourceOperations, this.failureHandling, this.normalizesLineEndings, this.changeAnnotationSupport}): _resourceOperations = resourceOperations;
+  const _WorkspaceEditClientCapabilities({this.documentChanges, final  List<ResourceOperationKind>? resourceOperations, this.failureHandling, this.normalizesLineEndings, this.changeAnnotationSupport, this.metadataSupport, this.snippetEditSupport}): _resourceOperations = resourceOperations;
   factory _WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceEditClientCapabilitiesFromJson(json);
 
 /// The client supports versioned document changes in `WorkspaceEdit`s
@@ -3323,7 +3445,11 @@ class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilitie
 @override final  bool? normalizesLineEndings;
 /// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
-@override final  ({bool? groupsOnLabel})? changeAnnotationSupport;
+@override final  ChangeAnnotationsSupportOptions? changeAnnotationSupport;
+/// Whether the client supports `WorkspaceEditMetadata` in `WorkspaceEdit`s.
+@override final  bool? metadataSupport;
+/// Whether the client supports snippets as text edits.
+@override final  bool? snippetEditSupport;
 
 /// Create a copy of WorkspaceEditClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -3338,16 +3464,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceEditClientCapabilities&&(identical(other.documentChanges, documentChanges) || other.documentChanges == documentChanges)&&const DeepCollectionEquality().equals(other._resourceOperations, _resourceOperations)&&(identical(other.failureHandling, failureHandling) || other.failureHandling == failureHandling)&&(identical(other.normalizesLineEndings, normalizesLineEndings) || other.normalizesLineEndings == normalizesLineEndings)&&(identical(other.changeAnnotationSupport, changeAnnotationSupport) || other.changeAnnotationSupport == changeAnnotationSupport));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceEditClientCapabilities&&(identical(other.documentChanges, documentChanges) || other.documentChanges == documentChanges)&&const DeepCollectionEquality().equals(other._resourceOperations, _resourceOperations)&&(identical(other.failureHandling, failureHandling) || other.failureHandling == failureHandling)&&(identical(other.normalizesLineEndings, normalizesLineEndings) || other.normalizesLineEndings == normalizesLineEndings)&&(identical(other.changeAnnotationSupport, changeAnnotationSupport) || other.changeAnnotationSupport == changeAnnotationSupport)&&(identical(other.metadataSupport, metadataSupport) || other.metadataSupport == metadataSupport)&&(identical(other.snippetEditSupport, snippetEditSupport) || other.snippetEditSupport == snippetEditSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,documentChanges,const DeepCollectionEquality().hash(_resourceOperations),failureHandling,normalizesLineEndings,changeAnnotationSupport);
+int get hashCode => Object.hash(runtimeType,documentChanges,const DeepCollectionEquality().hash(_resourceOperations),failureHandling,normalizesLineEndings,changeAnnotationSupport,metadataSupport,snippetEditSupport);
 
 @override
 String toString() {
-  return 'WorkspaceEditClientCapabilities(documentChanges: $documentChanges, resourceOperations: $resourceOperations, failureHandling: $failureHandling, normalizesLineEndings: $normalizesLineEndings, changeAnnotationSupport: $changeAnnotationSupport)';
+  return 'WorkspaceEditClientCapabilities(documentChanges: $documentChanges, resourceOperations: $resourceOperations, failureHandling: $failureHandling, normalizesLineEndings: $normalizesLineEndings, changeAnnotationSupport: $changeAnnotationSupport, metadataSupport: $metadataSupport, snippetEditSupport: $snippetEditSupport)';
 }
 
 
@@ -3358,11 +3484,11 @@ abstract mixin class _$WorkspaceEditClientCapabilitiesCopyWith<$Res> implements 
   factory _$WorkspaceEditClientCapabilitiesCopyWith(_WorkspaceEditClientCapabilities value, $Res Function(_WorkspaceEditClientCapabilities) _then) = __$WorkspaceEditClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, ({bool? groupsOnLabel})? changeAnnotationSupport
+ bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, ChangeAnnotationsSupportOptions? changeAnnotationSupport, bool? metadataSupport, bool? snippetEditSupport
 });
 
 
-
+@override $ChangeAnnotationsSupportOptionsCopyWith<$Res>? get changeAnnotationSupport;
 
 }
 /// @nodoc
@@ -3375,18 +3501,32 @@ class __$WorkspaceEditClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceEditClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentChanges = freezed,Object? resourceOperations = freezed,Object? failureHandling = freezed,Object? normalizesLineEndings = freezed,Object? changeAnnotationSupport = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentChanges = freezed,Object? resourceOperations = freezed,Object? failureHandling = freezed,Object? normalizesLineEndings = freezed,Object? changeAnnotationSupport = freezed,Object? metadataSupport = freezed,Object? snippetEditSupport = freezed,}) {
   return _then(_WorkspaceEditClientCapabilities(
 documentChanges: freezed == documentChanges ? _self.documentChanges : documentChanges // ignore: cast_nullable_to_non_nullable
 as bool?,resourceOperations: freezed == resourceOperations ? _self._resourceOperations : resourceOperations // ignore: cast_nullable_to_non_nullable
 as List<ResourceOperationKind>?,failureHandling: freezed == failureHandling ? _self.failureHandling : failureHandling // ignore: cast_nullable_to_non_nullable
 as FailureHandlingKind?,normalizesLineEndings: freezed == normalizesLineEndings ? _self.normalizesLineEndings : normalizesLineEndings // ignore: cast_nullable_to_non_nullable
 as bool?,changeAnnotationSupport: freezed == changeAnnotationSupport ? _self.changeAnnotationSupport : changeAnnotationSupport // ignore: cast_nullable_to_non_nullable
-as ({bool? groupsOnLabel})?,
+as ChangeAnnotationsSupportOptions?,metadataSupport: freezed == metadataSupport ? _self.metadataSupport : metadataSupport // ignore: cast_nullable_to_non_nullable
+as bool?,snippetEditSupport: freezed == snippetEditSupport ? _self.snippetEditSupport : snippetEditSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
+/// Create a copy of WorkspaceEditClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ChangeAnnotationsSupportOptionsCopyWith<$Res>? get changeAnnotationSupport {
+    if (_self.changeAnnotationSupport == null) {
+    return null;
+  }
 
+  return $ChangeAnnotationsSupportOptionsCopyWith<$Res>(_self.changeAnnotationSupport!, (value) {
+    return _then(_self.copyWith(changeAnnotationSupport: value));
+  });
+}
 }
 
 
@@ -3677,12 +3817,12 @@ mixin _$WorkspaceSymbolClientCapabilities {
 /// Symbol request supports dynamic registration.
  bool? get dynamicRegistration;/// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
 /// request.
- ({List<SymbolKind>? valueSet})? get symbolKind;/// The client supports tags on `SymbolInformation`. Clients supporting tags
+ ClientSymbolKindOptions? get symbolKind;/// The client supports tags on `SymbolInformation`. Clients supporting tags
 /// have to handle unknown tags gracefully.
- ({List<SymbolTag> valueSet})? get tagSupport;/// The client support partial workspace symbols. The client will send the
+ ClientSymbolTagOptions? get tagSupport;/// The client support partial workspace symbols. The client will send the
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
- ({List<String> properties})? get resolveSupport;
+ ClientSymbolResolveOptions? get resolveSupport;
 /// Create a copy of WorkspaceSymbolClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3715,11 +3855,11 @@ abstract mixin class $WorkspaceSymbolClientCapabilitiesCopyWith<$Res>  {
   factory $WorkspaceSymbolClientCapabilitiesCopyWith(WorkspaceSymbolClientCapabilities value, $Res Function(WorkspaceSymbolClientCapabilities) _then) = _$WorkspaceSymbolClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, ({List<SymbolKind>? valueSet})? symbolKind, ({List<SymbolTag> valueSet})? tagSupport, ({List<String> properties})? resolveSupport
+ bool? dynamicRegistration, ClientSymbolKindOptions? symbolKind, ClientSymbolTagOptions? tagSupport, ClientSymbolResolveOptions? resolveSupport
 });
 
 
-
+$ClientSymbolKindOptionsCopyWith<$Res>? get symbolKind;$ClientSymbolTagOptionsCopyWith<$Res>? get tagSupport;$ClientSymbolResolveOptionsCopyWith<$Res>? get resolveSupport;
 
 }
 /// @nodoc
@@ -3736,12 +3876,48 @@ class _$WorkspaceSymbolClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,symbolKind: freezed == symbolKind ? _self.symbolKind : symbolKind // ignore: cast_nullable_to_non_nullable
-as ({List<SymbolKind>? valueSet})?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as ({List<SymbolTag> valueSet})?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as ({List<String> properties})?,
+as ClientSymbolKindOptions?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as ClientSymbolTagOptions?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
+as ClientSymbolResolveOptions?,
   ));
 }
+/// Create a copy of WorkspaceSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolKindOptionsCopyWith<$Res>? get symbolKind {
+    if (_self.symbolKind == null) {
+    return null;
+  }
 
+  return $ClientSymbolKindOptionsCopyWith<$Res>(_self.symbolKind!, (value) {
+    return _then(_self.copyWith(symbolKind: value));
+  });
+}/// Create a copy of WorkspaceSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $ClientSymbolTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}/// Create a copy of WorkspaceSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
+
+  return $ClientSymbolResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}
 }
 
 
@@ -3757,14 +3933,14 @@ class _WorkspaceSymbolClientCapabilities implements WorkspaceSymbolClientCapabil
 @override final  bool? dynamicRegistration;
 /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
 /// request.
-@override final  ({List<SymbolKind>? valueSet})? symbolKind;
+@override final  ClientSymbolKindOptions? symbolKind;
 /// The client supports tags on `SymbolInformation`. Clients supporting tags
 /// have to handle unknown tags gracefully.
-@override final  ({List<SymbolTag> valueSet})? tagSupport;
+@override final  ClientSymbolTagOptions? tagSupport;
 /// The client support partial workspace symbols. The client will send the
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
-@override final  ({List<String> properties})? resolveSupport;
+@override final  ClientSymbolResolveOptions? resolveSupport;
 
 /// Create a copy of WorkspaceSymbolClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -3799,11 +3975,11 @@ abstract mixin class _$WorkspaceSymbolClientCapabilitiesCopyWith<$Res> implement
   factory _$WorkspaceSymbolClientCapabilitiesCopyWith(_WorkspaceSymbolClientCapabilities value, $Res Function(_WorkspaceSymbolClientCapabilities) _then) = __$WorkspaceSymbolClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, ({List<SymbolKind>? valueSet})? symbolKind, ({List<SymbolTag> valueSet})? tagSupport, ({List<String> properties})? resolveSupport
+ bool? dynamicRegistration, ClientSymbolKindOptions? symbolKind, ClientSymbolTagOptions? tagSupport, ClientSymbolResolveOptions? resolveSupport
 });
 
 
-
+@override $ClientSymbolKindOptionsCopyWith<$Res>? get symbolKind;@override $ClientSymbolTagOptionsCopyWith<$Res>? get tagSupport;@override $ClientSymbolResolveOptionsCopyWith<$Res>? get resolveSupport;
 
 }
 /// @nodoc
@@ -3820,13 +3996,49 @@ class __$WorkspaceSymbolClientCapabilitiesCopyWithImpl<$Res>
   return _then(_WorkspaceSymbolClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,symbolKind: freezed == symbolKind ? _self.symbolKind : symbolKind // ignore: cast_nullable_to_non_nullable
-as ({List<SymbolKind>? valueSet})?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as ({List<SymbolTag> valueSet})?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as ({List<String> properties})?,
+as ClientSymbolKindOptions?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as ClientSymbolTagOptions?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
+as ClientSymbolResolveOptions?,
   ));
 }
 
+/// Create a copy of WorkspaceSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolKindOptionsCopyWith<$Res>? get symbolKind {
+    if (_self.symbolKind == null) {
+    return null;
+  }
 
+  return $ClientSymbolKindOptionsCopyWith<$Res>(_self.symbolKind!, (value) {
+    return _then(_self.copyWith(symbolKind: value));
+  });
+}/// Create a copy of WorkspaceSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $ClientSymbolTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}/// Create a copy of WorkspaceSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
+
+  return $ClientSymbolResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}
 }
 
 
@@ -5023,6 +5235,142 @@ as bool?,
 
 
 /// @nodoc
+mixin _$TextDocumentContentClientCapabilities {
+
+/// Text document content provider supports dynamic registration.
+ bool? get dynamicRegistration;
+/// Create a copy of TextDocumentContentClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentClientCapabilitiesCopyWith<TextDocumentContentClientCapabilities> get copyWith => _$TextDocumentContentClientCapabilitiesCopyWithImpl<TextDocumentContentClientCapabilities>(this as TextDocumentContentClientCapabilities, _$identity);
+
+  /// Serializes this TextDocumentContentClientCapabilities to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,dynamicRegistration);
+
+@override
+String toString() {
+  return 'TextDocumentContentClientCapabilities(dynamicRegistration: $dynamicRegistration)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentClientCapabilitiesCopyWith<$Res>  {
+  factory $TextDocumentContentClientCapabilitiesCopyWith(TextDocumentContentClientCapabilities value, $Res Function(TextDocumentContentClientCapabilities) _then) = _$TextDocumentContentClientCapabilitiesCopyWithImpl;
+@useResult
+$Res call({
+ bool? dynamicRegistration
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentClientCapabilitiesCopyWithImpl<$Res>
+    implements $TextDocumentContentClientCapabilitiesCopyWith<$Res> {
+  _$TextDocumentContentClientCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentClientCapabilities _self;
+  final $Res Function(TextDocumentContentClientCapabilities) _then;
+
+/// Create a copy of TextDocumentContentClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? dynamicRegistration = freezed,}) {
+  return _then(_self.copyWith(
+dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentContentClientCapabilities implements TextDocumentContentClientCapabilities {
+  const _TextDocumentContentClientCapabilities({this.dynamicRegistration});
+  factory _TextDocumentContentClientCapabilities.fromJson(Map<String, dynamic> json) => _$TextDocumentContentClientCapabilitiesFromJson(json);
+
+/// Text document content provider supports dynamic registration.
+@override final  bool? dynamicRegistration;
+
+/// Create a copy of TextDocumentContentClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentContentClientCapabilitiesCopyWith<_TextDocumentContentClientCapabilities> get copyWith => __$TextDocumentContentClientCapabilitiesCopyWithImpl<_TextDocumentContentClientCapabilities>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentContentClientCapabilitiesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,dynamicRegistration);
+
+@override
+String toString() {
+  return 'TextDocumentContentClientCapabilities(dynamicRegistration: $dynamicRegistration)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentContentClientCapabilitiesCopyWith<$Res> implements $TextDocumentContentClientCapabilitiesCopyWith<$Res> {
+  factory _$TextDocumentContentClientCapabilitiesCopyWith(_TextDocumentContentClientCapabilities value, $Res Function(_TextDocumentContentClientCapabilities) _then) = __$TextDocumentContentClientCapabilitiesCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? dynamicRegistration
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentContentClientCapabilitiesCopyWithImpl<$Res>
+    implements _$TextDocumentContentClientCapabilitiesCopyWith<$Res> {
+  __$TextDocumentContentClientCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentContentClientCapabilities _self;
+  final $Res Function(_TextDocumentContentClientCapabilities) _then;
+
+/// Create a copy of TextDocumentContentClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? dynamicRegistration = freezed,}) {
+  return _then(_TextDocumentContentClientCapabilities(
+dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$TextDocumentSyncClientCapabilities {
 
 /// Whether text document synchronization supports dynamic registration.
@@ -5178,19 +5526,156 @@ as bool?,
 
 
 /// @nodoc
+mixin _$TextDocumentFilterClientCapabilities {
+
+/// The client supports Relative Patterns.
+ bool? get relativePatternSupport;
+/// Create a copy of TextDocumentFilterClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentFilterClientCapabilitiesCopyWith<TextDocumentFilterClientCapabilities> get copyWith => _$TextDocumentFilterClientCapabilitiesCopyWithImpl<TextDocumentFilterClientCapabilities>(this as TextDocumentFilterClientCapabilities, _$identity);
+
+  /// Serializes this TextDocumentFilterClientCapabilities to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentFilterClientCapabilities&&(identical(other.relativePatternSupport, relativePatternSupport) || other.relativePatternSupport == relativePatternSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,relativePatternSupport);
+
+@override
+String toString() {
+  return 'TextDocumentFilterClientCapabilities(relativePatternSupport: $relativePatternSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentFilterClientCapabilitiesCopyWith<$Res>  {
+  factory $TextDocumentFilterClientCapabilitiesCopyWith(TextDocumentFilterClientCapabilities value, $Res Function(TextDocumentFilterClientCapabilities) _then) = _$TextDocumentFilterClientCapabilitiesCopyWithImpl;
+@useResult
+$Res call({
+ bool? relativePatternSupport
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentFilterClientCapabilitiesCopyWithImpl<$Res>
+    implements $TextDocumentFilterClientCapabilitiesCopyWith<$Res> {
+  _$TextDocumentFilterClientCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final TextDocumentFilterClientCapabilities _self;
+  final $Res Function(TextDocumentFilterClientCapabilities) _then;
+
+/// Create a copy of TextDocumentFilterClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? relativePatternSupport = freezed,}) {
+  return _then(_self.copyWith(
+relativePatternSupport: freezed == relativePatternSupport ? _self.relativePatternSupport : relativePatternSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentFilterClientCapabilities implements TextDocumentFilterClientCapabilities {
+  const _TextDocumentFilterClientCapabilities({this.relativePatternSupport});
+  factory _TextDocumentFilterClientCapabilities.fromJson(Map<String, dynamic> json) => _$TextDocumentFilterClientCapabilitiesFromJson(json);
+
+/// The client supports Relative Patterns.
+@override final  bool? relativePatternSupport;
+
+/// Create a copy of TextDocumentFilterClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentFilterClientCapabilitiesCopyWith<_TextDocumentFilterClientCapabilities> get copyWith => __$TextDocumentFilterClientCapabilitiesCopyWithImpl<_TextDocumentFilterClientCapabilities>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentFilterClientCapabilitiesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentFilterClientCapabilities&&(identical(other.relativePatternSupport, relativePatternSupport) || other.relativePatternSupport == relativePatternSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,relativePatternSupport);
+
+@override
+String toString() {
+  return 'TextDocumentFilterClientCapabilities(relativePatternSupport: $relativePatternSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentFilterClientCapabilitiesCopyWith<$Res> implements $TextDocumentFilterClientCapabilitiesCopyWith<$Res> {
+  factory _$TextDocumentFilterClientCapabilitiesCopyWith(_TextDocumentFilterClientCapabilities value, $Res Function(_TextDocumentFilterClientCapabilities) _then) = __$TextDocumentFilterClientCapabilitiesCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? relativePatternSupport
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentFilterClientCapabilitiesCopyWithImpl<$Res>
+    implements _$TextDocumentFilterClientCapabilitiesCopyWith<$Res> {
+  __$TextDocumentFilterClientCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentFilterClientCapabilities _self;
+  final $Res Function(_TextDocumentFilterClientCapabilities) _then;
+
+/// Create a copy of TextDocumentFilterClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? relativePatternSupport = freezed,}) {
+  return _then(_TextDocumentFilterClientCapabilities(
+relativePatternSupport: freezed == relativePatternSupport ? _self.relativePatternSupport : relativePatternSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$CompletionClientCapabilities {
 
 /// Whether completion supports dynamic registration.
  bool? get dynamicRegistration;/// The client supports the following `CompletionItem` specific
 /// capabilities.
- ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? get completionItem; ({List<CompletionItemKind>? valueSet})? get completionItemKind;/// Defines how the client handles whitespace and indentation when accepting
+ ClientCompletionItemOptions? get completionItem;/// The client supports the following completion item kinds.
+ ClientCompletionItemOptionsKind? get completionItemKind;/// Defines how the client handles whitespace and indentation when accepting
 /// a completion item that uses multi line text in either `insertText` or
 /// `textEdit`.
  InsertTextMode? get insertTextMode;/// The client supports to send additional context information for a
 /// `textDocument/completion` request.
  bool? get contextSupport;/// The client supports the following `CompletionList` specific
 /// capabilities.
- ({List<String>? itemDefaults})? get completionList;
+ CompletionListCapabilities? get completionList;
 /// Create a copy of CompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -5223,11 +5708,11 @@ abstract mixin class $CompletionClientCapabilitiesCopyWith<$Res>  {
   factory $CompletionClientCapabilitiesCopyWith(CompletionClientCapabilities value, $Res Function(CompletionClientCapabilities) _then) = _$CompletionClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem, ({List<CompletionItemKind>? valueSet})? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, ({List<String>? itemDefaults})? completionList
+ bool? dynamicRegistration, ClientCompletionItemOptions? completionItem, ClientCompletionItemOptionsKind? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, CompletionListCapabilities? completionList
 });
 
 
-
+$ClientCompletionItemOptionsCopyWith<$Res>? get completionItem;$ClientCompletionItemOptionsKindCopyWith<$Res>? get completionItemKind;$CompletionListCapabilitiesCopyWith<$Res>? get completionList;
 
 }
 /// @nodoc
@@ -5244,14 +5729,50 @@ class _$CompletionClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})?,completionItemKind: freezed == completionItemKind ? _self.completionItemKind : completionItemKind // ignore: cast_nullable_to_non_nullable
-as ({List<CompletionItemKind>? valueSet})?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
+as ClientCompletionItemOptions?,completionItemKind: freezed == completionItemKind ? _self.completionItemKind : completionItemKind // ignore: cast_nullable_to_non_nullable
+as ClientCompletionItemOptionsKind?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
 as InsertTextMode?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
 as bool?,completionList: freezed == completionList ? _self.completionList : completionList // ignore: cast_nullable_to_non_nullable
-as ({List<String>? itemDefaults})?,
+as CompletionListCapabilities?,
   ));
 }
+/// Create a copy of CompletionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCompletionItemOptionsCopyWith<$Res>? get completionItem {
+    if (_self.completionItem == null) {
+    return null;
+  }
 
+  return $ClientCompletionItemOptionsCopyWith<$Res>(_self.completionItem!, (value) {
+    return _then(_self.copyWith(completionItem: value));
+  });
+}/// Create a copy of CompletionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCompletionItemOptionsKindCopyWith<$Res>? get completionItemKind {
+    if (_self.completionItemKind == null) {
+    return null;
+  }
+
+  return $ClientCompletionItemOptionsKindCopyWith<$Res>(_self.completionItemKind!, (value) {
+    return _then(_self.copyWith(completionItemKind: value));
+  });
+}/// Create a copy of CompletionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CompletionListCapabilitiesCopyWith<$Res>? get completionList {
+    if (_self.completionList == null) {
+    return null;
+  }
+
+  return $CompletionListCapabilitiesCopyWith<$Res>(_self.completionList!, (value) {
+    return _then(_self.copyWith(completionList: value));
+  });
+}
 }
 
 
@@ -5267,8 +5788,9 @@ class _CompletionClientCapabilities implements CompletionClientCapabilities {
 @override final  bool? dynamicRegistration;
 /// The client supports the following `CompletionItem` specific
 /// capabilities.
-@override final  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem;
-@override final  ({List<CompletionItemKind>? valueSet})? completionItemKind;
+@override final  ClientCompletionItemOptions? completionItem;
+/// The client supports the following completion item kinds.
+@override final  ClientCompletionItemOptionsKind? completionItemKind;
 /// Defines how the client handles whitespace and indentation when accepting
 /// a completion item that uses multi line text in either `insertText` or
 /// `textEdit`.
@@ -5278,7 +5800,7 @@ class _CompletionClientCapabilities implements CompletionClientCapabilities {
 @override final  bool? contextSupport;
 /// The client supports the following `CompletionList` specific
 /// capabilities.
-@override final  ({List<String>? itemDefaults})? completionList;
+@override final  CompletionListCapabilities? completionList;
 
 /// Create a copy of CompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -5313,11 +5835,11 @@ abstract mixin class _$CompletionClientCapabilitiesCopyWith<$Res> implements $Co
   factory _$CompletionClientCapabilitiesCopyWith(_CompletionClientCapabilities value, $Res Function(_CompletionClientCapabilities) _then) = __$CompletionClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem, ({List<CompletionItemKind>? valueSet})? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, ({List<String>? itemDefaults})? completionList
+ bool? dynamicRegistration, ClientCompletionItemOptions? completionItem, ClientCompletionItemOptionsKind? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, CompletionListCapabilities? completionList
 });
 
 
-
+@override $ClientCompletionItemOptionsCopyWith<$Res>? get completionItem;@override $ClientCompletionItemOptionsKindCopyWith<$Res>? get completionItemKind;@override $CompletionListCapabilitiesCopyWith<$Res>? get completionList;
 
 }
 /// @nodoc
@@ -5334,15 +5856,51 @@ class __$CompletionClientCapabilitiesCopyWithImpl<$Res>
   return _then(_CompletionClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})?,completionItemKind: freezed == completionItemKind ? _self.completionItemKind : completionItemKind // ignore: cast_nullable_to_non_nullable
-as ({List<CompletionItemKind>? valueSet})?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
+as ClientCompletionItemOptions?,completionItemKind: freezed == completionItemKind ? _self.completionItemKind : completionItemKind // ignore: cast_nullable_to_non_nullable
+as ClientCompletionItemOptionsKind?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
 as InsertTextMode?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
 as bool?,completionList: freezed == completionList ? _self.completionList : completionList // ignore: cast_nullable_to_non_nullable
-as ({List<String>? itemDefaults})?,
+as CompletionListCapabilities?,
   ));
 }
 
+/// Create a copy of CompletionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCompletionItemOptionsCopyWith<$Res>? get completionItem {
+    if (_self.completionItem == null) {
+    return null;
+  }
 
+  return $ClientCompletionItemOptionsCopyWith<$Res>(_self.completionItem!, (value) {
+    return _then(_self.copyWith(completionItem: value));
+  });
+}/// Create a copy of CompletionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCompletionItemOptionsKindCopyWith<$Res>? get completionItemKind {
+    if (_self.completionItemKind == null) {
+    return null;
+  }
+
+  return $ClientCompletionItemOptionsKindCopyWith<$Res>(_self.completionItemKind!, (value) {
+    return _then(_self.copyWith(completionItemKind: value));
+  });
+}/// Create a copy of CompletionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CompletionListCapabilitiesCopyWith<$Res>? get completionList {
+    if (_self.completionList == null) {
+    return null;
+  }
+
+  return $CompletionListCapabilitiesCopyWith<$Res>(_self.completionList!, (value) {
+    return _then(_self.copyWith(completionList: value));
+  });
+}
 }
 
 
@@ -5505,7 +6063,7 @@ mixin _$SignatureHelpClientCapabilities {
 /// Whether signature help supports dynamic registration.
  bool? get dynamicRegistration;/// The client supports the following `SignatureInformation` specific
 /// properties.
- ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? get signatureInformation;/// The client supports to send additional context information for a
+ ClientSignatureInformationOptions? get signatureInformation;/// The client supports to send additional context information for a
 /// `textDocument/signatureHelp` request. A client that opts into
 /// contextSupport will also support the `retriggerCharacters` on
 /// `SignatureHelpOptions`.
@@ -5542,11 +6100,11 @@ abstract mixin class $SignatureHelpClientCapabilitiesCopyWith<$Res>  {
   factory $SignatureHelpClientCapabilitiesCopyWith(SignatureHelpClientCapabilities value, $Res Function(SignatureHelpClientCapabilities) _then) = _$SignatureHelpClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation, bool? contextSupport
+ bool? dynamicRegistration, ClientSignatureInformationOptions? signatureInformation, bool? contextSupport
 });
 
 
-
+$ClientSignatureInformationOptionsCopyWith<$Res>? get signatureInformation;
 
 }
 /// @nodoc
@@ -5563,11 +6121,23 @@ class _$SignatureHelpClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,signatureInformation: freezed == signatureInformation ? _self.signatureInformation : signatureInformation // ignore: cast_nullable_to_non_nullable
-as ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
+as ClientSignatureInformationOptions?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
+/// Create a copy of SignatureHelpClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSignatureInformationOptionsCopyWith<$Res>? get signatureInformation {
+    if (_self.signatureInformation == null) {
+    return null;
+  }
 
+  return $ClientSignatureInformationOptionsCopyWith<$Res>(_self.signatureInformation!, (value) {
+    return _then(_self.copyWith(signatureInformation: value));
+  });
+}
 }
 
 
@@ -5583,7 +6153,7 @@ class _SignatureHelpClientCapabilities implements SignatureHelpClientCapabilitie
 @override final  bool? dynamicRegistration;
 /// The client supports the following `SignatureInformation` specific
 /// properties.
-@override final  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation;
+@override final  ClientSignatureInformationOptions? signatureInformation;
 /// The client supports to send additional context information for a
 /// `textDocument/signatureHelp` request. A client that opts into
 /// contextSupport will also support the `retriggerCharacters` on
@@ -5623,11 +6193,11 @@ abstract mixin class _$SignatureHelpClientCapabilitiesCopyWith<$Res> implements 
   factory _$SignatureHelpClientCapabilitiesCopyWith(_SignatureHelpClientCapabilities value, $Res Function(_SignatureHelpClientCapabilities) _then) = __$SignatureHelpClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation, bool? contextSupport
+ bool? dynamicRegistration, ClientSignatureInformationOptions? signatureInformation, bool? contextSupport
 });
 
 
-
+@override $ClientSignatureInformationOptionsCopyWith<$Res>? get signatureInformation;
 
 }
 /// @nodoc
@@ -5644,12 +6214,24 @@ class __$SignatureHelpClientCapabilitiesCopyWithImpl<$Res>
   return _then(_SignatureHelpClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,signatureInformation: freezed == signatureInformation ? _self.signatureInformation : signatureInformation // ignore: cast_nullable_to_non_nullable
-as ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
+as ClientSignatureInformationOptions?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
 
+/// Create a copy of SignatureHelpClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSignatureInformationOptionsCopyWith<$Res>? get signatureInformation {
+    if (_self.signatureInformation == null) {
+    return null;
+  }
 
+  return $ClientSignatureInformationOptionsCopyWith<$Res>(_self.signatureInformation!, (value) {
+    return _then(_self.copyWith(signatureInformation: value));
+  });
+}
 }
 
 
@@ -6513,11 +7095,11 @@ mixin _$DocumentSymbolClientCapabilities {
 /// Whether document symbol supports dynamic registration.
  bool? get dynamicRegistration;/// Specific capabilities for the `SymbolKind` in the
 /// `textDocument/documentSymbol` request.
- ({List<SymbolKind>? valueSet})? get symbolKind;/// The client supports hierarchical document symbols.
+ ClientSymbolKindOptions? get symbolKind;/// The client supports hierarchical document symbols.
  bool? get hierarchicalDocumentSymbolSupport;/// The client supports tags on `SymbolInformation`. Tags are supported on
 /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
 /// Clients supporting tags have to handle unknown tags gracefully.
- ({List<SymbolTag> valueSet})? get tagSupport;/// The client supports an additional label presented in the UI when
+ ClientSymbolTagOptions? get tagSupport;/// The client supports an additional label presented in the UI when
 /// registering a document symbol provider.
  bool? get labelSupport;
 /// Create a copy of DocumentSymbolClientCapabilities
@@ -6552,11 +7134,11 @@ abstract mixin class $DocumentSymbolClientCapabilitiesCopyWith<$Res>  {
   factory $DocumentSymbolClientCapabilitiesCopyWith(DocumentSymbolClientCapabilities value, $Res Function(DocumentSymbolClientCapabilities) _then) = _$DocumentSymbolClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, ({List<SymbolKind>? valueSet})? symbolKind, bool? hierarchicalDocumentSymbolSupport, ({List<SymbolTag> valueSet})? tagSupport, bool? labelSupport
+ bool? dynamicRegistration, ClientSymbolKindOptions? symbolKind, bool? hierarchicalDocumentSymbolSupport, ClientSymbolTagOptions? tagSupport, bool? labelSupport
 });
 
 
-
+$ClientSymbolKindOptionsCopyWith<$Res>? get symbolKind;$ClientSymbolTagOptionsCopyWith<$Res>? get tagSupport;
 
 }
 /// @nodoc
@@ -6573,13 +7155,37 @@ class _$DocumentSymbolClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,symbolKind: freezed == symbolKind ? _self.symbolKind : symbolKind // ignore: cast_nullable_to_non_nullable
-as ({List<SymbolKind>? valueSet})?,hierarchicalDocumentSymbolSupport: freezed == hierarchicalDocumentSymbolSupport ? _self.hierarchicalDocumentSymbolSupport : hierarchicalDocumentSymbolSupport // ignore: cast_nullable_to_non_nullable
+as ClientSymbolKindOptions?,hierarchicalDocumentSymbolSupport: freezed == hierarchicalDocumentSymbolSupport ? _self.hierarchicalDocumentSymbolSupport : hierarchicalDocumentSymbolSupport // ignore: cast_nullable_to_non_nullable
 as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as ({List<SymbolTag> valueSet})?,labelSupport: freezed == labelSupport ? _self.labelSupport : labelSupport // ignore: cast_nullable_to_non_nullable
+as ClientSymbolTagOptions?,labelSupport: freezed == labelSupport ? _self.labelSupport : labelSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
+/// Create a copy of DocumentSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolKindOptionsCopyWith<$Res>? get symbolKind {
+    if (_self.symbolKind == null) {
+    return null;
+  }
 
+  return $ClientSymbolKindOptionsCopyWith<$Res>(_self.symbolKind!, (value) {
+    return _then(_self.copyWith(symbolKind: value));
+  });
+}/// Create a copy of DocumentSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $ClientSymbolTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -6595,13 +7201,13 @@ class _DocumentSymbolClientCapabilities implements DocumentSymbolClientCapabilit
 @override final  bool? dynamicRegistration;
 /// Specific capabilities for the `SymbolKind` in the
 /// `textDocument/documentSymbol` request.
-@override final  ({List<SymbolKind>? valueSet})? symbolKind;
+@override final  ClientSymbolKindOptions? symbolKind;
 /// The client supports hierarchical document symbols.
 @override final  bool? hierarchicalDocumentSymbolSupport;
 /// The client supports tags on `SymbolInformation`. Tags are supported on
 /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
 /// Clients supporting tags have to handle unknown tags gracefully.
-@override final  ({List<SymbolTag> valueSet})? tagSupport;
+@override final  ClientSymbolTagOptions? tagSupport;
 /// The client supports an additional label presented in the UI when
 /// registering a document symbol provider.
 @override final  bool? labelSupport;
@@ -6639,11 +7245,11 @@ abstract mixin class _$DocumentSymbolClientCapabilitiesCopyWith<$Res> implements
   factory _$DocumentSymbolClientCapabilitiesCopyWith(_DocumentSymbolClientCapabilities value, $Res Function(_DocumentSymbolClientCapabilities) _then) = __$DocumentSymbolClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, ({List<SymbolKind>? valueSet})? symbolKind, bool? hierarchicalDocumentSymbolSupport, ({List<SymbolTag> valueSet})? tagSupport, bool? labelSupport
+ bool? dynamicRegistration, ClientSymbolKindOptions? symbolKind, bool? hierarchicalDocumentSymbolSupport, ClientSymbolTagOptions? tagSupport, bool? labelSupport
 });
 
 
-
+@override $ClientSymbolKindOptionsCopyWith<$Res>? get symbolKind;@override $ClientSymbolTagOptionsCopyWith<$Res>? get tagSupport;
 
 }
 /// @nodoc
@@ -6660,14 +7266,38 @@ class __$DocumentSymbolClientCapabilitiesCopyWithImpl<$Res>
   return _then(_DocumentSymbolClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,symbolKind: freezed == symbolKind ? _self.symbolKind : symbolKind // ignore: cast_nullable_to_non_nullable
-as ({List<SymbolKind>? valueSet})?,hierarchicalDocumentSymbolSupport: freezed == hierarchicalDocumentSymbolSupport ? _self.hierarchicalDocumentSymbolSupport : hierarchicalDocumentSymbolSupport // ignore: cast_nullable_to_non_nullable
+as ClientSymbolKindOptions?,hierarchicalDocumentSymbolSupport: freezed == hierarchicalDocumentSymbolSupport ? _self.hierarchicalDocumentSymbolSupport : hierarchicalDocumentSymbolSupport // ignore: cast_nullable_to_non_nullable
 as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as ({List<SymbolTag> valueSet})?,labelSupport: freezed == labelSupport ? _self.labelSupport : labelSupport // ignore: cast_nullable_to_non_nullable
+as ClientSymbolTagOptions?,labelSupport: freezed == labelSupport ? _self.labelSupport : labelSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
 
+/// Create a copy of DocumentSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolKindOptionsCopyWith<$Res>? get symbolKind {
+    if (_self.symbolKind == null) {
+    return null;
+  }
 
+  return $ClientSymbolKindOptionsCopyWith<$Res>(_self.symbolKind!, (value) {
+    return _then(_self.copyWith(symbolKind: value));
+  });
+}/// Create a copy of DocumentSymbolClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSymbolTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $ClientSymbolTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -6678,17 +7308,20 @@ mixin _$CodeActionClientCapabilities {
  bool? get dynamicRegistration;/// The client support code action literals of type `CodeAction` as a valid
 /// response of the `textDocument/codeAction` request. If the property is
 /// not set the request can only return `Command` literals.
- ({({List<CodeActionKind> valueSet}) codeActionKind})? get codeActionLiteralSupport;/// Whether code action supports the `isPreferred` property.
+ ClientCodeActionLiteralOptions? get codeActionLiteralSupport;/// Whether code action supports the `isPreferred` property.
  bool? get isPreferredSupport;/// Whether code action supports the `disabled` property.
  bool? get disabledSupport;/// Whether code action supports the `data` property which is preserved
 /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
  bool? get dataSupport;/// Whether the client supports resolving additional code action properties
 /// via a separate `codeAction/resolve` request.
- ({List<String> properties})? get resolveSupport;/// Whether the client honors the change annotations in text edits and
+ ClientCodeActionResolveOptions? get resolveSupport;/// Whether the client honors the change annotations in text edits and
 /// resource operations returned via the `CodeAction#edit` property by for
 /// example presenting the workspace edit in the user interface and asking
 /// for confirmation.
- bool? get honorsChangeAnnotations;
+ bool? get honorsChangeAnnotations;/// Whether the client supports documentation for a class of code actions.
+ bool? get documentationSupport;/// Client supports the tag property on a code action. Clients supporting
+/// tags have to handle unknown tags gracefully.
+ CodeActionTagOptions? get tagSupport;
 /// Create a copy of CodeActionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -6701,16 +7334,16 @@ $CodeActionClientCapabilitiesCopyWith<CodeActionClientCapabilities> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.codeActionLiteralSupport, codeActionLiteralSupport) || other.codeActionLiteralSupport == codeActionLiteralSupport)&&(identical(other.isPreferredSupport, isPreferredSupport) || other.isPreferredSupport == isPreferredSupport)&&(identical(other.disabledSupport, disabledSupport) || other.disabledSupport == disabledSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport)&&(identical(other.honorsChangeAnnotations, honorsChangeAnnotations) || other.honorsChangeAnnotations == honorsChangeAnnotations));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.codeActionLiteralSupport, codeActionLiteralSupport) || other.codeActionLiteralSupport == codeActionLiteralSupport)&&(identical(other.isPreferredSupport, isPreferredSupport) || other.isPreferredSupport == isPreferredSupport)&&(identical(other.disabledSupport, disabledSupport) || other.disabledSupport == disabledSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport)&&(identical(other.honorsChangeAnnotations, honorsChangeAnnotations) || other.honorsChangeAnnotations == honorsChangeAnnotations)&&(identical(other.documentationSupport, documentationSupport) || other.documentationSupport == documentationSupport)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dynamicRegistration,codeActionLiteralSupport,isPreferredSupport,disabledSupport,dataSupport,resolveSupport,honorsChangeAnnotations);
+int get hashCode => Object.hash(runtimeType,dynamicRegistration,codeActionLiteralSupport,isPreferredSupport,disabledSupport,dataSupport,resolveSupport,honorsChangeAnnotations,documentationSupport,tagSupport);
 
 @override
 String toString() {
-  return 'CodeActionClientCapabilities(dynamicRegistration: $dynamicRegistration, codeActionLiteralSupport: $codeActionLiteralSupport, isPreferredSupport: $isPreferredSupport, disabledSupport: $disabledSupport, dataSupport: $dataSupport, resolveSupport: $resolveSupport, honorsChangeAnnotations: $honorsChangeAnnotations)';
+  return 'CodeActionClientCapabilities(dynamicRegistration: $dynamicRegistration, codeActionLiteralSupport: $codeActionLiteralSupport, isPreferredSupport: $isPreferredSupport, disabledSupport: $disabledSupport, dataSupport: $dataSupport, resolveSupport: $resolveSupport, honorsChangeAnnotations: $honorsChangeAnnotations, documentationSupport: $documentationSupport, tagSupport: $tagSupport)';
 }
 
 
@@ -6721,11 +7354,11 @@ abstract mixin class $CodeActionClientCapabilitiesCopyWith<$Res>  {
   factory $CodeActionClientCapabilitiesCopyWith(CodeActionClientCapabilities value, $Res Function(CodeActionClientCapabilities) _then) = _$CodeActionClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport, bool? isPreferredSupport, bool? disabledSupport, bool? dataSupport, ({List<String> properties})? resolveSupport, bool? honorsChangeAnnotations
+ bool? dynamicRegistration, ClientCodeActionLiteralOptions? codeActionLiteralSupport, bool? isPreferredSupport, bool? disabledSupport, bool? dataSupport, ClientCodeActionResolveOptions? resolveSupport, bool? honorsChangeAnnotations, bool? documentationSupport, CodeActionTagOptions? tagSupport
 });
 
 
-
+$ClientCodeActionLiteralOptionsCopyWith<$Res>? get codeActionLiteralSupport;$ClientCodeActionResolveOptionsCopyWith<$Res>? get resolveSupport;$CodeActionTagOptionsCopyWith<$Res>? get tagSupport;
 
 }
 /// @nodoc
@@ -6738,19 +7371,57 @@ class _$CodeActionClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? dynamicRegistration = freezed,Object? codeActionLiteralSupport = freezed,Object? isPreferredSupport = freezed,Object? disabledSupport = freezed,Object? dataSupport = freezed,Object? resolveSupport = freezed,Object? honorsChangeAnnotations = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? dynamicRegistration = freezed,Object? codeActionLiteralSupport = freezed,Object? isPreferredSupport = freezed,Object? disabledSupport = freezed,Object? dataSupport = freezed,Object? resolveSupport = freezed,Object? honorsChangeAnnotations = freezed,Object? documentationSupport = freezed,Object? tagSupport = freezed,}) {
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionLiteralSupport: freezed == codeActionLiteralSupport ? _self.codeActionLiteralSupport : codeActionLiteralSupport // ignore: cast_nullable_to_non_nullable
-as ({({List<CodeActionKind> valueSet}) codeActionKind})?,isPreferredSupport: freezed == isPreferredSupport ? _self.isPreferredSupport : isPreferredSupport // ignore: cast_nullable_to_non_nullable
+as ClientCodeActionLiteralOptions?,isPreferredSupport: freezed == isPreferredSupport ? _self.isPreferredSupport : isPreferredSupport // ignore: cast_nullable_to_non_nullable
 as bool?,disabledSupport: freezed == disabledSupport ? _self.disabledSupport : disabledSupport // ignore: cast_nullable_to_non_nullable
 as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
 as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as ({List<String> properties})?,honorsChangeAnnotations: freezed == honorsChangeAnnotations ? _self.honorsChangeAnnotations : honorsChangeAnnotations // ignore: cast_nullable_to_non_nullable
-as bool?,
+as ClientCodeActionResolveOptions?,honorsChangeAnnotations: freezed == honorsChangeAnnotations ? _self.honorsChangeAnnotations : honorsChangeAnnotations // ignore: cast_nullable_to_non_nullable
+as bool?,documentationSupport: freezed == documentationSupport ? _self.documentationSupport : documentationSupport // ignore: cast_nullable_to_non_nullable
+as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as CodeActionTagOptions?,
   ));
 }
+/// Create a copy of CodeActionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCodeActionLiteralOptionsCopyWith<$Res>? get codeActionLiteralSupport {
+    if (_self.codeActionLiteralSupport == null) {
+    return null;
+  }
 
+  return $ClientCodeActionLiteralOptionsCopyWith<$Res>(_self.codeActionLiteralSupport!, (value) {
+    return _then(_self.copyWith(codeActionLiteralSupport: value));
+  });
+}/// Create a copy of CodeActionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCodeActionResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
+
+  return $ClientCodeActionResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}/// Create a copy of CodeActionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CodeActionTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $CodeActionTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -6759,7 +7430,7 @@ as bool?,
 @JsonSerializable()
 
 class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
-  const _CodeActionClientCapabilities({this.dynamicRegistration, this.codeActionLiteralSupport, this.isPreferredSupport, this.disabledSupport, this.dataSupport, this.resolveSupport, this.honorsChangeAnnotations});
+  const _CodeActionClientCapabilities({this.dynamicRegistration, this.codeActionLiteralSupport, this.isPreferredSupport, this.disabledSupport, this.dataSupport, this.resolveSupport, this.honorsChangeAnnotations, this.documentationSupport, this.tagSupport});
   factory _CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesFromJson(json);
 
 /// Whether code action supports dynamic registration.
@@ -6767,7 +7438,7 @@ class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
 /// The client support code action literals of type `CodeAction` as a valid
 /// response of the `textDocument/codeAction` request. If the property is
 /// not set the request can only return `Command` literals.
-@override final  ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport;
+@override final  ClientCodeActionLiteralOptions? codeActionLiteralSupport;
 /// Whether code action supports the `isPreferred` property.
 @override final  bool? isPreferredSupport;
 /// Whether code action supports the `disabled` property.
@@ -6777,12 +7448,17 @@ class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
 @override final  bool? dataSupport;
 /// Whether the client supports resolving additional code action properties
 /// via a separate `codeAction/resolve` request.
-@override final  ({List<String> properties})? resolveSupport;
+@override final  ClientCodeActionResolveOptions? resolveSupport;
 /// Whether the client honors the change annotations in text edits and
 /// resource operations returned via the `CodeAction#edit` property by for
 /// example presenting the workspace edit in the user interface and asking
 /// for confirmation.
 @override final  bool? honorsChangeAnnotations;
+/// Whether the client supports documentation for a class of code actions.
+@override final  bool? documentationSupport;
+/// Client supports the tag property on a code action. Clients supporting
+/// tags have to handle unknown tags gracefully.
+@override final  CodeActionTagOptions? tagSupport;
 
 /// Create a copy of CodeActionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -6797,16 +7473,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.codeActionLiteralSupport, codeActionLiteralSupport) || other.codeActionLiteralSupport == codeActionLiteralSupport)&&(identical(other.isPreferredSupport, isPreferredSupport) || other.isPreferredSupport == isPreferredSupport)&&(identical(other.disabledSupport, disabledSupport) || other.disabledSupport == disabledSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport)&&(identical(other.honorsChangeAnnotations, honorsChangeAnnotations) || other.honorsChangeAnnotations == honorsChangeAnnotations));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.codeActionLiteralSupport, codeActionLiteralSupport) || other.codeActionLiteralSupport == codeActionLiteralSupport)&&(identical(other.isPreferredSupport, isPreferredSupport) || other.isPreferredSupport == isPreferredSupport)&&(identical(other.disabledSupport, disabledSupport) || other.disabledSupport == disabledSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport)&&(identical(other.honorsChangeAnnotations, honorsChangeAnnotations) || other.honorsChangeAnnotations == honorsChangeAnnotations)&&(identical(other.documentationSupport, documentationSupport) || other.documentationSupport == documentationSupport)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dynamicRegistration,codeActionLiteralSupport,isPreferredSupport,disabledSupport,dataSupport,resolveSupport,honorsChangeAnnotations);
+int get hashCode => Object.hash(runtimeType,dynamicRegistration,codeActionLiteralSupport,isPreferredSupport,disabledSupport,dataSupport,resolveSupport,honorsChangeAnnotations,documentationSupport,tagSupport);
 
 @override
 String toString() {
-  return 'CodeActionClientCapabilities(dynamicRegistration: $dynamicRegistration, codeActionLiteralSupport: $codeActionLiteralSupport, isPreferredSupport: $isPreferredSupport, disabledSupport: $disabledSupport, dataSupport: $dataSupport, resolveSupport: $resolveSupport, honorsChangeAnnotations: $honorsChangeAnnotations)';
+  return 'CodeActionClientCapabilities(dynamicRegistration: $dynamicRegistration, codeActionLiteralSupport: $codeActionLiteralSupport, isPreferredSupport: $isPreferredSupport, disabledSupport: $disabledSupport, dataSupport: $dataSupport, resolveSupport: $resolveSupport, honorsChangeAnnotations: $honorsChangeAnnotations, documentationSupport: $documentationSupport, tagSupport: $tagSupport)';
 }
 
 
@@ -6817,11 +7493,11 @@ abstract mixin class _$CodeActionClientCapabilitiesCopyWith<$Res> implements $Co
   factory _$CodeActionClientCapabilitiesCopyWith(_CodeActionClientCapabilities value, $Res Function(_CodeActionClientCapabilities) _then) = __$CodeActionClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport, bool? isPreferredSupport, bool? disabledSupport, bool? dataSupport, ({List<String> properties})? resolveSupport, bool? honorsChangeAnnotations
+ bool? dynamicRegistration, ClientCodeActionLiteralOptions? codeActionLiteralSupport, bool? isPreferredSupport, bool? disabledSupport, bool? dataSupport, ClientCodeActionResolveOptions? resolveSupport, bool? honorsChangeAnnotations, bool? documentationSupport, CodeActionTagOptions? tagSupport
 });
 
 
-
+@override $ClientCodeActionLiteralOptionsCopyWith<$Res>? get codeActionLiteralSupport;@override $ClientCodeActionResolveOptionsCopyWith<$Res>? get resolveSupport;@override $CodeActionTagOptionsCopyWith<$Res>? get tagSupport;
 
 }
 /// @nodoc
@@ -6834,20 +7510,58 @@ class __$CodeActionClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? dynamicRegistration = freezed,Object? codeActionLiteralSupport = freezed,Object? isPreferredSupport = freezed,Object? disabledSupport = freezed,Object? dataSupport = freezed,Object? resolveSupport = freezed,Object? honorsChangeAnnotations = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? dynamicRegistration = freezed,Object? codeActionLiteralSupport = freezed,Object? isPreferredSupport = freezed,Object? disabledSupport = freezed,Object? dataSupport = freezed,Object? resolveSupport = freezed,Object? honorsChangeAnnotations = freezed,Object? documentationSupport = freezed,Object? tagSupport = freezed,}) {
   return _then(_CodeActionClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionLiteralSupport: freezed == codeActionLiteralSupport ? _self.codeActionLiteralSupport : codeActionLiteralSupport // ignore: cast_nullable_to_non_nullable
-as ({({List<CodeActionKind> valueSet}) codeActionKind})?,isPreferredSupport: freezed == isPreferredSupport ? _self.isPreferredSupport : isPreferredSupport // ignore: cast_nullable_to_non_nullable
+as ClientCodeActionLiteralOptions?,isPreferredSupport: freezed == isPreferredSupport ? _self.isPreferredSupport : isPreferredSupport // ignore: cast_nullable_to_non_nullable
 as bool?,disabledSupport: freezed == disabledSupport ? _self.disabledSupport : disabledSupport // ignore: cast_nullable_to_non_nullable
 as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
 as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as ({List<String> properties})?,honorsChangeAnnotations: freezed == honorsChangeAnnotations ? _self.honorsChangeAnnotations : honorsChangeAnnotations // ignore: cast_nullable_to_non_nullable
-as bool?,
+as ClientCodeActionResolveOptions?,honorsChangeAnnotations: freezed == honorsChangeAnnotations ? _self.honorsChangeAnnotations : honorsChangeAnnotations // ignore: cast_nullable_to_non_nullable
+as bool?,documentationSupport: freezed == documentationSupport ? _self.documentationSupport : documentationSupport // ignore: cast_nullable_to_non_nullable
+as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as CodeActionTagOptions?,
   ));
 }
 
+/// Create a copy of CodeActionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCodeActionLiteralOptionsCopyWith<$Res>? get codeActionLiteralSupport {
+    if (_self.codeActionLiteralSupport == null) {
+    return null;
+  }
 
+  return $ClientCodeActionLiteralOptionsCopyWith<$Res>(_self.codeActionLiteralSupport!, (value) {
+    return _then(_self.copyWith(codeActionLiteralSupport: value));
+  });
+}/// Create a copy of CodeActionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCodeActionResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
+
+  return $ClientCodeActionResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}/// Create a copy of CodeActionClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CodeActionTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $CodeActionTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -6855,7 +7569,9 @@ as bool?,
 mixin _$CodeLensClientCapabilities {
 
 /// Whether code lens supports dynamic registration.
- bool? get dynamicRegistration;
+ bool? get dynamicRegistration;/// Whether the client supports resolving additional code lens properties
+/// via a separate `codeLens/resolve` request.
+ ClientCodeLensResolveOptions? get resolveSupport;
 /// Create a copy of CodeLensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -6868,16 +7584,16 @@ $CodeLensClientCapabilitiesCopyWith<CodeLensClientCapabilities> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeLensClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeLensClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dynamicRegistration);
+int get hashCode => Object.hash(runtimeType,dynamicRegistration,resolveSupport);
 
 @override
 String toString() {
-  return 'CodeLensClientCapabilities(dynamicRegistration: $dynamicRegistration)';
+  return 'CodeLensClientCapabilities(dynamicRegistration: $dynamicRegistration, resolveSupport: $resolveSupport)';
 }
 
 
@@ -6888,11 +7604,11 @@ abstract mixin class $CodeLensClientCapabilitiesCopyWith<$Res>  {
   factory $CodeLensClientCapabilitiesCopyWith(CodeLensClientCapabilities value, $Res Function(CodeLensClientCapabilities) _then) = _$CodeLensClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration
+ bool? dynamicRegistration, ClientCodeLensResolveOptions? resolveSupport
 });
 
 
-
+$ClientCodeLensResolveOptionsCopyWith<$Res>? get resolveSupport;
 
 }
 /// @nodoc
@@ -6905,13 +7621,26 @@ class _$CodeLensClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of CodeLensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? dynamicRegistration = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? dynamicRegistration = freezed,Object? resolveSupport = freezed,}) {
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
-as bool?,
+as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
+as ClientCodeLensResolveOptions?,
   ));
 }
+/// Create a copy of CodeLensClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCodeLensResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
 
+  return $ClientCodeLensResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}
 }
 
 
@@ -6920,11 +7649,14 @@ as bool?,
 @JsonSerializable()
 
 class _CodeLensClientCapabilities implements CodeLensClientCapabilities {
-  const _CodeLensClientCapabilities({this.dynamicRegistration});
+  const _CodeLensClientCapabilities({this.dynamicRegistration, this.resolveSupport});
   factory _CodeLensClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeLensClientCapabilitiesFromJson(json);
 
 /// Whether code lens supports dynamic registration.
 @override final  bool? dynamicRegistration;
+/// Whether the client supports resolving additional code lens properties
+/// via a separate `codeLens/resolve` request.
+@override final  ClientCodeLensResolveOptions? resolveSupport;
 
 /// Create a copy of CodeLensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -6939,16 +7671,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeLensClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeLensClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dynamicRegistration);
+int get hashCode => Object.hash(runtimeType,dynamicRegistration,resolveSupport);
 
 @override
 String toString() {
-  return 'CodeLensClientCapabilities(dynamicRegistration: $dynamicRegistration)';
+  return 'CodeLensClientCapabilities(dynamicRegistration: $dynamicRegistration, resolveSupport: $resolveSupport)';
 }
 
 
@@ -6959,11 +7691,11 @@ abstract mixin class _$CodeLensClientCapabilitiesCopyWith<$Res> implements $Code
   factory _$CodeLensClientCapabilitiesCopyWith(_CodeLensClientCapabilities value, $Res Function(_CodeLensClientCapabilities) _then) = __$CodeLensClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration
+ bool? dynamicRegistration, ClientCodeLensResolveOptions? resolveSupport
 });
 
 
-
+@override $ClientCodeLensResolveOptionsCopyWith<$Res>? get resolveSupport;
 
 }
 /// @nodoc
@@ -6976,14 +7708,27 @@ class __$CodeLensClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of CodeLensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? dynamicRegistration = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? dynamicRegistration = freezed,Object? resolveSupport = freezed,}) {
   return _then(_CodeLensClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
-as bool?,
+as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
+as ClientCodeLensResolveOptions?,
   ));
 }
 
+/// Create a copy of CodeLensClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCodeLensResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
 
+  return $ClientCodeLensResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}
 }
 
 
@@ -7858,8 +8603,8 @@ mixin _$FoldingRangeClientCapabilities {
 /// If set, client will ignore specified `startCharacter` and `endCharacter`
 /// properties in a FoldingRange.
  bool? get lineFoldingOnly;/// Specific options for the folding range kind.
- ({List<FoldingRangeKind>? valueSet})? get foldingRangeKind;/// Specific options for the folding range.
- ({bool? collapsedText})? get foldingRange;
+ ClientFoldingRangeKindOptions? get foldingRangeKind;/// Specific options for the folding range.
+ ClientFoldingRangeOptions? get foldingRange;
 /// Create a copy of FoldingRangeClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -7892,11 +8637,11 @@ abstract mixin class $FoldingRangeClientCapabilitiesCopyWith<$Res>  {
   factory $FoldingRangeClientCapabilitiesCopyWith(FoldingRangeClientCapabilities value, $Res Function(FoldingRangeClientCapabilities) _then) = _$FoldingRangeClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, int? rangeLimit, bool? lineFoldingOnly, ({List<FoldingRangeKind>? valueSet})? foldingRangeKind, ({bool? collapsedText})? foldingRange
+ bool? dynamicRegistration, int? rangeLimit, bool? lineFoldingOnly, ClientFoldingRangeKindOptions? foldingRangeKind, ClientFoldingRangeOptions? foldingRange
 });
 
 
-
+$ClientFoldingRangeKindOptionsCopyWith<$Res>? get foldingRangeKind;$ClientFoldingRangeOptionsCopyWith<$Res>? get foldingRange;
 
 }
 /// @nodoc
@@ -7915,11 +8660,35 @@ dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration 
 as bool?,rangeLimit: freezed == rangeLimit ? _self.rangeLimit : rangeLimit // ignore: cast_nullable_to_non_nullable
 as int?,lineFoldingOnly: freezed == lineFoldingOnly ? _self.lineFoldingOnly : lineFoldingOnly // ignore: cast_nullable_to_non_nullable
 as bool?,foldingRangeKind: freezed == foldingRangeKind ? _self.foldingRangeKind : foldingRangeKind // ignore: cast_nullable_to_non_nullable
-as ({List<FoldingRangeKind>? valueSet})?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
-as ({bool? collapsedText})?,
+as ClientFoldingRangeKindOptions?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
+as ClientFoldingRangeOptions?,
   ));
 }
+/// Create a copy of FoldingRangeClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientFoldingRangeKindOptionsCopyWith<$Res>? get foldingRangeKind {
+    if (_self.foldingRangeKind == null) {
+    return null;
+  }
 
+  return $ClientFoldingRangeKindOptionsCopyWith<$Res>(_self.foldingRangeKind!, (value) {
+    return _then(_self.copyWith(foldingRangeKind: value));
+  });
+}/// Create a copy of FoldingRangeClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientFoldingRangeOptionsCopyWith<$Res>? get foldingRange {
+    if (_self.foldingRange == null) {
+    return null;
+  }
+
+  return $ClientFoldingRangeOptionsCopyWith<$Res>(_self.foldingRange!, (value) {
+    return _then(_self.copyWith(foldingRange: value));
+  });
+}
 }
 
 
@@ -7945,9 +8714,9 @@ class _FoldingRangeClientCapabilities implements FoldingRangeClientCapabilities 
 /// properties in a FoldingRange.
 @override final  bool? lineFoldingOnly;
 /// Specific options for the folding range kind.
-@override final  ({List<FoldingRangeKind>? valueSet})? foldingRangeKind;
+@override final  ClientFoldingRangeKindOptions? foldingRangeKind;
 /// Specific options for the folding range.
-@override final  ({bool? collapsedText})? foldingRange;
+@override final  ClientFoldingRangeOptions? foldingRange;
 
 /// Create a copy of FoldingRangeClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -7982,11 +8751,11 @@ abstract mixin class _$FoldingRangeClientCapabilitiesCopyWith<$Res> implements $
   factory _$FoldingRangeClientCapabilitiesCopyWith(_FoldingRangeClientCapabilities value, $Res Function(_FoldingRangeClientCapabilities) _then) = __$FoldingRangeClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, int? rangeLimit, bool? lineFoldingOnly, ({List<FoldingRangeKind>? valueSet})? foldingRangeKind, ({bool? collapsedText})? foldingRange
+ bool? dynamicRegistration, int? rangeLimit, bool? lineFoldingOnly, ClientFoldingRangeKindOptions? foldingRangeKind, ClientFoldingRangeOptions? foldingRange
 });
 
 
-
+@override $ClientFoldingRangeKindOptionsCopyWith<$Res>? get foldingRangeKind;@override $ClientFoldingRangeOptionsCopyWith<$Res>? get foldingRange;
 
 }
 /// @nodoc
@@ -8005,12 +8774,36 @@ dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration 
 as bool?,rangeLimit: freezed == rangeLimit ? _self.rangeLimit : rangeLimit // ignore: cast_nullable_to_non_nullable
 as int?,lineFoldingOnly: freezed == lineFoldingOnly ? _self.lineFoldingOnly : lineFoldingOnly // ignore: cast_nullable_to_non_nullable
 as bool?,foldingRangeKind: freezed == foldingRangeKind ? _self.foldingRangeKind : foldingRangeKind // ignore: cast_nullable_to_non_nullable
-as ({List<FoldingRangeKind>? valueSet})?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
-as ({bool? collapsedText})?,
+as ClientFoldingRangeKindOptions?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
+as ClientFoldingRangeOptions?,
   ));
 }
 
+/// Create a copy of FoldingRangeClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientFoldingRangeKindOptionsCopyWith<$Res>? get foldingRangeKind {
+    if (_self.foldingRangeKind == null) {
+    return null;
+  }
 
+  return $ClientFoldingRangeKindOptionsCopyWith<$Res>(_self.foldingRangeKind!, (value) {
+    return _then(_self.copyWith(foldingRangeKind: value));
+  });
+}/// Create a copy of FoldingRangeClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientFoldingRangeOptionsCopyWith<$Res>? get foldingRange {
+    if (_self.foldingRange == null) {
+    return null;
+  }
+
+  return $ClientFoldingRangeOptionsCopyWith<$Res>(_self.foldingRange!, (value) {
+    return _then(_self.copyWith(foldingRange: value));
+  });
+}
 }
 
 
@@ -8163,13 +8956,13 @@ mixin _$PublishDiagnosticsClientCapabilities {
  bool? get relatedInformation;/// Client supports the tag property to provide meta data about a
 /// diagnostic. Clients supporting tags have to handle unknown tags
 /// gracefully.
- ({List<DiagnosticTag> valueSet})? get tagSupport;/// Whether the client interprets the version property of the
-/// `textDocument/publishDiagnostics` notification's parameter.
- bool? get versionSupport;/// Client supports a codeDescription property
+ ClientDiagnosticsTagOptions? get tagSupport;/// Client supports a codeDescription property
  bool? get codeDescriptionSupport;/// Whether code action supports the `data` property which is preserved
 /// between a `textDocument/publishDiagnostics` and
 /// `textDocument/codeAction` request.
- bool? get dataSupport;
+ bool? get dataSupport;/// Whether the client interprets the version property of the
+/// `textDocument/publishDiagnostics` notification's parameter.
+ bool? get versionSupport;
 /// Create a copy of PublishDiagnosticsClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -8182,16 +8975,16 @@ $PublishDiagnosticsClientCapabilitiesCopyWith<PublishDiagnosticsClientCapabiliti
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PublishDiagnosticsClientCapabilities&&(identical(other.relatedInformation, relatedInformation) || other.relatedInformation == relatedInformation)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.versionSupport, versionSupport) || other.versionSupport == versionSupport)&&(identical(other.codeDescriptionSupport, codeDescriptionSupport) || other.codeDescriptionSupport == codeDescriptionSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PublishDiagnosticsClientCapabilities&&(identical(other.relatedInformation, relatedInformation) || other.relatedInformation == relatedInformation)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.codeDescriptionSupport, codeDescriptionSupport) || other.codeDescriptionSupport == codeDescriptionSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport)&&(identical(other.versionSupport, versionSupport) || other.versionSupport == versionSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,relatedInformation,tagSupport,versionSupport,codeDescriptionSupport,dataSupport);
+int get hashCode => Object.hash(runtimeType,relatedInformation,tagSupport,codeDescriptionSupport,dataSupport,versionSupport);
 
 @override
 String toString() {
-  return 'PublishDiagnosticsClientCapabilities(relatedInformation: $relatedInformation, tagSupport: $tagSupport, versionSupport: $versionSupport, codeDescriptionSupport: $codeDescriptionSupport, dataSupport: $dataSupport)';
+  return 'PublishDiagnosticsClientCapabilities(relatedInformation: $relatedInformation, tagSupport: $tagSupport, codeDescriptionSupport: $codeDescriptionSupport, dataSupport: $dataSupport, versionSupport: $versionSupport)';
 }
 
 
@@ -8202,11 +8995,11 @@ abstract mixin class $PublishDiagnosticsClientCapabilitiesCopyWith<$Res>  {
   factory $PublishDiagnosticsClientCapabilitiesCopyWith(PublishDiagnosticsClientCapabilities value, $Res Function(PublishDiagnosticsClientCapabilities) _then) = _$PublishDiagnosticsClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? relatedInformation, ({List<DiagnosticTag> valueSet})? tagSupport, bool? versionSupport, bool? codeDescriptionSupport, bool? dataSupport
+ bool? relatedInformation, ClientDiagnosticsTagOptions? tagSupport, bool? codeDescriptionSupport, bool? dataSupport, bool? versionSupport
 });
 
 
-
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport;
 
 }
 /// @nodoc
@@ -8219,17 +9012,29 @@ class _$PublishDiagnosticsClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of PublishDiagnosticsClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? relatedInformation = freezed,Object? tagSupport = freezed,Object? versionSupport = freezed,Object? codeDescriptionSupport = freezed,Object? dataSupport = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? relatedInformation = freezed,Object? tagSupport = freezed,Object? codeDescriptionSupport = freezed,Object? dataSupport = freezed,Object? versionSupport = freezed,}) {
   return _then(_self.copyWith(
 relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
 as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as ({List<DiagnosticTag> valueSet})?,versionSupport: freezed == versionSupport ? _self.versionSupport : versionSupport // ignore: cast_nullable_to_non_nullable
-as bool?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
+as ClientDiagnosticsTagOptions?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
 as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
+as bool?,versionSupport: freezed == versionSupport ? _self.versionSupport : versionSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
+/// Create a copy of PublishDiagnosticsClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
 
+  return $ClientDiagnosticsTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -8238,7 +9043,7 @@ as bool?,
 @JsonSerializable()
 
 class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientCapabilities {
-  const _PublishDiagnosticsClientCapabilities({this.relatedInformation, this.tagSupport, this.versionSupport, this.codeDescriptionSupport, this.dataSupport});
+  const _PublishDiagnosticsClientCapabilities({this.relatedInformation, this.tagSupport, this.codeDescriptionSupport, this.dataSupport, this.versionSupport});
   factory _PublishDiagnosticsClientCapabilities.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsClientCapabilitiesFromJson(json);
 
 /// Whether the clients accepts diagnostics with related information.
@@ -8246,16 +9051,16 @@ class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientC
 /// Client supports the tag property to provide meta data about a
 /// diagnostic. Clients supporting tags have to handle unknown tags
 /// gracefully.
-@override final  ({List<DiagnosticTag> valueSet})? tagSupport;
-/// Whether the client interprets the version property of the
-/// `textDocument/publishDiagnostics` notification's parameter.
-@override final  bool? versionSupport;
+@override final  ClientDiagnosticsTagOptions? tagSupport;
 /// Client supports a codeDescription property
 @override final  bool? codeDescriptionSupport;
 /// Whether code action supports the `data` property which is preserved
 /// between a `textDocument/publishDiagnostics` and
 /// `textDocument/codeAction` request.
 @override final  bool? dataSupport;
+/// Whether the client interprets the version property of the
+/// `textDocument/publishDiagnostics` notification's parameter.
+@override final  bool? versionSupport;
 
 /// Create a copy of PublishDiagnosticsClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -8270,16 +9075,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PublishDiagnosticsClientCapabilities&&(identical(other.relatedInformation, relatedInformation) || other.relatedInformation == relatedInformation)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.versionSupport, versionSupport) || other.versionSupport == versionSupport)&&(identical(other.codeDescriptionSupport, codeDescriptionSupport) || other.codeDescriptionSupport == codeDescriptionSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PublishDiagnosticsClientCapabilities&&(identical(other.relatedInformation, relatedInformation) || other.relatedInformation == relatedInformation)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.codeDescriptionSupport, codeDescriptionSupport) || other.codeDescriptionSupport == codeDescriptionSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport)&&(identical(other.versionSupport, versionSupport) || other.versionSupport == versionSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,relatedInformation,tagSupport,versionSupport,codeDescriptionSupport,dataSupport);
+int get hashCode => Object.hash(runtimeType,relatedInformation,tagSupport,codeDescriptionSupport,dataSupport,versionSupport);
 
 @override
 String toString() {
-  return 'PublishDiagnosticsClientCapabilities(relatedInformation: $relatedInformation, tagSupport: $tagSupport, versionSupport: $versionSupport, codeDescriptionSupport: $codeDescriptionSupport, dataSupport: $dataSupport)';
+  return 'PublishDiagnosticsClientCapabilities(relatedInformation: $relatedInformation, tagSupport: $tagSupport, codeDescriptionSupport: $codeDescriptionSupport, dataSupport: $dataSupport, versionSupport: $versionSupport)';
 }
 
 
@@ -8290,11 +9095,11 @@ abstract mixin class _$PublishDiagnosticsClientCapabilitiesCopyWith<$Res> implem
   factory _$PublishDiagnosticsClientCapabilitiesCopyWith(_PublishDiagnosticsClientCapabilities value, $Res Function(_PublishDiagnosticsClientCapabilities) _then) = __$PublishDiagnosticsClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? relatedInformation, ({List<DiagnosticTag> valueSet})? tagSupport, bool? versionSupport, bool? codeDescriptionSupport, bool? dataSupport
+ bool? relatedInformation, ClientDiagnosticsTagOptions? tagSupport, bool? codeDescriptionSupport, bool? dataSupport, bool? versionSupport
 });
 
 
-
+@override $ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport;
 
 }
 /// @nodoc
@@ -8307,18 +9112,30 @@ class __$PublishDiagnosticsClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of PublishDiagnosticsClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? relatedInformation = freezed,Object? tagSupport = freezed,Object? versionSupport = freezed,Object? codeDescriptionSupport = freezed,Object? dataSupport = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? relatedInformation = freezed,Object? tagSupport = freezed,Object? codeDescriptionSupport = freezed,Object? dataSupport = freezed,Object? versionSupport = freezed,}) {
   return _then(_PublishDiagnosticsClientCapabilities(
 relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
 as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as ({List<DiagnosticTag> valueSet})?,versionSupport: freezed == versionSupport ? _self.versionSupport : versionSupport // ignore: cast_nullable_to_non_nullable
-as bool?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
+as ClientDiagnosticsTagOptions?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
 as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
+as bool?,versionSupport: freezed == versionSupport ? _self.versionSupport : versionSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
 
+/// Create a copy of PublishDiagnosticsClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
 
+  return $ClientDiagnosticsTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -8475,7 +9292,7 @@ mixin _$SemanticTokensClientCapabilities {
 /// `request.range` are both set to true but the server only provides a
 /// range provider the client might not render a minimap correctly or might
 /// even decide to not show any semantic tokens at all.
- ({Object? range, Object? full}) get requests;/// The token types that the client supports.
+ ClientSemanticTokensRequestOptions get requests;/// The token types that the client supports.
  List<String> get tokenTypes;/// The token modifiers that the client supports.
  List<String> get tokenModifiers;/// The token formats the clients supports.
  List<TokenFormat> get formats;/// Whether implementation supports dynamic registration. If this is set to
@@ -8526,11 +9343,11 @@ abstract mixin class $SemanticTokensClientCapabilitiesCopyWith<$Res>  {
   factory $SemanticTokensClientCapabilitiesCopyWith(SemanticTokensClientCapabilities value, $Res Function(SemanticTokensClientCapabilities) _then) = _$SemanticTokensClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? dynamicRegistration, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
+ ClientSemanticTokensRequestOptions requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? dynamicRegistration, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
 });
 
 
-
+$ClientSemanticTokensRequestOptionsCopyWith<$Res> get requests;
 
 }
 /// @nodoc
@@ -8546,7 +9363,7 @@ class _$SemanticTokensClientCapabilitiesCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? requests = null,Object? tokenTypes = null,Object? tokenModifiers = null,Object? formats = null,Object? dynamicRegistration = freezed,Object? overlappingTokenSupport = freezed,Object? multilineTokenSupport = freezed,Object? serverCancelSupport = freezed,Object? augmentsSyntaxTokens = freezed,}) {
   return _then(_self.copyWith(
 requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
-as ({Object? range, Object? full}),tokenTypes: null == tokenTypes ? _self.tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
+as ClientSemanticTokensRequestOptions,tokenTypes: null == tokenTypes ? _self.tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self.tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self.formats : formats // ignore: cast_nullable_to_non_nullable
 as List<TokenFormat>,dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
@@ -8557,7 +9374,16 @@ as bool?,augmentsSyntaxTokens: freezed == augmentsSyntaxTokens ? _self.augmentsS
 as bool?,
   ));
 }
-
+/// Create a copy of SemanticTokensClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSemanticTokensRequestOptionsCopyWith<$Res> get requests {
+  
+  return $ClientSemanticTokensRequestOptionsCopyWith<$Res>(_self.requests, (value) {
+    return _then(_self.copyWith(requests: value));
+  });
+}
 }
 
 
@@ -8577,7 +9403,7 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
 /// `request.range` are both set to true but the server only provides a
 /// range provider the client might not render a minimap correctly or might
 /// even decide to not show any semantic tokens at all.
-@override final  ({Object? range, Object? full}) requests;
+@override final  ClientSemanticTokensRequestOptions requests;
 /// The token types that the client supports.
  final  List<String> _tokenTypes;
 /// The token types that the client supports.
@@ -8659,11 +9485,11 @@ abstract mixin class _$SemanticTokensClientCapabilitiesCopyWith<$Res> implements
   factory _$SemanticTokensClientCapabilitiesCopyWith(_SemanticTokensClientCapabilities value, $Res Function(_SemanticTokensClientCapabilities) _then) = __$SemanticTokensClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? dynamicRegistration, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
+ ClientSemanticTokensRequestOptions requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? dynamicRegistration, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
 });
 
 
-
+@override $ClientSemanticTokensRequestOptionsCopyWith<$Res> get requests;
 
 }
 /// @nodoc
@@ -8679,7 +9505,7 @@ class __$SemanticTokensClientCapabilitiesCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? requests = null,Object? tokenTypes = null,Object? tokenModifiers = null,Object? formats = null,Object? dynamicRegistration = freezed,Object? overlappingTokenSupport = freezed,Object? multilineTokenSupport = freezed,Object? serverCancelSupport = freezed,Object? augmentsSyntaxTokens = freezed,}) {
   return _then(_SemanticTokensClientCapabilities(
 requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
-as ({Object? range, Object? full}),tokenTypes: null == tokenTypes ? _self._tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
+as ClientSemanticTokensRequestOptions,tokenTypes: null == tokenTypes ? _self._tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self._tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self._formats : formats // ignore: cast_nullable_to_non_nullable
 as List<TokenFormat>,dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
@@ -8691,7 +9517,16 @@ as bool?,
   ));
 }
 
-
+/// Create a copy of SemanticTokensClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSemanticTokensRequestOptionsCopyWith<$Res> get requests {
+  
+  return $ClientSemanticTokensRequestOptionsCopyWith<$Res>(_self.requests, (value) {
+    return _then(_self.copyWith(requests: value));
+  });
+}
 }
 
 
@@ -9262,7 +10097,7 @@ mixin _$InlayHintClientCapabilities {
 
 /// Whether inlay hints support dynamic registration.
  bool? get dynamicRegistration;/// Indicates which properties a client can resolve lazily on an inlay hint.
- ({List<String> properties})? get resolveSupport;
+ ClientInlayHintResolveOptions? get resolveSupport;
 /// Create a copy of InlayHintClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -9295,11 +10130,11 @@ abstract mixin class $InlayHintClientCapabilitiesCopyWith<$Res>  {
   factory $InlayHintClientCapabilitiesCopyWith(InlayHintClientCapabilities value, $Res Function(InlayHintClientCapabilities) _then) = _$InlayHintClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, ({List<String> properties})? resolveSupport
+ bool? dynamicRegistration, ClientInlayHintResolveOptions? resolveSupport
 });
 
 
-
+$ClientInlayHintResolveOptionsCopyWith<$Res>? get resolveSupport;
 
 }
 /// @nodoc
@@ -9316,10 +10151,22 @@ class _$InlayHintClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as ({List<String> properties})?,
+as ClientInlayHintResolveOptions?,
   ));
 }
+/// Create a copy of InlayHintClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientInlayHintResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
 
+  return $ClientInlayHintResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}
 }
 
 
@@ -9334,7 +10181,7 @@ class _InlayHintClientCapabilities implements InlayHintClientCapabilities {
 /// Whether inlay hints support dynamic registration.
 @override final  bool? dynamicRegistration;
 /// Indicates which properties a client can resolve lazily on an inlay hint.
-@override final  ({List<String> properties})? resolveSupport;
+@override final  ClientInlayHintResolveOptions? resolveSupport;
 
 /// Create a copy of InlayHintClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -9369,11 +10216,11 @@ abstract mixin class _$InlayHintClientCapabilitiesCopyWith<$Res> implements $Inl
   factory _$InlayHintClientCapabilitiesCopyWith(_InlayHintClientCapabilities value, $Res Function(_InlayHintClientCapabilities) _then) = __$InlayHintClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, ({List<String> properties})? resolveSupport
+ bool? dynamicRegistration, ClientInlayHintResolveOptions? resolveSupport
 });
 
 
-
+@override $ClientInlayHintResolveOptionsCopyWith<$Res>? get resolveSupport;
 
 }
 /// @nodoc
@@ -9390,24 +10237,45 @@ class __$InlayHintClientCapabilitiesCopyWithImpl<$Res>
   return _then(_InlayHintClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as ({List<String> properties})?,
+as ClientInlayHintResolveOptions?,
   ));
 }
 
+/// Create a copy of InlayHintClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientInlayHintResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
 
+  return $ClientInlayHintResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}
 }
 
 
 /// @nodoc
 mixin _$DiagnosticClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to
+/// Whether the clients accepts diagnostics with related information.
+ bool? get relatedInformation;/// Client supports the tag property to provide meta data about a
+/// diagnostic. Clients supporting tags have to handle unknown tags
+/// gracefully.
+ ClientDiagnosticsTagOptions? get tagSupport;/// Client supports a codeDescription property
+ bool? get codeDescriptionSupport;/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/publishDiagnostics` and
+/// `textDocument/codeAction` request.
+ bool? get dataSupport;/// Whether implementation supports dynamic registration. If this is set to
 /// `true` the client supports the new `(TextDocumentRegistrationOptions &
 /// StaticRegistrationOptions)` return value for the corresponding server
 /// capability as well.
  bool? get dynamicRegistration;/// Whether the clients supports related documents for document diagnostic
 /// pulls.
- bool? get relatedDocumentSupport;
+ bool? get relatedDocumentSupport;/// Whether the client supports `MarkupContent` in diagnostic messages.
+ bool? get markupMessageSupport;
 /// Create a copy of DiagnosticClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -9420,16 +10288,16 @@ $DiagnosticClientCapabilitiesCopyWith<DiagnosticClientCapabilities> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiagnosticClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.relatedDocumentSupport, relatedDocumentSupport) || other.relatedDocumentSupport == relatedDocumentSupport));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiagnosticClientCapabilities&&(identical(other.relatedInformation, relatedInformation) || other.relatedInformation == relatedInformation)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.codeDescriptionSupport, codeDescriptionSupport) || other.codeDescriptionSupport == codeDescriptionSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport)&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.relatedDocumentSupport, relatedDocumentSupport) || other.relatedDocumentSupport == relatedDocumentSupport)&&(identical(other.markupMessageSupport, markupMessageSupport) || other.markupMessageSupport == markupMessageSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dynamicRegistration,relatedDocumentSupport);
+int get hashCode => Object.hash(runtimeType,relatedInformation,tagSupport,codeDescriptionSupport,dataSupport,dynamicRegistration,relatedDocumentSupport,markupMessageSupport);
 
 @override
 String toString() {
-  return 'DiagnosticClientCapabilities(dynamicRegistration: $dynamicRegistration, relatedDocumentSupport: $relatedDocumentSupport)';
+  return 'DiagnosticClientCapabilities(relatedInformation: $relatedInformation, tagSupport: $tagSupport, codeDescriptionSupport: $codeDescriptionSupport, dataSupport: $dataSupport, dynamicRegistration: $dynamicRegistration, relatedDocumentSupport: $relatedDocumentSupport, markupMessageSupport: $markupMessageSupport)';
 }
 
 
@@ -9440,11 +10308,11 @@ abstract mixin class $DiagnosticClientCapabilitiesCopyWith<$Res>  {
   factory $DiagnosticClientCapabilitiesCopyWith(DiagnosticClientCapabilities value, $Res Function(DiagnosticClientCapabilities) _then) = _$DiagnosticClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, bool? relatedDocumentSupport
+ bool? relatedInformation, ClientDiagnosticsTagOptions? tagSupport, bool? codeDescriptionSupport, bool? dataSupport, bool? dynamicRegistration, bool? relatedDocumentSupport, bool? markupMessageSupport
 });
 
 
-
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport;
 
 }
 /// @nodoc
@@ -9457,14 +10325,31 @@ class _$DiagnosticClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of DiagnosticClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? dynamicRegistration = freezed,Object? relatedDocumentSupport = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? relatedInformation = freezed,Object? tagSupport = freezed,Object? codeDescriptionSupport = freezed,Object? dataSupport = freezed,Object? dynamicRegistration = freezed,Object? relatedDocumentSupport = freezed,Object? markupMessageSupport = freezed,}) {
   return _then(_self.copyWith(
-dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
+relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
+as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as ClientDiagnosticsTagOptions?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
+as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
+as bool?,dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,relatedDocumentSupport: freezed == relatedDocumentSupport ? _self.relatedDocumentSupport : relatedDocumentSupport // ignore: cast_nullable_to_non_nullable
+as bool?,markupMessageSupport: freezed == markupMessageSupport ? _self.markupMessageSupport : markupMessageSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
+/// Create a copy of DiagnosticClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
 
+  return $ClientDiagnosticsTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -9473,9 +10358,21 @@ as bool?,
 @JsonSerializable()
 
 class _DiagnosticClientCapabilities implements DiagnosticClientCapabilities {
-  const _DiagnosticClientCapabilities({this.dynamicRegistration, this.relatedDocumentSupport});
+  const _DiagnosticClientCapabilities({this.relatedInformation, this.tagSupport, this.codeDescriptionSupport, this.dataSupport, this.dynamicRegistration, this.relatedDocumentSupport, this.markupMessageSupport});
   factory _DiagnosticClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticClientCapabilitiesFromJson(json);
 
+/// Whether the clients accepts diagnostics with related information.
+@override final  bool? relatedInformation;
+/// Client supports the tag property to provide meta data about a
+/// diagnostic. Clients supporting tags have to handle unknown tags
+/// gracefully.
+@override final  ClientDiagnosticsTagOptions? tagSupport;
+/// Client supports a codeDescription property
+@override final  bool? codeDescriptionSupport;
+/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/publishDiagnostics` and
+/// `textDocument/codeAction` request.
+@override final  bool? dataSupport;
 /// Whether implementation supports dynamic registration. If this is set to
 /// `true` the client supports the new `(TextDocumentRegistrationOptions &
 /// StaticRegistrationOptions)` return value for the corresponding server
@@ -9484,6 +10381,8 @@ class _DiagnosticClientCapabilities implements DiagnosticClientCapabilities {
 /// Whether the clients supports related documents for document diagnostic
 /// pulls.
 @override final  bool? relatedDocumentSupport;
+/// Whether the client supports `MarkupContent` in diagnostic messages.
+@override final  bool? markupMessageSupport;
 
 /// Create a copy of DiagnosticClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -9498,16 +10397,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiagnosticClientCapabilities&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.relatedDocumentSupport, relatedDocumentSupport) || other.relatedDocumentSupport == relatedDocumentSupport));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiagnosticClientCapabilities&&(identical(other.relatedInformation, relatedInformation) || other.relatedInformation == relatedInformation)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.codeDescriptionSupport, codeDescriptionSupport) || other.codeDescriptionSupport == codeDescriptionSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport)&&(identical(other.dynamicRegistration, dynamicRegistration) || other.dynamicRegistration == dynamicRegistration)&&(identical(other.relatedDocumentSupport, relatedDocumentSupport) || other.relatedDocumentSupport == relatedDocumentSupport)&&(identical(other.markupMessageSupport, markupMessageSupport) || other.markupMessageSupport == markupMessageSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dynamicRegistration,relatedDocumentSupport);
+int get hashCode => Object.hash(runtimeType,relatedInformation,tagSupport,codeDescriptionSupport,dataSupport,dynamicRegistration,relatedDocumentSupport,markupMessageSupport);
 
 @override
 String toString() {
-  return 'DiagnosticClientCapabilities(dynamicRegistration: $dynamicRegistration, relatedDocumentSupport: $relatedDocumentSupport)';
+  return 'DiagnosticClientCapabilities(relatedInformation: $relatedInformation, tagSupport: $tagSupport, codeDescriptionSupport: $codeDescriptionSupport, dataSupport: $dataSupport, dynamicRegistration: $dynamicRegistration, relatedDocumentSupport: $relatedDocumentSupport, markupMessageSupport: $markupMessageSupport)';
 }
 
 
@@ -9518,11 +10417,11 @@ abstract mixin class _$DiagnosticClientCapabilitiesCopyWith<$Res> implements $Di
   factory _$DiagnosticClientCapabilitiesCopyWith(_DiagnosticClientCapabilities value, $Res Function(_DiagnosticClientCapabilities) _then) = __$DiagnosticClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, bool? relatedDocumentSupport
+ bool? relatedInformation, ClientDiagnosticsTagOptions? tagSupport, bool? codeDescriptionSupport, bool? dataSupport, bool? dynamicRegistration, bool? relatedDocumentSupport, bool? markupMessageSupport
 });
 
 
-
+@override $ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport;
 
 }
 /// @nodoc
@@ -9535,15 +10434,32 @@ class __$DiagnosticClientCapabilitiesCopyWithImpl<$Res>
 
 /// Create a copy of DiagnosticClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? dynamicRegistration = freezed,Object? relatedDocumentSupport = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? relatedInformation = freezed,Object? tagSupport = freezed,Object? codeDescriptionSupport = freezed,Object? dataSupport = freezed,Object? dynamicRegistration = freezed,Object? relatedDocumentSupport = freezed,Object? markupMessageSupport = freezed,}) {
   return _then(_DiagnosticClientCapabilities(
-dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
+relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
+as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as ClientDiagnosticsTagOptions?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
+as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
+as bool?,dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,relatedDocumentSupport: freezed == relatedDocumentSupport ? _self.relatedDocumentSupport : relatedDocumentSupport // ignore: cast_nullable_to_non_nullable
+as bool?,markupMessageSupport: freezed == markupMessageSupport ? _self.markupMessageSupport : markupMessageSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
 
+/// Create a copy of DiagnosticClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
 
+  return $ClientDiagnosticsTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -9836,7 +10752,7 @@ as bool?,
 mixin _$ShowMessageRequestClientCapabilities {
 
 /// Capabilities specific to the `MessageActionItem` type.
- ({bool? additionalPropertiesSupport})? get messageActionItem;
+ ClientShowMessageActionItemOptions? get messageActionItem;
 /// Create a copy of ShowMessageRequestClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -9869,11 +10785,11 @@ abstract mixin class $ShowMessageRequestClientCapabilitiesCopyWith<$Res>  {
   factory $ShowMessageRequestClientCapabilitiesCopyWith(ShowMessageRequestClientCapabilities value, $Res Function(ShowMessageRequestClientCapabilities) _then) = _$ShowMessageRequestClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- ({bool? additionalPropertiesSupport})? messageActionItem
+ ClientShowMessageActionItemOptions? messageActionItem
 });
 
 
-
+$ClientShowMessageActionItemOptionsCopyWith<$Res>? get messageActionItem;
 
 }
 /// @nodoc
@@ -9889,10 +10805,22 @@ class _$ShowMessageRequestClientCapabilitiesCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? messageActionItem = freezed,}) {
   return _then(_self.copyWith(
 messageActionItem: freezed == messageActionItem ? _self.messageActionItem : messageActionItem // ignore: cast_nullable_to_non_nullable
-as ({bool? additionalPropertiesSupport})?,
+as ClientShowMessageActionItemOptions?,
   ));
 }
+/// Create a copy of ShowMessageRequestClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientShowMessageActionItemOptionsCopyWith<$Res>? get messageActionItem {
+    if (_self.messageActionItem == null) {
+    return null;
+  }
 
+  return $ClientShowMessageActionItemOptionsCopyWith<$Res>(_self.messageActionItem!, (value) {
+    return _then(_self.copyWith(messageActionItem: value));
+  });
+}
 }
 
 
@@ -9905,7 +10833,7 @@ class _ShowMessageRequestClientCapabilities implements ShowMessageRequestClientC
   factory _ShowMessageRequestClientCapabilities.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestClientCapabilitiesFromJson(json);
 
 /// Capabilities specific to the `MessageActionItem` type.
-@override final  ({bool? additionalPropertiesSupport})? messageActionItem;
+@override final  ClientShowMessageActionItemOptions? messageActionItem;
 
 /// Create a copy of ShowMessageRequestClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -9940,11 +10868,11 @@ abstract mixin class _$ShowMessageRequestClientCapabilitiesCopyWith<$Res> implem
   factory _$ShowMessageRequestClientCapabilitiesCopyWith(_ShowMessageRequestClientCapabilities value, $Res Function(_ShowMessageRequestClientCapabilities) _then) = __$ShowMessageRequestClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- ({bool? additionalPropertiesSupport})? messageActionItem
+ ClientShowMessageActionItemOptions? messageActionItem
 });
 
 
-
+@override $ClientShowMessageActionItemOptionsCopyWith<$Res>? get messageActionItem;
 
 }
 /// @nodoc
@@ -9960,11 +10888,23 @@ class __$ShowMessageRequestClientCapabilitiesCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? messageActionItem = freezed,}) {
   return _then(_ShowMessageRequestClientCapabilities(
 messageActionItem: freezed == messageActionItem ? _self.messageActionItem : messageActionItem // ignore: cast_nullable_to_non_nullable
-as ({bool? additionalPropertiesSupport})?,
+as ClientShowMessageActionItemOptions?,
   ));
 }
 
+/// Create a copy of ShowMessageRequestClientCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientShowMessageActionItemOptionsCopyWith<$Res>? get messageActionItem {
+    if (_self.messageActionItem == null) {
+    return null;
+  }
 
+  return $ClientShowMessageActionItemOptionsCopyWith<$Res>(_self.messageActionItem!, (value) {
+    return _then(_self.copyWith(messageActionItem: value));
+  });
+}
 }
 
 
@@ -10108,7 +11048,7 @@ as bool,
 mixin _$RegularExpressionsClientCapabilities {
 
 /// The engine's name.
- String get engine;/// The engine's version.
+ RegularExpressionEngineKind get engine;/// The engine's version.
  String? get version;
 /// Create a copy of RegularExpressionsClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -10142,7 +11082,7 @@ abstract mixin class $RegularExpressionsClientCapabilitiesCopyWith<$Res>  {
   factory $RegularExpressionsClientCapabilitiesCopyWith(RegularExpressionsClientCapabilities value, $Res Function(RegularExpressionsClientCapabilities) _then) = _$RegularExpressionsClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- String engine, String? version
+ RegularExpressionEngineKind engine, String? version
 });
 
 
@@ -10162,7 +11102,7 @@ class _$RegularExpressionsClientCapabilitiesCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? engine = null,Object? version = freezed,}) {
   return _then(_self.copyWith(
 engine: null == engine ? _self.engine : engine // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as RegularExpressionEngineKind,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -10179,7 +11119,7 @@ class _RegularExpressionsClientCapabilities implements RegularExpressionsClientC
   factory _RegularExpressionsClientCapabilities.fromJson(Map<String, dynamic> json) => _$RegularExpressionsClientCapabilitiesFromJson(json);
 
 /// The engine's name.
-@override final  String engine;
+@override final  RegularExpressionEngineKind engine;
 /// The engine's version.
 @override final  String? version;
 
@@ -10216,7 +11156,7 @@ abstract mixin class _$RegularExpressionsClientCapabilitiesCopyWith<$Res> implem
   factory _$RegularExpressionsClientCapabilitiesCopyWith(_RegularExpressionsClientCapabilities value, $Res Function(_RegularExpressionsClientCapabilities) _then) = __$RegularExpressionsClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- String engine, String? version
+ RegularExpressionEngineKind engine, String? version
 });
 
 
@@ -10236,7 +11176,7 @@ class __$RegularExpressionsClientCapabilitiesCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? engine = null,Object? version = freezed,}) {
   return _then(_RegularExpressionsClientCapabilities(
 engine: null == engine ? _self.engine : engine // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as RegularExpressionEngineKind,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -10397,6 +11337,367 @@ as List<String>?,
 }
 
 
+}
+
+
+/// @nodoc
+mixin _$CompletionListCapabilities {
+
+/// The client supports the following itemDefaults on a completion list.
+///
+/// The value lists the supported property names of the
+/// `CompletionList.itemDefaults` object. If omitted no properties are
+/// supported.
+ List<String>? get itemDefaults;/// Specifies whether the client supports `CompletionList.applyKind` to
+/// indicate how supported values from `completionList.itemDefaults` and
+/// `completion` will be combined.
+///
+/// If a client supports `applyKind` it must support it for all fields that
+/// it supports that are listed in `CompletionList.applyKind`. This means
+/// when clients add support for new/future fields in completion items the
+/// MUST also support merge for them if those fields are defined in
+/// `CompletionList.applyKind`.
+ bool? get applyKindSupport;
+/// Create a copy of CompletionListCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CompletionListCapabilitiesCopyWith<CompletionListCapabilities> get copyWith => _$CompletionListCapabilitiesCopyWithImpl<CompletionListCapabilities>(this as CompletionListCapabilities, _$identity);
+
+  /// Serializes this CompletionListCapabilities to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionListCapabilities&&const DeepCollectionEquality().equals(other.itemDefaults, itemDefaults)&&(identical(other.applyKindSupport, applyKindSupport) || other.applyKindSupport == applyKindSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(itemDefaults),applyKindSupport);
+
+@override
+String toString() {
+  return 'CompletionListCapabilities(itemDefaults: $itemDefaults, applyKindSupport: $applyKindSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CompletionListCapabilitiesCopyWith<$Res>  {
+  factory $CompletionListCapabilitiesCopyWith(CompletionListCapabilities value, $Res Function(CompletionListCapabilities) _then) = _$CompletionListCapabilitiesCopyWithImpl;
+@useResult
+$Res call({
+ List<String>? itemDefaults, bool? applyKindSupport
+});
+
+
+
+
+}
+/// @nodoc
+class _$CompletionListCapabilitiesCopyWithImpl<$Res>
+    implements $CompletionListCapabilitiesCopyWith<$Res> {
+  _$CompletionListCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final CompletionListCapabilities _self;
+  final $Res Function(CompletionListCapabilities) _then;
+
+/// Create a copy of CompletionListCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? itemDefaults = freezed,Object? applyKindSupport = freezed,}) {
+  return _then(_self.copyWith(
+itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
+as List<String>?,applyKindSupport: freezed == applyKindSupport ? _self.applyKindSupport : applyKindSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _CompletionListCapabilities implements CompletionListCapabilities {
+  const _CompletionListCapabilities({final  List<String>? itemDefaults, this.applyKindSupport}): _itemDefaults = itemDefaults;
+  factory _CompletionListCapabilities.fromJson(Map<String, dynamic> json) => _$CompletionListCapabilitiesFromJson(json);
+
+/// The client supports the following itemDefaults on a completion list.
+///
+/// The value lists the supported property names of the
+/// `CompletionList.itemDefaults` object. If omitted no properties are
+/// supported.
+ final  List<String>? _itemDefaults;
+/// The client supports the following itemDefaults on a completion list.
+///
+/// The value lists the supported property names of the
+/// `CompletionList.itemDefaults` object. If omitted no properties are
+/// supported.
+@override List<String>? get itemDefaults {
+  final value = _itemDefaults;
+  if (value == null) return null;
+  if (_itemDefaults is EqualUnmodifiableListView) return _itemDefaults;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// Specifies whether the client supports `CompletionList.applyKind` to
+/// indicate how supported values from `completionList.itemDefaults` and
+/// `completion` will be combined.
+///
+/// If a client supports `applyKind` it must support it for all fields that
+/// it supports that are listed in `CompletionList.applyKind`. This means
+/// when clients add support for new/future fields in completion items the
+/// MUST also support merge for them if those fields are defined in
+/// `CompletionList.applyKind`.
+@override final  bool? applyKindSupport;
+
+/// Create a copy of CompletionListCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CompletionListCapabilitiesCopyWith<_CompletionListCapabilities> get copyWith => __$CompletionListCapabilitiesCopyWithImpl<_CompletionListCapabilities>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CompletionListCapabilitiesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionListCapabilities&&const DeepCollectionEquality().equals(other._itemDefaults, _itemDefaults)&&(identical(other.applyKindSupport, applyKindSupport) || other.applyKindSupport == applyKindSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_itemDefaults),applyKindSupport);
+
+@override
+String toString() {
+  return 'CompletionListCapabilities(itemDefaults: $itemDefaults, applyKindSupport: $applyKindSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CompletionListCapabilitiesCopyWith<$Res> implements $CompletionListCapabilitiesCopyWith<$Res> {
+  factory _$CompletionListCapabilitiesCopyWith(_CompletionListCapabilities value, $Res Function(_CompletionListCapabilities) _then) = __$CompletionListCapabilitiesCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String>? itemDefaults, bool? applyKindSupport
+});
+
+
+
+
+}
+/// @nodoc
+class __$CompletionListCapabilitiesCopyWithImpl<$Res>
+    implements _$CompletionListCapabilitiesCopyWith<$Res> {
+  __$CompletionListCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final _CompletionListCapabilities _self;
+  final $Res Function(_CompletionListCapabilities) _then;
+
+/// Create a copy of CompletionListCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? itemDefaults = freezed,Object? applyKindSupport = freezed,}) {
+  return _then(_CompletionListCapabilities(
+itemDefaults: freezed == itemDefaults ? _self._itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
+as List<String>?,applyKindSupport: freezed == applyKindSupport ? _self.applyKindSupport : applyKindSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$DiagnosticsCapabilities {
+
+/// Whether the clients accepts diagnostics with related information.
+ bool? get relatedInformation;/// Client supports the tag property to provide meta data about a
+/// diagnostic. Clients supporting tags have to handle unknown tags
+/// gracefully.
+ ClientDiagnosticsTagOptions? get tagSupport;/// Client supports a codeDescription property
+ bool? get codeDescriptionSupport;/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/publishDiagnostics` and
+/// `textDocument/codeAction` request.
+ bool? get dataSupport;
+/// Create a copy of DiagnosticsCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$DiagnosticsCapabilitiesCopyWith<DiagnosticsCapabilities> get copyWith => _$DiagnosticsCapabilitiesCopyWithImpl<DiagnosticsCapabilities>(this as DiagnosticsCapabilities, _$identity);
+
+  /// Serializes this DiagnosticsCapabilities to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiagnosticsCapabilities&&(identical(other.relatedInformation, relatedInformation) || other.relatedInformation == relatedInformation)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.codeDescriptionSupport, codeDescriptionSupport) || other.codeDescriptionSupport == codeDescriptionSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,relatedInformation,tagSupport,codeDescriptionSupport,dataSupport);
+
+@override
+String toString() {
+  return 'DiagnosticsCapabilities(relatedInformation: $relatedInformation, tagSupport: $tagSupport, codeDescriptionSupport: $codeDescriptionSupport, dataSupport: $dataSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $DiagnosticsCapabilitiesCopyWith<$Res>  {
+  factory $DiagnosticsCapabilitiesCopyWith(DiagnosticsCapabilities value, $Res Function(DiagnosticsCapabilities) _then) = _$DiagnosticsCapabilitiesCopyWithImpl;
+@useResult
+$Res call({
+ bool? relatedInformation, ClientDiagnosticsTagOptions? tagSupport, bool? codeDescriptionSupport, bool? dataSupport
+});
+
+
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport;
+
+}
+/// @nodoc
+class _$DiagnosticsCapabilitiesCopyWithImpl<$Res>
+    implements $DiagnosticsCapabilitiesCopyWith<$Res> {
+  _$DiagnosticsCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final DiagnosticsCapabilities _self;
+  final $Res Function(DiagnosticsCapabilities) _then;
+
+/// Create a copy of DiagnosticsCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? relatedInformation = freezed,Object? tagSupport = freezed,Object? codeDescriptionSupport = freezed,Object? dataSupport = freezed,}) {
+  return _then(_self.copyWith(
+relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
+as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as ClientDiagnosticsTagOptions?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
+as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+/// Create a copy of DiagnosticsCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $ClientDiagnosticsTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _DiagnosticsCapabilities implements DiagnosticsCapabilities {
+  const _DiagnosticsCapabilities({this.relatedInformation, this.tagSupport, this.codeDescriptionSupport, this.dataSupport});
+  factory _DiagnosticsCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticsCapabilitiesFromJson(json);
+
+/// Whether the clients accepts diagnostics with related information.
+@override final  bool? relatedInformation;
+/// Client supports the tag property to provide meta data about a
+/// diagnostic. Clients supporting tags have to handle unknown tags
+/// gracefully.
+@override final  ClientDiagnosticsTagOptions? tagSupport;
+/// Client supports a codeDescription property
+@override final  bool? codeDescriptionSupport;
+/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/publishDiagnostics` and
+/// `textDocument/codeAction` request.
+@override final  bool? dataSupport;
+
+/// Create a copy of DiagnosticsCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DiagnosticsCapabilitiesCopyWith<_DiagnosticsCapabilities> get copyWith => __$DiagnosticsCapabilitiesCopyWithImpl<_DiagnosticsCapabilities>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$DiagnosticsCapabilitiesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiagnosticsCapabilities&&(identical(other.relatedInformation, relatedInformation) || other.relatedInformation == relatedInformation)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.codeDescriptionSupport, codeDescriptionSupport) || other.codeDescriptionSupport == codeDescriptionSupport)&&(identical(other.dataSupport, dataSupport) || other.dataSupport == dataSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,relatedInformation,tagSupport,codeDescriptionSupport,dataSupport);
+
+@override
+String toString() {
+  return 'DiagnosticsCapabilities(relatedInformation: $relatedInformation, tagSupport: $tagSupport, codeDescriptionSupport: $codeDescriptionSupport, dataSupport: $dataSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$DiagnosticsCapabilitiesCopyWith<$Res> implements $DiagnosticsCapabilitiesCopyWith<$Res> {
+  factory _$DiagnosticsCapabilitiesCopyWith(_DiagnosticsCapabilities value, $Res Function(_DiagnosticsCapabilities) _then) = __$DiagnosticsCapabilitiesCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? relatedInformation, ClientDiagnosticsTagOptions? tagSupport, bool? codeDescriptionSupport, bool? dataSupport
+});
+
+
+@override $ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport;
+
+}
+/// @nodoc
+class __$DiagnosticsCapabilitiesCopyWithImpl<$Res>
+    implements _$DiagnosticsCapabilitiesCopyWith<$Res> {
+  __$DiagnosticsCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final _DiagnosticsCapabilities _self;
+  final $Res Function(_DiagnosticsCapabilities) _then;
+
+/// Create a copy of DiagnosticsCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? relatedInformation = freezed,Object? tagSupport = freezed,Object? codeDescriptionSupport = freezed,Object? dataSupport = freezed,}) {
+  return _then(_DiagnosticsCapabilities(
+relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
+as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as ClientDiagnosticsTagOptions?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
+as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+/// Create a copy of DiagnosticsCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientDiagnosticsTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $ClientDiagnosticsTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}
 }
 
 
@@ -11079,7 +12380,7 @@ mixin _$FoldingRange {
 /// not defined, defaults to the length of the start line.
  int? get startCharacter;/// The zero-based character offset before the folded range ends. If not
 /// defined, defaults to the length of the end line.
- int? get endCharacter;/// Describes the kind of the folding range such as `comment' or 'region'.
+ int? get endCharacter;/// Describes the kind of the folding range such as 'comment' or 'region'.
 /// The kind is used to categorize folding ranges and used by commands like
 /// 'Fold all comments'. See `FoldingRangeKind` for an enumeration of
 /// standardized kinds.
@@ -11173,7 +12474,7 @@ class _FoldingRange implements FoldingRange {
 /// The zero-based character offset before the folded range ends. If not
 /// defined, defaults to the length of the end line.
 @override final  int? endCharacter;
-/// Describes the kind of the folding range such as `comment' or 'region'.
+/// Describes the kind of the folding range such as 'comment' or 'region'.
 /// The kind is used to categorize folding ranges and used by commands like
 /// 'Fold all comments'. See `FoldingRangeKind` for an enumeration of
 /// standardized kinds.
@@ -13728,146 +15029,6 @@ $PositionCopyWith<$Res> get position {
 
 
 /// @nodoc
-mixin _$DocumentDiagnosticReportPartialResult {
-
- Map<String, Object> get relatedDocuments;
-/// Create a copy of DocumentDiagnosticReportPartialResult
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$DocumentDiagnosticReportPartialResultCopyWith<DocumentDiagnosticReportPartialResult> get copyWith => _$DocumentDiagnosticReportPartialResultCopyWithImpl<DocumentDiagnosticReportPartialResult>(this as DocumentDiagnosticReportPartialResult, _$identity);
-
-  /// Serializes this DocumentDiagnosticReportPartialResult to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentDiagnosticReportPartialResult&&const DeepCollectionEquality().equals(other.relatedDocuments, relatedDocuments));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(relatedDocuments));
-
-@override
-String toString() {
-  return 'DocumentDiagnosticReportPartialResult(relatedDocuments: $relatedDocuments)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $DocumentDiagnosticReportPartialResultCopyWith<$Res>  {
-  factory $DocumentDiagnosticReportPartialResultCopyWith(DocumentDiagnosticReportPartialResult value, $Res Function(DocumentDiagnosticReportPartialResult) _then) = _$DocumentDiagnosticReportPartialResultCopyWithImpl;
-@useResult
-$Res call({
- Map<String, Object> relatedDocuments
-});
-
-
-
-
-}
-/// @nodoc
-class _$DocumentDiagnosticReportPartialResultCopyWithImpl<$Res>
-    implements $DocumentDiagnosticReportPartialResultCopyWith<$Res> {
-  _$DocumentDiagnosticReportPartialResultCopyWithImpl(this._self, this._then);
-
-  final DocumentDiagnosticReportPartialResult _self;
-  final $Res Function(DocumentDiagnosticReportPartialResult) _then;
-
-/// Create a copy of DocumentDiagnosticReportPartialResult
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? relatedDocuments = null,}) {
-  return _then(_self.copyWith(
-relatedDocuments: null == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
-as Map<String, Object>,
-  ));
-}
-
-}
-
-
-
-/// @nodoc
-@JsonSerializable()
-
-class _DocumentDiagnosticReportPartialResult implements DocumentDiagnosticReportPartialResult {
-  const _DocumentDiagnosticReportPartialResult({required final  Map<String, Object> relatedDocuments}): _relatedDocuments = relatedDocuments;
-  factory _DocumentDiagnosticReportPartialResult.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticReportPartialResultFromJson(json);
-
- final  Map<String, Object> _relatedDocuments;
-@override Map<String, Object> get relatedDocuments {
-  if (_relatedDocuments is EqualUnmodifiableMapView) return _relatedDocuments;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(_relatedDocuments);
-}
-
-
-/// Create a copy of DocumentDiagnosticReportPartialResult
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$DocumentDiagnosticReportPartialResultCopyWith<_DocumentDiagnosticReportPartialResult> get copyWith => __$DocumentDiagnosticReportPartialResultCopyWithImpl<_DocumentDiagnosticReportPartialResult>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$DocumentDiagnosticReportPartialResultToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentDiagnosticReportPartialResult&&const DeepCollectionEquality().equals(other._relatedDocuments, _relatedDocuments));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_relatedDocuments));
-
-@override
-String toString() {
-  return 'DocumentDiagnosticReportPartialResult(relatedDocuments: $relatedDocuments)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$DocumentDiagnosticReportPartialResultCopyWith<$Res> implements $DocumentDiagnosticReportPartialResultCopyWith<$Res> {
-  factory _$DocumentDiagnosticReportPartialResultCopyWith(_DocumentDiagnosticReportPartialResult value, $Res Function(_DocumentDiagnosticReportPartialResult) _then) = __$DocumentDiagnosticReportPartialResultCopyWithImpl;
-@override @useResult
-$Res call({
- Map<String, Object> relatedDocuments
-});
-
-
-
-
-}
-/// @nodoc
-class __$DocumentDiagnosticReportPartialResultCopyWithImpl<$Res>
-    implements _$DocumentDiagnosticReportPartialResultCopyWith<$Res> {
-  __$DocumentDiagnosticReportPartialResultCopyWithImpl(this._self, this._then);
-
-  final _DocumentDiagnosticReportPartialResult _self;
-  final $Res Function(_DocumentDiagnosticReportPartialResult) _then;
-
-/// Create a copy of DocumentDiagnosticReportPartialResult
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? relatedDocuments = null,}) {
-  return _then(_DocumentDiagnosticReportPartialResult(
-relatedDocuments: null == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
-as Map<String, Object>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
 mixin _$DiagnosticServerCancellationData {
 
  bool get retriggerRequest;
@@ -14632,11 +15793,153 @@ $CommandCopyWith<$Res>? get command {
 
 
 /// @nodoc
+mixin _$TextDocumentContentResult {
+
+/// The text content of the text document. Please note, that the content of
+/// any subsequent open notifications for the text document might differ
+/// from the returned content due to whitespace and line ending
+/// normalizations done on the client
+ String get text;
+/// Create a copy of TextDocumentContentResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentResultCopyWith<TextDocumentContentResult> get copyWith => _$TextDocumentContentResultCopyWithImpl<TextDocumentContentResult>(this as TextDocumentContentResult, _$identity);
+
+  /// Serializes this TextDocumentContentResult to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentResult&&(identical(other.text, text) || other.text == text));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,text);
+
+@override
+String toString() {
+  return 'TextDocumentContentResult(text: $text)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentResultCopyWith<$Res>  {
+  factory $TextDocumentContentResultCopyWith(TextDocumentContentResult value, $Res Function(TextDocumentContentResult) _then) = _$TextDocumentContentResultCopyWithImpl;
+@useResult
+$Res call({
+ String text
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentResultCopyWithImpl<$Res>
+    implements $TextDocumentContentResultCopyWith<$Res> {
+  _$TextDocumentContentResultCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentResult _self;
+  final $Res Function(TextDocumentContentResult) _then;
+
+/// Create a copy of TextDocumentContentResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? text = null,}) {
+  return _then(_self.copyWith(
+text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentContentResult implements TextDocumentContentResult {
+  const _TextDocumentContentResult({required this.text});
+  factory _TextDocumentContentResult.fromJson(Map<String, dynamic> json) => _$TextDocumentContentResultFromJson(json);
+
+/// The text content of the text document. Please note, that the content of
+/// any subsequent open notifications for the text document might differ
+/// from the returned content due to whitespace and line ending
+/// normalizations done on the client
+@override final  String text;
+
+/// Create a copy of TextDocumentContentResult
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentContentResultCopyWith<_TextDocumentContentResult> get copyWith => __$TextDocumentContentResultCopyWithImpl<_TextDocumentContentResult>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentContentResultToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentResult&&(identical(other.text, text) || other.text == text));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,text);
+
+@override
+String toString() {
+  return 'TextDocumentContentResult(text: $text)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentContentResultCopyWith<$Res> implements $TextDocumentContentResultCopyWith<$Res> {
+  factory _$TextDocumentContentResultCopyWith(_TextDocumentContentResult value, $Res Function(_TextDocumentContentResult) _then) = __$TextDocumentContentResultCopyWithImpl;
+@override @useResult
+$Res call({
+ String text
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentContentResultCopyWithImpl<$Res>
+    implements _$TextDocumentContentResultCopyWith<$Res> {
+  __$TextDocumentContentResultCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentContentResult _self;
+  final $Res Function(_TextDocumentContentResult) _then;
+
+/// Create a copy of TextDocumentContentResult
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? text = null,}) {
+  return _then(_TextDocumentContentResult(
+text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$InitializeResult {
 
 /// The capabilities the language server provides.
  ServerCapabilities get capabilities;/// Information about the server.
- ({String name, String? version})? get serverInfo;
+ ServerInfo? get serverInfo;
 /// Create a copy of InitializeResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -14669,11 +15972,11 @@ abstract mixin class $InitializeResultCopyWith<$Res>  {
   factory $InitializeResultCopyWith(InitializeResult value, $Res Function(InitializeResult) _then) = _$InitializeResultCopyWithImpl;
 @useResult
 $Res call({
- ServerCapabilities capabilities, ({String name, String? version})? serverInfo
+ ServerCapabilities capabilities, ServerInfo? serverInfo
 });
 
 
-$ServerCapabilitiesCopyWith<$Res> get capabilities;
+$ServerCapabilitiesCopyWith<$Res> get capabilities;$ServerInfoCopyWith<$Res>? get serverInfo;
 
 }
 /// @nodoc
@@ -14690,7 +15993,7 @@ class _$InitializeResultCopyWithImpl<$Res>
   return _then(_self.copyWith(
 capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
 as ServerCapabilities,serverInfo: freezed == serverInfo ? _self.serverInfo : serverInfo // ignore: cast_nullable_to_non_nullable
-as ({String name, String? version})?,
+as ServerInfo?,
   ));
 }
 /// Create a copy of InitializeResult
@@ -14701,6 +16004,18 @@ $ServerCapabilitiesCopyWith<$Res> get capabilities {
   
   return $ServerCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
     return _then(_self.copyWith(capabilities: value));
+  });
+}/// Create a copy of InitializeResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServerInfoCopyWith<$Res>? get serverInfo {
+    if (_self.serverInfo == null) {
+    return null;
+  }
+
+  return $ServerInfoCopyWith<$Res>(_self.serverInfo!, (value) {
+    return _then(_self.copyWith(serverInfo: value));
   });
 }
 }
@@ -14717,7 +16032,7 @@ class _InitializeResult implements InitializeResult {
 /// The capabilities the language server provides.
 @override final  ServerCapabilities capabilities;
 /// Information about the server.
-@override final  ({String name, String? version})? serverInfo;
+@override final  ServerInfo? serverInfo;
 
 /// Create a copy of InitializeResult
 /// with the given fields replaced by the non-null parameter values.
@@ -14752,11 +16067,11 @@ abstract mixin class _$InitializeResultCopyWith<$Res> implements $InitializeResu
   factory _$InitializeResultCopyWith(_InitializeResult value, $Res Function(_InitializeResult) _then) = __$InitializeResultCopyWithImpl;
 @override @useResult
 $Res call({
- ServerCapabilities capabilities, ({String name, String? version})? serverInfo
+ ServerCapabilities capabilities, ServerInfo? serverInfo
 });
 
 
-@override $ServerCapabilitiesCopyWith<$Res> get capabilities;
+@override $ServerCapabilitiesCopyWith<$Res> get capabilities;@override $ServerInfoCopyWith<$Res>? get serverInfo;
 
 }
 /// @nodoc
@@ -14773,7 +16088,7 @@ class __$InitializeResultCopyWithImpl<$Res>
   return _then(_InitializeResult(
 capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
 as ServerCapabilities,serverInfo: freezed == serverInfo ? _self.serverInfo : serverInfo // ignore: cast_nullable_to_non_nullable
-as ({String name, String? version})?,
+as ServerInfo?,
   ));
 }
 
@@ -14785,6 +16100,18 @@ $ServerCapabilitiesCopyWith<$Res> get capabilities {
   
   return $ServerCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
     return _then(_self.copyWith(capabilities: value));
+  });
+}/// Create a copy of InitializeResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServerInfoCopyWith<$Res>? get serverInfo {
+    if (_self.serverInfo == null) {
+    return null;
+  }
+
+  return $ServerInfoCopyWith<$Res>(_self.serverInfo!, (value) {
+    return _then(_self.copyWith(serverInfo: value));
   });
 }
 }
@@ -15690,11 +17017,27 @@ mixin _$CompletionList {
 /// used if a completion item itself doesn't specify the value.
 ///
 /// If a completion list specifies a default value and a completion item
-/// also specifies a corresponding value the one from the item is used.
+/// also specifies a corresponding value, the rules for combining these are
+/// defined by `applyKinds` (if the client supports it), defaulting to
+/// ApplyKind.Replace.
 ///
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
- ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? get itemDefaults;
+ CompletionItemDefaults? get itemDefaults;/// Specifies how fields from a completion item should be combined with
+/// those from `completionList.itemDefaults`.
+///
+/// If unspecified, all fields will be treated as ApplyKind.Replace.
+///
+/// If a field's value is ApplyKind.Replace, the value from a completion
+/// item (if provided and not `null`) will always be used instead of the
+/// value from `completionItem.itemDefaults`.
+///
+/// If a field's value is ApplyKind.Merge, the values will be merged using
+/// the rules defined against each field below.
+///
+/// Servers are only allowed to return `applyKind` if the client signals
+/// support for this via the `completionList.applyKindSupport` capability.
+ CompletionItemApplyKinds? get applyKind;
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -15707,16 +17050,16 @@ $CompletionListCopyWith<CompletionList> get copyWith => _$CompletionListCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionList&&(identical(other.isIncomplete, isIncomplete) || other.isIncomplete == isIncomplete)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.itemDefaults, itemDefaults) || other.itemDefaults == itemDefaults));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionList&&(identical(other.isIncomplete, isIncomplete) || other.isIncomplete == isIncomplete)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.itemDefaults, itemDefaults) || other.itemDefaults == itemDefaults)&&(identical(other.applyKind, applyKind) || other.applyKind == applyKind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,isIncomplete,const DeepCollectionEquality().hash(items),itemDefaults);
+int get hashCode => Object.hash(runtimeType,isIncomplete,const DeepCollectionEquality().hash(items),itemDefaults,applyKind);
 
 @override
 String toString() {
-  return 'CompletionList(isIncomplete: $isIncomplete, items: $items, itemDefaults: $itemDefaults)';
+  return 'CompletionList(isIncomplete: $isIncomplete, items: $items, itemDefaults: $itemDefaults, applyKind: $applyKind)';
 }
 
 
@@ -15727,11 +17070,11 @@ abstract mixin class $CompletionListCopyWith<$Res>  {
   factory $CompletionListCopyWith(CompletionList value, $Res Function(CompletionList) _then) = _$CompletionListCopyWithImpl;
 @useResult
 $Res call({
- bool isIncomplete, List<CompletionItem> items, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults
+ bool isIncomplete, List<CompletionItem> items, CompletionItemDefaults? itemDefaults, CompletionItemApplyKinds? applyKind
 });
 
 
-
+$CompletionItemDefaultsCopyWith<$Res>? get itemDefaults;$CompletionItemApplyKindsCopyWith<$Res>? get applyKind;
 
 }
 /// @nodoc
@@ -15744,15 +17087,40 @@ class _$CompletionListCopyWithImpl<$Res>
 
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isIncomplete = null,Object? items = null,Object? itemDefaults = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isIncomplete = null,Object? items = null,Object? itemDefaults = freezed,Object? applyKind = freezed,}) {
   return _then(_self.copyWith(
 isIncomplete: null == isIncomplete ? _self.isIncomplete : isIncomplete // ignore: cast_nullable_to_non_nullable
 as bool,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<CompletionItem>,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,
+as CompletionItemDefaults?,applyKind: freezed == applyKind ? _self.applyKind : applyKind // ignore: cast_nullable_to_non_nullable
+as CompletionItemApplyKinds?,
   ));
 }
+/// Create a copy of CompletionList
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CompletionItemDefaultsCopyWith<$Res>? get itemDefaults {
+    if (_self.itemDefaults == null) {
+    return null;
+  }
 
+  return $CompletionItemDefaultsCopyWith<$Res>(_self.itemDefaults!, (value) {
+    return _then(_self.copyWith(itemDefaults: value));
+  });
+}/// Create a copy of CompletionList
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CompletionItemApplyKindsCopyWith<$Res>? get applyKind {
+    if (_self.applyKind == null) {
+    return null;
+  }
+
+  return $CompletionItemApplyKindsCopyWith<$Res>(_self.applyKind!, (value) {
+    return _then(_self.copyWith(applyKind: value));
+  });
+}
 }
 
 
@@ -15761,7 +17129,7 @@ as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insert
 @JsonSerializable()
 
 class _CompletionList implements CompletionList {
-  const _CompletionList({required this.isIncomplete, required final  List<CompletionItem> items, this.itemDefaults}): _items = items;
+  const _CompletionList({required this.isIncomplete, required final  List<CompletionItem> items, this.itemDefaults, this.applyKind}): _items = items;
   factory _CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFromJson(json);
 
 /// This list it not complete. Further typing results in recomputing this
@@ -15785,11 +17153,28 @@ class _CompletionList implements CompletionList {
 /// used if a completion item itself doesn't specify the value.
 ///
 /// If a completion list specifies a default value and a completion item
-/// also specifies a corresponding value the one from the item is used.
+/// also specifies a corresponding value, the rules for combining these are
+/// defined by `applyKinds` (if the client supports it), defaulting to
+/// ApplyKind.Replace.
 ///
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
-@override final  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults;
+@override final  CompletionItemDefaults? itemDefaults;
+/// Specifies how fields from a completion item should be combined with
+/// those from `completionList.itemDefaults`.
+///
+/// If unspecified, all fields will be treated as ApplyKind.Replace.
+///
+/// If a field's value is ApplyKind.Replace, the value from a completion
+/// item (if provided and not `null`) will always be used instead of the
+/// value from `completionItem.itemDefaults`.
+///
+/// If a field's value is ApplyKind.Merge, the values will be merged using
+/// the rules defined against each field below.
+///
+/// Servers are only allowed to return `applyKind` if the client signals
+/// support for this via the `completionList.applyKindSupport` capability.
+@override final  CompletionItemApplyKinds? applyKind;
 
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
@@ -15804,16 +17189,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionList&&(identical(other.isIncomplete, isIncomplete) || other.isIncomplete == isIncomplete)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.itemDefaults, itemDefaults) || other.itemDefaults == itemDefaults));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionList&&(identical(other.isIncomplete, isIncomplete) || other.isIncomplete == isIncomplete)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.itemDefaults, itemDefaults) || other.itemDefaults == itemDefaults)&&(identical(other.applyKind, applyKind) || other.applyKind == applyKind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,isIncomplete,const DeepCollectionEquality().hash(_items),itemDefaults);
+int get hashCode => Object.hash(runtimeType,isIncomplete,const DeepCollectionEquality().hash(_items),itemDefaults,applyKind);
 
 @override
 String toString() {
-  return 'CompletionList(isIncomplete: $isIncomplete, items: $items, itemDefaults: $itemDefaults)';
+  return 'CompletionList(isIncomplete: $isIncomplete, items: $items, itemDefaults: $itemDefaults, applyKind: $applyKind)';
 }
 
 
@@ -15824,11 +17209,11 @@ abstract mixin class _$CompletionListCopyWith<$Res> implements $CompletionListCo
   factory _$CompletionListCopyWith(_CompletionList value, $Res Function(_CompletionList) _then) = __$CompletionListCopyWithImpl;
 @override @useResult
 $Res call({
- bool isIncomplete, List<CompletionItem> items, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults
+ bool isIncomplete, List<CompletionItem> items, CompletionItemDefaults? itemDefaults, CompletionItemApplyKinds? applyKind
 });
 
 
-
+@override $CompletionItemDefaultsCopyWith<$Res>? get itemDefaults;@override $CompletionItemApplyKindsCopyWith<$Res>? get applyKind;
 
 }
 /// @nodoc
@@ -15841,16 +17226,41 @@ class __$CompletionListCopyWithImpl<$Res>
 
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isIncomplete = null,Object? items = null,Object? itemDefaults = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isIncomplete = null,Object? items = null,Object? itemDefaults = freezed,Object? applyKind = freezed,}) {
   return _then(_CompletionList(
 isIncomplete: null == isIncomplete ? _self.isIncomplete : isIncomplete // ignore: cast_nullable_to_non_nullable
 as bool,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<CompletionItem>,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,
+as CompletionItemDefaults?,applyKind: freezed == applyKind ? _self.applyKind : applyKind // ignore: cast_nullable_to_non_nullable
+as CompletionItemApplyKinds?,
   ));
 }
 
+/// Create a copy of CompletionList
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CompletionItemDefaultsCopyWith<$Res>? get itemDefaults {
+    if (_self.itemDefaults == null) {
+    return null;
+  }
 
+  return $CompletionItemDefaultsCopyWith<$Res>(_self.itemDefaults!, (value) {
+    return _then(_self.copyWith(itemDefaults: value));
+  });
+}/// Create a copy of CompletionList
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CompletionItemApplyKindsCopyWith<$Res>? get applyKind {
+    if (_self.applyKind == null) {
+    return null;
+  }
+
+  return $CompletionItemApplyKindsCopyWith<$Res>(_self.applyKind!, (value) {
+    return _then(_self.copyWith(applyKind: value));
+  });
+}
 }
 
 
@@ -16038,12 +17448,25 @@ mixin _$SignatureHelp {
 ///
 /// In future version of the protocol this property might become mandatory
 /// to better express this.
- int? get activeSignature;/// The active parameter of the active signature. If omitted or the value
-/// lies outside the range of `signatures[activeSignature].parameters`
-/// defaults to 0 if the active signature has parameters. If the active
-/// signature has no parameters it is ignored. In future version of the
-/// protocol this property might become mandatory to better express the
-/// active parameter if the active signature does have any.
+ int? get activeSignature;/// The active parameter of the active signature.
+///
+/// If `null`, no parameter of the signature is active (for example a named
+/// argument that does not match any declared parameters). This is only
+/// valid if the client specifies the client capability
+/// `textDocument.signatureHelp.noActiveParameterSupport === true`
+///
+/// If omitted or the value lies outside the range of
+/// `signatures[activeSignature].parameters` defaults to 0 if the active
+/// signature has parameters.
+///
+/// If the active signature has no parameters it is ignored.
+///
+/// In future version of the protocol this property might become mandatory
+/// (but still nullable) to better express the active parameter if the
+/// active signature does have any.
+///
+/// Since version 3.16.0 the `SignatureInformation` itself provides a
+/// `activeParameter` property and it should be used instead of this one.
  int? get activeParameter;
 /// Create a copy of SignatureHelp
 /// with the given fields replaced by the non-null parameter values.
@@ -16133,12 +17556,25 @@ class _SignatureHelp implements SignatureHelp {
 /// In future version of the protocol this property might become mandatory
 /// to better express this.
 @override final  int? activeSignature;
-/// The active parameter of the active signature. If omitted or the value
-/// lies outside the range of `signatures[activeSignature].parameters`
-/// defaults to 0 if the active signature has parameters. If the active
-/// signature has no parameters it is ignored. In future version of the
-/// protocol this property might become mandatory to better express the
-/// active parameter if the active signature does have any.
+/// The active parameter of the active signature.
+///
+/// If `null`, no parameter of the signature is active (for example a named
+/// argument that does not match any declared parameters). This is only
+/// valid if the client specifies the client capability
+/// `textDocument.signatureHelp.noActiveParameterSupport === true`
+///
+/// If omitted or the value lies outside the range of
+/// `signatures[activeSignature].parameters` defaults to 0 if the active
+/// signature has parameters.
+///
+/// If the active signature has no parameters it is ignored.
+///
+/// In future version of the protocol this property might become mandatory
+/// (but still nullable) to better express the active parameter if the
+/// active signature does have any.
+///
+/// Since version 3.16.0 the `SignatureInformation` itself provides a
+/// `activeParameter` property and it should be used instead of this one.
 @override final  int? activeParameter;
 
 /// Create a copy of SignatureHelp
@@ -16823,7 +18259,8 @@ mixin _$Command {
 
 /// Title of the command, like `save`.
  String get title;/// The identifier of the actual command handler.
- String get command;/// Arguments that the command handler should be invoked with.
+ String get command;/// An optional tooltip.
+ String? get tooltip;/// Arguments that the command handler should be invoked with.
  List<LSPAny>? get arguments;
 /// Create a copy of Command
 /// with the given fields replaced by the non-null parameter values.
@@ -16837,16 +18274,16 @@ $CommandCopyWith<Command> get copyWith => _$CommandCopyWithImpl<Command>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Command&&(identical(other.title, title) || other.title == title)&&(identical(other.command, command) || other.command == command)&&const DeepCollectionEquality().equals(other.arguments, arguments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Command&&(identical(other.title, title) || other.title == title)&&(identical(other.command, command) || other.command == command)&&(identical(other.tooltip, tooltip) || other.tooltip == tooltip)&&const DeepCollectionEquality().equals(other.arguments, arguments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,command,const DeepCollectionEquality().hash(arguments));
+int get hashCode => Object.hash(runtimeType,title,command,tooltip,const DeepCollectionEquality().hash(arguments));
 
 @override
 String toString() {
-  return 'Command(title: $title, command: $command, arguments: $arguments)';
+  return 'Command(title: $title, command: $command, tooltip: $tooltip, arguments: $arguments)';
 }
 
 
@@ -16857,7 +18294,7 @@ abstract mixin class $CommandCopyWith<$Res>  {
   factory $CommandCopyWith(Command value, $Res Function(Command) _then) = _$CommandCopyWithImpl;
 @useResult
 $Res call({
- String title, String command, List<LSPAny>? arguments
+ String title, String command, String? tooltip, List<LSPAny>? arguments
 });
 
 
@@ -16874,11 +18311,12 @@ class _$CommandCopyWithImpl<$Res>
 
 /// Create a copy of Command
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? command = null,Object? arguments = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? command = null,Object? tooltip = freezed,Object? arguments = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
-as String,arguments: freezed == arguments ? _self.arguments : arguments // ignore: cast_nullable_to_non_nullable
+as String,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
+as String?,arguments: freezed == arguments ? _self.arguments : arguments // ignore: cast_nullable_to_non_nullable
 as List<LSPAny>?,
   ));
 }
@@ -16891,13 +18329,15 @@ as List<LSPAny>?,
 @JsonSerializable()
 
 class _Command implements Command {
-  const _Command({required this.title, required this.command, final  List<LSPAny>? arguments}): _arguments = arguments;
+  const _Command({required this.title, required this.command, this.tooltip, final  List<LSPAny>? arguments}): _arguments = arguments;
   factory _Command.fromJson(Map<String, dynamic> json) => _$CommandFromJson(json);
 
 /// Title of the command, like `save`.
 @override final  String title;
 /// The identifier of the actual command handler.
 @override final  String command;
+/// An optional tooltip.
+@override final  String? tooltip;
 /// Arguments that the command handler should be invoked with.
  final  List<LSPAny>? _arguments;
 /// Arguments that the command handler should be invoked with.
@@ -16923,16 +18363,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Command&&(identical(other.title, title) || other.title == title)&&(identical(other.command, command) || other.command == command)&&const DeepCollectionEquality().equals(other._arguments, _arguments));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Command&&(identical(other.title, title) || other.title == title)&&(identical(other.command, command) || other.command == command)&&(identical(other.tooltip, tooltip) || other.tooltip == tooltip)&&const DeepCollectionEquality().equals(other._arguments, _arguments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,command,const DeepCollectionEquality().hash(_arguments));
+int get hashCode => Object.hash(runtimeType,title,command,tooltip,const DeepCollectionEquality().hash(_arguments));
 
 @override
 String toString() {
-  return 'Command(title: $title, command: $command, arguments: $arguments)';
+  return 'Command(title: $title, command: $command, tooltip: $tooltip, arguments: $arguments)';
 }
 
 
@@ -16943,7 +18383,7 @@ abstract mixin class _$CommandCopyWith<$Res> implements $CommandCopyWith<$Res> {
   factory _$CommandCopyWith(_Command value, $Res Function(_Command) _then) = __$CommandCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String command, List<LSPAny>? arguments
+ String title, String command, String? tooltip, List<LSPAny>? arguments
 });
 
 
@@ -16960,11 +18400,12 @@ class __$CommandCopyWithImpl<$Res>
 
 /// Create a copy of Command
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? command = null,Object? arguments = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? command = null,Object? tooltip = freezed,Object? arguments = freezed,}) {
   return _then(_Command(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
-as String,arguments: freezed == arguments ? _self._arguments : arguments // ignore: cast_nullable_to_non_nullable
+as String,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
+as String?,arguments: freezed == arguments ? _self._arguments : arguments // ignore: cast_nullable_to_non_nullable
 as List<LSPAny>?,
   ));
 }
@@ -17005,12 +18446,13 @@ mixin _$CodeAction {
 /// that auto applies a code action and only disabled code actions are
 /// returned, the client should show the user an error message with `reason`
 /// in the editor.
- ({String reason})? get disabled;/// The workspace edit this code action performs.
+ CodeActionDisabled? get disabled;/// The workspace edit this code action performs.
  WorkspaceEdit? get edit;/// A command this code action executes. If a code action provides an edit
 /// and a command, first the edit is executed and then the command.
  Command? get command;/// A data entry field that is preserved on a code action between a
 /// `textDocument/codeAction` and a `codeAction/resolve` request.
- LSPAny? get data;
+ LSPAny? get data;/// Tags for this code action.
+ List<CodeActionTag>? get tags;
 /// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -17023,16 +18465,16 @@ $CodeActionCopyWith<CodeAction> get copyWith => _$CodeActionCopyWithImpl<CodeAct
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeAction&&(identical(other.title, title) || other.title == title)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.diagnostics, diagnostics)&&(identical(other.isPreferred, isPreferred) || other.isPreferred == isPreferred)&&(identical(other.disabled, disabled) || other.disabled == disabled)&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.command, command) || other.command == command)&&(identical(other.data, data) || other.data == data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeAction&&(identical(other.title, title) || other.title == title)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other.diagnostics, diagnostics)&&(identical(other.isPreferred, isPreferred) || other.isPreferred == isPreferred)&&(identical(other.disabled, disabled) || other.disabled == disabled)&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.command, command) || other.command == command)&&(identical(other.data, data) || other.data == data)&&const DeepCollectionEquality().equals(other.tags, tags));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,kind,const DeepCollectionEquality().hash(diagnostics),isPreferred,disabled,edit,command,data);
+int get hashCode => Object.hash(runtimeType,title,kind,const DeepCollectionEquality().hash(diagnostics),isPreferred,disabled,edit,command,data,const DeepCollectionEquality().hash(tags));
 
 @override
 String toString() {
-  return 'CodeAction(title: $title, kind: $kind, diagnostics: $diagnostics, isPreferred: $isPreferred, disabled: $disabled, edit: $edit, command: $command, data: $data)';
+  return 'CodeAction(title: $title, kind: $kind, diagnostics: $diagnostics, isPreferred: $isPreferred, disabled: $disabled, edit: $edit, command: $command, data: $data, tags: $tags)';
 }
 
 
@@ -17043,11 +18485,11 @@ abstract mixin class $CodeActionCopyWith<$Res>  {
   factory $CodeActionCopyWith(CodeAction value, $Res Function(CodeAction) _then) = _$CodeActionCopyWithImpl;
 @useResult
 $Res call({
- String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
+ String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, CodeActionDisabled? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data, List<CodeActionTag>? tags
 });
 
 
-$WorkspaceEditCopyWith<$Res>? get edit;$CommandCopyWith<$Res>? get command;
+$CodeActionDisabledCopyWith<$Res>? get disabled;$WorkspaceEditCopyWith<$Res>? get edit;$CommandCopyWith<$Res>? get command;
 
 }
 /// @nodoc
@@ -17060,20 +18502,33 @@ class _$CodeActionCopyWithImpl<$Res>
 
 /// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? kind = freezed,Object? diagnostics = freezed,Object? isPreferred = freezed,Object? disabled = freezed,Object? edit = freezed,Object? command = freezed,Object? data = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? kind = freezed,Object? diagnostics = freezed,Object? isPreferred = freezed,Object? disabled = freezed,Object? edit = freezed,Object? command = freezed,Object? data = freezed,Object? tags = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as CodeActionKind?,diagnostics: freezed == diagnostics ? _self.diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>?,isPreferred: freezed == isPreferred ? _self.isPreferred : isPreferred // ignore: cast_nullable_to_non_nullable
 as bool?,disabled: freezed == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
-as ({String reason})?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
+as CodeActionDisabled?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
 as WorkspaceEdit?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,
+as LSPAny?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as List<CodeActionTag>?,
   ));
 }
 /// Create a copy of CodeAction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CodeActionDisabledCopyWith<$Res>? get disabled {
+    if (_self.disabled == null) {
+    return null;
+  }
+
+  return $CodeActionDisabledCopyWith<$Res>(_self.disabled!, (value) {
+    return _then(_self.copyWith(disabled: value));
+  });
+}/// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -17106,7 +18561,7 @@ $CommandCopyWith<$Res>? get command {
 @JsonSerializable()
 
 class _CodeAction implements CodeAction {
-  const _CodeAction({required this.title, this.kind, final  List<Diagnostic>? diagnostics, this.isPreferred, this.disabled, this.edit, this.command, this.data}): _diagnostics = diagnostics;
+  const _CodeAction({required this.title, this.kind, final  List<Diagnostic>? diagnostics, this.isPreferred, this.disabled, this.edit, this.command, this.data, final  List<CodeActionTag>? tags}): _diagnostics = diagnostics,_tags = tags;
   factory _CodeAction.fromJson(Map<String, dynamic> json) => _$CodeActionFromJson(json);
 
 /// A short, human-readable, title for this code action.
@@ -17151,7 +18606,7 @@ class _CodeAction implements CodeAction {
 /// that auto applies a code action and only disabled code actions are
 /// returned, the client should show the user an error message with `reason`
 /// in the editor.
-@override final  ({String reason})? disabled;
+@override final  CodeActionDisabled? disabled;
 /// The workspace edit this code action performs.
 @override final  WorkspaceEdit? edit;
 /// A command this code action executes. If a code action provides an edit
@@ -17160,6 +18615,17 @@ class _CodeAction implements CodeAction {
 /// A data entry field that is preserved on a code action between a
 /// `textDocument/codeAction` and a `codeAction/resolve` request.
 @override final  LSPAny? data;
+/// Tags for this code action.
+ final  List<CodeActionTag>? _tags;
+/// Tags for this code action.
+@override List<CodeActionTag>? get tags {
+  final value = _tags;
+  if (value == null) return null;
+  if (_tags is EqualUnmodifiableListView) return _tags;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 
 /// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
@@ -17174,16 +18640,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeAction&&(identical(other.title, title) || other.title == title)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._diagnostics, _diagnostics)&&(identical(other.isPreferred, isPreferred) || other.isPreferred == isPreferred)&&(identical(other.disabled, disabled) || other.disabled == disabled)&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.command, command) || other.command == command)&&(identical(other.data, data) || other.data == data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeAction&&(identical(other.title, title) || other.title == title)&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._diagnostics, _diagnostics)&&(identical(other.isPreferred, isPreferred) || other.isPreferred == isPreferred)&&(identical(other.disabled, disabled) || other.disabled == disabled)&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.command, command) || other.command == command)&&(identical(other.data, data) || other.data == data)&&const DeepCollectionEquality().equals(other._tags, _tags));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,kind,const DeepCollectionEquality().hash(_diagnostics),isPreferred,disabled,edit,command,data);
+int get hashCode => Object.hash(runtimeType,title,kind,const DeepCollectionEquality().hash(_diagnostics),isPreferred,disabled,edit,command,data,const DeepCollectionEquality().hash(_tags));
 
 @override
 String toString() {
-  return 'CodeAction(title: $title, kind: $kind, diagnostics: $diagnostics, isPreferred: $isPreferred, disabled: $disabled, edit: $edit, command: $command, data: $data)';
+  return 'CodeAction(title: $title, kind: $kind, diagnostics: $diagnostics, isPreferred: $isPreferred, disabled: $disabled, edit: $edit, command: $command, data: $data, tags: $tags)';
 }
 
 
@@ -17194,11 +18660,11 @@ abstract mixin class _$CodeActionCopyWith<$Res> implements $CodeActionCopyWith<$
   factory _$CodeActionCopyWith(_CodeAction value, $Res Function(_CodeAction) _then) = __$CodeActionCopyWithImpl;
 @override @useResult
 $Res call({
- String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
+ String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, CodeActionDisabled? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data, List<CodeActionTag>? tags
 });
 
 
-@override $WorkspaceEditCopyWith<$Res>? get edit;@override $CommandCopyWith<$Res>? get command;
+@override $CodeActionDisabledCopyWith<$Res>? get disabled;@override $WorkspaceEditCopyWith<$Res>? get edit;@override $CommandCopyWith<$Res>? get command;
 
 }
 /// @nodoc
@@ -17211,21 +18677,34 @@ class __$CodeActionCopyWithImpl<$Res>
 
 /// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? kind = freezed,Object? diagnostics = freezed,Object? isPreferred = freezed,Object? disabled = freezed,Object? edit = freezed,Object? command = freezed,Object? data = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? kind = freezed,Object? diagnostics = freezed,Object? isPreferred = freezed,Object? disabled = freezed,Object? edit = freezed,Object? command = freezed,Object? data = freezed,Object? tags = freezed,}) {
   return _then(_CodeAction(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as CodeActionKind?,diagnostics: freezed == diagnostics ? _self._diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>?,isPreferred: freezed == isPreferred ? _self.isPreferred : isPreferred // ignore: cast_nullable_to_non_nullable
 as bool?,disabled: freezed == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
-as ({String reason})?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
+as CodeActionDisabled?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
 as WorkspaceEdit?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,
+as LSPAny?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as List<CodeActionTag>?,
   ));
 }
 
 /// Create a copy of CodeAction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CodeActionDisabledCopyWith<$Res>? get disabled {
+    if (_self.disabled == null) {
+    return null;
+  }
+
+  return $CodeActionDisabledCopyWith<$Res>(_self.disabled!, (value) {
+    return _then(_self.copyWith(disabled: value));
+  });
+}/// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -17264,7 +18743,7 @@ mixin _$WorkspaceSymbol {
 ///
 /// See SymbolInformation#location for more details.
 ///
-/// Type: `Location` | `Object`
+/// Type: `Location` | `LocationUriOnly`
  WorkspaceSymbolLocation get location;/// Tags for this symbol.
  List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
 /// user interface purposes (e.g. to render a qualifier in the user
@@ -17355,7 +18834,7 @@ class _WorkspaceSymbol implements WorkspaceSymbol {
 ///
 /// See SymbolInformation#location for more details.
 ///
-/// Type: `Location` | `Object`
+/// Type: `Location` | `LocationUriOnly`
 @override final  WorkspaceSymbolLocation location;
 /// Tags for this symbol.
  final  List<SymbolTag>? _tags;
@@ -17989,7 +19468,7 @@ mixin _$WorkDoneProgressBegin {
 /// If unset, the previous progress message (if any) is still valid.
  String? get message;/// Optional progress percentage to display (value 100 is considered 100%).
 /// If not provided infinite progress is assumed and clients are allowed to
-/// ignore the `percentage` value in subsequent report notifications.
+/// ignore the `percentage` value in subsequent in report notifications.
 ///
 /// The value should be steadily rising. Clients are free to ignore values
 /// that are not following this rule. The value range is [0, 100].
@@ -18083,7 +19562,7 @@ class _WorkDoneProgressBegin implements WorkDoneProgressBegin {
 @override final  String? message;
 /// Optional progress percentage to display (value 100 is considered 100%).
 /// If not provided infinite progress is assumed and clients are allowed to
-/// ignore the `percentage` value in subsequent report notifications.
+/// ignore the `percentage` value in subsequent in report notifications.
 ///
 /// The value should be steadily rising. Clients are free to ignore values
 /// that are not following this rule. The value range is [0, 100].
@@ -18168,10 +19647,10 @@ mixin _$WorkDoneProgressReport {
 /// If unset, the previous progress message (if any) is still valid.
  String? get message;/// Optional progress percentage to display (value 100 is considered 100%).
 /// If not provided infinite progress is assumed and clients are allowed to
-/// ignore the `percentage` value in subsequent report notifications.
+/// ignore the `percentage` value in subsequent in report notifications.
 ///
 /// The value should be steadily rising. Clients are free to ignore values
-/// that are not following this rule. The value range is [0, 100].
+/// that are not following this rule. The value range is [0, 100]
  int? get percentage;
 /// Create a copy of WorkDoneProgressReport
 /// with the given fields replaced by the non-null parameter values.
@@ -18257,10 +19736,10 @@ class _WorkDoneProgressReport implements WorkDoneProgressReport {
 @override final  String? message;
 /// Optional progress percentage to display (value 100 is considered 100%).
 /// If not provided infinite progress is assumed and clients are allowed to
-/// ignore the `percentage` value in subsequent report notifications.
+/// ignore the `percentage` value in subsequent in report notifications.
 ///
 /// The value should be steadily rising. Clients are free to ignore values
-/// that are not following this rule. The value range is [0, 100].
+/// that are not following this rule. The value range is [0, 100]
 @override final  int? percentage;
 
 /// Create a copy of WorkDoneProgressReport
@@ -19459,17 +20938,10 @@ as double,
 mixin _$Position {
 
 /// Line position in a document (zero-based).
-///
-/// If a line number is greater than the number of lines in a document, it
-/// defaults back to the number of lines in the document. If a line number
-/// is negative, it defaults to 0.
  int get line;/// Character offset on a line in a document (zero-based).
 ///
 /// The meaning of this offset is determined by the negotiated
 /// `PositionEncodingKind`.
-///
-/// If the character value is greater than the line length it defaults back
-/// to the line length.
  int get character;
 /// Create a copy of Position
 /// with the given fields replaced by the non-null parameter values.
@@ -19540,18 +21012,11 @@ class _Position implements Position {
   factory _Position.fromJson(Map<String, dynamic> json) => _$PositionFromJson(json);
 
 /// Line position in a document (zero-based).
-///
-/// If a line number is greater than the number of lines in a document, it
-/// defaults back to the number of lines in the document. If a line number
-/// is negative, it defaults to 0.
 @override final  int line;
 /// Character offset on a line in a document (zero-based).
 ///
 /// The meaning of this offset is determined by the negotiated
 /// `PositionEncodingKind`.
-///
-/// If the character value is greater than the line length it defaults back
-/// to the line length.
 @override final  int character;
 
 /// Create a copy of Position
@@ -19911,7 +21376,7 @@ as String,
 mixin _$TextDocumentEdit {
 
 /// The text document to change.
- OptionalVersionedTextDocumentIdentifier get textDocument;/// The edits to be applied. client capability.
+ OptionalVersionedTextDocumentIdentifier get textDocument;/// The edits to be applied. client capability. client capability.
  List<TextDocumentEditEditsItem> get edits;
 /// Create a copy of TextDocumentEdit
 /// with the given fields replaced by the non-null parameter values.
@@ -19992,9 +21457,9 @@ class _TextDocumentEdit implements TextDocumentEdit {
 
 /// The text document to change.
 @override final  OptionalVersionedTextDocumentIdentifier textDocument;
-/// The edits to be applied. client capability.
+/// The edits to be applied. client capability. client capability.
  final  List<TextDocumentEditEditsItem> _edits;
-/// The edits to be applied. client capability.
+/// The edits to be applied. client capability. client capability.
 @override List<TextDocumentEditEditsItem> get edits {
   if (_edits is EqualUnmodifiableListView) return _edits;
   // ignore: implicit_dynamic_type
@@ -21518,8 +22983,10 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlineValueVariableLookup {
 
-/// The document range for which the inline value applies. The range is used
-/// to extract the variable name from the underlying document.
+/// The document range for which the inline value applies.
+///
+/// The range could be used to extract the variable name from the underlying
+/// document.
  Range get range;/// How to perform the lookup.
  bool get caseSensitiveLookup;/// If specified the name of the variable to look up.
  String? get variableName;
@@ -21601,8 +23068,10 @@ class _InlineValueVariableLookup implements InlineValueVariableLookup {
   const _InlineValueVariableLookup({required this.range, required this.caseSensitiveLookup, this.variableName});
   factory _InlineValueVariableLookup.fromJson(Map<String, dynamic> json) => _$InlineValueVariableLookupFromJson(json);
 
-/// The document range for which the inline value applies. The range is used
-/// to extract the variable name from the underlying document.
+/// The document range for which the inline value applies.
+///
+/// The range could be used to extract the variable name from the underlying
+/// document.
 @override final  Range range;
 /// How to perform the lookup.
 @override final  bool caseSensitiveLookup;
@@ -21684,9 +23153,11 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlineValueEvaluatableExpression {
 
-/// The document range for which the inline value applies. The range is used
-/// to extract the evaluatable expression from the underlying document.
- Range get range;/// If specified the expression overrides the extracted expression.
+/// The document range for which the inline value applies.
+///
+/// The range could be used to extract the evaluatable expression from the
+/// underlying document.
+ Range get range;/// If specified the expression could be evaluated instead.
  String? get expression;
 /// Create a copy of InlineValueEvaluatableExpression
 /// with the given fields replaced by the non-null parameter values.
@@ -21765,10 +23236,12 @@ class _InlineValueEvaluatableExpression implements InlineValueEvaluatableExpress
   const _InlineValueEvaluatableExpression({required this.range, this.expression});
   factory _InlineValueEvaluatableExpression.fromJson(Map<String, dynamic> json) => _$InlineValueEvaluatableExpressionFromJson(json);
 
-/// The document range for which the inline value applies. The range is used
-/// to extract the evaluatable expression from the underlying document.
+/// The document range for which the inline value applies.
+///
+/// The range could be used to extract the evaluatable expression from the
+/// underlying document.
 @override final  Range range;
-/// If specified the expression overrides the extracted expression.
+/// If specified the expression could be evaluated instead.
 @override final  String? expression;
 
 /// Create a copy of InlineValueEvaluatableExpression
@@ -22567,46 +24040,42 @@ as Map<String, Object>?,
 
 
 /// @nodoc
-mixin _$FullDocumentDiagnosticReport {
+mixin _$DocumentDiagnosticReportPartialResult {
 
-/// The actual items.
- List<Diagnostic> get items;/// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will be sent on the next
-/// diagnostic request for the same document.
- String? get resultId;
-/// Create a copy of FullDocumentDiagnosticReport
+ Map<String, Object> get relatedDocuments;
+/// Create a copy of DocumentDiagnosticReportPartialResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$FullDocumentDiagnosticReportCopyWith<FullDocumentDiagnosticReport> get copyWith => _$FullDocumentDiagnosticReportCopyWithImpl<FullDocumentDiagnosticReport>(this as FullDocumentDiagnosticReport, _$identity);
+$DocumentDiagnosticReportPartialResultCopyWith<DocumentDiagnosticReportPartialResult> get copyWith => _$DocumentDiagnosticReportPartialResultCopyWithImpl<DocumentDiagnosticReportPartialResult>(this as DocumentDiagnosticReportPartialResult, _$identity);
 
-  /// Serializes this FullDocumentDiagnosticReport to a JSON map.
+  /// Serializes this DocumentDiagnosticReportPartialResult to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentDiagnosticReportPartialResult&&const DeepCollectionEquality().equals(other.relatedDocuments, relatedDocuments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),kind,resultId);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(relatedDocuments));
 
 @override
 String toString() {
-  return 'FullDocumentDiagnosticReport(items: $items, kind: $kind, resultId: $resultId)';
+  return 'DocumentDiagnosticReportPartialResult(relatedDocuments: $relatedDocuments)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $FullDocumentDiagnosticReportCopyWith<$Res>  {
-  factory $FullDocumentDiagnosticReportCopyWith(FullDocumentDiagnosticReport value, $Res Function(FullDocumentDiagnosticReport) _then) = _$FullDocumentDiagnosticReportCopyWithImpl;
+abstract mixin class $DocumentDiagnosticReportPartialResultCopyWith<$Res>  {
+  factory $DocumentDiagnosticReportPartialResultCopyWith(DocumentDiagnosticReportPartialResult value, $Res Function(DocumentDiagnosticReportPartialResult) _then) = _$DocumentDiagnosticReportPartialResultCopyWithImpl;
 @useResult
 $Res call({
- List<Diagnostic> items, String kind, String? resultId
+ Map<String, Object> relatedDocuments
 });
 
 
@@ -22614,21 +24083,19 @@ $Res call({
 
 }
 /// @nodoc
-class _$FullDocumentDiagnosticReportCopyWithImpl<$Res>
-    implements $FullDocumentDiagnosticReportCopyWith<$Res> {
-  _$FullDocumentDiagnosticReportCopyWithImpl(this._self, this._then);
+class _$DocumentDiagnosticReportPartialResultCopyWithImpl<$Res>
+    implements $DocumentDiagnosticReportPartialResultCopyWith<$Res> {
+  _$DocumentDiagnosticReportPartialResultCopyWithImpl(this._self, this._then);
 
-  final FullDocumentDiagnosticReport _self;
-  final $Res Function(FullDocumentDiagnosticReport) _then;
+  final DocumentDiagnosticReportPartialResult _self;
+  final $Res Function(DocumentDiagnosticReportPartialResult) _then;
 
-/// Create a copy of FullDocumentDiagnosticReport
+/// Create a copy of DocumentDiagnosticReportPartialResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? kind = null,Object? resultId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? relatedDocuments = null,}) {
   return _then(_self.copyWith(
-items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,
+relatedDocuments: null == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
+as Map<String, Object>,
   ));
 }
 
@@ -22639,59 +24106,52 @@ as String?,
 /// @nodoc
 @JsonSerializable()
 
-class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
-  const _FullDocumentDiagnosticReport({required final  List<Diagnostic> items, this.kind = 'full', this.resultId}): _items = items;
-  factory _FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$FullDocumentDiagnosticReportFromJson(json);
+class _DocumentDiagnosticReportPartialResult implements DocumentDiagnosticReportPartialResult {
+  const _DocumentDiagnosticReportPartialResult({required final  Map<String, Object> relatedDocuments}): _relatedDocuments = relatedDocuments;
+  factory _DocumentDiagnosticReportPartialResult.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticReportPartialResultFromJson(json);
 
-/// The actual items.
- final  List<Diagnostic> _items;
-/// The actual items.
-@override List<Diagnostic> get items {
-  if (_items is EqualUnmodifiableListView) return _items;
+ final  Map<String, Object> _relatedDocuments;
+@override Map<String, Object> get relatedDocuments {
+  if (_relatedDocuments is EqualUnmodifiableMapView) return _relatedDocuments;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_items);
+  return EqualUnmodifiableMapView(_relatedDocuments);
 }
 
-/// A full document diagnostic report.
-@override@JsonKey() final  String kind;
-/// An optional result id. If provided it will be sent on the next
-/// diagnostic request for the same document.
-@override final  String? resultId;
 
-/// Create a copy of FullDocumentDiagnosticReport
+/// Create a copy of DocumentDiagnosticReportPartialResult
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$FullDocumentDiagnosticReportCopyWith<_FullDocumentDiagnosticReport> get copyWith => __$FullDocumentDiagnosticReportCopyWithImpl<_FullDocumentDiagnosticReport>(this, _$identity);
+_$DocumentDiagnosticReportPartialResultCopyWith<_DocumentDiagnosticReportPartialResult> get copyWith => __$DocumentDiagnosticReportPartialResultCopyWithImpl<_DocumentDiagnosticReportPartialResult>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$FullDocumentDiagnosticReportToJson(this, );
+  return _$DocumentDiagnosticReportPartialResultToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentDiagnosticReportPartialResult&&const DeepCollectionEquality().equals(other._relatedDocuments, _relatedDocuments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),kind,resultId);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_relatedDocuments));
 
 @override
 String toString() {
-  return 'FullDocumentDiagnosticReport(items: $items, kind: $kind, resultId: $resultId)';
+  return 'DocumentDiagnosticReportPartialResult(relatedDocuments: $relatedDocuments)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$FullDocumentDiagnosticReportCopyWith<$Res> implements $FullDocumentDiagnosticReportCopyWith<$Res> {
-  factory _$FullDocumentDiagnosticReportCopyWith(_FullDocumentDiagnosticReport value, $Res Function(_FullDocumentDiagnosticReport) _then) = __$FullDocumentDiagnosticReportCopyWithImpl;
+abstract mixin class _$DocumentDiagnosticReportPartialResultCopyWith<$Res> implements $DocumentDiagnosticReportPartialResultCopyWith<$Res> {
+  factory _$DocumentDiagnosticReportPartialResultCopyWith(_DocumentDiagnosticReportPartialResult value, $Res Function(_DocumentDiagnosticReportPartialResult) _then) = __$DocumentDiagnosticReportPartialResultCopyWithImpl;
 @override @useResult
 $Res call({
- List<Diagnostic> items, String kind, String? resultId
+ Map<String, Object> relatedDocuments
 });
 
 
@@ -22699,166 +24159,19 @@ $Res call({
 
 }
 /// @nodoc
-class __$FullDocumentDiagnosticReportCopyWithImpl<$Res>
-    implements _$FullDocumentDiagnosticReportCopyWith<$Res> {
-  __$FullDocumentDiagnosticReportCopyWithImpl(this._self, this._then);
+class __$DocumentDiagnosticReportPartialResultCopyWithImpl<$Res>
+    implements _$DocumentDiagnosticReportPartialResultCopyWith<$Res> {
+  __$DocumentDiagnosticReportPartialResultCopyWithImpl(this._self, this._then);
 
-  final _FullDocumentDiagnosticReport _self;
-  final $Res Function(_FullDocumentDiagnosticReport) _then;
+  final _DocumentDiagnosticReportPartialResult _self;
+  final $Res Function(_DocumentDiagnosticReportPartialResult) _then;
 
-/// Create a copy of FullDocumentDiagnosticReport
+/// Create a copy of DocumentDiagnosticReportPartialResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? kind = null,Object? resultId = freezed,}) {
-  return _then(_FullDocumentDiagnosticReport(
-items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Diagnostic>,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$UnchangedDocumentDiagnosticReport {
-
-/// A result id which will be sent on the next diagnostic request for the
-/// same document.
- String get resultId;/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
- String get kind;
-/// Create a copy of UnchangedDocumentDiagnosticReport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$UnchangedDocumentDiagnosticReportCopyWith<UnchangedDocumentDiagnosticReport> get copyWith => _$UnchangedDocumentDiagnosticReportCopyWithImpl<UnchangedDocumentDiagnosticReport>(this as UnchangedDocumentDiagnosticReport, _$identity);
-
-  /// Serializes this UnchangedDocumentDiagnosticReport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.kind, kind) || other.kind == kind));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,resultId,kind);
-
-@override
-String toString() {
-  return 'UnchangedDocumentDiagnosticReport(resultId: $resultId, kind: $kind)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $UnchangedDocumentDiagnosticReportCopyWith<$Res>  {
-  factory $UnchangedDocumentDiagnosticReportCopyWith(UnchangedDocumentDiagnosticReport value, $Res Function(UnchangedDocumentDiagnosticReport) _then) = _$UnchangedDocumentDiagnosticReportCopyWithImpl;
-@useResult
-$Res call({
- String resultId, String kind
-});
-
-
-
-
-}
-/// @nodoc
-class _$UnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
-    implements $UnchangedDocumentDiagnosticReportCopyWith<$Res> {
-  _$UnchangedDocumentDiagnosticReportCopyWithImpl(this._self, this._then);
-
-  final UnchangedDocumentDiagnosticReport _self;
-  final $Res Function(UnchangedDocumentDiagnosticReport) _then;
-
-/// Create a copy of UnchangedDocumentDiagnosticReport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? resultId = null,Object? kind = null,}) {
-  return _then(_self.copyWith(
-resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-
-/// @nodoc
-@JsonSerializable()
-
-class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticReport {
-  const _UnchangedDocumentDiagnosticReport({required this.resultId, this.kind = 'unchanged'});
-  factory _UnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$UnchangedDocumentDiagnosticReportFromJson(json);
-
-/// A result id which will be sent on the next diagnostic request for the
-/// same document.
-@override final  String resultId;
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
-@override@JsonKey() final  String kind;
-
-/// Create a copy of UnchangedDocumentDiagnosticReport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$UnchangedDocumentDiagnosticReportCopyWith<_UnchangedDocumentDiagnosticReport> get copyWith => __$UnchangedDocumentDiagnosticReportCopyWithImpl<_UnchangedDocumentDiagnosticReport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$UnchangedDocumentDiagnosticReportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.kind, kind) || other.kind == kind));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,resultId,kind);
-
-@override
-String toString() {
-  return 'UnchangedDocumentDiagnosticReport(resultId: $resultId, kind: $kind)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$UnchangedDocumentDiagnosticReportCopyWith<$Res> implements $UnchangedDocumentDiagnosticReportCopyWith<$Res> {
-  factory _$UnchangedDocumentDiagnosticReportCopyWith(_UnchangedDocumentDiagnosticReport value, $Res Function(_UnchangedDocumentDiagnosticReport) _then) = __$UnchangedDocumentDiagnosticReportCopyWithImpl;
-@override @useResult
-$Res call({
- String resultId, String kind
-});
-
-
-
-
-}
-/// @nodoc
-class __$UnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
-    implements _$UnchangedDocumentDiagnosticReportCopyWith<$Res> {
-  __$UnchangedDocumentDiagnosticReportCopyWithImpl(this._self, this._then);
-
-  final _UnchangedDocumentDiagnosticReport _self;
-  final $Res Function(_UnchangedDocumentDiagnosticReport) _then;
-
-/// Create a copy of UnchangedDocumentDiagnosticReport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? resultId = null,Object? kind = null,}) {
-  return _then(_UnchangedDocumentDiagnosticReport(
-resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
-as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as String,
+@override @pragma('vm:prefer-inline') $Res call({Object? relatedDocuments = null,}) {
+  return _then(_DocumentDiagnosticReportPartialResult(
+relatedDocuments: null == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
+as Map<String, Object>,
   ));
 }
 
@@ -23192,7 +24505,7 @@ mixin _$TextDocumentItem {
 
 /// The text document's uri.
  String get uri;/// The text document's language identifier.
- String get languageId;/// The version number of this document (it will increase after each change,
+ LanguageKind get languageId;/// The version number of this document (it will increase after each change,
 /// including undo/redo).
  int get version;/// The content of the opened text document.
  String get text;
@@ -23228,7 +24541,7 @@ abstract mixin class $TextDocumentItemCopyWith<$Res>  {
   factory $TextDocumentItemCopyWith(TextDocumentItem value, $Res Function(TextDocumentItem) _then) = _$TextDocumentItemCopyWithImpl;
 @useResult
 $Res call({
- String uri, String languageId, int version, String text
+ String uri, LanguageKind languageId, int version, String text
 });
 
 
@@ -23249,7 +24562,7 @@ class _$TextDocumentItemCopyWithImpl<$Res>
   return _then(_self.copyWith(
 uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,languageId: null == languageId ? _self.languageId : languageId // ignore: cast_nullable_to_non_nullable
-as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as LanguageKind,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as int,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -23269,7 +24582,7 @@ class _TextDocumentItem implements TextDocumentItem {
 /// The text document's uri.
 @override final  String uri;
 /// The text document's language identifier.
-@override final  String languageId;
+@override final  LanguageKind languageId;
 /// The version number of this document (it will increase after each change,
 /// including undo/redo).
 @override final  int version;
@@ -23309,7 +24622,7 @@ abstract mixin class _$TextDocumentItemCopyWith<$Res> implements $TextDocumentIt
   factory _$TextDocumentItemCopyWith(_TextDocumentItem value, $Res Function(_TextDocumentItem) _then) = __$TextDocumentItemCopyWithImpl;
 @override @useResult
 $Res call({
- String uri, String languageId, int version, String text
+ String uri, LanguageKind languageId, int version, String text
 });
 
 
@@ -23330,7 +24643,7 @@ class __$TextDocumentItemCopyWithImpl<$Res>
   return _then(_TextDocumentItem(
 uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,languageId: null == languageId ? _self.languageId : languageId // ignore: cast_nullable_to_non_nullable
-as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as LanguageKind,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as int,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -23488,7 +24801,7 @@ mixin _$NotebookDocumentChangeEvent {
 ///
 /// Note: should always be an object literal (e.g. LSPObject)
  LSPObject? get metadata;/// Changes to cells
- ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? get cells;
+ NotebookDocumentCellChanges? get cells;
 /// Create a copy of NotebookDocumentChangeEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -23521,11 +24834,11 @@ abstract mixin class $NotebookDocumentChangeEventCopyWith<$Res>  {
   factory $NotebookDocumentChangeEventCopyWith(NotebookDocumentChangeEvent value, $Res Function(NotebookDocumentChangeEvent) _then) = _$NotebookDocumentChangeEventCopyWithImpl;
 @useResult
 $Res call({
- LSPObject? metadata, ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells
+ LSPObject? metadata, NotebookDocumentCellChanges? cells
 });
 
 
-
+$NotebookDocumentCellChangesCopyWith<$Res>? get cells;
 
 }
 /// @nodoc
@@ -23542,10 +24855,22 @@ class _$NotebookDocumentChangeEventCopyWithImpl<$Res>
   return _then(_self.copyWith(
 metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as LSPObject?,cells: freezed == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
-as ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})?,
+as NotebookDocumentCellChanges?,
   ));
 }
+/// Create a copy of NotebookDocumentChangeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NotebookDocumentCellChangesCopyWith<$Res>? get cells {
+    if (_self.cells == null) {
+    return null;
+  }
 
+  return $NotebookDocumentCellChangesCopyWith<$Res>(_self.cells!, (value) {
+    return _then(_self.copyWith(cells: value));
+  });
+}
 }
 
 
@@ -23573,7 +24898,7 @@ class _NotebookDocumentChangeEvent implements NotebookDocumentChangeEvent {
 }
 
 /// Changes to cells
-@override final  ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells;
+@override final  NotebookDocumentCellChanges? cells;
 
 /// Create a copy of NotebookDocumentChangeEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -23608,11 +24933,11 @@ abstract mixin class _$NotebookDocumentChangeEventCopyWith<$Res> implements $Not
   factory _$NotebookDocumentChangeEventCopyWith(_NotebookDocumentChangeEvent value, $Res Function(_NotebookDocumentChangeEvent) _then) = __$NotebookDocumentChangeEventCopyWithImpl;
 @override @useResult
 $Res call({
- LSPObject? metadata, ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells
+ LSPObject? metadata, NotebookDocumentCellChanges? cells
 });
 
 
-
+@override $NotebookDocumentCellChangesCopyWith<$Res>? get cells;
 
 }
 /// @nodoc
@@ -23629,11 +24954,23 @@ class __$NotebookDocumentChangeEventCopyWithImpl<$Res>
   return _then(_NotebookDocumentChangeEvent(
 metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
 as LSPObject?,cells: freezed == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
-as ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})?,
+as NotebookDocumentCellChanges?,
   ));
 }
 
+/// Create a copy of NotebookDocumentChangeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NotebookDocumentCellChangesCopyWith<$Res>? get cells {
+    if (_self.cells == null) {
+    return null;
+  }
 
+  return $NotebookDocumentCellChangesCopyWith<$Res>(_self.cells!, (value) {
+    return _then(_self.copyWith(cells: value));
+  });
+}
 }
 
 
@@ -24373,6 +25710,147 @@ as String,
 
 
 /// @nodoc
+mixin _$ServerInfo {
+
+/// The name of the server as defined by the server.
+ String get name;/// The server's version as defined by the server.
+ String? get version;
+/// Create a copy of ServerInfo
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ServerInfoCopyWith<ServerInfo> get copyWith => _$ServerInfoCopyWithImpl<ServerInfo>(this as ServerInfo, _$identity);
+
+  /// Serializes this ServerInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.version, version) || other.version == version));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,version);
+
+@override
+String toString() {
+  return 'ServerInfo(name: $name, version: $version)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ServerInfoCopyWith<$Res>  {
+  factory $ServerInfoCopyWith(ServerInfo value, $Res Function(ServerInfo) _then) = _$ServerInfoCopyWithImpl;
+@useResult
+$Res call({
+ String name, String? version
+});
+
+
+
+
+}
+/// @nodoc
+class _$ServerInfoCopyWithImpl<$Res>
+    implements $ServerInfoCopyWith<$Res> {
+  _$ServerInfoCopyWithImpl(this._self, this._then);
+
+  final ServerInfo _self;
+  final $Res Function(ServerInfo) _then;
+
+/// Create a copy of ServerInfo
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? version = freezed,}) {
+  return _then(_self.copyWith(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ServerInfo implements ServerInfo {
+  const _ServerInfo({required this.name, this.version});
+  factory _ServerInfo.fromJson(Map<String, dynamic> json) => _$ServerInfoFromJson(json);
+
+/// The name of the server as defined by the server.
+@override final  String name;
+/// The server's version as defined by the server.
+@override final  String? version;
+
+/// Create a copy of ServerInfo
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ServerInfoCopyWith<_ServerInfo> get copyWith => __$ServerInfoCopyWithImpl<_ServerInfo>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ServerInfoToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.version, version) || other.version == version));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,version);
+
+@override
+String toString() {
+  return 'ServerInfo(name: $name, version: $version)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ServerInfoCopyWith<$Res> implements $ServerInfoCopyWith<$Res> {
+  factory _$ServerInfoCopyWith(_ServerInfo value, $Res Function(_ServerInfo) _then) = __$ServerInfoCopyWithImpl;
+@override @useResult
+$Res call({
+ String name, String? version
+});
+
+
+
+
+}
+/// @nodoc
+class __$ServerInfoCopyWithImpl<$Res>
+    implements _$ServerInfoCopyWith<$Res> {
+  __$ServerInfoCopyWithImpl(this._self, this._then);
+
+  final _ServerInfo _self;
+  final $Res Function(_ServerInfo) _then;
+
+/// Create a copy of ServerInfo
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? version = freezed,}) {
+  return _then(_ServerInfo(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$VersionedTextDocumentIdentifier {
 
 /// The text document's uri.
@@ -24801,9 +26279,13 @@ as WatchKind?,
 mixin _$Diagnostic {
 
 /// The range at which the message applies
- Range get range;/// The diagnostic's message. It usually appears in the user interface
- String get message;/// The diagnostic's severity. Can be omitted. If omitted it is up to the
-/// client to interpret diagnostics as error, warning, info or hint.
+ Range get range;/// The diagnostic's message. It usually appears in the user interface.
+/// capability `textDocument.diagnostic.markupMessageSupport`.
+///
+/// Type: `String` | `MarkupContent`
+ DiagnosticMessage get message;/// The diagnostic's severity. To avoid interpretation mismatches when a
+/// server is used with different clients it is highly recommended that
+/// servers always provide a severity value.
  DiagnosticSeverity? get severity;/// The diagnostic's code, which usually appear in the user interface.
 ///
 /// Type: `int` | `String`
@@ -24850,7 +26332,7 @@ abstract mixin class $DiagnosticCopyWith<$Res>  {
   factory $DiagnosticCopyWith(Diagnostic value, $Res Function(Diagnostic) _then) = _$DiagnosticCopyWithImpl;
 @useResult
 $Res call({
- Range range, String message, DiagnosticSeverity? severity, DiagnosticCode? code, CodeDescription? codeDescription, String? source, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
+ Range range, DiagnosticMessage message, DiagnosticSeverity? severity, DiagnosticCode? code, CodeDescription? codeDescription, String? source, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
 });
 
 
@@ -24871,7 +26353,7 @@ class _$DiagnosticCopyWithImpl<$Res>
   return _then(_self.copyWith(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
+as DiagnosticMessage,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
 as DiagnosticSeverity?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as DiagnosticCode?,codeDescription: freezed == codeDescription ? _self.codeDescription : codeDescription // ignore: cast_nullable_to_non_nullable
 as CodeDescription?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
@@ -24916,10 +26398,14 @@ class _Diagnostic implements Diagnostic {
 
 /// The range at which the message applies
 @override final  Range range;
-/// The diagnostic's message. It usually appears in the user interface
-@override final  String message;
-/// The diagnostic's severity. Can be omitted. If omitted it is up to the
-/// client to interpret diagnostics as error, warning, info or hint.
+/// The diagnostic's message. It usually appears in the user interface.
+/// capability `textDocument.diagnostic.markupMessageSupport`.
+///
+/// Type: `String` | `MarkupContent`
+@override final  DiagnosticMessage message;
+/// The diagnostic's severity. To avoid interpretation mismatches when a
+/// server is used with different clients it is highly recommended that
+/// servers always provide a severity value.
 @override final  DiagnosticSeverity? severity;
 /// The diagnostic's code, which usually appear in the user interface.
 ///
@@ -24993,7 +26479,7 @@ abstract mixin class _$DiagnosticCopyWith<$Res> implements $DiagnosticCopyWith<$
   factory _$DiagnosticCopyWith(_Diagnostic value, $Res Function(_Diagnostic) _then) = __$DiagnosticCopyWithImpl;
 @override @useResult
 $Res call({
- Range range, String message, DiagnosticSeverity? severity, DiagnosticCode? code, CodeDescription? codeDescription, String? source, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
+ Range range, DiagnosticMessage message, DiagnosticSeverity? severity, DiagnosticCode? code, CodeDescription? codeDescription, String? source, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
 });
 
 
@@ -25014,7 +26500,7 @@ class __$DiagnosticCopyWithImpl<$Res>
   return _then(_Diagnostic(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
+as DiagnosticMessage,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
 as DiagnosticSeverity?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as DiagnosticCode?,codeDescription: freezed == codeDescription ? _self.codeDescription : codeDescription // ignore: cast_nullable_to_non_nullable
 as CodeDescription?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
@@ -25527,6 +27013,376 @@ $RangeCopyWith<$Res> get replace {
 
 
 /// @nodoc
+mixin _$CompletionItemDefaults {
+
+/// A default commit character set.
+ List<String>? get commitCharacters;/// A default edit range.
+///
+/// Type: `Range` | `EditRangeWithInsertReplace`
+ CompletionItemDefaultsEditRange? get editRange;/// A default insert text format.
+ InsertTextFormat? get insertTextFormat;/// A default insert text mode.
+ InsertTextMode? get insertTextMode;/// A default data value.
+ LSPAny? get data;
+/// Create a copy of CompletionItemDefaults
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CompletionItemDefaultsCopyWith<CompletionItemDefaults> get copyWith => _$CompletionItemDefaultsCopyWithImpl<CompletionItemDefaults>(this as CompletionItemDefaults, _$identity);
+
+  /// Serializes this CompletionItemDefaults to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionItemDefaults&&const DeepCollectionEquality().equals(other.commitCharacters, commitCharacters)&&(identical(other.editRange, editRange) || other.editRange == editRange)&&(identical(other.insertTextFormat, insertTextFormat) || other.insertTextFormat == insertTextFormat)&&(identical(other.insertTextMode, insertTextMode) || other.insertTextMode == insertTextMode)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(commitCharacters),editRange,insertTextFormat,insertTextMode,data);
+
+@override
+String toString() {
+  return 'CompletionItemDefaults(commitCharacters: $commitCharacters, editRange: $editRange, insertTextFormat: $insertTextFormat, insertTextMode: $insertTextMode, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CompletionItemDefaultsCopyWith<$Res>  {
+  factory $CompletionItemDefaultsCopyWith(CompletionItemDefaults value, $Res Function(CompletionItemDefaults) _then) = _$CompletionItemDefaultsCopyWithImpl;
+@useResult
+$Res call({
+ List<String>? commitCharacters, CompletionItemDefaultsEditRange? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data
+});
+
+
+
+
+}
+/// @nodoc
+class _$CompletionItemDefaultsCopyWithImpl<$Res>
+    implements $CompletionItemDefaultsCopyWith<$Res> {
+  _$CompletionItemDefaultsCopyWithImpl(this._self, this._then);
+
+  final CompletionItemDefaults _self;
+  final $Res Function(CompletionItemDefaults) _then;
+
+/// Create a copy of CompletionItemDefaults
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? commitCharacters = freezed,Object? editRange = freezed,Object? insertTextFormat = freezed,Object? insertTextMode = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+commitCharacters: freezed == commitCharacters ? _self.commitCharacters : commitCharacters // ignore: cast_nullable_to_non_nullable
+as List<String>?,editRange: freezed == editRange ? _self.editRange : editRange // ignore: cast_nullable_to_non_nullable
+as CompletionItemDefaultsEditRange?,insertTextFormat: freezed == insertTextFormat ? _self.insertTextFormat : insertTextFormat // ignore: cast_nullable_to_non_nullable
+as InsertTextFormat?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
+as InsertTextMode?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as LSPAny?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _CompletionItemDefaults implements CompletionItemDefaults {
+  const _CompletionItemDefaults({final  List<String>? commitCharacters, this.editRange, this.insertTextFormat, this.insertTextMode, this.data}): _commitCharacters = commitCharacters;
+  factory _CompletionItemDefaults.fromJson(Map<String, dynamic> json) => _$CompletionItemDefaultsFromJson(json);
+
+/// A default commit character set.
+ final  List<String>? _commitCharacters;
+/// A default commit character set.
+@override List<String>? get commitCharacters {
+  final value = _commitCharacters;
+  if (value == null) return null;
+  if (_commitCharacters is EqualUnmodifiableListView) return _commitCharacters;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// A default edit range.
+///
+/// Type: `Range` | `EditRangeWithInsertReplace`
+@override final  CompletionItemDefaultsEditRange? editRange;
+/// A default insert text format.
+@override final  InsertTextFormat? insertTextFormat;
+/// A default insert text mode.
+@override final  InsertTextMode? insertTextMode;
+/// A default data value.
+@override final  LSPAny? data;
+
+/// Create a copy of CompletionItemDefaults
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CompletionItemDefaultsCopyWith<_CompletionItemDefaults> get copyWith => __$CompletionItemDefaultsCopyWithImpl<_CompletionItemDefaults>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CompletionItemDefaultsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionItemDefaults&&const DeepCollectionEquality().equals(other._commitCharacters, _commitCharacters)&&(identical(other.editRange, editRange) || other.editRange == editRange)&&(identical(other.insertTextFormat, insertTextFormat) || other.insertTextFormat == insertTextFormat)&&(identical(other.insertTextMode, insertTextMode) || other.insertTextMode == insertTextMode)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_commitCharacters),editRange,insertTextFormat,insertTextMode,data);
+
+@override
+String toString() {
+  return 'CompletionItemDefaults(commitCharacters: $commitCharacters, editRange: $editRange, insertTextFormat: $insertTextFormat, insertTextMode: $insertTextMode, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CompletionItemDefaultsCopyWith<$Res> implements $CompletionItemDefaultsCopyWith<$Res> {
+  factory _$CompletionItemDefaultsCopyWith(_CompletionItemDefaults value, $Res Function(_CompletionItemDefaults) _then) = __$CompletionItemDefaultsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String>? commitCharacters, CompletionItemDefaultsEditRange? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data
+});
+
+
+
+
+}
+/// @nodoc
+class __$CompletionItemDefaultsCopyWithImpl<$Res>
+    implements _$CompletionItemDefaultsCopyWith<$Res> {
+  __$CompletionItemDefaultsCopyWithImpl(this._self, this._then);
+
+  final _CompletionItemDefaults _self;
+  final $Res Function(_CompletionItemDefaults) _then;
+
+/// Create a copy of CompletionItemDefaults
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? commitCharacters = freezed,Object? editRange = freezed,Object? insertTextFormat = freezed,Object? insertTextMode = freezed,Object? data = freezed,}) {
+  return _then(_CompletionItemDefaults(
+commitCharacters: freezed == commitCharacters ? _self._commitCharacters : commitCharacters // ignore: cast_nullable_to_non_nullable
+as List<String>?,editRange: freezed == editRange ? _self.editRange : editRange // ignore: cast_nullable_to_non_nullable
+as CompletionItemDefaultsEditRange?,insertTextFormat: freezed == insertTextFormat ? _self.insertTextFormat : insertTextFormat // ignore: cast_nullable_to_non_nullable
+as InsertTextFormat?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
+as InsertTextMode?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as LSPAny?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$CompletionItemApplyKinds {
+
+/// Specifies whether commitCharacters on a completion will replace or be
+/// merged with those in `completionList.itemDefaults.commitCharacters`.
+///
+/// If ApplyKind.Replace, the commit characters from the completion item
+/// will always be used unless not provided, in which case those from
+/// `completionList.itemDefaults.commitCharacters` will be used. An empty
+/// list can be used if a completion item does not have any commit
+/// characters and also should not use those from
+/// `completionList.itemDefaults.commitCharacters`.
+///
+/// If ApplyKind.Merge the commitCharacters for the completion will be the
+/// union of all values in both
+/// `completionList.itemDefaults.commitCharacters` and the completion's own
+/// `commitCharacters`.
+ ApplyKind? get commitCharacters;/// Specifies whether the `data` field on a completion will replace or be
+/// merged with data from `completionList.itemDefaults.data`.
+///
+/// If ApplyKind.Replace, the data from the completion item will be used if
+/// provided (and not `null`), otherwise `completionList.itemDefaults.data`
+/// will be used. An empty object can be used if a completion item does not
+/// have any data but also should not use the value from
+/// `completionList.itemDefaults.data`.
+///
+/// If ApplyKind.Merge, a shallow merge will be performed between
+/// `completionList.itemDefaults.data` and the completion's own data using
+/// the following rules:
+///
+/// - If a completion's `data` field is not provided (or `null`), the entire
+/// `data` field from `completionList.itemDefaults.data` will be used as-is.
+/// - If a completion's `data` field is provided, each field will overwrite
+/// the field of the same name in `completionList.itemDefaults.data` but no
+/// merging of nested fields within that value will occur.
+ ApplyKind? get data;
+/// Create a copy of CompletionItemApplyKinds
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CompletionItemApplyKindsCopyWith<CompletionItemApplyKinds> get copyWith => _$CompletionItemApplyKindsCopyWithImpl<CompletionItemApplyKinds>(this as CompletionItemApplyKinds, _$identity);
+
+  /// Serializes this CompletionItemApplyKinds to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionItemApplyKinds&&(identical(other.commitCharacters, commitCharacters) || other.commitCharacters == commitCharacters)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,commitCharacters,data);
+
+@override
+String toString() {
+  return 'CompletionItemApplyKinds(commitCharacters: $commitCharacters, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CompletionItemApplyKindsCopyWith<$Res>  {
+  factory $CompletionItemApplyKindsCopyWith(CompletionItemApplyKinds value, $Res Function(CompletionItemApplyKinds) _then) = _$CompletionItemApplyKindsCopyWithImpl;
+@useResult
+$Res call({
+ ApplyKind? commitCharacters, ApplyKind? data
+});
+
+
+
+
+}
+/// @nodoc
+class _$CompletionItemApplyKindsCopyWithImpl<$Res>
+    implements $CompletionItemApplyKindsCopyWith<$Res> {
+  _$CompletionItemApplyKindsCopyWithImpl(this._self, this._then);
+
+  final CompletionItemApplyKinds _self;
+  final $Res Function(CompletionItemApplyKinds) _then;
+
+/// Create a copy of CompletionItemApplyKinds
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? commitCharacters = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+commitCharacters: freezed == commitCharacters ? _self.commitCharacters : commitCharacters // ignore: cast_nullable_to_non_nullable
+as ApplyKind?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as ApplyKind?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _CompletionItemApplyKinds implements CompletionItemApplyKinds {
+  const _CompletionItemApplyKinds({this.commitCharacters, this.data});
+  factory _CompletionItemApplyKinds.fromJson(Map<String, dynamic> json) => _$CompletionItemApplyKindsFromJson(json);
+
+/// Specifies whether commitCharacters on a completion will replace or be
+/// merged with those in `completionList.itemDefaults.commitCharacters`.
+///
+/// If ApplyKind.Replace, the commit characters from the completion item
+/// will always be used unless not provided, in which case those from
+/// `completionList.itemDefaults.commitCharacters` will be used. An empty
+/// list can be used if a completion item does not have any commit
+/// characters and also should not use those from
+/// `completionList.itemDefaults.commitCharacters`.
+///
+/// If ApplyKind.Merge the commitCharacters for the completion will be the
+/// union of all values in both
+/// `completionList.itemDefaults.commitCharacters` and the completion's own
+/// `commitCharacters`.
+@override final  ApplyKind? commitCharacters;
+/// Specifies whether the `data` field on a completion will replace or be
+/// merged with data from `completionList.itemDefaults.data`.
+///
+/// If ApplyKind.Replace, the data from the completion item will be used if
+/// provided (and not `null`), otherwise `completionList.itemDefaults.data`
+/// will be used. An empty object can be used if a completion item does not
+/// have any data but also should not use the value from
+/// `completionList.itemDefaults.data`.
+///
+/// If ApplyKind.Merge, a shallow merge will be performed between
+/// `completionList.itemDefaults.data` and the completion's own data using
+/// the following rules:
+///
+/// - If a completion's `data` field is not provided (or `null`), the entire
+/// `data` field from `completionList.itemDefaults.data` will be used as-is.
+/// - If a completion's `data` field is provided, each field will overwrite
+/// the field of the same name in `completionList.itemDefaults.data` but no
+/// merging of nested fields within that value will occur.
+@override final  ApplyKind? data;
+
+/// Create a copy of CompletionItemApplyKinds
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CompletionItemApplyKindsCopyWith<_CompletionItemApplyKinds> get copyWith => __$CompletionItemApplyKindsCopyWithImpl<_CompletionItemApplyKinds>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CompletionItemApplyKindsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionItemApplyKinds&&(identical(other.commitCharacters, commitCharacters) || other.commitCharacters == commitCharacters)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,commitCharacters,data);
+
+@override
+String toString() {
+  return 'CompletionItemApplyKinds(commitCharacters: $commitCharacters, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CompletionItemApplyKindsCopyWith<$Res> implements $CompletionItemApplyKindsCopyWith<$Res> {
+  factory _$CompletionItemApplyKindsCopyWith(_CompletionItemApplyKinds value, $Res Function(_CompletionItemApplyKinds) _then) = __$CompletionItemApplyKindsCopyWithImpl;
+@override @useResult
+$Res call({
+ ApplyKind? commitCharacters, ApplyKind? data
+});
+
+
+
+
+}
+/// @nodoc
+class __$CompletionItemApplyKindsCopyWithImpl<$Res>
+    implements _$CompletionItemApplyKindsCopyWith<$Res> {
+  __$CompletionItemApplyKindsCopyWithImpl(this._self, this._then);
+
+  final _CompletionItemApplyKinds _self;
+  final $Res Function(_CompletionItemApplyKinds) _then;
+
+/// Create a copy of CompletionItemApplyKinds
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? commitCharacters = freezed,Object? data = freezed,}) {
+  return _then(_CompletionItemApplyKinds(
+commitCharacters: freezed == commitCharacters ? _self.commitCharacters : commitCharacters // ignore: cast_nullable_to_non_nullable
+as ApplyKind?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as ApplyKind?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$SignatureHelpContext {
 
 /// Action that caused signature help to be triggered.
@@ -25732,7 +27588,13 @@ mixin _$SignatureInformation {
  SignatureInformationDocumentation? get documentation;/// The parameters of this signature.
  List<ParameterInformation>? get parameters;/// The index of the active parameter.
 ///
-/// If provided, this is used in place of `SignatureHelp.activeParameter`.
+/// If `null`, no parameter of the signature is active (for example a named
+/// argument that does not match any declared parameters). This is only
+/// valid if the client specifies the client capability
+/// `textDocument.signatureHelp.noActiveParameterSupport === true`
+///
+/// If provided (or `null`), this is used in place of
+/// `SignatureHelp.activeParameter`.
  int? get activeParameter;
 /// Create a copy of SignatureInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -25824,7 +27686,13 @@ class _SignatureInformation implements SignatureInformation {
 
 /// The index of the active parameter.
 ///
-/// If provided, this is used in place of `SignatureHelp.activeParameter`.
+/// If `null`, no parameter of the signature is active (for example a named
+/// argument that does not match any declared parameters). This is only
+/// valid if the client specifies the client capability
+/// `textDocument.signatureHelp.noActiveParameterSupport === true`
+///
+/// If provided (or `null`), this is used in place of
+/// `SignatureHelp.activeParameter`.
 @override final  int? activeParameter;
 
 /// Create a copy of SignatureInformation
@@ -26380,6 +28248,705 @@ as CodeActionTriggerKind?,
 
 
 /// @nodoc
+mixin _$CodeActionDisabled {
+
+/// Human readable description of why the code action is currently disabled.
+///
+/// This is displayed in the code actions UI.
+ String get reason;
+/// Create a copy of CodeActionDisabled
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CodeActionDisabledCopyWith<CodeActionDisabled> get copyWith => _$CodeActionDisabledCopyWithImpl<CodeActionDisabled>(this as CodeActionDisabled, _$identity);
+
+  /// Serializes this CodeActionDisabled to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionDisabled&&(identical(other.reason, reason) || other.reason == reason));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,reason);
+
+@override
+String toString() {
+  return 'CodeActionDisabled(reason: $reason)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CodeActionDisabledCopyWith<$Res>  {
+  factory $CodeActionDisabledCopyWith(CodeActionDisabled value, $Res Function(CodeActionDisabled) _then) = _$CodeActionDisabledCopyWithImpl;
+@useResult
+$Res call({
+ String reason
+});
+
+
+
+
+}
+/// @nodoc
+class _$CodeActionDisabledCopyWithImpl<$Res>
+    implements $CodeActionDisabledCopyWith<$Res> {
+  _$CodeActionDisabledCopyWithImpl(this._self, this._then);
+
+  final CodeActionDisabled _self;
+  final $Res Function(CodeActionDisabled) _then;
+
+/// Create a copy of CodeActionDisabled
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? reason = null,}) {
+  return _then(_self.copyWith(
+reason: null == reason ? _self.reason : reason // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _CodeActionDisabled implements CodeActionDisabled {
+  const _CodeActionDisabled({required this.reason});
+  factory _CodeActionDisabled.fromJson(Map<String, dynamic> json) => _$CodeActionDisabledFromJson(json);
+
+/// Human readable description of why the code action is currently disabled.
+///
+/// This is displayed in the code actions UI.
+@override final  String reason;
+
+/// Create a copy of CodeActionDisabled
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CodeActionDisabledCopyWith<_CodeActionDisabled> get copyWith => __$CodeActionDisabledCopyWithImpl<_CodeActionDisabled>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CodeActionDisabledToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionDisabled&&(identical(other.reason, reason) || other.reason == reason));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,reason);
+
+@override
+String toString() {
+  return 'CodeActionDisabled(reason: $reason)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CodeActionDisabledCopyWith<$Res> implements $CodeActionDisabledCopyWith<$Res> {
+  factory _$CodeActionDisabledCopyWith(_CodeActionDisabled value, $Res Function(_CodeActionDisabled) _then) = __$CodeActionDisabledCopyWithImpl;
+@override @useResult
+$Res call({
+ String reason
+});
+
+
+
+
+}
+/// @nodoc
+class __$CodeActionDisabledCopyWithImpl<$Res>
+    implements _$CodeActionDisabledCopyWith<$Res> {
+  __$CodeActionDisabledCopyWithImpl(this._self, this._then);
+
+  final _CodeActionDisabled _self;
+  final $Res Function(_CodeActionDisabled) _then;
+
+/// Create a copy of CodeActionDisabled
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? reason = null,}) {
+  return _then(_CodeActionDisabled(
+reason: null == reason ? _self.reason : reason // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$LocationUriOnly {
+
+ String get uri;
+/// Create a copy of LocationUriOnly
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LocationUriOnlyCopyWith<LocationUriOnly> get copyWith => _$LocationUriOnlyCopyWithImpl<LocationUriOnly>(this as LocationUriOnly, _$identity);
+
+  /// Serializes this LocationUriOnly to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationUriOnly&&(identical(other.uri, uri) || other.uri == uri));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,uri);
+
+@override
+String toString() {
+  return 'LocationUriOnly(uri: $uri)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LocationUriOnlyCopyWith<$Res>  {
+  factory $LocationUriOnlyCopyWith(LocationUriOnly value, $Res Function(LocationUriOnly) _then) = _$LocationUriOnlyCopyWithImpl;
+@useResult
+$Res call({
+ String uri
+});
+
+
+
+
+}
+/// @nodoc
+class _$LocationUriOnlyCopyWithImpl<$Res>
+    implements $LocationUriOnlyCopyWith<$Res> {
+  _$LocationUriOnlyCopyWithImpl(this._self, this._then);
+
+  final LocationUriOnly _self;
+  final $Res Function(LocationUriOnly) _then;
+
+/// Create a copy of LocationUriOnly
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,}) {
+  return _then(_self.copyWith(
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _LocationUriOnly implements LocationUriOnly {
+  const _LocationUriOnly({required this.uri});
+  factory _LocationUriOnly.fromJson(Map<String, dynamic> json) => _$LocationUriOnlyFromJson(json);
+
+@override final  String uri;
+
+/// Create a copy of LocationUriOnly
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LocationUriOnlyCopyWith<_LocationUriOnly> get copyWith => __$LocationUriOnlyCopyWithImpl<_LocationUriOnly>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$LocationUriOnlyToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationUriOnly&&(identical(other.uri, uri) || other.uri == uri));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,uri);
+
+@override
+String toString() {
+  return 'LocationUriOnly(uri: $uri)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LocationUriOnlyCopyWith<$Res> implements $LocationUriOnlyCopyWith<$Res> {
+  factory _$LocationUriOnlyCopyWith(_LocationUriOnly value, $Res Function(_LocationUriOnly) _then) = __$LocationUriOnlyCopyWithImpl;
+@override @useResult
+$Res call({
+ String uri
+});
+
+
+
+
+}
+/// @nodoc
+class __$LocationUriOnlyCopyWithImpl<$Res>
+    implements _$LocationUriOnlyCopyWith<$Res> {
+  __$LocationUriOnlyCopyWithImpl(this._self, this._then);
+
+  final _LocationUriOnly _self;
+  final $Res Function(_LocationUriOnly) _then;
+
+/// Create a copy of LocationUriOnly
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,}) {
+  return _then(_LocationUriOnly(
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$PrepareRenamePlaceholder {
+
+ Range get range; String get placeholder;
+/// Create a copy of PrepareRenamePlaceholder
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PrepareRenamePlaceholderCopyWith<PrepareRenamePlaceholder> get copyWith => _$PrepareRenamePlaceholderCopyWithImpl<PrepareRenamePlaceholder>(this as PrepareRenamePlaceholder, _$identity);
+
+  /// Serializes this PrepareRenamePlaceholder to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrepareRenamePlaceholder&&(identical(other.range, range) || other.range == range)&&(identical(other.placeholder, placeholder) || other.placeholder == placeholder));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,range,placeholder);
+
+@override
+String toString() {
+  return 'PrepareRenamePlaceholder(range: $range, placeholder: $placeholder)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PrepareRenamePlaceholderCopyWith<$Res>  {
+  factory $PrepareRenamePlaceholderCopyWith(PrepareRenamePlaceholder value, $Res Function(PrepareRenamePlaceholder) _then) = _$PrepareRenamePlaceholderCopyWithImpl;
+@useResult
+$Res call({
+ Range range, String placeholder
+});
+
+
+$RangeCopyWith<$Res> get range;
+
+}
+/// @nodoc
+class _$PrepareRenamePlaceholderCopyWithImpl<$Res>
+    implements $PrepareRenamePlaceholderCopyWith<$Res> {
+  _$PrepareRenamePlaceholderCopyWithImpl(this._self, this._then);
+
+  final PrepareRenamePlaceholder _self;
+  final $Res Function(PrepareRenamePlaceholder) _then;
+
+/// Create a copy of PrepareRenamePlaceholder
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? placeholder = null,}) {
+  return _then(_self.copyWith(
+range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as Range,placeholder: null == placeholder ? _self.placeholder : placeholder // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+/// Create a copy of PrepareRenamePlaceholder
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get range {
+  
+  return $RangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _PrepareRenamePlaceholder implements PrepareRenamePlaceholder {
+  const _PrepareRenamePlaceholder({required this.range, required this.placeholder});
+  factory _PrepareRenamePlaceholder.fromJson(Map<String, dynamic> json) => _$PrepareRenamePlaceholderFromJson(json);
+
+@override final  Range range;
+@override final  String placeholder;
+
+/// Create a copy of PrepareRenamePlaceholder
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PrepareRenamePlaceholderCopyWith<_PrepareRenamePlaceholder> get copyWith => __$PrepareRenamePlaceholderCopyWithImpl<_PrepareRenamePlaceholder>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$PrepareRenamePlaceholderToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrepareRenamePlaceholder&&(identical(other.range, range) || other.range == range)&&(identical(other.placeholder, placeholder) || other.placeholder == placeholder));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,range,placeholder);
+
+@override
+String toString() {
+  return 'PrepareRenamePlaceholder(range: $range, placeholder: $placeholder)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PrepareRenamePlaceholderCopyWith<$Res> implements $PrepareRenamePlaceholderCopyWith<$Res> {
+  factory _$PrepareRenamePlaceholderCopyWith(_PrepareRenamePlaceholder value, $Res Function(_PrepareRenamePlaceholder) _then) = __$PrepareRenamePlaceholderCopyWithImpl;
+@override @useResult
+$Res call({
+ Range range, String placeholder
+});
+
+
+@override $RangeCopyWith<$Res> get range;
+
+}
+/// @nodoc
+class __$PrepareRenamePlaceholderCopyWithImpl<$Res>
+    implements _$PrepareRenamePlaceholderCopyWith<$Res> {
+  __$PrepareRenamePlaceholderCopyWithImpl(this._self, this._then);
+
+  final _PrepareRenamePlaceholder _self;
+  final $Res Function(_PrepareRenamePlaceholder) _then;
+
+/// Create a copy of PrepareRenamePlaceholder
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? placeholder = null,}) {
+  return _then(_PrepareRenamePlaceholder(
+range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as Range,placeholder: null == placeholder ? _self.placeholder : placeholder // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+/// Create a copy of PrepareRenamePlaceholder
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get range {
+  
+  return $RangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$PrepareRenameDefaultBehavior {
+
+ bool get defaultBehavior;
+/// Create a copy of PrepareRenameDefaultBehavior
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PrepareRenameDefaultBehaviorCopyWith<PrepareRenameDefaultBehavior> get copyWith => _$PrepareRenameDefaultBehaviorCopyWithImpl<PrepareRenameDefaultBehavior>(this as PrepareRenameDefaultBehavior, _$identity);
+
+  /// Serializes this PrepareRenameDefaultBehavior to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrepareRenameDefaultBehavior&&(identical(other.defaultBehavior, defaultBehavior) || other.defaultBehavior == defaultBehavior));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,defaultBehavior);
+
+@override
+String toString() {
+  return 'PrepareRenameDefaultBehavior(defaultBehavior: $defaultBehavior)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PrepareRenameDefaultBehaviorCopyWith<$Res>  {
+  factory $PrepareRenameDefaultBehaviorCopyWith(PrepareRenameDefaultBehavior value, $Res Function(PrepareRenameDefaultBehavior) _then) = _$PrepareRenameDefaultBehaviorCopyWithImpl;
+@useResult
+$Res call({
+ bool defaultBehavior
+});
+
+
+
+
+}
+/// @nodoc
+class _$PrepareRenameDefaultBehaviorCopyWithImpl<$Res>
+    implements $PrepareRenameDefaultBehaviorCopyWith<$Res> {
+  _$PrepareRenameDefaultBehaviorCopyWithImpl(this._self, this._then);
+
+  final PrepareRenameDefaultBehavior _self;
+  final $Res Function(PrepareRenameDefaultBehavior) _then;
+
+/// Create a copy of PrepareRenameDefaultBehavior
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? defaultBehavior = null,}) {
+  return _then(_self.copyWith(
+defaultBehavior: null == defaultBehavior ? _self.defaultBehavior : defaultBehavior // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _PrepareRenameDefaultBehavior implements PrepareRenameDefaultBehavior {
+  const _PrepareRenameDefaultBehavior({required this.defaultBehavior});
+  factory _PrepareRenameDefaultBehavior.fromJson(Map<String, dynamic> json) => _$PrepareRenameDefaultBehaviorFromJson(json);
+
+@override final  bool defaultBehavior;
+
+/// Create a copy of PrepareRenameDefaultBehavior
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PrepareRenameDefaultBehaviorCopyWith<_PrepareRenameDefaultBehavior> get copyWith => __$PrepareRenameDefaultBehaviorCopyWithImpl<_PrepareRenameDefaultBehavior>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$PrepareRenameDefaultBehaviorToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrepareRenameDefaultBehavior&&(identical(other.defaultBehavior, defaultBehavior) || other.defaultBehavior == defaultBehavior));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,defaultBehavior);
+
+@override
+String toString() {
+  return 'PrepareRenameDefaultBehavior(defaultBehavior: $defaultBehavior)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PrepareRenameDefaultBehaviorCopyWith<$Res> implements $PrepareRenameDefaultBehaviorCopyWith<$Res> {
+  factory _$PrepareRenameDefaultBehaviorCopyWith(_PrepareRenameDefaultBehavior value, $Res Function(_PrepareRenameDefaultBehavior) _then) = __$PrepareRenameDefaultBehaviorCopyWithImpl;
+@override @useResult
+$Res call({
+ bool defaultBehavior
+});
+
+
+
+
+}
+/// @nodoc
+class __$PrepareRenameDefaultBehaviorCopyWithImpl<$Res>
+    implements _$PrepareRenameDefaultBehaviorCopyWith<$Res> {
+  __$PrepareRenameDefaultBehaviorCopyWithImpl(this._self, this._then);
+
+  final _PrepareRenameDefaultBehavior _self;
+  final $Res Function(_PrepareRenameDefaultBehavior) _then;
+
+/// Create a copy of PrepareRenameDefaultBehavior
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? defaultBehavior = null,}) {
+  return _then(_PrepareRenameDefaultBehavior(
+defaultBehavior: null == defaultBehavior ? _self.defaultBehavior : defaultBehavior // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$WorkspaceEditMetadata {
+
+/// Signal to the editor that this edit is a refactoring.
+ bool? get isRefactoring;
+/// Create a copy of WorkspaceEditMetadata
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WorkspaceEditMetadataCopyWith<WorkspaceEditMetadata> get copyWith => _$WorkspaceEditMetadataCopyWithImpl<WorkspaceEditMetadata>(this as WorkspaceEditMetadata, _$identity);
+
+  /// Serializes this WorkspaceEditMetadata to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceEditMetadata&&(identical(other.isRefactoring, isRefactoring) || other.isRefactoring == isRefactoring));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,isRefactoring);
+
+@override
+String toString() {
+  return 'WorkspaceEditMetadata(isRefactoring: $isRefactoring)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $WorkspaceEditMetadataCopyWith<$Res>  {
+  factory $WorkspaceEditMetadataCopyWith(WorkspaceEditMetadata value, $Res Function(WorkspaceEditMetadata) _then) = _$WorkspaceEditMetadataCopyWithImpl;
+@useResult
+$Res call({
+ bool? isRefactoring
+});
+
+
+
+
+}
+/// @nodoc
+class _$WorkspaceEditMetadataCopyWithImpl<$Res>
+    implements $WorkspaceEditMetadataCopyWith<$Res> {
+  _$WorkspaceEditMetadataCopyWithImpl(this._self, this._then);
+
+  final WorkspaceEditMetadata _self;
+  final $Res Function(WorkspaceEditMetadata) _then;
+
+/// Create a copy of WorkspaceEditMetadata
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isRefactoring = freezed,}) {
+  return _then(_self.copyWith(
+isRefactoring: freezed == isRefactoring ? _self.isRefactoring : isRefactoring // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _WorkspaceEditMetadata implements WorkspaceEditMetadata {
+  const _WorkspaceEditMetadata({this.isRefactoring});
+  factory _WorkspaceEditMetadata.fromJson(Map<String, dynamic> json) => _$WorkspaceEditMetadataFromJson(json);
+
+/// Signal to the editor that this edit is a refactoring.
+@override final  bool? isRefactoring;
+
+/// Create a copy of WorkspaceEditMetadata
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WorkspaceEditMetadataCopyWith<_WorkspaceEditMetadata> get copyWith => __$WorkspaceEditMetadataCopyWithImpl<_WorkspaceEditMetadata>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WorkspaceEditMetadataToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceEditMetadata&&(identical(other.isRefactoring, isRefactoring) || other.isRefactoring == isRefactoring));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,isRefactoring);
+
+@override
+String toString() {
+  return 'WorkspaceEditMetadata(isRefactoring: $isRefactoring)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WorkspaceEditMetadataCopyWith<$Res> implements $WorkspaceEditMetadataCopyWith<$Res> {
+  factory _$WorkspaceEditMetadataCopyWith(_WorkspaceEditMetadata value, $Res Function(_WorkspaceEditMetadata) _then) = __$WorkspaceEditMetadataCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? isRefactoring
+});
+
+
+
+
+}
+/// @nodoc
+class __$WorkspaceEditMetadataCopyWithImpl<$Res>
+    implements _$WorkspaceEditMetadataCopyWith<$Res> {
+  __$WorkspaceEditMetadataCopyWithImpl(this._self, this._then);
+
+  final _WorkspaceEditMetadata _self;
+  final $Res Function(_WorkspaceEditMetadata) _then;
+
+/// Create a copy of WorkspaceEditMetadata
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isRefactoring = freezed,}) {
+  return _then(_WorkspaceEditMetadata(
+isRefactoring: freezed == isRefactoring ? _self.isRefactoring : isRefactoring // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$SemanticTokensLegend {
 
 /// The token types a server uses.
@@ -26527,6 +29094,142 @@ class __$SemanticTokensLegendCopyWithImpl<$Res>
 tokenTypes: null == tokenTypes ? _self._tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self._tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$SemanticTokensFullDelta {
+
+/// The server supports deltas for full documents.
+ bool? get delta;
+/// Create a copy of SemanticTokensFullDelta
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SemanticTokensFullDeltaCopyWith<SemanticTokensFullDelta> get copyWith => _$SemanticTokensFullDeltaCopyWithImpl<SemanticTokensFullDelta>(this as SemanticTokensFullDelta, _$identity);
+
+  /// Serializes this SemanticTokensFullDelta to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensFullDelta&&(identical(other.delta, delta) || other.delta == delta));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,delta);
+
+@override
+String toString() {
+  return 'SemanticTokensFullDelta(delta: $delta)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SemanticTokensFullDeltaCopyWith<$Res>  {
+  factory $SemanticTokensFullDeltaCopyWith(SemanticTokensFullDelta value, $Res Function(SemanticTokensFullDelta) _then) = _$SemanticTokensFullDeltaCopyWithImpl;
+@useResult
+$Res call({
+ bool? delta
+});
+
+
+
+
+}
+/// @nodoc
+class _$SemanticTokensFullDeltaCopyWithImpl<$Res>
+    implements $SemanticTokensFullDeltaCopyWith<$Res> {
+  _$SemanticTokensFullDeltaCopyWithImpl(this._self, this._then);
+
+  final SemanticTokensFullDelta _self;
+  final $Res Function(SemanticTokensFullDelta) _then;
+
+/// Create a copy of SemanticTokensFullDelta
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? delta = freezed,}) {
+  return _then(_self.copyWith(
+delta: freezed == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _SemanticTokensFullDelta implements SemanticTokensFullDelta {
+  const _SemanticTokensFullDelta({this.delta});
+  factory _SemanticTokensFullDelta.fromJson(Map<String, dynamic> json) => _$SemanticTokensFullDeltaFromJson(json);
+
+/// The server supports deltas for full documents.
+@override final  bool? delta;
+
+/// Create a copy of SemanticTokensFullDelta
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SemanticTokensFullDeltaCopyWith<_SemanticTokensFullDelta> get copyWith => __$SemanticTokensFullDeltaCopyWithImpl<_SemanticTokensFullDelta>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SemanticTokensFullDeltaToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensFullDelta&&(identical(other.delta, delta) || other.delta == delta));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,delta);
+
+@override
+String toString() {
+  return 'SemanticTokensFullDelta(delta: $delta)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SemanticTokensFullDeltaCopyWith<$Res> implements $SemanticTokensFullDeltaCopyWith<$Res> {
+  factory _$SemanticTokensFullDeltaCopyWith(_SemanticTokensFullDelta value, $Res Function(_SemanticTokensFullDelta) _then) = __$SemanticTokensFullDeltaCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? delta
+});
+
+
+
+
+}
+/// @nodoc
+class __$SemanticTokensFullDeltaCopyWithImpl<$Res>
+    implements _$SemanticTokensFullDeltaCopyWith<$Res> {
+  __$SemanticTokensFullDeltaCopyWithImpl(this._self, this._then);
+
+  final _SemanticTokensFullDelta _self;
+  final $Res Function(_SemanticTokensFullDelta) _then;
+
+/// Create a copy of SemanticTokensFullDelta
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? delta = freezed,}) {
+  return _then(_SemanticTokensFullDelta(
+delta: freezed == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -26846,6 +29549,188 @@ $RangeCopyWith<$Res> get range {
   
   return $RangeCopyWith<$Res>(_self.range, (value) {
     return _then(_self.copyWith(range: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$SnippetTextEdit {
+
+/// The range of the text document to be manipulated.
+ Range get range;/// The snippet to be inserted.
+ StringValue get snippet;/// The actual identifier of the snippet edit.
+ ChangeAnnotationIdentifier? get annotationId;
+/// Create a copy of SnippetTextEdit
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SnippetTextEditCopyWith<SnippetTextEdit> get copyWith => _$SnippetTextEditCopyWithImpl<SnippetTextEdit>(this as SnippetTextEdit, _$identity);
+
+  /// Serializes this SnippetTextEdit to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SnippetTextEdit&&(identical(other.range, range) || other.range == range)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,range,snippet,annotationId);
+
+@override
+String toString() {
+  return 'SnippetTextEdit(range: $range, snippet: $snippet, annotationId: $annotationId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SnippetTextEditCopyWith<$Res>  {
+  factory $SnippetTextEditCopyWith(SnippetTextEdit value, $Res Function(SnippetTextEdit) _then) = _$SnippetTextEditCopyWithImpl;
+@useResult
+$Res call({
+ Range range, StringValue snippet, ChangeAnnotationIdentifier? annotationId
+});
+
+
+$RangeCopyWith<$Res> get range;$StringValueCopyWith<$Res> get snippet;
+
+}
+/// @nodoc
+class _$SnippetTextEditCopyWithImpl<$Res>
+    implements $SnippetTextEditCopyWith<$Res> {
+  _$SnippetTextEditCopyWithImpl(this._self, this._then);
+
+  final SnippetTextEdit _self;
+  final $Res Function(SnippetTextEdit) _then;
+
+/// Create a copy of SnippetTextEdit
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? snippet = null,Object? annotationId = freezed,}) {
+  return _then(_self.copyWith(
+range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as Range,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as StringValue,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,
+  ));
+}
+/// Create a copy of SnippetTextEdit
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get range {
+  
+  return $RangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}/// Create a copy of SnippetTextEdit
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StringValueCopyWith<$Res> get snippet {
+  
+  return $StringValueCopyWith<$Res>(_self.snippet, (value) {
+    return _then(_self.copyWith(snippet: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _SnippetTextEdit implements SnippetTextEdit {
+  const _SnippetTextEdit({required this.range, required this.snippet, this.annotationId});
+  factory _SnippetTextEdit.fromJson(Map<String, dynamic> json) => _$SnippetTextEditFromJson(json);
+
+/// The range of the text document to be manipulated.
+@override final  Range range;
+/// The snippet to be inserted.
+@override final  StringValue snippet;
+/// The actual identifier of the snippet edit.
+@override final  ChangeAnnotationIdentifier? annotationId;
+
+/// Create a copy of SnippetTextEdit
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SnippetTextEditCopyWith<_SnippetTextEdit> get copyWith => __$SnippetTextEditCopyWithImpl<_SnippetTextEdit>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SnippetTextEditToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SnippetTextEdit&&(identical(other.range, range) || other.range == range)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.annotationId, annotationId) || other.annotationId == annotationId));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,range,snippet,annotationId);
+
+@override
+String toString() {
+  return 'SnippetTextEdit(range: $range, snippet: $snippet, annotationId: $annotationId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SnippetTextEditCopyWith<$Res> implements $SnippetTextEditCopyWith<$Res> {
+  factory _$SnippetTextEditCopyWith(_SnippetTextEdit value, $Res Function(_SnippetTextEdit) _then) = __$SnippetTextEditCopyWithImpl;
+@override @useResult
+$Res call({
+ Range range, StringValue snippet, ChangeAnnotationIdentifier? annotationId
+});
+
+
+@override $RangeCopyWith<$Res> get range;@override $StringValueCopyWith<$Res> get snippet;
+
+}
+/// @nodoc
+class __$SnippetTextEditCopyWithImpl<$Res>
+    implements _$SnippetTextEditCopyWith<$Res> {
+  __$SnippetTextEditCopyWithImpl(this._self, this._then);
+
+  final _SnippetTextEdit _self;
+  final $Res Function(_SnippetTextEdit) _then;
+
+/// Create a copy of SnippetTextEdit
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? snippet = null,Object? annotationId = freezed,}) {
+  return _then(_SnippetTextEdit(
+range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as Range,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as StringValue,annotationId: freezed == annotationId ? _self.annotationId : annotationId // ignore: cast_nullable_to_non_nullable
+as ChangeAnnotationIdentifier?,
+  ));
+}
+
+/// Create a copy of SnippetTextEdit
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get range {
+  
+  return $RangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}/// Create a copy of SnippetTextEdit
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StringValueCopyWith<$Res> get snippet {
+  
+  return $StringValueCopyWith<$Res>(_self.snippet, (value) {
+    return _then(_self.copyWith(snippet: value));
   });
 }
 }
@@ -27181,6 +30066,306 @@ $FileOperationPatternOptionsCopyWith<$Res>? get options {
     return _then(_self.copyWith(options: value));
   });
 }
+}
+
+
+/// @nodoc
+mixin _$FullDocumentDiagnosticReport {
+
+/// The actual items.
+ List<Diagnostic> get items;/// A full document diagnostic report.
+ String get kind;/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
+ String? get resultId;
+/// Create a copy of FullDocumentDiagnosticReport
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FullDocumentDiagnosticReportCopyWith<FullDocumentDiagnosticReport> get copyWith => _$FullDocumentDiagnosticReportCopyWithImpl<FullDocumentDiagnosticReport>(this as FullDocumentDiagnosticReport, _$identity);
+
+  /// Serializes this FullDocumentDiagnosticReport to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),kind,resultId);
+
+@override
+String toString() {
+  return 'FullDocumentDiagnosticReport(items: $items, kind: $kind, resultId: $resultId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $FullDocumentDiagnosticReportCopyWith<$Res>  {
+  factory $FullDocumentDiagnosticReportCopyWith(FullDocumentDiagnosticReport value, $Res Function(FullDocumentDiagnosticReport) _then) = _$FullDocumentDiagnosticReportCopyWithImpl;
+@useResult
+$Res call({
+ List<Diagnostic> items, String kind, String? resultId
+});
+
+
+
+
+}
+/// @nodoc
+class _$FullDocumentDiagnosticReportCopyWithImpl<$Res>
+    implements $FullDocumentDiagnosticReportCopyWith<$Res> {
+  _$FullDocumentDiagnosticReportCopyWithImpl(this._self, this._then);
+
+  final FullDocumentDiagnosticReport _self;
+  final $Res Function(FullDocumentDiagnosticReport) _then;
+
+/// Create a copy of FullDocumentDiagnosticReport
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? kind = null,Object? resultId = freezed,}) {
+  return _then(_self.copyWith(
+items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
+  const _FullDocumentDiagnosticReport({required final  List<Diagnostic> items, this.kind = 'full', this.resultId}): _items = items;
+  factory _FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$FullDocumentDiagnosticReportFromJson(json);
+
+/// The actual items.
+ final  List<Diagnostic> _items;
+/// The actual items.
+@override List<Diagnostic> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_items);
+}
+
+/// A full document diagnostic report.
+@override@JsonKey() final  String kind;
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
+@override final  String? resultId;
+
+/// Create a copy of FullDocumentDiagnosticReport
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FullDocumentDiagnosticReportCopyWith<_FullDocumentDiagnosticReport> get copyWith => __$FullDocumentDiagnosticReportCopyWithImpl<_FullDocumentDiagnosticReport>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$FullDocumentDiagnosticReportToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FullDocumentDiagnosticReport&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.resultId, resultId) || other.resultId == resultId));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),kind,resultId);
+
+@override
+String toString() {
+  return 'FullDocumentDiagnosticReport(items: $items, kind: $kind, resultId: $resultId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FullDocumentDiagnosticReportCopyWith<$Res> implements $FullDocumentDiagnosticReportCopyWith<$Res> {
+  factory _$FullDocumentDiagnosticReportCopyWith(_FullDocumentDiagnosticReport value, $Res Function(_FullDocumentDiagnosticReport) _then) = __$FullDocumentDiagnosticReportCopyWithImpl;
+@override @useResult
+$Res call({
+ List<Diagnostic> items, String kind, String? resultId
+});
+
+
+
+
+}
+/// @nodoc
+class __$FullDocumentDiagnosticReportCopyWithImpl<$Res>
+    implements _$FullDocumentDiagnosticReportCopyWith<$Res> {
+  __$FullDocumentDiagnosticReportCopyWithImpl(this._self, this._then);
+
+  final _FullDocumentDiagnosticReport _self;
+  final $Res Function(_FullDocumentDiagnosticReport) _then;
+
+/// Create a copy of FullDocumentDiagnosticReport
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? kind = null,Object? resultId = freezed,}) {
+  return _then(_FullDocumentDiagnosticReport(
+items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<Diagnostic>,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$UnchangedDocumentDiagnosticReport {
+
+/// A result id which will be sent on the next diagnostic request for the
+/// same document.
+ String get resultId;/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+ String get kind;
+/// Create a copy of UnchangedDocumentDiagnosticReport
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UnchangedDocumentDiagnosticReportCopyWith<UnchangedDocumentDiagnosticReport> get copyWith => _$UnchangedDocumentDiagnosticReportCopyWithImpl<UnchangedDocumentDiagnosticReport>(this as UnchangedDocumentDiagnosticReport, _$identity);
+
+  /// Serializes this UnchangedDocumentDiagnosticReport to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.kind, kind) || other.kind == kind));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,resultId,kind);
+
+@override
+String toString() {
+  return 'UnchangedDocumentDiagnosticReport(resultId: $resultId, kind: $kind)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $UnchangedDocumentDiagnosticReportCopyWith<$Res>  {
+  factory $UnchangedDocumentDiagnosticReportCopyWith(UnchangedDocumentDiagnosticReport value, $Res Function(UnchangedDocumentDiagnosticReport) _then) = _$UnchangedDocumentDiagnosticReportCopyWithImpl;
+@useResult
+$Res call({
+ String resultId, String kind
+});
+
+
+
+
+}
+/// @nodoc
+class _$UnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
+    implements $UnchangedDocumentDiagnosticReportCopyWith<$Res> {
+  _$UnchangedDocumentDiagnosticReportCopyWithImpl(this._self, this._then);
+
+  final UnchangedDocumentDiagnosticReport _self;
+  final $Res Function(UnchangedDocumentDiagnosticReport) _then;
+
+/// Create a copy of UnchangedDocumentDiagnosticReport
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? resultId = null,Object? kind = null,}) {
+  return _then(_self.copyWith(
+resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticReport {
+  const _UnchangedDocumentDiagnosticReport({required this.resultId, this.kind = 'unchanged'});
+  factory _UnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$UnchangedDocumentDiagnosticReportFromJson(json);
+
+/// A result id which will be sent on the next diagnostic request for the
+/// same document.
+@override final  String resultId;
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+@override@JsonKey() final  String kind;
+
+/// Create a copy of UnchangedDocumentDiagnosticReport
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UnchangedDocumentDiagnosticReportCopyWith<_UnchangedDocumentDiagnosticReport> get copyWith => __$UnchangedDocumentDiagnosticReportCopyWithImpl<_UnchangedDocumentDiagnosticReport>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$UnchangedDocumentDiagnosticReportToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UnchangedDocumentDiagnosticReport&&(identical(other.resultId, resultId) || other.resultId == resultId)&&(identical(other.kind, kind) || other.kind == kind));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,resultId,kind);
+
+@override
+String toString() {
+  return 'UnchangedDocumentDiagnosticReport(resultId: $resultId, kind: $kind)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UnchangedDocumentDiagnosticReportCopyWith<$Res> implements $UnchangedDocumentDiagnosticReportCopyWith<$Res> {
+  factory _$UnchangedDocumentDiagnosticReportCopyWith(_UnchangedDocumentDiagnosticReport value, $Res Function(_UnchangedDocumentDiagnosticReport) _then) = __$UnchangedDocumentDiagnosticReportCopyWithImpl;
+@override @useResult
+$Res call({
+ String resultId, String kind
+});
+
+
+
+
+}
+/// @nodoc
+class __$UnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
+    implements _$UnchangedDocumentDiagnosticReportCopyWith<$Res> {
+  __$UnchangedDocumentDiagnosticReportCopyWithImpl(this._self, this._then);
+
+  final _UnchangedDocumentDiagnosticReport _self;
+  final $Res Function(_UnchangedDocumentDiagnosticReport) _then;
+
+/// Create a copy of UnchangedDocumentDiagnosticReport
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? resultId = null,Object? kind = null,}) {
+  return _then(_UnchangedDocumentDiagnosticReport(
+resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 
@@ -27699,45 +30884,47 @@ $ExecutionSummaryCopyWith<$Res>? get executionSummary {
 
 
 /// @nodoc
-mixin _$NotebookCellArrayChange {
+mixin _$NotebookDocumentFilterWithNotebook {
 
-/// The start oftest of the cell that changed.
- int get start;/// The deleted cells
- int get deleteCount;/// The new cells, if any
- List<NotebookCell>? get cells;
-/// Create a copy of NotebookCellArrayChange
+/// The notebook to be synced If a string value is provided it matches
+/// against the notebook type. '*' matches every notebook.
+///
+/// Type: `String` | `NotebookDocumentFilter`
+ NotebookDocumentFilterWithNotebookNotebook get notebook;/// The cells of the matching notebook to be synced.
+ List<NotebookCellLanguage>? get cells;
+/// Create a copy of NotebookDocumentFilterWithNotebook
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$NotebookCellArrayChangeCopyWith<NotebookCellArrayChange> get copyWith => _$NotebookCellArrayChangeCopyWithImpl<NotebookCellArrayChange>(this as NotebookCellArrayChange, _$identity);
+$NotebookDocumentFilterWithNotebookCopyWith<NotebookDocumentFilterWithNotebook> get copyWith => _$NotebookDocumentFilterWithNotebookCopyWithImpl<NotebookDocumentFilterWithNotebook>(this as NotebookDocumentFilterWithNotebook, _$identity);
 
-  /// Serializes this NotebookCellArrayChange to a JSON map.
+  /// Serializes this NotebookDocumentFilterWithNotebook to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookCellArrayChange&&(identical(other.start, start) || other.start == start)&&(identical(other.deleteCount, deleteCount) || other.deleteCount == deleteCount)&&const DeepCollectionEquality().equals(other.cells, cells));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentFilterWithNotebook&&(identical(other.notebook, notebook) || other.notebook == notebook)&&const DeepCollectionEquality().equals(other.cells, cells));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,start,deleteCount,const DeepCollectionEquality().hash(cells));
+int get hashCode => Object.hash(runtimeType,notebook,const DeepCollectionEquality().hash(cells));
 
 @override
 String toString() {
-  return 'NotebookCellArrayChange(start: $start, deleteCount: $deleteCount, cells: $cells)';
+  return 'NotebookDocumentFilterWithNotebook(notebook: $notebook, cells: $cells)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $NotebookCellArrayChangeCopyWith<$Res>  {
-  factory $NotebookCellArrayChangeCopyWith(NotebookCellArrayChange value, $Res Function(NotebookCellArrayChange) _then) = _$NotebookCellArrayChangeCopyWithImpl;
+abstract mixin class $NotebookDocumentFilterWithNotebookCopyWith<$Res>  {
+  factory $NotebookDocumentFilterWithNotebookCopyWith(NotebookDocumentFilterWithNotebook value, $Res Function(NotebookDocumentFilterWithNotebook) _then) = _$NotebookDocumentFilterWithNotebookCopyWithImpl;
 @useResult
 $Res call({
- int start, int deleteCount, List<NotebookCell>? cells
+ NotebookDocumentFilterWithNotebookNotebook notebook, List<NotebookCellLanguage>? cells
 });
 
 
@@ -27745,21 +30932,20 @@ $Res call({
 
 }
 /// @nodoc
-class _$NotebookCellArrayChangeCopyWithImpl<$Res>
-    implements $NotebookCellArrayChangeCopyWith<$Res> {
-  _$NotebookCellArrayChangeCopyWithImpl(this._self, this._then);
+class _$NotebookDocumentFilterWithNotebookCopyWithImpl<$Res>
+    implements $NotebookDocumentFilterWithNotebookCopyWith<$Res> {
+  _$NotebookDocumentFilterWithNotebookCopyWithImpl(this._self, this._then);
 
-  final NotebookCellArrayChange _self;
-  final $Res Function(NotebookCellArrayChange) _then;
+  final NotebookDocumentFilterWithNotebook _self;
+  final $Res Function(NotebookDocumentFilterWithNotebook) _then;
 
-/// Create a copy of NotebookCellArrayChange
+/// Create a copy of NotebookDocumentFilterWithNotebook
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? start = null,Object? deleteCount = null,Object? cells = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? notebook = null,Object? cells = freezed,}) {
   return _then(_self.copyWith(
-start: null == start ? _self.start : start // ignore: cast_nullable_to_non_nullable
-as int,deleteCount: null == deleteCount ? _self.deleteCount : deleteCount // ignore: cast_nullable_to_non_nullable
-as int,cells: freezed == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
-as List<NotebookCell>?,
+notebook: null == notebook ? _self.notebook : notebook // ignore: cast_nullable_to_non_nullable
+as NotebookDocumentFilterWithNotebookNotebook,cells: freezed == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
+as List<NotebookCellLanguage>?,
   ));
 }
 
@@ -27770,18 +30956,19 @@ as List<NotebookCell>?,
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookCellArrayChange implements NotebookCellArrayChange {
-  const _NotebookCellArrayChange({required this.start, required this.deleteCount, final  List<NotebookCell>? cells}): _cells = cells;
-  factory _NotebookCellArrayChange.fromJson(Map<String, dynamic> json) => _$NotebookCellArrayChangeFromJson(json);
+class _NotebookDocumentFilterWithNotebook implements NotebookDocumentFilterWithNotebook {
+  const _NotebookDocumentFilterWithNotebook({required this.notebook, final  List<NotebookCellLanguage>? cells}): _cells = cells;
+  factory _NotebookDocumentFilterWithNotebook.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilterWithNotebookFromJson(json);
 
-/// The start oftest of the cell that changed.
-@override final  int start;
-/// The deleted cells
-@override final  int deleteCount;
-/// The new cells, if any
- final  List<NotebookCell>? _cells;
-/// The new cells, if any
-@override List<NotebookCell>? get cells {
+/// The notebook to be synced If a string value is provided it matches
+/// against the notebook type. '*' matches every notebook.
+///
+/// Type: `String` | `NotebookDocumentFilter`
+@override final  NotebookDocumentFilterWithNotebookNotebook notebook;
+/// The cells of the matching notebook to be synced.
+ final  List<NotebookCellLanguage>? _cells;
+/// The cells of the matching notebook to be synced.
+@override List<NotebookCellLanguage>? get cells {
   final value = _cells;
   if (value == null) return null;
   if (_cells is EqualUnmodifiableListView) return _cells;
@@ -27790,40 +30977,40 @@ class _NotebookCellArrayChange implements NotebookCellArrayChange {
 }
 
 
-/// Create a copy of NotebookCellArrayChange
+/// Create a copy of NotebookDocumentFilterWithNotebook
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$NotebookCellArrayChangeCopyWith<_NotebookCellArrayChange> get copyWith => __$NotebookCellArrayChangeCopyWithImpl<_NotebookCellArrayChange>(this, _$identity);
+_$NotebookDocumentFilterWithNotebookCopyWith<_NotebookDocumentFilterWithNotebook> get copyWith => __$NotebookDocumentFilterWithNotebookCopyWithImpl<_NotebookDocumentFilterWithNotebook>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$NotebookCellArrayChangeToJson(this, );
+  return _$NotebookDocumentFilterWithNotebookToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookCellArrayChange&&(identical(other.start, start) || other.start == start)&&(identical(other.deleteCount, deleteCount) || other.deleteCount == deleteCount)&&const DeepCollectionEquality().equals(other._cells, _cells));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentFilterWithNotebook&&(identical(other.notebook, notebook) || other.notebook == notebook)&&const DeepCollectionEquality().equals(other._cells, _cells));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,start,deleteCount,const DeepCollectionEquality().hash(_cells));
+int get hashCode => Object.hash(runtimeType,notebook,const DeepCollectionEquality().hash(_cells));
 
 @override
 String toString() {
-  return 'NotebookCellArrayChange(start: $start, deleteCount: $deleteCount, cells: $cells)';
+  return 'NotebookDocumentFilterWithNotebook(notebook: $notebook, cells: $cells)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$NotebookCellArrayChangeCopyWith<$Res> implements $NotebookCellArrayChangeCopyWith<$Res> {
-  factory _$NotebookCellArrayChangeCopyWith(_NotebookCellArrayChange value, $Res Function(_NotebookCellArrayChange) _then) = __$NotebookCellArrayChangeCopyWithImpl;
+abstract mixin class _$NotebookDocumentFilterWithNotebookCopyWith<$Res> implements $NotebookDocumentFilterWithNotebookCopyWith<$Res> {
+  factory _$NotebookDocumentFilterWithNotebookCopyWith(_NotebookDocumentFilterWithNotebook value, $Res Function(_NotebookDocumentFilterWithNotebook) _then) = __$NotebookDocumentFilterWithNotebookCopyWithImpl;
 @override @useResult
 $Res call({
- int start, int deleteCount, List<NotebookCell>? cells
+ NotebookDocumentFilterWithNotebookNotebook notebook, List<NotebookCellLanguage>? cells
 });
 
 
@@ -27831,25 +31018,369 @@ $Res call({
 
 }
 /// @nodoc
-class __$NotebookCellArrayChangeCopyWithImpl<$Res>
-    implements _$NotebookCellArrayChangeCopyWith<$Res> {
-  __$NotebookCellArrayChangeCopyWithImpl(this._self, this._then);
+class __$NotebookDocumentFilterWithNotebookCopyWithImpl<$Res>
+    implements _$NotebookDocumentFilterWithNotebookCopyWith<$Res> {
+  __$NotebookDocumentFilterWithNotebookCopyWithImpl(this._self, this._then);
 
-  final _NotebookCellArrayChange _self;
-  final $Res Function(_NotebookCellArrayChange) _then;
+  final _NotebookDocumentFilterWithNotebook _self;
+  final $Res Function(_NotebookDocumentFilterWithNotebook) _then;
 
-/// Create a copy of NotebookCellArrayChange
+/// Create a copy of NotebookDocumentFilterWithNotebook
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? start = null,Object? deleteCount = null,Object? cells = freezed,}) {
-  return _then(_NotebookCellArrayChange(
-start: null == start ? _self.start : start // ignore: cast_nullable_to_non_nullable
-as int,deleteCount: null == deleteCount ? _self.deleteCount : deleteCount // ignore: cast_nullable_to_non_nullable
-as int,cells: freezed == cells ? _self._cells : cells // ignore: cast_nullable_to_non_nullable
-as List<NotebookCell>?,
+@override @pragma('vm:prefer-inline') $Res call({Object? notebook = null,Object? cells = freezed,}) {
+  return _then(_NotebookDocumentFilterWithNotebook(
+notebook: null == notebook ? _self.notebook : notebook // ignore: cast_nullable_to_non_nullable
+as NotebookDocumentFilterWithNotebookNotebook,cells: freezed == cells ? _self._cells : cells // ignore: cast_nullable_to_non_nullable
+as List<NotebookCellLanguage>?,
   ));
 }
 
 
+}
+
+
+/// @nodoc
+mixin _$NotebookDocumentFilterWithCells {
+
+/// The cells of the matching notebook to be synced.
+ List<NotebookCellLanguage> get cells;/// The notebook to be synced If a string value is provided it matches
+/// against the notebook type. '*' matches every notebook.
+///
+/// Type: `String` | `NotebookDocumentFilter`
+ NotebookDocumentFilterWithCellsNotebook? get notebook;
+/// Create a copy of NotebookDocumentFilterWithCells
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentFilterWithCellsCopyWith<NotebookDocumentFilterWithCells> get copyWith => _$NotebookDocumentFilterWithCellsCopyWithImpl<NotebookDocumentFilterWithCells>(this as NotebookDocumentFilterWithCells, _$identity);
+
+  /// Serializes this NotebookDocumentFilterWithCells to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentFilterWithCells&&const DeepCollectionEquality().equals(other.cells, cells)&&(identical(other.notebook, notebook) || other.notebook == notebook));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(cells),notebook);
+
+@override
+String toString() {
+  return 'NotebookDocumentFilterWithCells(cells: $cells, notebook: $notebook)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentFilterWithCellsCopyWith<$Res>  {
+  factory $NotebookDocumentFilterWithCellsCopyWith(NotebookDocumentFilterWithCells value, $Res Function(NotebookDocumentFilterWithCells) _then) = _$NotebookDocumentFilterWithCellsCopyWithImpl;
+@useResult
+$Res call({
+ List<NotebookCellLanguage> cells, NotebookDocumentFilterWithCellsNotebook? notebook
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotebookDocumentFilterWithCellsCopyWithImpl<$Res>
+    implements $NotebookDocumentFilterWithCellsCopyWith<$Res> {
+  _$NotebookDocumentFilterWithCellsCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentFilterWithCells _self;
+  final $Res Function(NotebookDocumentFilterWithCells) _then;
+
+/// Create a copy of NotebookDocumentFilterWithCells
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? cells = null,Object? notebook = freezed,}) {
+  return _then(_self.copyWith(
+cells: null == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
+as List<NotebookCellLanguage>,notebook: freezed == notebook ? _self.notebook : notebook // ignore: cast_nullable_to_non_nullable
+as NotebookDocumentFilterWithCellsNotebook?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentFilterWithCells implements NotebookDocumentFilterWithCells {
+  const _NotebookDocumentFilterWithCells({required final  List<NotebookCellLanguage> cells, this.notebook}): _cells = cells;
+  factory _NotebookDocumentFilterWithCells.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilterWithCellsFromJson(json);
+
+/// The cells of the matching notebook to be synced.
+ final  List<NotebookCellLanguage> _cells;
+/// The cells of the matching notebook to be synced.
+@override List<NotebookCellLanguage> get cells {
+  if (_cells is EqualUnmodifiableListView) return _cells;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_cells);
+}
+
+/// The notebook to be synced If a string value is provided it matches
+/// against the notebook type. '*' matches every notebook.
+///
+/// Type: `String` | `NotebookDocumentFilter`
+@override final  NotebookDocumentFilterWithCellsNotebook? notebook;
+
+/// Create a copy of NotebookDocumentFilterWithCells
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentFilterWithCellsCopyWith<_NotebookDocumentFilterWithCells> get copyWith => __$NotebookDocumentFilterWithCellsCopyWithImpl<_NotebookDocumentFilterWithCells>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentFilterWithCellsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentFilterWithCells&&const DeepCollectionEquality().equals(other._cells, _cells)&&(identical(other.notebook, notebook) || other.notebook == notebook));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_cells),notebook);
+
+@override
+String toString() {
+  return 'NotebookDocumentFilterWithCells(cells: $cells, notebook: $notebook)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentFilterWithCellsCopyWith<$Res> implements $NotebookDocumentFilterWithCellsCopyWith<$Res> {
+  factory _$NotebookDocumentFilterWithCellsCopyWith(_NotebookDocumentFilterWithCells value, $Res Function(_NotebookDocumentFilterWithCells) _then) = __$NotebookDocumentFilterWithCellsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<NotebookCellLanguage> cells, NotebookDocumentFilterWithCellsNotebook? notebook
+});
+
+
+
+
+}
+/// @nodoc
+class __$NotebookDocumentFilterWithCellsCopyWithImpl<$Res>
+    implements _$NotebookDocumentFilterWithCellsCopyWith<$Res> {
+  __$NotebookDocumentFilterWithCellsCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentFilterWithCells _self;
+  final $Res Function(_NotebookDocumentFilterWithCells) _then;
+
+/// Create a copy of NotebookDocumentFilterWithCells
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? cells = null,Object? notebook = freezed,}) {
+  return _then(_NotebookDocumentFilterWithCells(
+cells: null == cells ? _self._cells : cells // ignore: cast_nullable_to_non_nullable
+as List<NotebookCellLanguage>,notebook: freezed == notebook ? _self.notebook : notebook // ignore: cast_nullable_to_non_nullable
+as NotebookDocumentFilterWithCellsNotebook?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$NotebookDocumentCellChanges {
+
+/// Changes to the cell structure to add or remove cells.
+ NotebookDocumentCellChangeStructure? get structure;/// Changes to notebook cells properties like its kind, execution summary or
+/// metadata.
+ List<NotebookCell>? get data;/// Changes to the text content of notebook cells.
+ List<NotebookDocumentCellContentChanges>? get textContent;
+/// Create a copy of NotebookDocumentCellChanges
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentCellChangesCopyWith<NotebookDocumentCellChanges> get copyWith => _$NotebookDocumentCellChangesCopyWithImpl<NotebookDocumentCellChanges>(this as NotebookDocumentCellChanges, _$identity);
+
+  /// Serializes this NotebookDocumentCellChanges to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentCellChanges&&(identical(other.structure, structure) || other.structure == structure)&&const DeepCollectionEquality().equals(other.data, data)&&const DeepCollectionEquality().equals(other.textContent, textContent));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,structure,const DeepCollectionEquality().hash(data),const DeepCollectionEquality().hash(textContent));
+
+@override
+String toString() {
+  return 'NotebookDocumentCellChanges(structure: $structure, data: $data, textContent: $textContent)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentCellChangesCopyWith<$Res>  {
+  factory $NotebookDocumentCellChangesCopyWith(NotebookDocumentCellChanges value, $Res Function(NotebookDocumentCellChanges) _then) = _$NotebookDocumentCellChangesCopyWithImpl;
+@useResult
+$Res call({
+ NotebookDocumentCellChangeStructure? structure, List<NotebookCell>? data, List<NotebookDocumentCellContentChanges>? textContent
+});
+
+
+$NotebookDocumentCellChangeStructureCopyWith<$Res>? get structure;
+
+}
+/// @nodoc
+class _$NotebookDocumentCellChangesCopyWithImpl<$Res>
+    implements $NotebookDocumentCellChangesCopyWith<$Res> {
+  _$NotebookDocumentCellChangesCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentCellChanges _self;
+  final $Res Function(NotebookDocumentCellChanges) _then;
+
+/// Create a copy of NotebookDocumentCellChanges
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? structure = freezed,Object? data = freezed,Object? textContent = freezed,}) {
+  return _then(_self.copyWith(
+structure: freezed == structure ? _self.structure : structure // ignore: cast_nullable_to_non_nullable
+as NotebookDocumentCellChangeStructure?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as List<NotebookCell>?,textContent: freezed == textContent ? _self.textContent : textContent // ignore: cast_nullable_to_non_nullable
+as List<NotebookDocumentCellContentChanges>?,
+  ));
+}
+/// Create a copy of NotebookDocumentCellChanges
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NotebookDocumentCellChangeStructureCopyWith<$Res>? get structure {
+    if (_self.structure == null) {
+    return null;
+  }
+
+  return $NotebookDocumentCellChangeStructureCopyWith<$Res>(_self.structure!, (value) {
+    return _then(_self.copyWith(structure: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentCellChanges implements NotebookDocumentCellChanges {
+  const _NotebookDocumentCellChanges({this.structure, final  List<NotebookCell>? data, final  List<NotebookDocumentCellContentChanges>? textContent}): _data = data,_textContent = textContent;
+  factory _NotebookDocumentCellChanges.fromJson(Map<String, dynamic> json) => _$NotebookDocumentCellChangesFromJson(json);
+
+/// Changes to the cell structure to add or remove cells.
+@override final  NotebookDocumentCellChangeStructure? structure;
+/// Changes to notebook cells properties like its kind, execution summary or
+/// metadata.
+ final  List<NotebookCell>? _data;
+/// Changes to notebook cells properties like its kind, execution summary or
+/// metadata.
+@override List<NotebookCell>? get data {
+  final value = _data;
+  if (value == null) return null;
+  if (_data is EqualUnmodifiableListView) return _data;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// Changes to the text content of notebook cells.
+ final  List<NotebookDocumentCellContentChanges>? _textContent;
+/// Changes to the text content of notebook cells.
+@override List<NotebookDocumentCellContentChanges>? get textContent {
+  final value = _textContent;
+  if (value == null) return null;
+  if (_textContent is EqualUnmodifiableListView) return _textContent;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of NotebookDocumentCellChanges
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentCellChangesCopyWith<_NotebookDocumentCellChanges> get copyWith => __$NotebookDocumentCellChangesCopyWithImpl<_NotebookDocumentCellChanges>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentCellChangesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentCellChanges&&(identical(other.structure, structure) || other.structure == structure)&&const DeepCollectionEquality().equals(other._data, _data)&&const DeepCollectionEquality().equals(other._textContent, _textContent));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,structure,const DeepCollectionEquality().hash(_data),const DeepCollectionEquality().hash(_textContent));
+
+@override
+String toString() {
+  return 'NotebookDocumentCellChanges(structure: $structure, data: $data, textContent: $textContent)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentCellChangesCopyWith<$Res> implements $NotebookDocumentCellChangesCopyWith<$Res> {
+  factory _$NotebookDocumentCellChangesCopyWith(_NotebookDocumentCellChanges value, $Res Function(_NotebookDocumentCellChanges) _then) = __$NotebookDocumentCellChangesCopyWithImpl;
+@override @useResult
+$Res call({
+ NotebookDocumentCellChangeStructure? structure, List<NotebookCell>? data, List<NotebookDocumentCellContentChanges>? textContent
+});
+
+
+@override $NotebookDocumentCellChangeStructureCopyWith<$Res>? get structure;
+
+}
+/// @nodoc
+class __$NotebookDocumentCellChangesCopyWithImpl<$Res>
+    implements _$NotebookDocumentCellChangesCopyWith<$Res> {
+  __$NotebookDocumentCellChangesCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentCellChanges _self;
+  final $Res Function(_NotebookDocumentCellChanges) _then;
+
+/// Create a copy of NotebookDocumentCellChanges
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? structure = freezed,Object? data = freezed,Object? textContent = freezed,}) {
+  return _then(_NotebookDocumentCellChanges(
+structure: freezed == structure ? _self.structure : structure // ignore: cast_nullable_to_non_nullable
+as NotebookDocumentCellChangeStructure?,data: freezed == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
+as List<NotebookCell>?,textContent: freezed == textContent ? _self._textContent : textContent // ignore: cast_nullable_to_non_nullable
+as List<NotebookDocumentCellContentChanges>?,
+  ));
+}
+
+/// Create a copy of NotebookDocumentCellChanges
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NotebookDocumentCellChangeStructureCopyWith<$Res>? get structure {
+    if (_self.structure == null) {
+    return null;
+  }
+
+  return $NotebookDocumentCellChangeStructureCopyWith<$Res>(_self.structure!, (value) {
+    return _then(_self.copyWith(structure: value));
+  });
+}
 }
 
 
@@ -28009,6 +31540,451 @@ $RangeCopyWith<$Res> get range {
     return _then(_self.copyWith(range: value));
   });
 }
+}
+
+
+/// @nodoc
+mixin _$ClientInfo {
+
+/// The name of the client as defined by the client.
+ String get name;/// The client's version as defined by the client.
+ String? get version;
+/// Create a copy of ClientInfo
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientInfoCopyWith<ClientInfo> get copyWith => _$ClientInfoCopyWithImpl<ClientInfo>(this as ClientInfo, _$identity);
+
+  /// Serializes this ClientInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.version, version) || other.version == version));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,version);
+
+@override
+String toString() {
+  return 'ClientInfo(name: $name, version: $version)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientInfoCopyWith<$Res>  {
+  factory $ClientInfoCopyWith(ClientInfo value, $Res Function(ClientInfo) _then) = _$ClientInfoCopyWithImpl;
+@useResult
+$Res call({
+ String name, String? version
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientInfoCopyWithImpl<$Res>
+    implements $ClientInfoCopyWith<$Res> {
+  _$ClientInfoCopyWithImpl(this._self, this._then);
+
+  final ClientInfo _self;
+  final $Res Function(ClientInfo) _then;
+
+/// Create a copy of ClientInfo
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? version = freezed,}) {
+  return _then(_self.copyWith(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientInfo implements ClientInfo {
+  const _ClientInfo({required this.name, this.version});
+  factory _ClientInfo.fromJson(Map<String, dynamic> json) => _$ClientInfoFromJson(json);
+
+/// The name of the client as defined by the client.
+@override final  String name;
+/// The client's version as defined by the client.
+@override final  String? version;
+
+/// Create a copy of ClientInfo
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientInfoCopyWith<_ClientInfo> get copyWith => __$ClientInfoCopyWithImpl<_ClientInfo>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientInfoToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.version, version) || other.version == version));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,version);
+
+@override
+String toString() {
+  return 'ClientInfo(name: $name, version: $version)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientInfoCopyWith<$Res> implements $ClientInfoCopyWith<$Res> {
+  factory _$ClientInfoCopyWith(_ClientInfo value, $Res Function(_ClientInfo) _then) = __$ClientInfoCopyWithImpl;
+@override @useResult
+$Res call({
+ String name, String? version
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientInfoCopyWithImpl<$Res>
+    implements _$ClientInfoCopyWith<$Res> {
+  __$ClientInfoCopyWithImpl(this._self, this._then);
+
+  final _ClientInfo _self;
+  final $Res Function(_ClientInfo) _then;
+
+/// Create a copy of ClientInfo
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? version = freezed,}) {
+  return _then(_ClientInfo(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$TextDocumentContentChangePartial {
+
+/// The range of the document that changed.
+ Range get range;/// The new text for the provided range.
+ String get text;/// The optional length of the range that got replaced.
+///
+/// @deprecated use range instead.
+@Deprecated('use range instead.') int? get rangeLength;
+/// Create a copy of TextDocumentContentChangePartial
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentChangePartialCopyWith<TextDocumentContentChangePartial> get copyWith => _$TextDocumentContentChangePartialCopyWithImpl<TextDocumentContentChangePartial>(this as TextDocumentContentChangePartial, _$identity);
+
+  /// Serializes this TextDocumentContentChangePartial to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentChangePartial&&(identical(other.range, range) || other.range == range)&&(identical(other.text, text) || other.text == text)&&(identical(other.rangeLength, rangeLength) || other.rangeLength == rangeLength));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,range,text,rangeLength);
+
+@override
+String toString() {
+  return 'TextDocumentContentChangePartial(range: $range, text: $text, rangeLength: $rangeLength)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentChangePartialCopyWith<$Res>  {
+  factory $TextDocumentContentChangePartialCopyWith(TextDocumentContentChangePartial value, $Res Function(TextDocumentContentChangePartial) _then) = _$TextDocumentContentChangePartialCopyWithImpl;
+@useResult
+$Res call({
+ Range range, String text,@Deprecated('use range instead.') int? rangeLength
+});
+
+
+$RangeCopyWith<$Res> get range;
+
+}
+/// @nodoc
+class _$TextDocumentContentChangePartialCopyWithImpl<$Res>
+    implements $TextDocumentContentChangePartialCopyWith<$Res> {
+  _$TextDocumentContentChangePartialCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentChangePartial _self;
+  final $Res Function(TextDocumentContentChangePartial) _then;
+
+/// Create a copy of TextDocumentContentChangePartial
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? text = null,Object? rangeLength = freezed,}) {
+  return _then(_self.copyWith(
+range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as Range,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,rangeLength: freezed == rangeLength ? _self.rangeLength : rangeLength // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+/// Create a copy of TextDocumentContentChangePartial
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get range {
+  
+  return $RangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentContentChangePartial implements TextDocumentContentChangePartial {
+  const _TextDocumentContentChangePartial({required this.range, required this.text, @Deprecated('use range instead.') this.rangeLength});
+  factory _TextDocumentContentChangePartial.fromJson(Map<String, dynamic> json) => _$TextDocumentContentChangePartialFromJson(json);
+
+/// The range of the document that changed.
+@override final  Range range;
+/// The new text for the provided range.
+@override final  String text;
+/// The optional length of the range that got replaced.
+///
+/// @deprecated use range instead.
+@override@Deprecated('use range instead.') final  int? rangeLength;
+
+/// Create a copy of TextDocumentContentChangePartial
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentContentChangePartialCopyWith<_TextDocumentContentChangePartial> get copyWith => __$TextDocumentContentChangePartialCopyWithImpl<_TextDocumentContentChangePartial>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentContentChangePartialToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentChangePartial&&(identical(other.range, range) || other.range == range)&&(identical(other.text, text) || other.text == text)&&(identical(other.rangeLength, rangeLength) || other.rangeLength == rangeLength));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,range,text,rangeLength);
+
+@override
+String toString() {
+  return 'TextDocumentContentChangePartial(range: $range, text: $text, rangeLength: $rangeLength)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentContentChangePartialCopyWith<$Res> implements $TextDocumentContentChangePartialCopyWith<$Res> {
+  factory _$TextDocumentContentChangePartialCopyWith(_TextDocumentContentChangePartial value, $Res Function(_TextDocumentContentChangePartial) _then) = __$TextDocumentContentChangePartialCopyWithImpl;
+@override @useResult
+$Res call({
+ Range range, String text,@Deprecated('use range instead.') int? rangeLength
+});
+
+
+@override $RangeCopyWith<$Res> get range;
+
+}
+/// @nodoc
+class __$TextDocumentContentChangePartialCopyWithImpl<$Res>
+    implements _$TextDocumentContentChangePartialCopyWith<$Res> {
+  __$TextDocumentContentChangePartialCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentContentChangePartial _self;
+  final $Res Function(_TextDocumentContentChangePartial) _then;
+
+/// Create a copy of TextDocumentContentChangePartial
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? text = null,Object? rangeLength = freezed,}) {
+  return _then(_TextDocumentContentChangePartial(
+range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as Range,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,rangeLength: freezed == rangeLength ? _self.rangeLength : rangeLength // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+/// Create a copy of TextDocumentContentChangePartial
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get range {
+  
+  return $RangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$TextDocumentContentChangeWholeDocument {
+
+/// The new text of the whole document.
+ String get text;
+/// Create a copy of TextDocumentContentChangeWholeDocument
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentChangeWholeDocumentCopyWith<TextDocumentContentChangeWholeDocument> get copyWith => _$TextDocumentContentChangeWholeDocumentCopyWithImpl<TextDocumentContentChangeWholeDocument>(this as TextDocumentContentChangeWholeDocument, _$identity);
+
+  /// Serializes this TextDocumentContentChangeWholeDocument to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentChangeWholeDocument&&(identical(other.text, text) || other.text == text));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,text);
+
+@override
+String toString() {
+  return 'TextDocumentContentChangeWholeDocument(text: $text)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentChangeWholeDocumentCopyWith<$Res>  {
+  factory $TextDocumentContentChangeWholeDocumentCopyWith(TextDocumentContentChangeWholeDocument value, $Res Function(TextDocumentContentChangeWholeDocument) _then) = _$TextDocumentContentChangeWholeDocumentCopyWithImpl;
+@useResult
+$Res call({
+ String text
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentChangeWholeDocumentCopyWithImpl<$Res>
+    implements $TextDocumentContentChangeWholeDocumentCopyWith<$Res> {
+  _$TextDocumentContentChangeWholeDocumentCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentChangeWholeDocument _self;
+  final $Res Function(TextDocumentContentChangeWholeDocument) _then;
+
+/// Create a copy of TextDocumentContentChangeWholeDocument
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? text = null,}) {
+  return _then(_self.copyWith(
+text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentContentChangeWholeDocument implements TextDocumentContentChangeWholeDocument {
+  const _TextDocumentContentChangeWholeDocument({required this.text});
+  factory _TextDocumentContentChangeWholeDocument.fromJson(Map<String, dynamic> json) => _$TextDocumentContentChangeWholeDocumentFromJson(json);
+
+/// The new text of the whole document.
+@override final  String text;
+
+/// Create a copy of TextDocumentContentChangeWholeDocument
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentContentChangeWholeDocumentCopyWith<_TextDocumentContentChangeWholeDocument> get copyWith => __$TextDocumentContentChangeWholeDocumentCopyWithImpl<_TextDocumentContentChangeWholeDocument>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentContentChangeWholeDocumentToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentChangeWholeDocument&&(identical(other.text, text) || other.text == text));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,text);
+
+@override
+String toString() {
+  return 'TextDocumentContentChangeWholeDocument(text: $text)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentContentChangeWholeDocumentCopyWith<$Res> implements $TextDocumentContentChangeWholeDocumentCopyWith<$Res> {
+  factory _$TextDocumentContentChangeWholeDocumentCopyWith(_TextDocumentContentChangeWholeDocument value, $Res Function(_TextDocumentContentChangeWholeDocument) _then) = __$TextDocumentContentChangeWholeDocumentCopyWithImpl;
+@override @useResult
+$Res call({
+ String text
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentContentChangeWholeDocumentCopyWithImpl<$Res>
+    implements _$TextDocumentContentChangeWholeDocumentCopyWith<$Res> {
+  __$TextDocumentContentChangeWholeDocumentCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentContentChangeWholeDocument _self;
+  final $Res Function(_TextDocumentContentChangeWholeDocument) _then;
+
+/// Create a copy of TextDocumentContentChangeWholeDocument
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? text = null,}) {
+  return _then(_TextDocumentContentChangeWholeDocument(
+text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 
@@ -28308,6 +32284,316 @@ $LocationCopyWith<$Res> get location {
 
 
 /// @nodoc
+mixin _$EditRangeWithInsertReplace {
+
+ Range get insert; Range get replace;
+/// Create a copy of EditRangeWithInsertReplace
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EditRangeWithInsertReplaceCopyWith<EditRangeWithInsertReplace> get copyWith => _$EditRangeWithInsertReplaceCopyWithImpl<EditRangeWithInsertReplace>(this as EditRangeWithInsertReplace, _$identity);
+
+  /// Serializes this EditRangeWithInsertReplace to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditRangeWithInsertReplace&&(identical(other.insert, insert) || other.insert == insert)&&(identical(other.replace, replace) || other.replace == replace));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,insert,replace);
+
+@override
+String toString() {
+  return 'EditRangeWithInsertReplace(insert: $insert, replace: $replace)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EditRangeWithInsertReplaceCopyWith<$Res>  {
+  factory $EditRangeWithInsertReplaceCopyWith(EditRangeWithInsertReplace value, $Res Function(EditRangeWithInsertReplace) _then) = _$EditRangeWithInsertReplaceCopyWithImpl;
+@useResult
+$Res call({
+ Range insert, Range replace
+});
+
+
+$RangeCopyWith<$Res> get insert;$RangeCopyWith<$Res> get replace;
+
+}
+/// @nodoc
+class _$EditRangeWithInsertReplaceCopyWithImpl<$Res>
+    implements $EditRangeWithInsertReplaceCopyWith<$Res> {
+  _$EditRangeWithInsertReplaceCopyWithImpl(this._self, this._then);
+
+  final EditRangeWithInsertReplace _self;
+  final $Res Function(EditRangeWithInsertReplace) _then;
+
+/// Create a copy of EditRangeWithInsertReplace
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? insert = null,Object? replace = null,}) {
+  return _then(_self.copyWith(
+insert: null == insert ? _self.insert : insert // ignore: cast_nullable_to_non_nullable
+as Range,replace: null == replace ? _self.replace : replace // ignore: cast_nullable_to_non_nullable
+as Range,
+  ));
+}
+/// Create a copy of EditRangeWithInsertReplace
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get insert {
+  
+  return $RangeCopyWith<$Res>(_self.insert, (value) {
+    return _then(_self.copyWith(insert: value));
+  });
+}/// Create a copy of EditRangeWithInsertReplace
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get replace {
+  
+  return $RangeCopyWith<$Res>(_self.replace, (value) {
+    return _then(_self.copyWith(replace: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _EditRangeWithInsertReplace implements EditRangeWithInsertReplace {
+  const _EditRangeWithInsertReplace({required this.insert, required this.replace});
+  factory _EditRangeWithInsertReplace.fromJson(Map<String, dynamic> json) => _$EditRangeWithInsertReplaceFromJson(json);
+
+@override final  Range insert;
+@override final  Range replace;
+
+/// Create a copy of EditRangeWithInsertReplace
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$EditRangeWithInsertReplaceCopyWith<_EditRangeWithInsertReplace> get copyWith => __$EditRangeWithInsertReplaceCopyWithImpl<_EditRangeWithInsertReplace>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$EditRangeWithInsertReplaceToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditRangeWithInsertReplace&&(identical(other.insert, insert) || other.insert == insert)&&(identical(other.replace, replace) || other.replace == replace));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,insert,replace);
+
+@override
+String toString() {
+  return 'EditRangeWithInsertReplace(insert: $insert, replace: $replace)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$EditRangeWithInsertReplaceCopyWith<$Res> implements $EditRangeWithInsertReplaceCopyWith<$Res> {
+  factory _$EditRangeWithInsertReplaceCopyWith(_EditRangeWithInsertReplace value, $Res Function(_EditRangeWithInsertReplace) _then) = __$EditRangeWithInsertReplaceCopyWithImpl;
+@override @useResult
+$Res call({
+ Range insert, Range replace
+});
+
+
+@override $RangeCopyWith<$Res> get insert;@override $RangeCopyWith<$Res> get replace;
+
+}
+/// @nodoc
+class __$EditRangeWithInsertReplaceCopyWithImpl<$Res>
+    implements _$EditRangeWithInsertReplaceCopyWith<$Res> {
+  __$EditRangeWithInsertReplaceCopyWithImpl(this._self, this._then);
+
+  final _EditRangeWithInsertReplace _self;
+  final $Res Function(_EditRangeWithInsertReplace) _then;
+
+/// Create a copy of EditRangeWithInsertReplace
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? insert = null,Object? replace = null,}) {
+  return _then(_EditRangeWithInsertReplace(
+insert: null == insert ? _self.insert : insert // ignore: cast_nullable_to_non_nullable
+as Range,replace: null == replace ? _self.replace : replace // ignore: cast_nullable_to_non_nullable
+as Range,
+  ));
+}
+
+/// Create a copy of EditRangeWithInsertReplace
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get insert {
+  
+  return $RangeCopyWith<$Res>(_self.insert, (value) {
+    return _then(_self.copyWith(insert: value));
+  });
+}/// Create a copy of EditRangeWithInsertReplace
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get replace {
+  
+  return $RangeCopyWith<$Res>(_self.replace, (value) {
+    return _then(_self.copyWith(replace: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$MarkedStringWithLanguage {
+
+ String get language; String get value;
+/// Create a copy of MarkedStringWithLanguage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MarkedStringWithLanguageCopyWith<MarkedStringWithLanguage> get copyWith => _$MarkedStringWithLanguageCopyWithImpl<MarkedStringWithLanguage>(this as MarkedStringWithLanguage, _$identity);
+
+  /// Serializes this MarkedStringWithLanguage to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarkedStringWithLanguage&&(identical(other.language, language) || other.language == language)&&(identical(other.value, value) || other.value == value));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,language,value);
+
+@override
+String toString() {
+  return 'MarkedStringWithLanguage(language: $language, value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MarkedStringWithLanguageCopyWith<$Res>  {
+  factory $MarkedStringWithLanguageCopyWith(MarkedStringWithLanguage value, $Res Function(MarkedStringWithLanguage) _then) = _$MarkedStringWithLanguageCopyWithImpl;
+@useResult
+$Res call({
+ String language, String value
+});
+
+
+
+
+}
+/// @nodoc
+class _$MarkedStringWithLanguageCopyWithImpl<$Res>
+    implements $MarkedStringWithLanguageCopyWith<$Res> {
+  _$MarkedStringWithLanguageCopyWithImpl(this._self, this._then);
+
+  final MarkedStringWithLanguage _self;
+  final $Res Function(MarkedStringWithLanguage) _then;
+
+/// Create a copy of MarkedStringWithLanguage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? language = null,Object? value = null,}) {
+  return _then(_self.copyWith(
+language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _MarkedStringWithLanguage implements MarkedStringWithLanguage {
+  const _MarkedStringWithLanguage({required this.language, required this.value});
+  factory _MarkedStringWithLanguage.fromJson(Map<String, dynamic> json) => _$MarkedStringWithLanguageFromJson(json);
+
+@override final  String language;
+@override final  String value;
+
+/// Create a copy of MarkedStringWithLanguage
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MarkedStringWithLanguageCopyWith<_MarkedStringWithLanguage> get copyWith => __$MarkedStringWithLanguageCopyWithImpl<_MarkedStringWithLanguage>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MarkedStringWithLanguageToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MarkedStringWithLanguage&&(identical(other.language, language) || other.language == language)&&(identical(other.value, value) || other.value == value));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,language,value);
+
+@override
+String toString() {
+  return 'MarkedStringWithLanguage(language: $language, value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MarkedStringWithLanguageCopyWith<$Res> implements $MarkedStringWithLanguageCopyWith<$Res> {
+  factory _$MarkedStringWithLanguageCopyWith(_MarkedStringWithLanguage value, $Res Function(_MarkedStringWithLanguage) _then) = __$MarkedStringWithLanguageCopyWithImpl;
+@override @useResult
+$Res call({
+ String language, String value
+});
+
+
+
+
+}
+/// @nodoc
+class __$MarkedStringWithLanguageCopyWithImpl<$Res>
+    implements _$MarkedStringWithLanguageCopyWith<$Res> {
+  __$MarkedStringWithLanguageCopyWithImpl(this._self, this._then);
+
+  final _MarkedStringWithLanguage _self;
+  final $Res Function(_MarkedStringWithLanguage) _then;
+
+/// Create a copy of MarkedStringWithLanguage
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? language = null,Object? value = null,}) {
+  return _then(_MarkedStringWithLanguage(
+language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$ParameterInformation {
 
 /// The label of this parameter information.
@@ -28316,6 +32602,10 @@ mixin _$ParameterInformation {
 /// its containing signature label. (see SignatureInformation.label). The
 /// offsets are based on a UTF-16 string representation as `Position` and
 /// `Range` does.
+///
+/// To avoid ambiguities a server should use the [start, end] offset value
+/// instead of using a substring. Whether a client support this is
+/// controlled via `labelOffsetSupport` client capability.
 ///
 /// *Note*: a label of type string should be a substring of its containing
 /// signature label. Its intended use case is to highlight the parameter
@@ -28402,6 +32692,10 @@ class _ParameterInformation implements ParameterInformation {
 /// offsets are based on a UTF-16 string representation as `Position` and
 /// `Range` does.
 ///
+/// To avoid ambiguities a server should use the [start, end] offset value
+/// instead of using a substring. Whether a client support this is
+/// controlled via `labelOffsetSupport` client capability.
+///
 /// *Note*: a label of type string should be a substring of its containing
 /// signature label. Its intended use case is to highlight the parameter
 /// label part in the `SignatureInformation.label`.
@@ -28473,6 +32767,183 @@ as ParameterInformationDocumentation?,
 }
 
 
+}
+
+
+/// @nodoc
+mixin _$CodeActionKindDocumentation {
+
+/// The kind of the code action being documented.
+///
+/// If the kind is generic, such as `CodeActionKind.Refactor`, the
+/// documentation will be shown whenever any refactorings are returned. If
+/// the kind if more specific, such as `CodeActionKind.RefactorExtract`, the
+/// documentation will only be shown when extract refactoring code actions
+/// are returned.
+ CodeActionKind get kind;/// Command that is ued to display the documentation to the user.
+///
+/// The title of this documentation code action is taken from {@linkcode
+/// Command.title}
+ Command get command;
+/// Create a copy of CodeActionKindDocumentation
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CodeActionKindDocumentationCopyWith<CodeActionKindDocumentation> get copyWith => _$CodeActionKindDocumentationCopyWithImpl<CodeActionKindDocumentation>(this as CodeActionKindDocumentation, _$identity);
+
+  /// Serializes this CodeActionKindDocumentation to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionKindDocumentation&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.command, command) || other.command == command));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,kind,command);
+
+@override
+String toString() {
+  return 'CodeActionKindDocumentation(kind: $kind, command: $command)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CodeActionKindDocumentationCopyWith<$Res>  {
+  factory $CodeActionKindDocumentationCopyWith(CodeActionKindDocumentation value, $Res Function(CodeActionKindDocumentation) _then) = _$CodeActionKindDocumentationCopyWithImpl;
+@useResult
+$Res call({
+ CodeActionKind kind, Command command
+});
+
+
+$CommandCopyWith<$Res> get command;
+
+}
+/// @nodoc
+class _$CodeActionKindDocumentationCopyWithImpl<$Res>
+    implements $CodeActionKindDocumentationCopyWith<$Res> {
+  _$CodeActionKindDocumentationCopyWithImpl(this._self, this._then);
+
+  final CodeActionKindDocumentation _self;
+  final $Res Function(CodeActionKindDocumentation) _then;
+
+/// Create a copy of CodeActionKindDocumentation
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? command = null,}) {
+  return _then(_self.copyWith(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as CodeActionKind,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as Command,
+  ));
+}
+/// Create a copy of CodeActionKindDocumentation
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CommandCopyWith<$Res> get command {
+  
+  return $CommandCopyWith<$Res>(_self.command, (value) {
+    return _then(_self.copyWith(command: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _CodeActionKindDocumentation implements CodeActionKindDocumentation {
+  const _CodeActionKindDocumentation({required this.kind, required this.command});
+  factory _CodeActionKindDocumentation.fromJson(Map<String, dynamic> json) => _$CodeActionKindDocumentationFromJson(json);
+
+/// The kind of the code action being documented.
+///
+/// If the kind is generic, such as `CodeActionKind.Refactor`, the
+/// documentation will be shown whenever any refactorings are returned. If
+/// the kind if more specific, such as `CodeActionKind.RefactorExtract`, the
+/// documentation will only be shown when extract refactoring code actions
+/// are returned.
+@override final  CodeActionKind kind;
+/// Command that is ued to display the documentation to the user.
+///
+/// The title of this documentation code action is taken from {@linkcode
+/// Command.title}
+@override final  Command command;
+
+/// Create a copy of CodeActionKindDocumentation
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CodeActionKindDocumentationCopyWith<_CodeActionKindDocumentation> get copyWith => __$CodeActionKindDocumentationCopyWithImpl<_CodeActionKindDocumentation>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CodeActionKindDocumentationToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionKindDocumentation&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.command, command) || other.command == command));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,kind,command);
+
+@override
+String toString() {
+  return 'CodeActionKindDocumentation(kind: $kind, command: $command)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CodeActionKindDocumentationCopyWith<$Res> implements $CodeActionKindDocumentationCopyWith<$Res> {
+  factory _$CodeActionKindDocumentationCopyWith(_CodeActionKindDocumentation value, $Res Function(_CodeActionKindDocumentation) _then) = __$CodeActionKindDocumentationCopyWithImpl;
+@override @useResult
+$Res call({
+ CodeActionKind kind, Command command
+});
+
+
+@override $CommandCopyWith<$Res> get command;
+
+}
+/// @nodoc
+class __$CodeActionKindDocumentationCopyWithImpl<$Res>
+    implements _$CodeActionKindDocumentationCopyWith<$Res> {
+  __$CodeActionKindDocumentationCopyWithImpl(this._self, this._then);
+
+  final _CodeActionKindDocumentation _self;
+  final $Res Function(_CodeActionKindDocumentation) _then;
+
+/// Create a copy of CodeActionKindDocumentation
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? command = null,}) {
+  return _then(_CodeActionKindDocumentation(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as CodeActionKind,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as Command,
+  ));
+}
+
+/// Create a copy of CodeActionKindDocumentation
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CommandCopyWith<$Res> get command {
+  
+  return $CommandCopyWith<$Res>(_self.command, (value) {
+    return _then(_self.copyWith(command: value));
+  });
+}
 }
 
 
@@ -28775,6 +33246,483 @@ as bool?,
 
 
 /// @nodoc
+mixin _$NotebookCellLanguage {
+
+ String get language;
+/// Create a copy of NotebookCellLanguage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookCellLanguageCopyWith<NotebookCellLanguage> get copyWith => _$NotebookCellLanguageCopyWithImpl<NotebookCellLanguage>(this as NotebookCellLanguage, _$identity);
+
+  /// Serializes this NotebookCellLanguage to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookCellLanguage&&(identical(other.language, language) || other.language == language));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,language);
+
+@override
+String toString() {
+  return 'NotebookCellLanguage(language: $language)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookCellLanguageCopyWith<$Res>  {
+  factory $NotebookCellLanguageCopyWith(NotebookCellLanguage value, $Res Function(NotebookCellLanguage) _then) = _$NotebookCellLanguageCopyWithImpl;
+@useResult
+$Res call({
+ String language
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotebookCellLanguageCopyWithImpl<$Res>
+    implements $NotebookCellLanguageCopyWith<$Res> {
+  _$NotebookCellLanguageCopyWithImpl(this._self, this._then);
+
+  final NotebookCellLanguage _self;
+  final $Res Function(NotebookCellLanguage) _then;
+
+/// Create a copy of NotebookCellLanguage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? language = null,}) {
+  return _then(_self.copyWith(
+language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookCellLanguage implements NotebookCellLanguage {
+  const _NotebookCellLanguage({required this.language});
+  factory _NotebookCellLanguage.fromJson(Map<String, dynamic> json) => _$NotebookCellLanguageFromJson(json);
+
+@override final  String language;
+
+/// Create a copy of NotebookCellLanguage
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookCellLanguageCopyWith<_NotebookCellLanguage> get copyWith => __$NotebookCellLanguageCopyWithImpl<_NotebookCellLanguage>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookCellLanguageToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookCellLanguage&&(identical(other.language, language) || other.language == language));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,language);
+
+@override
+String toString() {
+  return 'NotebookCellLanguage(language: $language)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookCellLanguageCopyWith<$Res> implements $NotebookCellLanguageCopyWith<$Res> {
+  factory _$NotebookCellLanguageCopyWith(_NotebookCellLanguage value, $Res Function(_NotebookCellLanguage) _then) = __$NotebookCellLanguageCopyWithImpl;
+@override @useResult
+$Res call({
+ String language
+});
+
+
+
+
+}
+/// @nodoc
+class __$NotebookCellLanguageCopyWithImpl<$Res>
+    implements _$NotebookCellLanguageCopyWith<$Res> {
+  __$NotebookCellLanguageCopyWithImpl(this._self, this._then);
+
+  final _NotebookCellLanguage _self;
+  final $Res Function(_NotebookCellLanguage) _then;
+
+/// Create a copy of NotebookCellLanguage
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? language = null,}) {
+  return _then(_NotebookCellLanguage(
+language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$NotebookDocumentCellChangeStructure {
+
+/// The change to the cell array.
+ NotebookCellArrayChange get array;/// Additional opened cell text documents.
+ List<TextDocumentItem>? get didOpen;/// Additional closed cell text documents.
+ List<TextDocumentIdentifier>? get didClose;
+/// Create a copy of NotebookDocumentCellChangeStructure
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentCellChangeStructureCopyWith<NotebookDocumentCellChangeStructure> get copyWith => _$NotebookDocumentCellChangeStructureCopyWithImpl<NotebookDocumentCellChangeStructure>(this as NotebookDocumentCellChangeStructure, _$identity);
+
+  /// Serializes this NotebookDocumentCellChangeStructure to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentCellChangeStructure&&(identical(other.array, array) || other.array == array)&&const DeepCollectionEquality().equals(other.didOpen, didOpen)&&const DeepCollectionEquality().equals(other.didClose, didClose));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,array,const DeepCollectionEquality().hash(didOpen),const DeepCollectionEquality().hash(didClose));
+
+@override
+String toString() {
+  return 'NotebookDocumentCellChangeStructure(array: $array, didOpen: $didOpen, didClose: $didClose)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentCellChangeStructureCopyWith<$Res>  {
+  factory $NotebookDocumentCellChangeStructureCopyWith(NotebookDocumentCellChangeStructure value, $Res Function(NotebookDocumentCellChangeStructure) _then) = _$NotebookDocumentCellChangeStructureCopyWithImpl;
+@useResult
+$Res call({
+ NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose
+});
+
+
+$NotebookCellArrayChangeCopyWith<$Res> get array;
+
+}
+/// @nodoc
+class _$NotebookDocumentCellChangeStructureCopyWithImpl<$Res>
+    implements $NotebookDocumentCellChangeStructureCopyWith<$Res> {
+  _$NotebookDocumentCellChangeStructureCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentCellChangeStructure _self;
+  final $Res Function(NotebookDocumentCellChangeStructure) _then;
+
+/// Create a copy of NotebookDocumentCellChangeStructure
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? array = null,Object? didOpen = freezed,Object? didClose = freezed,}) {
+  return _then(_self.copyWith(
+array: null == array ? _self.array : array // ignore: cast_nullable_to_non_nullable
+as NotebookCellArrayChange,didOpen: freezed == didOpen ? _self.didOpen : didOpen // ignore: cast_nullable_to_non_nullable
+as List<TextDocumentItem>?,didClose: freezed == didClose ? _self.didClose : didClose // ignore: cast_nullable_to_non_nullable
+as List<TextDocumentIdentifier>?,
+  ));
+}
+/// Create a copy of NotebookDocumentCellChangeStructure
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NotebookCellArrayChangeCopyWith<$Res> get array {
+  
+  return $NotebookCellArrayChangeCopyWith<$Res>(_self.array, (value) {
+    return _then(_self.copyWith(array: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentCellChangeStructure implements NotebookDocumentCellChangeStructure {
+  const _NotebookDocumentCellChangeStructure({required this.array, final  List<TextDocumentItem>? didOpen, final  List<TextDocumentIdentifier>? didClose}): _didOpen = didOpen,_didClose = didClose;
+  factory _NotebookDocumentCellChangeStructure.fromJson(Map<String, dynamic> json) => _$NotebookDocumentCellChangeStructureFromJson(json);
+
+/// The change to the cell array.
+@override final  NotebookCellArrayChange array;
+/// Additional opened cell text documents.
+ final  List<TextDocumentItem>? _didOpen;
+/// Additional opened cell text documents.
+@override List<TextDocumentItem>? get didOpen {
+  final value = _didOpen;
+  if (value == null) return null;
+  if (_didOpen is EqualUnmodifiableListView) return _didOpen;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// Additional closed cell text documents.
+ final  List<TextDocumentIdentifier>? _didClose;
+/// Additional closed cell text documents.
+@override List<TextDocumentIdentifier>? get didClose {
+  final value = _didClose;
+  if (value == null) return null;
+  if (_didClose is EqualUnmodifiableListView) return _didClose;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of NotebookDocumentCellChangeStructure
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentCellChangeStructureCopyWith<_NotebookDocumentCellChangeStructure> get copyWith => __$NotebookDocumentCellChangeStructureCopyWithImpl<_NotebookDocumentCellChangeStructure>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentCellChangeStructureToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentCellChangeStructure&&(identical(other.array, array) || other.array == array)&&const DeepCollectionEquality().equals(other._didOpen, _didOpen)&&const DeepCollectionEquality().equals(other._didClose, _didClose));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,array,const DeepCollectionEquality().hash(_didOpen),const DeepCollectionEquality().hash(_didClose));
+
+@override
+String toString() {
+  return 'NotebookDocumentCellChangeStructure(array: $array, didOpen: $didOpen, didClose: $didClose)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentCellChangeStructureCopyWith<$Res> implements $NotebookDocumentCellChangeStructureCopyWith<$Res> {
+  factory _$NotebookDocumentCellChangeStructureCopyWith(_NotebookDocumentCellChangeStructure value, $Res Function(_NotebookDocumentCellChangeStructure) _then) = __$NotebookDocumentCellChangeStructureCopyWithImpl;
+@override @useResult
+$Res call({
+ NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose
+});
+
+
+@override $NotebookCellArrayChangeCopyWith<$Res> get array;
+
+}
+/// @nodoc
+class __$NotebookDocumentCellChangeStructureCopyWithImpl<$Res>
+    implements _$NotebookDocumentCellChangeStructureCopyWith<$Res> {
+  __$NotebookDocumentCellChangeStructureCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentCellChangeStructure _self;
+  final $Res Function(_NotebookDocumentCellChangeStructure) _then;
+
+/// Create a copy of NotebookDocumentCellChangeStructure
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? array = null,Object? didOpen = freezed,Object? didClose = freezed,}) {
+  return _then(_NotebookDocumentCellChangeStructure(
+array: null == array ? _self.array : array // ignore: cast_nullable_to_non_nullable
+as NotebookCellArrayChange,didOpen: freezed == didOpen ? _self._didOpen : didOpen // ignore: cast_nullable_to_non_nullable
+as List<TextDocumentItem>?,didClose: freezed == didClose ? _self._didClose : didClose // ignore: cast_nullable_to_non_nullable
+as List<TextDocumentIdentifier>?,
+  ));
+}
+
+/// Create a copy of NotebookDocumentCellChangeStructure
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NotebookCellArrayChangeCopyWith<$Res> get array {
+  
+  return $NotebookCellArrayChangeCopyWith<$Res>(_self.array, (value) {
+    return _then(_self.copyWith(array: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$NotebookDocumentCellContentChanges {
+
+ VersionedTextDocumentIdentifier get document; List<TextDocumentContentChangeEvent> get changes;
+/// Create a copy of NotebookDocumentCellContentChanges
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentCellContentChangesCopyWith<NotebookDocumentCellContentChanges> get copyWith => _$NotebookDocumentCellContentChangesCopyWithImpl<NotebookDocumentCellContentChanges>(this as NotebookDocumentCellContentChanges, _$identity);
+
+  /// Serializes this NotebookDocumentCellContentChanges to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentCellContentChanges&&(identical(other.document, document) || other.document == document)&&const DeepCollectionEquality().equals(other.changes, changes));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,document,const DeepCollectionEquality().hash(changes));
+
+@override
+String toString() {
+  return 'NotebookDocumentCellContentChanges(document: $document, changes: $changes)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentCellContentChangesCopyWith<$Res>  {
+  factory $NotebookDocumentCellContentChangesCopyWith(NotebookDocumentCellContentChanges value, $Res Function(NotebookDocumentCellContentChanges) _then) = _$NotebookDocumentCellContentChangesCopyWithImpl;
+@useResult
+$Res call({
+ VersionedTextDocumentIdentifier document, List<TextDocumentContentChangeEvent> changes
+});
+
+
+$VersionedTextDocumentIdentifierCopyWith<$Res> get document;
+
+}
+/// @nodoc
+class _$NotebookDocumentCellContentChangesCopyWithImpl<$Res>
+    implements $NotebookDocumentCellContentChangesCopyWith<$Res> {
+  _$NotebookDocumentCellContentChangesCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentCellContentChanges _self;
+  final $Res Function(NotebookDocumentCellContentChanges) _then;
+
+/// Create a copy of NotebookDocumentCellContentChanges
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? document = null,Object? changes = null,}) {
+  return _then(_self.copyWith(
+document: null == document ? _self.document : document // ignore: cast_nullable_to_non_nullable
+as VersionedTextDocumentIdentifier,changes: null == changes ? _self.changes : changes // ignore: cast_nullable_to_non_nullable
+as List<TextDocumentContentChangeEvent>,
+  ));
+}
+/// Create a copy of NotebookDocumentCellContentChanges
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VersionedTextDocumentIdentifierCopyWith<$Res> get document {
+  
+  return $VersionedTextDocumentIdentifierCopyWith<$Res>(_self.document, (value) {
+    return _then(_self.copyWith(document: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentCellContentChanges implements NotebookDocumentCellContentChanges {
+  const _NotebookDocumentCellContentChanges({required this.document, required final  List<TextDocumentContentChangeEvent> changes}): _changes = changes;
+  factory _NotebookDocumentCellContentChanges.fromJson(Map<String, dynamic> json) => _$NotebookDocumentCellContentChangesFromJson(json);
+
+@override final  VersionedTextDocumentIdentifier document;
+ final  List<TextDocumentContentChangeEvent> _changes;
+@override List<TextDocumentContentChangeEvent> get changes {
+  if (_changes is EqualUnmodifiableListView) return _changes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_changes);
+}
+
+
+/// Create a copy of NotebookDocumentCellContentChanges
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentCellContentChangesCopyWith<_NotebookDocumentCellContentChanges> get copyWith => __$NotebookDocumentCellContentChangesCopyWithImpl<_NotebookDocumentCellContentChanges>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentCellContentChangesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentCellContentChanges&&(identical(other.document, document) || other.document == document)&&const DeepCollectionEquality().equals(other._changes, _changes));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,document,const DeepCollectionEquality().hash(_changes));
+
+@override
+String toString() {
+  return 'NotebookDocumentCellContentChanges(document: $document, changes: $changes)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentCellContentChangesCopyWith<$Res> implements $NotebookDocumentCellContentChangesCopyWith<$Res> {
+  factory _$NotebookDocumentCellContentChangesCopyWith(_NotebookDocumentCellContentChanges value, $Res Function(_NotebookDocumentCellContentChanges) _then) = __$NotebookDocumentCellContentChangesCopyWithImpl;
+@override @useResult
+$Res call({
+ VersionedTextDocumentIdentifier document, List<TextDocumentContentChangeEvent> changes
+});
+
+
+@override $VersionedTextDocumentIdentifierCopyWith<$Res> get document;
+
+}
+/// @nodoc
+class __$NotebookDocumentCellContentChangesCopyWithImpl<$Res>
+    implements _$NotebookDocumentCellContentChangesCopyWith<$Res> {
+  __$NotebookDocumentCellContentChangesCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentCellContentChanges _self;
+  final $Res Function(_NotebookDocumentCellContentChanges) _then;
+
+/// Create a copy of NotebookDocumentCellContentChanges
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? document = null,Object? changes = null,}) {
+  return _then(_NotebookDocumentCellContentChanges(
+document: null == document ? _self.document : document // ignore: cast_nullable_to_non_nullable
+as VersionedTextDocumentIdentifier,changes: null == changes ? _self._changes : changes // ignore: cast_nullable_to_non_nullable
+as List<TextDocumentContentChangeEvent>,
+  ));
+}
+
+/// Create a copy of NotebookDocumentCellContentChanges
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VersionedTextDocumentIdentifierCopyWith<$Res> get document {
+  
+  return $VersionedTextDocumentIdentifierCopyWith<$Res>(_self.document, (value) {
+    return _then(_self.copyWith(document: value));
+  });
+}
+}
+
+
+/// @nodoc
 mixin _$RelativePattern {
 
 /// A workspace folder or a base URI to which this pattern will be matched
@@ -28914,6 +33862,1350 @@ class __$RelativePatternCopyWithImpl<$Res>
 baseUri: null == baseUri ? _self.baseUri : baseUri // ignore: cast_nullable_to_non_nullable
 as RelativePatternBaseUri,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
 as Pattern,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$TextDocumentFilterLanguage {
+
+/// A language id, like `typescript`.
+ String get language;/// A Uri `scheme`, like `file` or `untitled`.
+ String? get scheme;/// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+/// relative patterns depends on the client capability
+/// `textDocuments.filters.relativePatternSupport`.
+ GlobPattern? get pattern;
+/// Create a copy of TextDocumentFilterLanguage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentFilterLanguageCopyWith<TextDocumentFilterLanguage> get copyWith => _$TextDocumentFilterLanguageCopyWithImpl<TextDocumentFilterLanguage>(this as TextDocumentFilterLanguage, _$identity);
+
+  /// Serializes this TextDocumentFilterLanguage to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentFilterLanguage&&(identical(other.language, language) || other.language == language)&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,language,scheme,pattern);
+
+@override
+String toString() {
+  return 'TextDocumentFilterLanguage(language: $language, scheme: $scheme, pattern: $pattern)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentFilterLanguageCopyWith<$Res>  {
+  factory $TextDocumentFilterLanguageCopyWith(TextDocumentFilterLanguage value, $Res Function(TextDocumentFilterLanguage) _then) = _$TextDocumentFilterLanguageCopyWithImpl;
+@useResult
+$Res call({
+ String language, String? scheme, GlobPattern? pattern
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentFilterLanguageCopyWithImpl<$Res>
+    implements $TextDocumentFilterLanguageCopyWith<$Res> {
+  _$TextDocumentFilterLanguageCopyWithImpl(this._self, this._then);
+
+  final TextDocumentFilterLanguage _self;
+  final $Res Function(TextDocumentFilterLanguage) _then;
+
+/// Create a copy of TextDocumentFilterLanguage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? language = null,Object? scheme = freezed,Object? pattern = freezed,}) {
+  return _then(_self.copyWith(
+language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentFilterLanguage implements TextDocumentFilterLanguage {
+  const _TextDocumentFilterLanguage({required this.language, this.scheme, this.pattern});
+  factory _TextDocumentFilterLanguage.fromJson(Map<String, dynamic> json) => _$TextDocumentFilterLanguageFromJson(json);
+
+/// A language id, like `typescript`.
+@override final  String language;
+/// A Uri `scheme`, like `file` or `untitled`.
+@override final  String? scheme;
+/// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+/// relative patterns depends on the client capability
+/// `textDocuments.filters.relativePatternSupport`.
+@override final  GlobPattern? pattern;
+
+/// Create a copy of TextDocumentFilterLanguage
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentFilterLanguageCopyWith<_TextDocumentFilterLanguage> get copyWith => __$TextDocumentFilterLanguageCopyWithImpl<_TextDocumentFilterLanguage>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentFilterLanguageToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentFilterLanguage&&(identical(other.language, language) || other.language == language)&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,language,scheme,pattern);
+
+@override
+String toString() {
+  return 'TextDocumentFilterLanguage(language: $language, scheme: $scheme, pattern: $pattern)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentFilterLanguageCopyWith<$Res> implements $TextDocumentFilterLanguageCopyWith<$Res> {
+  factory _$TextDocumentFilterLanguageCopyWith(_TextDocumentFilterLanguage value, $Res Function(_TextDocumentFilterLanguage) _then) = __$TextDocumentFilterLanguageCopyWithImpl;
+@override @useResult
+$Res call({
+ String language, String? scheme, GlobPattern? pattern
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentFilterLanguageCopyWithImpl<$Res>
+    implements _$TextDocumentFilterLanguageCopyWith<$Res> {
+  __$TextDocumentFilterLanguageCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentFilterLanguage _self;
+  final $Res Function(_TextDocumentFilterLanguage) _then;
+
+/// Create a copy of TextDocumentFilterLanguage
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? language = null,Object? scheme = freezed,Object? pattern = freezed,}) {
+  return _then(_TextDocumentFilterLanguage(
+language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$TextDocumentFilterScheme {
+
+/// A Uri `scheme`, like `file` or `untitled`.
+ String get scheme;/// A language id, like `typescript`.
+ String? get language;/// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+/// relative patterns depends on the client capability
+/// `textDocuments.filters.relativePatternSupport`.
+ GlobPattern? get pattern;
+/// Create a copy of TextDocumentFilterScheme
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentFilterSchemeCopyWith<TextDocumentFilterScheme> get copyWith => _$TextDocumentFilterSchemeCopyWithImpl<TextDocumentFilterScheme>(this as TextDocumentFilterScheme, _$identity);
+
+  /// Serializes this TextDocumentFilterScheme to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentFilterScheme&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.language, language) || other.language == language)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,scheme,language,pattern);
+
+@override
+String toString() {
+  return 'TextDocumentFilterScheme(scheme: $scheme, language: $language, pattern: $pattern)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentFilterSchemeCopyWith<$Res>  {
+  factory $TextDocumentFilterSchemeCopyWith(TextDocumentFilterScheme value, $Res Function(TextDocumentFilterScheme) _then) = _$TextDocumentFilterSchemeCopyWithImpl;
+@useResult
+$Res call({
+ String scheme, String? language, GlobPattern? pattern
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentFilterSchemeCopyWithImpl<$Res>
+    implements $TextDocumentFilterSchemeCopyWith<$Res> {
+  _$TextDocumentFilterSchemeCopyWithImpl(this._self, this._then);
+
+  final TextDocumentFilterScheme _self;
+  final $Res Function(TextDocumentFilterScheme) _then;
+
+/// Create a copy of TextDocumentFilterScheme
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? scheme = null,Object? language = freezed,Object? pattern = freezed,}) {
+  return _then(_self.copyWith(
+scheme: null == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentFilterScheme implements TextDocumentFilterScheme {
+  const _TextDocumentFilterScheme({required this.scheme, this.language, this.pattern});
+  factory _TextDocumentFilterScheme.fromJson(Map<String, dynamic> json) => _$TextDocumentFilterSchemeFromJson(json);
+
+/// A Uri `scheme`, like `file` or `untitled`.
+@override final  String scheme;
+/// A language id, like `typescript`.
+@override final  String? language;
+/// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+/// relative patterns depends on the client capability
+/// `textDocuments.filters.relativePatternSupport`.
+@override final  GlobPattern? pattern;
+
+/// Create a copy of TextDocumentFilterScheme
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentFilterSchemeCopyWith<_TextDocumentFilterScheme> get copyWith => __$TextDocumentFilterSchemeCopyWithImpl<_TextDocumentFilterScheme>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentFilterSchemeToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentFilterScheme&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.language, language) || other.language == language)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,scheme,language,pattern);
+
+@override
+String toString() {
+  return 'TextDocumentFilterScheme(scheme: $scheme, language: $language, pattern: $pattern)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentFilterSchemeCopyWith<$Res> implements $TextDocumentFilterSchemeCopyWith<$Res> {
+  factory _$TextDocumentFilterSchemeCopyWith(_TextDocumentFilterScheme value, $Res Function(_TextDocumentFilterScheme) _then) = __$TextDocumentFilterSchemeCopyWithImpl;
+@override @useResult
+$Res call({
+ String scheme, String? language, GlobPattern? pattern
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentFilterSchemeCopyWithImpl<$Res>
+    implements _$TextDocumentFilterSchemeCopyWith<$Res> {
+  __$TextDocumentFilterSchemeCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentFilterScheme _self;
+  final $Res Function(_TextDocumentFilterScheme) _then;
+
+/// Create a copy of TextDocumentFilterScheme
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? scheme = null,Object? language = freezed,Object? pattern = freezed,}) {
+  return _then(_TextDocumentFilterScheme(
+scheme: null == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$TextDocumentFilterPattern {
+
+/// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+/// relative patterns depends on the client capability
+/// `textDocuments.filters.relativePatternSupport`.
+ GlobPattern get pattern;/// A language id, like `typescript`.
+ String? get language;/// A Uri `scheme`, like `file` or `untitled`.
+ String? get scheme;
+/// Create a copy of TextDocumentFilterPattern
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentFilterPatternCopyWith<TextDocumentFilterPattern> get copyWith => _$TextDocumentFilterPatternCopyWithImpl<TextDocumentFilterPattern>(this as TextDocumentFilterPattern, _$identity);
+
+  /// Serializes this TextDocumentFilterPattern to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentFilterPattern&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.language, language) || other.language == language)&&(identical(other.scheme, scheme) || other.scheme == scheme));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,pattern,language,scheme);
+
+@override
+String toString() {
+  return 'TextDocumentFilterPattern(pattern: $pattern, language: $language, scheme: $scheme)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentFilterPatternCopyWith<$Res>  {
+  factory $TextDocumentFilterPatternCopyWith(TextDocumentFilterPattern value, $Res Function(TextDocumentFilterPattern) _then) = _$TextDocumentFilterPatternCopyWithImpl;
+@useResult
+$Res call({
+ GlobPattern pattern, String? language, String? scheme
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentFilterPatternCopyWithImpl<$Res>
+    implements $TextDocumentFilterPatternCopyWith<$Res> {
+  _$TextDocumentFilterPatternCopyWithImpl(this._self, this._then);
+
+  final TextDocumentFilterPattern _self;
+  final $Res Function(TextDocumentFilterPattern) _then;
+
+/// Create a copy of TextDocumentFilterPattern
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? pattern = null,Object? language = freezed,Object? scheme = freezed,}) {
+  return _then(_self.copyWith(
+pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String?,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentFilterPattern implements TextDocumentFilterPattern {
+  const _TextDocumentFilterPattern({required this.pattern, this.language, this.scheme});
+  factory _TextDocumentFilterPattern.fromJson(Map<String, dynamic> json) => _$TextDocumentFilterPatternFromJson(json);
+
+/// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+/// relative patterns depends on the client capability
+/// `textDocuments.filters.relativePatternSupport`.
+@override final  GlobPattern pattern;
+/// A language id, like `typescript`.
+@override final  String? language;
+/// A Uri `scheme`, like `file` or `untitled`.
+@override final  String? scheme;
+
+/// Create a copy of TextDocumentFilterPattern
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentFilterPatternCopyWith<_TextDocumentFilterPattern> get copyWith => __$TextDocumentFilterPatternCopyWithImpl<_TextDocumentFilterPattern>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentFilterPatternToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentFilterPattern&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.language, language) || other.language == language)&&(identical(other.scheme, scheme) || other.scheme == scheme));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,pattern,language,scheme);
+
+@override
+String toString() {
+  return 'TextDocumentFilterPattern(pattern: $pattern, language: $language, scheme: $scheme)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentFilterPatternCopyWith<$Res> implements $TextDocumentFilterPatternCopyWith<$Res> {
+  factory _$TextDocumentFilterPatternCopyWith(_TextDocumentFilterPattern value, $Res Function(_TextDocumentFilterPattern) _then) = __$TextDocumentFilterPatternCopyWithImpl;
+@override @useResult
+$Res call({
+ GlobPattern pattern, String? language, String? scheme
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentFilterPatternCopyWithImpl<$Res>
+    implements _$TextDocumentFilterPatternCopyWith<$Res> {
+  __$TextDocumentFilterPatternCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentFilterPattern _self;
+  final $Res Function(_TextDocumentFilterPattern) _then;
+
+/// Create a copy of TextDocumentFilterPattern
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? pattern = null,Object? language = freezed,Object? scheme = freezed,}) {
+  return _then(_TextDocumentFilterPattern(
+pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String?,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$NotebookDocumentFilterNotebookType {
+
+/// The type of the enclosing notebook.
+ String get notebookType;/// A Uri `scheme`, like `file` or `untitled`.
+ String? get scheme;/// A glob pattern.
+ GlobPattern? get pattern;
+/// Create a copy of NotebookDocumentFilterNotebookType
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentFilterNotebookTypeCopyWith<NotebookDocumentFilterNotebookType> get copyWith => _$NotebookDocumentFilterNotebookTypeCopyWithImpl<NotebookDocumentFilterNotebookType>(this as NotebookDocumentFilterNotebookType, _$identity);
+
+  /// Serializes this NotebookDocumentFilterNotebookType to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentFilterNotebookType&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,notebookType,scheme,pattern);
+
+@override
+String toString() {
+  return 'NotebookDocumentFilterNotebookType(notebookType: $notebookType, scheme: $scheme, pattern: $pattern)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentFilterNotebookTypeCopyWith<$Res>  {
+  factory $NotebookDocumentFilterNotebookTypeCopyWith(NotebookDocumentFilterNotebookType value, $Res Function(NotebookDocumentFilterNotebookType) _then) = _$NotebookDocumentFilterNotebookTypeCopyWithImpl;
+@useResult
+$Res call({
+ String notebookType, String? scheme, GlobPattern? pattern
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotebookDocumentFilterNotebookTypeCopyWithImpl<$Res>
+    implements $NotebookDocumentFilterNotebookTypeCopyWith<$Res> {
+  _$NotebookDocumentFilterNotebookTypeCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentFilterNotebookType _self;
+  final $Res Function(NotebookDocumentFilterNotebookType) _then;
+
+/// Create a copy of NotebookDocumentFilterNotebookType
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? notebookType = null,Object? scheme = freezed,Object? pattern = freezed,}) {
+  return _then(_self.copyWith(
+notebookType: null == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
+as String,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentFilterNotebookType implements NotebookDocumentFilterNotebookType {
+  const _NotebookDocumentFilterNotebookType({required this.notebookType, this.scheme, this.pattern});
+  factory _NotebookDocumentFilterNotebookType.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilterNotebookTypeFromJson(json);
+
+/// The type of the enclosing notebook.
+@override final  String notebookType;
+/// A Uri `scheme`, like `file` or `untitled`.
+@override final  String? scheme;
+/// A glob pattern.
+@override final  GlobPattern? pattern;
+
+/// Create a copy of NotebookDocumentFilterNotebookType
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentFilterNotebookTypeCopyWith<_NotebookDocumentFilterNotebookType> get copyWith => __$NotebookDocumentFilterNotebookTypeCopyWithImpl<_NotebookDocumentFilterNotebookType>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentFilterNotebookTypeToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentFilterNotebookType&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,notebookType,scheme,pattern);
+
+@override
+String toString() {
+  return 'NotebookDocumentFilterNotebookType(notebookType: $notebookType, scheme: $scheme, pattern: $pattern)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentFilterNotebookTypeCopyWith<$Res> implements $NotebookDocumentFilterNotebookTypeCopyWith<$Res> {
+  factory _$NotebookDocumentFilterNotebookTypeCopyWith(_NotebookDocumentFilterNotebookType value, $Res Function(_NotebookDocumentFilterNotebookType) _then) = __$NotebookDocumentFilterNotebookTypeCopyWithImpl;
+@override @useResult
+$Res call({
+ String notebookType, String? scheme, GlobPattern? pattern
+});
+
+
+
+
+}
+/// @nodoc
+class __$NotebookDocumentFilterNotebookTypeCopyWithImpl<$Res>
+    implements _$NotebookDocumentFilterNotebookTypeCopyWith<$Res> {
+  __$NotebookDocumentFilterNotebookTypeCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentFilterNotebookType _self;
+  final $Res Function(_NotebookDocumentFilterNotebookType) _then;
+
+/// Create a copy of NotebookDocumentFilterNotebookType
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? notebookType = null,Object? scheme = freezed,Object? pattern = freezed,}) {
+  return _then(_NotebookDocumentFilterNotebookType(
+notebookType: null == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
+as String,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$NotebookDocumentFilterScheme {
+
+/// A Uri `scheme`, like `file` or `untitled`.
+ String get scheme;/// The type of the enclosing notebook.
+ String? get notebookType;/// A glob pattern.
+ GlobPattern? get pattern;
+/// Create a copy of NotebookDocumentFilterScheme
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentFilterSchemeCopyWith<NotebookDocumentFilterScheme> get copyWith => _$NotebookDocumentFilterSchemeCopyWithImpl<NotebookDocumentFilterScheme>(this as NotebookDocumentFilterScheme, _$identity);
+
+  /// Serializes this NotebookDocumentFilterScheme to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentFilterScheme&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,scheme,notebookType,pattern);
+
+@override
+String toString() {
+  return 'NotebookDocumentFilterScheme(scheme: $scheme, notebookType: $notebookType, pattern: $pattern)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentFilterSchemeCopyWith<$Res>  {
+  factory $NotebookDocumentFilterSchemeCopyWith(NotebookDocumentFilterScheme value, $Res Function(NotebookDocumentFilterScheme) _then) = _$NotebookDocumentFilterSchemeCopyWithImpl;
+@useResult
+$Res call({
+ String scheme, String? notebookType, GlobPattern? pattern
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotebookDocumentFilterSchemeCopyWithImpl<$Res>
+    implements $NotebookDocumentFilterSchemeCopyWith<$Res> {
+  _$NotebookDocumentFilterSchemeCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentFilterScheme _self;
+  final $Res Function(NotebookDocumentFilterScheme) _then;
+
+/// Create a copy of NotebookDocumentFilterScheme
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? scheme = null,Object? notebookType = freezed,Object? pattern = freezed,}) {
+  return _then(_self.copyWith(
+scheme: null == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String,notebookType: freezed == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
+as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentFilterScheme implements NotebookDocumentFilterScheme {
+  const _NotebookDocumentFilterScheme({required this.scheme, this.notebookType, this.pattern});
+  factory _NotebookDocumentFilterScheme.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilterSchemeFromJson(json);
+
+/// A Uri `scheme`, like `file` or `untitled`.
+@override final  String scheme;
+/// The type of the enclosing notebook.
+@override final  String? notebookType;
+/// A glob pattern.
+@override final  GlobPattern? pattern;
+
+/// Create a copy of NotebookDocumentFilterScheme
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentFilterSchemeCopyWith<_NotebookDocumentFilterScheme> get copyWith => __$NotebookDocumentFilterSchemeCopyWithImpl<_NotebookDocumentFilterScheme>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentFilterSchemeToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentFilterScheme&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.pattern, pattern) || other.pattern == pattern));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,scheme,notebookType,pattern);
+
+@override
+String toString() {
+  return 'NotebookDocumentFilterScheme(scheme: $scheme, notebookType: $notebookType, pattern: $pattern)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentFilterSchemeCopyWith<$Res> implements $NotebookDocumentFilterSchemeCopyWith<$Res> {
+  factory _$NotebookDocumentFilterSchemeCopyWith(_NotebookDocumentFilterScheme value, $Res Function(_NotebookDocumentFilterScheme) _then) = __$NotebookDocumentFilterSchemeCopyWithImpl;
+@override @useResult
+$Res call({
+ String scheme, String? notebookType, GlobPattern? pattern
+});
+
+
+
+
+}
+/// @nodoc
+class __$NotebookDocumentFilterSchemeCopyWithImpl<$Res>
+    implements _$NotebookDocumentFilterSchemeCopyWith<$Res> {
+  __$NotebookDocumentFilterSchemeCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentFilterScheme _self;
+  final $Res Function(_NotebookDocumentFilterScheme) _then;
+
+/// Create a copy of NotebookDocumentFilterScheme
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? scheme = null,Object? notebookType = freezed,Object? pattern = freezed,}) {
+  return _then(_NotebookDocumentFilterScheme(
+scheme: null == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String,notebookType: freezed == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
+as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$NotebookDocumentFilterPattern {
+
+/// A glob pattern.
+ GlobPattern get pattern;/// The type of the enclosing notebook.
+ String? get notebookType;/// A Uri `scheme`, like `file` or `untitled`.
+ String? get scheme;
+/// Create a copy of NotebookDocumentFilterPattern
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentFilterPatternCopyWith<NotebookDocumentFilterPattern> get copyWith => _$NotebookDocumentFilterPatternCopyWithImpl<NotebookDocumentFilterPattern>(this as NotebookDocumentFilterPattern, _$identity);
+
+  /// Serializes this NotebookDocumentFilterPattern to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentFilterPattern&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.scheme, scheme) || other.scheme == scheme));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,pattern,notebookType,scheme);
+
+@override
+String toString() {
+  return 'NotebookDocumentFilterPattern(pattern: $pattern, notebookType: $notebookType, scheme: $scheme)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentFilterPatternCopyWith<$Res>  {
+  factory $NotebookDocumentFilterPatternCopyWith(NotebookDocumentFilterPattern value, $Res Function(NotebookDocumentFilterPattern) _then) = _$NotebookDocumentFilterPatternCopyWithImpl;
+@useResult
+$Res call({
+ GlobPattern pattern, String? notebookType, String? scheme
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotebookDocumentFilterPatternCopyWithImpl<$Res>
+    implements $NotebookDocumentFilterPatternCopyWith<$Res> {
+  _$NotebookDocumentFilterPatternCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentFilterPattern _self;
+  final $Res Function(NotebookDocumentFilterPattern) _then;
+
+/// Create a copy of NotebookDocumentFilterPattern
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? pattern = null,Object? notebookType = freezed,Object? scheme = freezed,}) {
+  return _then(_self.copyWith(
+pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern,notebookType: freezed == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
+as String?,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentFilterPattern implements NotebookDocumentFilterPattern {
+  const _NotebookDocumentFilterPattern({required this.pattern, this.notebookType, this.scheme});
+  factory _NotebookDocumentFilterPattern.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilterPatternFromJson(json);
+
+/// A glob pattern.
+@override final  GlobPattern pattern;
+/// The type of the enclosing notebook.
+@override final  String? notebookType;
+/// A Uri `scheme`, like `file` or `untitled`.
+@override final  String? scheme;
+
+/// Create a copy of NotebookDocumentFilterPattern
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentFilterPatternCopyWith<_NotebookDocumentFilterPattern> get copyWith => __$NotebookDocumentFilterPatternCopyWithImpl<_NotebookDocumentFilterPattern>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentFilterPatternToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentFilterPattern&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.scheme, scheme) || other.scheme == scheme));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,pattern,notebookType,scheme);
+
+@override
+String toString() {
+  return 'NotebookDocumentFilterPattern(pattern: $pattern, notebookType: $notebookType, scheme: $scheme)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentFilterPatternCopyWith<$Res> implements $NotebookDocumentFilterPatternCopyWith<$Res> {
+  factory _$NotebookDocumentFilterPatternCopyWith(_NotebookDocumentFilterPattern value, $Res Function(_NotebookDocumentFilterPattern) _then) = __$NotebookDocumentFilterPatternCopyWithImpl;
+@override @useResult
+$Res call({
+ GlobPattern pattern, String? notebookType, String? scheme
+});
+
+
+
+
+}
+/// @nodoc
+class __$NotebookDocumentFilterPatternCopyWithImpl<$Res>
+    implements _$NotebookDocumentFilterPatternCopyWith<$Res> {
+  __$NotebookDocumentFilterPatternCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentFilterPattern _self;
+  final $Res Function(_NotebookDocumentFilterPattern) _then;
+
+/// Create a copy of NotebookDocumentFilterPattern
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? pattern = null,Object? notebookType = freezed,Object? scheme = freezed,}) {
+  return _then(_NotebookDocumentFilterPattern(
+pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+as GlobPattern,notebookType: freezed == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
+as String?,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$NotebookCellArrayChange {
+
+/// The start oftest of the cell that changed.
+ int get start;/// The deleted cells
+ int get deleteCount;/// The new cells, if any
+ List<NotebookCell>? get cells;
+/// Create a copy of NotebookCellArrayChange
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookCellArrayChangeCopyWith<NotebookCellArrayChange> get copyWith => _$NotebookCellArrayChangeCopyWithImpl<NotebookCellArrayChange>(this as NotebookCellArrayChange, _$identity);
+
+  /// Serializes this NotebookCellArrayChange to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookCellArrayChange&&(identical(other.start, start) || other.start == start)&&(identical(other.deleteCount, deleteCount) || other.deleteCount == deleteCount)&&const DeepCollectionEquality().equals(other.cells, cells));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,start,deleteCount,const DeepCollectionEquality().hash(cells));
+
+@override
+String toString() {
+  return 'NotebookCellArrayChange(start: $start, deleteCount: $deleteCount, cells: $cells)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookCellArrayChangeCopyWith<$Res>  {
+  factory $NotebookCellArrayChangeCopyWith(NotebookCellArrayChange value, $Res Function(NotebookCellArrayChange) _then) = _$NotebookCellArrayChangeCopyWithImpl;
+@useResult
+$Res call({
+ int start, int deleteCount, List<NotebookCell>? cells
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotebookCellArrayChangeCopyWithImpl<$Res>
+    implements $NotebookCellArrayChangeCopyWith<$Res> {
+  _$NotebookCellArrayChangeCopyWithImpl(this._self, this._then);
+
+  final NotebookCellArrayChange _self;
+  final $Res Function(NotebookCellArrayChange) _then;
+
+/// Create a copy of NotebookCellArrayChange
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? start = null,Object? deleteCount = null,Object? cells = freezed,}) {
+  return _then(_self.copyWith(
+start: null == start ? _self.start : start // ignore: cast_nullable_to_non_nullable
+as int,deleteCount: null == deleteCount ? _self.deleteCount : deleteCount // ignore: cast_nullable_to_non_nullable
+as int,cells: freezed == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
+as List<NotebookCell>?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookCellArrayChange implements NotebookCellArrayChange {
+  const _NotebookCellArrayChange({required this.start, required this.deleteCount, final  List<NotebookCell>? cells}): _cells = cells;
+  factory _NotebookCellArrayChange.fromJson(Map<String, dynamic> json) => _$NotebookCellArrayChangeFromJson(json);
+
+/// The start oftest of the cell that changed.
+@override final  int start;
+/// The deleted cells
+@override final  int deleteCount;
+/// The new cells, if any
+ final  List<NotebookCell>? _cells;
+/// The new cells, if any
+@override List<NotebookCell>? get cells {
+  final value = _cells;
+  if (value == null) return null;
+  if (_cells is EqualUnmodifiableListView) return _cells;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of NotebookCellArrayChange
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookCellArrayChangeCopyWith<_NotebookCellArrayChange> get copyWith => __$NotebookCellArrayChangeCopyWithImpl<_NotebookCellArrayChange>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookCellArrayChangeToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookCellArrayChange&&(identical(other.start, start) || other.start == start)&&(identical(other.deleteCount, deleteCount) || other.deleteCount == deleteCount)&&const DeepCollectionEquality().equals(other._cells, _cells));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,start,deleteCount,const DeepCollectionEquality().hash(_cells));
+
+@override
+String toString() {
+  return 'NotebookCellArrayChange(start: $start, deleteCount: $deleteCount, cells: $cells)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookCellArrayChangeCopyWith<$Res> implements $NotebookCellArrayChangeCopyWith<$Res> {
+  factory _$NotebookCellArrayChangeCopyWith(_NotebookCellArrayChange value, $Res Function(_NotebookCellArrayChange) _then) = __$NotebookCellArrayChangeCopyWithImpl;
+@override @useResult
+$Res call({
+ int start, int deleteCount, List<NotebookCell>? cells
+});
+
+
+
+
+}
+/// @nodoc
+class __$NotebookCellArrayChangeCopyWithImpl<$Res>
+    implements _$NotebookCellArrayChangeCopyWith<$Res> {
+  __$NotebookCellArrayChangeCopyWithImpl(this._self, this._then);
+
+  final _NotebookCellArrayChange _self;
+  final $Res Function(_NotebookCellArrayChange) _then;
+
+/// Create a copy of NotebookCellArrayChange
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? start = null,Object? deleteCount = null,Object? cells = freezed,}) {
+  return _then(_NotebookCellArrayChange(
+start: null == start ? _self.start : start // ignore: cast_nullable_to_non_nullable
+as int,deleteCount: null == deleteCount ? _self.deleteCount : deleteCount // ignore: cast_nullable_to_non_nullable
+as int,cells: freezed == cells ? _self._cells : cells // ignore: cast_nullable_to_non_nullable
+as List<NotebookCell>?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientCompletionItemOptionsKind {
+
+/// The completion item kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+///
+/// If this property is not present the client only supports the completion
+/// items kinds from `Text` to `Reference` as defined in the initial version
+/// of the protocol.
+ List<CompletionItemKind>? get valueSet;
+/// Create a copy of ClientCompletionItemOptionsKind
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientCompletionItemOptionsKindCopyWith<ClientCompletionItemOptionsKind> get copyWith => _$ClientCompletionItemOptionsKindCopyWithImpl<ClientCompletionItemOptionsKind>(this as ClientCompletionItemOptionsKind, _$identity);
+
+  /// Serializes this ClientCompletionItemOptionsKind to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientCompletionItemOptionsKind&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'ClientCompletionItemOptionsKind(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientCompletionItemOptionsKindCopyWith<$Res>  {
+  factory $ClientCompletionItemOptionsKindCopyWith(ClientCompletionItemOptionsKind value, $Res Function(ClientCompletionItemOptionsKind) _then) = _$ClientCompletionItemOptionsKindCopyWithImpl;
+@useResult
+$Res call({
+ List<CompletionItemKind>? valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientCompletionItemOptionsKindCopyWithImpl<$Res>
+    implements $ClientCompletionItemOptionsKindCopyWith<$Res> {
+  _$ClientCompletionItemOptionsKindCopyWithImpl(this._self, this._then);
+
+  final ClientCompletionItemOptionsKind _self;
+  final $Res Function(ClientCompletionItemOptionsKind) _then;
+
+/// Create a copy of ClientCompletionItemOptionsKind
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = freezed,}) {
+  return _then(_self.copyWith(
+valueSet: freezed == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<CompletionItemKind>?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientCompletionItemOptionsKind implements ClientCompletionItemOptionsKind {
+  const _ClientCompletionItemOptionsKind({final  List<CompletionItemKind>? valueSet}): _valueSet = valueSet;
+  factory _ClientCompletionItemOptionsKind.fromJson(Map<String, dynamic> json) => _$ClientCompletionItemOptionsKindFromJson(json);
+
+/// The completion item kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+///
+/// If this property is not present the client only supports the completion
+/// items kinds from `Text` to `Reference` as defined in the initial version
+/// of the protocol.
+ final  List<CompletionItemKind>? _valueSet;
+/// The completion item kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+///
+/// If this property is not present the client only supports the completion
+/// items kinds from `Text` to `Reference` as defined in the initial version
+/// of the protocol.
+@override List<CompletionItemKind>? get valueSet {
+  final value = _valueSet;
+  if (value == null) return null;
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of ClientCompletionItemOptionsKind
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientCompletionItemOptionsKindCopyWith<_ClientCompletionItemOptionsKind> get copyWith => __$ClientCompletionItemOptionsKindCopyWithImpl<_ClientCompletionItemOptionsKind>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientCompletionItemOptionsKindToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientCompletionItemOptionsKind&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'ClientCompletionItemOptionsKind(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientCompletionItemOptionsKindCopyWith<$Res> implements $ClientCompletionItemOptionsKindCopyWith<$Res> {
+  factory _$ClientCompletionItemOptionsKindCopyWith(_ClientCompletionItemOptionsKind value, $Res Function(_ClientCompletionItemOptionsKind) _then) = __$ClientCompletionItemOptionsKindCopyWithImpl;
+@override @useResult
+$Res call({
+ List<CompletionItemKind>? valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientCompletionItemOptionsKindCopyWithImpl<$Res>
+    implements _$ClientCompletionItemOptionsKindCopyWith<$Res> {
+  __$ClientCompletionItemOptionsKindCopyWithImpl(this._self, this._then);
+
+  final _ClientCompletionItemOptionsKind _self;
+  final $Res Function(_ClientCompletionItemOptionsKind) _then;
+
+/// Create a copy of ClientCompletionItemOptionsKind
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = freezed,}) {
+  return _then(_ClientCompletionItemOptionsKind(
+valueSet: freezed == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<CompletionItemKind>?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientSemanticTokensRequestFullDelta {
+
+/// The client will send the `textDocument/semanticTokens/full/delta`
+/// request if the server provides a corresponding handler.
+ bool? get delta;
+/// Create a copy of ClientSemanticTokensRequestFullDelta
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientSemanticTokensRequestFullDeltaCopyWith<ClientSemanticTokensRequestFullDelta> get copyWith => _$ClientSemanticTokensRequestFullDeltaCopyWithImpl<ClientSemanticTokensRequestFullDelta>(this as ClientSemanticTokensRequestFullDelta, _$identity);
+
+  /// Serializes this ClientSemanticTokensRequestFullDelta to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientSemanticTokensRequestFullDelta&&(identical(other.delta, delta) || other.delta == delta));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,delta);
+
+@override
+String toString() {
+  return 'ClientSemanticTokensRequestFullDelta(delta: $delta)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientSemanticTokensRequestFullDeltaCopyWith<$Res>  {
+  factory $ClientSemanticTokensRequestFullDeltaCopyWith(ClientSemanticTokensRequestFullDelta value, $Res Function(ClientSemanticTokensRequestFullDelta) _then) = _$ClientSemanticTokensRequestFullDeltaCopyWithImpl;
+@useResult
+$Res call({
+ bool? delta
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientSemanticTokensRequestFullDeltaCopyWithImpl<$Res>
+    implements $ClientSemanticTokensRequestFullDeltaCopyWith<$Res> {
+  _$ClientSemanticTokensRequestFullDeltaCopyWithImpl(this._self, this._then);
+
+  final ClientSemanticTokensRequestFullDelta _self;
+  final $Res Function(ClientSemanticTokensRequestFullDelta) _then;
+
+/// Create a copy of ClientSemanticTokensRequestFullDelta
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? delta = freezed,}) {
+  return _then(_self.copyWith(
+delta: freezed == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientSemanticTokensRequestFullDelta implements ClientSemanticTokensRequestFullDelta {
+  const _ClientSemanticTokensRequestFullDelta({this.delta});
+  factory _ClientSemanticTokensRequestFullDelta.fromJson(Map<String, dynamic> json) => _$ClientSemanticTokensRequestFullDeltaFromJson(json);
+
+/// The client will send the `textDocument/semanticTokens/full/delta`
+/// request if the server provides a corresponding handler.
+@override final  bool? delta;
+
+/// Create a copy of ClientSemanticTokensRequestFullDelta
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientSemanticTokensRequestFullDeltaCopyWith<_ClientSemanticTokensRequestFullDelta> get copyWith => __$ClientSemanticTokensRequestFullDeltaCopyWithImpl<_ClientSemanticTokensRequestFullDelta>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientSemanticTokensRequestFullDeltaToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientSemanticTokensRequestFullDelta&&(identical(other.delta, delta) || other.delta == delta));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,delta);
+
+@override
+String toString() {
+  return 'ClientSemanticTokensRequestFullDelta(delta: $delta)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientSemanticTokensRequestFullDeltaCopyWith<$Res> implements $ClientSemanticTokensRequestFullDeltaCopyWith<$Res> {
+  factory _$ClientSemanticTokensRequestFullDeltaCopyWith(_ClientSemanticTokensRequestFullDelta value, $Res Function(_ClientSemanticTokensRequestFullDelta) _then) = __$ClientSemanticTokensRequestFullDeltaCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? delta
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientSemanticTokensRequestFullDeltaCopyWithImpl<$Res>
+    implements _$ClientSemanticTokensRequestFullDeltaCopyWith<$Res> {
+  __$ClientSemanticTokensRequestFullDeltaCopyWithImpl(this._self, this._then);
+
+  final _ClientSemanticTokensRequestFullDelta _self;
+  final $Res Function(_ClientSemanticTokensRequestFullDelta) _then;
+
+/// Create a copy of ClientSemanticTokensRequestFullDelta
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? delta = freezed,}) {
+  return _then(_ClientSemanticTokensRequestFullDelta(
+delta: freezed == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -32852,7 +39144,7 @@ mixin _$SemanticTokensRegistrationOptions {
 /// Type: `bool` | `Object`
  SemanticTokensRegistrationOptionsRange? get range;/// Server supports providing semantic tokens for a full document.
 ///
-/// Type: `bool` | `Object`
+/// Type: `bool` | `SemanticTokensFullDelta`
  SemanticTokensRegistrationOptionsFull? get full;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
@@ -32960,7 +39252,7 @@ class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOp
 @override final  SemanticTokensRegistrationOptionsRange? range;
 /// Server supports providing semantic tokens for a full document.
 ///
-/// Type: `bool` | `Object`
+/// Type: `bool` | `SemanticTokensFullDelta`
 @override final  SemanticTokensRegistrationOptionsFull? full;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
@@ -35517,9 +41809,9 @@ $TypeHierarchyItemCopyWith<$Res> get item {
 mixin _$InlineValueParams {
 
 /// The text document.
- TextDocumentIdentifier get textDocument;/// The document range for which inline values should be computed.
- Range get range;/// Additional information about the context in which inline values were
-/// requested.
+ TextDocumentIdentifier get textDocument;/// The document range for which inline values information will be returned.
+ Range get range;/// Additional information about the context in which inline values
+/// information was requested.
  InlineValueContext get context;/// An optional token that a server can use to report work done progress.
  ProgressToken? get workDoneToken;
 /// Create a copy of InlineValueParams
@@ -35621,10 +41913,10 @@ class _InlineValueParams implements InlineValueParams {
 
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
-/// The document range for which inline values should be computed.
+/// The document range for which inline values information will be returned.
 @override final  Range range;
-/// Additional information about the context in which inline values were
-/// requested.
+/// Additional information about the context in which inline values
+/// information was requested.
 @override final  InlineValueContext context;
 /// An optional token that a server can use to report work done progress.
 @override final  ProgressToken? workDoneToken;
@@ -36909,6 +43201,163 @@ $NotebookDocumentCopyWith<$Res> get notebookDocument {
 
 
 /// @nodoc
+mixin _$NotebookDocumentSyncRegistrationOptions {
+
+/// The notebooks to be synced
+ List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
+ bool? get save;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
+ String? get id;
+/// Create a copy of NotebookDocumentSyncRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentSyncRegistrationOptionsCopyWith<NotebookDocumentSyncRegistrationOptions> get copyWith => _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<NotebookDocumentSyncRegistrationOptions>(this as NotebookDocumentSyncRegistrationOptions, _$identity);
+
+  /// Serializes this NotebookDocumentSyncRegistrationOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentSyncRegistrationOptions&&const DeepCollectionEquality().equals(other.notebookSelector, notebookSelector)&&(identical(other.save, save) || other.save == save)&&(identical(other.id, id) || other.id == id));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(notebookSelector),save,id);
+
+@override
+String toString() {
+  return 'NotebookDocumentSyncRegistrationOptions(notebookSelector: $notebookSelector, save: $save, id: $id)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentSyncRegistrationOptionsCopyWith<$Res>  {
+  factory $NotebookDocumentSyncRegistrationOptionsCopyWith(NotebookDocumentSyncRegistrationOptions value, $Res Function(NotebookDocumentSyncRegistrationOptions) _then) = _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> notebookSelector, bool? save, String? id
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<$Res>
+    implements $NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> {
+  _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentSyncRegistrationOptions _self;
+  final $Res Function(NotebookDocumentSyncRegistrationOptions) _then;
+
+/// Create a copy of NotebookDocumentSyncRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? notebookSelector = null,Object? save = freezed,Object? id = freezed,}) {
+  return _then(_self.copyWith(
+notebookSelector: null == notebookSelector ? _self.notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
+as List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentSyncRegistrationOptions implements NotebookDocumentSyncRegistrationOptions {
+  const _NotebookDocumentSyncRegistrationOptions({required final  List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> notebookSelector, this.save, this.id}): _notebookSelector = notebookSelector;
+  factory _NotebookDocumentSyncRegistrationOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncRegistrationOptionsFromJson(json);
+
+/// The notebooks to be synced
+ final  List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> _notebookSelector;
+/// The notebooks to be synced
+@override List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> get notebookSelector {
+  if (_notebookSelector is EqualUnmodifiableListView) return _notebookSelector;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_notebookSelector);
+}
+
+/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
+@override final  bool? save;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
+@override final  String? id;
+
+/// Create a copy of NotebookDocumentSyncRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentSyncRegistrationOptionsCopyWith<_NotebookDocumentSyncRegistrationOptions> get copyWith => __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<_NotebookDocumentSyncRegistrationOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentSyncRegistrationOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentSyncRegistrationOptions&&const DeepCollectionEquality().equals(other._notebookSelector, _notebookSelector)&&(identical(other.save, save) || other.save == save)&&(identical(other.id, id) || other.id == id));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_notebookSelector),save,id);
+
+@override
+String toString() {
+  return 'NotebookDocumentSyncRegistrationOptions(notebookSelector: $notebookSelector, save: $save, id: $id)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> implements $NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> {
+  factory _$NotebookDocumentSyncRegistrationOptionsCopyWith(_NotebookDocumentSyncRegistrationOptions value, $Res Function(_NotebookDocumentSyncRegistrationOptions) _then) = __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> notebookSelector, bool? save, String? id
+});
+
+
+
+
+}
+/// @nodoc
+class __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<$Res>
+    implements _$NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> {
+  __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentSyncRegistrationOptions _self;
+  final $Res Function(_NotebookDocumentSyncRegistrationOptions) _then;
+
+/// Create a copy of NotebookDocumentSyncRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? notebookSelector = null,Object? save = freezed,Object? id = freezed,}) {
+  return _then(_NotebookDocumentSyncRegistrationOptions(
+notebookSelector: null == notebookSelector ? _self._notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
+as List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$DidChangeNotebookDocumentParams {
 
 /// The notebook document that did change. The version number points to the
@@ -37804,6 +44253,428 @@ as String?,
 
 
 /// @nodoc
+mixin _$TextDocumentContentParams {
+
+/// The uri of the text document.
+ String get uri;
+/// Create a copy of TextDocumentContentParams
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentParamsCopyWith<TextDocumentContentParams> get copyWith => _$TextDocumentContentParamsCopyWithImpl<TextDocumentContentParams>(this as TextDocumentContentParams, _$identity);
+
+  /// Serializes this TextDocumentContentParams to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentParams&&(identical(other.uri, uri) || other.uri == uri));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,uri);
+
+@override
+String toString() {
+  return 'TextDocumentContentParams(uri: $uri)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentParamsCopyWith<$Res>  {
+  factory $TextDocumentContentParamsCopyWith(TextDocumentContentParams value, $Res Function(TextDocumentContentParams) _then) = _$TextDocumentContentParamsCopyWithImpl;
+@useResult
+$Res call({
+ String uri
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentParamsCopyWithImpl<$Res>
+    implements $TextDocumentContentParamsCopyWith<$Res> {
+  _$TextDocumentContentParamsCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentParams _self;
+  final $Res Function(TextDocumentContentParams) _then;
+
+/// Create a copy of TextDocumentContentParams
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,}) {
+  return _then(_self.copyWith(
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentContentParams implements TextDocumentContentParams {
+  const _TextDocumentContentParams({required this.uri});
+  factory _TextDocumentContentParams.fromJson(Map<String, dynamic> json) => _$TextDocumentContentParamsFromJson(json);
+
+/// The uri of the text document.
+@override final  String uri;
+
+/// Create a copy of TextDocumentContentParams
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentContentParamsCopyWith<_TextDocumentContentParams> get copyWith => __$TextDocumentContentParamsCopyWithImpl<_TextDocumentContentParams>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentContentParamsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentParams&&(identical(other.uri, uri) || other.uri == uri));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,uri);
+
+@override
+String toString() {
+  return 'TextDocumentContentParams(uri: $uri)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentContentParamsCopyWith<$Res> implements $TextDocumentContentParamsCopyWith<$Res> {
+  factory _$TextDocumentContentParamsCopyWith(_TextDocumentContentParams value, $Res Function(_TextDocumentContentParams) _then) = __$TextDocumentContentParamsCopyWithImpl;
+@override @useResult
+$Res call({
+ String uri
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentContentParamsCopyWithImpl<$Res>
+    implements _$TextDocumentContentParamsCopyWith<$Res> {
+  __$TextDocumentContentParamsCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentContentParams _self;
+  final $Res Function(_TextDocumentContentParams) _then;
+
+/// Create a copy of TextDocumentContentParams
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,}) {
+  return _then(_TextDocumentContentParams(
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$TextDocumentContentRegistrationOptions {
+
+/// The schemes for which the server provides content.
+ List<String> get schemes;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
+ String? get id;
+/// Create a copy of TextDocumentContentRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentRegistrationOptionsCopyWith<TextDocumentContentRegistrationOptions> get copyWith => _$TextDocumentContentRegistrationOptionsCopyWithImpl<TextDocumentContentRegistrationOptions>(this as TextDocumentContentRegistrationOptions, _$identity);
+
+  /// Serializes this TextDocumentContentRegistrationOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentRegistrationOptions&&const DeepCollectionEquality().equals(other.schemes, schemes)&&(identical(other.id, id) || other.id == id));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(schemes),id);
+
+@override
+String toString() {
+  return 'TextDocumentContentRegistrationOptions(schemes: $schemes, id: $id)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentRegistrationOptionsCopyWith<$Res>  {
+  factory $TextDocumentContentRegistrationOptionsCopyWith(TextDocumentContentRegistrationOptions value, $Res Function(TextDocumentContentRegistrationOptions) _then) = _$TextDocumentContentRegistrationOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<String> schemes, String? id
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentRegistrationOptionsCopyWithImpl<$Res>
+    implements $TextDocumentContentRegistrationOptionsCopyWith<$Res> {
+  _$TextDocumentContentRegistrationOptionsCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentRegistrationOptions _self;
+  final $Res Function(TextDocumentContentRegistrationOptions) _then;
+
+/// Create a copy of TextDocumentContentRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? schemes = null,Object? id = freezed,}) {
+  return _then(_self.copyWith(
+schemes: null == schemes ? _self.schemes : schemes // ignore: cast_nullable_to_non_nullable
+as List<String>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentContentRegistrationOptions implements TextDocumentContentRegistrationOptions {
+  const _TextDocumentContentRegistrationOptions({required final  List<String> schemes, this.id}): _schemes = schemes;
+  factory _TextDocumentContentRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentContentRegistrationOptionsFromJson(json);
+
+/// The schemes for which the server provides content.
+ final  List<String> _schemes;
+/// The schemes for which the server provides content.
+@override List<String> get schemes {
+  if (_schemes is EqualUnmodifiableListView) return _schemes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_schemes);
+}
+
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
+@override final  String? id;
+
+/// Create a copy of TextDocumentContentRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentContentRegistrationOptionsCopyWith<_TextDocumentContentRegistrationOptions> get copyWith => __$TextDocumentContentRegistrationOptionsCopyWithImpl<_TextDocumentContentRegistrationOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentContentRegistrationOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentRegistrationOptions&&const DeepCollectionEquality().equals(other._schemes, _schemes)&&(identical(other.id, id) || other.id == id));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_schemes),id);
+
+@override
+String toString() {
+  return 'TextDocumentContentRegistrationOptions(schemes: $schemes, id: $id)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentContentRegistrationOptionsCopyWith<$Res> implements $TextDocumentContentRegistrationOptionsCopyWith<$Res> {
+  factory _$TextDocumentContentRegistrationOptionsCopyWith(_TextDocumentContentRegistrationOptions value, $Res Function(_TextDocumentContentRegistrationOptions) _then) = __$TextDocumentContentRegistrationOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> schemes, String? id
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentContentRegistrationOptionsCopyWithImpl<$Res>
+    implements _$TextDocumentContentRegistrationOptionsCopyWith<$Res> {
+  __$TextDocumentContentRegistrationOptionsCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentContentRegistrationOptions _self;
+  final $Res Function(_TextDocumentContentRegistrationOptions) _then;
+
+/// Create a copy of TextDocumentContentRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? schemes = null,Object? id = freezed,}) {
+  return _then(_TextDocumentContentRegistrationOptions(
+schemes: null == schemes ? _self._schemes : schemes // ignore: cast_nullable_to_non_nullable
+as List<String>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$TextDocumentContentRefreshParams {
+
+/// The uri of the text document to refresh.
+ String get uri;
+/// Create a copy of TextDocumentContentRefreshParams
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentRefreshParamsCopyWith<TextDocumentContentRefreshParams> get copyWith => _$TextDocumentContentRefreshParamsCopyWithImpl<TextDocumentContentRefreshParams>(this as TextDocumentContentRefreshParams, _$identity);
+
+  /// Serializes this TextDocumentContentRefreshParams to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentRefreshParams&&(identical(other.uri, uri) || other.uri == uri));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,uri);
+
+@override
+String toString() {
+  return 'TextDocumentContentRefreshParams(uri: $uri)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentRefreshParamsCopyWith<$Res>  {
+  factory $TextDocumentContentRefreshParamsCopyWith(TextDocumentContentRefreshParams value, $Res Function(TextDocumentContentRefreshParams) _then) = _$TextDocumentContentRefreshParamsCopyWithImpl;
+@useResult
+$Res call({
+ String uri
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentRefreshParamsCopyWithImpl<$Res>
+    implements $TextDocumentContentRefreshParamsCopyWith<$Res> {
+  _$TextDocumentContentRefreshParamsCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentRefreshParams _self;
+  final $Res Function(TextDocumentContentRefreshParams) _then;
+
+/// Create a copy of TextDocumentContentRefreshParams
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,}) {
+  return _then(_self.copyWith(
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentContentRefreshParams implements TextDocumentContentRefreshParams {
+  const _TextDocumentContentRefreshParams({required this.uri});
+  factory _TextDocumentContentRefreshParams.fromJson(Map<String, dynamic> json) => _$TextDocumentContentRefreshParamsFromJson(json);
+
+/// The uri of the text document to refresh.
+@override final  String uri;
+
+/// Create a copy of TextDocumentContentRefreshParams
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentContentRefreshParamsCopyWith<_TextDocumentContentRefreshParams> get copyWith => __$TextDocumentContentRefreshParamsCopyWithImpl<_TextDocumentContentRefreshParams>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentContentRefreshParamsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentRefreshParams&&(identical(other.uri, uri) || other.uri == uri));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,uri);
+
+@override
+String toString() {
+  return 'TextDocumentContentRefreshParams(uri: $uri)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentContentRefreshParamsCopyWith<$Res> implements $TextDocumentContentRefreshParamsCopyWith<$Res> {
+  factory _$TextDocumentContentRefreshParamsCopyWith(_TextDocumentContentRefreshParams value, $Res Function(_TextDocumentContentRefreshParams) _then) = __$TextDocumentContentRefreshParamsCopyWithImpl;
+@override @useResult
+$Res call({
+ String uri
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentContentRefreshParamsCopyWithImpl<$Res>
+    implements _$TextDocumentContentRefreshParamsCopyWith<$Res> {
+  __$TextDocumentContentRefreshParamsCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentContentRefreshParams _self;
+  final $Res Function(_TextDocumentContentRefreshParams) _then;
+
+/// Create a copy of TextDocumentContentRefreshParams
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,}) {
+  return _then(_TextDocumentContentRefreshParams(
+uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$RegistrationParams {
 
  List<Registration> get registrations;
@@ -38097,7 +44968,7 @@ mixin _$InitializeParams {
 @Deprecated('in favour of workspaceFolders.') String? get rootUri;/// The capabilities provided by the client (editor or tool)
  ClientCapabilities get capabilities;/// An optional token that a server can use to report work done progress.
  ProgressToken? get workDoneToken;/// Information about the client
- ({String name, String? version})? get clientInfo;/// The locale the client is currently showing the user interface in. This
+ ClientInfo? get clientInfo;/// The locale the client is currently showing the user interface in. This
 /// must not necessarily be the locale of the operating system.
 ///
 /// Uses IETF language tags as the value's syntax (See
@@ -38107,7 +44978,7 @@ mixin _$InitializeParams {
 /// @deprecated in favour of rootUri.
 @Deprecated('in favour of rootUri.') String? get rootPath;/// User provided initialization options.
  LSPAny? get initializationOptions;/// The initial trace setting. If omitted trace is disabled ('off').
- TraceValues? get trace;/// The workspace folders configured in the client when the server starts.
+ TraceValue? get trace;/// The workspace folders configured in the client when the server starts.
 ///
 /// This property is only available if the client supports workspace
 /// folders. It can be `null` if the client supports workspace folders but
@@ -38145,11 +45016,11 @@ abstract mixin class $InitializeParamsCopyWith<$Res>  {
   factory $InitializeParamsCopyWith(InitializeParams value, $Res Function(InitializeParams) _then) = _$InitializeParamsCopyWithImpl;
 @useResult
 $Res call({
- int? processId,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities, ProgressToken? workDoneToken, ({String name, String? version})? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+ int? processId,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities, ProgressToken? workDoneToken, ClientInfo? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath, LSPAny? initializationOptions, TraceValue? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
-$ClientCapabilitiesCopyWith<$Res> get capabilities;
+$ClientCapabilitiesCopyWith<$Res> get capabilities;$ClientInfoCopyWith<$Res>? get clientInfo;
 
 }
 /// @nodoc
@@ -38169,11 +45040,11 @@ as int?,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nu
 as String?,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
 as ClientCapabilities,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
-as ({String name, String? version})?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as ClientInfo?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
 as String?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions // ignore: cast_nullable_to_non_nullable
 as LSPAny?,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
-as TraceValues?,workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
+as TraceValue?,workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
 as List<WorkspaceFolder>?,
   ));
 }
@@ -38185,6 +45056,18 @@ $ClientCapabilitiesCopyWith<$Res> get capabilities {
   
   return $ClientCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
     return _then(_self.copyWith(capabilities: value));
+  });
+}/// Create a copy of InitializeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientInfoCopyWith<$Res>? get clientInfo {
+    if (_self.clientInfo == null) {
+    return null;
+  }
+
+  return $ClientInfoCopyWith<$Res>(_self.clientInfo!, (value) {
+    return _then(_self.copyWith(clientInfo: value));
   });
 }
 }
@@ -38213,7 +45096,7 @@ class _InitializeParams implements InitializeParams {
 /// An optional token that a server can use to report work done progress.
 @override final  ProgressToken? workDoneToken;
 /// Information about the client
-@override final  ({String name, String? version})? clientInfo;
+@override final  ClientInfo? clientInfo;
 /// The locale the client is currently showing the user interface in. This
 /// must not necessarily be the locale of the operating system.
 ///
@@ -38227,7 +45110,7 @@ class _InitializeParams implements InitializeParams {
 /// User provided initialization options.
 @override final  LSPAny? initializationOptions;
 /// The initial trace setting. If omitted trace is disabled ('off').
-@override final  TraceValues? trace;
+@override final  TraceValue? trace;
 /// The workspace folders configured in the client when the server starts.
 ///
 /// This property is only available if the client supports workspace
@@ -38281,11 +45164,11 @@ abstract mixin class _$InitializeParamsCopyWith<$Res> implements $InitializePara
   factory _$InitializeParamsCopyWith(_InitializeParams value, $Res Function(_InitializeParams) _then) = __$InitializeParamsCopyWithImpl;
 @override @useResult
 $Res call({
- int? processId,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities, ProgressToken? workDoneToken, ({String name, String? version})? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+ int? processId,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities, ProgressToken? workDoneToken, ClientInfo? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath, LSPAny? initializationOptions, TraceValue? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
-@override $ClientCapabilitiesCopyWith<$Res> get capabilities;
+@override $ClientCapabilitiesCopyWith<$Res> get capabilities;@override $ClientInfoCopyWith<$Res>? get clientInfo;
 
 }
 /// @nodoc
@@ -38305,11 +45188,11 @@ as int?,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nu
 as String?,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
 as ClientCapabilities,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
-as ({String name, String? version})?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as ClientInfo?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
 as String?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions // ignore: cast_nullable_to_non_nullable
 as LSPAny?,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
-as TraceValues?,workspaceFolders: freezed == workspaceFolders ? _self._workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
+as TraceValue?,workspaceFolders: freezed == workspaceFolders ? _self._workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
 as List<WorkspaceFolder>?,
   ));
 }
@@ -38322,6 +45205,18 @@ $ClientCapabilitiesCopyWith<$Res> get capabilities {
   
   return $ClientCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
     return _then(_self.copyWith(capabilities: value));
+  });
+}/// Create a copy of InitializeParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientInfoCopyWith<$Res>? get clientInfo {
+    if (_self.clientInfo == null) {
+    return null;
+  }
+
+  return $ClientInfoCopyWith<$Res>(_self.clientInfo!, (value) {
+    return _then(_self.copyWith(clientInfo: value));
   });
 }
 }
@@ -40684,7 +47579,7 @@ mixin _$CompletionParams {
  Position get position;/// An optional token that a server can use to report work done progress.
  ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
- ProgressToken? get partialResultToken;/// The completion context. This is only available if the client specifies
+ ProgressToken? get partialResultToken;/// The completion context. This is only available it the client specifies
 /// to send this using the client capability
 /// `textDocument.completion.contextSupport === true`
  CompletionContext? get context;
@@ -40798,7 +47693,7 @@ class _CompletionParams implements CompletionParams {
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override final  ProgressToken? partialResultToken;
-/// The completion context. This is only available if the client specifies
+/// The completion context. This is only available it the client specifies
 /// to send this using the client capability
 /// `textDocument.completion.contextSupport === true`
 @override final  CompletionContext? context;
@@ -40924,7 +47819,7 @@ mixin _$CompletionRegistrationOptions {
 /// completion item.
  bool? get resolveProvider;/// The server supports the following `CompletionItem` specific
 /// capabilities.
- ({bool? labelDetailsSupport})? get completionItem;
+ ServerCompletionItemOptions? get completionItem;
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -40957,11 +47852,11 @@ abstract mixin class $CompletionRegistrationOptionsCopyWith<$Res>  {
   factory $CompletionRegistrationOptionsCopyWith(CompletionRegistrationOptions value, $Res Function(CompletionRegistrationOptions) _then) = _$CompletionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ({bool? labelDetailsSupport})? completionItem
+ DocumentSelector? documentSelector, bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ServerCompletionItemOptions? completionItem
 });
 
 
-
+$ServerCompletionItemOptionsCopyWith<$Res>? get completionItem;
 
 }
 /// @nodoc
@@ -40982,10 +47877,22 @@ as bool?,triggerCharacters: freezed == triggerCharacters ? _self.triggerCharacte
 as List<String>?,allCommitCharacters: freezed == allCommitCharacters ? _self.allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as ({bool? labelDetailsSupport})?,
+as ServerCompletionItemOptions?,
   ));
 }
+/// Create a copy of CompletionRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServerCompletionItemOptionsCopyWith<$Res>? get completionItem {
+    if (_self.completionItem == null) {
+    return null;
+  }
 
+  return $ServerCompletionItemOptionsCopyWith<$Res>(_self.completionItem!, (value) {
+    return _then(_self.copyWith(completionItem: value));
+  });
+}
 }
 
 
@@ -41068,7 +47975,7 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
 @override final  bool? resolveProvider;
 /// The server supports the following `CompletionItem` specific
 /// capabilities.
-@override final  ({bool? labelDetailsSupport})? completionItem;
+@override final  ServerCompletionItemOptions? completionItem;
 
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -41103,11 +48010,11 @@ abstract mixin class _$CompletionRegistrationOptionsCopyWith<$Res> implements $C
   factory _$CompletionRegistrationOptionsCopyWith(_CompletionRegistrationOptions value, $Res Function(_CompletionRegistrationOptions) _then) = __$CompletionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ({bool? labelDetailsSupport})? completionItem
+ DocumentSelector? documentSelector, bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ServerCompletionItemOptions? completionItem
 });
 
 
-
+@override $ServerCompletionItemOptionsCopyWith<$Res>? get completionItem;
 
 }
 /// @nodoc
@@ -41128,11 +48035,23 @@ as bool?,triggerCharacters: freezed == triggerCharacters ? _self._triggerCharact
 as List<String>?,allCommitCharacters: freezed == allCommitCharacters ? _self._allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as ({bool? labelDetailsSupport})?,
+as ServerCompletionItemOptions?,
   ));
 }
 
+/// Create a copy of CompletionRegistrationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServerCompletionItemOptionsCopyWith<$Res>? get completionItem {
+    if (_self.completionItem == null) {
+    return null;
+  }
 
+  return $ServerCompletionItemOptionsCopyWith<$Res>(_self.completionItem!, (value) {
+    return _then(_self.copyWith(completionItem: value));
+  });
+}
 }
 
 
@@ -43461,7 +50380,22 @@ mixin _$CodeActionRegistrationOptions {
 ///
 /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
 /// the server may list out every specific kind they provide.
- List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional information for a code
+ List<CodeActionKind>? get codeActionKinds;/// Static documentation for a class of code actions.
+///
+/// Documentation from the provider should be shown in the code actions menu
+/// if either:
+///
+/// - Code actions of `kind` are requested by the editor. In this case, the
+/// editor will show the documentation that most closely matches the
+/// requested code action kind. For example, if a provider has documentation
+/// for both `Refactor` and `RefactorExtract`, when the user requests code
+/// actions for `RefactorExtract`, the editor will use the documentation for
+/// `RefactorExtract` instead of the documentation for `Refactor`.
+///
+/// - Any code actions of `kind` are returned by the provider.
+///
+/// At most one documentation entry should be shown per provider.
+ List<CodeActionKindDocumentation>? get documentation;/// The server provides support to resolve additional information for a code
 /// action.
  bool? get resolveProvider;
 /// Create a copy of CodeActionRegistrationOptions
@@ -43476,16 +50410,16 @@ $CodeActionRegistrationOptionsCopyWith<CodeActionRegistrationOptions> get copyWi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.codeActionKinds, codeActionKinds)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionRegistrationOptions&&const DeepCollectionEquality().equals(other.documentSelector, documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.codeActionKinds, codeActionKinds)&&const DeepCollectionEquality().equals(other.documentation, documentation)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,const DeepCollectionEquality().hash(codeActionKinds),resolveProvider);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentSelector),workDoneProgress,const DeepCollectionEquality().hash(codeActionKinds),const DeepCollectionEquality().hash(documentation),resolveProvider);
 
 @override
 String toString() {
-  return 'CodeActionRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, codeActionKinds: $codeActionKinds, resolveProvider: $resolveProvider)';
+  return 'CodeActionRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, codeActionKinds: $codeActionKinds, documentation: $documentation, resolveProvider: $resolveProvider)';
 }
 
 
@@ -43496,7 +50430,7 @@ abstract mixin class $CodeActionRegistrationOptionsCopyWith<$Res>  {
   factory $CodeActionRegistrationOptionsCopyWith(CodeActionRegistrationOptions value, $Res Function(CodeActionRegistrationOptions) _then) = _$CodeActionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ DocumentSelector? documentSelector, bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, List<CodeActionKindDocumentation>? documentation, bool? resolveProvider
 });
 
 
@@ -43513,12 +50447,13 @@ class _$CodeActionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? codeActionKinds = freezed,Object? resolveProvider = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? codeActionKinds = freezed,Object? documentation = freezed,Object? resolveProvider = freezed,}) {
   return _then(_self.copyWith(
 documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
 as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionKinds: freezed == codeActionKinds ? _self.codeActionKinds : codeActionKinds // ignore: cast_nullable_to_non_nullable
-as List<CodeActionKind>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKind>?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKindDocumentation>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -43531,7 +50466,7 @@ as bool?,
 @JsonSerializable()
 
 class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
-  const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds;
+  const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, final  List<CodeActionKindDocumentation>? documentation, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds,_documentation = documentation;
   factory _CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeActionRegistrationOptionsFromJson(json);
 
 /// A document selector to identify the scope of the registration. If set to
@@ -43565,6 +50500,45 @@ class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
+/// Static documentation for a class of code actions.
+///
+/// Documentation from the provider should be shown in the code actions menu
+/// if either:
+///
+/// - Code actions of `kind` are requested by the editor. In this case, the
+/// editor will show the documentation that most closely matches the
+/// requested code action kind. For example, if a provider has documentation
+/// for both `Refactor` and `RefactorExtract`, when the user requests code
+/// actions for `RefactorExtract`, the editor will use the documentation for
+/// `RefactorExtract` instead of the documentation for `Refactor`.
+///
+/// - Any code actions of `kind` are returned by the provider.
+///
+/// At most one documentation entry should be shown per provider.
+ final  List<CodeActionKindDocumentation>? _documentation;
+/// Static documentation for a class of code actions.
+///
+/// Documentation from the provider should be shown in the code actions menu
+/// if either:
+///
+/// - Code actions of `kind` are requested by the editor. In this case, the
+/// editor will show the documentation that most closely matches the
+/// requested code action kind. For example, if a provider has documentation
+/// for both `Refactor` and `RefactorExtract`, when the user requests code
+/// actions for `RefactorExtract`, the editor will use the documentation for
+/// `RefactorExtract` instead of the documentation for `Refactor`.
+///
+/// - Any code actions of `kind` are returned by the provider.
+///
+/// At most one documentation entry should be shown per provider.
+@override List<CodeActionKindDocumentation>? get documentation {
+  final value = _documentation;
+  if (value == null) return null;
+  if (_documentation is EqualUnmodifiableListView) return _documentation;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 /// The server provides support to resolve additional information for a code
 /// action.
 @override final  bool? resolveProvider;
@@ -43582,16 +50556,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._codeActionKinds, _codeActionKinds)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionRegistrationOptions&&const DeepCollectionEquality().equals(other._documentSelector, _documentSelector)&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._codeActionKinds, _codeActionKinds)&&const DeepCollectionEquality().equals(other._documentation, _documentation)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,const DeepCollectionEquality().hash(_codeActionKinds),resolveProvider);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentSelector),workDoneProgress,const DeepCollectionEquality().hash(_codeActionKinds),const DeepCollectionEquality().hash(_documentation),resolveProvider);
 
 @override
 String toString() {
-  return 'CodeActionRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, codeActionKinds: $codeActionKinds, resolveProvider: $resolveProvider)';
+  return 'CodeActionRegistrationOptions(documentSelector: $documentSelector, workDoneProgress: $workDoneProgress, codeActionKinds: $codeActionKinds, documentation: $documentation, resolveProvider: $resolveProvider)';
 }
 
 
@@ -43602,7 +50576,7 @@ abstract mixin class _$CodeActionRegistrationOptionsCopyWith<$Res> implements $C
   factory _$CodeActionRegistrationOptionsCopyWith(_CodeActionRegistrationOptions value, $Res Function(_CodeActionRegistrationOptions) _then) = __$CodeActionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ DocumentSelector? documentSelector, bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, List<CodeActionKindDocumentation>? documentation, bool? resolveProvider
 });
 
 
@@ -43619,12 +50593,13 @@ class __$CodeActionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? codeActionKinds = freezed,Object? resolveProvider = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,Object? codeActionKinds = freezed,Object? documentation = freezed,Object? resolveProvider = freezed,}) {
   return _then(_CodeActionRegistrationOptions(
 documentSelector: freezed == documentSelector ? _self._documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
 as DocumentSelector?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionKinds: freezed == codeActionKinds ? _self._codeActionKinds : codeActionKinds // ignore: cast_nullable_to_non_nullable
-as List<CodeActionKind>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKind>?,documentation: freezed == documentation ? _self._documentation : documentation // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKindDocumentation>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -43638,6 +50613,12 @@ mixin _$WorkspaceSymbolParams {
 
 /// A query string to filter symbols by. Clients may send an empty string
 /// here to request all symbols.
+///
+/// The `query`-parameter should be interpreted in a *relaxed way* as
+/// editors will apply their own highlighting and scoring on the results. A
+/// good rule of thumb is to match case-insensitive and to simply check that
+/// the characters of *query* appear in their order in a candidate symbol.
+/// Servers shouldn't use prefix, substring, or similar strict matching.
  String get query;/// An optional token that a server can use to report work done progress.
  ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
@@ -43713,6 +50694,12 @@ class _WorkspaceSymbolParams implements WorkspaceSymbolParams {
 
 /// A query string to filter symbols by. Clients may send an empty string
 /// here to request all symbols.
+///
+/// The `query`-parameter should be interpreted in a *relaxed way* as
+/// editors will apply their own highlighting and scoring on the results. A
+/// good rule of thumb is to match case-insensitive and to simply check that
+/// the characters of *query* appear in their order in a candidate symbol.
+/// Servers shouldn't use prefix, substring, or similar strict matching.
 @override final  String query;
 /// An optional token that a server can use to report work done progress.
 @override final  ProgressToken? workDoneToken;
@@ -45841,8 +52828,8 @@ as List<String>?,
 /// @nodoc
 mixin _$RenameParams {
 
-/// The document to rename.
- TextDocumentIdentifier get textDocument;/// The position at which this request was sent.
+/// The text document.
+ TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// The new name of the symbol. If the given name is not valid the request
 /// must return a `ResponseError` with an appropriate message set.
  String get newName;/// An optional token that a server can use to report work done progress.
@@ -45935,9 +52922,9 @@ class _RenameParams implements RenameParams {
   const _RenameParams({required this.textDocument, required this.position, required this.newName, this.workDoneToken});
   factory _RenameParams.fromJson(Map<String, dynamic> json) => _$RenameParamsFromJson(json);
 
-/// The document to rename.
+/// The text document.
 @override final  TextDocumentIdentifier textDocument;
-/// The position at which this request was sent.
+/// The position inside the text document.
 @override final  Position position;
 /// The new name of the symbol. If the given name is not valid the request
 /// must return a `ResponseError` with an appropriate message set.
@@ -46672,7 +53659,8 @@ mixin _$ApplyWorkspaceEditParams {
 /// The edits to apply.
  WorkspaceEdit get edit;/// An optional label of the workspace edit. This label is presented in the
 /// user interface for example on an undo stack to undo the workspace edit.
- String? get label;
+ String? get label;/// Additional data about the edit.
+ WorkspaceEditMetadata? get metadata;
 /// Create a copy of ApplyWorkspaceEditParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46685,16 +53673,16 @@ $ApplyWorkspaceEditParamsCopyWith<ApplyWorkspaceEditParams> get copyWith => _$Ap
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApplyWorkspaceEditParams&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.label, label) || other.label == label));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApplyWorkspaceEditParams&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.label, label) || other.label == label)&&(identical(other.metadata, metadata) || other.metadata == metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,edit,label);
+int get hashCode => Object.hash(runtimeType,edit,label,metadata);
 
 @override
 String toString() {
-  return 'ApplyWorkspaceEditParams(edit: $edit, label: $label)';
+  return 'ApplyWorkspaceEditParams(edit: $edit, label: $label, metadata: $metadata)';
 }
 
 
@@ -46705,11 +53693,11 @@ abstract mixin class $ApplyWorkspaceEditParamsCopyWith<$Res>  {
   factory $ApplyWorkspaceEditParamsCopyWith(ApplyWorkspaceEditParams value, $Res Function(ApplyWorkspaceEditParams) _then) = _$ApplyWorkspaceEditParamsCopyWithImpl;
 @useResult
 $Res call({
- WorkspaceEdit edit, String? label
+ WorkspaceEdit edit, String? label, WorkspaceEditMetadata? metadata
 });
 
 
-$WorkspaceEditCopyWith<$Res> get edit;
+$WorkspaceEditCopyWith<$Res> get edit;$WorkspaceEditMetadataCopyWith<$Res>? get metadata;
 
 }
 /// @nodoc
@@ -46722,11 +53710,12 @@ class _$ApplyWorkspaceEditParamsCopyWithImpl<$Res>
 
 /// Create a copy of ApplyWorkspaceEditParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? edit = null,Object? label = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? edit = null,Object? label = freezed,Object? metadata = freezed,}) {
   return _then(_self.copyWith(
 edit: null == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
 as WorkspaceEdit,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as WorkspaceEditMetadata?,
   ));
 }
 /// Create a copy of ApplyWorkspaceEditParams
@@ -46738,6 +53727,18 @@ $WorkspaceEditCopyWith<$Res> get edit {
   return $WorkspaceEditCopyWith<$Res>(_self.edit, (value) {
     return _then(_self.copyWith(edit: value));
   });
+}/// Create a copy of ApplyWorkspaceEditParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WorkspaceEditMetadataCopyWith<$Res>? get metadata {
+    if (_self.metadata == null) {
+    return null;
+  }
+
+  return $WorkspaceEditMetadataCopyWith<$Res>(_self.metadata!, (value) {
+    return _then(_self.copyWith(metadata: value));
+  });
 }
 }
 
@@ -46747,7 +53748,7 @@ $WorkspaceEditCopyWith<$Res> get edit {
 @JsonSerializable()
 
 class _ApplyWorkspaceEditParams implements ApplyWorkspaceEditParams {
-  const _ApplyWorkspaceEditParams({required this.edit, this.label});
+  const _ApplyWorkspaceEditParams({required this.edit, this.label, this.metadata});
   factory _ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) => _$ApplyWorkspaceEditParamsFromJson(json);
 
 /// The edits to apply.
@@ -46755,6 +53756,8 @@ class _ApplyWorkspaceEditParams implements ApplyWorkspaceEditParams {
 /// An optional label of the workspace edit. This label is presented in the
 /// user interface for example on an undo stack to undo the workspace edit.
 @override final  String? label;
+/// Additional data about the edit.
+@override final  WorkspaceEditMetadata? metadata;
 
 /// Create a copy of ApplyWorkspaceEditParams
 /// with the given fields replaced by the non-null parameter values.
@@ -46769,16 +53772,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApplyWorkspaceEditParams&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.label, label) || other.label == label));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApplyWorkspaceEditParams&&(identical(other.edit, edit) || other.edit == edit)&&(identical(other.label, label) || other.label == label)&&(identical(other.metadata, metadata) || other.metadata == metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,edit,label);
+int get hashCode => Object.hash(runtimeType,edit,label,metadata);
 
 @override
 String toString() {
-  return 'ApplyWorkspaceEditParams(edit: $edit, label: $label)';
+  return 'ApplyWorkspaceEditParams(edit: $edit, label: $label, metadata: $metadata)';
 }
 
 
@@ -46789,11 +53792,11 @@ abstract mixin class _$ApplyWorkspaceEditParamsCopyWith<$Res> implements $ApplyW
   factory _$ApplyWorkspaceEditParamsCopyWith(_ApplyWorkspaceEditParams value, $Res Function(_ApplyWorkspaceEditParams) _then) = __$ApplyWorkspaceEditParamsCopyWithImpl;
 @override @useResult
 $Res call({
- WorkspaceEdit edit, String? label
+ WorkspaceEdit edit, String? label, WorkspaceEditMetadata? metadata
 });
 
 
-@override $WorkspaceEditCopyWith<$Res> get edit;
+@override $WorkspaceEditCopyWith<$Res> get edit;@override $WorkspaceEditMetadataCopyWith<$Res>? get metadata;
 
 }
 /// @nodoc
@@ -46806,11 +53809,12 @@ class __$ApplyWorkspaceEditParamsCopyWithImpl<$Res>
 
 /// Create a copy of ApplyWorkspaceEditParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? edit = null,Object? label = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? edit = null,Object? label = freezed,Object? metadata = freezed,}) {
   return _then(_ApplyWorkspaceEditParams(
 edit: null == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
 as WorkspaceEdit,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as WorkspaceEditMetadata?,
   ));
 }
 
@@ -46823,6 +53827,18 @@ $WorkspaceEditCopyWith<$Res> get edit {
   return $WorkspaceEditCopyWith<$Res>(_self.edit, (value) {
     return _then(_self.copyWith(edit: value));
   });
+}/// Create a copy of ApplyWorkspaceEditParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WorkspaceEditMetadataCopyWith<$Res>? get metadata {
+    if (_self.metadata == null) {
+    return null;
+  }
+
+  return $WorkspaceEditMetadataCopyWith<$Res>(_self.metadata!, (value) {
+    return _then(_self.copyWith(metadata: value));
+  });
 }
 }
 
@@ -46830,7 +53846,7 @@ $WorkspaceEditCopyWith<$Res> get edit {
 /// @nodoc
 mixin _$SetTraceParams {
 
- TraceValues get value;
+ TraceValue get value;
 /// Create a copy of SetTraceParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46863,7 +53879,7 @@ abstract mixin class $SetTraceParamsCopyWith<$Res>  {
   factory $SetTraceParamsCopyWith(SetTraceParams value, $Res Function(SetTraceParams) _then) = _$SetTraceParamsCopyWithImpl;
 @useResult
 $Res call({
- TraceValues value
+ TraceValue value
 });
 
 
@@ -46883,7 +53899,7 @@ class _$SetTraceParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? value = null,}) {
   return _then(_self.copyWith(
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as TraceValues,
+as TraceValue,
   ));
 }
 
@@ -46898,7 +53914,7 @@ class _SetTraceParams implements SetTraceParams {
   const _SetTraceParams({required this.value});
   factory _SetTraceParams.fromJson(Map<String, dynamic> json) => _$SetTraceParamsFromJson(json);
 
-@override final  TraceValues value;
+@override final  TraceValue value;
 
 /// Create a copy of SetTraceParams
 /// with the given fields replaced by the non-null parameter values.
@@ -46933,7 +53949,7 @@ abstract mixin class _$SetTraceParamsCopyWith<$Res> implements $SetTraceParamsCo
   factory _$SetTraceParamsCopyWith(_SetTraceParams value, $Res Function(_SetTraceParams) _then) = __$SetTraceParamsCopyWithImpl;
 @override @useResult
 $Res call({
- TraceValues value
+ TraceValue value
 });
 
 
@@ -46953,7 +53969,7 @@ class __$SetTraceParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
   return _then(_SetTraceParams(
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as TraceValues,
+as TraceValue,
   ));
 }
 
@@ -48916,7 +55932,7 @@ mixin _$SemanticTokensOptions {
 /// Type: `bool` | `Object`
  SemanticTokensOptionsRange? get range;/// Server supports providing semantic tokens for a full document.
 ///
-/// Type: `bool` | `Object`
+/// Type: `bool` | `SemanticTokensFullDelta`
  SemanticTokensOptionsFull? get full;
 /// Create a copy of SemanticTokensOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -49007,7 +56023,7 @@ class _SemanticTokensOptions implements SemanticTokensOptions {
 @override final  SemanticTokensOptionsRange? range;
 /// Server supports providing semantic tokens for a full document.
 ///
-/// Type: `bool` | `Object`
+/// Type: `bool` | `SemanticTokensFullDelta`
 @override final  SemanticTokensOptionsFull? full;
 
 /// Create a copy of SemanticTokensOptions
@@ -49918,6 +56934,156 @@ as String?,
 
 
 /// @nodoc
+mixin _$NotebookDocumentSyncOptions {
+
+/// The notebooks to be synced
+ List<NotebookDocumentSyncOptionsNotebookSelectorItem> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
+ bool? get save;
+/// Create a copy of NotebookDocumentSyncOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NotebookDocumentSyncOptionsCopyWith<NotebookDocumentSyncOptions> get copyWith => _$NotebookDocumentSyncOptionsCopyWithImpl<NotebookDocumentSyncOptions>(this as NotebookDocumentSyncOptions, _$identity);
+
+  /// Serializes this NotebookDocumentSyncOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentSyncOptions&&const DeepCollectionEquality().equals(other.notebookSelector, notebookSelector)&&(identical(other.save, save) || other.save == save));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(notebookSelector),save);
+
+@override
+String toString() {
+  return 'NotebookDocumentSyncOptions(notebookSelector: $notebookSelector, save: $save)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NotebookDocumentSyncOptionsCopyWith<$Res>  {
+  factory $NotebookDocumentSyncOptionsCopyWith(NotebookDocumentSyncOptions value, $Res Function(NotebookDocumentSyncOptions) _then) = _$NotebookDocumentSyncOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<NotebookDocumentSyncOptionsNotebookSelectorItem> notebookSelector, bool? save
+});
+
+
+
+
+}
+/// @nodoc
+class _$NotebookDocumentSyncOptionsCopyWithImpl<$Res>
+    implements $NotebookDocumentSyncOptionsCopyWith<$Res> {
+  _$NotebookDocumentSyncOptionsCopyWithImpl(this._self, this._then);
+
+  final NotebookDocumentSyncOptions _self;
+  final $Res Function(NotebookDocumentSyncOptions) _then;
+
+/// Create a copy of NotebookDocumentSyncOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? notebookSelector = null,Object? save = freezed,}) {
+  return _then(_self.copyWith(
+notebookSelector: null == notebookSelector ? _self.notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
+as List<NotebookDocumentSyncOptionsNotebookSelectorItem>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _NotebookDocumentSyncOptions implements NotebookDocumentSyncOptions {
+  const _NotebookDocumentSyncOptions({required final  List<NotebookDocumentSyncOptionsNotebookSelectorItem> notebookSelector, this.save}): _notebookSelector = notebookSelector;
+  factory _NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsFromJson(json);
+
+/// The notebooks to be synced
+ final  List<NotebookDocumentSyncOptionsNotebookSelectorItem> _notebookSelector;
+/// The notebooks to be synced
+@override List<NotebookDocumentSyncOptionsNotebookSelectorItem> get notebookSelector {
+  if (_notebookSelector is EqualUnmodifiableListView) return _notebookSelector;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_notebookSelector);
+}
+
+/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
+@override final  bool? save;
+
+/// Create a copy of NotebookDocumentSyncOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NotebookDocumentSyncOptionsCopyWith<_NotebookDocumentSyncOptions> get copyWith => __$NotebookDocumentSyncOptionsCopyWithImpl<_NotebookDocumentSyncOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$NotebookDocumentSyncOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentSyncOptions&&const DeepCollectionEquality().equals(other._notebookSelector, _notebookSelector)&&(identical(other.save, save) || other.save == save));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_notebookSelector),save);
+
+@override
+String toString() {
+  return 'NotebookDocumentSyncOptions(notebookSelector: $notebookSelector, save: $save)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NotebookDocumentSyncOptionsCopyWith<$Res> implements $NotebookDocumentSyncOptionsCopyWith<$Res> {
+  factory _$NotebookDocumentSyncOptionsCopyWith(_NotebookDocumentSyncOptions value, $Res Function(_NotebookDocumentSyncOptions) _then) = __$NotebookDocumentSyncOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<NotebookDocumentSyncOptionsNotebookSelectorItem> notebookSelector, bool? save
+});
+
+
+
+
+}
+/// @nodoc
+class __$NotebookDocumentSyncOptionsCopyWithImpl<$Res>
+    implements _$NotebookDocumentSyncOptionsCopyWith<$Res> {
+  __$NotebookDocumentSyncOptionsCopyWithImpl(this._self, this._then);
+
+  final _NotebookDocumentSyncOptions _self;
+  final $Res Function(_NotebookDocumentSyncOptions) _then;
+
+/// Create a copy of NotebookDocumentSyncOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? notebookSelector = null,Object? save = freezed,}) {
+  return _then(_NotebookDocumentSyncOptions(
+notebookSelector: null == notebookSelector ? _self._notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
+as List<NotebookDocumentSyncOptionsNotebookSelectorItem>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$InlineCompletionOptions {
 
  bool? get workDoneProgress;
@@ -50044,6 +57210,149 @@ class __$InlineCompletionOptionsCopyWithImpl<$Res>
   return _then(_InlineCompletionOptions(
 workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$TextDocumentContentOptions {
+
+/// The schemes for which the server provides content.
+ List<String> get schemes;
+/// Create a copy of TextDocumentContentOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentOptionsCopyWith<TextDocumentContentOptions> get copyWith => _$TextDocumentContentOptionsCopyWithImpl<TextDocumentContentOptions>(this as TextDocumentContentOptions, _$identity);
+
+  /// Serializes this TextDocumentContentOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentOptions&&const DeepCollectionEquality().equals(other.schemes, schemes));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(schemes));
+
+@override
+String toString() {
+  return 'TextDocumentContentOptions(schemes: $schemes)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentOptionsCopyWith<$Res>  {
+  factory $TextDocumentContentOptionsCopyWith(TextDocumentContentOptions value, $Res Function(TextDocumentContentOptions) _then) = _$TextDocumentContentOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<String> schemes
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentOptionsCopyWithImpl<$Res>
+    implements $TextDocumentContentOptionsCopyWith<$Res> {
+  _$TextDocumentContentOptionsCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentOptions _self;
+  final $Res Function(TextDocumentContentOptions) _then;
+
+/// Create a copy of TextDocumentContentOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? schemes = null,}) {
+  return _then(_self.copyWith(
+schemes: null == schemes ? _self.schemes : schemes // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _TextDocumentContentOptions implements TextDocumentContentOptions {
+  const _TextDocumentContentOptions({required final  List<String> schemes}): _schemes = schemes;
+  factory _TextDocumentContentOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentContentOptionsFromJson(json);
+
+/// The schemes for which the server provides content.
+ final  List<String> _schemes;
+/// The schemes for which the server provides content.
+@override List<String> get schemes {
+  if (_schemes is EqualUnmodifiableListView) return _schemes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_schemes);
+}
+
+
+/// Create a copy of TextDocumentContentOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TextDocumentContentOptionsCopyWith<_TextDocumentContentOptions> get copyWith => __$TextDocumentContentOptionsCopyWithImpl<_TextDocumentContentOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TextDocumentContentOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentOptions&&const DeepCollectionEquality().equals(other._schemes, _schemes));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_schemes));
+
+@override
+String toString() {
+  return 'TextDocumentContentOptions(schemes: $schemes)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TextDocumentContentOptionsCopyWith<$Res> implements $TextDocumentContentOptionsCopyWith<$Res> {
+  factory _$TextDocumentContentOptionsCopyWith(_TextDocumentContentOptions value, $Res Function(_TextDocumentContentOptions) _then) = __$TextDocumentContentOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> schemes
+});
+
+
+
+
+}
+/// @nodoc
+class __$TextDocumentContentOptionsCopyWithImpl<$Res>
+    implements _$TextDocumentContentOptionsCopyWith<$Res> {
+  __$TextDocumentContentOptionsCopyWithImpl(this._self, this._then);
+
+  final _TextDocumentContentOptions _self;
+  final $Res Function(_TextDocumentContentOptions) _then;
+
+/// Create a copy of TextDocumentContentOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? schemes = null,}) {
+  return _then(_TextDocumentContentOptions(
+schemes: null == schemes ? _self._schemes : schemes // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 
@@ -50368,7 +57677,7 @@ mixin _$CompletionOptions {
 /// completion item.
  bool? get resolveProvider;/// The server supports the following `CompletionItem` specific
 /// capabilities.
- ({bool? labelDetailsSupport})? get completionItem;
+ ServerCompletionItemOptions? get completionItem;
 /// Create a copy of CompletionOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -50401,11 +57710,11 @@ abstract mixin class $CompletionOptionsCopyWith<$Res>  {
   factory $CompletionOptionsCopyWith(CompletionOptions value, $Res Function(CompletionOptions) _then) = _$CompletionOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ({bool? labelDetailsSupport})? completionItem
+ bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ServerCompletionItemOptions? completionItem
 });
 
 
-
+$ServerCompletionItemOptionsCopyWith<$Res>? get completionItem;
 
 }
 /// @nodoc
@@ -50425,10 +57734,22 @@ as bool?,triggerCharacters: freezed == triggerCharacters ? _self.triggerCharacte
 as List<String>?,allCommitCharacters: freezed == allCommitCharacters ? _self.allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as ({bool? labelDetailsSupport})?,
+as ServerCompletionItemOptions?,
   ));
 }
+/// Create a copy of CompletionOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServerCompletionItemOptionsCopyWith<$Res>? get completionItem {
+    if (_self.completionItem == null) {
+    return null;
+  }
 
+  return $ServerCompletionItemOptionsCopyWith<$Res>(_self.completionItem!, (value) {
+    return _then(_self.copyWith(completionItem: value));
+  });
+}
 }
 
 
@@ -50498,7 +57819,7 @@ class _CompletionOptions implements CompletionOptions {
 @override final  bool? resolveProvider;
 /// The server supports the following `CompletionItem` specific
 /// capabilities.
-@override final  ({bool? labelDetailsSupport})? completionItem;
+@override final  ServerCompletionItemOptions? completionItem;
 
 /// Create a copy of CompletionOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -50533,11 +57854,11 @@ abstract mixin class _$CompletionOptionsCopyWith<$Res> implements $CompletionOpt
   factory _$CompletionOptionsCopyWith(_CompletionOptions value, $Res Function(_CompletionOptions) _then) = __$CompletionOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ({bool? labelDetailsSupport})? completionItem
+ bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ServerCompletionItemOptions? completionItem
 });
 
 
-
+@override $ServerCompletionItemOptionsCopyWith<$Res>? get completionItem;
 
 }
 /// @nodoc
@@ -50557,11 +57878,23 @@ as bool?,triggerCharacters: freezed == triggerCharacters ? _self._triggerCharact
 as List<String>?,allCommitCharacters: freezed == allCommitCharacters ? _self._allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as ({bool? labelDetailsSupport})?,
+as ServerCompletionItemOptions?,
   ));
 }
 
+/// Create a copy of CompletionOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServerCompletionItemOptionsCopyWith<$Res>? get completionItem {
+    if (_self.completionItem == null) {
+    return null;
+  }
 
+  return $ServerCompletionItemOptionsCopyWith<$Res>(_self.completionItem!, (value) {
+    return _then(_self.copyWith(completionItem: value));
+  });
+}
 }
 
 
@@ -51423,7 +58756,22 @@ mixin _$CodeActionOptions {
 ///
 /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
 /// the server may list out every specific kind they provide.
- List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional information for a code
+ List<CodeActionKind>? get codeActionKinds;/// Static documentation for a class of code actions.
+///
+/// Documentation from the provider should be shown in the code actions menu
+/// if either:
+///
+/// - Code actions of `kind` are requested by the editor. In this case, the
+/// editor will show the documentation that most closely matches the
+/// requested code action kind. For example, if a provider has documentation
+/// for both `Refactor` and `RefactorExtract`, when the user requests code
+/// actions for `RefactorExtract`, the editor will use the documentation for
+/// `RefactorExtract` instead of the documentation for `Refactor`.
+///
+/// - Any code actions of `kind` are returned by the provider.
+///
+/// At most one documentation entry should be shown per provider.
+ List<CodeActionKindDocumentation>? get documentation;/// The server provides support to resolve additional information for a code
 /// action.
  bool? get resolveProvider;
 /// Create a copy of CodeActionOptions
@@ -51438,16 +58786,16 @@ $CodeActionOptionsCopyWith<CodeActionOptions> get copyWith => _$CodeActionOption
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.codeActionKinds, codeActionKinds)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other.codeActionKinds, codeActionKinds)&&const DeepCollectionEquality().equals(other.documentation, documentation)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(codeActionKinds),resolveProvider);
+int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(codeActionKinds),const DeepCollectionEquality().hash(documentation),resolveProvider);
 
 @override
 String toString() {
-  return 'CodeActionOptions(workDoneProgress: $workDoneProgress, codeActionKinds: $codeActionKinds, resolveProvider: $resolveProvider)';
+  return 'CodeActionOptions(workDoneProgress: $workDoneProgress, codeActionKinds: $codeActionKinds, documentation: $documentation, resolveProvider: $resolveProvider)';
 }
 
 
@@ -51458,7 +58806,7 @@ abstract mixin class $CodeActionOptionsCopyWith<$Res>  {
   factory $CodeActionOptionsCopyWith(CodeActionOptions value, $Res Function(CodeActionOptions) _then) = _$CodeActionOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, List<CodeActionKindDocumentation>? documentation, bool? resolveProvider
 });
 
 
@@ -51475,11 +58823,12 @@ class _$CodeActionOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? codeActionKinds = freezed,Object? resolveProvider = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? workDoneProgress = freezed,Object? codeActionKinds = freezed,Object? documentation = freezed,Object? resolveProvider = freezed,}) {
   return _then(_self.copyWith(
 workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionKinds: freezed == codeActionKinds ? _self.codeActionKinds : codeActionKinds // ignore: cast_nullable_to_non_nullable
-as List<CodeActionKind>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKind>?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKindDocumentation>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -51492,7 +58841,7 @@ as bool?,
 @JsonSerializable()
 
 class _CodeActionOptions implements CodeActionOptions {
-  const _CodeActionOptions({this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _codeActionKinds = codeActionKinds;
+  const _CodeActionOptions({this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, final  List<CodeActionKindDocumentation>? documentation, this.resolveProvider}): _codeActionKinds = codeActionKinds,_documentation = documentation;
   factory _CodeActionOptions.fromJson(Map<String, dynamic> json) => _$CodeActionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -51509,6 +58858,45 @@ class _CodeActionOptions implements CodeActionOptions {
   final value = _codeActionKinds;
   if (value == null) return null;
   if (_codeActionKinds is EqualUnmodifiableListView) return _codeActionKinds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// Static documentation for a class of code actions.
+///
+/// Documentation from the provider should be shown in the code actions menu
+/// if either:
+///
+/// - Code actions of `kind` are requested by the editor. In this case, the
+/// editor will show the documentation that most closely matches the
+/// requested code action kind. For example, if a provider has documentation
+/// for both `Refactor` and `RefactorExtract`, when the user requests code
+/// actions for `RefactorExtract`, the editor will use the documentation for
+/// `RefactorExtract` instead of the documentation for `Refactor`.
+///
+/// - Any code actions of `kind` are returned by the provider.
+///
+/// At most one documentation entry should be shown per provider.
+ final  List<CodeActionKindDocumentation>? _documentation;
+/// Static documentation for a class of code actions.
+///
+/// Documentation from the provider should be shown in the code actions menu
+/// if either:
+///
+/// - Code actions of `kind` are requested by the editor. In this case, the
+/// editor will show the documentation that most closely matches the
+/// requested code action kind. For example, if a provider has documentation
+/// for both `Refactor` and `RefactorExtract`, when the user requests code
+/// actions for `RefactorExtract`, the editor will use the documentation for
+/// `RefactorExtract` instead of the documentation for `Refactor`.
+///
+/// - Any code actions of `kind` are returned by the provider.
+///
+/// At most one documentation entry should be shown per provider.
+@override List<CodeActionKindDocumentation>? get documentation {
+  final value = _documentation;
+  if (value == null) return null;
+  if (_documentation is EqualUnmodifiableListView) return _documentation;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(value);
 }
@@ -51530,16 +58918,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._codeActionKinds, _codeActionKinds)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionOptions&&(identical(other.workDoneProgress, workDoneProgress) || other.workDoneProgress == workDoneProgress)&&const DeepCollectionEquality().equals(other._codeActionKinds, _codeActionKinds)&&const DeepCollectionEquality().equals(other._documentation, _documentation)&&(identical(other.resolveProvider, resolveProvider) || other.resolveProvider == resolveProvider));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(_codeActionKinds),resolveProvider);
+int get hashCode => Object.hash(runtimeType,workDoneProgress,const DeepCollectionEquality().hash(_codeActionKinds),const DeepCollectionEquality().hash(_documentation),resolveProvider);
 
 @override
 String toString() {
-  return 'CodeActionOptions(workDoneProgress: $workDoneProgress, codeActionKinds: $codeActionKinds, resolveProvider: $resolveProvider)';
+  return 'CodeActionOptions(workDoneProgress: $workDoneProgress, codeActionKinds: $codeActionKinds, documentation: $documentation, resolveProvider: $resolveProvider)';
 }
 
 
@@ -51550,7 +58938,7 @@ abstract mixin class _$CodeActionOptionsCopyWith<$Res> implements $CodeActionOpt
   factory _$CodeActionOptionsCopyWith(_CodeActionOptions value, $Res Function(_CodeActionOptions) _then) = __$CodeActionOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, List<CodeActionKindDocumentation>? documentation, bool? resolveProvider
 });
 
 
@@ -51567,11 +58955,12 @@ class __$CodeActionOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? codeActionKinds = freezed,Object? resolveProvider = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? workDoneProgress = freezed,Object? codeActionKinds = freezed,Object? documentation = freezed,Object? resolveProvider = freezed,}) {
   return _then(_CodeActionOptions(
 workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionKinds: freezed == codeActionKinds ? _self._codeActionKinds : codeActionKinds // ignore: cast_nullable_to_non_nullable
-as List<CodeActionKind>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKind>?,documentation: freezed == documentation ? _self._documentation : documentation // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKindDocumentation>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -53461,45 +60850,247 @@ as TextDocumentSyncOptionsSave?,
 
 
 /// @nodoc
-mixin _$NotebookDocumentSyncOptions {
+mixin _$WorkspaceOptions {
 
-/// The notebooks to be synced
- List<NotebookDocumentSyncOptionsNotebookSelectorItem> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only
-/// be honored if mode === `notebook`.
- bool? get save;
-/// Create a copy of NotebookDocumentSyncOptions
+/// The server supports workspace folder.
+ WorkspaceFoldersServerCapabilities? get workspaceFolders;/// The server is interested in notifications/requests for operations on
+/// files.
+ FileOperationOptions? get fileOperations;/// The server supports the `workspace/textDocumentContent` request.
+///
+/// Type: `TextDocumentContentOptions` |
+/// `TextDocumentContentRegistrationOptions`
+ WorkspaceOptionsTextDocumentContent? get textDocumentContent;
+/// Create a copy of WorkspaceOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$NotebookDocumentSyncOptionsCopyWith<NotebookDocumentSyncOptions> get copyWith => _$NotebookDocumentSyncOptionsCopyWithImpl<NotebookDocumentSyncOptions>(this as NotebookDocumentSyncOptions, _$identity);
+$WorkspaceOptionsCopyWith<WorkspaceOptions> get copyWith => _$WorkspaceOptionsCopyWithImpl<WorkspaceOptions>(this as WorkspaceOptions, _$identity);
 
-  /// Serializes this NotebookDocumentSyncOptions to a JSON map.
+  /// Serializes this WorkspaceOptions to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentSyncOptions&&const DeepCollectionEquality().equals(other.notebookSelector, notebookSelector)&&(identical(other.save, save) || other.save == save));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceOptions&&(identical(other.workspaceFolders, workspaceFolders) || other.workspaceFolders == workspaceFolders)&&(identical(other.fileOperations, fileOperations) || other.fileOperations == fileOperations)&&(identical(other.textDocumentContent, textDocumentContent) || other.textDocumentContent == textDocumentContent));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(notebookSelector),save);
+int get hashCode => Object.hash(runtimeType,workspaceFolders,fileOperations,textDocumentContent);
 
 @override
 String toString() {
-  return 'NotebookDocumentSyncOptions(notebookSelector: $notebookSelector, save: $save)';
+  return 'WorkspaceOptions(workspaceFolders: $workspaceFolders, fileOperations: $fileOperations, textDocumentContent: $textDocumentContent)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $NotebookDocumentSyncOptionsCopyWith<$Res>  {
-  factory $NotebookDocumentSyncOptionsCopyWith(NotebookDocumentSyncOptions value, $Res Function(NotebookDocumentSyncOptions) _then) = _$NotebookDocumentSyncOptionsCopyWithImpl;
+abstract mixin class $WorkspaceOptionsCopyWith<$Res>  {
+  factory $WorkspaceOptionsCopyWith(WorkspaceOptions value, $Res Function(WorkspaceOptions) _then) = _$WorkspaceOptionsCopyWithImpl;
 @useResult
 $Res call({
- List<NotebookDocumentSyncOptionsNotebookSelectorItem> notebookSelector, bool? save
+ WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations, WorkspaceOptionsTextDocumentContent? textDocumentContent
+});
+
+
+$WorkspaceFoldersServerCapabilitiesCopyWith<$Res>? get workspaceFolders;$FileOperationOptionsCopyWith<$Res>? get fileOperations;
+
+}
+/// @nodoc
+class _$WorkspaceOptionsCopyWithImpl<$Res>
+    implements $WorkspaceOptionsCopyWith<$Res> {
+  _$WorkspaceOptionsCopyWithImpl(this._self, this._then);
+
+  final WorkspaceOptions _self;
+  final $Res Function(WorkspaceOptions) _then;
+
+/// Create a copy of WorkspaceOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? workspaceFolders = freezed,Object? fileOperations = freezed,Object? textDocumentContent = freezed,}) {
+  return _then(_self.copyWith(
+workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
+as WorkspaceFoldersServerCapabilities?,fileOperations: freezed == fileOperations ? _self.fileOperations : fileOperations // ignore: cast_nullable_to_non_nullable
+as FileOperationOptions?,textDocumentContent: freezed == textDocumentContent ? _self.textDocumentContent : textDocumentContent // ignore: cast_nullable_to_non_nullable
+as WorkspaceOptionsTextDocumentContent?,
+  ));
+}
+/// Create a copy of WorkspaceOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WorkspaceFoldersServerCapabilitiesCopyWith<$Res>? get workspaceFolders {
+    if (_self.workspaceFolders == null) {
+    return null;
+  }
+
+  return $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>(_self.workspaceFolders!, (value) {
+    return _then(_self.copyWith(workspaceFolders: value));
+  });
+}/// Create a copy of WorkspaceOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FileOperationOptionsCopyWith<$Res>? get fileOperations {
+    if (_self.fileOperations == null) {
+    return null;
+  }
+
+  return $FileOperationOptionsCopyWith<$Res>(_self.fileOperations!, (value) {
+    return _then(_self.copyWith(fileOperations: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _WorkspaceOptions implements WorkspaceOptions {
+  const _WorkspaceOptions({this.workspaceFolders, this.fileOperations, this.textDocumentContent});
+  factory _WorkspaceOptions.fromJson(Map<String, dynamic> json) => _$WorkspaceOptionsFromJson(json);
+
+/// The server supports workspace folder.
+@override final  WorkspaceFoldersServerCapabilities? workspaceFolders;
+/// The server is interested in notifications/requests for operations on
+/// files.
+@override final  FileOperationOptions? fileOperations;
+/// The server supports the `workspace/textDocumentContent` request.
+///
+/// Type: `TextDocumentContentOptions` |
+/// `TextDocumentContentRegistrationOptions`
+@override final  WorkspaceOptionsTextDocumentContent? textDocumentContent;
+
+/// Create a copy of WorkspaceOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WorkspaceOptionsCopyWith<_WorkspaceOptions> get copyWith => __$WorkspaceOptionsCopyWithImpl<_WorkspaceOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WorkspaceOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceOptions&&(identical(other.workspaceFolders, workspaceFolders) || other.workspaceFolders == workspaceFolders)&&(identical(other.fileOperations, fileOperations) || other.fileOperations == fileOperations)&&(identical(other.textDocumentContent, textDocumentContent) || other.textDocumentContent == textDocumentContent));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,workspaceFolders,fileOperations,textDocumentContent);
+
+@override
+String toString() {
+  return 'WorkspaceOptions(workspaceFolders: $workspaceFolders, fileOperations: $fileOperations, textDocumentContent: $textDocumentContent)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WorkspaceOptionsCopyWith<$Res> implements $WorkspaceOptionsCopyWith<$Res> {
+  factory _$WorkspaceOptionsCopyWith(_WorkspaceOptions value, $Res Function(_WorkspaceOptions) _then) = __$WorkspaceOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations, WorkspaceOptionsTextDocumentContent? textDocumentContent
+});
+
+
+@override $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>? get workspaceFolders;@override $FileOperationOptionsCopyWith<$Res>? get fileOperations;
+
+}
+/// @nodoc
+class __$WorkspaceOptionsCopyWithImpl<$Res>
+    implements _$WorkspaceOptionsCopyWith<$Res> {
+  __$WorkspaceOptionsCopyWithImpl(this._self, this._then);
+
+  final _WorkspaceOptions _self;
+  final $Res Function(_WorkspaceOptions) _then;
+
+/// Create a copy of WorkspaceOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? workspaceFolders = freezed,Object? fileOperations = freezed,Object? textDocumentContent = freezed,}) {
+  return _then(_WorkspaceOptions(
+workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
+as WorkspaceFoldersServerCapabilities?,fileOperations: freezed == fileOperations ? _self.fileOperations : fileOperations // ignore: cast_nullable_to_non_nullable
+as FileOperationOptions?,textDocumentContent: freezed == textDocumentContent ? _self.textDocumentContent : textDocumentContent // ignore: cast_nullable_to_non_nullable
+as WorkspaceOptionsTextDocumentContent?,
+  ));
+}
+
+/// Create a copy of WorkspaceOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WorkspaceFoldersServerCapabilitiesCopyWith<$Res>? get workspaceFolders {
+    if (_self.workspaceFolders == null) {
+    return null;
+  }
+
+  return $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>(_self.workspaceFolders!, (value) {
+    return _then(_self.copyWith(workspaceFolders: value));
+  });
+}/// Create a copy of WorkspaceOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FileOperationOptionsCopyWith<$Res>? get fileOperations {
+    if (_self.fileOperations == null) {
+    return null;
+  }
+
+  return $FileOperationOptionsCopyWith<$Res>(_self.fileOperations!, (value) {
+    return _then(_self.copyWith(fileOperations: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$ServerCompletionItemOptions {
+
+/// The server has support for completion item label details (see also
+/// `CompletionItemLabelDetails`) when receiving a completion item in a
+/// resolve call.
+ bool? get labelDetailsSupport;
+/// Create a copy of ServerCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ServerCompletionItemOptionsCopyWith<ServerCompletionItemOptions> get copyWith => _$ServerCompletionItemOptionsCopyWithImpl<ServerCompletionItemOptions>(this as ServerCompletionItemOptions, _$identity);
+
+  /// Serializes this ServerCompletionItemOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerCompletionItemOptions&&(identical(other.labelDetailsSupport, labelDetailsSupport) || other.labelDetailsSupport == labelDetailsSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,labelDetailsSupport);
+
+@override
+String toString() {
+  return 'ServerCompletionItemOptions(labelDetailsSupport: $labelDetailsSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ServerCompletionItemOptionsCopyWith<$Res>  {
+  factory $ServerCompletionItemOptionsCopyWith(ServerCompletionItemOptions value, $Res Function(ServerCompletionItemOptions) _then) = _$ServerCompletionItemOptionsCopyWithImpl;
+@useResult
+$Res call({
+ bool? labelDetailsSupport
 });
 
 
@@ -53507,19 +61098,18 @@ $Res call({
 
 }
 /// @nodoc
-class _$NotebookDocumentSyncOptionsCopyWithImpl<$Res>
-    implements $NotebookDocumentSyncOptionsCopyWith<$Res> {
-  _$NotebookDocumentSyncOptionsCopyWithImpl(this._self, this._then);
+class _$ServerCompletionItemOptionsCopyWithImpl<$Res>
+    implements $ServerCompletionItemOptionsCopyWith<$Res> {
+  _$ServerCompletionItemOptionsCopyWithImpl(this._self, this._then);
 
-  final NotebookDocumentSyncOptions _self;
-  final $Res Function(NotebookDocumentSyncOptions) _then;
+  final ServerCompletionItemOptions _self;
+  final $Res Function(ServerCompletionItemOptions) _then;
 
-/// Create a copy of NotebookDocumentSyncOptions
+/// Create a copy of ServerCompletionItemOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? notebookSelector = null,Object? save = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? labelDetailsSupport = freezed,}) {
   return _then(_self.copyWith(
-notebookSelector: null == notebookSelector ? _self.notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
-as List<NotebookDocumentSyncOptionsNotebookSelectorItem>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+labelDetailsSupport: freezed == labelDetailsSupport ? _self.labelDetailsSupport : labelDetailsSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -53531,57 +61121,49 @@ as bool?,
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocumentSyncOptions implements NotebookDocumentSyncOptions {
-  const _NotebookDocumentSyncOptions({required final  List<NotebookDocumentSyncOptionsNotebookSelectorItem> notebookSelector, this.save}): _notebookSelector = notebookSelector;
-  factory _NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsFromJson(json);
+class _ServerCompletionItemOptions implements ServerCompletionItemOptions {
+  const _ServerCompletionItemOptions({this.labelDetailsSupport});
+  factory _ServerCompletionItemOptions.fromJson(Map<String, dynamic> json) => _$ServerCompletionItemOptionsFromJson(json);
 
-/// The notebooks to be synced
- final  List<NotebookDocumentSyncOptionsNotebookSelectorItem> _notebookSelector;
-/// The notebooks to be synced
-@override List<NotebookDocumentSyncOptionsNotebookSelectorItem> get notebookSelector {
-  if (_notebookSelector is EqualUnmodifiableListView) return _notebookSelector;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_notebookSelector);
-}
+/// The server has support for completion item label details (see also
+/// `CompletionItemLabelDetails`) when receiving a completion item in a
+/// resolve call.
+@override final  bool? labelDetailsSupport;
 
-/// Whether save notification should be forwarded to the server. Will only
-/// be honored if mode === `notebook`.
-@override final  bool? save;
-
-/// Create a copy of NotebookDocumentSyncOptions
+/// Create a copy of ServerCompletionItemOptions
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$NotebookDocumentSyncOptionsCopyWith<_NotebookDocumentSyncOptions> get copyWith => __$NotebookDocumentSyncOptionsCopyWithImpl<_NotebookDocumentSyncOptions>(this, _$identity);
+_$ServerCompletionItemOptionsCopyWith<_ServerCompletionItemOptions> get copyWith => __$ServerCompletionItemOptionsCopyWithImpl<_ServerCompletionItemOptions>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$NotebookDocumentSyncOptionsToJson(this, );
+  return _$ServerCompletionItemOptionsToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentSyncOptions&&const DeepCollectionEquality().equals(other._notebookSelector, _notebookSelector)&&(identical(other.save, save) || other.save == save));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerCompletionItemOptions&&(identical(other.labelDetailsSupport, labelDetailsSupport) || other.labelDetailsSupport == labelDetailsSupport));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_notebookSelector),save);
+int get hashCode => Object.hash(runtimeType,labelDetailsSupport);
 
 @override
 String toString() {
-  return 'NotebookDocumentSyncOptions(notebookSelector: $notebookSelector, save: $save)';
+  return 'ServerCompletionItemOptions(labelDetailsSupport: $labelDetailsSupport)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$NotebookDocumentSyncOptionsCopyWith<$Res> implements $NotebookDocumentSyncOptionsCopyWith<$Res> {
-  factory _$NotebookDocumentSyncOptionsCopyWith(_NotebookDocumentSyncOptions value, $Res Function(_NotebookDocumentSyncOptions) _then) = __$NotebookDocumentSyncOptionsCopyWithImpl;
+abstract mixin class _$ServerCompletionItemOptionsCopyWith<$Res> implements $ServerCompletionItemOptionsCopyWith<$Res> {
+  factory _$ServerCompletionItemOptionsCopyWith(_ServerCompletionItemOptions value, $Res Function(_ServerCompletionItemOptions) _then) = __$ServerCompletionItemOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- List<NotebookDocumentSyncOptionsNotebookSelectorItem> notebookSelector, bool? save
+ bool? labelDetailsSupport
 });
 
 
@@ -53589,19 +61171,18 @@ $Res call({
 
 }
 /// @nodoc
-class __$NotebookDocumentSyncOptionsCopyWithImpl<$Res>
-    implements _$NotebookDocumentSyncOptionsCopyWith<$Res> {
-  __$NotebookDocumentSyncOptionsCopyWithImpl(this._self, this._then);
+class __$ServerCompletionItemOptionsCopyWithImpl<$Res>
+    implements _$ServerCompletionItemOptionsCopyWith<$Res> {
+  __$ServerCompletionItemOptionsCopyWithImpl(this._self, this._then);
 
-  final _NotebookDocumentSyncOptions _self;
-  final $Res Function(_NotebookDocumentSyncOptions) _then;
+  final _ServerCompletionItemOptions _self;
+  final $Res Function(_ServerCompletionItemOptions) _then;
 
-/// Create a copy of NotebookDocumentSyncOptions
+/// Create a copy of ServerCompletionItemOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? notebookSelector = null,Object? save = freezed,}) {
-  return _then(_NotebookDocumentSyncOptions(
-notebookSelector: null == notebookSelector ? _self._notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
-as List<NotebookDocumentSyncOptionsNotebookSelectorItem>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+@override @pragma('vm:prefer-inline') $Res call({Object? labelDetailsSupport = freezed,}) {
+  return _then(_ServerCompletionItemOptions(
+labelDetailsSupport: freezed == labelDetailsSupport ? _self.labelDetailsSupport : labelDetailsSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -53611,47 +61192,43 @@ as bool?,
 
 
 /// @nodoc
-mixin _$NotebookDocumentSyncRegistrationOptions {
+mixin _$FileOperationPatternOptions {
 
-/// The notebooks to be synced
- List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only
-/// be honored if mode === `notebook`.
- bool? get save;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
- String? get id;
-/// Create a copy of NotebookDocumentSyncRegistrationOptions
+/// The pattern should be matched ignoring casing.
+ bool? get ignoreCase;
+/// Create a copy of FileOperationPatternOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$NotebookDocumentSyncRegistrationOptionsCopyWith<NotebookDocumentSyncRegistrationOptions> get copyWith => _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<NotebookDocumentSyncRegistrationOptions>(this as NotebookDocumentSyncRegistrationOptions, _$identity);
+$FileOperationPatternOptionsCopyWith<FileOperationPatternOptions> get copyWith => _$FileOperationPatternOptionsCopyWithImpl<FileOperationPatternOptions>(this as FileOperationPatternOptions, _$identity);
 
-  /// Serializes this NotebookDocumentSyncRegistrationOptions to a JSON map.
+  /// Serializes this FileOperationPatternOptions to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentSyncRegistrationOptions&&const DeepCollectionEquality().equals(other.notebookSelector, notebookSelector)&&(identical(other.save, save) || other.save == save)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FileOperationPatternOptions&&(identical(other.ignoreCase, ignoreCase) || other.ignoreCase == ignoreCase));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(notebookSelector),save,id);
+int get hashCode => Object.hash(runtimeType,ignoreCase);
 
 @override
 String toString() {
-  return 'NotebookDocumentSyncRegistrationOptions(notebookSelector: $notebookSelector, save: $save, id: $id)';
+  return 'FileOperationPatternOptions(ignoreCase: $ignoreCase)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $NotebookDocumentSyncRegistrationOptionsCopyWith<$Res>  {
-  factory $NotebookDocumentSyncRegistrationOptionsCopyWith(NotebookDocumentSyncRegistrationOptions value, $Res Function(NotebookDocumentSyncRegistrationOptions) _then) = _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl;
+abstract mixin class $FileOperationPatternOptionsCopyWith<$Res>  {
+  factory $FileOperationPatternOptionsCopyWith(FileOperationPatternOptions value, $Res Function(FileOperationPatternOptions) _then) = _$FileOperationPatternOptionsCopyWithImpl;
 @useResult
 $Res call({
- List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> notebookSelector, bool? save, String? id
+ bool? ignoreCase
 });
 
 
@@ -53659,21 +61236,19 @@ $Res call({
 
 }
 /// @nodoc
-class _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<$Res>
-    implements $NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> {
-  _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl(this._self, this._then);
+class _$FileOperationPatternOptionsCopyWithImpl<$Res>
+    implements $FileOperationPatternOptionsCopyWith<$Res> {
+  _$FileOperationPatternOptionsCopyWithImpl(this._self, this._then);
 
-  final NotebookDocumentSyncRegistrationOptions _self;
-  final $Res Function(NotebookDocumentSyncRegistrationOptions) _then;
+  final FileOperationPatternOptions _self;
+  final $Res Function(FileOperationPatternOptions) _then;
 
-/// Create a copy of NotebookDocumentSyncRegistrationOptions
+/// Create a copy of FileOperationPatternOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? notebookSelector = null,Object? save = freezed,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? ignoreCase = freezed,}) {
   return _then(_self.copyWith(
-notebookSelector: null == notebookSelector ? _self.notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
-as List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
-as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,
+ignoreCase: freezed == ignoreCase ? _self.ignoreCase : ignoreCase // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -53684,60 +61259,47 @@ as String?,
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocumentSyncRegistrationOptions implements NotebookDocumentSyncRegistrationOptions {
-  const _NotebookDocumentSyncRegistrationOptions({required final  List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> notebookSelector, this.save, this.id}): _notebookSelector = notebookSelector;
-  factory _NotebookDocumentSyncRegistrationOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncRegistrationOptionsFromJson(json);
+class _FileOperationPatternOptions implements FileOperationPatternOptions {
+  const _FileOperationPatternOptions({this.ignoreCase});
+  factory _FileOperationPatternOptions.fromJson(Map<String, dynamic> json) => _$FileOperationPatternOptionsFromJson(json);
 
-/// The notebooks to be synced
- final  List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> _notebookSelector;
-/// The notebooks to be synced
-@override List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> get notebookSelector {
-  if (_notebookSelector is EqualUnmodifiableListView) return _notebookSelector;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_notebookSelector);
-}
+/// The pattern should be matched ignoring casing.
+@override final  bool? ignoreCase;
 
-/// Whether save notification should be forwarded to the server. Will only
-/// be honored if mode === `notebook`.
-@override final  bool? save;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
-@override final  String? id;
-
-/// Create a copy of NotebookDocumentSyncRegistrationOptions
+/// Create a copy of FileOperationPatternOptions
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$NotebookDocumentSyncRegistrationOptionsCopyWith<_NotebookDocumentSyncRegistrationOptions> get copyWith => __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<_NotebookDocumentSyncRegistrationOptions>(this, _$identity);
+_$FileOperationPatternOptionsCopyWith<_FileOperationPatternOptions> get copyWith => __$FileOperationPatternOptionsCopyWithImpl<_FileOperationPatternOptions>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$NotebookDocumentSyncRegistrationOptionsToJson(this, );
+  return _$FileOperationPatternOptionsToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentSyncRegistrationOptions&&const DeepCollectionEquality().equals(other._notebookSelector, _notebookSelector)&&(identical(other.save, save) || other.save == save)&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FileOperationPatternOptions&&(identical(other.ignoreCase, ignoreCase) || other.ignoreCase == ignoreCase));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_notebookSelector),save,id);
+int get hashCode => Object.hash(runtimeType,ignoreCase);
 
 @override
 String toString() {
-  return 'NotebookDocumentSyncRegistrationOptions(notebookSelector: $notebookSelector, save: $save, id: $id)';
+  return 'FileOperationPatternOptions(ignoreCase: $ignoreCase)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> implements $NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> {
-  factory _$NotebookDocumentSyncRegistrationOptionsCopyWith(_NotebookDocumentSyncRegistrationOptions value, $Res Function(_NotebookDocumentSyncRegistrationOptions) _then) = __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl;
+abstract mixin class _$FileOperationPatternOptionsCopyWith<$Res> implements $FileOperationPatternOptionsCopyWith<$Res> {
+  factory _$FileOperationPatternOptionsCopyWith(_FileOperationPatternOptions value, $Res Function(_FileOperationPatternOptions) _then) = __$FileOperationPatternOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem> notebookSelector, bool? save, String? id
+ bool? ignoreCase
 });
 
 
@@ -53745,21 +61307,19 @@ $Res call({
 
 }
 /// @nodoc
-class __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<$Res>
-    implements _$NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> {
-  __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl(this._self, this._then);
+class __$FileOperationPatternOptionsCopyWithImpl<$Res>
+    implements _$FileOperationPatternOptionsCopyWith<$Res> {
+  __$FileOperationPatternOptionsCopyWithImpl(this._self, this._then);
 
-  final _NotebookDocumentSyncRegistrationOptions _self;
-  final $Res Function(_NotebookDocumentSyncRegistrationOptions) _then;
+  final _FileOperationPatternOptions _self;
+  final $Res Function(_FileOperationPatternOptions) _then;
 
-/// Create a copy of NotebookDocumentSyncRegistrationOptions
+/// Create a copy of FileOperationPatternOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? notebookSelector = null,Object? save = freezed,Object? id = freezed,}) {
-  return _then(_NotebookDocumentSyncRegistrationOptions(
-notebookSelector: null == notebookSelector ? _self._notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
-as List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
-as bool?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,
+@override @pragma('vm:prefer-inline') $Res call({Object? ignoreCase = freezed,}) {
+  return _then(_FileOperationPatternOptions(
+ignoreCase: freezed == ignoreCase ? _self.ignoreCase : ignoreCase // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -54073,43 +61633,45 @@ $FileOperationRegistrationOptionsCopyWith<$Res>? get willDelete {
 
 
 /// @nodoc
-mixin _$FileOperationPatternOptions {
+mixin _$StaleRequestSupportOptions {
 
-/// The pattern should be matched ignoring casing.
- bool? get ignoreCase;
-/// Create a copy of FileOperationPatternOptions
+/// The client will actively cancel the request.
+ bool get cancel;/// The list of requests for which the client will retry the request if it
+/// receives a response with error code `ContentModified`
+ List<String> get retryOnContentModified;
+/// Create a copy of StaleRequestSupportOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$FileOperationPatternOptionsCopyWith<FileOperationPatternOptions> get copyWith => _$FileOperationPatternOptionsCopyWithImpl<FileOperationPatternOptions>(this as FileOperationPatternOptions, _$identity);
+$StaleRequestSupportOptionsCopyWith<StaleRequestSupportOptions> get copyWith => _$StaleRequestSupportOptionsCopyWithImpl<StaleRequestSupportOptions>(this as StaleRequestSupportOptions, _$identity);
 
-  /// Serializes this FileOperationPatternOptions to a JSON map.
+  /// Serializes this StaleRequestSupportOptions to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FileOperationPatternOptions&&(identical(other.ignoreCase, ignoreCase) || other.ignoreCase == ignoreCase));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StaleRequestSupportOptions&&(identical(other.cancel, cancel) || other.cancel == cancel)&&const DeepCollectionEquality().equals(other.retryOnContentModified, retryOnContentModified));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,ignoreCase);
+int get hashCode => Object.hash(runtimeType,cancel,const DeepCollectionEquality().hash(retryOnContentModified));
 
 @override
 String toString() {
-  return 'FileOperationPatternOptions(ignoreCase: $ignoreCase)';
+  return 'StaleRequestSupportOptions(cancel: $cancel, retryOnContentModified: $retryOnContentModified)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $FileOperationPatternOptionsCopyWith<$Res>  {
-  factory $FileOperationPatternOptionsCopyWith(FileOperationPatternOptions value, $Res Function(FileOperationPatternOptions) _then) = _$FileOperationPatternOptionsCopyWithImpl;
+abstract mixin class $StaleRequestSupportOptionsCopyWith<$Res>  {
+  factory $StaleRequestSupportOptionsCopyWith(StaleRequestSupportOptions value, $Res Function(StaleRequestSupportOptions) _then) = _$StaleRequestSupportOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? ignoreCase
+ bool cancel, List<String> retryOnContentModified
 });
 
 
@@ -54117,18 +61679,169 @@ $Res call({
 
 }
 /// @nodoc
-class _$FileOperationPatternOptionsCopyWithImpl<$Res>
-    implements $FileOperationPatternOptionsCopyWith<$Res> {
-  _$FileOperationPatternOptionsCopyWithImpl(this._self, this._then);
+class _$StaleRequestSupportOptionsCopyWithImpl<$Res>
+    implements $StaleRequestSupportOptionsCopyWith<$Res> {
+  _$StaleRequestSupportOptionsCopyWithImpl(this._self, this._then);
 
-  final FileOperationPatternOptions _self;
-  final $Res Function(FileOperationPatternOptions) _then;
+  final StaleRequestSupportOptions _self;
+  final $Res Function(StaleRequestSupportOptions) _then;
 
-/// Create a copy of FileOperationPatternOptions
+/// Create a copy of StaleRequestSupportOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? ignoreCase = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cancel = null,Object? retryOnContentModified = null,}) {
   return _then(_self.copyWith(
-ignoreCase: freezed == ignoreCase ? _self.ignoreCase : ignoreCase // ignore: cast_nullable_to_non_nullable
+cancel: null == cancel ? _self.cancel : cancel // ignore: cast_nullable_to_non_nullable
+as bool,retryOnContentModified: null == retryOnContentModified ? _self.retryOnContentModified : retryOnContentModified // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _StaleRequestSupportOptions implements StaleRequestSupportOptions {
+  const _StaleRequestSupportOptions({required this.cancel, required final  List<String> retryOnContentModified}): _retryOnContentModified = retryOnContentModified;
+  factory _StaleRequestSupportOptions.fromJson(Map<String, dynamic> json) => _$StaleRequestSupportOptionsFromJson(json);
+
+/// The client will actively cancel the request.
+@override final  bool cancel;
+/// The list of requests for which the client will retry the request if it
+/// receives a response with error code `ContentModified`
+ final  List<String> _retryOnContentModified;
+/// The list of requests for which the client will retry the request if it
+/// receives a response with error code `ContentModified`
+@override List<String> get retryOnContentModified {
+  if (_retryOnContentModified is EqualUnmodifiableListView) return _retryOnContentModified;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_retryOnContentModified);
+}
+
+
+/// Create a copy of StaleRequestSupportOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StaleRequestSupportOptionsCopyWith<_StaleRequestSupportOptions> get copyWith => __$StaleRequestSupportOptionsCopyWithImpl<_StaleRequestSupportOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$StaleRequestSupportOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StaleRequestSupportOptions&&(identical(other.cancel, cancel) || other.cancel == cancel)&&const DeepCollectionEquality().equals(other._retryOnContentModified, _retryOnContentModified));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,cancel,const DeepCollectionEquality().hash(_retryOnContentModified));
+
+@override
+String toString() {
+  return 'StaleRequestSupportOptions(cancel: $cancel, retryOnContentModified: $retryOnContentModified)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StaleRequestSupportOptionsCopyWith<$Res> implements $StaleRequestSupportOptionsCopyWith<$Res> {
+  factory _$StaleRequestSupportOptionsCopyWith(_StaleRequestSupportOptions value, $Res Function(_StaleRequestSupportOptions) _then) = __$StaleRequestSupportOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool cancel, List<String> retryOnContentModified
+});
+
+
+
+
+}
+/// @nodoc
+class __$StaleRequestSupportOptionsCopyWithImpl<$Res>
+    implements _$StaleRequestSupportOptionsCopyWith<$Res> {
+  __$StaleRequestSupportOptionsCopyWithImpl(this._self, this._then);
+
+  final _StaleRequestSupportOptions _self;
+  final $Res Function(_StaleRequestSupportOptions) _then;
+
+/// Create a copy of StaleRequestSupportOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? cancel = null,Object? retryOnContentModified = null,}) {
+  return _then(_StaleRequestSupportOptions(
+cancel: null == cancel ? _self.cancel : cancel // ignore: cast_nullable_to_non_nullable
+as bool,retryOnContentModified: null == retryOnContentModified ? _self._retryOnContentModified : retryOnContentModified // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ChangeAnnotationsSupportOptions {
+
+/// Whether the client groups edits with equal labels into tree nodes, for
+/// instance all edits labelled with "Changes in Strings" would be a tree
+/// node.
+ bool? get groupsOnLabel;
+/// Create a copy of ChangeAnnotationsSupportOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChangeAnnotationsSupportOptionsCopyWith<ChangeAnnotationsSupportOptions> get copyWith => _$ChangeAnnotationsSupportOptionsCopyWithImpl<ChangeAnnotationsSupportOptions>(this as ChangeAnnotationsSupportOptions, _$identity);
+
+  /// Serializes this ChangeAnnotationsSupportOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeAnnotationsSupportOptions&&(identical(other.groupsOnLabel, groupsOnLabel) || other.groupsOnLabel == groupsOnLabel));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,groupsOnLabel);
+
+@override
+String toString() {
+  return 'ChangeAnnotationsSupportOptions(groupsOnLabel: $groupsOnLabel)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ChangeAnnotationsSupportOptionsCopyWith<$Res>  {
+  factory $ChangeAnnotationsSupportOptionsCopyWith(ChangeAnnotationsSupportOptions value, $Res Function(ChangeAnnotationsSupportOptions) _then) = _$ChangeAnnotationsSupportOptionsCopyWithImpl;
+@useResult
+$Res call({
+ bool? groupsOnLabel
+});
+
+
+
+
+}
+/// @nodoc
+class _$ChangeAnnotationsSupportOptionsCopyWithImpl<$Res>
+    implements $ChangeAnnotationsSupportOptionsCopyWith<$Res> {
+  _$ChangeAnnotationsSupportOptionsCopyWithImpl(this._self, this._then);
+
+  final ChangeAnnotationsSupportOptions _self;
+  final $Res Function(ChangeAnnotationsSupportOptions) _then;
+
+/// Create a copy of ChangeAnnotationsSupportOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? groupsOnLabel = freezed,}) {
+  return _then(_self.copyWith(
+groupsOnLabel: freezed == groupsOnLabel ? _self.groupsOnLabel : groupsOnLabel // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -54140,47 +61853,49 @@ as bool?,
 /// @nodoc
 @JsonSerializable()
 
-class _FileOperationPatternOptions implements FileOperationPatternOptions {
-  const _FileOperationPatternOptions({this.ignoreCase});
-  factory _FileOperationPatternOptions.fromJson(Map<String, dynamic> json) => _$FileOperationPatternOptionsFromJson(json);
+class _ChangeAnnotationsSupportOptions implements ChangeAnnotationsSupportOptions {
+  const _ChangeAnnotationsSupportOptions({this.groupsOnLabel});
+  factory _ChangeAnnotationsSupportOptions.fromJson(Map<String, dynamic> json) => _$ChangeAnnotationsSupportOptionsFromJson(json);
 
-/// The pattern should be matched ignoring casing.
-@override final  bool? ignoreCase;
+/// Whether the client groups edits with equal labels into tree nodes, for
+/// instance all edits labelled with "Changes in Strings" would be a tree
+/// node.
+@override final  bool? groupsOnLabel;
 
-/// Create a copy of FileOperationPatternOptions
+/// Create a copy of ChangeAnnotationsSupportOptions
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$FileOperationPatternOptionsCopyWith<_FileOperationPatternOptions> get copyWith => __$FileOperationPatternOptionsCopyWithImpl<_FileOperationPatternOptions>(this, _$identity);
+_$ChangeAnnotationsSupportOptionsCopyWith<_ChangeAnnotationsSupportOptions> get copyWith => __$ChangeAnnotationsSupportOptionsCopyWithImpl<_ChangeAnnotationsSupportOptions>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$FileOperationPatternOptionsToJson(this, );
+  return _$ChangeAnnotationsSupportOptionsToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FileOperationPatternOptions&&(identical(other.ignoreCase, ignoreCase) || other.ignoreCase == ignoreCase));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangeAnnotationsSupportOptions&&(identical(other.groupsOnLabel, groupsOnLabel) || other.groupsOnLabel == groupsOnLabel));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,ignoreCase);
+int get hashCode => Object.hash(runtimeType,groupsOnLabel);
 
 @override
 String toString() {
-  return 'FileOperationPatternOptions(ignoreCase: $ignoreCase)';
+  return 'ChangeAnnotationsSupportOptions(groupsOnLabel: $groupsOnLabel)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$FileOperationPatternOptionsCopyWith<$Res> implements $FileOperationPatternOptionsCopyWith<$Res> {
-  factory _$FileOperationPatternOptionsCopyWith(_FileOperationPatternOptions value, $Res Function(_FileOperationPatternOptions) _then) = __$FileOperationPatternOptionsCopyWithImpl;
+abstract mixin class _$ChangeAnnotationsSupportOptionsCopyWith<$Res> implements $ChangeAnnotationsSupportOptionsCopyWith<$Res> {
+  factory _$ChangeAnnotationsSupportOptionsCopyWith(_ChangeAnnotationsSupportOptions value, $Res Function(_ChangeAnnotationsSupportOptions) _then) = __$ChangeAnnotationsSupportOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? ignoreCase
+ bool? groupsOnLabel
 });
 
 
@@ -54188,19 +61903,3119 @@ $Res call({
 
 }
 /// @nodoc
-class __$FileOperationPatternOptionsCopyWithImpl<$Res>
-    implements _$FileOperationPatternOptionsCopyWith<$Res> {
-  __$FileOperationPatternOptionsCopyWithImpl(this._self, this._then);
+class __$ChangeAnnotationsSupportOptionsCopyWithImpl<$Res>
+    implements _$ChangeAnnotationsSupportOptionsCopyWith<$Res> {
+  __$ChangeAnnotationsSupportOptionsCopyWithImpl(this._self, this._then);
 
-  final _FileOperationPatternOptions _self;
-  final $Res Function(_FileOperationPatternOptions) _then;
+  final _ChangeAnnotationsSupportOptions _self;
+  final $Res Function(_ChangeAnnotationsSupportOptions) _then;
 
-/// Create a copy of FileOperationPatternOptions
+/// Create a copy of ChangeAnnotationsSupportOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? ignoreCase = freezed,}) {
-  return _then(_FileOperationPatternOptions(
-ignoreCase: freezed == ignoreCase ? _self.ignoreCase : ignoreCase // ignore: cast_nullable_to_non_nullable
+@override @pragma('vm:prefer-inline') $Res call({Object? groupsOnLabel = freezed,}) {
+  return _then(_ChangeAnnotationsSupportOptions(
+groupsOnLabel: freezed == groupsOnLabel ? _self.groupsOnLabel : groupsOnLabel // ignore: cast_nullable_to_non_nullable
 as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientSymbolKindOptions {
+
+/// The symbol kind values the client supports. When this property exists
+/// the client also guarantees that it will handle values outside its set
+/// gracefully and falls back to a default value when unknown.
+///
+/// If this property is not present the client only supports the symbol
+/// kinds from `File` to `Array` as defined in the initial version of the
+/// protocol.
+ List<SymbolKind>? get valueSet;
+/// Create a copy of ClientSymbolKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientSymbolKindOptionsCopyWith<ClientSymbolKindOptions> get copyWith => _$ClientSymbolKindOptionsCopyWithImpl<ClientSymbolKindOptions>(this as ClientSymbolKindOptions, _$identity);
+
+  /// Serializes this ClientSymbolKindOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientSymbolKindOptions&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'ClientSymbolKindOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientSymbolKindOptionsCopyWith<$Res>  {
+  factory $ClientSymbolKindOptionsCopyWith(ClientSymbolKindOptions value, $Res Function(ClientSymbolKindOptions) _then) = _$ClientSymbolKindOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<SymbolKind>? valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientSymbolKindOptionsCopyWithImpl<$Res>
+    implements $ClientSymbolKindOptionsCopyWith<$Res> {
+  _$ClientSymbolKindOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientSymbolKindOptions _self;
+  final $Res Function(ClientSymbolKindOptions) _then;
+
+/// Create a copy of ClientSymbolKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = freezed,}) {
+  return _then(_self.copyWith(
+valueSet: freezed == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<SymbolKind>?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientSymbolKindOptions implements ClientSymbolKindOptions {
+  const _ClientSymbolKindOptions({final  List<SymbolKind>? valueSet}): _valueSet = valueSet;
+  factory _ClientSymbolKindOptions.fromJson(Map<String, dynamic> json) => _$ClientSymbolKindOptionsFromJson(json);
+
+/// The symbol kind values the client supports. When this property exists
+/// the client also guarantees that it will handle values outside its set
+/// gracefully and falls back to a default value when unknown.
+///
+/// If this property is not present the client only supports the symbol
+/// kinds from `File` to `Array` as defined in the initial version of the
+/// protocol.
+ final  List<SymbolKind>? _valueSet;
+/// The symbol kind values the client supports. When this property exists
+/// the client also guarantees that it will handle values outside its set
+/// gracefully and falls back to a default value when unknown.
+///
+/// If this property is not present the client only supports the symbol
+/// kinds from `File` to `Array` as defined in the initial version of the
+/// protocol.
+@override List<SymbolKind>? get valueSet {
+  final value = _valueSet;
+  if (value == null) return null;
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of ClientSymbolKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientSymbolKindOptionsCopyWith<_ClientSymbolKindOptions> get copyWith => __$ClientSymbolKindOptionsCopyWithImpl<_ClientSymbolKindOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientSymbolKindOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientSymbolKindOptions&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'ClientSymbolKindOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientSymbolKindOptionsCopyWith<$Res> implements $ClientSymbolKindOptionsCopyWith<$Res> {
+  factory _$ClientSymbolKindOptionsCopyWith(_ClientSymbolKindOptions value, $Res Function(_ClientSymbolKindOptions) _then) = __$ClientSymbolKindOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<SymbolKind>? valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientSymbolKindOptionsCopyWithImpl<$Res>
+    implements _$ClientSymbolKindOptionsCopyWith<$Res> {
+  __$ClientSymbolKindOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientSymbolKindOptions _self;
+  final $Res Function(_ClientSymbolKindOptions) _then;
+
+/// Create a copy of ClientSymbolKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = freezed,}) {
+  return _then(_ClientSymbolKindOptions(
+valueSet: freezed == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<SymbolKind>?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientSymbolTagOptions {
+
+/// The tags supported by the client.
+ List<SymbolTag> get valueSet;
+/// Create a copy of ClientSymbolTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientSymbolTagOptionsCopyWith<ClientSymbolTagOptions> get copyWith => _$ClientSymbolTagOptionsCopyWithImpl<ClientSymbolTagOptions>(this as ClientSymbolTagOptions, _$identity);
+
+  /// Serializes this ClientSymbolTagOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientSymbolTagOptions&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'ClientSymbolTagOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientSymbolTagOptionsCopyWith<$Res>  {
+  factory $ClientSymbolTagOptionsCopyWith(ClientSymbolTagOptions value, $Res Function(ClientSymbolTagOptions) _then) = _$ClientSymbolTagOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<SymbolTag> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientSymbolTagOptionsCopyWithImpl<$Res>
+    implements $ClientSymbolTagOptionsCopyWith<$Res> {
+  _$ClientSymbolTagOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientSymbolTagOptions _self;
+  final $Res Function(ClientSymbolTagOptions) _then;
+
+/// Create a copy of ClientSymbolTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
+  return _then(_self.copyWith(
+valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<SymbolTag>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientSymbolTagOptions implements ClientSymbolTagOptions {
+  const _ClientSymbolTagOptions({required final  List<SymbolTag> valueSet}): _valueSet = valueSet;
+  factory _ClientSymbolTagOptions.fromJson(Map<String, dynamic> json) => _$ClientSymbolTagOptionsFromJson(json);
+
+/// The tags supported by the client.
+ final  List<SymbolTag> _valueSet;
+/// The tags supported by the client.
+@override List<SymbolTag> get valueSet {
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_valueSet);
+}
+
+
+/// Create a copy of ClientSymbolTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientSymbolTagOptionsCopyWith<_ClientSymbolTagOptions> get copyWith => __$ClientSymbolTagOptionsCopyWithImpl<_ClientSymbolTagOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientSymbolTagOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientSymbolTagOptions&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'ClientSymbolTagOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientSymbolTagOptionsCopyWith<$Res> implements $ClientSymbolTagOptionsCopyWith<$Res> {
+  factory _$ClientSymbolTagOptionsCopyWith(_ClientSymbolTagOptions value, $Res Function(_ClientSymbolTagOptions) _then) = __$ClientSymbolTagOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<SymbolTag> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientSymbolTagOptionsCopyWithImpl<$Res>
+    implements _$ClientSymbolTagOptionsCopyWith<$Res> {
+  __$ClientSymbolTagOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientSymbolTagOptions _self;
+  final $Res Function(_ClientSymbolTagOptions) _then;
+
+/// Create a copy of ClientSymbolTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
+  return _then(_ClientSymbolTagOptions(
+valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<SymbolTag>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientSymbolResolveOptions {
+
+/// The properties that a client can resolve lazily. Usually
+/// `location.range`
+ List<String> get properties;
+/// Create a copy of ClientSymbolResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientSymbolResolveOptionsCopyWith<ClientSymbolResolveOptions> get copyWith => _$ClientSymbolResolveOptionsCopyWithImpl<ClientSymbolResolveOptions>(this as ClientSymbolResolveOptions, _$identity);
+
+  /// Serializes this ClientSymbolResolveOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientSymbolResolveOptions&&const DeepCollectionEquality().equals(other.properties, properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
+
+@override
+String toString() {
+  return 'ClientSymbolResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientSymbolResolveOptionsCopyWith<$Res>  {
+  factory $ClientSymbolResolveOptionsCopyWith(ClientSymbolResolveOptions value, $Res Function(ClientSymbolResolveOptions) _then) = _$ClientSymbolResolveOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientSymbolResolveOptionsCopyWithImpl<$Res>
+    implements $ClientSymbolResolveOptionsCopyWith<$Res> {
+  _$ClientSymbolResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientSymbolResolveOptions _self;
+  final $Res Function(ClientSymbolResolveOptions) _then;
+
+/// Create a copy of ClientSymbolResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
+  return _then(_self.copyWith(
+properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientSymbolResolveOptions implements ClientSymbolResolveOptions {
+  const _ClientSymbolResolveOptions({required final  List<String> properties}): _properties = properties;
+  factory _ClientSymbolResolveOptions.fromJson(Map<String, dynamic> json) => _$ClientSymbolResolveOptionsFromJson(json);
+
+/// The properties that a client can resolve lazily. Usually
+/// `location.range`
+ final  List<String> _properties;
+/// The properties that a client can resolve lazily. Usually
+/// `location.range`
+@override List<String> get properties {
+  if (_properties is EqualUnmodifiableListView) return _properties;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_properties);
+}
+
+
+/// Create a copy of ClientSymbolResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientSymbolResolveOptionsCopyWith<_ClientSymbolResolveOptions> get copyWith => __$ClientSymbolResolveOptionsCopyWithImpl<_ClientSymbolResolveOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientSymbolResolveOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientSymbolResolveOptions&&const DeepCollectionEquality().equals(other._properties, _properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
+
+@override
+String toString() {
+  return 'ClientSymbolResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientSymbolResolveOptionsCopyWith<$Res> implements $ClientSymbolResolveOptionsCopyWith<$Res> {
+  factory _$ClientSymbolResolveOptionsCopyWith(_ClientSymbolResolveOptions value, $Res Function(_ClientSymbolResolveOptions) _then) = __$ClientSymbolResolveOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientSymbolResolveOptionsCopyWithImpl<$Res>
+    implements _$ClientSymbolResolveOptionsCopyWith<$Res> {
+  __$ClientSymbolResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientSymbolResolveOptions _self;
+  final $Res Function(_ClientSymbolResolveOptions) _then;
+
+/// Create a copy of ClientSymbolResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
+  return _then(_ClientSymbolResolveOptions(
+properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientCompletionItemOptions {
+
+/// Client supports snippets as insert text.
+///
+/// A snippet can define tab stops and placeholders with `$1`, `$2` and
+/// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of
+/// the snippet. Placeholders with equal identifiers are linked, that is
+/// typing in one will update others too.
+ bool? get snippetSupport;/// Client supports commit characters on a completion item.
+ bool? get commitCharactersSupport;/// Client supports the following content formats for the documentation
+/// property. The order describes the preferred format of the client.
+ List<MarkupKind>? get documentationFormat;/// Client supports the deprecated property on a completion item.
+ bool? get deprecatedSupport;/// Client supports the preselect property on a completion item.
+ bool? get preselectSupport;/// Client supports the tag property on a completion item. Clients
+/// supporting tags have to handle unknown tags gracefully. Clients
+/// especially need to preserve unknown tags when sending a completion item
+/// back to the server in a resolve call.
+ CompletionItemTagOptions? get tagSupport;/// Client support insert replace edit to control different behavior if a
+/// completion item is inserted in the text or should replace text.
+ bool? get insertReplaceSupport;/// Indicates which properties a client can resolve lazily on a completion
+/// item. Before version 3.16.0 only the predefined properties
+/// `documentation` and `details` could be resolved lazily.
+ ClientCompletionItemResolveOptions? get resolveSupport;/// The client supports the `insertTextMode` property on a completion item
+/// to override the whitespace handling mode as defined by the client (see
+/// `insertTextMode`).
+ ClientCompletionItemInsertTextModeOptions? get insertTextModeSupport;/// The client has support for completion item label details (see also
+/// `CompletionItemLabelDetails`).
+ bool? get labelDetailsSupport;
+/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientCompletionItemOptionsCopyWith<ClientCompletionItemOptions> get copyWith => _$ClientCompletionItemOptionsCopyWithImpl<ClientCompletionItemOptions>(this as ClientCompletionItemOptions, _$identity);
+
+  /// Serializes this ClientCompletionItemOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientCompletionItemOptions&&(identical(other.snippetSupport, snippetSupport) || other.snippetSupport == snippetSupport)&&(identical(other.commitCharactersSupport, commitCharactersSupport) || other.commitCharactersSupport == commitCharactersSupport)&&const DeepCollectionEquality().equals(other.documentationFormat, documentationFormat)&&(identical(other.deprecatedSupport, deprecatedSupport) || other.deprecatedSupport == deprecatedSupport)&&(identical(other.preselectSupport, preselectSupport) || other.preselectSupport == preselectSupport)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.insertReplaceSupport, insertReplaceSupport) || other.insertReplaceSupport == insertReplaceSupport)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport)&&(identical(other.insertTextModeSupport, insertTextModeSupport) || other.insertTextModeSupport == insertTextModeSupport)&&(identical(other.labelDetailsSupport, labelDetailsSupport) || other.labelDetailsSupport == labelDetailsSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,snippetSupport,commitCharactersSupport,const DeepCollectionEquality().hash(documentationFormat),deprecatedSupport,preselectSupport,tagSupport,insertReplaceSupport,resolveSupport,insertTextModeSupport,labelDetailsSupport);
+
+@override
+String toString() {
+  return 'ClientCompletionItemOptions(snippetSupport: $snippetSupport, commitCharactersSupport: $commitCharactersSupport, documentationFormat: $documentationFormat, deprecatedSupport: $deprecatedSupport, preselectSupport: $preselectSupport, tagSupport: $tagSupport, insertReplaceSupport: $insertReplaceSupport, resolveSupport: $resolveSupport, insertTextModeSupport: $insertTextModeSupport, labelDetailsSupport: $labelDetailsSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientCompletionItemOptionsCopyWith<$Res>  {
+  factory $ClientCompletionItemOptionsCopyWith(ClientCompletionItemOptions value, $Res Function(ClientCompletionItemOptions) _then) = _$ClientCompletionItemOptionsCopyWithImpl;
+@useResult
+$Res call({
+ bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, CompletionItemTagOptions? tagSupport, bool? insertReplaceSupport, ClientCompletionItemResolveOptions? resolveSupport, ClientCompletionItemInsertTextModeOptions? insertTextModeSupport, bool? labelDetailsSupport
+});
+
+
+$CompletionItemTagOptionsCopyWith<$Res>? get tagSupport;$ClientCompletionItemResolveOptionsCopyWith<$Res>? get resolveSupport;$ClientCompletionItemInsertTextModeOptionsCopyWith<$Res>? get insertTextModeSupport;
+
+}
+/// @nodoc
+class _$ClientCompletionItemOptionsCopyWithImpl<$Res>
+    implements $ClientCompletionItemOptionsCopyWith<$Res> {
+  _$ClientCompletionItemOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientCompletionItemOptions _self;
+  final $Res Function(ClientCompletionItemOptions) _then;
+
+/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? snippetSupport = freezed,Object? commitCharactersSupport = freezed,Object? documentationFormat = freezed,Object? deprecatedSupport = freezed,Object? preselectSupport = freezed,Object? tagSupport = freezed,Object? insertReplaceSupport = freezed,Object? resolveSupport = freezed,Object? insertTextModeSupport = freezed,Object? labelDetailsSupport = freezed,}) {
+  return _then(_self.copyWith(
+snippetSupport: freezed == snippetSupport ? _self.snippetSupport : snippetSupport // ignore: cast_nullable_to_non_nullable
+as bool?,commitCharactersSupport: freezed == commitCharactersSupport ? _self.commitCharactersSupport : commitCharactersSupport // ignore: cast_nullable_to_non_nullable
+as bool?,documentationFormat: freezed == documentationFormat ? _self.documentationFormat : documentationFormat // ignore: cast_nullable_to_non_nullable
+as List<MarkupKind>?,deprecatedSupport: freezed == deprecatedSupport ? _self.deprecatedSupport : deprecatedSupport // ignore: cast_nullable_to_non_nullable
+as bool?,preselectSupport: freezed == preselectSupport ? _self.preselectSupport : preselectSupport // ignore: cast_nullable_to_non_nullable
+as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as CompletionItemTagOptions?,insertReplaceSupport: freezed == insertReplaceSupport ? _self.insertReplaceSupport : insertReplaceSupport // ignore: cast_nullable_to_non_nullable
+as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
+as ClientCompletionItemResolveOptions?,insertTextModeSupport: freezed == insertTextModeSupport ? _self.insertTextModeSupport : insertTextModeSupport // ignore: cast_nullable_to_non_nullable
+as ClientCompletionItemInsertTextModeOptions?,labelDetailsSupport: freezed == labelDetailsSupport ? _self.labelDetailsSupport : labelDetailsSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CompletionItemTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $CompletionItemTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCompletionItemResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
+
+  return $ClientCompletionItemResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCompletionItemInsertTextModeOptionsCopyWith<$Res>? get insertTextModeSupport {
+    if (_self.insertTextModeSupport == null) {
+    return null;
+  }
+
+  return $ClientCompletionItemInsertTextModeOptionsCopyWith<$Res>(_self.insertTextModeSupport!, (value) {
+    return _then(_self.copyWith(insertTextModeSupport: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientCompletionItemOptions implements ClientCompletionItemOptions {
+  const _ClientCompletionItemOptions({this.snippetSupport, this.commitCharactersSupport, final  List<MarkupKind>? documentationFormat, this.deprecatedSupport, this.preselectSupport, this.tagSupport, this.insertReplaceSupport, this.resolveSupport, this.insertTextModeSupport, this.labelDetailsSupport}): _documentationFormat = documentationFormat;
+  factory _ClientCompletionItemOptions.fromJson(Map<String, dynamic> json) => _$ClientCompletionItemOptionsFromJson(json);
+
+/// Client supports snippets as insert text.
+///
+/// A snippet can define tab stops and placeholders with `$1`, `$2` and
+/// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of
+/// the snippet. Placeholders with equal identifiers are linked, that is
+/// typing in one will update others too.
+@override final  bool? snippetSupport;
+/// Client supports commit characters on a completion item.
+@override final  bool? commitCharactersSupport;
+/// Client supports the following content formats for the documentation
+/// property. The order describes the preferred format of the client.
+ final  List<MarkupKind>? _documentationFormat;
+/// Client supports the following content formats for the documentation
+/// property. The order describes the preferred format of the client.
+@override List<MarkupKind>? get documentationFormat {
+  final value = _documentationFormat;
+  if (value == null) return null;
+  if (_documentationFormat is EqualUnmodifiableListView) return _documentationFormat;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// Client supports the deprecated property on a completion item.
+@override final  bool? deprecatedSupport;
+/// Client supports the preselect property on a completion item.
+@override final  bool? preselectSupport;
+/// Client supports the tag property on a completion item. Clients
+/// supporting tags have to handle unknown tags gracefully. Clients
+/// especially need to preserve unknown tags when sending a completion item
+/// back to the server in a resolve call.
+@override final  CompletionItemTagOptions? tagSupport;
+/// Client support insert replace edit to control different behavior if a
+/// completion item is inserted in the text or should replace text.
+@override final  bool? insertReplaceSupport;
+/// Indicates which properties a client can resolve lazily on a completion
+/// item. Before version 3.16.0 only the predefined properties
+/// `documentation` and `details` could be resolved lazily.
+@override final  ClientCompletionItemResolveOptions? resolveSupport;
+/// The client supports the `insertTextMode` property on a completion item
+/// to override the whitespace handling mode as defined by the client (see
+/// `insertTextMode`).
+@override final  ClientCompletionItemInsertTextModeOptions? insertTextModeSupport;
+/// The client has support for completion item label details (see also
+/// `CompletionItemLabelDetails`).
+@override final  bool? labelDetailsSupport;
+
+/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientCompletionItemOptionsCopyWith<_ClientCompletionItemOptions> get copyWith => __$ClientCompletionItemOptionsCopyWithImpl<_ClientCompletionItemOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientCompletionItemOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientCompletionItemOptions&&(identical(other.snippetSupport, snippetSupport) || other.snippetSupport == snippetSupport)&&(identical(other.commitCharactersSupport, commitCharactersSupport) || other.commitCharactersSupport == commitCharactersSupport)&&const DeepCollectionEquality().equals(other._documentationFormat, _documentationFormat)&&(identical(other.deprecatedSupport, deprecatedSupport) || other.deprecatedSupport == deprecatedSupport)&&(identical(other.preselectSupport, preselectSupport) || other.preselectSupport == preselectSupport)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.insertReplaceSupport, insertReplaceSupport) || other.insertReplaceSupport == insertReplaceSupport)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport)&&(identical(other.insertTextModeSupport, insertTextModeSupport) || other.insertTextModeSupport == insertTextModeSupport)&&(identical(other.labelDetailsSupport, labelDetailsSupport) || other.labelDetailsSupport == labelDetailsSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,snippetSupport,commitCharactersSupport,const DeepCollectionEquality().hash(_documentationFormat),deprecatedSupport,preselectSupport,tagSupport,insertReplaceSupport,resolveSupport,insertTextModeSupport,labelDetailsSupport);
+
+@override
+String toString() {
+  return 'ClientCompletionItemOptions(snippetSupport: $snippetSupport, commitCharactersSupport: $commitCharactersSupport, documentationFormat: $documentationFormat, deprecatedSupport: $deprecatedSupport, preselectSupport: $preselectSupport, tagSupport: $tagSupport, insertReplaceSupport: $insertReplaceSupport, resolveSupport: $resolveSupport, insertTextModeSupport: $insertTextModeSupport, labelDetailsSupport: $labelDetailsSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientCompletionItemOptionsCopyWith<$Res> implements $ClientCompletionItemOptionsCopyWith<$Res> {
+  factory _$ClientCompletionItemOptionsCopyWith(_ClientCompletionItemOptions value, $Res Function(_ClientCompletionItemOptions) _then) = __$ClientCompletionItemOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, CompletionItemTagOptions? tagSupport, bool? insertReplaceSupport, ClientCompletionItemResolveOptions? resolveSupport, ClientCompletionItemInsertTextModeOptions? insertTextModeSupport, bool? labelDetailsSupport
+});
+
+
+@override $CompletionItemTagOptionsCopyWith<$Res>? get tagSupport;@override $ClientCompletionItemResolveOptionsCopyWith<$Res>? get resolveSupport;@override $ClientCompletionItemInsertTextModeOptionsCopyWith<$Res>? get insertTextModeSupport;
+
+}
+/// @nodoc
+class __$ClientCompletionItemOptionsCopyWithImpl<$Res>
+    implements _$ClientCompletionItemOptionsCopyWith<$Res> {
+  __$ClientCompletionItemOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientCompletionItemOptions _self;
+  final $Res Function(_ClientCompletionItemOptions) _then;
+
+/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? snippetSupport = freezed,Object? commitCharactersSupport = freezed,Object? documentationFormat = freezed,Object? deprecatedSupport = freezed,Object? preselectSupport = freezed,Object? tagSupport = freezed,Object? insertReplaceSupport = freezed,Object? resolveSupport = freezed,Object? insertTextModeSupport = freezed,Object? labelDetailsSupport = freezed,}) {
+  return _then(_ClientCompletionItemOptions(
+snippetSupport: freezed == snippetSupport ? _self.snippetSupport : snippetSupport // ignore: cast_nullable_to_non_nullable
+as bool?,commitCharactersSupport: freezed == commitCharactersSupport ? _self.commitCharactersSupport : commitCharactersSupport // ignore: cast_nullable_to_non_nullable
+as bool?,documentationFormat: freezed == documentationFormat ? _self._documentationFormat : documentationFormat // ignore: cast_nullable_to_non_nullable
+as List<MarkupKind>?,deprecatedSupport: freezed == deprecatedSupport ? _self.deprecatedSupport : deprecatedSupport // ignore: cast_nullable_to_non_nullable
+as bool?,preselectSupport: freezed == preselectSupport ? _self.preselectSupport : preselectSupport // ignore: cast_nullable_to_non_nullable
+as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as CompletionItemTagOptions?,insertReplaceSupport: freezed == insertReplaceSupport ? _self.insertReplaceSupport : insertReplaceSupport // ignore: cast_nullable_to_non_nullable
+as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
+as ClientCompletionItemResolveOptions?,insertTextModeSupport: freezed == insertTextModeSupport ? _self.insertTextModeSupport : insertTextModeSupport // ignore: cast_nullable_to_non_nullable
+as ClientCompletionItemInsertTextModeOptions?,labelDetailsSupport: freezed == labelDetailsSupport ? _self.labelDetailsSupport : labelDetailsSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CompletionItemTagOptionsCopyWith<$Res>? get tagSupport {
+    if (_self.tagSupport == null) {
+    return null;
+  }
+
+  return $CompletionItemTagOptionsCopyWith<$Res>(_self.tagSupport!, (value) {
+    return _then(_self.copyWith(tagSupport: value));
+  });
+}/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCompletionItemResolveOptionsCopyWith<$Res>? get resolveSupport {
+    if (_self.resolveSupport == null) {
+    return null;
+  }
+
+  return $ClientCompletionItemResolveOptionsCopyWith<$Res>(_self.resolveSupport!, (value) {
+    return _then(_self.copyWith(resolveSupport: value));
+  });
+}/// Create a copy of ClientCompletionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCompletionItemInsertTextModeOptionsCopyWith<$Res>? get insertTextModeSupport {
+    if (_self.insertTextModeSupport == null) {
+    return null;
+  }
+
+  return $ClientCompletionItemInsertTextModeOptionsCopyWith<$Res>(_self.insertTextModeSupport!, (value) {
+    return _then(_self.copyWith(insertTextModeSupport: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$ClientSignatureInformationOptions {
+
+/// Client supports the following content formats for the documentation
+/// property. The order describes the preferred format of the client.
+ List<MarkupKind>? get documentationFormat;/// Client capabilities specific to parameter information.
+ ClientSignatureParameterInformationOptions? get parameterInformation;/// The client supports the `activeParameter` property on
+/// `SignatureInformation` literal.
+ bool? get activeParameterSupport;/// The client supports the `activeParameter` property on
+/// `SignatureHelp`/`SignatureInformation` being set to `null` to indicate
+/// that no parameter should be active.
+ bool? get noActiveParameterSupport;
+/// Create a copy of ClientSignatureInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientSignatureInformationOptionsCopyWith<ClientSignatureInformationOptions> get copyWith => _$ClientSignatureInformationOptionsCopyWithImpl<ClientSignatureInformationOptions>(this as ClientSignatureInformationOptions, _$identity);
+
+  /// Serializes this ClientSignatureInformationOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientSignatureInformationOptions&&const DeepCollectionEquality().equals(other.documentationFormat, documentationFormat)&&(identical(other.parameterInformation, parameterInformation) || other.parameterInformation == parameterInformation)&&(identical(other.activeParameterSupport, activeParameterSupport) || other.activeParameterSupport == activeParameterSupport)&&(identical(other.noActiveParameterSupport, noActiveParameterSupport) || other.noActiveParameterSupport == noActiveParameterSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentationFormat),parameterInformation,activeParameterSupport,noActiveParameterSupport);
+
+@override
+String toString() {
+  return 'ClientSignatureInformationOptions(documentationFormat: $documentationFormat, parameterInformation: $parameterInformation, activeParameterSupport: $activeParameterSupport, noActiveParameterSupport: $noActiveParameterSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientSignatureInformationOptionsCopyWith<$Res>  {
+  factory $ClientSignatureInformationOptionsCopyWith(ClientSignatureInformationOptions value, $Res Function(ClientSignatureInformationOptions) _then) = _$ClientSignatureInformationOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<MarkupKind>? documentationFormat, ClientSignatureParameterInformationOptions? parameterInformation, bool? activeParameterSupport, bool? noActiveParameterSupport
+});
+
+
+$ClientSignatureParameterInformationOptionsCopyWith<$Res>? get parameterInformation;
+
+}
+/// @nodoc
+class _$ClientSignatureInformationOptionsCopyWithImpl<$Res>
+    implements $ClientSignatureInformationOptionsCopyWith<$Res> {
+  _$ClientSignatureInformationOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientSignatureInformationOptions _self;
+  final $Res Function(ClientSignatureInformationOptions) _then;
+
+/// Create a copy of ClientSignatureInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? documentationFormat = freezed,Object? parameterInformation = freezed,Object? activeParameterSupport = freezed,Object? noActiveParameterSupport = freezed,}) {
+  return _then(_self.copyWith(
+documentationFormat: freezed == documentationFormat ? _self.documentationFormat : documentationFormat // ignore: cast_nullable_to_non_nullable
+as List<MarkupKind>?,parameterInformation: freezed == parameterInformation ? _self.parameterInformation : parameterInformation // ignore: cast_nullable_to_non_nullable
+as ClientSignatureParameterInformationOptions?,activeParameterSupport: freezed == activeParameterSupport ? _self.activeParameterSupport : activeParameterSupport // ignore: cast_nullable_to_non_nullable
+as bool?,noActiveParameterSupport: freezed == noActiveParameterSupport ? _self.noActiveParameterSupport : noActiveParameterSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+/// Create a copy of ClientSignatureInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSignatureParameterInformationOptionsCopyWith<$Res>? get parameterInformation {
+    if (_self.parameterInformation == null) {
+    return null;
+  }
+
+  return $ClientSignatureParameterInformationOptionsCopyWith<$Res>(_self.parameterInformation!, (value) {
+    return _then(_self.copyWith(parameterInformation: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientSignatureInformationOptions implements ClientSignatureInformationOptions {
+  const _ClientSignatureInformationOptions({final  List<MarkupKind>? documentationFormat, this.parameterInformation, this.activeParameterSupport, this.noActiveParameterSupport}): _documentationFormat = documentationFormat;
+  factory _ClientSignatureInformationOptions.fromJson(Map<String, dynamic> json) => _$ClientSignatureInformationOptionsFromJson(json);
+
+/// Client supports the following content formats for the documentation
+/// property. The order describes the preferred format of the client.
+ final  List<MarkupKind>? _documentationFormat;
+/// Client supports the following content formats for the documentation
+/// property. The order describes the preferred format of the client.
+@override List<MarkupKind>? get documentationFormat {
+  final value = _documentationFormat;
+  if (value == null) return null;
+  if (_documentationFormat is EqualUnmodifiableListView) return _documentationFormat;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// Client capabilities specific to parameter information.
+@override final  ClientSignatureParameterInformationOptions? parameterInformation;
+/// The client supports the `activeParameter` property on
+/// `SignatureInformation` literal.
+@override final  bool? activeParameterSupport;
+/// The client supports the `activeParameter` property on
+/// `SignatureHelp`/`SignatureInformation` being set to `null` to indicate
+/// that no parameter should be active.
+@override final  bool? noActiveParameterSupport;
+
+/// Create a copy of ClientSignatureInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientSignatureInformationOptionsCopyWith<_ClientSignatureInformationOptions> get copyWith => __$ClientSignatureInformationOptionsCopyWithImpl<_ClientSignatureInformationOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientSignatureInformationOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientSignatureInformationOptions&&const DeepCollectionEquality().equals(other._documentationFormat, _documentationFormat)&&(identical(other.parameterInformation, parameterInformation) || other.parameterInformation == parameterInformation)&&(identical(other.activeParameterSupport, activeParameterSupport) || other.activeParameterSupport == activeParameterSupport)&&(identical(other.noActiveParameterSupport, noActiveParameterSupport) || other.noActiveParameterSupport == noActiveParameterSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentationFormat),parameterInformation,activeParameterSupport,noActiveParameterSupport);
+
+@override
+String toString() {
+  return 'ClientSignatureInformationOptions(documentationFormat: $documentationFormat, parameterInformation: $parameterInformation, activeParameterSupport: $activeParameterSupport, noActiveParameterSupport: $noActiveParameterSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientSignatureInformationOptionsCopyWith<$Res> implements $ClientSignatureInformationOptionsCopyWith<$Res> {
+  factory _$ClientSignatureInformationOptionsCopyWith(_ClientSignatureInformationOptions value, $Res Function(_ClientSignatureInformationOptions) _then) = __$ClientSignatureInformationOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<MarkupKind>? documentationFormat, ClientSignatureParameterInformationOptions? parameterInformation, bool? activeParameterSupport, bool? noActiveParameterSupport
+});
+
+
+@override $ClientSignatureParameterInformationOptionsCopyWith<$Res>? get parameterInformation;
+
+}
+/// @nodoc
+class __$ClientSignatureInformationOptionsCopyWithImpl<$Res>
+    implements _$ClientSignatureInformationOptionsCopyWith<$Res> {
+  __$ClientSignatureInformationOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientSignatureInformationOptions _self;
+  final $Res Function(_ClientSignatureInformationOptions) _then;
+
+/// Create a copy of ClientSignatureInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? documentationFormat = freezed,Object? parameterInformation = freezed,Object? activeParameterSupport = freezed,Object? noActiveParameterSupport = freezed,}) {
+  return _then(_ClientSignatureInformationOptions(
+documentationFormat: freezed == documentationFormat ? _self._documentationFormat : documentationFormat // ignore: cast_nullable_to_non_nullable
+as List<MarkupKind>?,parameterInformation: freezed == parameterInformation ? _self.parameterInformation : parameterInformation // ignore: cast_nullable_to_non_nullable
+as ClientSignatureParameterInformationOptions?,activeParameterSupport: freezed == activeParameterSupport ? _self.activeParameterSupport : activeParameterSupport // ignore: cast_nullable_to_non_nullable
+as bool?,noActiveParameterSupport: freezed == noActiveParameterSupport ? _self.noActiveParameterSupport : noActiveParameterSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+/// Create a copy of ClientSignatureInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientSignatureParameterInformationOptionsCopyWith<$Res>? get parameterInformation {
+    if (_self.parameterInformation == null) {
+    return null;
+  }
+
+  return $ClientSignatureParameterInformationOptionsCopyWith<$Res>(_self.parameterInformation!, (value) {
+    return _then(_self.copyWith(parameterInformation: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$ClientCodeActionLiteralOptions {
+
+/// The code action kind is support with the following value set.
+ ClientCodeActionKindOptions get codeActionKind;
+/// Create a copy of ClientCodeActionLiteralOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientCodeActionLiteralOptionsCopyWith<ClientCodeActionLiteralOptions> get copyWith => _$ClientCodeActionLiteralOptionsCopyWithImpl<ClientCodeActionLiteralOptions>(this as ClientCodeActionLiteralOptions, _$identity);
+
+  /// Serializes this ClientCodeActionLiteralOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientCodeActionLiteralOptions&&(identical(other.codeActionKind, codeActionKind) || other.codeActionKind == codeActionKind));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,codeActionKind);
+
+@override
+String toString() {
+  return 'ClientCodeActionLiteralOptions(codeActionKind: $codeActionKind)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientCodeActionLiteralOptionsCopyWith<$Res>  {
+  factory $ClientCodeActionLiteralOptionsCopyWith(ClientCodeActionLiteralOptions value, $Res Function(ClientCodeActionLiteralOptions) _then) = _$ClientCodeActionLiteralOptionsCopyWithImpl;
+@useResult
+$Res call({
+ ClientCodeActionKindOptions codeActionKind
+});
+
+
+$ClientCodeActionKindOptionsCopyWith<$Res> get codeActionKind;
+
+}
+/// @nodoc
+class _$ClientCodeActionLiteralOptionsCopyWithImpl<$Res>
+    implements $ClientCodeActionLiteralOptionsCopyWith<$Res> {
+  _$ClientCodeActionLiteralOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientCodeActionLiteralOptions _self;
+  final $Res Function(ClientCodeActionLiteralOptions) _then;
+
+/// Create a copy of ClientCodeActionLiteralOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? codeActionKind = null,}) {
+  return _then(_self.copyWith(
+codeActionKind: null == codeActionKind ? _self.codeActionKind : codeActionKind // ignore: cast_nullable_to_non_nullable
+as ClientCodeActionKindOptions,
+  ));
+}
+/// Create a copy of ClientCodeActionLiteralOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCodeActionKindOptionsCopyWith<$Res> get codeActionKind {
+  
+  return $ClientCodeActionKindOptionsCopyWith<$Res>(_self.codeActionKind, (value) {
+    return _then(_self.copyWith(codeActionKind: value));
+  });
+}
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientCodeActionLiteralOptions implements ClientCodeActionLiteralOptions {
+  const _ClientCodeActionLiteralOptions({required this.codeActionKind});
+  factory _ClientCodeActionLiteralOptions.fromJson(Map<String, dynamic> json) => _$ClientCodeActionLiteralOptionsFromJson(json);
+
+/// The code action kind is support with the following value set.
+@override final  ClientCodeActionKindOptions codeActionKind;
+
+/// Create a copy of ClientCodeActionLiteralOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientCodeActionLiteralOptionsCopyWith<_ClientCodeActionLiteralOptions> get copyWith => __$ClientCodeActionLiteralOptionsCopyWithImpl<_ClientCodeActionLiteralOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientCodeActionLiteralOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientCodeActionLiteralOptions&&(identical(other.codeActionKind, codeActionKind) || other.codeActionKind == codeActionKind));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,codeActionKind);
+
+@override
+String toString() {
+  return 'ClientCodeActionLiteralOptions(codeActionKind: $codeActionKind)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientCodeActionLiteralOptionsCopyWith<$Res> implements $ClientCodeActionLiteralOptionsCopyWith<$Res> {
+  factory _$ClientCodeActionLiteralOptionsCopyWith(_ClientCodeActionLiteralOptions value, $Res Function(_ClientCodeActionLiteralOptions) _then) = __$ClientCodeActionLiteralOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ ClientCodeActionKindOptions codeActionKind
+});
+
+
+@override $ClientCodeActionKindOptionsCopyWith<$Res> get codeActionKind;
+
+}
+/// @nodoc
+class __$ClientCodeActionLiteralOptionsCopyWithImpl<$Res>
+    implements _$ClientCodeActionLiteralOptionsCopyWith<$Res> {
+  __$ClientCodeActionLiteralOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientCodeActionLiteralOptions _self;
+  final $Res Function(_ClientCodeActionLiteralOptions) _then;
+
+/// Create a copy of ClientCodeActionLiteralOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? codeActionKind = null,}) {
+  return _then(_ClientCodeActionLiteralOptions(
+codeActionKind: null == codeActionKind ? _self.codeActionKind : codeActionKind // ignore: cast_nullable_to_non_nullable
+as ClientCodeActionKindOptions,
+  ));
+}
+
+/// Create a copy of ClientCodeActionLiteralOptions
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ClientCodeActionKindOptionsCopyWith<$Res> get codeActionKind {
+  
+  return $ClientCodeActionKindOptionsCopyWith<$Res>(_self.codeActionKind, (value) {
+    return _then(_self.copyWith(codeActionKind: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$ClientCodeActionResolveOptions {
+
+/// The properties that a client can resolve lazily.
+ List<String> get properties;
+/// Create a copy of ClientCodeActionResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientCodeActionResolveOptionsCopyWith<ClientCodeActionResolveOptions> get copyWith => _$ClientCodeActionResolveOptionsCopyWithImpl<ClientCodeActionResolveOptions>(this as ClientCodeActionResolveOptions, _$identity);
+
+  /// Serializes this ClientCodeActionResolveOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientCodeActionResolveOptions&&const DeepCollectionEquality().equals(other.properties, properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
+
+@override
+String toString() {
+  return 'ClientCodeActionResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientCodeActionResolveOptionsCopyWith<$Res>  {
+  factory $ClientCodeActionResolveOptionsCopyWith(ClientCodeActionResolveOptions value, $Res Function(ClientCodeActionResolveOptions) _then) = _$ClientCodeActionResolveOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientCodeActionResolveOptionsCopyWithImpl<$Res>
+    implements $ClientCodeActionResolveOptionsCopyWith<$Res> {
+  _$ClientCodeActionResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientCodeActionResolveOptions _self;
+  final $Res Function(ClientCodeActionResolveOptions) _then;
+
+/// Create a copy of ClientCodeActionResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
+  return _then(_self.copyWith(
+properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientCodeActionResolveOptions implements ClientCodeActionResolveOptions {
+  const _ClientCodeActionResolveOptions({required final  List<String> properties}): _properties = properties;
+  factory _ClientCodeActionResolveOptions.fromJson(Map<String, dynamic> json) => _$ClientCodeActionResolveOptionsFromJson(json);
+
+/// The properties that a client can resolve lazily.
+ final  List<String> _properties;
+/// The properties that a client can resolve lazily.
+@override List<String> get properties {
+  if (_properties is EqualUnmodifiableListView) return _properties;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_properties);
+}
+
+
+/// Create a copy of ClientCodeActionResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientCodeActionResolveOptionsCopyWith<_ClientCodeActionResolveOptions> get copyWith => __$ClientCodeActionResolveOptionsCopyWithImpl<_ClientCodeActionResolveOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientCodeActionResolveOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientCodeActionResolveOptions&&const DeepCollectionEquality().equals(other._properties, _properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
+
+@override
+String toString() {
+  return 'ClientCodeActionResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientCodeActionResolveOptionsCopyWith<$Res> implements $ClientCodeActionResolveOptionsCopyWith<$Res> {
+  factory _$ClientCodeActionResolveOptionsCopyWith(_ClientCodeActionResolveOptions value, $Res Function(_ClientCodeActionResolveOptions) _then) = __$ClientCodeActionResolveOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientCodeActionResolveOptionsCopyWithImpl<$Res>
+    implements _$ClientCodeActionResolveOptionsCopyWith<$Res> {
+  __$ClientCodeActionResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientCodeActionResolveOptions _self;
+  final $Res Function(_ClientCodeActionResolveOptions) _then;
+
+/// Create a copy of ClientCodeActionResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
+  return _then(_ClientCodeActionResolveOptions(
+properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$CodeActionTagOptions {
+
+/// The tags supported by the client.
+ List<CodeActionTag> get valueSet;
+/// Create a copy of CodeActionTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CodeActionTagOptionsCopyWith<CodeActionTagOptions> get copyWith => _$CodeActionTagOptionsCopyWithImpl<CodeActionTagOptions>(this as CodeActionTagOptions, _$identity);
+
+  /// Serializes this CodeActionTagOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionTagOptions&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'CodeActionTagOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CodeActionTagOptionsCopyWith<$Res>  {
+  factory $CodeActionTagOptionsCopyWith(CodeActionTagOptions value, $Res Function(CodeActionTagOptions) _then) = _$CodeActionTagOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<CodeActionTag> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$CodeActionTagOptionsCopyWithImpl<$Res>
+    implements $CodeActionTagOptionsCopyWith<$Res> {
+  _$CodeActionTagOptionsCopyWithImpl(this._self, this._then);
+
+  final CodeActionTagOptions _self;
+  final $Res Function(CodeActionTagOptions) _then;
+
+/// Create a copy of CodeActionTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
+  return _then(_self.copyWith(
+valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<CodeActionTag>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _CodeActionTagOptions implements CodeActionTagOptions {
+  const _CodeActionTagOptions({required final  List<CodeActionTag> valueSet}): _valueSet = valueSet;
+  factory _CodeActionTagOptions.fromJson(Map<String, dynamic> json) => _$CodeActionTagOptionsFromJson(json);
+
+/// The tags supported by the client.
+ final  List<CodeActionTag> _valueSet;
+/// The tags supported by the client.
+@override List<CodeActionTag> get valueSet {
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_valueSet);
+}
+
+
+/// Create a copy of CodeActionTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CodeActionTagOptionsCopyWith<_CodeActionTagOptions> get copyWith => __$CodeActionTagOptionsCopyWithImpl<_CodeActionTagOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CodeActionTagOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionTagOptions&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'CodeActionTagOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CodeActionTagOptionsCopyWith<$Res> implements $CodeActionTagOptionsCopyWith<$Res> {
+  factory _$CodeActionTagOptionsCopyWith(_CodeActionTagOptions value, $Res Function(_CodeActionTagOptions) _then) = __$CodeActionTagOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<CodeActionTag> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$CodeActionTagOptionsCopyWithImpl<$Res>
+    implements _$CodeActionTagOptionsCopyWith<$Res> {
+  __$CodeActionTagOptionsCopyWithImpl(this._self, this._then);
+
+  final _CodeActionTagOptions _self;
+  final $Res Function(_CodeActionTagOptions) _then;
+
+/// Create a copy of CodeActionTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
+  return _then(_CodeActionTagOptions(
+valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<CodeActionTag>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientCodeLensResolveOptions {
+
+/// The properties that a client can resolve lazily.
+ List<String> get properties;
+/// Create a copy of ClientCodeLensResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientCodeLensResolveOptionsCopyWith<ClientCodeLensResolveOptions> get copyWith => _$ClientCodeLensResolveOptionsCopyWithImpl<ClientCodeLensResolveOptions>(this as ClientCodeLensResolveOptions, _$identity);
+
+  /// Serializes this ClientCodeLensResolveOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientCodeLensResolveOptions&&const DeepCollectionEquality().equals(other.properties, properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
+
+@override
+String toString() {
+  return 'ClientCodeLensResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientCodeLensResolveOptionsCopyWith<$Res>  {
+  factory $ClientCodeLensResolveOptionsCopyWith(ClientCodeLensResolveOptions value, $Res Function(ClientCodeLensResolveOptions) _then) = _$ClientCodeLensResolveOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientCodeLensResolveOptionsCopyWithImpl<$Res>
+    implements $ClientCodeLensResolveOptionsCopyWith<$Res> {
+  _$ClientCodeLensResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientCodeLensResolveOptions _self;
+  final $Res Function(ClientCodeLensResolveOptions) _then;
+
+/// Create a copy of ClientCodeLensResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
+  return _then(_self.copyWith(
+properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientCodeLensResolveOptions implements ClientCodeLensResolveOptions {
+  const _ClientCodeLensResolveOptions({required final  List<String> properties}): _properties = properties;
+  factory _ClientCodeLensResolveOptions.fromJson(Map<String, dynamic> json) => _$ClientCodeLensResolveOptionsFromJson(json);
+
+/// The properties that a client can resolve lazily.
+ final  List<String> _properties;
+/// The properties that a client can resolve lazily.
+@override List<String> get properties {
+  if (_properties is EqualUnmodifiableListView) return _properties;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_properties);
+}
+
+
+/// Create a copy of ClientCodeLensResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientCodeLensResolveOptionsCopyWith<_ClientCodeLensResolveOptions> get copyWith => __$ClientCodeLensResolveOptionsCopyWithImpl<_ClientCodeLensResolveOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientCodeLensResolveOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientCodeLensResolveOptions&&const DeepCollectionEquality().equals(other._properties, _properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
+
+@override
+String toString() {
+  return 'ClientCodeLensResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientCodeLensResolveOptionsCopyWith<$Res> implements $ClientCodeLensResolveOptionsCopyWith<$Res> {
+  factory _$ClientCodeLensResolveOptionsCopyWith(_ClientCodeLensResolveOptions value, $Res Function(_ClientCodeLensResolveOptions) _then) = __$ClientCodeLensResolveOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientCodeLensResolveOptionsCopyWithImpl<$Res>
+    implements _$ClientCodeLensResolveOptionsCopyWith<$Res> {
+  __$ClientCodeLensResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientCodeLensResolveOptions _self;
+  final $Res Function(_ClientCodeLensResolveOptions) _then;
+
+/// Create a copy of ClientCodeLensResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
+  return _then(_ClientCodeLensResolveOptions(
+properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientFoldingRangeKindOptions {
+
+/// The folding range kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+ List<FoldingRangeKind>? get valueSet;
+/// Create a copy of ClientFoldingRangeKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientFoldingRangeKindOptionsCopyWith<ClientFoldingRangeKindOptions> get copyWith => _$ClientFoldingRangeKindOptionsCopyWithImpl<ClientFoldingRangeKindOptions>(this as ClientFoldingRangeKindOptions, _$identity);
+
+  /// Serializes this ClientFoldingRangeKindOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientFoldingRangeKindOptions&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'ClientFoldingRangeKindOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientFoldingRangeKindOptionsCopyWith<$Res>  {
+  factory $ClientFoldingRangeKindOptionsCopyWith(ClientFoldingRangeKindOptions value, $Res Function(ClientFoldingRangeKindOptions) _then) = _$ClientFoldingRangeKindOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<FoldingRangeKind>? valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientFoldingRangeKindOptionsCopyWithImpl<$Res>
+    implements $ClientFoldingRangeKindOptionsCopyWith<$Res> {
+  _$ClientFoldingRangeKindOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientFoldingRangeKindOptions _self;
+  final $Res Function(ClientFoldingRangeKindOptions) _then;
+
+/// Create a copy of ClientFoldingRangeKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = freezed,}) {
+  return _then(_self.copyWith(
+valueSet: freezed == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<FoldingRangeKind>?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientFoldingRangeKindOptions implements ClientFoldingRangeKindOptions {
+  const _ClientFoldingRangeKindOptions({final  List<FoldingRangeKind>? valueSet}): _valueSet = valueSet;
+  factory _ClientFoldingRangeKindOptions.fromJson(Map<String, dynamic> json) => _$ClientFoldingRangeKindOptionsFromJson(json);
+
+/// The folding range kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+ final  List<FoldingRangeKind>? _valueSet;
+/// The folding range kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+@override List<FoldingRangeKind>? get valueSet {
+  final value = _valueSet;
+  if (value == null) return null;
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of ClientFoldingRangeKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientFoldingRangeKindOptionsCopyWith<_ClientFoldingRangeKindOptions> get copyWith => __$ClientFoldingRangeKindOptionsCopyWithImpl<_ClientFoldingRangeKindOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientFoldingRangeKindOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientFoldingRangeKindOptions&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'ClientFoldingRangeKindOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientFoldingRangeKindOptionsCopyWith<$Res> implements $ClientFoldingRangeKindOptionsCopyWith<$Res> {
+  factory _$ClientFoldingRangeKindOptionsCopyWith(_ClientFoldingRangeKindOptions value, $Res Function(_ClientFoldingRangeKindOptions) _then) = __$ClientFoldingRangeKindOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<FoldingRangeKind>? valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientFoldingRangeKindOptionsCopyWithImpl<$Res>
+    implements _$ClientFoldingRangeKindOptionsCopyWith<$Res> {
+  __$ClientFoldingRangeKindOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientFoldingRangeKindOptions _self;
+  final $Res Function(_ClientFoldingRangeKindOptions) _then;
+
+/// Create a copy of ClientFoldingRangeKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = freezed,}) {
+  return _then(_ClientFoldingRangeKindOptions(
+valueSet: freezed == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<FoldingRangeKind>?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientFoldingRangeOptions {
+
+/// If set, the client signals that it supports setting collapsedText on
+/// folding ranges to display custom labels instead of the default text.
+ bool? get collapsedText;
+/// Create a copy of ClientFoldingRangeOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientFoldingRangeOptionsCopyWith<ClientFoldingRangeOptions> get copyWith => _$ClientFoldingRangeOptionsCopyWithImpl<ClientFoldingRangeOptions>(this as ClientFoldingRangeOptions, _$identity);
+
+  /// Serializes this ClientFoldingRangeOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientFoldingRangeOptions&&(identical(other.collapsedText, collapsedText) || other.collapsedText == collapsedText));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,collapsedText);
+
+@override
+String toString() {
+  return 'ClientFoldingRangeOptions(collapsedText: $collapsedText)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientFoldingRangeOptionsCopyWith<$Res>  {
+  factory $ClientFoldingRangeOptionsCopyWith(ClientFoldingRangeOptions value, $Res Function(ClientFoldingRangeOptions) _then) = _$ClientFoldingRangeOptionsCopyWithImpl;
+@useResult
+$Res call({
+ bool? collapsedText
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientFoldingRangeOptionsCopyWithImpl<$Res>
+    implements $ClientFoldingRangeOptionsCopyWith<$Res> {
+  _$ClientFoldingRangeOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientFoldingRangeOptions _self;
+  final $Res Function(ClientFoldingRangeOptions) _then;
+
+/// Create a copy of ClientFoldingRangeOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? collapsedText = freezed,}) {
+  return _then(_self.copyWith(
+collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientFoldingRangeOptions implements ClientFoldingRangeOptions {
+  const _ClientFoldingRangeOptions({this.collapsedText});
+  factory _ClientFoldingRangeOptions.fromJson(Map<String, dynamic> json) => _$ClientFoldingRangeOptionsFromJson(json);
+
+/// If set, the client signals that it supports setting collapsedText on
+/// folding ranges to display custom labels instead of the default text.
+@override final  bool? collapsedText;
+
+/// Create a copy of ClientFoldingRangeOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientFoldingRangeOptionsCopyWith<_ClientFoldingRangeOptions> get copyWith => __$ClientFoldingRangeOptionsCopyWithImpl<_ClientFoldingRangeOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientFoldingRangeOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientFoldingRangeOptions&&(identical(other.collapsedText, collapsedText) || other.collapsedText == collapsedText));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,collapsedText);
+
+@override
+String toString() {
+  return 'ClientFoldingRangeOptions(collapsedText: $collapsedText)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientFoldingRangeOptionsCopyWith<$Res> implements $ClientFoldingRangeOptionsCopyWith<$Res> {
+  factory _$ClientFoldingRangeOptionsCopyWith(_ClientFoldingRangeOptions value, $Res Function(_ClientFoldingRangeOptions) _then) = __$ClientFoldingRangeOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? collapsedText
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientFoldingRangeOptionsCopyWithImpl<$Res>
+    implements _$ClientFoldingRangeOptionsCopyWith<$Res> {
+  __$ClientFoldingRangeOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientFoldingRangeOptions _self;
+  final $Res Function(_ClientFoldingRangeOptions) _then;
+
+/// Create a copy of ClientFoldingRangeOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? collapsedText = freezed,}) {
+  return _then(_ClientFoldingRangeOptions(
+collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientSemanticTokensRequestOptions {
+
+/// The client will send the `textDocument/semanticTokens/range` request if
+/// the server provides a corresponding handler.
+///
+/// Type: `bool` | `Object`
+ ClientSemanticTokensRequestOptionsRange? get range;/// The client will send the `textDocument/semanticTokens/full` request if
+/// the server provides a corresponding handler.
+///
+/// Type: `bool` | `ClientSemanticTokensRequestFullDelta`
+ ClientSemanticTokensRequestOptionsFull? get full;
+/// Create a copy of ClientSemanticTokensRequestOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientSemanticTokensRequestOptionsCopyWith<ClientSemanticTokensRequestOptions> get copyWith => _$ClientSemanticTokensRequestOptionsCopyWithImpl<ClientSemanticTokensRequestOptions>(this as ClientSemanticTokensRequestOptions, _$identity);
+
+  /// Serializes this ClientSemanticTokensRequestOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientSemanticTokensRequestOptions&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,range,full);
+
+@override
+String toString() {
+  return 'ClientSemanticTokensRequestOptions(range: $range, full: $full)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientSemanticTokensRequestOptionsCopyWith<$Res>  {
+  factory $ClientSemanticTokensRequestOptionsCopyWith(ClientSemanticTokensRequestOptions value, $Res Function(ClientSemanticTokensRequestOptions) _then) = _$ClientSemanticTokensRequestOptionsCopyWithImpl;
+@useResult
+$Res call({
+ ClientSemanticTokensRequestOptionsRange? range, ClientSemanticTokensRequestOptionsFull? full
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientSemanticTokensRequestOptionsCopyWithImpl<$Res>
+    implements $ClientSemanticTokensRequestOptionsCopyWith<$Res> {
+  _$ClientSemanticTokensRequestOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientSemanticTokensRequestOptions _self;
+  final $Res Function(ClientSemanticTokensRequestOptions) _then;
+
+/// Create a copy of ClientSemanticTokensRequestOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? range = freezed,Object? full = freezed,}) {
+  return _then(_self.copyWith(
+range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as ClientSemanticTokensRequestOptionsRange?,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
+as ClientSemanticTokensRequestOptionsFull?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientSemanticTokensRequestOptions implements ClientSemanticTokensRequestOptions {
+  const _ClientSemanticTokensRequestOptions({this.range, this.full});
+  factory _ClientSemanticTokensRequestOptions.fromJson(Map<String, dynamic> json) => _$ClientSemanticTokensRequestOptionsFromJson(json);
+
+/// The client will send the `textDocument/semanticTokens/range` request if
+/// the server provides a corresponding handler.
+///
+/// Type: `bool` | `Object`
+@override final  ClientSemanticTokensRequestOptionsRange? range;
+/// The client will send the `textDocument/semanticTokens/full` request if
+/// the server provides a corresponding handler.
+///
+/// Type: `bool` | `ClientSemanticTokensRequestFullDelta`
+@override final  ClientSemanticTokensRequestOptionsFull? full;
+
+/// Create a copy of ClientSemanticTokensRequestOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientSemanticTokensRequestOptionsCopyWith<_ClientSemanticTokensRequestOptions> get copyWith => __$ClientSemanticTokensRequestOptionsCopyWithImpl<_ClientSemanticTokensRequestOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientSemanticTokensRequestOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientSemanticTokensRequestOptions&&(identical(other.range, range) || other.range == range)&&(identical(other.full, full) || other.full == full));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,range,full);
+
+@override
+String toString() {
+  return 'ClientSemanticTokensRequestOptions(range: $range, full: $full)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientSemanticTokensRequestOptionsCopyWith<$Res> implements $ClientSemanticTokensRequestOptionsCopyWith<$Res> {
+  factory _$ClientSemanticTokensRequestOptionsCopyWith(_ClientSemanticTokensRequestOptions value, $Res Function(_ClientSemanticTokensRequestOptions) _then) = __$ClientSemanticTokensRequestOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ ClientSemanticTokensRequestOptionsRange? range, ClientSemanticTokensRequestOptionsFull? full
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientSemanticTokensRequestOptionsCopyWithImpl<$Res>
+    implements _$ClientSemanticTokensRequestOptionsCopyWith<$Res> {
+  __$ClientSemanticTokensRequestOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientSemanticTokensRequestOptions _self;
+  final $Res Function(_ClientSemanticTokensRequestOptions) _then;
+
+/// Create a copy of ClientSemanticTokensRequestOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? range = freezed,Object? full = freezed,}) {
+  return _then(_ClientSemanticTokensRequestOptions(
+range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as ClientSemanticTokensRequestOptionsRange?,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
+as ClientSemanticTokensRequestOptionsFull?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientInlayHintResolveOptions {
+
+/// The properties that a client can resolve lazily.
+ List<String> get properties;
+/// Create a copy of ClientInlayHintResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientInlayHintResolveOptionsCopyWith<ClientInlayHintResolveOptions> get copyWith => _$ClientInlayHintResolveOptionsCopyWithImpl<ClientInlayHintResolveOptions>(this as ClientInlayHintResolveOptions, _$identity);
+
+  /// Serializes this ClientInlayHintResolveOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientInlayHintResolveOptions&&const DeepCollectionEquality().equals(other.properties, properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
+
+@override
+String toString() {
+  return 'ClientInlayHintResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientInlayHintResolveOptionsCopyWith<$Res>  {
+  factory $ClientInlayHintResolveOptionsCopyWith(ClientInlayHintResolveOptions value, $Res Function(ClientInlayHintResolveOptions) _then) = _$ClientInlayHintResolveOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientInlayHintResolveOptionsCopyWithImpl<$Res>
+    implements $ClientInlayHintResolveOptionsCopyWith<$Res> {
+  _$ClientInlayHintResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientInlayHintResolveOptions _self;
+  final $Res Function(ClientInlayHintResolveOptions) _then;
+
+/// Create a copy of ClientInlayHintResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
+  return _then(_self.copyWith(
+properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientInlayHintResolveOptions implements ClientInlayHintResolveOptions {
+  const _ClientInlayHintResolveOptions({required final  List<String> properties}): _properties = properties;
+  factory _ClientInlayHintResolveOptions.fromJson(Map<String, dynamic> json) => _$ClientInlayHintResolveOptionsFromJson(json);
+
+/// The properties that a client can resolve lazily.
+ final  List<String> _properties;
+/// The properties that a client can resolve lazily.
+@override List<String> get properties {
+  if (_properties is EqualUnmodifiableListView) return _properties;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_properties);
+}
+
+
+/// Create a copy of ClientInlayHintResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientInlayHintResolveOptionsCopyWith<_ClientInlayHintResolveOptions> get copyWith => __$ClientInlayHintResolveOptionsCopyWithImpl<_ClientInlayHintResolveOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientInlayHintResolveOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientInlayHintResolveOptions&&const DeepCollectionEquality().equals(other._properties, _properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
+
+@override
+String toString() {
+  return 'ClientInlayHintResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientInlayHintResolveOptionsCopyWith<$Res> implements $ClientInlayHintResolveOptionsCopyWith<$Res> {
+  factory _$ClientInlayHintResolveOptionsCopyWith(_ClientInlayHintResolveOptions value, $Res Function(_ClientInlayHintResolveOptions) _then) = __$ClientInlayHintResolveOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientInlayHintResolveOptionsCopyWithImpl<$Res>
+    implements _$ClientInlayHintResolveOptionsCopyWith<$Res> {
+  __$ClientInlayHintResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientInlayHintResolveOptions _self;
+  final $Res Function(_ClientInlayHintResolveOptions) _then;
+
+/// Create a copy of ClientInlayHintResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
+  return _then(_ClientInlayHintResolveOptions(
+properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientShowMessageActionItemOptions {
+
+/// Whether the client supports additional attributes which are preserved
+/// and send back to the server in the request's response.
+ bool? get additionalPropertiesSupport;
+/// Create a copy of ClientShowMessageActionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientShowMessageActionItemOptionsCopyWith<ClientShowMessageActionItemOptions> get copyWith => _$ClientShowMessageActionItemOptionsCopyWithImpl<ClientShowMessageActionItemOptions>(this as ClientShowMessageActionItemOptions, _$identity);
+
+  /// Serializes this ClientShowMessageActionItemOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientShowMessageActionItemOptions&&(identical(other.additionalPropertiesSupport, additionalPropertiesSupport) || other.additionalPropertiesSupport == additionalPropertiesSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,additionalPropertiesSupport);
+
+@override
+String toString() {
+  return 'ClientShowMessageActionItemOptions(additionalPropertiesSupport: $additionalPropertiesSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientShowMessageActionItemOptionsCopyWith<$Res>  {
+  factory $ClientShowMessageActionItemOptionsCopyWith(ClientShowMessageActionItemOptions value, $Res Function(ClientShowMessageActionItemOptions) _then) = _$ClientShowMessageActionItemOptionsCopyWithImpl;
+@useResult
+$Res call({
+ bool? additionalPropertiesSupport
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientShowMessageActionItemOptionsCopyWithImpl<$Res>
+    implements $ClientShowMessageActionItemOptionsCopyWith<$Res> {
+  _$ClientShowMessageActionItemOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientShowMessageActionItemOptions _self;
+  final $Res Function(ClientShowMessageActionItemOptions) _then;
+
+/// Create a copy of ClientShowMessageActionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? additionalPropertiesSupport = freezed,}) {
+  return _then(_self.copyWith(
+additionalPropertiesSupport: freezed == additionalPropertiesSupport ? _self.additionalPropertiesSupport : additionalPropertiesSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientShowMessageActionItemOptions implements ClientShowMessageActionItemOptions {
+  const _ClientShowMessageActionItemOptions({this.additionalPropertiesSupport});
+  factory _ClientShowMessageActionItemOptions.fromJson(Map<String, dynamic> json) => _$ClientShowMessageActionItemOptionsFromJson(json);
+
+/// Whether the client supports additional attributes which are preserved
+/// and send back to the server in the request's response.
+@override final  bool? additionalPropertiesSupport;
+
+/// Create a copy of ClientShowMessageActionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientShowMessageActionItemOptionsCopyWith<_ClientShowMessageActionItemOptions> get copyWith => __$ClientShowMessageActionItemOptionsCopyWithImpl<_ClientShowMessageActionItemOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientShowMessageActionItemOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientShowMessageActionItemOptions&&(identical(other.additionalPropertiesSupport, additionalPropertiesSupport) || other.additionalPropertiesSupport == additionalPropertiesSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,additionalPropertiesSupport);
+
+@override
+String toString() {
+  return 'ClientShowMessageActionItemOptions(additionalPropertiesSupport: $additionalPropertiesSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientShowMessageActionItemOptionsCopyWith<$Res> implements $ClientShowMessageActionItemOptionsCopyWith<$Res> {
+  factory _$ClientShowMessageActionItemOptionsCopyWith(_ClientShowMessageActionItemOptions value, $Res Function(_ClientShowMessageActionItemOptions) _then) = __$ClientShowMessageActionItemOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? additionalPropertiesSupport
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientShowMessageActionItemOptionsCopyWithImpl<$Res>
+    implements _$ClientShowMessageActionItemOptionsCopyWith<$Res> {
+  __$ClientShowMessageActionItemOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientShowMessageActionItemOptions _self;
+  final $Res Function(_ClientShowMessageActionItemOptions) _then;
+
+/// Create a copy of ClientShowMessageActionItemOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? additionalPropertiesSupport = freezed,}) {
+  return _then(_ClientShowMessageActionItemOptions(
+additionalPropertiesSupport: freezed == additionalPropertiesSupport ? _self.additionalPropertiesSupport : additionalPropertiesSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$CompletionItemTagOptions {
+
+/// The tags supported by the client.
+ List<CompletionItemTag> get valueSet;
+/// Create a copy of CompletionItemTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CompletionItemTagOptionsCopyWith<CompletionItemTagOptions> get copyWith => _$CompletionItemTagOptionsCopyWithImpl<CompletionItemTagOptions>(this as CompletionItemTagOptions, _$identity);
+
+  /// Serializes this CompletionItemTagOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionItemTagOptions&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'CompletionItemTagOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CompletionItemTagOptionsCopyWith<$Res>  {
+  factory $CompletionItemTagOptionsCopyWith(CompletionItemTagOptions value, $Res Function(CompletionItemTagOptions) _then) = _$CompletionItemTagOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<CompletionItemTag> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$CompletionItemTagOptionsCopyWithImpl<$Res>
+    implements $CompletionItemTagOptionsCopyWith<$Res> {
+  _$CompletionItemTagOptionsCopyWithImpl(this._self, this._then);
+
+  final CompletionItemTagOptions _self;
+  final $Res Function(CompletionItemTagOptions) _then;
+
+/// Create a copy of CompletionItemTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
+  return _then(_self.copyWith(
+valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<CompletionItemTag>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _CompletionItemTagOptions implements CompletionItemTagOptions {
+  const _CompletionItemTagOptions({required final  List<CompletionItemTag> valueSet}): _valueSet = valueSet;
+  factory _CompletionItemTagOptions.fromJson(Map<String, dynamic> json) => _$CompletionItemTagOptionsFromJson(json);
+
+/// The tags supported by the client.
+ final  List<CompletionItemTag> _valueSet;
+/// The tags supported by the client.
+@override List<CompletionItemTag> get valueSet {
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_valueSet);
+}
+
+
+/// Create a copy of CompletionItemTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CompletionItemTagOptionsCopyWith<_CompletionItemTagOptions> get copyWith => __$CompletionItemTagOptionsCopyWithImpl<_CompletionItemTagOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CompletionItemTagOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionItemTagOptions&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'CompletionItemTagOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CompletionItemTagOptionsCopyWith<$Res> implements $CompletionItemTagOptionsCopyWith<$Res> {
+  factory _$CompletionItemTagOptionsCopyWith(_CompletionItemTagOptions value, $Res Function(_CompletionItemTagOptions) _then) = __$CompletionItemTagOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<CompletionItemTag> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$CompletionItemTagOptionsCopyWithImpl<$Res>
+    implements _$CompletionItemTagOptionsCopyWith<$Res> {
+  __$CompletionItemTagOptionsCopyWithImpl(this._self, this._then);
+
+  final _CompletionItemTagOptions _self;
+  final $Res Function(_CompletionItemTagOptions) _then;
+
+/// Create a copy of CompletionItemTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
+  return _then(_CompletionItemTagOptions(
+valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<CompletionItemTag>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientCompletionItemResolveOptions {
+
+/// The properties that a client can resolve lazily.
+ List<String> get properties;
+/// Create a copy of ClientCompletionItemResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientCompletionItemResolveOptionsCopyWith<ClientCompletionItemResolveOptions> get copyWith => _$ClientCompletionItemResolveOptionsCopyWithImpl<ClientCompletionItemResolveOptions>(this as ClientCompletionItemResolveOptions, _$identity);
+
+  /// Serializes this ClientCompletionItemResolveOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientCompletionItemResolveOptions&&const DeepCollectionEquality().equals(other.properties, properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
+
+@override
+String toString() {
+  return 'ClientCompletionItemResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientCompletionItemResolveOptionsCopyWith<$Res>  {
+  factory $ClientCompletionItemResolveOptionsCopyWith(ClientCompletionItemResolveOptions value, $Res Function(ClientCompletionItemResolveOptions) _then) = _$ClientCompletionItemResolveOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientCompletionItemResolveOptionsCopyWithImpl<$Res>
+    implements $ClientCompletionItemResolveOptionsCopyWith<$Res> {
+  _$ClientCompletionItemResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientCompletionItemResolveOptions _self;
+  final $Res Function(ClientCompletionItemResolveOptions) _then;
+
+/// Create a copy of ClientCompletionItemResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
+  return _then(_self.copyWith(
+properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientCompletionItemResolveOptions implements ClientCompletionItemResolveOptions {
+  const _ClientCompletionItemResolveOptions({required final  List<String> properties}): _properties = properties;
+  factory _ClientCompletionItemResolveOptions.fromJson(Map<String, dynamic> json) => _$ClientCompletionItemResolveOptionsFromJson(json);
+
+/// The properties that a client can resolve lazily.
+ final  List<String> _properties;
+/// The properties that a client can resolve lazily.
+@override List<String> get properties {
+  if (_properties is EqualUnmodifiableListView) return _properties;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_properties);
+}
+
+
+/// Create a copy of ClientCompletionItemResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientCompletionItemResolveOptionsCopyWith<_ClientCompletionItemResolveOptions> get copyWith => __$ClientCompletionItemResolveOptionsCopyWithImpl<_ClientCompletionItemResolveOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientCompletionItemResolveOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientCompletionItemResolveOptions&&const DeepCollectionEquality().equals(other._properties, _properties));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
+
+@override
+String toString() {
+  return 'ClientCompletionItemResolveOptions(properties: $properties)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientCompletionItemResolveOptionsCopyWith<$Res> implements $ClientCompletionItemResolveOptionsCopyWith<$Res> {
+  factory _$ClientCompletionItemResolveOptionsCopyWith(_ClientCompletionItemResolveOptions value, $Res Function(_ClientCompletionItemResolveOptions) _then) = __$ClientCompletionItemResolveOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> properties
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientCompletionItemResolveOptionsCopyWithImpl<$Res>
+    implements _$ClientCompletionItemResolveOptionsCopyWith<$Res> {
+  __$ClientCompletionItemResolveOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientCompletionItemResolveOptions _self;
+  final $Res Function(_ClientCompletionItemResolveOptions) _then;
+
+/// Create a copy of ClientCompletionItemResolveOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
+  return _then(_ClientCompletionItemResolveOptions(
+properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientCompletionItemInsertTextModeOptions {
+
+ List<InsertTextMode> get valueSet;
+/// Create a copy of ClientCompletionItemInsertTextModeOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientCompletionItemInsertTextModeOptionsCopyWith<ClientCompletionItemInsertTextModeOptions> get copyWith => _$ClientCompletionItemInsertTextModeOptionsCopyWithImpl<ClientCompletionItemInsertTextModeOptions>(this as ClientCompletionItemInsertTextModeOptions, _$identity);
+
+  /// Serializes this ClientCompletionItemInsertTextModeOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientCompletionItemInsertTextModeOptions&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'ClientCompletionItemInsertTextModeOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientCompletionItemInsertTextModeOptionsCopyWith<$Res>  {
+  factory $ClientCompletionItemInsertTextModeOptionsCopyWith(ClientCompletionItemInsertTextModeOptions value, $Res Function(ClientCompletionItemInsertTextModeOptions) _then) = _$ClientCompletionItemInsertTextModeOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<InsertTextMode> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientCompletionItemInsertTextModeOptionsCopyWithImpl<$Res>
+    implements $ClientCompletionItemInsertTextModeOptionsCopyWith<$Res> {
+  _$ClientCompletionItemInsertTextModeOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientCompletionItemInsertTextModeOptions _self;
+  final $Res Function(ClientCompletionItemInsertTextModeOptions) _then;
+
+/// Create a copy of ClientCompletionItemInsertTextModeOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
+  return _then(_self.copyWith(
+valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<InsertTextMode>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientCompletionItemInsertTextModeOptions implements ClientCompletionItemInsertTextModeOptions {
+  const _ClientCompletionItemInsertTextModeOptions({required final  List<InsertTextMode> valueSet}): _valueSet = valueSet;
+  factory _ClientCompletionItemInsertTextModeOptions.fromJson(Map<String, dynamic> json) => _$ClientCompletionItemInsertTextModeOptionsFromJson(json);
+
+ final  List<InsertTextMode> _valueSet;
+@override List<InsertTextMode> get valueSet {
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_valueSet);
+}
+
+
+/// Create a copy of ClientCompletionItemInsertTextModeOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientCompletionItemInsertTextModeOptionsCopyWith<_ClientCompletionItemInsertTextModeOptions> get copyWith => __$ClientCompletionItemInsertTextModeOptionsCopyWithImpl<_ClientCompletionItemInsertTextModeOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientCompletionItemInsertTextModeOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientCompletionItemInsertTextModeOptions&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'ClientCompletionItemInsertTextModeOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientCompletionItemInsertTextModeOptionsCopyWith<$Res> implements $ClientCompletionItemInsertTextModeOptionsCopyWith<$Res> {
+  factory _$ClientCompletionItemInsertTextModeOptionsCopyWith(_ClientCompletionItemInsertTextModeOptions value, $Res Function(_ClientCompletionItemInsertTextModeOptions) _then) = __$ClientCompletionItemInsertTextModeOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<InsertTextMode> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientCompletionItemInsertTextModeOptionsCopyWithImpl<$Res>
+    implements _$ClientCompletionItemInsertTextModeOptionsCopyWith<$Res> {
+  __$ClientCompletionItemInsertTextModeOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientCompletionItemInsertTextModeOptions _self;
+  final $Res Function(_ClientCompletionItemInsertTextModeOptions) _then;
+
+/// Create a copy of ClientCompletionItemInsertTextModeOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
+  return _then(_ClientCompletionItemInsertTextModeOptions(
+valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<InsertTextMode>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientSignatureParameterInformationOptions {
+
+/// The client supports processing label offsets instead of a simple label
+/// string.
+ bool? get labelOffsetSupport;
+/// Create a copy of ClientSignatureParameterInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientSignatureParameterInformationOptionsCopyWith<ClientSignatureParameterInformationOptions> get copyWith => _$ClientSignatureParameterInformationOptionsCopyWithImpl<ClientSignatureParameterInformationOptions>(this as ClientSignatureParameterInformationOptions, _$identity);
+
+  /// Serializes this ClientSignatureParameterInformationOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientSignatureParameterInformationOptions&&(identical(other.labelOffsetSupport, labelOffsetSupport) || other.labelOffsetSupport == labelOffsetSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,labelOffsetSupport);
+
+@override
+String toString() {
+  return 'ClientSignatureParameterInformationOptions(labelOffsetSupport: $labelOffsetSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientSignatureParameterInformationOptionsCopyWith<$Res>  {
+  factory $ClientSignatureParameterInformationOptionsCopyWith(ClientSignatureParameterInformationOptions value, $Res Function(ClientSignatureParameterInformationOptions) _then) = _$ClientSignatureParameterInformationOptionsCopyWithImpl;
+@useResult
+$Res call({
+ bool? labelOffsetSupport
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientSignatureParameterInformationOptionsCopyWithImpl<$Res>
+    implements $ClientSignatureParameterInformationOptionsCopyWith<$Res> {
+  _$ClientSignatureParameterInformationOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientSignatureParameterInformationOptions _self;
+  final $Res Function(ClientSignatureParameterInformationOptions) _then;
+
+/// Create a copy of ClientSignatureParameterInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? labelOffsetSupport = freezed,}) {
+  return _then(_self.copyWith(
+labelOffsetSupport: freezed == labelOffsetSupport ? _self.labelOffsetSupport : labelOffsetSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientSignatureParameterInformationOptions implements ClientSignatureParameterInformationOptions {
+  const _ClientSignatureParameterInformationOptions({this.labelOffsetSupport});
+  factory _ClientSignatureParameterInformationOptions.fromJson(Map<String, dynamic> json) => _$ClientSignatureParameterInformationOptionsFromJson(json);
+
+/// The client supports processing label offsets instead of a simple label
+/// string.
+@override final  bool? labelOffsetSupport;
+
+/// Create a copy of ClientSignatureParameterInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientSignatureParameterInformationOptionsCopyWith<_ClientSignatureParameterInformationOptions> get copyWith => __$ClientSignatureParameterInformationOptionsCopyWithImpl<_ClientSignatureParameterInformationOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientSignatureParameterInformationOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientSignatureParameterInformationOptions&&(identical(other.labelOffsetSupport, labelOffsetSupport) || other.labelOffsetSupport == labelOffsetSupport));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,labelOffsetSupport);
+
+@override
+String toString() {
+  return 'ClientSignatureParameterInformationOptions(labelOffsetSupport: $labelOffsetSupport)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientSignatureParameterInformationOptionsCopyWith<$Res> implements $ClientSignatureParameterInformationOptionsCopyWith<$Res> {
+  factory _$ClientSignatureParameterInformationOptionsCopyWith(_ClientSignatureParameterInformationOptions value, $Res Function(_ClientSignatureParameterInformationOptions) _then) = __$ClientSignatureParameterInformationOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool? labelOffsetSupport
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientSignatureParameterInformationOptionsCopyWithImpl<$Res>
+    implements _$ClientSignatureParameterInformationOptionsCopyWith<$Res> {
+  __$ClientSignatureParameterInformationOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientSignatureParameterInformationOptions _self;
+  final $Res Function(_ClientSignatureParameterInformationOptions) _then;
+
+/// Create a copy of ClientSignatureParameterInformationOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? labelOffsetSupport = freezed,}) {
+  return _then(_ClientSignatureParameterInformationOptions(
+labelOffsetSupport: freezed == labelOffsetSupport ? _self.labelOffsetSupport : labelOffsetSupport // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientCodeActionKindOptions {
+
+/// The code action kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+ List<CodeActionKind> get valueSet;
+/// Create a copy of ClientCodeActionKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientCodeActionKindOptionsCopyWith<ClientCodeActionKindOptions> get copyWith => _$ClientCodeActionKindOptionsCopyWithImpl<ClientCodeActionKindOptions>(this as ClientCodeActionKindOptions, _$identity);
+
+  /// Serializes this ClientCodeActionKindOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientCodeActionKindOptions&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'ClientCodeActionKindOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientCodeActionKindOptionsCopyWith<$Res>  {
+  factory $ClientCodeActionKindOptionsCopyWith(ClientCodeActionKindOptions value, $Res Function(ClientCodeActionKindOptions) _then) = _$ClientCodeActionKindOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<CodeActionKind> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientCodeActionKindOptionsCopyWithImpl<$Res>
+    implements $ClientCodeActionKindOptionsCopyWith<$Res> {
+  _$ClientCodeActionKindOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientCodeActionKindOptions _self;
+  final $Res Function(ClientCodeActionKindOptions) _then;
+
+/// Create a copy of ClientCodeActionKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
+  return _then(_self.copyWith(
+valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKind>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientCodeActionKindOptions implements ClientCodeActionKindOptions {
+  const _ClientCodeActionKindOptions({required final  List<CodeActionKind> valueSet}): _valueSet = valueSet;
+  factory _ClientCodeActionKindOptions.fromJson(Map<String, dynamic> json) => _$ClientCodeActionKindOptionsFromJson(json);
+
+/// The code action kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+ final  List<CodeActionKind> _valueSet;
+/// The code action kind values the client supports. When this property
+/// exists the client also guarantees that it will handle values outside its
+/// set gracefully and falls back to a default value when unknown.
+@override List<CodeActionKind> get valueSet {
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_valueSet);
+}
+
+
+/// Create a copy of ClientCodeActionKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientCodeActionKindOptionsCopyWith<_ClientCodeActionKindOptions> get copyWith => __$ClientCodeActionKindOptionsCopyWithImpl<_ClientCodeActionKindOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientCodeActionKindOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientCodeActionKindOptions&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'ClientCodeActionKindOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientCodeActionKindOptionsCopyWith<$Res> implements $ClientCodeActionKindOptionsCopyWith<$Res> {
+  factory _$ClientCodeActionKindOptionsCopyWith(_ClientCodeActionKindOptions value, $Res Function(_ClientCodeActionKindOptions) _then) = __$ClientCodeActionKindOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<CodeActionKind> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientCodeActionKindOptionsCopyWithImpl<$Res>
+    implements _$ClientCodeActionKindOptionsCopyWith<$Res> {
+  __$ClientCodeActionKindOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientCodeActionKindOptions _self;
+  final $Res Function(_ClientCodeActionKindOptions) _then;
+
+/// Create a copy of ClientCodeActionKindOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
+  return _then(_ClientCodeActionKindOptions(
+valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<CodeActionKind>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ClientDiagnosticsTagOptions {
+
+/// The tags supported by the client.
+ List<DiagnosticTag> get valueSet;
+/// Create a copy of ClientDiagnosticsTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ClientDiagnosticsTagOptionsCopyWith<ClientDiagnosticsTagOptions> get copyWith => _$ClientDiagnosticsTagOptionsCopyWithImpl<ClientDiagnosticsTagOptions>(this as ClientDiagnosticsTagOptions, _$identity);
+
+  /// Serializes this ClientDiagnosticsTagOptions to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClientDiagnosticsTagOptions&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
+
+@override
+String toString() {
+  return 'ClientDiagnosticsTagOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ClientDiagnosticsTagOptionsCopyWith<$Res>  {
+  factory $ClientDiagnosticsTagOptionsCopyWith(ClientDiagnosticsTagOptions value, $Res Function(ClientDiagnosticsTagOptions) _then) = _$ClientDiagnosticsTagOptionsCopyWithImpl;
+@useResult
+$Res call({
+ List<DiagnosticTag> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class _$ClientDiagnosticsTagOptionsCopyWithImpl<$Res>
+    implements $ClientDiagnosticsTagOptionsCopyWith<$Res> {
+  _$ClientDiagnosticsTagOptionsCopyWithImpl(this._self, this._then);
+
+  final ClientDiagnosticsTagOptions _self;
+  final $Res Function(ClientDiagnosticsTagOptions) _then;
+
+/// Create a copy of ClientDiagnosticsTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
+  return _then(_self.copyWith(
+valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<DiagnosticTag>,
+  ));
+}
+
+}
+
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _ClientDiagnosticsTagOptions implements ClientDiagnosticsTagOptions {
+  const _ClientDiagnosticsTagOptions({required final  List<DiagnosticTag> valueSet}): _valueSet = valueSet;
+  factory _ClientDiagnosticsTagOptions.fromJson(Map<String, dynamic> json) => _$ClientDiagnosticsTagOptionsFromJson(json);
+
+/// The tags supported by the client.
+ final  List<DiagnosticTag> _valueSet;
+/// The tags supported by the client.
+@override List<DiagnosticTag> get valueSet {
+  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_valueSet);
+}
+
+
+/// Create a copy of ClientDiagnosticsTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ClientDiagnosticsTagOptionsCopyWith<_ClientDiagnosticsTagOptions> get copyWith => __$ClientDiagnosticsTagOptionsCopyWithImpl<_ClientDiagnosticsTagOptions>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ClientDiagnosticsTagOptionsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClientDiagnosticsTagOptions&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
+
+@override
+String toString() {
+  return 'ClientDiagnosticsTagOptions(valueSet: $valueSet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ClientDiagnosticsTagOptionsCopyWith<$Res> implements $ClientDiagnosticsTagOptionsCopyWith<$Res> {
+  factory _$ClientDiagnosticsTagOptionsCopyWith(_ClientDiagnosticsTagOptions value, $Res Function(_ClientDiagnosticsTagOptions) _then) = __$ClientDiagnosticsTagOptionsCopyWithImpl;
+@override @useResult
+$Res call({
+ List<DiagnosticTag> valueSet
+});
+
+
+
+
+}
+/// @nodoc
+class __$ClientDiagnosticsTagOptionsCopyWithImpl<$Res>
+    implements _$ClientDiagnosticsTagOptionsCopyWith<$Res> {
+  __$ClientDiagnosticsTagOptionsCopyWithImpl(this._self, this._then);
+
+  final _ClientDiagnosticsTagOptions _self;
+  final $Res Function(_ClientDiagnosticsTagOptions) _then;
+
+/// Create a copy of ClientDiagnosticsTagOptions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
+  return _then(_ClientDiagnosticsTagOptions(
+valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
+as List<DiagnosticTag>,
   ));
 }
 

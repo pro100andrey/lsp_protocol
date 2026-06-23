@@ -67,7 +67,7 @@ final class TextDocumentManager extends LspFeature {
           final item = params.textDocument;
           final doc = LspDocument(
             uri: item.uri,
-            languageId: item.languageId,
+            languageId: item.languageId.value,
             version: item.version,
             text: item.text,
           );
@@ -89,12 +89,13 @@ final class TextDocumentManager extends LspFeature {
             List<int>? currentLineStarts = existingDoc.lineStarts;
 
             for (final change in changes) {
-              final fullText = change.asText;
+              final fullText = change.asTextDocumentContentChangeWholeDocument;
               if (fullText != null) {
                 text = fullText.text;
                 currentLineStarts = null;
               } else {
-                final rangeChange = change.asRangeRangeLengthText;
+                final rangeChange =
+                    change.asTextDocumentContentChangePartial;
                 if (rangeChange != null) {
                   final starts = currentLineStarts ??= _computeLineStarts(text);
                   final startOffset = _positionToOffset(

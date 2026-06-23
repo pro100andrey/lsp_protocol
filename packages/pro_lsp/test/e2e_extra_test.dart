@@ -19,7 +19,7 @@ void main() {
       const DidOpenTextDocumentParams(
         textDocument: TextDocumentItem(
           uri: 'file:///a.dart',
-          languageId: 'dart',
+          languageId: LanguageKind.dart,
           version: 1,
           text: '',
         ),
@@ -188,10 +188,10 @@ void main() {
         },
       );
       client.server.general.setTrace(
-        const SetTraceParams(value: TraceValues.messages),
+        const SetTraceParams(value: TraceValue.messages),
       );
       final p = await got.future.timeout(timeout);
-      expect(p.value, TraceValues.messages);
+      expect(p.value, TraceValue.messages);
     });
 
     test('notebookDocument/didOpen reaches the server', () async {
@@ -219,7 +219,7 @@ void main() {
           cellTextDocuments: [
             TextDocumentItem(
               uri: 'file:///c0.py',
-              languageId: 'python',
+              languageId: LanguageKind.python,
               version: 1,
               text: '',
             ),

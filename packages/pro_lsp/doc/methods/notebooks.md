@@ -51,7 +51,7 @@ client.server.notebookDocument.didOpen(
     cellTextDocuments: [
       TextDocumentItem(
         uri: 'file:///c0.py',
-        languageId: 'python',
+        languageId: LanguageKind.python,
         version: 1,
         text: '',
       ),

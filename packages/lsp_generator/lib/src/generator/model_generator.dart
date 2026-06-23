@@ -40,6 +40,14 @@ final class ModelGenerator {
 
   static const _header = 'GENERATED — do not edit.';
 
+  // Doc-comment formatting patterns, compiled once (see [_docLines]).
+  static final _sinceTag = RegExp(r'\s*@since\s+.*?(?=\n|$)');
+  static final _proposedTag = RegExp(r'\s*@proposed\s*.*?(?=\n|$)');
+  static final _jsdocLink = RegExp(r'\{@link\s+(\S+?)(?:\s+([^}]*?))?\}');
+  static final _identifier = RegExp(r'^\w+$');
+  static final _blankLine = RegExp(r'\n\s*\n');
+  static final _whitespace = RegExp(r'\s+');
+
   /// All class names (including anonymous) — used to filter conflicting
   /// aliases.
   late final Set<String> _classNames = _ctx.classNames;
@@ -395,8 +403,8 @@ final class ModelGenerator {
     ];
 
     final body = (input ?? '')
-        .replaceAll(RegExp(r'\s*@since\s+.*?(?=\n|$)'), '')
-        .replaceAll(RegExp(r'\s*@proposed\s*.*?(?=\n|$)'), '')
+        .replaceAll(_sinceTag, '')
+        .replaceAll(_proposedTag, '')
         .replaceAll('<', '&lt;')
         .replaceAll('>', '&gt;')
         .trim();
@@ -409,14 +417,14 @@ final class ModelGenerator {
     final maxContent = maxWidth - prefix.length - indent;
 
     final resolved = body.replaceAllMapped(
-      RegExp(r'\{@link\s+(\S+?)(?:\s+([^}]*?))?\}'),
+      _jsdocLink,
       (m) {
         final target = m.group(1)!.replaceAll('[]', '');
         final rawDisplay = m.group(2)?.replaceAll('`', '').trim() ?? '';
         if (rawDisplay.isEmpty) {
           return '`$target`';
         }
-        if (RegExp(r'^\w+$').hasMatch(rawDisplay)) {
+        if (_identifier.hasMatch(rawDisplay)) {
           return '`$rawDisplay`';
         }
         return '`${target.split('.').first}`';
@@ -426,7 +434,7 @@ final class ModelGenerator {
     final paragraphs = resolved
         .replaceAll('\r\n', '\n')
         .replaceAll('\r', '\n')
-        .split(RegExp(r'\n\s*\n'))
+        .split(_blankLine)
         .map((p) => p.trim())
         .where((p) => p.isNotEmpty)
         .toList(growable: false);
@@ -461,7 +469,7 @@ final class ModelGenerator {
     if (lines.isNotEmpty) {
       lines.add('///');
     }
-    final words = paragraph.replaceAll('\n', ' ').split(RegExp(r'\s+'));
+    final words = paragraph.replaceAll('\n', ' ').split(_whitespace);
     final buf = StringBuffer();
     for (final word in words) {
       if (buf.isEmpty) {

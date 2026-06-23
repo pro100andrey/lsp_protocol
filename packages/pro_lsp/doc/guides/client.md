@@ -39,7 +39,7 @@ final client = LspClient.fromChannel(channel);
 final initResult = await client.start(
   capabilities: const ClientCapabilities(),
   rootUri: 'file:///my/project',
-  clientInfo: (name: 'my-editor', version: '1.0.0'),
+  clientInfo: ClientInfo(name: 'my-editor', version: '1.0.0'),
   processId: pid,
 );
 
@@ -75,7 +75,7 @@ client.server.textDocument.didOpen(
   const DidOpenTextDocumentParams(
     textDocument: TextDocumentItem(
       uri: 'file:///main.dart',
-      languageId: 'dart',
+      languageId: LanguageKind.dart,
       version: 1,
       text: 'void main() {}',
     ),

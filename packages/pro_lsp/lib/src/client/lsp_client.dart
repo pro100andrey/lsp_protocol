@@ -68,15 +68,15 @@ final class LspClient extends LspEndpoint {
   /// the `initialize`/`initialized` handshake yourself.
   ///
   /// [clientInfo] identifies this client to the server (e.g.
-  /// `(name: 'my-editor', version: '1.0.0')`). [processId] is the parent
-  /// process ID reported to the server; it defaults to the current process
-  /// [pid].
+  /// `ClientInfo(name: 'my-editor', version: '1.0.0')`). [processId] is the
+  /// parent process ID reported to the server; it defaults to the current
+  /// process [pid].
   Future<InitializeResult> start({
     required ClientCapabilities capabilities,
     String? rootUri,
     List<WorkspaceFolder>? workspaceFolders,
     Object? initializationOptions,
-    ({String name, String? version})? clientInfo,
+    ClientInfo? clientInfo,
     int? processId,
   }) async {
     if (_isListening) {

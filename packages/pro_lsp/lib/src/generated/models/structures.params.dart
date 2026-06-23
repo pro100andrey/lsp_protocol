@@ -459,7 +459,7 @@ abstract class SemanticTokensRegistrationOptions
 
     /// Server supports providing semantic tokens for a full document.
     ///
-    /// Type: `bool` | `Object`
+    /// Type: `bool` | `SemanticTokensFullDelta`
     SemanticTokensRegistrationOptionsFull? full,
 
     /// The id used to register the request. The id can be used to deregister
@@ -770,11 +770,11 @@ abstract class InlineValueParams with _$InlineValueParams {
     /// The text document.
     required TextDocumentIdentifier textDocument,
 
-    /// The document range for which inline values should be computed.
+    /// The document range for which inline values information will be returned.
     required Range range,
 
-    /// Additional information about the context in which inline values were
-    /// requested.
+    /// Additional information about the context in which inline values
+    /// information was requested.
     required InlineValueContext context,
 
     /// An optional token that a server can use to report work done progress.
@@ -954,6 +954,31 @@ abstract class DidOpenNotebookDocumentParams
       _$DidOpenNotebookDocumentParamsFromJson(json);
 }
 
+/// Registration options specific to a notebook.
+///
+/// @since 3.17.0
+@freezed
+abstract class NotebookDocumentSyncRegistrationOptions
+    with _$NotebookDocumentSyncRegistrationOptions {
+  const factory NotebookDocumentSyncRegistrationOptions({
+    /// The notebooks to be synced
+    required List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem>
+    notebookSelector,
+
+    /// Whether save notification should be forwarded to the server. Will only
+    /// be honored if mode === `notebook`.
+    bool? save,
+
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
+    String? id,
+  }) = _NotebookDocumentSyncRegistrationOptions;
+
+  factory NotebookDocumentSyncRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentSyncRegistrationOptionsFromJson(json);
+}
+
 /// The params sent in a change notebook document notification.
 ///
 /// @since 3.17.0
@@ -1024,7 +1049,6 @@ abstract class DidCloseNotebookDocumentParams
 /// A parameter literal used in inline completion requests.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class InlineCompletionParams with _$InlineCompletionParams {
   const factory InlineCompletionParams({
@@ -1049,7 +1073,6 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
 /// Inline completion options used during static or dynamic registration.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class InlineCompletionRegistrationOptions
     with _$InlineCompletionRegistrationOptions {
@@ -1067,6 +1090,56 @@ abstract class InlineCompletionRegistrationOptions
   factory InlineCompletionRegistrationOptions.fromJson(
     Map<String, dynamic> json,
   ) => _$InlineCompletionRegistrationOptionsFromJson(json);
+}
+
+/// Parameters for the `workspace/textDocumentContent` request.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentContentParams with _$TextDocumentContentParams {
+  const factory TextDocumentContentParams({
+    /// The uri of the text document.
+    required String uri,
+  }) = _TextDocumentContentParams;
+
+  factory TextDocumentContentParams.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentContentParamsFromJson(json);
+}
+
+/// Text document content provider registration options.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentContentRegistrationOptions
+    with _$TextDocumentContentRegistrationOptions {
+  const factory TextDocumentContentRegistrationOptions({
+    /// The schemes for which the server provides content.
+    required List<String> schemes,
+
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
+    String? id,
+  }) = _TextDocumentContentRegistrationOptions;
+
+  factory TextDocumentContentRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentContentRegistrationOptionsFromJson(json);
+}
+
+/// Parameters for the `workspace/textDocumentContent/refresh` request.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentContentRefreshParams
+    with _$TextDocumentContentRefreshParams {
+  const factory TextDocumentContentRefreshParams({
+    /// The uri of the text document to refresh.
+    required String uri,
+  }) = _TextDocumentContentRefreshParams;
+
+  factory TextDocumentContentRefreshParams.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentContentRefreshParamsFromJson(json);
 }
 
 @freezed
@@ -1111,7 +1184,7 @@ abstract class InitializeParams with _$InitializeParams {
     ProgressToken? workDoneToken,
 
     /// Information about the client
-    ({String name, String? version})? clientInfo,
+    ClientInfo? clientInfo,
 
     /// The locale the client is currently showing the user interface in. This
     /// must not necessarily be the locale of the operating system.
@@ -1129,7 +1202,7 @@ abstract class InitializeParams with _$InitializeParams {
     LSPAny? initializationOptions,
 
     /// The initial trace setting. If omitted trace is disabled ('off').
-    TraceValues? trace,
+    TraceValue? trace,
 
     /// The workspace folders configured in the client when the server starts.
     ///
@@ -1402,7 +1475,7 @@ abstract class CompletionParams with _$CompletionParams {
     /// streaming) to the client.
     ProgressToken? partialResultToken,
 
-    /// The completion context. This is only available if the client specifies
+    /// The completion context. This is only available it the client specifies
     /// to send this using the client capability
     /// `textDocument.completion.contextSupport === true`
     CompletionContext? context,
@@ -1449,7 +1522,7 @@ abstract class CompletionRegistrationOptions
 
     /// The server supports the following `CompletionItem` specific
     /// capabilities.
-    ({bool? labelDetailsSupport})? completionItem,
+    ServerCompletionItemOptions? completionItem,
   }) = _CompletionRegistrationOptions;
 
   factory CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -1730,6 +1803,23 @@ abstract class CodeActionRegistrationOptions
     /// the server may list out every specific kind they provide.
     List<CodeActionKind>? codeActionKinds,
 
+    /// Static documentation for a class of code actions.
+    ///
+    /// Documentation from the provider should be shown in the code actions menu
+    /// if either:
+    ///
+    /// - Code actions of `kind` are requested by the editor. In this case, the
+    /// editor will show the documentation that most closely matches the
+    /// requested code action kind. For example, if a provider has documentation
+    /// for both `Refactor` and `RefactorExtract`, when the user requests code
+    /// actions for `RefactorExtract`, the editor will use the documentation for
+    /// `RefactorExtract` instead of the documentation for `Refactor`.
+    ///
+    /// - Any code actions of `kind` are returned by the provider.
+    ///
+    /// At most one documentation entry should be shown per provider.
+    List<CodeActionKindDocumentation>? documentation,
+
     /// The server provides support to resolve additional information for a code
     /// action.
     bool? resolveProvider,
@@ -1745,6 +1835,12 @@ abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
   const factory WorkspaceSymbolParams({
     /// A query string to filter symbols by. Clients may send an empty string
     /// here to request all symbols.
+    ///
+    /// The `query`-parameter should be interpreted in a *relaxed way* as
+    /// editors will apply their own highlighting and scoring on the results. A
+    /// good rule of thumb is to match case-insensitive and to simply check that
+    /// the characters of *query* appear in their order in a candidate symbol.
+    /// Servers shouldn't use prefix, substring, or similar strict matching.
     required String query,
 
     /// An optional token that a server can use to report work done progress.
@@ -1927,7 +2023,6 @@ abstract class DocumentRangeFormattingRegistrationOptions
 /// The parameters of a `DocumentRangesFormattingRequest`.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class DocumentRangesFormattingParams
     with _$DocumentRangesFormattingParams {
@@ -2001,10 +2096,10 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
 @freezed
 abstract class RenameParams with _$RenameParams {
   const factory RenameParams({
-    /// The document to rename.
+    /// The text document.
     required TextDocumentIdentifier textDocument,
 
-    /// The position at which this request was sent.
+    /// The position inside the text document.
     required Position position,
 
     /// The new name of the symbol. If the given name is not valid the request
@@ -2096,6 +2191,9 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
     /// An optional label of the workspace edit. This label is presented in the
     /// user interface for example on an undo stack to undo the workspace edit.
     String? label,
+
+    /// Additional data about the edit.
+    WorkspaceEditMetadata? metadata,
   }) = _ApplyWorkspaceEditParams;
 
   factory ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) =>
@@ -2104,7 +2202,7 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
 
 @freezed
 abstract class SetTraceParams with _$SetTraceParams {
-  const factory SetTraceParams({required TraceValues value}) = _SetTraceParams;
+  const factory SetTraceParams({required TraceValue value}) = _SetTraceParams;
 
   factory SetTraceParams.fromJson(Map<String, dynamic> json) =>
       _$SetTraceParamsFromJson(json);
@@ -2280,7 +2378,7 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
 
     /// Server supports providing semantic tokens for a full document.
     ///
-    /// Type: `bool` | `Object`
+    /// Type: `bool` | `SemanticTokensFullDelta`
     SemanticTokensOptionsFull? full,
   }) = _SemanticTokensOptions;
 
@@ -2371,10 +2469,35 @@ abstract class DiagnosticOptions with _$DiagnosticOptions {
       _$DiagnosticOptionsFromJson(json);
 }
 
+/// Options specific to a notebook plus its cells to be synced to the server.
+///
+/// If a selector provides a notebook document filter but no cell selector all
+/// cells of a matching notebook document will be synced.
+///
+/// If a selector provides no notebook document filter but only a cell selector
+/// all notebook document that contain at least one matching cell will be
+/// synced.
+///
+/// @since 3.17.0
+@freezed
+abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
+  const factory NotebookDocumentSyncOptions({
+    /// The notebooks to be synced
+    required List<NotebookDocumentSyncOptionsNotebookSelectorItem>
+    notebookSelector,
+
+    /// Whether save notification should be forwarded to the server. Will only
+    /// be honored if mode === `notebook`.
+    bool? save,
+  }) = _NotebookDocumentSyncOptions;
+
+  factory NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentSyncOptionsFromJson(json);
+}
+
 /// Inline completion options used during static registration.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class InlineCompletionOptions with _$InlineCompletionOptions {
   const factory InlineCompletionOptions({bool? workDoneProgress}) =
@@ -2382,6 +2505,20 @@ abstract class InlineCompletionOptions with _$InlineCompletionOptions {
 
   factory InlineCompletionOptions.fromJson(Map<String, dynamic> json) =>
       _$InlineCompletionOptionsFromJson(json);
+}
+
+/// Text document content provider options.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentContentOptions with _$TextDocumentContentOptions {
+  const factory TextDocumentContentOptions({
+    /// The schemes for which the server provides content.
+    required List<String> schemes,
+  }) = _TextDocumentContentOptions;
+
+  factory TextDocumentContentOptions.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentContentOptionsFromJson(json);
 }
 
 @freezed
@@ -2446,7 +2583,7 @@ abstract class CompletionOptions with _$CompletionOptions {
 
     /// The server supports the following `CompletionItem` specific
     /// capabilities.
-    ({bool? labelDetailsSupport})? completionItem,
+    ServerCompletionItemOptions? completionItem,
   }) = _CompletionOptions;
 
   factory CompletionOptions.fromJson(Map<String, dynamic> json) =>
@@ -2538,6 +2675,23 @@ abstract class CodeActionOptions with _$CodeActionOptions {
     /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
     /// the server may list out every specific kind they provide.
     List<CodeActionKind>? codeActionKinds,
+
+    /// Static documentation for a class of code actions.
+    ///
+    /// Documentation from the provider should be shown in the code actions menu
+    /// if either:
+    ///
+    /// - Code actions of `kind` are requested by the editor. In this case, the
+    /// editor will show the documentation that most closely matches the
+    /// requested code action kind. For example, if a provider has documentation
+    /// for both `Refactor` and `RefactorExtract`, when the user requests code
+    /// actions for `RefactorExtract`, the editor will use the documentation for
+    /// `RefactorExtract` instead of the documentation for `Refactor`.
+    ///
+    /// - Any code actions of `kind` are returned by the provider.
+    ///
+    /// At most one documentation entry should be shown per provider.
+    List<CodeActionKindDocumentation>? documentation,
 
     /// The server provides support to resolve additional information for a code
     /// action.
@@ -2760,55 +2914,56 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
       _$TextDocumentSyncOptionsFromJson(json);
 }
 
-/// Options specific to a notebook plus its cells to be synced to the server.
+/// Defines workspace specific capabilities of the server.
 ///
-/// If a selector provides a notebook document filter but no cell selector all
-/// cells of a matching notebook document will be synced.
-///
-/// If a selector provides no notebook document filter but only a cell selector
-/// all notebook document that contain at least one matching cell will be
-/// synced.
-///
-/// @since 3.17.0
+/// @since 3.18.0
 @freezed
-abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
-  const factory NotebookDocumentSyncOptions({
-    /// The notebooks to be synced
-    required List<NotebookDocumentSyncOptionsNotebookSelectorItem>
-    notebookSelector,
+abstract class WorkspaceOptions with _$WorkspaceOptions {
+  const factory WorkspaceOptions({
+    /// The server supports workspace folder.
+    WorkspaceFoldersServerCapabilities? workspaceFolders,
 
-    /// Whether save notification should be forwarded to the server. Will only
-    /// be honored if mode === `notebook`.
-    bool? save,
-  }) = _NotebookDocumentSyncOptions;
+    /// The server is interested in notifications/requests for operations on
+    /// files.
+    FileOperationOptions? fileOperations,
 
-  factory NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
-      _$NotebookDocumentSyncOptionsFromJson(json);
+    /// The server supports the `workspace/textDocumentContent` request.
+    ///
+    /// Type: `TextDocumentContentOptions` |
+    /// `TextDocumentContentRegistrationOptions`
+    WorkspaceOptionsTextDocumentContent? textDocumentContent,
+  }) = _WorkspaceOptions;
+
+  factory WorkspaceOptions.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceOptionsFromJson(json);
 }
 
-/// Registration options specific to a notebook.
-///
-/// @since 3.17.0
+/// @since 3.18.0
 @freezed
-abstract class NotebookDocumentSyncRegistrationOptions
-    with _$NotebookDocumentSyncRegistrationOptions {
-  const factory NotebookDocumentSyncRegistrationOptions({
-    /// The notebooks to be synced
-    required List<NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem>
-    notebookSelector,
+abstract class ServerCompletionItemOptions with _$ServerCompletionItemOptions {
+  const factory ServerCompletionItemOptions({
+    /// The server has support for completion item label details (see also
+    /// `CompletionItemLabelDetails`) when receiving a completion item in a
+    /// resolve call.
+    bool? labelDetailsSupport,
+  }) = _ServerCompletionItemOptions;
 
-    /// Whether save notification should be forwarded to the server. Will only
-    /// be honored if mode === `notebook`.
-    bool? save,
+  factory ServerCompletionItemOptions.fromJson(Map<String, dynamic> json) =>
+      _$ServerCompletionItemOptionsFromJson(json);
+}
 
-    /// The id used to register the request. The id can be used to deregister
-    /// the request again. See also Registration#id.
-    String? id,
-  }) = _NotebookDocumentSyncRegistrationOptions;
+/// Matching options for the file operation pattern.
+///
+/// @since 3.16.0
+@freezed
+abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
+  const factory FileOperationPatternOptions({
+    /// The pattern should be matched ignoring casing.
+    bool? ignoreCase,
+  }) = _FileOperationPatternOptions;
 
-  factory NotebookDocumentSyncRegistrationOptions.fromJson(
-    Map<String, dynamic> json,
-  ) => _$NotebookDocumentSyncRegistrationOptionsFromJson(json);
+  factory FileOperationPatternOptions.fromJson(Map<String, dynamic> json) =>
+      _$FileOperationPatternOptionsFromJson(json);
 }
 
 /// Options for notifications/requests for user operations on files.
@@ -2840,16 +2995,367 @@ abstract class FileOperationOptions with _$FileOperationOptions {
       _$FileOperationOptionsFromJson(json);
 }
 
-/// Matching options for the file operation pattern.
-///
-/// @since 3.16.0
+/// @since 3.18.0
 @freezed
-abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
-  const factory FileOperationPatternOptions({
-    /// The pattern should be matched ignoring casing.
-    bool? ignoreCase,
-  }) = _FileOperationPatternOptions;
+abstract class StaleRequestSupportOptions with _$StaleRequestSupportOptions {
+  const factory StaleRequestSupportOptions({
+    /// The client will actively cancel the request.
+    required bool cancel,
 
-  factory FileOperationPatternOptions.fromJson(Map<String, dynamic> json) =>
-      _$FileOperationPatternOptionsFromJson(json);
+    /// The list of requests for which the client will retry the request if it
+    /// receives a response with error code `ContentModified`
+    required List<String> retryOnContentModified,
+  }) = _StaleRequestSupportOptions;
+
+  factory StaleRequestSupportOptions.fromJson(Map<String, dynamic> json) =>
+      _$StaleRequestSupportOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ChangeAnnotationsSupportOptions
+    with _$ChangeAnnotationsSupportOptions {
+  const factory ChangeAnnotationsSupportOptions({
+    /// Whether the client groups edits with equal labels into tree nodes, for
+    /// instance all edits labelled with "Changes in Strings" would be a tree
+    /// node.
+    bool? groupsOnLabel,
+  }) = _ChangeAnnotationsSupportOptions;
+
+  factory ChangeAnnotationsSupportOptions.fromJson(Map<String, dynamic> json) =>
+      _$ChangeAnnotationsSupportOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientSymbolKindOptions with _$ClientSymbolKindOptions {
+  const factory ClientSymbolKindOptions({
+    /// The symbol kind values the client supports. When this property exists
+    /// the client also guarantees that it will handle values outside its set
+    /// gracefully and falls back to a default value when unknown.
+    ///
+    /// If this property is not present the client only supports the symbol
+    /// kinds from `File` to `Array` as defined in the initial version of the
+    /// protocol.
+    List<SymbolKind>? valueSet,
+  }) = _ClientSymbolKindOptions;
+
+  factory ClientSymbolKindOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientSymbolKindOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientSymbolTagOptions with _$ClientSymbolTagOptions {
+  const factory ClientSymbolTagOptions({
+    /// The tags supported by the client.
+    required List<SymbolTag> valueSet,
+  }) = _ClientSymbolTagOptions;
+
+  factory ClientSymbolTagOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientSymbolTagOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientSymbolResolveOptions with _$ClientSymbolResolveOptions {
+  const factory ClientSymbolResolveOptions({
+    /// The properties that a client can resolve lazily. Usually
+    /// `location.range`
+    required List<String> properties,
+  }) = _ClientSymbolResolveOptions;
+
+  factory ClientSymbolResolveOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientSymbolResolveOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientCompletionItemOptions with _$ClientCompletionItemOptions {
+  const factory ClientCompletionItemOptions({
+    /// Client supports snippets as insert text.
+    ///
+    /// A snippet can define tab stops and placeholders with `$1`, `$2` and
+    /// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of
+    /// the snippet. Placeholders with equal identifiers are linked, that is
+    /// typing in one will update others too.
+    bool? snippetSupport,
+
+    /// Client supports commit characters on a completion item.
+    bool? commitCharactersSupport,
+
+    /// Client supports the following content formats for the documentation
+    /// property. The order describes the preferred format of the client.
+    List<MarkupKind>? documentationFormat,
+
+    /// Client supports the deprecated property on a completion item.
+    bool? deprecatedSupport,
+
+    /// Client supports the preselect property on a completion item.
+    bool? preselectSupport,
+
+    /// Client supports the tag property on a completion item. Clients
+    /// supporting tags have to handle unknown tags gracefully. Clients
+    /// especially need to preserve unknown tags when sending a completion item
+    /// back to the server in a resolve call.
+    CompletionItemTagOptions? tagSupport,
+
+    /// Client support insert replace edit to control different behavior if a
+    /// completion item is inserted in the text or should replace text.
+    bool? insertReplaceSupport,
+
+    /// Indicates which properties a client can resolve lazily on a completion
+    /// item. Before version 3.16.0 only the predefined properties
+    /// `documentation` and `details` could be resolved lazily.
+    ClientCompletionItemResolveOptions? resolveSupport,
+
+    /// The client supports the `insertTextMode` property on a completion item
+    /// to override the whitespace handling mode as defined by the client (see
+    /// `insertTextMode`).
+    ClientCompletionItemInsertTextModeOptions? insertTextModeSupport,
+
+    /// The client has support for completion item label details (see also
+    /// `CompletionItemLabelDetails`).
+    bool? labelDetailsSupport,
+  }) = _ClientCompletionItemOptions;
+
+  factory ClientCompletionItemOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientCompletionItemOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientSignatureInformationOptions
+    with _$ClientSignatureInformationOptions {
+  const factory ClientSignatureInformationOptions({
+    /// Client supports the following content formats for the documentation
+    /// property. The order describes the preferred format of the client.
+    List<MarkupKind>? documentationFormat,
+
+    /// Client capabilities specific to parameter information.
+    ClientSignatureParameterInformationOptions? parameterInformation,
+
+    /// The client supports the `activeParameter` property on
+    /// `SignatureInformation` literal.
+    bool? activeParameterSupport,
+
+    /// The client supports the `activeParameter` property on
+    /// `SignatureHelp`/`SignatureInformation` being set to `null` to indicate
+    /// that no parameter should be active.
+    bool? noActiveParameterSupport,
+  }) = _ClientSignatureInformationOptions;
+
+  factory ClientSignatureInformationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ClientSignatureInformationOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientCodeActionLiteralOptions
+    with _$ClientCodeActionLiteralOptions {
+  const factory ClientCodeActionLiteralOptions({
+    /// The code action kind is support with the following value set.
+    required ClientCodeActionKindOptions codeActionKind,
+  }) = _ClientCodeActionLiteralOptions;
+
+  factory ClientCodeActionLiteralOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientCodeActionLiteralOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientCodeActionResolveOptions
+    with _$ClientCodeActionResolveOptions {
+  const factory ClientCodeActionResolveOptions({
+    /// The properties that a client can resolve lazily.
+    required List<String> properties,
+  }) = _ClientCodeActionResolveOptions;
+
+  factory ClientCodeActionResolveOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientCodeActionResolveOptionsFromJson(json);
+}
+
+/// @since 3.18.0 - proposed
+@freezed
+abstract class CodeActionTagOptions with _$CodeActionTagOptions {
+  const factory CodeActionTagOptions({
+    /// The tags supported by the client.
+    required List<CodeActionTag> valueSet,
+  }) = _CodeActionTagOptions;
+
+  factory CodeActionTagOptions.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionTagOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientCodeLensResolveOptions
+    with _$ClientCodeLensResolveOptions {
+  const factory ClientCodeLensResolveOptions({
+    /// The properties that a client can resolve lazily.
+    required List<String> properties,
+  }) = _ClientCodeLensResolveOptions;
+
+  factory ClientCodeLensResolveOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientCodeLensResolveOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientFoldingRangeKindOptions
+    with _$ClientFoldingRangeKindOptions {
+  const factory ClientFoldingRangeKindOptions({
+    /// The folding range kind values the client supports. When this property
+    /// exists the client also guarantees that it will handle values outside its
+    /// set gracefully and falls back to a default value when unknown.
+    List<FoldingRangeKind>? valueSet,
+  }) = _ClientFoldingRangeKindOptions;
+
+  factory ClientFoldingRangeKindOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientFoldingRangeKindOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientFoldingRangeOptions with _$ClientFoldingRangeOptions {
+  const factory ClientFoldingRangeOptions({
+    /// If set, the client signals that it supports setting collapsedText on
+    /// folding ranges to display custom labels instead of the default text.
+    bool? collapsedText,
+  }) = _ClientFoldingRangeOptions;
+
+  factory ClientFoldingRangeOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientFoldingRangeOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientSemanticTokensRequestOptions
+    with _$ClientSemanticTokensRequestOptions {
+  const factory ClientSemanticTokensRequestOptions({
+    /// The client will send the `textDocument/semanticTokens/range` request if
+    /// the server provides a corresponding handler.
+    ///
+    /// Type: `bool` | `Object`
+    ClientSemanticTokensRequestOptionsRange? range,
+
+    /// The client will send the `textDocument/semanticTokens/full` request if
+    /// the server provides a corresponding handler.
+    ///
+    /// Type: `bool` | `ClientSemanticTokensRequestFullDelta`
+    ClientSemanticTokensRequestOptionsFull? full,
+  }) = _ClientSemanticTokensRequestOptions;
+
+  factory ClientSemanticTokensRequestOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ClientSemanticTokensRequestOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientInlayHintResolveOptions
+    with _$ClientInlayHintResolveOptions {
+  const factory ClientInlayHintResolveOptions({
+    /// The properties that a client can resolve lazily.
+    required List<String> properties,
+  }) = _ClientInlayHintResolveOptions;
+
+  factory ClientInlayHintResolveOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientInlayHintResolveOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientShowMessageActionItemOptions
+    with _$ClientShowMessageActionItemOptions {
+  const factory ClientShowMessageActionItemOptions({
+    /// Whether the client supports additional attributes which are preserved
+    /// and send back to the server in the request's response.
+    bool? additionalPropertiesSupport,
+  }) = _ClientShowMessageActionItemOptions;
+
+  factory ClientShowMessageActionItemOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ClientShowMessageActionItemOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class CompletionItemTagOptions with _$CompletionItemTagOptions {
+  const factory CompletionItemTagOptions({
+    /// The tags supported by the client.
+    required List<CompletionItemTag> valueSet,
+  }) = _CompletionItemTagOptions;
+
+  factory CompletionItemTagOptions.fromJson(Map<String, dynamic> json) =>
+      _$CompletionItemTagOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientCompletionItemResolveOptions
+    with _$ClientCompletionItemResolveOptions {
+  const factory ClientCompletionItemResolveOptions({
+    /// The properties that a client can resolve lazily.
+    required List<String> properties,
+  }) = _ClientCompletionItemResolveOptions;
+
+  factory ClientCompletionItemResolveOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ClientCompletionItemResolveOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientCompletionItemInsertTextModeOptions
+    with _$ClientCompletionItemInsertTextModeOptions {
+  const factory ClientCompletionItemInsertTextModeOptions({
+    required List<InsertTextMode> valueSet,
+  }) = _ClientCompletionItemInsertTextModeOptions;
+
+  factory ClientCompletionItemInsertTextModeOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ClientCompletionItemInsertTextModeOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientSignatureParameterInformationOptions
+    with _$ClientSignatureParameterInformationOptions {
+  const factory ClientSignatureParameterInformationOptions({
+    /// The client supports processing label offsets instead of a simple label
+    /// string.
+    bool? labelOffsetSupport,
+  }) = _ClientSignatureParameterInformationOptions;
+
+  factory ClientSignatureParameterInformationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ClientSignatureParameterInformationOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientCodeActionKindOptions with _$ClientCodeActionKindOptions {
+  const factory ClientCodeActionKindOptions({
+    /// The code action kind values the client supports. When this property
+    /// exists the client also guarantees that it will handle values outside its
+    /// set gracefully and falls back to a default value when unknown.
+    required List<CodeActionKind> valueSet,
+  }) = _ClientCodeActionKindOptions;
+
+  factory ClientCodeActionKindOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientCodeActionKindOptionsFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientDiagnosticsTagOptions with _$ClientDiagnosticsTagOptions {
+  const factory ClientDiagnosticsTagOptions({
+    /// The tags supported by the client.
+    required List<DiagnosticTag> valueSet,
+  }) = _ClientDiagnosticsTagOptions;
+
+  factory ClientDiagnosticsTagOptions.fromJson(Map<String, dynamic> json) =>
+      _$ClientDiagnosticsTagOptionsFromJson(json);
 }

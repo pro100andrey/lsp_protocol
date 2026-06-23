@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.3.0
+
+* **Upgraded the generated bindings to LSP 3.18.** Models are now generated from
+  the LSP 3.18 meta-model. Highlights:
+  * **New requests** — dynamic text document content
+    (`workspace/textDocumentContent` and `workspace/textDocumentContent/refresh`).
+  * **New enumerations** — `LanguageKind` (typed language identifiers, including
+    `d` and `pascal`), `TraceValue`, `CodeActionTag`, `ApplyKind`.
+  * **New structures** — `SnippetTextEdit`, `WorkspaceEditMetadata`,
+    `CodeActionKindDocumentation`, `CompletionItemApplyKinds`, the
+    `TextDocumentContent*` family, structured `TextDocumentFilter*` /
+    `NotebookDocumentFilter*` (relative-pattern support), and named
+    `Client*`/`Server*` capability options promoted from inline literals
+    (`ClientInfo`, `ServerInfo`, …).
+  * **New properties** — `Command.tooltip`, `CompletionList.applyKind`,
+    `CodeAction.tags`, `CodeLensClientCapabilities.resolveSupport`,
+    `WorkspaceEditClientCapabilities.{metadataSupport,snippetEditSupport}`,
+    `ApplyWorkspaceEditParams.metadata`,
+    `DiagnosticClientCapabilities.markupMessageSupport`,
+    `WorkspaceClientCapabilities.textDocumentContent`, and more.
+* **Breaking (3.18 API shape changes consumers must adopt):**
+  * `InitializeResult.serverInfo` / `InitializeParams.clientInfo` (and
+    `LspClient.start(clientInfo:)`) now take the named `ServerInfo` / `ClientInfo`
+    structures instead of anonymous records.
+  * `TextDocumentItem.languageId` is now `LanguageKind` instead of `String`.
+  * `Diagnostic.message` is now the `DiagnosticMessage` union (string or markup)
+    to support `markupMessageSupport`.
+  * `SignatureHelp.activeParameter` / `SignatureInformation.activeParameter` are
+    now nullable.
+  * Union accessors renamed where the underlying members became named structures
+    (e.g. `TextDocumentContentChangeEvent` and `WorkspaceSymbolLocation`).
+* **Generator hygiene** — doc-comment formatting regexes are compiled once; an
+  unrecognized LSP base type now warns instead of silently passing through.
+
 ## 0.2.1
 
 * **Fixed: nullable-union request results crashed on a `null` response.** Typed

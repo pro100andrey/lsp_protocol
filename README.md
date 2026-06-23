@@ -5,7 +5,7 @@ Monorepo for Dart LSP (Language Server Protocol) tools.
 ## Packages
 
 - [`lsp_generator`](packages/lsp_generator/): Generates Dart classes from the official LSP `metaModel.json`.
-- [`pro_lsp`](packages/pro_lsp/): Core framework containing generated LSP 3.17 models and the transport-agnostic server/client implementation. ([README](packages/pro_lsp/README.md))
+- [`pro_lsp`](packages/pro_lsp/): Core framework containing generated LSP 3.18 models and the transport-agnostic server/client implementation. ([README](packages/pro_lsp/README.md))
 
 ## Debug & Testing
 
@@ -25,6 +25,6 @@ dart run packages/lsp_generator/bin/lsp_generator.dart generate
 
 This command will:
 
-1. Download the latest LSP `metaModel.json` (currently 3.17).
+1. Download the latest LSP `metaModel.json` (currently 3.18).
 2. Generate all structures, unions, enumerations, and type aliases.
 3. Automatically run `build_runner` inside `packages/pro_lsp` to generate the `json_serializable` and `freezed` helper files.

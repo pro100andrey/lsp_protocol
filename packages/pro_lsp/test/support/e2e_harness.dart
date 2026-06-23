@@ -51,7 +51,7 @@ E2EConnect e2eHarness() {
             hoverProvider: .bool(true),
             definitionProvider: .bool(true),
           ),
-          serverInfo: (name: 'e2e-server', version: '1.0.0'),
+          serverInfo: ServerInfo(name: 'e2e-server', version: '1.0.0'),
         ),
       );
     configureServer?.call(server);
@@ -63,7 +63,7 @@ E2EConnect e2eHarness() {
     openClients.add(client);
     await client.start(
       capabilities: const ClientCapabilities(),
-      clientInfo: (name: 'e2e-client', version: '1.0.0'),
+      clientInfo: const ClientInfo(name: 'e2e-client', version: '1.0.0'),
       processId: 1234,
     );
 

@@ -127,10 +127,12 @@ const _$DocumentHighlightKindEnumMap = {
   DocumentHighlightKind.write: 3,
 };
 
-const _$TraceValuesEnumMap = {
-  TraceValues.off: 'off',
-  TraceValues.messages: 'messages',
-  TraceValues.verbose: 'verbose',
+const _$CodeActionTagEnumMap = {CodeActionTag.lLMGenerated: 1};
+
+const _$TraceValueEnumMap = {
+  TraceValue.off: 'off',
+  TraceValue.messages: 'messages',
+  TraceValue.verbose: 'verbose',
 };
 
 const _$MarkupKindEnumMap = {
@@ -139,8 +141,8 @@ const _$MarkupKindEnumMap = {
 };
 
 const _$InlineCompletionTriggerKindEnumMap = {
-  InlineCompletionTriggerKind.invoked: 0,
-  InlineCompletionTriggerKind.automatic: 1,
+  InlineCompletionTriggerKind.invoked: 1,
+  InlineCompletionTriggerKind.automatic: 2,
 };
 
 const _$FileChangeTypeEnumMap = {
@@ -166,6 +168,8 @@ const _$CompletionTriggerKindEnumMap = {
   CompletionTriggerKind.triggerCharacter: 2,
   CompletionTriggerKind.triggerForIncompleteCompletions: 3,
 };
+
+const _$ApplyKindEnumMap = {ApplyKind.replace: 1, ApplyKind.merge: 2};
 
 const _$SignatureHelpTriggerKindEnumMap = {
   SignatureHelpTriggerKind.invoked: 1,

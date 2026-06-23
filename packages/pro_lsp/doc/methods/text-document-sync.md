@@ -38,7 +38,7 @@ client.server.textDocument.didOpen(
   const DidOpenTextDocumentParams(
     textDocument: TextDocumentItem(
       uri: 'file:///a.dart',
-      languageId: 'dart',
+      languageId: LanguageKind.dart,
       version: 1,
       text: 'void main() {}',
     ),

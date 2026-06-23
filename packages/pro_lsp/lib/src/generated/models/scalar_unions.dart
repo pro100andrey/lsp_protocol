@@ -56,33 +56,6 @@ extension type const DiagnosticCode._(Object value) {
   String? get asString => isString ? value as String : null;
 }
 
-/// Inline union: WorkspaceFoldersServerCapabilitiesChangeNotifications.
-extension type const WorkspaceFoldersServerCapabilitiesChangeNotifications._(
-  Object value
-) {
-  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
-    Object json,
-  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
-
-  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.string(
-    String value,
-  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
-
-  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.bool(
-    bool value,
-  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
-
-  Object toJson() => value;
-
-  bool get isString => value is String;
-
-  String? get asString => isString ? value as String : null;
-
-  bool get isBool => value is bool;
-
-  bool? get asBool => isBool ? value as bool : null;
-}
-
 /// Inline union: ParameterInformationLabel.
 extension type const ParameterInformationLabel._(Object value) {
   const factory ParameterInformationLabel.fromJson(Object json) =
@@ -109,4 +82,31 @@ extension type const ParameterInformationLabel._(Object value) {
     }
     return null;
   }
+}
+
+/// Inline union: WorkspaceFoldersServerCapabilitiesChangeNotifications.
+extension type const WorkspaceFoldersServerCapabilitiesChangeNotifications._(
+  Object value
+) {
+  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
+    Object json,
+  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
+
+  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.string(
+    String value,
+  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
+
+  const factory WorkspaceFoldersServerCapabilitiesChangeNotifications.bool(
+    bool value,
+  ) = WorkspaceFoldersServerCapabilitiesChangeNotifications._;
+
+  Object toJson() => value;
+
+  bool get isString => value is String;
+
+  String? get asString => isString ? value as String : null;
+
+  bool get isBool => value is bool;
+
+  bool? get asBool => isBool ? value as bool : null;
 }

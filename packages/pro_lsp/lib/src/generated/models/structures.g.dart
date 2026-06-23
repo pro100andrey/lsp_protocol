@@ -178,21 +178,11 @@ _ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) =>
           : ServerCapabilitiesInlineCompletionProvider.fromJson(
               json['inlineCompletionProvider'] as Object,
             ),
-      workspace: _$recordConvertNullable(
-        json['workspace'],
-        ($jsonValue) => (
-          fileOperations: $jsonValue['fileOperations'] == null
-              ? null
-              : FileOperationOptions.fromJson(
-                  $jsonValue['fileOperations'] as Map<String, dynamic>,
-                ),
-          workspaceFolders: $jsonValue['workspaceFolders'] == null
-              ? null
-              : WorkspaceFoldersServerCapabilities.fromJson(
-                  $jsonValue['workspaceFolders'] as Map<String, dynamic>,
-                ),
-        ),
-      ),
+      workspace: json['workspace'] == null
+          ? null
+          : WorkspaceOptions.fromJson(
+              json['workspace'] as Map<String, dynamic>,
+            ),
       experimental: json['experimental'] == null
           ? null
           : LSPAny.fromJson(json['experimental']),
@@ -237,19 +227,9 @@ Map<String, dynamic> _$ServerCapabilitiesToJson(
   'inlayHintProvider': ?instance.inlayHintProvider?.toJson(),
   'diagnosticProvider': ?instance.diagnosticProvider?.toJson(),
   'inlineCompletionProvider': ?instance.inlineCompletionProvider?.toJson(),
-  'workspace': ?instance.workspace == null
-      ? null
-      : <String, dynamic>{
-          'fileOperations': instance.workspace!.fileOperations?.toJson(),
-          'workspaceFolders': instance.workspace!.workspaceFolders?.toJson(),
-        },
+  'workspace': ?instance.workspace?.toJson(),
   'experimental': ?instance.experimental?.toJson(),
 };
-
-$Rec? _$recordConvertNullable<$Rec>(
-  Object? value,
-  $Rec Function(Map) convert,
-) => value == null ? null : convert(value as Map<String, dynamic>);
 
 _ClientCapabilities _$ClientCapabilitiesFromJson(Map<String, dynamic> json) =>
     _ClientCapabilities(
@@ -292,24 +272,6 @@ Map<String, dynamic> _$ClientCapabilitiesToJson(_ClientCapabilities instance) =>
       'general': ?instance.general?.toJson(),
       'experimental': ?instance.experimental?.toJson(),
     };
-
-_WorkspaceFoldersServerCapabilities
-_$WorkspaceFoldersServerCapabilitiesFromJson(Map<String, dynamic> json) =>
-    _WorkspaceFoldersServerCapabilities(
-      supported: json['supported'] as bool?,
-      changeNotifications: json['changeNotifications'] == null
-          ? null
-          : WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
-              json['changeNotifications'] as Object,
-            ),
-    );
-
-Map<String, dynamic> _$WorkspaceFoldersServerCapabilitiesToJson(
-  _WorkspaceFoldersServerCapabilities instance,
-) => <String, dynamic>{
-  'supported': ?instance.supported,
-  'changeNotifications': ?instance.changeNotifications?.toJson(),
-};
 
 _WorkspaceClientCapabilities _$WorkspaceClientCapabilitiesFromJson(
   Map<String, dynamic> json,
@@ -377,6 +339,11 @@ _WorkspaceClientCapabilities _$WorkspaceClientCapabilitiesFromJson(
       : FoldingRangeWorkspaceClientCapabilities.fromJson(
           json['foldingRange'] as Map<String, dynamic>,
         ),
+  textDocumentContent: json['textDocumentContent'] == null
+      ? null
+      : TextDocumentContentClientCapabilities.fromJson(
+          json['textDocumentContent'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$WorkspaceClientCapabilitiesToJson(
@@ -397,6 +364,7 @@ Map<String, dynamic> _$WorkspaceClientCapabilitiesToJson(
   'inlayHint': ?instance.inlayHint?.toJson(),
   'diagnostics': ?instance.diagnostics?.toJson(),
   'foldingRange': ?instance.foldingRange?.toJson(),
+  'textDocumentContent': ?instance.textDocumentContent?.toJson(),
 };
 
 _TextDocumentClientCapabilities _$TextDocumentClientCapabilitiesFromJson(
@@ -406,6 +374,11 @@ _TextDocumentClientCapabilities _$TextDocumentClientCapabilitiesFromJson(
       ? null
       : TextDocumentSyncClientCapabilities.fromJson(
           json['synchronization'] as Map<String, dynamic>,
+        ),
+  filters: json['filters'] == null
+      ? null
+      : TextDocumentFilterClientCapabilities.fromJson(
+          json['filters'] as Map<String, dynamic>,
         ),
   completion: json['completion'] == null
       ? null
@@ -561,6 +534,7 @@ Map<String, dynamic> _$TextDocumentClientCapabilitiesToJson(
   _TextDocumentClientCapabilities instance,
 ) => <String, dynamic>{
   'synchronization': ?instance.synchronization?.toJson(),
+  'filters': ?instance.filters?.toJson(),
   'completion': ?instance.completion?.toJson(),
   'hover': ?instance.hover?.toJson(),
   'signatureHelp': ?instance.signatureHelp?.toJson(),
@@ -632,16 +606,11 @@ Map<String, dynamic> _$WindowClientCapabilitiesToJson(
 _GeneralClientCapabilities _$GeneralClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _GeneralClientCapabilities(
-  staleRequestSupport: _$recordConvertNullable(
-    json['staleRequestSupport'],
-    ($jsonValue) => (
-      cancel: $jsonValue['cancel'] as bool,
-      retryOnContentModified:
-          ($jsonValue['retryOnContentModified'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
-    ),
-  ),
+  staleRequestSupport: json['staleRequestSupport'] == null
+      ? null
+      : StaleRequestSupportOptions.fromJson(
+          json['staleRequestSupport'] as Map<String, dynamic>,
+        ),
   regularExpressions: json['regularExpressions'] == null
       ? null
       : RegularExpressionsClientCapabilities.fromJson(
@@ -660,18 +629,30 @@ _GeneralClientCapabilities _$GeneralClientCapabilitiesFromJson(
 Map<String, dynamic> _$GeneralClientCapabilitiesToJson(
   _GeneralClientCapabilities instance,
 ) => <String, dynamic>{
-  'staleRequestSupport': ?instance.staleRequestSupport == null
-      ? null
-      : <String, dynamic>{
-          'cancel': instance.staleRequestSupport!.cancel,
-          'retryOnContentModified':
-              instance.staleRequestSupport!.retryOnContentModified,
-        },
+  'staleRequestSupport': ?instance.staleRequestSupport?.toJson(),
   'regularExpressions': ?instance.regularExpressions?.toJson(),
   'markdown': ?instance.markdown?.toJson(),
   'positionEncodings': ?instance.positionEncodings
       ?.map((e) => e.toJson())
       .toList(),
+};
+
+_WorkspaceFoldersServerCapabilities
+_$WorkspaceFoldersServerCapabilitiesFromJson(Map<String, dynamic> json) =>
+    _WorkspaceFoldersServerCapabilities(
+      supported: json['supported'] as bool?,
+      changeNotifications: json['changeNotifications'] == null
+          ? null
+          : WorkspaceFoldersServerCapabilitiesChangeNotifications.fromJson(
+              json['changeNotifications'] as Object,
+            ),
+    );
+
+Map<String, dynamic> _$WorkspaceFoldersServerCapabilitiesToJson(
+  _WorkspaceFoldersServerCapabilities instance,
+) => <String, dynamic>{
+  'supported': ?instance.supported,
+  'changeNotifications': ?instance.changeNotifications?.toJson(),
 };
 
 _WorkspaceEditClientCapabilities _$WorkspaceEditClientCapabilitiesFromJson(
@@ -686,10 +667,13 @@ _WorkspaceEditClientCapabilities _$WorkspaceEditClientCapabilitiesFromJson(
     json['failureHandling'],
   ),
   normalizesLineEndings: json['normalizesLineEndings'] as bool?,
-  changeAnnotationSupport: _$recordConvertNullable(
-    json['changeAnnotationSupport'],
-    ($jsonValue) => (groupsOnLabel: $jsonValue['groupsOnLabel'] as bool?),
-  ),
+  changeAnnotationSupport: json['changeAnnotationSupport'] == null
+      ? null
+      : ChangeAnnotationsSupportOptions.fromJson(
+          json['changeAnnotationSupport'] as Map<String, dynamic>,
+        ),
+  metadataSupport: json['metadataSupport'] as bool?,
+  snippetEditSupport: json['snippetEditSupport'] as bool?,
 );
 
 Map<String, dynamic> _$WorkspaceEditClientCapabilitiesToJson(
@@ -701,11 +685,9 @@ Map<String, dynamic> _$WorkspaceEditClientCapabilitiesToJson(
       .toList(),
   'failureHandling': ?_$FailureHandlingKindEnumMap[instance.failureHandling],
   'normalizesLineEndings': ?instance.normalizesLineEndings,
-  'changeAnnotationSupport': ?instance.changeAnnotationSupport == null
-      ? null
-      : <String, dynamic>{
-          'groupsOnLabel': instance.changeAnnotationSupport!.groupsOnLabel,
-        },
+  'changeAnnotationSupport': ?instance.changeAnnotationSupport?.toJson(),
+  'metadataSupport': ?instance.metadataSupport,
+  'snippetEditSupport': ?instance.snippetEditSupport,
 };
 
 const _$ResourceOperationKindEnumMap = {
@@ -749,85 +731,31 @@ _WorkspaceSymbolClientCapabilities _$WorkspaceSymbolClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _WorkspaceSymbolClientCapabilities(
   dynamicRegistration: json['dynamicRegistration'] as bool?,
-  symbolKind: _$recordConvertNullable(
-    json['symbolKind'],
-    ($jsonValue) => (
-      valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SymbolKindEnumMap, e))
-          .toList(),
-    ),
-  ),
-  tagSupport: _$recordConvertNullable(
-    json['tagSupport'],
-    ($jsonValue) => (
-      valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-          .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-          .toList(),
-    ),
-  ),
-  resolveSupport: _$recordConvertNullable(
-    json['resolveSupport'],
-    ($jsonValue) => (
-      properties: ($jsonValue['properties'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-    ),
-  ),
+  symbolKind: json['symbolKind'] == null
+      ? null
+      : ClientSymbolKindOptions.fromJson(
+          json['symbolKind'] as Map<String, dynamic>,
+        ),
+  tagSupport: json['tagSupport'] == null
+      ? null
+      : ClientSymbolTagOptions.fromJson(
+          json['tagSupport'] as Map<String, dynamic>,
+        ),
+  resolveSupport: json['resolveSupport'] == null
+      ? null
+      : ClientSymbolResolveOptions.fromJson(
+          json['resolveSupport'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$WorkspaceSymbolClientCapabilitiesToJson(
   _WorkspaceSymbolClientCapabilities instance,
 ) => <String, dynamic>{
   'dynamicRegistration': ?instance.dynamicRegistration,
-  'symbolKind': ?instance.symbolKind == null
-      ? null
-      : <String, dynamic>{
-          'valueSet': instance.symbolKind!.valueSet
-              ?.map((e) => _$SymbolKindEnumMap[e]!)
-              .toList(),
-        },
-  'tagSupport': ?instance.tagSupport == null
-      ? null
-      : <String, dynamic>{
-          'valueSet': instance.tagSupport!.valueSet
-              .map((e) => _$SymbolTagEnumMap[e]!)
-              .toList(),
-        },
-  'resolveSupport': ?instance.resolveSupport == null
-      ? null
-      : <String, dynamic>{'properties': instance.resolveSupport!.properties},
+  'symbolKind': ?instance.symbolKind?.toJson(),
+  'tagSupport': ?instance.tagSupport?.toJson(),
+  'resolveSupport': ?instance.resolveSupport?.toJson(),
 };
-
-const _$SymbolKindEnumMap = {
-  SymbolKind.file: 1,
-  SymbolKind.module: 2,
-  SymbolKind.namespace: 3,
-  SymbolKind.package: 4,
-  SymbolKind.class$: 5,
-  SymbolKind.method: 6,
-  SymbolKind.property: 7,
-  SymbolKind.field: 8,
-  SymbolKind.constructor: 9,
-  SymbolKind.enum$: 10,
-  SymbolKind.interface$: 11,
-  SymbolKind.function: 12,
-  SymbolKind.variable: 13,
-  SymbolKind.constant: 14,
-  SymbolKind.string: 15,
-  SymbolKind.number: 16,
-  SymbolKind.boolean: 17,
-  SymbolKind.array: 18,
-  SymbolKind.object: 19,
-  SymbolKind.key: 20,
-  SymbolKind.null$: 21,
-  SymbolKind.enumMember: 22,
-  SymbolKind.struct: 23,
-  SymbolKind.event: 24,
-  SymbolKind.operator$: 25,
-  SymbolKind.typeParameter: 26,
-};
-
-const _$SymbolTagEnumMap = {SymbolTag.deprecated: 1};
 
 _ExecuteCommandClientCapabilities _$ExecuteCommandClientCapabilitiesFromJson(
   Map<String, dynamic> json,
@@ -924,6 +852,16 @@ Map<String, dynamic> _$FoldingRangeWorkspaceClientCapabilitiesToJson(
   _FoldingRangeWorkspaceClientCapabilities instance,
 ) => <String, dynamic>{'refreshSupport': ?instance.refreshSupport};
 
+_TextDocumentContentClientCapabilities
+_$TextDocumentContentClientCapabilitiesFromJson(Map<String, dynamic> json) =>
+    _TextDocumentContentClientCapabilities(
+      dynamicRegistration: json['dynamicRegistration'] as bool?,
+    );
+
+Map<String, dynamic> _$TextDocumentContentClientCapabilitiesToJson(
+  _TextDocumentContentClientCapabilities instance,
+) => <String, dynamic>{'dynamicRegistration': ?instance.dynamicRegistration};
+
 _TextDocumentSyncClientCapabilities
 _$TextDocumentSyncClientCapabilitiesFromJson(Map<String, dynamic> json) =>
     _TextDocumentSyncClientCapabilities(
@@ -942,167 +880,58 @@ Map<String, dynamic> _$TextDocumentSyncClientCapabilitiesToJson(
   'didSave': ?instance.didSave,
 };
 
+_TextDocumentFilterClientCapabilities
+_$TextDocumentFilterClientCapabilitiesFromJson(Map<String, dynamic> json) =>
+    _TextDocumentFilterClientCapabilities(
+      relativePatternSupport: json['relativePatternSupport'] as bool?,
+    );
+
+Map<String, dynamic> _$TextDocumentFilterClientCapabilitiesToJson(
+  _TextDocumentFilterClientCapabilities instance,
+) => <String, dynamic>{
+  'relativePatternSupport': ?instance.relativePatternSupport,
+};
+
 _CompletionClientCapabilities _$CompletionClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _CompletionClientCapabilities(
   dynamicRegistration: json['dynamicRegistration'] as bool?,
-  completionItem: _$recordConvertNullable(
-    json['completionItem'],
-    ($jsonValue) => (
-      commitCharactersSupport: $jsonValue['commitCharactersSupport'] as bool?,
-      deprecatedSupport: $jsonValue['deprecatedSupport'] as bool?,
-      documentationFormat: ($jsonValue['documentationFormat'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
-          .toList(),
-      insertReplaceSupport: $jsonValue['insertReplaceSupport'] as bool?,
-      insertTextModeSupport: _$recordConvertNullable(
-        $jsonValue['insertTextModeSupport'],
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-              .map((e) => $enumDecode(_$InsertTextModeEnumMap, e))
-              .toList(),
+  completionItem: json['completionItem'] == null
+      ? null
+      : ClientCompletionItemOptions.fromJson(
+          json['completionItem'] as Map<String, dynamic>,
         ),
-      ),
-      labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?,
-      preselectSupport: $jsonValue['preselectSupport'] as bool?,
-      resolveSupport: _$recordConvertNullable(
-        $jsonValue['resolveSupport'],
-        ($jsonValue) => (
-          properties: ($jsonValue['properties'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
+  completionItemKind: json['completionItemKind'] == null
+      ? null
+      : ClientCompletionItemOptionsKind.fromJson(
+          json['completionItemKind'] as Map<String, dynamic>,
         ),
-      ),
-      snippetSupport: $jsonValue['snippetSupport'] as bool?,
-      tagSupport: _$recordConvertNullable(
-        $jsonValue['tagSupport'],
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-              .map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
-              .toList(),
-        ),
-      ),
-    ),
-  ),
-  completionItemKind: _$recordConvertNullable(
-    json['completionItemKind'],
-    ($jsonValue) => (
-      valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CompletionItemKindEnumMap, e))
-          .toList(),
-    ),
-  ),
   insertTextMode: $enumDecodeNullable(
     _$InsertTextModeEnumMap,
     json['insertTextMode'],
   ),
   contextSupport: json['contextSupport'] as bool?,
-  completionList: _$recordConvertNullable(
-    json['completionList'],
-    ($jsonValue) => (
-      itemDefaults: ($jsonValue['itemDefaults'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-    ),
-  ),
+  completionList: json['completionList'] == null
+      ? null
+      : CompletionListCapabilities.fromJson(
+          json['completionList'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$CompletionClientCapabilitiesToJson(
   _CompletionClientCapabilities instance,
 ) => <String, dynamic>{
   'dynamicRegistration': ?instance.dynamicRegistration,
-  'completionItem': ?instance.completionItem == null
-      ? null
-      : <String, dynamic>{
-          'commitCharactersSupport':
-              instance.completionItem!.commitCharactersSupport,
-          'deprecatedSupport': instance.completionItem!.deprecatedSupport,
-          'documentationFormat': instance.completionItem!.documentationFormat
-              ?.map((e) => _$MarkupKindEnumMap[e]!)
-              .toList(),
-          'insertReplaceSupport': instance.completionItem!.insertReplaceSupport,
-          'insertTextModeSupport':
-              instance.completionItem!.insertTextModeSupport == null
-              ? null
-              : <String, dynamic>{
-                  'valueSet': instance
-                      .completionItem!
-                      .insertTextModeSupport!
-                      .valueSet
-                      .map((e) => _$InsertTextModeEnumMap[e]!)
-                      .toList(),
-                },
-          'labelDetailsSupport': instance.completionItem!.labelDetailsSupport,
-          'preselectSupport': instance.completionItem!.preselectSupport,
-          'resolveSupport': instance.completionItem!.resolveSupport == null
-              ? null
-              : <String, dynamic>{
-                  'properties':
-                      instance.completionItem!.resolveSupport!.properties,
-                },
-          'snippetSupport': instance.completionItem!.snippetSupport,
-          'tagSupport': instance.completionItem!.tagSupport == null
-              ? null
-              : <String, dynamic>{
-                  'valueSet': instance.completionItem!.tagSupport!.valueSet
-                      .map((e) => _$CompletionItemTagEnumMap[e]!)
-                      .toList(),
-                },
-        },
-  'completionItemKind': ?instance.completionItemKind == null
-      ? null
-      : <String, dynamic>{
-          'valueSet': instance.completionItemKind!.valueSet
-              ?.map((e) => _$CompletionItemKindEnumMap[e]!)
-              .toList(),
-        },
+  'completionItem': ?instance.completionItem?.toJson(),
+  'completionItemKind': ?instance.completionItemKind?.toJson(),
   'insertTextMode': ?_$InsertTextModeEnumMap[instance.insertTextMode],
   'contextSupport': ?instance.contextSupport,
-  'completionList': ?instance.completionList == null
-      ? null
-      : <String, dynamic>{
-          'itemDefaults': instance.completionList!.itemDefaults,
-        },
-};
-
-const _$MarkupKindEnumMap = {
-  MarkupKind.plainText: 'plaintext',
-  MarkupKind.markdown: 'markdown',
+  'completionList': ?instance.completionList?.toJson(),
 };
 
 const _$InsertTextModeEnumMap = {
   InsertTextMode.asIs: 1,
   InsertTextMode.adjustIndentation: 2,
-};
-
-const _$CompletionItemTagEnumMap = {CompletionItemTag.deprecated: 1};
-
-const _$CompletionItemKindEnumMap = {
-  CompletionItemKind.text: 1,
-  CompletionItemKind.method: 2,
-  CompletionItemKind.function: 3,
-  CompletionItemKind.constructor: 4,
-  CompletionItemKind.field: 5,
-  CompletionItemKind.variable: 6,
-  CompletionItemKind.class$: 7,
-  CompletionItemKind.interface$: 8,
-  CompletionItemKind.module: 9,
-  CompletionItemKind.property: 10,
-  CompletionItemKind.unit: 11,
-  CompletionItemKind.value$: 12,
-  CompletionItemKind.enum$: 13,
-  CompletionItemKind.keyword: 14,
-  CompletionItemKind.snippet: 15,
-  CompletionItemKind.color: 16,
-  CompletionItemKind.file: 17,
-  CompletionItemKind.reference: 18,
-  CompletionItemKind.folder: 19,
-  CompletionItemKind.enumMember: 20,
-  CompletionItemKind.constant: 21,
-  CompletionItemKind.struct: 22,
-  CompletionItemKind.event: 23,
-  CompletionItemKind.operator$: 24,
-  CompletionItemKind.typeParameter: 25,
 };
 
 _HoverClientCapabilities _$HoverClientCapabilitiesFromJson(
@@ -1123,24 +952,20 @@ Map<String, dynamic> _$HoverClientCapabilitiesToJson(
       .toList(),
 };
 
+const _$MarkupKindEnumMap = {
+  MarkupKind.plainText: 'plaintext',
+  MarkupKind.markdown: 'markdown',
+};
+
 _SignatureHelpClientCapabilities _$SignatureHelpClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _SignatureHelpClientCapabilities(
   dynamicRegistration: json['dynamicRegistration'] as bool?,
-  signatureInformation: _$recordConvertNullable(
-    json['signatureInformation'],
-    ($jsonValue) => (
-      activeParameterSupport: $jsonValue['activeParameterSupport'] as bool?,
-      documentationFormat: ($jsonValue['documentationFormat'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
-          .toList(),
-      parameterInformation: _$recordConvertNullable(
-        $jsonValue['parameterInformation'],
-        ($jsonValue) =>
-            (labelOffsetSupport: $jsonValue['labelOffsetSupport'] as bool?),
-      ),
-    ),
-  ),
+  signatureInformation: json['signatureInformation'] == null
+      ? null
+      : ClientSignatureInformationOptions.fromJson(
+          json['signatureInformation'] as Map<String, dynamic>,
+        ),
   contextSupport: json['contextSupport'] as bool?,
 );
 
@@ -1148,26 +973,7 @@ Map<String, dynamic> _$SignatureHelpClientCapabilitiesToJson(
   _SignatureHelpClientCapabilities instance,
 ) => <String, dynamic>{
   'dynamicRegistration': ?instance.dynamicRegistration,
-  'signatureInformation': ?instance.signatureInformation == null
-      ? null
-      : <String, dynamic>{
-          'activeParameterSupport':
-              instance.signatureInformation!.activeParameterSupport,
-          'documentationFormat': instance
-              .signatureInformation!
-              .documentationFormat
-              ?.map((e) => _$MarkupKindEnumMap[e]!)
-              .toList(),
-          'parameterInformation':
-              instance.signatureInformation!.parameterInformation == null
-              ? null
-              : <String, dynamic>{
-                  'labelOffsetSupport': instance
-                      .signatureInformation!
-                      .parameterInformation!
-                      .labelOffsetSupport,
-                },
-        },
+  'signatureInformation': ?instance.signatureInformation?.toJson(),
   'contextSupport': ?instance.contextSupport,
 };
 
@@ -1251,24 +1057,18 @@ _DocumentSymbolClientCapabilities _$DocumentSymbolClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _DocumentSymbolClientCapabilities(
   dynamicRegistration: json['dynamicRegistration'] as bool?,
-  symbolKind: _$recordConvertNullable(
-    json['symbolKind'],
-    ($jsonValue) => (
-      valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SymbolKindEnumMap, e))
-          .toList(),
-    ),
-  ),
+  symbolKind: json['symbolKind'] == null
+      ? null
+      : ClientSymbolKindOptions.fromJson(
+          json['symbolKind'] as Map<String, dynamic>,
+        ),
   hierarchicalDocumentSymbolSupport:
       json['hierarchicalDocumentSymbolSupport'] as bool?,
-  tagSupport: _$recordConvertNullable(
-    json['tagSupport'],
-    ($jsonValue) => (
-      valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-          .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-          .toList(),
-    ),
-  ),
+  tagSupport: json['tagSupport'] == null
+      ? null
+      : ClientSymbolTagOptions.fromJson(
+          json['tagSupport'] as Map<String, dynamic>,
+        ),
   labelSupport: json['labelSupport'] as bool?,
 );
 
@@ -1276,22 +1076,10 @@ Map<String, dynamic> _$DocumentSymbolClientCapabilitiesToJson(
   _DocumentSymbolClientCapabilities instance,
 ) => <String, dynamic>{
   'dynamicRegistration': ?instance.dynamicRegistration,
-  'symbolKind': ?instance.symbolKind == null
-      ? null
-      : <String, dynamic>{
-          'valueSet': instance.symbolKind!.valueSet
-              ?.map((e) => _$SymbolKindEnumMap[e]!)
-              .toList(),
-        },
+  'symbolKind': ?instance.symbolKind?.toJson(),
   'hierarchicalDocumentSymbolSupport':
       ?instance.hierarchicalDocumentSymbolSupport,
-  'tagSupport': ?instance.tagSupport == null
-      ? null
-      : <String, dynamic>{
-          'valueSet': instance.tagSupport!.valueSet
-              .map((e) => _$SymbolTagEnumMap[e]!)
-              .toList(),
-        },
+  'tagSupport': ?instance.tagSupport?.toJson(),
   'labelSupport': ?instance.labelSupport,
 };
 
@@ -1299,70 +1087,59 @@ _CodeActionClientCapabilities _$CodeActionClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _CodeActionClientCapabilities(
   dynamicRegistration: json['dynamicRegistration'] as bool?,
-  codeActionLiteralSupport: _$recordConvertNullable(
-    json['codeActionLiteralSupport'],
-    ($jsonValue) => (
-      codeActionKind: _$recordConvert(
-        $jsonValue['codeActionKind'],
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-              .map(CodeActionKind.fromJson)
-              .toList(),
+  codeActionLiteralSupport: json['codeActionLiteralSupport'] == null
+      ? null
+      : ClientCodeActionLiteralOptions.fromJson(
+          json['codeActionLiteralSupport'] as Map<String, dynamic>,
         ),
-      ),
-    ),
-  ),
   isPreferredSupport: json['isPreferredSupport'] as bool?,
   disabledSupport: json['disabledSupport'] as bool?,
   dataSupport: json['dataSupport'] as bool?,
-  resolveSupport: _$recordConvertNullable(
-    json['resolveSupport'],
-    ($jsonValue) => (
-      properties: ($jsonValue['properties'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-    ),
-  ),
+  resolveSupport: json['resolveSupport'] == null
+      ? null
+      : ClientCodeActionResolveOptions.fromJson(
+          json['resolveSupport'] as Map<String, dynamic>,
+        ),
   honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
+  documentationSupport: json['documentationSupport'] as bool?,
+  tagSupport: json['tagSupport'] == null
+      ? null
+      : CodeActionTagOptions.fromJson(
+          json['tagSupport'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$CodeActionClientCapabilitiesToJson(
   _CodeActionClientCapabilities instance,
 ) => <String, dynamic>{
   'dynamicRegistration': ?instance.dynamicRegistration,
-  'codeActionLiteralSupport': ?instance.codeActionLiteralSupport == null
-      ? null
-      : <String, dynamic>{
-          'codeActionKind': <String, dynamic>{
-            'valueSet': instance
-                .codeActionLiteralSupport!
-                .codeActionKind
-                .valueSet
-                .map((e) => e.toJson())
-                .toList(),
-          },
-        },
+  'codeActionLiteralSupport': ?instance.codeActionLiteralSupport?.toJson(),
   'isPreferredSupport': ?instance.isPreferredSupport,
   'disabledSupport': ?instance.disabledSupport,
   'dataSupport': ?instance.dataSupport,
-  'resolveSupport': ?instance.resolveSupport == null
-      ? null
-      : <String, dynamic>{'properties': instance.resolveSupport!.properties},
+  'resolveSupport': ?instance.resolveSupport?.toJson(),
   'honorsChangeAnnotations': ?instance.honorsChangeAnnotations,
+  'documentationSupport': ?instance.documentationSupport,
+  'tagSupport': ?instance.tagSupport?.toJson(),
 };
-
-$Rec _$recordConvert<$Rec>(Object? value, $Rec Function(Map) convert) =>
-    convert(value as Map<String, dynamic>);
 
 _CodeLensClientCapabilities _$CodeLensClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _CodeLensClientCapabilities(
   dynamicRegistration: json['dynamicRegistration'] as bool?,
+  resolveSupport: json['resolveSupport'] == null
+      ? null
+      : ClientCodeLensResolveOptions.fromJson(
+          json['resolveSupport'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$CodeLensClientCapabilitiesToJson(
   _CodeLensClientCapabilities instance,
-) => <String, dynamic>{'dynamicRegistration': ?instance.dynamicRegistration};
+) => <String, dynamic>{
+  'dynamicRegistration': ?instance.dynamicRegistration,
+  'resolveSupport': ?instance.resolveSupport?.toJson(),
+};
 
 _DocumentLinkClientCapabilities _$DocumentLinkClientCapabilitiesFromJson(
   Map<String, dynamic> json,
@@ -1457,18 +1234,16 @@ _FoldingRangeClientCapabilities _$FoldingRangeClientCapabilitiesFromJson(
   dynamicRegistration: json['dynamicRegistration'] as bool?,
   rangeLimit: (json['rangeLimit'] as num?)?.toInt(),
   lineFoldingOnly: json['lineFoldingOnly'] as bool?,
-  foldingRangeKind: _$recordConvertNullable(
-    json['foldingRangeKind'],
-    ($jsonValue) => (
-      valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-          ?.map(FoldingRangeKind.fromJson)
-          .toList(),
-    ),
-  ),
-  foldingRange: _$recordConvertNullable(
-    json['foldingRange'],
-    ($jsonValue) => (collapsedText: $jsonValue['collapsedText'] as bool?),
-  ),
+  foldingRangeKind: json['foldingRangeKind'] == null
+      ? null
+      : ClientFoldingRangeKindOptions.fromJson(
+          json['foldingRangeKind'] as Map<String, dynamic>,
+        ),
+  foldingRange: json['foldingRange'] == null
+      ? null
+      : ClientFoldingRangeOptions.fromJson(
+          json['foldingRange'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$FoldingRangeClientCapabilitiesToJson(
@@ -1477,18 +1252,8 @@ Map<String, dynamic> _$FoldingRangeClientCapabilitiesToJson(
   'dynamicRegistration': ?instance.dynamicRegistration,
   'rangeLimit': ?instance.rangeLimit,
   'lineFoldingOnly': ?instance.lineFoldingOnly,
-  'foldingRangeKind': ?instance.foldingRangeKind == null
-      ? null
-      : <String, dynamic>{
-          'valueSet': instance.foldingRangeKind!.valueSet
-              ?.map((e) => e.toJson())
-              .toList(),
-        },
-  'foldingRange': ?instance.foldingRange == null
-      ? null
-      : <String, dynamic>{
-          'collapsedText': instance.foldingRange!.collapsedText,
-        },
+  'foldingRangeKind': ?instance.foldingRangeKind?.toJson(),
+  'foldingRange': ?instance.foldingRange?.toJson(),
 };
 
 _SelectionRangeClientCapabilities _$SelectionRangeClientCapabilitiesFromJson(
@@ -1505,38 +1270,24 @@ _PublishDiagnosticsClientCapabilities
 _$PublishDiagnosticsClientCapabilitiesFromJson(Map<String, dynamic> json) =>
     _PublishDiagnosticsClientCapabilities(
       relatedInformation: json['relatedInformation'] as bool?,
-      tagSupport: _$recordConvertNullable(
-        json['tagSupport'],
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-              .map((e) => $enumDecode(_$DiagnosticTagEnumMap, e))
-              .toList(),
-        ),
-      ),
-      versionSupport: json['versionSupport'] as bool?,
+      tagSupport: json['tagSupport'] == null
+          ? null
+          : ClientDiagnosticsTagOptions.fromJson(
+              json['tagSupport'] as Map<String, dynamic>,
+            ),
       codeDescriptionSupport: json['codeDescriptionSupport'] as bool?,
       dataSupport: json['dataSupport'] as bool?,
+      versionSupport: json['versionSupport'] as bool?,
     );
 
 Map<String, dynamic> _$PublishDiagnosticsClientCapabilitiesToJson(
   _PublishDiagnosticsClientCapabilities instance,
 ) => <String, dynamic>{
   'relatedInformation': ?instance.relatedInformation,
-  'tagSupport': ?instance.tagSupport == null
-      ? null
-      : <String, dynamic>{
-          'valueSet': instance.tagSupport!.valueSet
-              .map((e) => _$DiagnosticTagEnumMap[e]!)
-              .toList(),
-        },
-  'versionSupport': ?instance.versionSupport,
+  'tagSupport': ?instance.tagSupport?.toJson(),
   'codeDescriptionSupport': ?instance.codeDescriptionSupport,
   'dataSupport': ?instance.dataSupport,
-};
-
-const _$DiagnosticTagEnumMap = {
-  DiagnosticTag.unnecessary: 1,
-  DiagnosticTag.deprecated: 2,
+  'versionSupport': ?instance.versionSupport,
 };
 
 _CallHierarchyClientCapabilities _$CallHierarchyClientCapabilitiesFromJson(
@@ -1552,9 +1303,8 @@ Map<String, dynamic> _$CallHierarchyClientCapabilitiesToJson(
 _SemanticTokensClientCapabilities _$SemanticTokensClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _SemanticTokensClientCapabilities(
-  requests: _$recordConvert(
-    json['requests'],
-    ($jsonValue) => (full: $jsonValue['full'], range: $jsonValue['range']),
+  requests: ClientSemanticTokensRequestOptions.fromJson(
+    json['requests'] as Map<String, dynamic>,
   ),
   tokenTypes: (json['tokenTypes'] as List<dynamic>)
       .map((e) => e as String)
@@ -1575,10 +1325,7 @@ _SemanticTokensClientCapabilities _$SemanticTokensClientCapabilitiesFromJson(
 Map<String, dynamic> _$SemanticTokensClientCapabilitiesToJson(
   _SemanticTokensClientCapabilities instance,
 ) => <String, dynamic>{
-  'requests': <String, dynamic>{
-    'full': instance.requests.full,
-    'range': instance.requests.range,
-  },
+  'requests': instance.requests.toJson(),
   'tokenTypes': instance.tokenTypes,
   'tokenModifiers': instance.tokenModifiers,
   'formats': instance.formats.map((e) => _$TokenFormatEnumMap[e]!).toList(),
@@ -1635,37 +1382,46 @@ _InlayHintClientCapabilities _$InlayHintClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _InlayHintClientCapabilities(
   dynamicRegistration: json['dynamicRegistration'] as bool?,
-  resolveSupport: _$recordConvertNullable(
-    json['resolveSupport'],
-    ($jsonValue) => (
-      properties: ($jsonValue['properties'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-    ),
-  ),
+  resolveSupport: json['resolveSupport'] == null
+      ? null
+      : ClientInlayHintResolveOptions.fromJson(
+          json['resolveSupport'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$InlayHintClientCapabilitiesToJson(
   _InlayHintClientCapabilities instance,
 ) => <String, dynamic>{
   'dynamicRegistration': ?instance.dynamicRegistration,
-  'resolveSupport': ?instance.resolveSupport == null
-      ? null
-      : <String, dynamic>{'properties': instance.resolveSupport!.properties},
+  'resolveSupport': ?instance.resolveSupport?.toJson(),
 };
 
 _DiagnosticClientCapabilities _$DiagnosticClientCapabilitiesFromJson(
   Map<String, dynamic> json,
 ) => _DiagnosticClientCapabilities(
+  relatedInformation: json['relatedInformation'] as bool?,
+  tagSupport: json['tagSupport'] == null
+      ? null
+      : ClientDiagnosticsTagOptions.fromJson(
+          json['tagSupport'] as Map<String, dynamic>,
+        ),
+  codeDescriptionSupport: json['codeDescriptionSupport'] as bool?,
+  dataSupport: json['dataSupport'] as bool?,
   dynamicRegistration: json['dynamicRegistration'] as bool?,
   relatedDocumentSupport: json['relatedDocumentSupport'] as bool?,
+  markupMessageSupport: json['markupMessageSupport'] as bool?,
 );
 
 Map<String, dynamic> _$DiagnosticClientCapabilitiesToJson(
   _DiagnosticClientCapabilities instance,
 ) => <String, dynamic>{
+  'relatedInformation': ?instance.relatedInformation,
+  'tagSupport': ?instance.tagSupport?.toJson(),
+  'codeDescriptionSupport': ?instance.codeDescriptionSupport,
+  'dataSupport': ?instance.dataSupport,
   'dynamicRegistration': ?instance.dynamicRegistration,
   'relatedDocumentSupport': ?instance.relatedDocumentSupport,
+  'markupMessageSupport': ?instance.markupMessageSupport,
 };
 
 _InlineCompletionClientCapabilities
@@ -1695,24 +1451,17 @@ Map<String, dynamic> _$NotebookDocumentSyncClientCapabilitiesToJson(
 _ShowMessageRequestClientCapabilities
 _$ShowMessageRequestClientCapabilitiesFromJson(Map<String, dynamic> json) =>
     _ShowMessageRequestClientCapabilities(
-      messageActionItem: _$recordConvertNullable(
-        json['messageActionItem'],
-        ($jsonValue) => (
-          additionalPropertiesSupport:
-              $jsonValue['additionalPropertiesSupport'] as bool?,
-        ),
-      ),
+      messageActionItem: json['messageActionItem'] == null
+          ? null
+          : ClientShowMessageActionItemOptions.fromJson(
+              json['messageActionItem'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$ShowMessageRequestClientCapabilitiesToJson(
   _ShowMessageRequestClientCapabilities instance,
 ) => <String, dynamic>{
-  'messageActionItem': ?instance.messageActionItem == null
-      ? null
-      : <String, dynamic>{
-          'additionalPropertiesSupport':
-              instance.messageActionItem!.additionalPropertiesSupport,
-        },
+  'messageActionItem': ?instance.messageActionItem?.toJson(),
 };
 
 _ShowDocumentClientCapabilities _$ShowDocumentClientCapabilitiesFromJson(
@@ -1750,6 +1499,44 @@ Map<String, dynamic> _$MarkdownClientCapabilitiesToJson(
   'parser': instance.parser,
   'version': ?instance.version,
   'allowedTags': ?instance.allowedTags,
+};
+
+_CompletionListCapabilities _$CompletionListCapabilitiesFromJson(
+  Map<String, dynamic> json,
+) => _CompletionListCapabilities(
+  itemDefaults: (json['itemDefaults'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  applyKindSupport: json['applyKindSupport'] as bool?,
+);
+
+Map<String, dynamic> _$CompletionListCapabilitiesToJson(
+  _CompletionListCapabilities instance,
+) => <String, dynamic>{
+  'itemDefaults': ?instance.itemDefaults,
+  'applyKindSupport': ?instance.applyKindSupport,
+};
+
+_DiagnosticsCapabilities _$DiagnosticsCapabilitiesFromJson(
+  Map<String, dynamic> json,
+) => _DiagnosticsCapabilities(
+  relatedInformation: json['relatedInformation'] as bool?,
+  tagSupport: json['tagSupport'] == null
+      ? null
+      : ClientDiagnosticsTagOptions.fromJson(
+          json['tagSupport'] as Map<String, dynamic>,
+        ),
+  codeDescriptionSupport: json['codeDescriptionSupport'] as bool?,
+  dataSupport: json['dataSupport'] as bool?,
+);
+
+Map<String, dynamic> _$DiagnosticsCapabilitiesToJson(
+  _DiagnosticsCapabilities instance,
+) => <String, dynamic>{
+  'relatedInformation': ?instance.relatedInformation,
+  'tagSupport': ?instance.tagSupport?.toJson(),
+  'codeDescriptionSupport': ?instance.codeDescriptionSupport,
+  'dataSupport': ?instance.dataSupport,
 };
 
 _Location _$LocationFromJson(Map<String, dynamic> json) => _Location(
@@ -1863,6 +1650,37 @@ Map<String, dynamic> _$CallHierarchyItemToJson(_CallHierarchyItem instance) =>
       'detail': ?instance.detail,
       'data': ?instance.data?.toJson(),
     };
+
+const _$SymbolKindEnumMap = {
+  SymbolKind.file: 1,
+  SymbolKind.module: 2,
+  SymbolKind.namespace: 3,
+  SymbolKind.package: 4,
+  SymbolKind.class$: 5,
+  SymbolKind.method: 6,
+  SymbolKind.property: 7,
+  SymbolKind.field: 8,
+  SymbolKind.constructor: 9,
+  SymbolKind.enum$: 10,
+  SymbolKind.interface$: 11,
+  SymbolKind.function: 12,
+  SymbolKind.variable: 13,
+  SymbolKind.constant: 14,
+  SymbolKind.string: 15,
+  SymbolKind.number: 16,
+  SymbolKind.boolean: 17,
+  SymbolKind.array: 18,
+  SymbolKind.object: 19,
+  SymbolKind.key: 20,
+  SymbolKind.null$: 21,
+  SymbolKind.enumMember: 22,
+  SymbolKind.struct: 23,
+  SymbolKind.event: 24,
+  SymbolKind.operator$: 25,
+  SymbolKind.typeParameter: 26,
+};
+
+const _$SymbolTagEnumMap = {SymbolTag.deprecated: 1};
 
 _CallHierarchyIncomingCall _$CallHierarchyIncomingCallFromJson(
   Map<String, dynamic> json,
@@ -2084,18 +1902,6 @@ const _$InlayHintKindEnumMap = {
   InlayHintKind.parameter: 2,
 };
 
-_DocumentDiagnosticReportPartialResult
-_$DocumentDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) =>
-    _DocumentDiagnosticReportPartialResult(
-      relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(k, e as Object),
-      ),
-    );
-
-Map<String, dynamic> _$DocumentDiagnosticReportPartialResultToJson(
-  _DocumentDiagnosticReportPartialResult instance,
-) => <String, dynamic>{'relatedDocuments': instance.relatedDocuments};
-
 _DiagnosticServerCancellationData _$DiagnosticServerCancellationDataFromJson(
   Map<String, dynamic> json,
 ) => _DiagnosticServerCancellationData(
@@ -2166,29 +1972,28 @@ Map<String, dynamic> _$InlineCompletionItemToJson(
   'command': ?instance.command?.toJson(),
 };
 
+_TextDocumentContentResult _$TextDocumentContentResultFromJson(
+  Map<String, dynamic> json,
+) => _TextDocumentContentResult(text: json['text'] as String);
+
+Map<String, dynamic> _$TextDocumentContentResultToJson(
+  _TextDocumentContentResult instance,
+) => <String, dynamic>{'text': instance.text};
+
 _InitializeResult _$InitializeResultFromJson(Map<String, dynamic> json) =>
     _InitializeResult(
       capabilities: ServerCapabilities.fromJson(
         json['capabilities'] as Map<String, dynamic>,
       ),
-      serverInfo: _$recordConvertNullable(
-        json['serverInfo'],
-        ($jsonValue) => (
-          name: $jsonValue['name'] as String,
-          version: $jsonValue['version'] as String?,
-        ),
-      ),
+      serverInfo: json['serverInfo'] == null
+          ? null
+          : ServerInfo.fromJson(json['serverInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$InitializeResultToJson(_InitializeResult instance) =>
     <String, dynamic>{
       'capabilities': instance.capabilities.toJson(),
-      'serverInfo': ?instance.serverInfo == null
-          ? null
-          : <String, dynamic>{
-              'name': instance.serverInfo!.name,
-              'version': instance.serverInfo!.version,
-            },
+      'serverInfo': ?instance.serverInfo?.toJson(),
     };
 
 _InitializeError _$InitializeErrorFromJson(Map<String, dynamic> json) =>
@@ -2286,6 +2091,36 @@ Map<String, dynamic> _$CompletionItemToJson(
   'data': ?instance.data?.toJson(),
 };
 
+const _$CompletionItemKindEnumMap = {
+  CompletionItemKind.text: 1,
+  CompletionItemKind.method: 2,
+  CompletionItemKind.function: 3,
+  CompletionItemKind.constructor: 4,
+  CompletionItemKind.field: 5,
+  CompletionItemKind.variable: 6,
+  CompletionItemKind.class$: 7,
+  CompletionItemKind.interface$: 8,
+  CompletionItemKind.module: 9,
+  CompletionItemKind.property: 10,
+  CompletionItemKind.unit: 11,
+  CompletionItemKind.value$: 12,
+  CompletionItemKind.enum$: 13,
+  CompletionItemKind.keyword: 14,
+  CompletionItemKind.snippet: 15,
+  CompletionItemKind.color: 16,
+  CompletionItemKind.file: 17,
+  CompletionItemKind.reference: 18,
+  CompletionItemKind.folder: 19,
+  CompletionItemKind.enumMember: 20,
+  CompletionItemKind.constant: 21,
+  CompletionItemKind.struct: 22,
+  CompletionItemKind.event: 23,
+  CompletionItemKind.operator$: 24,
+  CompletionItemKind.typeParameter: 25,
+};
+
+const _$CompletionItemTagEnumMap = {CompletionItemTag.deprecated: 1};
+
 const _$InsertTextFormatEnumMap = {
   InsertTextFormat.plainText: 1,
   InsertTextFormat.snippet: 2,
@@ -2297,47 +2132,25 @@ _CompletionList _$CompletionListFromJson(Map<String, dynamic> json) =>
       items: (json['items'] as List<dynamic>)
           .map((e) => CompletionItem.fromJson(e as Map<String, dynamic>))
           .toList(),
-      itemDefaults: _$recordConvertNullable(
-        json['itemDefaults'],
-        ($jsonValue) => (
-          commitCharacters: ($jsonValue['commitCharacters'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-          data: $jsonValue['data'] == null
-              ? null
-              : LSPAny.fromJson($jsonValue['data']),
-          editRange: $jsonValue['editRange'],
-          insertTextFormat: $enumDecodeNullable(
-            _$InsertTextFormatEnumMap,
-            $jsonValue['insertTextFormat'],
-          ),
-          insertTextMode: $enumDecodeNullable(
-            _$InsertTextModeEnumMap,
-            $jsonValue['insertTextMode'],
-          ),
-        ),
-      ),
+      itemDefaults: json['itemDefaults'] == null
+          ? null
+          : CompletionItemDefaults.fromJson(
+              json['itemDefaults'] as Map<String, dynamic>,
+            ),
+      applyKind: json['applyKind'] == null
+          ? null
+          : CompletionItemApplyKinds.fromJson(
+              json['applyKind'] as Map<String, dynamic>,
+            ),
     );
 
-Map<String, dynamic> _$CompletionListToJson(
-  _CompletionList instance,
-) => <String, dynamic>{
-  'isIncomplete': instance.isIncomplete,
-  'items': instance.items.map((e) => e.toJson()).toList(),
-  'itemDefaults': ?instance.itemDefaults == null
-      ? null
-      : <String, dynamic>{
-          'commitCharacters': instance.itemDefaults!.commitCharacters,
-          'data': instance.itemDefaults!.data?.toJson(),
-          'editRange': instance.itemDefaults!.editRange,
-          'insertTextFormat':
-              _$InsertTextFormatEnumMap[instance
-                  .itemDefaults!
-                  .insertTextFormat],
-          'insertTextMode':
-              _$InsertTextModeEnumMap[instance.itemDefaults!.insertTextMode],
-        },
-};
+Map<String, dynamic> _$CompletionListToJson(_CompletionList instance) =>
+    <String, dynamic>{
+      'isIncomplete': instance.isIncomplete,
+      'items': instance.items.map((e) => e.toJson()).toList(),
+      'itemDefaults': ?instance.itemDefaults?.toJson(),
+      'applyKind': ?instance.applyKind?.toJson(),
+    };
 
 _Hover _$HoverFromJson(Map<String, dynamic> json) => _Hover(
   contents: HoverContents.fromJson(json['contents'] as Object),
@@ -2440,6 +2253,7 @@ Map<String, dynamic> _$DocumentSymbolToJson(_DocumentSymbol instance) =>
 _Command _$CommandFromJson(Map<String, dynamic> json) => _Command(
   title: json['title'] as String,
   command: json['command'] as String,
+  tooltip: json['tooltip'] as String?,
   arguments: (json['arguments'] as List<dynamic>?)
       ?.map(LSPAny.fromJson)
       .toList(),
@@ -2448,6 +2262,7 @@ _Command _$CommandFromJson(Map<String, dynamic> json) => _Command(
 Map<String, dynamic> _$CommandToJson(_Command instance) => <String, dynamic>{
   'title': instance.title,
   'command': instance.command,
+  'tooltip': ?instance.tooltip,
   'arguments': ?instance.arguments?.map((e) => e.toJson()).toList(),
 };
 
@@ -2458,10 +2273,9 @@ _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) => _CodeAction(
       ?.map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
       .toList(),
   isPreferred: json['isPreferred'] as bool?,
-  disabled: _$recordConvertNullable(
-    json['disabled'],
-    ($jsonValue) => (reason: $jsonValue['reason'] as String),
-  ),
+  disabled: json['disabled'] == null
+      ? null
+      : CodeActionDisabled.fromJson(json['disabled'] as Map<String, dynamic>),
   edit: json['edit'] == null
       ? null
       : WorkspaceEdit.fromJson(json['edit'] as Map<String, dynamic>),
@@ -2469,6 +2283,9 @@ _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) => _CodeAction(
       ? null
       : Command.fromJson(json['command'] as Map<String, dynamic>),
   data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
+  tags: (json['tags'] as List<dynamic>?)
+      ?.map((e) => $enumDecode(_$CodeActionTagEnumMap, e))
+      .toList(),
 );
 
 Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
@@ -2477,13 +2294,14 @@ Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
       'kind': ?instance.kind?.toJson(),
       'diagnostics': ?instance.diagnostics?.map((e) => e.toJson()).toList(),
       'isPreferred': ?instance.isPreferred,
-      'disabled': ?instance.disabled == null
-          ? null
-          : <String, dynamic>{'reason': instance.disabled!.reason},
+      'disabled': ?instance.disabled?.toJson(),
       'edit': ?instance.edit?.toJson(),
       'command': ?instance.command?.toJson(),
       'data': ?instance.data?.toJson(),
+      'tags': ?instance.tags?.map((e) => _$CodeActionTagEnumMap[e]!).toList(),
     };
+
+const _$CodeActionTagEnumMap = {CodeActionTag.lLMGenerated: 1};
 
 _WorkspaceSymbol _$WorkspaceSymbolFromJson(Map<String, dynamic> json) =>
     _WorkspaceSymbol(
@@ -2954,34 +2772,17 @@ Map<String, dynamic> _$RelatedUnchangedDocumentDiagnosticReportToJson(
   'relatedDocuments': ?instance.relatedDocuments,
 };
 
-_FullDocumentDiagnosticReport _$FullDocumentDiagnosticReportFromJson(
-  Map<String, dynamic> json,
-) => _FullDocumentDiagnosticReport(
-  items: (json['items'] as List<dynamic>)
-      .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  kind: json['kind'] as String? ?? 'full',
-  resultId: json['resultId'] as String?,
-);
+_DocumentDiagnosticReportPartialResult
+_$DocumentDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) =>
+    _DocumentDiagnosticReportPartialResult(
+      relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(k, e as Object),
+      ),
+    );
 
-Map<String, dynamic> _$FullDocumentDiagnosticReportToJson(
-  _FullDocumentDiagnosticReport instance,
-) => <String, dynamic>{
-  'items': instance.items.map((e) => e.toJson()).toList(),
-  'kind': instance.kind,
-  'resultId': ?instance.resultId,
-};
-
-_UnchangedDocumentDiagnosticReport _$UnchangedDocumentDiagnosticReportFromJson(
-  Map<String, dynamic> json,
-) => _UnchangedDocumentDiagnosticReport(
-  resultId: json['resultId'] as String,
-  kind: json['kind'] as String? ?? 'unchanged',
-);
-
-Map<String, dynamic> _$UnchangedDocumentDiagnosticReportToJson(
-  _UnchangedDocumentDiagnosticReport instance,
-) => <String, dynamic>{'resultId': instance.resultId, 'kind': instance.kind};
+Map<String, dynamic> _$DocumentDiagnosticReportPartialResultToJson(
+  _DocumentDiagnosticReportPartialResult instance,
+) => <String, dynamic>{'relatedDocuments': instance.relatedDocuments};
 
 _PreviousResultId _$PreviousResultIdFromJson(Map<String, dynamic> json) =>
     _PreviousResultId(
@@ -3017,7 +2818,7 @@ Map<String, dynamic> _$NotebookDocumentToJson(_NotebookDocument instance) =>
 _TextDocumentItem _$TextDocumentItemFromJson(Map<String, dynamic> json) =>
     _TextDocumentItem(
       uri: json['uri'] as String,
-      languageId: json['languageId'] as String,
+      languageId: LanguageKind.fromJson(json['languageId']),
       version: (json['version'] as num).toInt(),
       text: json['text'] as String,
     );
@@ -3025,7 +2826,7 @@ _TextDocumentItem _$TextDocumentItemFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TextDocumentItemToJson(_TextDocumentItem instance) =>
     <String, dynamic>{
       'uri': instance.uri,
-      'languageId': instance.languageId,
+      'languageId': instance.languageId.toJson(),
       'version': instance.version,
       'text': instance.text,
     };
@@ -3047,57 +2848,18 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
   metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
     (k, e) => MapEntry(k, LSPAny.fromJson(e)),
   ),
-  cells: _$recordConvertNullable(
-    json['cells'],
-    ($jsonValue) => (
-      data: ($jsonValue['data'] as List<dynamic>?)
-          ?.map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      structure: _$recordConvertNullable(
-        $jsonValue['structure'],
-        ($jsonValue) => (
-          array: NotebookCellArrayChange.fromJson(
-            $jsonValue['array'] as Map<String, dynamic>,
-          ),
-          didClose: ($jsonValue['didClose'] as List<dynamic>?)
-              ?.map(
-                (e) =>
-                    TextDocumentIdentifier.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
-          didOpen: ($jsonValue['didOpen'] as List<dynamic>?)
-              ?.map((e) => TextDocumentItem.fromJson(e as Map<String, dynamic>))
-              .toList(),
+  cells: json['cells'] == null
+      ? null
+      : NotebookDocumentCellChanges.fromJson(
+          json['cells'] as Map<String, dynamic>,
         ),
-      ),
-      textContent: ($jsonValue['textContent'] as List<dynamic>?)
-          ?.map((e) => e as Object)
-          .toList(),
-    ),
-  ),
 );
 
 Map<String, dynamic> _$NotebookDocumentChangeEventToJson(
   _NotebookDocumentChangeEvent instance,
 ) => <String, dynamic>{
   'metadata': ?instance.metadata?.map((k, e) => MapEntry(k, e.toJson())),
-  'cells': ?instance.cells == null
-      ? null
-      : <String, dynamic>{
-          'data': instance.cells!.data?.map((e) => e.toJson()).toList(),
-          'structure': instance.cells!.structure == null
-              ? null
-              : <String, dynamic>{
-                  'array': instance.cells!.structure!.array.toJson(),
-                  'didClose': instance.cells!.structure!.didClose
-                      ?.map((e) => e.toJson())
-                      .toList(),
-                  'didOpen': instance.cells!.structure!.didOpen
-                      ?.map((e) => e.toJson())
-                      .toList(),
-                },
-          'textContent': instance.cells!.textContent,
-        },
+  'cells': ?instance.cells?.toJson(),
 };
 
 _NotebookDocumentIdentifier _$NotebookDocumentIdentifierFromJson(
@@ -3130,8 +2892,8 @@ Map<String, dynamic> _$InlineCompletionContextToJson(
 };
 
 const _$InlineCompletionTriggerKindEnumMap = {
-  InlineCompletionTriggerKind.invoked: 0,
-  InlineCompletionTriggerKind.automatic: 1,
+  InlineCompletionTriggerKind.invoked: 1,
+  InlineCompletionTriggerKind.automatic: 2,
 };
 
 _StringValue _$StringValueFromJson(Map<String, dynamic> json) => _StringValue(
@@ -3163,6 +2925,14 @@ _Unregistration _$UnregistrationFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UnregistrationToJson(_Unregistration instance) =>
     <String, dynamic>{'id': instance.id, 'method': instance.method};
+
+_ServerInfo _$ServerInfoFromJson(Map<String, dynamic> json) => _ServerInfo(
+  name: json['name'] as String,
+  version: json['version'] as String?,
+);
+
+Map<String, dynamic> _$ServerInfoToJson(_ServerInfo instance) =>
+    <String, dynamic>{'name': instance.name, 'version': ?instance.version};
 
 _VersionedTextDocumentIdentifier _$VersionedTextDocumentIdentifierFromJson(
   Map<String, dynamic> json,
@@ -3206,7 +2976,7 @@ Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
 
 _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) => _Diagnostic(
   range: Range.fromJson(json['range'] as Map<String, dynamic>),
-  message: json['message'] as String,
+  message: DiagnosticMessage.fromJson(json['message'] as Object),
   severity: $enumDecodeNullable(_$DiagnosticSeverityEnumMap, json['severity']),
   code: json['code'] == null
       ? null
@@ -3231,7 +3001,7 @@ _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) => _Diagnostic(
 Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
     <String, dynamic>{
       'range': instance.range.toJson(),
-      'message': instance.message,
+      'message': instance.message.toJson(),
       'severity': ?_$DiagnosticSeverityEnumMap[instance.severity],
       'code': ?instance.code?.toJson(),
       'codeDescription': ?instance.codeDescription?.toJson(),
@@ -3248,6 +3018,11 @@ const _$DiagnosticSeverityEnumMap = {
   DiagnosticSeverity.warning: 2,
   DiagnosticSeverity.information: 3,
   DiagnosticSeverity.hint: 4,
+};
+
+const _$DiagnosticTagEnumMap = {
+  DiagnosticTag.unnecessary: 1,
+  DiagnosticTag.deprecated: 2,
 };
 
 _CompletionContext _$CompletionContextFromJson(Map<String, dynamic> json) =>
@@ -3298,6 +3073,55 @@ Map<String, dynamic> _$InsertReplaceEditToJson(_InsertReplaceEdit instance) =>
       'insert': instance.insert.toJson(),
       'replace': instance.replace.toJson(),
     };
+
+_CompletionItemDefaults _$CompletionItemDefaultsFromJson(
+  Map<String, dynamic> json,
+) => _CompletionItemDefaults(
+  commitCharacters: (json['commitCharacters'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  editRange: json['editRange'] == null
+      ? null
+      : CompletionItemDefaultsEditRange.fromJson(json['editRange'] as Object),
+  insertTextFormat: $enumDecodeNullable(
+    _$InsertTextFormatEnumMap,
+    json['insertTextFormat'],
+  ),
+  insertTextMode: $enumDecodeNullable(
+    _$InsertTextModeEnumMap,
+    json['insertTextMode'],
+  ),
+  data: json['data'] == null ? null : LSPAny.fromJson(json['data']),
+);
+
+Map<String, dynamic> _$CompletionItemDefaultsToJson(
+  _CompletionItemDefaults instance,
+) => <String, dynamic>{
+  'commitCharacters': ?instance.commitCharacters,
+  'editRange': ?instance.editRange?.toJson(),
+  'insertTextFormat': ?_$InsertTextFormatEnumMap[instance.insertTextFormat],
+  'insertTextMode': ?_$InsertTextModeEnumMap[instance.insertTextMode],
+  'data': ?instance.data?.toJson(),
+};
+
+_CompletionItemApplyKinds _$CompletionItemApplyKindsFromJson(
+  Map<String, dynamic> json,
+) => _CompletionItemApplyKinds(
+  commitCharacters: $enumDecodeNullable(
+    _$ApplyKindEnumMap,
+    json['commitCharacters'],
+  ),
+  data: $enumDecodeNullable(_$ApplyKindEnumMap, json['data']),
+);
+
+Map<String, dynamic> _$CompletionItemApplyKindsToJson(
+  _CompletionItemApplyKinds instance,
+) => <String, dynamic>{
+  'commitCharacters': ?_$ApplyKindEnumMap[instance.commitCharacters],
+  'data': ?_$ApplyKindEnumMap[instance.data],
+};
+
+const _$ApplyKindEnumMap = {ApplyKind.replace: 1, ApplyKind.merge: 2};
 
 _SignatureHelpContext _$SignatureHelpContextFromJson(
   Map<String, dynamic> json,
@@ -3406,6 +3230,50 @@ const _$CodeActionTriggerKindEnumMap = {
   CodeActionTriggerKind.automatic: 2,
 };
 
+_CodeActionDisabled _$CodeActionDisabledFromJson(Map<String, dynamic> json) =>
+    _CodeActionDisabled(reason: json['reason'] as String);
+
+Map<String, dynamic> _$CodeActionDisabledToJson(_CodeActionDisabled instance) =>
+    <String, dynamic>{'reason': instance.reason};
+
+_LocationUriOnly _$LocationUriOnlyFromJson(Map<String, dynamic> json) =>
+    _LocationUriOnly(uri: json['uri'] as String);
+
+Map<String, dynamic> _$LocationUriOnlyToJson(_LocationUriOnly instance) =>
+    <String, dynamic>{'uri': instance.uri};
+
+_PrepareRenamePlaceholder _$PrepareRenamePlaceholderFromJson(
+  Map<String, dynamic> json,
+) => _PrepareRenamePlaceholder(
+  range: Range.fromJson(json['range'] as Map<String, dynamic>),
+  placeholder: json['placeholder'] as String,
+);
+
+Map<String, dynamic> _$PrepareRenamePlaceholderToJson(
+  _PrepareRenamePlaceholder instance,
+) => <String, dynamic>{
+  'range': instance.range.toJson(),
+  'placeholder': instance.placeholder,
+};
+
+_PrepareRenameDefaultBehavior _$PrepareRenameDefaultBehaviorFromJson(
+  Map<String, dynamic> json,
+) => _PrepareRenameDefaultBehavior(
+  defaultBehavior: json['defaultBehavior'] as bool,
+);
+
+Map<String, dynamic> _$PrepareRenameDefaultBehaviorToJson(
+  _PrepareRenameDefaultBehavior instance,
+) => <String, dynamic>{'defaultBehavior': instance.defaultBehavior};
+
+_WorkspaceEditMetadata _$WorkspaceEditMetadataFromJson(
+  Map<String, dynamic> json,
+) => _WorkspaceEditMetadata(isRefactoring: json['isRefactoring'] as bool?);
+
+Map<String, dynamic> _$WorkspaceEditMetadataToJson(
+  _WorkspaceEditMetadata instance,
+) => <String, dynamic>{'isRefactoring': ?instance.isRefactoring};
+
 _SemanticTokensLegend _$SemanticTokensLegendFromJson(
   Map<String, dynamic> json,
 ) => _SemanticTokensLegend(
@@ -3423,6 +3291,14 @@ Map<String, dynamic> _$SemanticTokensLegendToJson(
   'tokenTypes': instance.tokenTypes,
   'tokenModifiers': instance.tokenModifiers,
 };
+
+_SemanticTokensFullDelta _$SemanticTokensFullDeltaFromJson(
+  Map<String, dynamic> json,
+) => _SemanticTokensFullDelta(delta: json['delta'] as bool?);
+
+Map<String, dynamic> _$SemanticTokensFullDeltaToJson(
+  _SemanticTokensFullDelta instance,
+) => <String, dynamic>{'delta': ?instance.delta};
 
 _OptionalVersionedTextDocumentIdentifier
 _$OptionalVersionedTextDocumentIdentifierFromJson(Map<String, dynamic> json) =>
@@ -3447,6 +3323,20 @@ Map<String, dynamic> _$AnnotatedTextEditToJson(_AnnotatedTextEdit instance) =>
       'range': instance.range.toJson(),
       'newText': instance.newText,
       'annotationId': instance.annotationId,
+    };
+
+_SnippetTextEdit _$SnippetTextEditFromJson(Map<String, dynamic> json) =>
+    _SnippetTextEdit(
+      range: Range.fromJson(json['range'] as Map<String, dynamic>),
+      snippet: StringValue.fromJson(json['snippet'] as Map<String, dynamic>),
+      annotationId: json['annotationId'] as String?,
+    );
+
+Map<String, dynamic> _$SnippetTextEditToJson(_SnippetTextEdit instance) =>
+    <String, dynamic>{
+      'range': instance.range.toJson(),
+      'snippet': instance.snippet.toJson(),
+      'annotationId': ?instance.annotationId,
     };
 
 _ResourceOperation _$ResourceOperationFromJson(Map<String, dynamic> json) =>
@@ -3488,6 +3378,35 @@ const _$FileOperationPatternKindEnumMap = {
   FileOperationPatternKind.file: 'file',
   FileOperationPatternKind.folder: 'folder',
 };
+
+_FullDocumentDiagnosticReport _$FullDocumentDiagnosticReportFromJson(
+  Map<String, dynamic> json,
+) => _FullDocumentDiagnosticReport(
+  items: (json['items'] as List<dynamic>)
+      .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  kind: json['kind'] as String? ?? 'full',
+  resultId: json['resultId'] as String?,
+);
+
+Map<String, dynamic> _$FullDocumentDiagnosticReportToJson(
+  _FullDocumentDiagnosticReport instance,
+) => <String, dynamic>{
+  'items': instance.items.map((e) => e.toJson()).toList(),
+  'kind': instance.kind,
+  'resultId': ?instance.resultId,
+};
+
+_UnchangedDocumentDiagnosticReport _$UnchangedDocumentDiagnosticReportFromJson(
+  Map<String, dynamic> json,
+) => _UnchangedDocumentDiagnosticReport(
+  resultId: json['resultId'] as String,
+  kind: json['kind'] as String? ?? 'unchanged',
+);
+
+Map<String, dynamic> _$UnchangedDocumentDiagnosticReportToJson(
+  _UnchangedDocumentDiagnosticReport instance,
+) => <String, dynamic>{'resultId': instance.resultId, 'kind': instance.kind};
 
 _WorkspaceFullDocumentDiagnosticReport
 _$WorkspaceFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
@@ -3557,22 +3476,70 @@ const _$NotebookCellKindEnumMap = {
   NotebookCellKind.code: 2,
 };
 
-_NotebookCellArrayChange _$NotebookCellArrayChangeFromJson(
+_NotebookDocumentFilterWithNotebook
+_$NotebookDocumentFilterWithNotebookFromJson(Map<String, dynamic> json) =>
+    _NotebookDocumentFilterWithNotebook(
+      notebook: NotebookDocumentFilterWithNotebookNotebook.fromJson(
+        json['notebook'] as Object,
+      ),
+      cells: (json['cells'] as List<dynamic>?)
+          ?.map((e) => NotebookCellLanguage.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$NotebookDocumentFilterWithNotebookToJson(
+  _NotebookDocumentFilterWithNotebook instance,
+) => <String, dynamic>{
+  'notebook': instance.notebook.toJson(),
+  'cells': ?instance.cells?.map((e) => e.toJson()).toList(),
+};
+
+_NotebookDocumentFilterWithCells _$NotebookDocumentFilterWithCellsFromJson(
   Map<String, dynamic> json,
-) => _NotebookCellArrayChange(
-  start: (json['start'] as num).toInt(),
-  deleteCount: (json['deleteCount'] as num).toInt(),
-  cells: (json['cells'] as List<dynamic>?)
+) => _NotebookDocumentFilterWithCells(
+  cells: (json['cells'] as List<dynamic>)
+      .map((e) => NotebookCellLanguage.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  notebook: json['notebook'] == null
+      ? null
+      : NotebookDocumentFilterWithCellsNotebook.fromJson(
+          json['notebook'] as Object,
+        ),
+);
+
+Map<String, dynamic> _$NotebookDocumentFilterWithCellsToJson(
+  _NotebookDocumentFilterWithCells instance,
+) => <String, dynamic>{
+  'cells': instance.cells.map((e) => e.toJson()).toList(),
+  'notebook': ?instance.notebook?.toJson(),
+};
+
+_NotebookDocumentCellChanges _$NotebookDocumentCellChangesFromJson(
+  Map<String, dynamic> json,
+) => _NotebookDocumentCellChanges(
+  structure: json['structure'] == null
+      ? null
+      : NotebookDocumentCellChangeStructure.fromJson(
+          json['structure'] as Map<String, dynamic>,
+        ),
+  data: (json['data'] as List<dynamic>?)
       ?.map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  textContent: (json['textContent'] as List<dynamic>?)
+      ?.map(
+        (e) => NotebookDocumentCellContentChanges.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
       .toList(),
 );
 
-Map<String, dynamic> _$NotebookCellArrayChangeToJson(
-  _NotebookCellArrayChange instance,
+Map<String, dynamic> _$NotebookDocumentCellChangesToJson(
+  _NotebookDocumentCellChanges instance,
 ) => <String, dynamic>{
-  'start': instance.start,
-  'deleteCount': instance.deleteCount,
-  'cells': ?instance.cells?.map((e) => e.toJson()).toList(),
+  'structure': ?instance.structure?.toJson(),
+  'data': ?instance.data?.map((e) => e.toJson()).toList(),
+  'textContent': ?instance.textContent?.map((e) => e.toJson()).toList(),
 };
 
 _SelectedCompletionInfo _$SelectedCompletionInfoFromJson(
@@ -3585,6 +3552,38 @@ _SelectedCompletionInfo _$SelectedCompletionInfoFromJson(
 Map<String, dynamic> _$SelectedCompletionInfoToJson(
   _SelectedCompletionInfo instance,
 ) => <String, dynamic>{'range': instance.range.toJson(), 'text': instance.text};
+
+_ClientInfo _$ClientInfoFromJson(Map<String, dynamic> json) => _ClientInfo(
+  name: json['name'] as String,
+  version: json['version'] as String?,
+);
+
+Map<String, dynamic> _$ClientInfoToJson(_ClientInfo instance) =>
+    <String, dynamic>{'name': instance.name, 'version': ?instance.version};
+
+_TextDocumentContentChangePartial _$TextDocumentContentChangePartialFromJson(
+  Map<String, dynamic> json,
+) => _TextDocumentContentChangePartial(
+  range: Range.fromJson(json['range'] as Map<String, dynamic>),
+  text: json['text'] as String,
+  rangeLength: (json['rangeLength'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$TextDocumentContentChangePartialToJson(
+  _TextDocumentContentChangePartial instance,
+) => <String, dynamic>{
+  'range': instance.range.toJson(),
+  'text': instance.text,
+  'rangeLength': ?instance.rangeLength,
+};
+
+_TextDocumentContentChangeWholeDocument
+_$TextDocumentContentChangeWholeDocumentFromJson(Map<String, dynamic> json) =>
+    _TextDocumentContentChangeWholeDocument(text: json['text'] as String);
+
+Map<String, dynamic> _$TextDocumentContentChangeWholeDocumentToJson(
+  _TextDocumentContentChangeWholeDocument instance,
+) => <String, dynamic>{'text': instance.text};
 
 _CodeDescription _$CodeDescriptionFromJson(Map<String, dynamic> json) =>
     _CodeDescription(href: json['href'] as String);
@@ -3606,6 +3605,31 @@ Map<String, dynamic> _$DiagnosticRelatedInformationToJson(
   'message': instance.message,
 };
 
+_EditRangeWithInsertReplace _$EditRangeWithInsertReplaceFromJson(
+  Map<String, dynamic> json,
+) => _EditRangeWithInsertReplace(
+  insert: Range.fromJson(json['insert'] as Map<String, dynamic>),
+  replace: Range.fromJson(json['replace'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$EditRangeWithInsertReplaceToJson(
+  _EditRangeWithInsertReplace instance,
+) => <String, dynamic>{
+  'insert': instance.insert.toJson(),
+  'replace': instance.replace.toJson(),
+};
+
+_MarkedStringWithLanguage _$MarkedStringWithLanguageFromJson(
+  Map<String, dynamic> json,
+) => _MarkedStringWithLanguage(
+  language: json['language'] as String,
+  value: json['value'] as String,
+);
+
+Map<String, dynamic> _$MarkedStringWithLanguageToJson(
+  _MarkedStringWithLanguage instance,
+) => <String, dynamic>{'language': instance.language, 'value': instance.value};
+
 _ParameterInformation _$ParameterInformationFromJson(
   Map<String, dynamic> json,
 ) => _ParameterInformation(
@@ -3622,6 +3646,20 @@ Map<String, dynamic> _$ParameterInformationToJson(
 ) => <String, dynamic>{
   'label': instance.label.toJson(),
   'documentation': ?instance.documentation?.toJson(),
+};
+
+_CodeActionKindDocumentation _$CodeActionKindDocumentationFromJson(
+  Map<String, dynamic> json,
+) => _CodeActionKindDocumentation(
+  kind: CodeActionKind.fromJson(json['kind']),
+  command: Command.fromJson(json['command'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$CodeActionKindDocumentationToJson(
+  _CodeActionKindDocumentation instance,
+) => <String, dynamic>{
+  'kind': instance.kind.toJson(),
+  'command': instance.command.toJson(),
 };
 
 _NotebookCellTextDocumentFilter _$NotebookCellTextDocumentFilterFromJson(
@@ -3652,6 +3690,56 @@ Map<String, dynamic> _$ExecutionSummaryToJson(_ExecutionSummary instance) =>
       'success': ?instance.success,
     };
 
+_NotebookCellLanguage _$NotebookCellLanguageFromJson(
+  Map<String, dynamic> json,
+) => _NotebookCellLanguage(language: json['language'] as String);
+
+Map<String, dynamic> _$NotebookCellLanguageToJson(
+  _NotebookCellLanguage instance,
+) => <String, dynamic>{'language': instance.language};
+
+_NotebookDocumentCellChangeStructure
+_$NotebookDocumentCellChangeStructureFromJson(Map<String, dynamic> json) =>
+    _NotebookDocumentCellChangeStructure(
+      array: NotebookCellArrayChange.fromJson(
+        json['array'] as Map<String, dynamic>,
+      ),
+      didOpen: (json['didOpen'] as List<dynamic>?)
+          ?.map((e) => TextDocumentItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      didClose: (json['didClose'] as List<dynamic>?)
+          ?.map(
+            (e) => TextDocumentIdentifier.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    );
+
+Map<String, dynamic> _$NotebookDocumentCellChangeStructureToJson(
+  _NotebookDocumentCellChangeStructure instance,
+) => <String, dynamic>{
+  'array': instance.array.toJson(),
+  'didOpen': ?instance.didOpen?.map((e) => e.toJson()).toList(),
+  'didClose': ?instance.didClose?.map((e) => e.toJson()).toList(),
+};
+
+_NotebookDocumentCellContentChanges
+_$NotebookDocumentCellContentChangesFromJson(Map<String, dynamic> json) =>
+    _NotebookDocumentCellContentChanges(
+      document: VersionedTextDocumentIdentifier.fromJson(
+        json['document'] as Map<String, dynamic>,
+      ),
+      changes: (json['changes'] as List<dynamic>)
+          .map((e) => TextDocumentContentChangeEvent.fromJson(e as Object))
+          .toList(),
+    );
+
+Map<String, dynamic> _$NotebookDocumentCellContentChangesToJson(
+  _NotebookDocumentCellContentChanges instance,
+) => <String, dynamic>{
+  'document': instance.document.toJson(),
+  'changes': instance.changes.map((e) => e.toJson()).toList(),
+};
+
 _RelativePattern _$RelativePatternFromJson(Map<String, dynamic> json) =>
     _RelativePattern(
       baseUri: RelativePatternBaseUri.fromJson(json['baseUri'] as Object),
@@ -3663,6 +3751,152 @@ Map<String, dynamic> _$RelativePatternToJson(_RelativePattern instance) =>
       'baseUri': instance.baseUri.toJson(),
       'pattern': instance.pattern,
     };
+
+_TextDocumentFilterLanguage _$TextDocumentFilterLanguageFromJson(
+  Map<String, dynamic> json,
+) => _TextDocumentFilterLanguage(
+  language: json['language'] as String,
+  scheme: json['scheme'] as String?,
+  pattern: json['pattern'] == null
+      ? null
+      : GlobPattern.fromJson(json['pattern'] as Object),
+);
+
+Map<String, dynamic> _$TextDocumentFilterLanguageToJson(
+  _TextDocumentFilterLanguage instance,
+) => <String, dynamic>{
+  'language': instance.language,
+  'scheme': ?instance.scheme,
+  'pattern': ?instance.pattern?.toJson(),
+};
+
+_TextDocumentFilterScheme _$TextDocumentFilterSchemeFromJson(
+  Map<String, dynamic> json,
+) => _TextDocumentFilterScheme(
+  scheme: json['scheme'] as String,
+  language: json['language'] as String?,
+  pattern: json['pattern'] == null
+      ? null
+      : GlobPattern.fromJson(json['pattern'] as Object),
+);
+
+Map<String, dynamic> _$TextDocumentFilterSchemeToJson(
+  _TextDocumentFilterScheme instance,
+) => <String, dynamic>{
+  'scheme': instance.scheme,
+  'language': ?instance.language,
+  'pattern': ?instance.pattern?.toJson(),
+};
+
+_TextDocumentFilterPattern _$TextDocumentFilterPatternFromJson(
+  Map<String, dynamic> json,
+) => _TextDocumentFilterPattern(
+  pattern: GlobPattern.fromJson(json['pattern'] as Object),
+  language: json['language'] as String?,
+  scheme: json['scheme'] as String?,
+);
+
+Map<String, dynamic> _$TextDocumentFilterPatternToJson(
+  _TextDocumentFilterPattern instance,
+) => <String, dynamic>{
+  'pattern': instance.pattern.toJson(),
+  'language': ?instance.language,
+  'scheme': ?instance.scheme,
+};
+
+_NotebookDocumentFilterNotebookType
+_$NotebookDocumentFilterNotebookTypeFromJson(Map<String, dynamic> json) =>
+    _NotebookDocumentFilterNotebookType(
+      notebookType: json['notebookType'] as String,
+      scheme: json['scheme'] as String?,
+      pattern: json['pattern'] == null
+          ? null
+          : GlobPattern.fromJson(json['pattern'] as Object),
+    );
+
+Map<String, dynamic> _$NotebookDocumentFilterNotebookTypeToJson(
+  _NotebookDocumentFilterNotebookType instance,
+) => <String, dynamic>{
+  'notebookType': instance.notebookType,
+  'scheme': ?instance.scheme,
+  'pattern': ?instance.pattern?.toJson(),
+};
+
+_NotebookDocumentFilterScheme _$NotebookDocumentFilterSchemeFromJson(
+  Map<String, dynamic> json,
+) => _NotebookDocumentFilterScheme(
+  scheme: json['scheme'] as String,
+  notebookType: json['notebookType'] as String?,
+  pattern: json['pattern'] == null
+      ? null
+      : GlobPattern.fromJson(json['pattern'] as Object),
+);
+
+Map<String, dynamic> _$NotebookDocumentFilterSchemeToJson(
+  _NotebookDocumentFilterScheme instance,
+) => <String, dynamic>{
+  'scheme': instance.scheme,
+  'notebookType': ?instance.notebookType,
+  'pattern': ?instance.pattern?.toJson(),
+};
+
+_NotebookDocumentFilterPattern _$NotebookDocumentFilterPatternFromJson(
+  Map<String, dynamic> json,
+) => _NotebookDocumentFilterPattern(
+  pattern: GlobPattern.fromJson(json['pattern'] as Object),
+  notebookType: json['notebookType'] as String?,
+  scheme: json['scheme'] as String?,
+);
+
+Map<String, dynamic> _$NotebookDocumentFilterPatternToJson(
+  _NotebookDocumentFilterPattern instance,
+) => <String, dynamic>{
+  'pattern': instance.pattern.toJson(),
+  'notebookType': ?instance.notebookType,
+  'scheme': ?instance.scheme,
+};
+
+_NotebookCellArrayChange _$NotebookCellArrayChangeFromJson(
+  Map<String, dynamic> json,
+) => _NotebookCellArrayChange(
+  start: (json['start'] as num).toInt(),
+  deleteCount: (json['deleteCount'] as num).toInt(),
+  cells: (json['cells'] as List<dynamic>?)
+      ?.map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
+
+Map<String, dynamic> _$NotebookCellArrayChangeToJson(
+  _NotebookCellArrayChange instance,
+) => <String, dynamic>{
+  'start': instance.start,
+  'deleteCount': instance.deleteCount,
+  'cells': ?instance.cells?.map((e) => e.toJson()).toList(),
+};
+
+_ClientCompletionItemOptionsKind _$ClientCompletionItemOptionsKindFromJson(
+  Map<String, dynamic> json,
+) => _ClientCompletionItemOptionsKind(
+  valueSet: (json['valueSet'] as List<dynamic>?)
+      ?.map((e) => $enumDecode(_$CompletionItemKindEnumMap, e))
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientCompletionItemOptionsKindToJson(
+  _ClientCompletionItemOptionsKind instance,
+) => <String, dynamic>{
+  'valueSet': ?instance.valueSet
+      ?.map((e) => _$CompletionItemKindEnumMap[e]!)
+      .toList(),
+};
+
+_ClientSemanticTokensRequestFullDelta
+_$ClientSemanticTokensRequestFullDeltaFromJson(Map<String, dynamic> json) =>
+    _ClientSemanticTokensRequestFullDelta(delta: json['delta'] as bool?);
+
+Map<String, dynamic> _$ClientSemanticTokensRequestFullDeltaToJson(
+  _ClientSemanticTokensRequestFullDelta instance,
+) => <String, dynamic>{'delta': ?instance.delta};
 
 _ImplementationParams _$ImplementationParamsFromJson(
   Map<String, dynamic> json,
@@ -4600,6 +4834,30 @@ Map<String, dynamic> _$DidOpenNotebookDocumentParamsToJson(
       .toList(),
 };
 
+_NotebookDocumentSyncRegistrationOptions
+_$NotebookDocumentSyncRegistrationOptionsFromJson(
+  Map<String, dynamic> json,
+) => _NotebookDocumentSyncRegistrationOptions(
+  notebookSelector: (json['notebookSelector'] as List<dynamic>)
+      .map(
+        (e) =>
+            NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.fromJson(
+              e as Object,
+            ),
+      )
+      .toList(),
+  save: json['save'] as bool?,
+  id: json['id'] as String?,
+);
+
+Map<String, dynamic> _$NotebookDocumentSyncRegistrationOptionsToJson(
+  _NotebookDocumentSyncRegistrationOptions instance,
+) => <String, dynamic>{
+  'notebookSelector': instance.notebookSelector.map((e) => e.toJson()).toList(),
+  'save': ?instance.save,
+  'id': ?instance.id,
+};
+
 _DidChangeNotebookDocumentParams _$DidChangeNotebookDocumentParamsFromJson(
   Map<String, dynamic> json,
 ) => _DidChangeNotebookDocumentParams(
@@ -4694,6 +4952,35 @@ Map<String, dynamic> _$InlineCompletionRegistrationOptionsToJson(
   'id': ?instance.id,
 };
 
+_TextDocumentContentParams _$TextDocumentContentParamsFromJson(
+  Map<String, dynamic> json,
+) => _TextDocumentContentParams(uri: json['uri'] as String);
+
+Map<String, dynamic> _$TextDocumentContentParamsToJson(
+  _TextDocumentContentParams instance,
+) => <String, dynamic>{'uri': instance.uri};
+
+_TextDocumentContentRegistrationOptions
+_$TextDocumentContentRegistrationOptionsFromJson(Map<String, dynamic> json) =>
+    _TextDocumentContentRegistrationOptions(
+      schemes: (json['schemes'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      id: json['id'] as String?,
+    );
+
+Map<String, dynamic> _$TextDocumentContentRegistrationOptionsToJson(
+  _TextDocumentContentRegistrationOptions instance,
+) => <String, dynamic>{'schemes': instance.schemes, 'id': ?instance.id};
+
+_TextDocumentContentRefreshParams _$TextDocumentContentRefreshParamsFromJson(
+  Map<String, dynamic> json,
+) => _TextDocumentContentRefreshParams(uri: json['uri'] as String);
+
+Map<String, dynamic> _$TextDocumentContentRefreshParamsToJson(
+  _TextDocumentContentRefreshParams instance,
+) => <String, dynamic>{'uri': instance.uri};
+
 _RegistrationParams _$RegistrationParamsFromJson(Map<String, dynamic> json) =>
     _RegistrationParams(
       registrations: (json['registrations'] as List<dynamic>)
@@ -4730,19 +5017,15 @@ _InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) =>
       workDoneToken: json['workDoneToken'] == null
           ? null
           : ProgressToken.fromJson(json['workDoneToken'] as Object),
-      clientInfo: _$recordConvertNullable(
-        json['clientInfo'],
-        ($jsonValue) => (
-          name: $jsonValue['name'] as String,
-          version: $jsonValue['version'] as String?,
-        ),
-      ),
+      clientInfo: json['clientInfo'] == null
+          ? null
+          : ClientInfo.fromJson(json['clientInfo'] as Map<String, dynamic>),
       locale: json['locale'] as String?,
       rootPath: json['rootPath'] as String?,
       initializationOptions: json['initializationOptions'] == null
           ? null
           : LSPAny.fromJson(json['initializationOptions']),
-      trace: $enumDecodeNullable(_$TraceValuesEnumMap, json['trace']),
+      trace: $enumDecodeNullable(_$TraceValueEnumMap, json['trace']),
       workspaceFolders: (json['workspaceFolders'] as List<dynamic>?)
           ?.map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -4754,25 +5037,20 @@ Map<String, dynamic> _$InitializeParamsToJson(_InitializeParams instance) =>
       'rootUri': ?instance.rootUri,
       'capabilities': instance.capabilities.toJson(),
       'workDoneToken': ?instance.workDoneToken?.toJson(),
-      'clientInfo': ?instance.clientInfo == null
-          ? null
-          : <String, dynamic>{
-              'name': instance.clientInfo!.name,
-              'version': instance.clientInfo!.version,
-            },
+      'clientInfo': ?instance.clientInfo?.toJson(),
       'locale': ?instance.locale,
       'rootPath': ?instance.rootPath,
       'initializationOptions': ?instance.initializationOptions?.toJson(),
-      'trace': ?_$TraceValuesEnumMap[instance.trace],
+      'trace': ?_$TraceValueEnumMap[instance.trace],
       'workspaceFolders': ?instance.workspaceFolders
           ?.map((e) => e.toJson())
           .toList(),
     };
 
-const _$TraceValuesEnumMap = {
-  TraceValues.off: 'off',
-  TraceValues.messages: 'messages',
-  TraceValues.verbose: 'verbose',
+const _$TraceValueEnumMap = {
+  TraceValue.off: 'off',
+  TraceValue.messages: 'messages',
+  TraceValue.verbose: 'verbose',
 };
 
 _InitializedParams _$InitializedParamsFromJson(Map<String, dynamic> json) =>
@@ -5062,11 +5340,11 @@ _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
       ?.map((e) => e as String)
       .toList(),
   resolveProvider: json['resolveProvider'] as bool?,
-  completionItem: _$recordConvertNullable(
-    json['completionItem'],
-    ($jsonValue) =>
-        (labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?),
-  ),
+  completionItem: json['completionItem'] == null
+      ? null
+      : ServerCompletionItemOptions.fromJson(
+          json['completionItem'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$CompletionRegistrationOptionsToJson(
@@ -5079,11 +5357,7 @@ Map<String, dynamic> _$CompletionRegistrationOptionsToJson(
   'triggerCharacters': ?instance.triggerCharacters,
   'allCommitCharacters': ?instance.allCommitCharacters,
   'resolveProvider': ?instance.resolveProvider,
-  'completionItem': ?instance.completionItem == null
-      ? null
-      : <String, dynamic>{
-          'labelDetailsSupport': instance.completionItem!.labelDetailsSupport,
-        },
+  'completionItem': ?instance.completionItem?.toJson(),
 };
 
 _HoverParams _$HoverParamsFromJson(Map<String, dynamic> json) => _HoverParams(
@@ -5376,6 +5650,11 @@ _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
   codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
       ?.map(CodeActionKind.fromJson)
       .toList(),
+  documentation: (json['documentation'] as List<dynamic>?)
+      ?.map(
+        (e) => CodeActionKindDocumentation.fromJson(e as Map<String, dynamic>),
+      )
+      .toList(),
   resolveProvider: json['resolveProvider'] as bool?,
 );
 
@@ -5387,6 +5666,7 @@ Map<String, dynamic> _$CodeActionRegistrationOptionsToJson(
       .toList(),
   'workDoneProgress': ?instance.workDoneProgress,
   'codeActionKinds': ?instance.codeActionKinds?.map((e) => e.toJson()).toList(),
+  'documentation': ?instance.documentation?.map((e) => e.toJson()).toList(),
   'resolveProvider': ?instance.resolveProvider,
 };
 
@@ -5752,6 +6032,11 @@ _ApplyWorkspaceEditParams _$ApplyWorkspaceEditParamsFromJson(
 ) => _ApplyWorkspaceEditParams(
   edit: WorkspaceEdit.fromJson(json['edit'] as Map<String, dynamic>),
   label: json['label'] as String?,
+  metadata: json['metadata'] == null
+      ? null
+      : WorkspaceEditMetadata.fromJson(
+          json['metadata'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$ApplyWorkspaceEditParamsToJson(
@@ -5759,13 +6044,14 @@ Map<String, dynamic> _$ApplyWorkspaceEditParamsToJson(
 ) => <String, dynamic>{
   'edit': instance.edit.toJson(),
   'label': ?instance.label,
+  'metadata': ?instance.metadata?.toJson(),
 };
 
 _SetTraceParams _$SetTraceParamsFromJson(Map<String, dynamic> json) =>
-    _SetTraceParams(value: $enumDecode(_$TraceValuesEnumMap, json['value']));
+    _SetTraceParams(value: $enumDecode(_$TraceValueEnumMap, json['value']));
 
 Map<String, dynamic> _$SetTraceParamsToJson(_SetTraceParams instance) =>
-    <String, dynamic>{'value': _$TraceValuesEnumMap[instance.value]!};
+    <String, dynamic>{'value': _$TraceValueEnumMap[instance.value]!};
 
 _LogTraceParams _$LogTraceParamsFromJson(Map<String, dynamic> json) =>
     _LogTraceParams(
@@ -5982,6 +6268,26 @@ Map<String, dynamic> _$DiagnosticOptionsToJson(_DiagnosticOptions instance) =>
       'identifier': ?instance.identifier,
     };
 
+_NotebookDocumentSyncOptions _$NotebookDocumentSyncOptionsFromJson(
+  Map<String, dynamic> json,
+) => _NotebookDocumentSyncOptions(
+  notebookSelector: (json['notebookSelector'] as List<dynamic>)
+      .map(
+        (e) => NotebookDocumentSyncOptionsNotebookSelectorItem.fromJson(
+          e as Object,
+        ),
+      )
+      .toList(),
+  save: json['save'] as bool?,
+);
+
+Map<String, dynamic> _$NotebookDocumentSyncOptionsToJson(
+  _NotebookDocumentSyncOptions instance,
+) => <String, dynamic>{
+  'notebookSelector': instance.notebookSelector.map((e) => e.toJson()).toList(),
+  'save': ?instance.save,
+};
+
 _InlineCompletionOptions _$InlineCompletionOptionsFromJson(
   Map<String, dynamic> json,
 ) => _InlineCompletionOptions(
@@ -5991,6 +6297,16 @@ _InlineCompletionOptions _$InlineCompletionOptionsFromJson(
 Map<String, dynamic> _$InlineCompletionOptionsToJson(
   _InlineCompletionOptions instance,
 ) => <String, dynamic>{'workDoneProgress': ?instance.workDoneProgress};
+
+_TextDocumentContentOptions _$TextDocumentContentOptionsFromJson(
+  Map<String, dynamic> json,
+) => _TextDocumentContentOptions(
+  schemes: (json['schemes'] as List<dynamic>).map((e) => e as String).toList(),
+);
+
+Map<String, dynamic> _$TextDocumentContentOptionsToJson(
+  _TextDocumentContentOptions instance,
+) => <String, dynamic>{'schemes': instance.schemes};
 
 _WorkspaceFoldersInitializeParams _$WorkspaceFoldersInitializeParamsFromJson(
   Map<String, dynamic> json,
@@ -6024,26 +6340,21 @@ _CompletionOptions _$CompletionOptionsFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as String)
           .toList(),
       resolveProvider: json['resolveProvider'] as bool?,
-      completionItem: _$recordConvertNullable(
-        json['completionItem'],
-        ($jsonValue) =>
-            (labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?),
-      ),
+      completionItem: json['completionItem'] == null
+          ? null
+          : ServerCompletionItemOptions.fromJson(
+              json['completionItem'] as Map<String, dynamic>,
+            ),
     );
 
-Map<String, dynamic> _$CompletionOptionsToJson(
-  _CompletionOptions instance,
-) => <String, dynamic>{
-  'workDoneProgress': ?instance.workDoneProgress,
-  'triggerCharacters': ?instance.triggerCharacters,
-  'allCommitCharacters': ?instance.allCommitCharacters,
-  'resolveProvider': ?instance.resolveProvider,
-  'completionItem': ?instance.completionItem == null
-      ? null
-      : <String, dynamic>{
-          'labelDetailsSupport': instance.completionItem!.labelDetailsSupport,
-        },
-};
+Map<String, dynamic> _$CompletionOptionsToJson(_CompletionOptions instance) =>
+    <String, dynamic>{
+      'workDoneProgress': ?instance.workDoneProgress,
+      'triggerCharacters': ?instance.triggerCharacters,
+      'allCommitCharacters': ?instance.allCommitCharacters,
+      'resolveProvider': ?instance.resolveProvider,
+      'completionItem': ?instance.completionItem?.toJson(),
+    };
 
 _HoverOptions _$HoverOptionsFromJson(Map<String, dynamic> json) =>
     _HoverOptions(workDoneProgress: json['workDoneProgress'] as bool?);
@@ -6113,6 +6424,12 @@ _CodeActionOptions _$CodeActionOptionsFromJson(Map<String, dynamic> json) =>
       codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
           ?.map(CodeActionKind.fromJson)
           .toList(),
+      documentation: (json['documentation'] as List<dynamic>?)
+          ?.map(
+            (e) =>
+                CodeActionKindDocumentation.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
       resolveProvider: json['resolveProvider'] as bool?,
     );
 
@@ -6121,6 +6438,7 @@ Map<String, dynamic> _$CodeActionOptionsToJson(
 ) => <String, dynamic>{
   'workDoneProgress': ?instance.workDoneProgress,
   'codeActionKinds': ?instance.codeActionKinds?.map((e) => e.toJson()).toList(),
+  'documentation': ?instance.documentation?.map((e) => e.toJson()).toList(),
   'resolveProvider': ?instance.resolveProvider,
 };
 
@@ -6307,49 +6625,49 @@ Map<String, dynamic> _$TextDocumentSyncOptionsToJson(
   'save': ?instance.save?.toJson(),
 };
 
-_NotebookDocumentSyncOptions _$NotebookDocumentSyncOptionsFromJson(
-  Map<String, dynamic> json,
-) => _NotebookDocumentSyncOptions(
-  notebookSelector: (json['notebookSelector'] as List<dynamic>)
-      .map(
-        (e) => NotebookDocumentSyncOptionsNotebookSelectorItem.fromJson(
-          e as Object,
-        ),
-      )
-      .toList(),
-  save: json['save'] as bool?,
-);
-
-Map<String, dynamic> _$NotebookDocumentSyncOptionsToJson(
-  _NotebookDocumentSyncOptions instance,
-) => <String, dynamic>{
-  'notebookSelector': instance.notebookSelector.map((e) => e.toJson()).toList(),
-  'save': ?instance.save,
-};
-
-_NotebookDocumentSyncRegistrationOptions
-_$NotebookDocumentSyncRegistrationOptionsFromJson(
-  Map<String, dynamic> json,
-) => _NotebookDocumentSyncRegistrationOptions(
-  notebookSelector: (json['notebookSelector'] as List<dynamic>)
-      .map(
-        (e) =>
-            NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.fromJson(
-              e as Object,
+_WorkspaceOptions _$WorkspaceOptionsFromJson(Map<String, dynamic> json) =>
+    _WorkspaceOptions(
+      workspaceFolders: json['workspaceFolders'] == null
+          ? null
+          : WorkspaceFoldersServerCapabilities.fromJson(
+              json['workspaceFolders'] as Map<String, dynamic>,
             ),
-      )
-      .toList(),
-  save: json['save'] as bool?,
-  id: json['id'] as String?,
+      fileOperations: json['fileOperations'] == null
+          ? null
+          : FileOperationOptions.fromJson(
+              json['fileOperations'] as Map<String, dynamic>,
+            ),
+      textDocumentContent: json['textDocumentContent'] == null
+          ? null
+          : WorkspaceOptionsTextDocumentContent.fromJson(
+              json['textDocumentContent'] as Object,
+            ),
+    );
+
+Map<String, dynamic> _$WorkspaceOptionsToJson(_WorkspaceOptions instance) =>
+    <String, dynamic>{
+      'workspaceFolders': ?instance.workspaceFolders?.toJson(),
+      'fileOperations': ?instance.fileOperations?.toJson(),
+      'textDocumentContent': ?instance.textDocumentContent?.toJson(),
+    };
+
+_ServerCompletionItemOptions _$ServerCompletionItemOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ServerCompletionItemOptions(
+  labelDetailsSupport: json['labelDetailsSupport'] as bool?,
 );
 
-Map<String, dynamic> _$NotebookDocumentSyncRegistrationOptionsToJson(
-  _NotebookDocumentSyncRegistrationOptions instance,
-) => <String, dynamic>{
-  'notebookSelector': instance.notebookSelector.map((e) => e.toJson()).toList(),
-  'save': ?instance.save,
-  'id': ?instance.id,
-};
+Map<String, dynamic> _$ServerCompletionItemOptionsToJson(
+  _ServerCompletionItemOptions instance,
+) => <String, dynamic>{'labelDetailsSupport': ?instance.labelDetailsSupport};
+
+_FileOperationPatternOptions _$FileOperationPatternOptionsFromJson(
+  Map<String, dynamic> json,
+) => _FileOperationPatternOptions(ignoreCase: json['ignoreCase'] as bool?);
+
+Map<String, dynamic> _$FileOperationPatternOptionsToJson(
+  _FileOperationPatternOptions instance,
+) => <String, dynamic>{'ignoreCase': ?instance.ignoreCase};
 
 _FileOperationOptions _$FileOperationOptionsFromJson(
   Map<String, dynamic> json,
@@ -6397,10 +6715,342 @@ Map<String, dynamic> _$FileOperationOptionsToJson(
   'willDelete': ?instance.willDelete?.toJson(),
 };
 
-_FileOperationPatternOptions _$FileOperationPatternOptionsFromJson(
+_StaleRequestSupportOptions _$StaleRequestSupportOptionsFromJson(
   Map<String, dynamic> json,
-) => _FileOperationPatternOptions(ignoreCase: json['ignoreCase'] as bool?);
+) => _StaleRequestSupportOptions(
+  cancel: json['cancel'] as bool,
+  retryOnContentModified: (json['retryOnContentModified'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
+);
 
-Map<String, dynamic> _$FileOperationPatternOptionsToJson(
-  _FileOperationPatternOptions instance,
-) => <String, dynamic>{'ignoreCase': ?instance.ignoreCase};
+Map<String, dynamic> _$StaleRequestSupportOptionsToJson(
+  _StaleRequestSupportOptions instance,
+) => <String, dynamic>{
+  'cancel': instance.cancel,
+  'retryOnContentModified': instance.retryOnContentModified,
+};
+
+_ChangeAnnotationsSupportOptions _$ChangeAnnotationsSupportOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ChangeAnnotationsSupportOptions(
+  groupsOnLabel: json['groupsOnLabel'] as bool?,
+);
+
+Map<String, dynamic> _$ChangeAnnotationsSupportOptionsToJson(
+  _ChangeAnnotationsSupportOptions instance,
+) => <String, dynamic>{'groupsOnLabel': ?instance.groupsOnLabel};
+
+_ClientSymbolKindOptions _$ClientSymbolKindOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientSymbolKindOptions(
+  valueSet: (json['valueSet'] as List<dynamic>?)
+      ?.map((e) => $enumDecode(_$SymbolKindEnumMap, e))
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientSymbolKindOptionsToJson(
+  _ClientSymbolKindOptions instance,
+) => <String, dynamic>{
+  'valueSet': ?instance.valueSet?.map((e) => _$SymbolKindEnumMap[e]!).toList(),
+};
+
+_ClientSymbolTagOptions _$ClientSymbolTagOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientSymbolTagOptions(
+  valueSet: (json['valueSet'] as List<dynamic>)
+      .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientSymbolTagOptionsToJson(
+  _ClientSymbolTagOptions instance,
+) => <String, dynamic>{
+  'valueSet': instance.valueSet.map((e) => _$SymbolTagEnumMap[e]!).toList(),
+};
+
+_ClientSymbolResolveOptions _$ClientSymbolResolveOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientSymbolResolveOptions(
+  properties: (json['properties'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientSymbolResolveOptionsToJson(
+  _ClientSymbolResolveOptions instance,
+) => <String, dynamic>{'properties': instance.properties};
+
+_ClientCompletionItemOptions _$ClientCompletionItemOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientCompletionItemOptions(
+  snippetSupport: json['snippetSupport'] as bool?,
+  commitCharactersSupport: json['commitCharactersSupport'] as bool?,
+  documentationFormat: (json['documentationFormat'] as List<dynamic>?)
+      ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
+      .toList(),
+  deprecatedSupport: json['deprecatedSupport'] as bool?,
+  preselectSupport: json['preselectSupport'] as bool?,
+  tagSupport: json['tagSupport'] == null
+      ? null
+      : CompletionItemTagOptions.fromJson(
+          json['tagSupport'] as Map<String, dynamic>,
+        ),
+  insertReplaceSupport: json['insertReplaceSupport'] as bool?,
+  resolveSupport: json['resolveSupport'] == null
+      ? null
+      : ClientCompletionItemResolveOptions.fromJson(
+          json['resolveSupport'] as Map<String, dynamic>,
+        ),
+  insertTextModeSupport: json['insertTextModeSupport'] == null
+      ? null
+      : ClientCompletionItemInsertTextModeOptions.fromJson(
+          json['insertTextModeSupport'] as Map<String, dynamic>,
+        ),
+  labelDetailsSupport: json['labelDetailsSupport'] as bool?,
+);
+
+Map<String, dynamic> _$ClientCompletionItemOptionsToJson(
+  _ClientCompletionItemOptions instance,
+) => <String, dynamic>{
+  'snippetSupport': ?instance.snippetSupport,
+  'commitCharactersSupport': ?instance.commitCharactersSupport,
+  'documentationFormat': ?instance.documentationFormat
+      ?.map((e) => _$MarkupKindEnumMap[e]!)
+      .toList(),
+  'deprecatedSupport': ?instance.deprecatedSupport,
+  'preselectSupport': ?instance.preselectSupport,
+  'tagSupport': ?instance.tagSupport?.toJson(),
+  'insertReplaceSupport': ?instance.insertReplaceSupport,
+  'resolveSupport': ?instance.resolveSupport?.toJson(),
+  'insertTextModeSupport': ?instance.insertTextModeSupport?.toJson(),
+  'labelDetailsSupport': ?instance.labelDetailsSupport,
+};
+
+_ClientSignatureInformationOptions _$ClientSignatureInformationOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientSignatureInformationOptions(
+  documentationFormat: (json['documentationFormat'] as List<dynamic>?)
+      ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
+      .toList(),
+  parameterInformation: json['parameterInformation'] == null
+      ? null
+      : ClientSignatureParameterInformationOptions.fromJson(
+          json['parameterInformation'] as Map<String, dynamic>,
+        ),
+  activeParameterSupport: json['activeParameterSupport'] as bool?,
+  noActiveParameterSupport: json['noActiveParameterSupport'] as bool?,
+);
+
+Map<String, dynamic> _$ClientSignatureInformationOptionsToJson(
+  _ClientSignatureInformationOptions instance,
+) => <String, dynamic>{
+  'documentationFormat': ?instance.documentationFormat
+      ?.map((e) => _$MarkupKindEnumMap[e]!)
+      .toList(),
+  'parameterInformation': ?instance.parameterInformation?.toJson(),
+  'activeParameterSupport': ?instance.activeParameterSupport,
+  'noActiveParameterSupport': ?instance.noActiveParameterSupport,
+};
+
+_ClientCodeActionLiteralOptions _$ClientCodeActionLiteralOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientCodeActionLiteralOptions(
+  codeActionKind: ClientCodeActionKindOptions.fromJson(
+    json['codeActionKind'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$ClientCodeActionLiteralOptionsToJson(
+  _ClientCodeActionLiteralOptions instance,
+) => <String, dynamic>{'codeActionKind': instance.codeActionKind.toJson()};
+
+_ClientCodeActionResolveOptions _$ClientCodeActionResolveOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientCodeActionResolveOptions(
+  properties: (json['properties'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientCodeActionResolveOptionsToJson(
+  _ClientCodeActionResolveOptions instance,
+) => <String, dynamic>{'properties': instance.properties};
+
+_CodeActionTagOptions _$CodeActionTagOptionsFromJson(
+  Map<String, dynamic> json,
+) => _CodeActionTagOptions(
+  valueSet: (json['valueSet'] as List<dynamic>)
+      .map((e) => $enumDecode(_$CodeActionTagEnumMap, e))
+      .toList(),
+);
+
+Map<String, dynamic> _$CodeActionTagOptionsToJson(
+  _CodeActionTagOptions instance,
+) => <String, dynamic>{
+  'valueSet': instance.valueSet.map((e) => _$CodeActionTagEnumMap[e]!).toList(),
+};
+
+_ClientCodeLensResolveOptions _$ClientCodeLensResolveOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientCodeLensResolveOptions(
+  properties: (json['properties'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientCodeLensResolveOptionsToJson(
+  _ClientCodeLensResolveOptions instance,
+) => <String, dynamic>{'properties': instance.properties};
+
+_ClientFoldingRangeKindOptions _$ClientFoldingRangeKindOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientFoldingRangeKindOptions(
+  valueSet: (json['valueSet'] as List<dynamic>?)
+      ?.map(FoldingRangeKind.fromJson)
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientFoldingRangeKindOptionsToJson(
+  _ClientFoldingRangeKindOptions instance,
+) => <String, dynamic>{
+  'valueSet': ?instance.valueSet?.map((e) => e.toJson()).toList(),
+};
+
+_ClientFoldingRangeOptions _$ClientFoldingRangeOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientFoldingRangeOptions(collapsedText: json['collapsedText'] as bool?);
+
+Map<String, dynamic> _$ClientFoldingRangeOptionsToJson(
+  _ClientFoldingRangeOptions instance,
+) => <String, dynamic>{'collapsedText': ?instance.collapsedText};
+
+_ClientSemanticTokensRequestOptions
+_$ClientSemanticTokensRequestOptionsFromJson(Map<String, dynamic> json) =>
+    _ClientSemanticTokensRequestOptions(
+      range: json['range'] == null
+          ? null
+          : ClientSemanticTokensRequestOptionsRange.fromJson(
+              json['range'] as Object,
+            ),
+      full: json['full'] == null
+          ? null
+          : ClientSemanticTokensRequestOptionsFull.fromJson(
+              json['full'] as Object,
+            ),
+    );
+
+Map<String, dynamic> _$ClientSemanticTokensRequestOptionsToJson(
+  _ClientSemanticTokensRequestOptions instance,
+) => <String, dynamic>{
+  'range': ?instance.range?.toJson(),
+  'full': ?instance.full?.toJson(),
+};
+
+_ClientInlayHintResolveOptions _$ClientInlayHintResolveOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientInlayHintResolveOptions(
+  properties: (json['properties'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientInlayHintResolveOptionsToJson(
+  _ClientInlayHintResolveOptions instance,
+) => <String, dynamic>{'properties': instance.properties};
+
+_ClientShowMessageActionItemOptions
+_$ClientShowMessageActionItemOptionsFromJson(Map<String, dynamic> json) =>
+    _ClientShowMessageActionItemOptions(
+      additionalPropertiesSupport: json['additionalPropertiesSupport'] as bool?,
+    );
+
+Map<String, dynamic> _$ClientShowMessageActionItemOptionsToJson(
+  _ClientShowMessageActionItemOptions instance,
+) => <String, dynamic>{
+  'additionalPropertiesSupport': ?instance.additionalPropertiesSupport,
+};
+
+_CompletionItemTagOptions _$CompletionItemTagOptionsFromJson(
+  Map<String, dynamic> json,
+) => _CompletionItemTagOptions(
+  valueSet: (json['valueSet'] as List<dynamic>)
+      .map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
+      .toList(),
+);
+
+Map<String, dynamic> _$CompletionItemTagOptionsToJson(
+  _CompletionItemTagOptions instance,
+) => <String, dynamic>{
+  'valueSet': instance.valueSet
+      .map((e) => _$CompletionItemTagEnumMap[e]!)
+      .toList(),
+};
+
+_ClientCompletionItemResolveOptions
+_$ClientCompletionItemResolveOptionsFromJson(Map<String, dynamic> json) =>
+    _ClientCompletionItemResolveOptions(
+      properties: (json['properties'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+    );
+
+Map<String, dynamic> _$ClientCompletionItemResolveOptionsToJson(
+  _ClientCompletionItemResolveOptions instance,
+) => <String, dynamic>{'properties': instance.properties};
+
+_ClientCompletionItemInsertTextModeOptions
+_$ClientCompletionItemInsertTextModeOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientCompletionItemInsertTextModeOptions(
+  valueSet: (json['valueSet'] as List<dynamic>)
+      .map((e) => $enumDecode(_$InsertTextModeEnumMap, e))
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientCompletionItemInsertTextModeOptionsToJson(
+  _ClientCompletionItemInsertTextModeOptions instance,
+) => <String, dynamic>{
+  'valueSet': instance.valueSet
+      .map((e) => _$InsertTextModeEnumMap[e]!)
+      .toList(),
+};
+
+_ClientSignatureParameterInformationOptions
+_$ClientSignatureParameterInformationOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientSignatureParameterInformationOptions(
+  labelOffsetSupport: json['labelOffsetSupport'] as bool?,
+);
+
+Map<String, dynamic> _$ClientSignatureParameterInformationOptionsToJson(
+  _ClientSignatureParameterInformationOptions instance,
+) => <String, dynamic>{'labelOffsetSupport': ?instance.labelOffsetSupport};
+
+_ClientCodeActionKindOptions _$ClientCodeActionKindOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientCodeActionKindOptions(
+  valueSet: (json['valueSet'] as List<dynamic>)
+      .map(CodeActionKind.fromJson)
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientCodeActionKindOptionsToJson(
+  _ClientCodeActionKindOptions instance,
+) => <String, dynamic>{
+  'valueSet': instance.valueSet.map((e) => e.toJson()).toList(),
+};
+
+_ClientDiagnosticsTagOptions _$ClientDiagnosticsTagOptionsFromJson(
+  Map<String, dynamic> json,
+) => _ClientDiagnosticsTagOptions(
+  valueSet: (json['valueSet'] as List<dynamic>)
+      .map((e) => $enumDecode(_$DiagnosticTagEnumMap, e))
+      .toList(),
+);
+
+Map<String, dynamic> _$ClientDiagnosticsTagOptionsToJson(
+  _ClientDiagnosticsTagOptions instance,
+) => <String, dynamic>{
+  'valueSet': instance.valueSet.map((e) => _$DiagnosticTagEnumMap[e]!).toList(),
+};

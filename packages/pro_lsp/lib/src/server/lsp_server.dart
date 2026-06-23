@@ -47,7 +47,7 @@ export 'middleware.dart';
 ///       capabilities: ServerCapabilities(
 ///         hoverProvider: .bool(true),
 ///       ),
-///       serverInfo: (name: 'my-dart-lsp', version: '1.0.0'),
+///       serverInfo: ServerInfo(name: 'my-dart-lsp', version: '1.0.0'),
 ///     );
 ///   });
 ///

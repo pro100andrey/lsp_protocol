@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file MD004 -->
 # pro_lsp documentation
 
-Full documentation for [`pro_lsp`](../README.md) — a typed LSP 3.17 server/client
+Full documentation for [`pro_lsp`](../README.md) — a typed LSP 3.18 server/client
 framework for Dart.
 
 New here? Read the guides top to bottom. Looking for a specific message? Jump to

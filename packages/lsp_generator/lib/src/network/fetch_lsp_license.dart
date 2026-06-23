@@ -9,17 +9,9 @@ import '../common/cli_exception.dart';
 /// Downloads the LSP protocol license from Microsoft's official repository
 /// and saves it to [outputDir] as `License-code.txt`.
 ///
-/// Fetches the license text from the specified [version] (defaults to `'3.17'`)
-/// of the Language Server Protocol. Throws a [CliException] if the download
-/// fails.
-Future<void> fetchLSPLicense(
-  String outputDir,
-  Logger logger, [
-  String version = '3.17',
-]) async {
-  final downloadProgress = logger.progress(
-    'Downloading LSP license for version $version...',
-  );
+/// Throws a [CliException] if the download fails.
+Future<void> fetchLSPLicense(String outputDir, Logger logger) async {
+  final downloadProgress = logger.progress('Downloading LSP license...');
 
   final uri = Uri.parse(
     'https://microsoft.github.io/language-server-protocol/License-code.txt',
@@ -33,7 +25,7 @@ Future<void> fetchLSPLicense(
     downloadProgress.fail('Failed to download: ${response.statusCode}');
 
     throw CliException(
-      'Failed to download LSP license for version $version.',
+      'Failed to download LSP license.',
       reason: 'HTTP status code: ${response.statusCode}',
       code: 1,
     );

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../models/protocol.dart';
 import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
@@ -182,6 +184,11 @@ final class ModelResolver {
   };
 
   /// Maps LSP base type names to their Dart equivalents.
+  ///
+  /// The LSP base-type set is closed and stable. An unrecognized name means
+  /// the spec introduced a new base type the generator doesn't model yet —
+  /// warn loudly (it may emit an invalid Dart type) but stay lenient by
+  /// passing the name through unchanged.
   static String _baseRefToDart(String name) => switch (name) {
     'string' => 'String',
     'integer' || 'uinteger' => 'int',
@@ -191,7 +198,13 @@ final class ModelResolver {
     'URI' || 'DocumentUri' => 'String',
     'RegExp' => 'String',
     'LSPAny' => 'Object?',
-    _ => name, // fallback: keep as-is
+    _ => () {
+      stderr.writeln(
+        'warning: unknown LSP base type "$name"; emitting it verbatim as a '
+        'Dart type. The generator may need a new mapping in _baseRefToDart.',
+      );
+      return name;
+    }(),
   };
 }
 

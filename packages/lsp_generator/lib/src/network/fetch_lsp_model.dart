@@ -8,26 +8,24 @@ import 'package:path/path.dart' as p;
 import '../common/cli_exception.dart';
 import '../models/protocol.dart';
 
+/// The LSP specification version this generator targets.
+const lspVersion = '3.18';
+
 /// Downloads the LSP meta-model from Microsoft's official repository,
 /// parses it into a [MetaProtocol], and saves the raw JSON to [outputDir].
 ///
-/// Fetches the meta-model JSON from the specified [version] (defaults to
-/// `'3.17'`) of the Language Server Protocol specification. The parsed
-/// [MetaProtocol] is returned, and the raw `metaModel.json` is saved to
-/// the output directory for reference.
+/// Fetches the meta-model JSON for LSP [lspVersion]. The parsed [MetaProtocol]
+/// is returned, and the raw `metaModel.json` is saved to the output directory
+/// for reference.
 ///
 /// Throws a [CliException] if the download or parsing fails.
-Future<MetaProtocol> fetchLSPModel(
-  String outputDir,
-  Logger logger, [
-  String version = '3.17',
-]) async {
+Future<MetaProtocol> fetchLSPModel(String outputDir, Logger logger) async {
   final downloadProgress = logger.progress(
-    'Downloading LSP meta-model for version $version...',
+    'Downloading LSP meta-model for version $lspVersion...',
   );
 
   final uri = Uri.parse(
-    'https://microsoft.github.io/language-server-protocol/specifications/lsp/$version/metaModel/metaModel.json',
+    'https://microsoft.github.io/language-server-protocol/specifications/lsp/$lspVersion/metaModel/metaModel.json',
   );
 
   final response = await http.get(uri);
@@ -38,7 +36,7 @@ Future<MetaProtocol> fetchLSPModel(
     downloadProgress.fail('Failed to download: ${response.statusCode}');
 
     throw CliException(
-      'Failed to download LSP meta-model for version $version.',
+      'Failed to download LSP meta-model for version $lspVersion.',
       reason: 'HTTP status code: ${response.statusCode}',
       code: 1,
     );
@@ -66,7 +64,7 @@ Future<MetaProtocol> fetchLSPModel(
     parserProgress.fail('Failed to parse LSP meta-model: $e');
 
     throw CliException(
-      'Failed to parse LSP meta-model for version $version.',
+      'Failed to parse LSP meta-model for version $lspVersion.',
       reason: 'JSON parsing error: $e',
       code: 1,
     );

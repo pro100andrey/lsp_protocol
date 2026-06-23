@@ -153,7 +153,7 @@ enum RequestMethod implements LSPMethod {
   /// The 'workspace/configuration' request is sent from the server to the
   /// client to fetch a certain configuration setting.
   ///
-  /// This pull model replaces the old push model where the client signaled
+  /// This pull model replaces the old push model were the client signaled
   /// configuration change via an event. If the server still needs to react to
   /// configuration changes (since the server caches the result of
   /// `workspace/configuration` requests) the server should register for an
@@ -168,13 +168,15 @@ enum RequestMethod implements LSPMethod {
 
   /// A request to list all presentation for a color. The request's parameter is
   /// of type `ColorPresentationParams` the response is of type
-  /// `ColorInformation` or a Thenable that resolves to such.
+  /// `ColorPresentation` or a Thenable that resolves to such.
   colorPresentation('textDocument/colorPresentation'),
 
   /// A request to provide folding ranges in a document. The request's parameter
   /// is of type `FoldingRangeParams`, the response is of type
   /// `FoldingRangeList` or a Thenable that resolves to such.
   foldingRange('textDocument/foldingRange'),
+
+  /// A request to refresh the folding ranges in a document.
   workspaceFoldingRangeRefresh('workspace/foldingRange/refresh'),
 
   /// A request to resolve the type definition locations of a symbol at a given
@@ -280,6 +282,14 @@ enum RequestMethod implements LSPMethod {
   /// parameter is of type `InlineCompletionParams`, the response is of type
   /// `InlineCompletion` or a Thenable that resolves to such.
   inlineCompletion('textDocument/inlineCompletion'),
+
+  /// The `workspace/textDocumentContent` request is sent from the client to the
+  /// server to request the content of a text document.
+  textDocumentContent('workspace/textDocumentContent'),
+
+  /// The `workspace/textDocumentContent` request is sent from the server to the
+  /// client to refresh the content of a specific text document.
+  workspaceTextDocumentContentRefresh('workspace/textDocumentContent/refresh'),
 
   /// The `client/registerCapability` request is sent from the server to the
   /// client to register a new capability handler on the client side.
