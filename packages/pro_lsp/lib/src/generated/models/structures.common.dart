@@ -2032,6 +2032,7 @@ abstract class Unregistration with _$Unregistration {
 
 /// Information about the server
 ///
+/// @since 3.15.0
 /// @since 3.18.0 ServerInfo type name added.
 @freezed
 abstract class ServerInfo with _$ServerInfo {
@@ -2845,6 +2846,7 @@ abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
 
 /// Information about the client
 ///
+/// @since 3.15.0
 /// @since 3.18.0 ClientInfo type name added.
 @freezed
 abstract class ClientInfo with _$ClientInfo {

@@ -31,8 +31,15 @@
     now nullable.
   * Union accessors renamed where the underlying members became named structures
     (e.g. `TextDocumentContentChangeEvent` and `WorkspaceSymbolLocation`).
+* **Fuller `@since` history** — structures with a multi-version `sinceTags`
+  history (e.g. `ServerInfo`, `ClientInfo`) now document every version
+  (`@since 3.15.0` *and* `@since 3.18.0 …`) instead of only the latest.
 * **Generator hygiene** — doc-comment formatting regexes are compiled once; an
-  unrecognized LSP base type now warns instead of silently passing through.
+  unrecognized LSP base type now warns instead of silently passing through;
+  union nullability is derived from a single `containsNull` source of truth on
+  the type IR; the client/server API generators share one configurable
+  implementation; and union-shape analysis and property flattening are split
+  into focused, unit-tested helpers.
 
 ## 0.2.1
 

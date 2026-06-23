@@ -897,6 +897,24 @@ void main() {
       expect(src, contains('/// @since 3.17.0'));
     });
 
+    test('class with sinceTags emits the full @since version history', () {
+      final state = _stateWith(
+        classes: [
+          ResolvedClass(
+            name: 'ServerInfo',
+            properties: [],
+            documentation: 'Information about the server',
+            since: '3.18.0 ServerInfo type name added.',
+            sinceTags: ['3.15.0', '3.18.0 ServerInfo type name added.'],
+          ),
+        ],
+      );
+      final src = _getStructures(state);
+      // Full history from sinceTags, not just the latest `since`.
+      expect(src, contains('/// @since 3.15.0'));
+      expect(src, contains('/// @since 3.18.0 ServerInfo type name added.'));
+    });
+
     test('class with only proposed emits @proposed tag', () {
       final state = _stateWith(
         classes: [

@@ -158,6 +158,7 @@ abstract class MetaStructure with _$MetaStructure {
     required List<MetaProperty> properties,
     String? documentation,
     String? since,
+    @Default([]) List<String> sinceTags,
     @Default(false) bool proposed,
     @JsonKey(name: 'mixins') @Default([]) List<MetaReference> mixins$,
     @JsonKey(name: 'extends') @Default([]) List<MetaReference> extends$,

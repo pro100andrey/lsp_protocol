@@ -383,22 +383,29 @@ final class ModelGenerator {
   /// * `{@link Foo.bar name}` → `[name]` when *name* is a valid identifier,
   ///   otherwise `[Foo]` (type part only).
   ///
-  /// When [since] is non-null, appends `/// @since X` after the main body (or
-  /// emits it alone when [input] is blank). [proposed] appends `/// @proposed`
-  /// similarly.
+  /// Appends `/// @since X` lines after the main body. When [sinceTags] is
+  /// non-empty its entries are emitted in order (the full version history, e.g.
+  /// `@since 3.15.0` then `@since 3.18.0 ...`); otherwise the single [since]
+  /// value is used. [proposed] appends `/// @proposed`.
   ///
   /// Lines are word-wrapped at [maxWidth] characters. Returns an empty list
-  /// when [input] is null or blank and neither [since] nor [proposed] are set.
+  /// when [input] is null or blank and no `@since`/`@proposed` tag applies.
   List<String> _docLines(
     String? input, {
     int maxWidth = 80,
     int indent = 0,
     String? since,
+    List<String> sinceTags = const [],
     bool proposed = false,
     List<String> extra = const [],
   }) {
+    final sinceLines = sinceTags.isNotEmpty
+        ? sinceTags.map(
+            (s) => '/// @since ${s.replaceAll(_whitespace, ' ').trim()}',
+          )
+        : [if (since != null) '/// @since $since'];
     final tags = [
-      if (since != null) '/// @since $since',
+      ...sinceLines,
       if (proposed) '/// @proposed',
     ];
 

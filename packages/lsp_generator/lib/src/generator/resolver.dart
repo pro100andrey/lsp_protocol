@@ -228,6 +228,7 @@ final class _RegisterPass extends MetaVisitor {
       mixins$: [],
       documentation: structure.documentation,
       since: structure.since,
+      sinceTags: structure.sinceTags,
       proposed: structure.proposed,
     );
 
