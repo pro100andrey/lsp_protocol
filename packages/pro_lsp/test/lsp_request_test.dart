@@ -24,6 +24,18 @@ void main() {
       id: id,
     );
 
+    test('params default to null and store the raw wire value', () {
+      expect(makeRequest().params, isNull);
+
+      final request = makeRequest()
+        ..params = const {
+          'position': {'line': 0, 'character': 0},
+        };
+      expect(request.params, {
+        'position': {'line': 0, 'character': 0},
+      });
+    });
+
     test('isNotification is true when id is null', () {
       expect(makeRequest().isNotification, isTrue);
     });
