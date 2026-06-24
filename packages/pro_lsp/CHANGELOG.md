@@ -31,6 +31,17 @@
     now nullable.
   * Union accessors renamed where the underlying members became named structures
     (e.g. `TextDocumentContentChangeEvent` and `WorkspaceSymbolLocation`).
+* **Breaking (middleware API): unified the request context.** `LspMiddleware`
+  now receives the same `LspRequest` that handlers do, gaining `resolve<T>()` /
+  `tryResolve<T>()`, `cancellationToken`, `connection`, and `isNotification`. The
+  separate `LspIncomingRequest` type (passed to middleware since 0.1.0) is
+  removed, and its `requestId` field is now `id`. Rewrite params by mutating
+  `request.params` before calling `next()`; the request is sealed read-only once
+  the handler runs. **Migration:** change
+  `call(LspIncomingRequest request, LspNext next)` to
+  `call(LspRequest request, LspNext next)`, `request.requestId` to `request.id`,
+  and any params rewrite from constructing a new request object to mutating
+  `request.params`.
 * **Fuller `@since` history** — structures with a multi-version `sinceTags`
   history (e.g. `ServerInfo`, `ClientInfo`) now document every version
   (`@since 3.15.0` *and* `@since 3.18.0 …`) instead of only the latest.
