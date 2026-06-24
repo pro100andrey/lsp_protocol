@@ -53,3 +53,4 @@ typedef LSPObject = Map<String, LSPAny>;
 ///
 /// @since 3.17.0
 typedef Pattern = String;
+typedef RegularExpressionEngineKind = String;

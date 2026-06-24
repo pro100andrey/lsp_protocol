@@ -276,6 +276,11 @@ _MetaStructure _$MetaStructureFromJson(Map<String, dynamic> json) =>
           .toList(),
       documentation: json['documentation'] as String?,
       since: json['since'] as String?,
+      sinceTags:
+          (json['sinceTags'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
       proposed: json['proposed'] as bool? ?? false,
       mixins$:
           (json['mixins'] as List<dynamic>?)
@@ -295,6 +300,7 @@ Map<String, dynamic> _$MetaStructureToJson(_MetaStructure instance) =>
       'properties': instance.properties,
       'documentation': instance.documentation,
       'since': instance.since,
+      'sinceTags': instance.sinceTags,
       'proposed': instance.proposed,
       'mixins': instance.mixins$,
       'extends': instance.extends$,

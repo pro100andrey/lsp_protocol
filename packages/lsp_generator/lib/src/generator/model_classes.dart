@@ -31,7 +31,12 @@ extension ModelGeneratorClasses on ModelGenerator {
       b.mixins.add(refer('_\$${cls.name}'));
 
       b.docs.addAll(
-        _docLines(cls.documentation, since: cls.since, proposed: cls.proposed),
+        _docLines(
+          cls.documentation,
+          since: cls.since,
+          sinceTags: cls.sinceTags,
+          proposed: cls.proposed,
+        ),
       );
 
       // Redirecting factory — freezed generates getters, copyWith, ==,
@@ -65,7 +70,12 @@ extension ModelGeneratorClasses on ModelGenerator {
       b.name = cls.name;
       b.annotations.add(refer('JsonSerializable').call([]));
       b.docs.addAll(
-        _docLines(cls.documentation, since: cls.since, proposed: cls.proposed),
+        _docLines(
+          cls.documentation,
+          since: cls.since,
+          sinceTags: cls.sinceTags,
+          proposed: cls.proposed,
+        ),
       );
 
       // Final fields (plain class — no freezed mixin).

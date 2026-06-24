@@ -110,7 +110,7 @@ final class CapabilitiesInferer {
           : null,
 
       workspace: hasWorkspaceMethods
-          ? (
+          ? WorkspaceOptions(
               workspaceFolders: const .new(supported: true),
               fileOperations: hasFileOps
                   ? .new(

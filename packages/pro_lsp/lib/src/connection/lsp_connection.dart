@@ -50,8 +50,8 @@ typedef LspNotificationHandler =
 /// ## Middleware
 ///
 /// Middlewares added via [addMiddleware] wrap all request and notification
-/// handlers. They are composed via [composeMiddlewares] and receive
-/// [LspIncomingRequest] objects.
+/// handlers. They are composed via [composeMiddlewares] and receive the same
+/// [LspRequest] context as handlers.
 ///
 /// ## Multicast Notifications
 ///
@@ -383,6 +383,7 @@ final class LspConnection {
       cancellationToken: token,
       id: requestId,
       connection: this,
+      params: rawVal,
     );
 
     try {
@@ -399,19 +400,18 @@ final class LspConnection {
       final response = await runZoned(
         () {
           if (_middlewares.isEmpty) {
-            return handler(rawVal, context);
+            context.seal();
+            return handler(context.params, context);
           }
 
-          final request = LspIncomingRequest(
-            method: methodStr,
-            params: rawVal,
-            requestId: requestId,
-          );
-
-          return composeMiddlewares(
-            _middlewares,
-            (req) => handler(req.params, context),
-          )(request);
+          // Middleware and the handler share one request context: whatever
+          // flows through `next` is exactly what the handler receives. The
+          // request is sealed at handler entry so params can only be rewritten
+          // during the middleware phase, before `next`.
+          return composeMiddlewares(_middlewares, (req) {
+            req.seal();
+            return handler(req.params, req);
+          })(context);
         },
         zoneValues: {#cancellationToken: token},
       );
@@ -454,6 +454,7 @@ final class LspConnection {
       method: methodStr,
       cancellationToken: CancellationToken.noop,
       connection: this,
+      params: rawVal,
     );
 
     try {
@@ -465,16 +466,16 @@ final class LspConnection {
 
       final handlers = _notificationHandlers[methodStr] ?? const [];
       if (_middlewares.isEmpty) {
-        await _runNotificationHandlers(handlers, rawVal, context);
+        context.seal();
+        await _runNotificationHandlers(handlers, context.params, context);
       } else {
-        final request = LspIncomingRequest(
-          method: methodStr,
-          params: rawVal,
-        );
         await composeMiddlewares(_middlewares, (req) async {
-          await _runNotificationHandlers(handlers, req.params, context);
+          // Multicast handlers share one sealed request; params can't be
+          // rewritten between them.
+          req.seal();
+          await _runNotificationHandlers(handlers, req.params, req);
           return null;
-        })(request);
+        })(context);
       }
 
       if (method == NotificationMethod.exit) {

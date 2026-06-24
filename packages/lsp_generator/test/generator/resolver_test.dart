@@ -276,28 +276,27 @@ void main() {
       resolved = ModelResolver().resolve(protocol);
     });
 
-    // Counts
+    // Counts — floors, not exact values. The metaModel only grows across LSP
+    // versions, so `>=` catches a resolver that silently drops declarations
+    // without breaking on every spec bump. The golden test owns byte-for-byte
+    // reproduction of the actual output.
     test('named structures count', () {
-      expect(resolved.classes.length, 324);
-    });
-
-    test('total classes (named + anonymous) count matches resolve output', () {
-      expect(resolved.classes.length, greaterThanOrEqualTo(37 + 21));
+      expect(resolved.classes.length, greaterThanOrEqualTo(387));
     });
 
     test('enumerations count', () {
-      expect(resolved.enumerations.length, 37);
+      expect(resolved.enumerations.length, greaterThanOrEqualTo(40));
     });
 
     test('aliases count', () {
-      expect(resolved.aliases.length, 21);
+      expect(resolved.aliases.length, greaterThanOrEqualTo(23));
     });
 
     test('registry size >= named classes + enumerations + aliases', () {
       final namedClasses = resolved.classes.length;
       expect(
         resolved.registry.length,
-        greaterThanOrEqualTo(namedClasses + 37 + 21),
+        greaterThanOrEqualTo(namedClasses + 40 + 23),
       );
     });
 
@@ -353,9 +352,12 @@ void main() {
         expect(p.type, isDartCoreType('String'));
       });
 
-      test('languageId → String', () {
+      test('languageId → LanguageKind enum', () {
+        // LSP 3.18 promoted languageId from a bare string to the
+        // open `LanguageKind` enumeration.
         final p = cls.properties.firstWhere((p) => p.name == 'languageId');
-        expect(p.type, isDartCoreType('String'));
+        expect(p.type, isA<EnumType>());
+        expect((p.type as EnumType).ref.name, 'LanguageKind');
       });
 
       test('version → int', () {

@@ -2896,7 +2896,7 @@ $MetaReferenceCopyWith<$Res> get type {
 /// @nodoc
 mixin _$MetaStructure {
 
- String get name; List<MetaProperty> get properties; String? get documentation; String? get since; bool get proposed;@JsonKey(name: 'mixins') List<MetaReference> get mixins$;@JsonKey(name: 'extends') List<MetaReference> get extends$;
+ String get name; List<MetaProperty> get properties; String? get documentation; String? get since; List<String> get sinceTags; bool get proposed;@JsonKey(name: 'mixins') List<MetaReference> get mixins$;@JsonKey(name: 'extends') List<MetaReference> get extends$;
 /// Create a copy of MetaStructure
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2909,16 +2909,16 @@ $MetaStructureCopyWith<MetaStructure> get copyWith => _$MetaStructureCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaStructure&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.properties, properties)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&const DeepCollectionEquality().equals(other.mixins$, mixins$)&&const DeepCollectionEquality().equals(other.extends$, extends$));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaStructure&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.properties, properties)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&const DeepCollectionEquality().equals(other.sinceTags, sinceTags)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&const DeepCollectionEquality().equals(other.mixins$, mixins$)&&const DeepCollectionEquality().equals(other.extends$, extends$));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(properties),documentation,since,proposed,const DeepCollectionEquality().hash(mixins$),const DeepCollectionEquality().hash(extends$));
+int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(properties),documentation,since,const DeepCollectionEquality().hash(sinceTags),proposed,const DeepCollectionEquality().hash(mixins$),const DeepCollectionEquality().hash(extends$));
 
 @override
 String toString() {
-  return 'MetaStructure(name: $name, properties: $properties, documentation: $documentation, since: $since, proposed: $proposed, mixins\$: ${mixins$}, extends\$: ${extends$})';
+  return 'MetaStructure(name: $name, properties: $properties, documentation: $documentation, since: $since, sinceTags: $sinceTags, proposed: $proposed, mixins\$: ${mixins$}, extends\$: ${extends$})';
 }
 
 
@@ -2929,7 +2929,7 @@ abstract mixin class $MetaStructureCopyWith<$Res>  {
   factory $MetaStructureCopyWith(MetaStructure value, $Res Function(MetaStructure) _then) = _$MetaStructureCopyWithImpl;
 @useResult
 $Res call({
- String name, List<MetaProperty> properties, String? documentation, String? since, bool proposed,@JsonKey(name: 'mixins') List<MetaReference> mixins$,@JsonKey(name: 'extends') List<MetaReference> extends$
+ String name, List<MetaProperty> properties, String? documentation, String? since, List<String> sinceTags, bool proposed,@JsonKey(name: 'mixins') List<MetaReference> mixins$,@JsonKey(name: 'extends') List<MetaReference> extends$
 });
 
 
@@ -2946,13 +2946,14 @@ class _$MetaStructureCopyWithImpl<$Res>
 
 /// Create a copy of MetaStructure
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? properties = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,Object? mixins$ = null,Object? extends$ = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? properties = null,Object? documentation = freezed,Object? since = freezed,Object? sinceTags = null,Object? proposed = null,Object? mixins$ = null,Object? extends$ = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
 as List<MetaProperty>,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
-as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
+as String?,sinceTags: null == sinceTags ? _self.sinceTags : sinceTags // ignore: cast_nullable_to_non_nullable
+as List<String>,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool,mixins$: null == mixins$ ? _self.mixins$ : mixins$ // ignore: cast_nullable_to_non_nullable
 as List<MetaReference>,extends$: null == extends$ ? _self.extends$ : extends$ // ignore: cast_nullable_to_non_nullable
 as List<MetaReference>,
@@ -3040,10 +3041,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  List<MetaProperty> properties,  String? documentation,  String? since,  bool proposed, @JsonKey(name: 'mixins')  List<MetaReference> mixins$, @JsonKey(name: 'extends')  List<MetaReference> extends$)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  List<MetaProperty> properties,  String? documentation,  String? since,  List<String> sinceTags,  bool proposed, @JsonKey(name: 'mixins')  List<MetaReference> mixins$, @JsonKey(name: 'extends')  List<MetaReference> extends$)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MetaStructure() when $default != null:
-return $default(_that.name,_that.properties,_that.documentation,_that.since,_that.proposed,_that.mixins$,_that.extends$);case _:
+return $default(_that.name,_that.properties,_that.documentation,_that.since,_that.sinceTags,_that.proposed,_that.mixins$,_that.extends$);case _:
   return orElse();
 
 }
@@ -3061,10 +3062,10 @@ return $default(_that.name,_that.properties,_that.documentation,_that.since,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  List<MetaProperty> properties,  String? documentation,  String? since,  bool proposed, @JsonKey(name: 'mixins')  List<MetaReference> mixins$, @JsonKey(name: 'extends')  List<MetaReference> extends$)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  List<MetaProperty> properties,  String? documentation,  String? since,  List<String> sinceTags,  bool proposed, @JsonKey(name: 'mixins')  List<MetaReference> mixins$, @JsonKey(name: 'extends')  List<MetaReference> extends$)  $default,) {final _that = this;
 switch (_that) {
 case _MetaStructure():
-return $default(_that.name,_that.properties,_that.documentation,_that.since,_that.proposed,_that.mixins$,_that.extends$);case _:
+return $default(_that.name,_that.properties,_that.documentation,_that.since,_that.sinceTags,_that.proposed,_that.mixins$,_that.extends$);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -3081,10 +3082,10 @@ return $default(_that.name,_that.properties,_that.documentation,_that.since,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  List<MetaProperty> properties,  String? documentation,  String? since,  bool proposed, @JsonKey(name: 'mixins')  List<MetaReference> mixins$, @JsonKey(name: 'extends')  List<MetaReference> extends$)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  List<MetaProperty> properties,  String? documentation,  String? since,  List<String> sinceTags,  bool proposed, @JsonKey(name: 'mixins')  List<MetaReference> mixins$, @JsonKey(name: 'extends')  List<MetaReference> extends$)?  $default,) {final _that = this;
 switch (_that) {
 case _MetaStructure() when $default != null:
-return $default(_that.name,_that.properties,_that.documentation,_that.since,_that.proposed,_that.mixins$,_that.extends$);case _:
+return $default(_that.name,_that.properties,_that.documentation,_that.since,_that.sinceTags,_that.proposed,_that.mixins$,_that.extends$);case _:
   return null;
 
 }
@@ -3096,7 +3097,7 @@ return $default(_that.name,_that.properties,_that.documentation,_that.since,_tha
 @JsonSerializable()
 
 class _MetaStructure implements MetaStructure {
-  const _MetaStructure({required this.name, required final  List<MetaProperty> properties, this.documentation, this.since, this.proposed = false, @JsonKey(name: 'mixins') final  List<MetaReference> mixins$ = const [], @JsonKey(name: 'extends') final  List<MetaReference> extends$ = const []}): _properties = properties,_mixins$ = mixins$,_extends$ = extends$;
+  const _MetaStructure({required this.name, required final  List<MetaProperty> properties, this.documentation, this.since, final  List<String> sinceTags = const [], this.proposed = false, @JsonKey(name: 'mixins') final  List<MetaReference> mixins$ = const [], @JsonKey(name: 'extends') final  List<MetaReference> extends$ = const []}): _properties = properties,_sinceTags = sinceTags,_mixins$ = mixins$,_extends$ = extends$;
   factory _MetaStructure.fromJson(Map<String, dynamic> json) => _$MetaStructureFromJson(json);
 
 @override final  String name;
@@ -3109,6 +3110,13 @@ class _MetaStructure implements MetaStructure {
 
 @override final  String? documentation;
 @override final  String? since;
+ final  List<String> _sinceTags;
+@override@JsonKey() List<String> get sinceTags {
+  if (_sinceTags is EqualUnmodifiableListView) return _sinceTags;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_sinceTags);
+}
+
 @override@JsonKey() final  bool proposed;
  final  List<MetaReference> _mixins$;
 @override@JsonKey(name: 'mixins') List<MetaReference> get mixins$ {
@@ -3138,16 +3146,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaStructure&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._properties, _properties)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&const DeepCollectionEquality().equals(other._mixins$, _mixins$)&&const DeepCollectionEquality().equals(other._extends$, _extends$));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaStructure&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._properties, _properties)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&const DeepCollectionEquality().equals(other._sinceTags, _sinceTags)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&const DeepCollectionEquality().equals(other._mixins$, _mixins$)&&const DeepCollectionEquality().equals(other._extends$, _extends$));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(_properties),documentation,since,proposed,const DeepCollectionEquality().hash(_mixins$),const DeepCollectionEquality().hash(_extends$));
+int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(_properties),documentation,since,const DeepCollectionEquality().hash(_sinceTags),proposed,const DeepCollectionEquality().hash(_mixins$),const DeepCollectionEquality().hash(_extends$));
 
 @override
 String toString() {
-  return 'MetaStructure(name: $name, properties: $properties, documentation: $documentation, since: $since, proposed: $proposed, mixins\$: ${mixins$}, extends\$: ${extends$})';
+  return 'MetaStructure(name: $name, properties: $properties, documentation: $documentation, since: $since, sinceTags: $sinceTags, proposed: $proposed, mixins\$: ${mixins$}, extends\$: ${extends$})';
 }
 
 
@@ -3158,7 +3166,7 @@ abstract mixin class _$MetaStructureCopyWith<$Res> implements $MetaStructureCopy
   factory _$MetaStructureCopyWith(_MetaStructure value, $Res Function(_MetaStructure) _then) = __$MetaStructureCopyWithImpl;
 @override @useResult
 $Res call({
- String name, List<MetaProperty> properties, String? documentation, String? since, bool proposed,@JsonKey(name: 'mixins') List<MetaReference> mixins$,@JsonKey(name: 'extends') List<MetaReference> extends$
+ String name, List<MetaProperty> properties, String? documentation, String? since, List<String> sinceTags, bool proposed,@JsonKey(name: 'mixins') List<MetaReference> mixins$,@JsonKey(name: 'extends') List<MetaReference> extends$
 });
 
 
@@ -3175,13 +3183,14 @@ class __$MetaStructureCopyWithImpl<$Res>
 
 /// Create a copy of MetaStructure
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? properties = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,Object? mixins$ = null,Object? extends$ = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? properties = null,Object? documentation = freezed,Object? since = freezed,Object? sinceTags = null,Object? proposed = null,Object? mixins$ = null,Object? extends$ = null,}) {
   return _then(_MetaStructure(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
 as List<MetaProperty>,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
-as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
+as String?,sinceTags: null == sinceTags ? _self._sinceTags : sinceTags // ignore: cast_nullable_to_non_nullable
+as List<String>,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool,mixins$: null == mixins$ ? _self._mixins$ : mixins$ // ignore: cast_nullable_to_non_nullable
 as List<MetaReference>,extends$: null == extends$ ? _self._extends$ : extends$ // ignore: cast_nullable_to_non_nullable
 as List<MetaReference>,

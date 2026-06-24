@@ -184,11 +184,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     ServerCapabilitiesInlineCompletionProvider? inlineCompletionProvider,
 
     /// Workspace specific server capabilities.
-    ({
-      WorkspaceFoldersServerCapabilities? workspaceFolders,
-      FileOperationOptions? fileOperations,
-    })?
-    workspace,
+    WorkspaceOptions? workspace,
 
     /// Experimental server capabilities.
     LSPAny? experimental,
@@ -223,30 +219,6 @@ abstract class ClientCapabilities with _$ClientCapabilities {
 
   factory ClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$ClientCapabilitiesFromJson(json);
-}
-
-@freezed
-abstract class WorkspaceFoldersServerCapabilities
-    with _$WorkspaceFoldersServerCapabilities {
-  const factory WorkspaceFoldersServerCapabilities({
-    /// The server has support for workspace folders
-    bool? supported,
-
-    /// Whether the server wants to receive workspace folder change
-    /// notifications.
-    ///
-    /// If a string is provided the string is treated as an ID under which the
-    /// notification is registered on the client side. The ID can be used to
-    /// unregister for these events using the `client/unregisterCapability`
-    /// request.
-    ///
-    /// Type: `String` | `bool`
-    WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications,
-  }) = _WorkspaceFoldersServerCapabilities;
-
-  factory WorkspaceFoldersServerCapabilities.fromJson(
-    Map<String, dynamic> json,
-  ) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
 }
 
 /// Workspace specific client capabilities.
@@ -308,6 +280,9 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
     /// Capabilities specific to the folding range requests scoped to the
     /// workspace.
     FoldingRangeWorkspaceClientCapabilities? foldingRange,
+
+    /// Capabilities specific to the `workspace/textDocumentContent` request.
+    TextDocumentContentClientCapabilities? textDocumentContent,
   }) = _WorkspaceClientCapabilities;
 
   factory WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -321,6 +296,9 @@ abstract class TextDocumentClientCapabilities
   const factory TextDocumentClientCapabilities({
     /// Defines which synchronization capabilities the client supports.
     TextDocumentSyncClientCapabilities? synchronization,
+
+    /// Defines which filters the client supports.
+    TextDocumentFilterClientCapabilities? filters,
 
     /// Capabilities specific to the `textDocument/completion` request.
     CompletionClientCapabilities? completion,
@@ -466,7 +444,7 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     /// Client capability that signals how the client handles stale requests
     /// (e.g. a request for which the client will not process the response
     /// anymore since the information is outdated).
-    ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
+    StaleRequestSupportOptions? staleRequestSupport,
 
     /// Client capabilities specific to regular expressions.
     RegularExpressionsClientCapabilities? regularExpressions,
@@ -496,6 +474,30 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
 }
 
 @freezed
+abstract class WorkspaceFoldersServerCapabilities
+    with _$WorkspaceFoldersServerCapabilities {
+  const factory WorkspaceFoldersServerCapabilities({
+    /// The server has support for workspace folders
+    bool? supported,
+
+    /// Whether the server wants to receive workspace folder change
+    /// notifications.
+    ///
+    /// If a string is provided the string is treated as an ID under which the
+    /// notification is registered on the client side. The ID can be used to
+    /// unregister for these events using the `client/unregisterCapability`
+    /// request.
+    ///
+    /// Type: `String` | `bool`
+    WorkspaceFoldersServerCapabilitiesChangeNotifications? changeNotifications,
+  }) = _WorkspaceFoldersServerCapabilities;
+
+  factory WorkspaceFoldersServerCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
+}
+
+@freezed
 abstract class WorkspaceEditClientCapabilities
     with _$WorkspaceEditClientCapabilities {
   const factory WorkspaceEditClientCapabilities({
@@ -518,7 +520,13 @@ abstract class WorkspaceEditClientCapabilities
 
     /// Whether the client in general supports change annotations on text edits,
     /// create file, rename file and delete file changes.
-    ({bool? groupsOnLabel})? changeAnnotationSupport,
+    ChangeAnnotationsSupportOptions? changeAnnotationSupport,
+
+    /// Whether the client supports `WorkspaceEditMetadata` in `WorkspaceEdit`s.
+    bool? metadataSupport,
+
+    /// Whether the client supports snippets as text edits.
+    bool? snippetEditSupport,
   }) = _WorkspaceEditClientCapabilities;
 
   factory WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -566,16 +574,16 @@ abstract class WorkspaceSymbolClientCapabilities
 
     /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
     /// request.
-    ({List<SymbolKind>? valueSet})? symbolKind,
+    ClientSymbolKindOptions? symbolKind,
 
     /// The client supports tags on `SymbolInformation`. Clients supporting tags
     /// have to handle unknown tags gracefully.
-    ({List<SymbolTag> valueSet})? tagSupport,
+    ClientSymbolTagOptions? tagSupport,
 
     /// The client support partial workspace symbols. The client will send the
     /// request `workspaceSymbol/resolve` to the server to resolve additional
     /// properties.
-    ({List<String> properties})? resolveSupport,
+    ClientSymbolResolveOptions? resolveSupport,
   }) = _WorkspaceSymbolClientCapabilities;
 
   factory WorkspaceSymbolClientCapabilities.fromJson(
@@ -744,7 +752,6 @@ abstract class DiagnosticWorkspaceClientCapabilities
 /// Client workspace capabilities specific to folding ranges
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class FoldingRangeWorkspaceClientCapabilities
     with _$FoldingRangeWorkspaceClientCapabilities {
@@ -762,6 +769,22 @@ abstract class FoldingRangeWorkspaceClientCapabilities
   factory FoldingRangeWorkspaceClientCapabilities.fromJson(
     Map<String, dynamic> json,
   ) => _$FoldingRangeWorkspaceClientCapabilitiesFromJson(json);
+}
+
+/// Client capabilities for a text document content provider.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentContentClientCapabilities
+    with _$TextDocumentContentClientCapabilities {
+  const factory TextDocumentContentClientCapabilities({
+    /// Text document content provider supports dynamic registration.
+    bool? dynamicRegistration,
+  }) = _TextDocumentContentClientCapabilities;
+
+  factory TextDocumentContentClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentContentClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -788,6 +811,19 @@ abstract class TextDocumentSyncClientCapabilities
   ) => _$TextDocumentSyncClientCapabilitiesFromJson(json);
 }
 
+@freezed
+abstract class TextDocumentFilterClientCapabilities
+    with _$TextDocumentFilterClientCapabilities {
+  const factory TextDocumentFilterClientCapabilities({
+    /// The client supports Relative Patterns.
+    bool? relativePatternSupport,
+  }) = _TextDocumentFilterClientCapabilities;
+
+  factory TextDocumentFilterClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentFilterClientCapabilitiesFromJson(json);
+}
+
 /// Completion client capabilities
 @freezed
 abstract class CompletionClientCapabilities
@@ -798,20 +834,10 @@ abstract class CompletionClientCapabilities
 
     /// The client supports the following `CompletionItem` specific
     /// capabilities.
-    ({
-      bool? snippetSupport,
-      bool? commitCharactersSupport,
-      List<MarkupKind>? documentationFormat,
-      bool? deprecatedSupport,
-      bool? preselectSupport,
-      ({List<CompletionItemTag> valueSet})? tagSupport,
-      bool? insertReplaceSupport,
-      ({List<String> properties})? resolveSupport,
-      ({List<InsertTextMode> valueSet})? insertTextModeSupport,
-      bool? labelDetailsSupport,
-    })?
-    completionItem,
-    ({List<CompletionItemKind>? valueSet})? completionItemKind,
+    ClientCompletionItemOptions? completionItem,
+
+    /// The client supports the following completion item kinds.
+    ClientCompletionItemOptionsKind? completionItemKind,
 
     /// Defines how the client handles whitespace and indentation when accepting
     /// a completion item that uses multi line text in either `insertText` or
@@ -824,7 +850,7 @@ abstract class CompletionClientCapabilities
 
     /// The client supports the following `CompletionList` specific
     /// capabilities.
-    ({List<String>? itemDefaults})? completionList,
+    CompletionListCapabilities? completionList,
   }) = _CompletionClientCapabilities;
 
   factory CompletionClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -856,12 +882,7 @@ abstract class SignatureHelpClientCapabilities
 
     /// The client supports the following `SignatureInformation` specific
     /// properties.
-    ({
-      List<MarkupKind>? documentationFormat,
-      ({bool? labelOffsetSupport})? parameterInformation,
-      bool? activeParameterSupport,
-    })?
-    signatureInformation,
+    ClientSignatureInformationOptions? signatureInformation,
 
     /// The client supports to send additional context information for a
     /// `textDocument/signatureHelp` request. A client that opts into
@@ -985,7 +1006,7 @@ abstract class DocumentSymbolClientCapabilities
 
     /// Specific capabilities for the `SymbolKind` in the
     /// `textDocument/documentSymbol` request.
-    ({List<SymbolKind>? valueSet})? symbolKind,
+    ClientSymbolKindOptions? symbolKind,
 
     /// The client supports hierarchical document symbols.
     bool? hierarchicalDocumentSymbolSupport,
@@ -993,7 +1014,7 @@ abstract class DocumentSymbolClientCapabilities
     /// The client supports tags on `SymbolInformation`. Tags are supported on
     /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
     /// Clients supporting tags have to handle unknown tags gracefully.
-    ({List<SymbolTag> valueSet})? tagSupport,
+    ClientSymbolTagOptions? tagSupport,
 
     /// The client supports an additional label presented in the UI when
     /// registering a document symbol provider.
@@ -1016,8 +1037,7 @@ abstract class CodeActionClientCapabilities
     /// The client support code action literals of type `CodeAction` as a valid
     /// response of the `textDocument/codeAction` request. If the property is
     /// not set the request can only return `Command` literals.
-    ({({List<CodeActionKind> valueSet}) codeActionKind})?
-    codeActionLiteralSupport,
+    ClientCodeActionLiteralOptions? codeActionLiteralSupport,
 
     /// Whether code action supports the `isPreferred` property.
     bool? isPreferredSupport,
@@ -1031,13 +1051,20 @@ abstract class CodeActionClientCapabilities
 
     /// Whether the client supports resolving additional code action properties
     /// via a separate `codeAction/resolve` request.
-    ({List<String> properties})? resolveSupport,
+    ClientCodeActionResolveOptions? resolveSupport,
 
     /// Whether the client honors the change annotations in text edits and
     /// resource operations returned via the `CodeAction#edit` property by for
     /// example presenting the workspace edit in the user interface and asking
     /// for confirmation.
     bool? honorsChangeAnnotations,
+
+    /// Whether the client supports documentation for a class of code actions.
+    bool? documentationSupport,
+
+    /// Client supports the tag property on a code action. Clients supporting
+    /// tags have to handle unknown tags gracefully.
+    CodeActionTagOptions? tagSupport,
   }) = _CodeActionClientCapabilities;
 
   factory CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -1050,6 +1077,10 @@ abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
   const factory CodeLensClientCapabilities({
     /// Whether code lens supports dynamic registration.
     bool? dynamicRegistration,
+
+    /// Whether the client supports resolving additional code lens properties
+    /// via a separate `codeLens/resolve` request.
+    ClientCodeLensResolveOptions? resolveSupport,
   }) = _CodeLensClientCapabilities;
 
   factory CodeLensClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -1178,10 +1209,10 @@ abstract class FoldingRangeClientCapabilities
     bool? lineFoldingOnly,
 
     /// Specific options for the folding range kind.
-    ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,
+    ClientFoldingRangeKindOptions? foldingRangeKind,
 
     /// Specific options for the folding range.
-    ({bool? collapsedText})? foldingRange,
+    ClientFoldingRangeOptions? foldingRange,
   }) = _FoldingRangeClientCapabilities;
 
   factory FoldingRangeClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -1215,11 +1246,7 @@ abstract class PublishDiagnosticsClientCapabilities
     /// Client supports the tag property to provide meta data about a
     /// diagnostic. Clients supporting tags have to handle unknown tags
     /// gracefully.
-    ({List<DiagnosticTag> valueSet})? tagSupport,
-
-    /// Whether the client interprets the version property of the
-    /// `textDocument/publishDiagnostics` notification's parameter.
-    bool? versionSupport,
+    ClientDiagnosticsTagOptions? tagSupport,
 
     /// Client supports a codeDescription property
     bool? codeDescriptionSupport,
@@ -1228,6 +1255,10 @@ abstract class PublishDiagnosticsClientCapabilities
     /// between a `textDocument/publishDiagnostics` and
     /// `textDocument/codeAction` request.
     bool? dataSupport,
+
+    /// Whether the client interprets the version property of the
+    /// `textDocument/publishDiagnostics` notification's parameter.
+    bool? versionSupport,
   }) = _PublishDiagnosticsClientCapabilities;
 
   factory PublishDiagnosticsClientCapabilities.fromJson(
@@ -1264,7 +1295,7 @@ abstract class SemanticTokensClientCapabilities
     /// `request.range` are both set to true but the server only provides a
     /// range provider the client might not render a minimap correctly or might
     /// even decide to not show any semantic tokens at all.
-    required ({Object? range, Object? full}) requests,
+    required ClientSemanticTokensRequestOptions requests,
 
     /// The token types that the client supports.
     required List<String> tokenTypes,
@@ -1383,7 +1414,7 @@ abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
     bool? dynamicRegistration,
 
     /// Indicates which properties a client can resolve lazily on an inlay hint.
-    ({List<String> properties})? resolveSupport,
+    ClientInlayHintResolveOptions? resolveSupport,
   }) = _InlayHintClientCapabilities;
 
   factory InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -1397,6 +1428,22 @@ abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
 abstract class DiagnosticClientCapabilities
     with _$DiagnosticClientCapabilities {
   const factory DiagnosticClientCapabilities({
+    /// Whether the clients accepts diagnostics with related information.
+    bool? relatedInformation,
+
+    /// Client supports the tag property to provide meta data about a
+    /// diagnostic. Clients supporting tags have to handle unknown tags
+    /// gracefully.
+    ClientDiagnosticsTagOptions? tagSupport,
+
+    /// Client supports a codeDescription property
+    bool? codeDescriptionSupport,
+
+    /// Whether code action supports the `data` property which is preserved
+    /// between a `textDocument/publishDiagnostics` and
+    /// `textDocument/codeAction` request.
+    bool? dataSupport,
+
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `(TextDocumentRegistrationOptions &
     /// StaticRegistrationOptions)` return value for the corresponding server
@@ -1406,6 +1453,9 @@ abstract class DiagnosticClientCapabilities
     /// Whether the clients supports related documents for document diagnostic
     /// pulls.
     bool? relatedDocumentSupport,
+
+    /// Whether the client supports `MarkupContent` in diagnostic messages.
+    bool? markupMessageSupport,
   }) = _DiagnosticClientCapabilities;
 
   factory DiagnosticClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -1415,7 +1465,6 @@ abstract class DiagnosticClientCapabilities
 /// Client capabilities specific to inline completions.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class InlineCompletionClientCapabilities
     with _$InlineCompletionClientCapabilities {
@@ -1458,7 +1507,7 @@ abstract class ShowMessageRequestClientCapabilities
     with _$ShowMessageRequestClientCapabilities {
   const factory ShowMessageRequestClientCapabilities({
     /// Capabilities specific to the `MessageActionItem` type.
-    ({bool? additionalPropertiesSupport})? messageActionItem,
+    ClientShowMessageActionItemOptions? messageActionItem,
   }) = _ShowMessageRequestClientCapabilities;
 
   factory ShowMessageRequestClientCapabilities.fromJson(
@@ -1489,7 +1538,7 @@ abstract class RegularExpressionsClientCapabilities
     with _$RegularExpressionsClientCapabilities {
   const factory RegularExpressionsClientCapabilities({
     /// The engine's name.
-    required String engine,
+    required RegularExpressionEngineKind engine,
 
     /// The engine's version.
     String? version,
@@ -1518,4 +1567,58 @@ abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
 
   factory MarkdownClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$MarkdownClientCapabilitiesFromJson(json);
+}
+
+/// The client supports the following `CompletionList` specific capabilities.
+///
+/// @since 3.17.0
+@freezed
+abstract class CompletionListCapabilities with _$CompletionListCapabilities {
+  const factory CompletionListCapabilities({
+    /// The client supports the following itemDefaults on a completion list.
+    ///
+    /// The value lists the supported property names of the
+    /// `CompletionList.itemDefaults` object. If omitted no properties are
+    /// supported.
+    List<String>? itemDefaults,
+
+    /// Specifies whether the client supports `CompletionList.applyKind` to
+    /// indicate how supported values from `completionList.itemDefaults` and
+    /// `completion` will be combined.
+    ///
+    /// If a client supports `applyKind` it must support it for all fields that
+    /// it supports that are listed in `CompletionList.applyKind`. This means
+    /// when clients add support for new/future fields in completion items the
+    /// MUST also support merge for them if those fields are defined in
+    /// `CompletionList.applyKind`.
+    bool? applyKindSupport,
+  }) = _CompletionListCapabilities;
+
+  factory CompletionListCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$CompletionListCapabilitiesFromJson(json);
+}
+
+/// General diagnostics capabilities for pull and push model.
+@freezed
+abstract class DiagnosticsCapabilities with _$DiagnosticsCapabilities {
+  const factory DiagnosticsCapabilities({
+    /// Whether the clients accepts diagnostics with related information.
+    bool? relatedInformation,
+
+    /// Client supports the tag property to provide meta data about a
+    /// diagnostic. Clients supporting tags have to handle unknown tags
+    /// gracefully.
+    ClientDiagnosticsTagOptions? tagSupport,
+
+    /// Client supports a codeDescription property
+    bool? codeDescriptionSupport,
+
+    /// Whether code action supports the `data` property which is preserved
+    /// between a `textDocument/publishDiagnostics` and
+    /// `textDocument/codeAction` request.
+    bool? dataSupport,
+  }) = _DiagnosticsCapabilities;
+
+  factory DiagnosticsCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$DiagnosticsCapabilitiesFromJson(json);
 }

@@ -12,11 +12,9 @@ extension ModelGeneratorUnions on ModelGenerator {
     String? deprecated,
     List<String> docs = const [],
   }) => ExtensionType((b) {
-    final hasNull = ut.items.any(
-      (item) => item is DartCoreType && item.dartName == 'Null',
-    );
-
-    final representationType = hasNull ? refer('Object?') : refer('Object');
+    final representationType = ut.containsNull
+        ? refer('Object?')
+        : refer('Object');
 
     _addExtensionTypeStructure(b, name, representationType, deprecated);
     _addExtensionTypeAnnotations(b, docs, deprecated);

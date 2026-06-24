@@ -66,7 +66,7 @@ server.workspaceSymbol.onResolve(
   (params, context) async => WorkspaceSymbol(
     name: 'C',
     kind: SymbolKind.class$,
-    location: WorkspaceSymbolLocation.uri(uri: 'file:///a.dart'),
+    location: WorkspaceSymbolLocation.locationUriOnly(LocationUriOnly(uri: 'file:///a.dart')),
     containerName: 'x',
   ),
 );
@@ -79,7 +79,7 @@ final r = await client.server.workspaceSymbol.resolve(
   WorkspaceSymbol(
     name: 'C',
     kind: SymbolKind.class$,
-    location: WorkspaceSymbolLocation.uri(uri: 'file:///a.dart'),
+    location: WorkspaceSymbolLocation.locationUriOnly(LocationUriOnly(uri: 'file:///a.dart')),
   ),
 );
 // r.containerName

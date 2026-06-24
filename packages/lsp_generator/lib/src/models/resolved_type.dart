@@ -62,3 +62,25 @@ sealed class ResolvedType with _$ResolvedType {
     required List<ResolvedProperty> fields,
   }) = InlineRecord;
 }
+
+/// Nullability queries on the resolved type IR.
+extension ResolvedTypeNullability on ResolvedType {
+  /// Whether this type admits a JSON `null` value: a [NullableType] wrapper, a
+  /// [UnionType] that includes the `Null` core type, or a nullable
+  /// [DartCoreType] such as `Object?`.
+  ///
+  /// This is the single source of truth for "does this union/type allow null".
+  /// Union code-gen — the extension-type representation (`Object?` vs
+  /// `Object`), sender-decode casts, list-element casts, and null-safe variant
+  /// casts — must consult this instead of re-deriving the `Null`-member check.
+  bool get containsNull => switch (this) {
+    NullableType() => true,
+    UnionType(:final items) => items.any(_isNullCore),
+    DartCoreType(:final dartName) =>
+      dartName == 'Null' || dartName.endsWith('?'),
+    _ => false,
+  };
+}
+
+bool _isNullCore(ResolvedType type) =>
+    type is DartCoreType && type.dartName == 'Null';

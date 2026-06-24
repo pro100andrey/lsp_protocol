@@ -39,7 +39,7 @@ server.general.onInitialize(
       hoverProvider: .bool(true),
       definitionProvider: .bool(true),
     ),
-    serverInfo: (name: 'e2e-server', version: '1.0.0'),
+    serverInfo: ServerInfo(name: 'e2e-server', version: '1.0.0'),
   ),
 );
 ```
@@ -50,7 +50,7 @@ Call it (client):
 // Sent automatically by client.start; this drives the handshake.
 await client.start(
   capabilities: const ClientCapabilities(),
-  clientInfo: (name: 'e2e-client', version: '1.0.0'),
+  clientInfo: ClientInfo(name: 'e2e-client', version: '1.0.0'),
   processId: 1234,
 );
 ```
@@ -143,7 +143,7 @@ Handle it (server):
 
 ```dart
 server.general.onSetTrace((params, context) async {
-  // params.value is a TraceValues, e.g. TraceValues.messages
+  // params.value is a TraceValue, e.g. TraceValue.messages
 });
 ```
 
@@ -151,7 +151,7 @@ Call it (client):
 
 ```dart
 client.server.general.setTrace(
-  const SetTraceParams(value: TraceValues.messages),
+  const SetTraceParams(value: TraceValue.messages),
 );
 ```
 

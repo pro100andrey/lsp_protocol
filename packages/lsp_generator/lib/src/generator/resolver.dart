@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../models/protocol.dart';
 import '../models/resolved_decl.dart';
 import '../models/resolved_type.dart';
@@ -117,13 +119,16 @@ final class ModelResolver {
   }) {
     final items = ref.items;
 
-    // Detect OrRef([T, null]) → NullableType(T)
-    final nullItems = items.where(_isNull).toList(growable: false);
+    // Detect OrRef([T, null]) → NullableType(T). A single non-null member
+    // alongside one or more nulls collapses to `T?`; everything else (two or
+    // more non-null members) stays a UnionType, which still reports
+    // `containsNull` if any null member remains.
     final nonNullItems = items
         .where((i) => !_isNull(i))
         .toList(growable: false);
+    final hasNull = items.any(_isNull);
 
-    if (nullItems.length == 1 && nonNullItems.length == 1) {
+    if (nonNullItems.length == 1 && hasNull) {
       return NullableType(
         inner: resolveRef(
           nonNullItems.first,
@@ -182,6 +187,11 @@ final class ModelResolver {
   };
 
   /// Maps LSP base type names to their Dart equivalents.
+  ///
+  /// The LSP base-type set is closed and stable. An unrecognized name means
+  /// the spec introduced a new base type the generator doesn't model yet —
+  /// warn loudly (it may emit an invalid Dart type) but stay lenient by
+  /// passing the name through unchanged.
   static String _baseRefToDart(String name) => switch (name) {
     'string' => 'String',
     'integer' || 'uinteger' => 'int',
@@ -191,7 +201,13 @@ final class ModelResolver {
     'URI' || 'DocumentUri' => 'String',
     'RegExp' => 'String',
     'LSPAny' => 'Object?',
-    _ => name, // fallback: keep as-is
+    _ => () {
+      stderr.writeln(
+        'warning: unknown LSP base type "$name"; emitting it verbatim as a '
+        'Dart type. The generator may need a new mapping in _baseRefToDart.',
+      );
+      return name;
+    }(),
   };
 }
 
@@ -212,6 +228,7 @@ final class _RegisterPass extends MetaVisitor {
       mixins$: [],
       documentation: structure.documentation,
       since: structure.since,
+      sinceTags: structure.sinceTags,
       proposed: structure.proposed,
     );
 

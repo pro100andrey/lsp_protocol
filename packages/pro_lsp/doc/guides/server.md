@@ -78,7 +78,7 @@ server.general.onInitialize((params, context) async {
       documentSymbolProvider: .bool(true),
       workspaceSymbolProvider: .bool(true),
     ),
-    serverInfo: (name: 'my-dart-lsp', version: '1.0.0'),
+    serverInfo: ServerInfo(name: 'my-dart-lsp', version: '1.0.0'),
   );
 });
 ```

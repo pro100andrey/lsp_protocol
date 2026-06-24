@@ -3,10 +3,9 @@ import 'dart:io';
 
 import 'package:lsp_generator/lsp_generator.dart';
 import 'package:lsp_generator/src/config/files.dart';
-import 'package:lsp_generator/src/generator/client_api_generator.dart';
+import 'package:lsp_generator/src/generator/api_generator.dart';
 import 'package:lsp_generator/src/generator/generator_helpers.dart';
 import 'package:lsp_generator/src/generator/model_generator.dart';
-import 'package:lsp_generator/src/generator/server_api_generator.dart';
 import 'package:lsp_generator/src/models/protocol.dart';
 import 'package:test/test.dart';
 
@@ -111,12 +110,12 @@ void main() {
     golden(
       'server_api.dart',
       () => proLsp.serverApiFile,
-      () => formatLibrary(ServerApiGenerator(resolved).buildServerApi()),
+      () => formatLibrary(ApiGenerator(resolved, SideConfig.server).buildApi()),
     );
     golden(
       'client_api.dart',
       () => proLsp.clientApiFile,
-      () => formatLibrary(ClientApiGenerator(resolved).buildClientApi()),
+      () => formatLibrary(ApiGenerator(resolved, SideConfig.client).buildApi()),
     );
   });
 }

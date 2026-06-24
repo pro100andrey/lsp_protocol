@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.3.0
+
+* **Upgraded the generated bindings to LSP 3.18.** Models are now generated from
+  the LSP 3.18 meta-model. Highlights:
+  * **New requests** — dynamic text document content
+    (`workspace/textDocumentContent` and `workspace/textDocumentContent/refresh`).
+  * **New enumerations** — `LanguageKind` (typed language identifiers, including
+    `d` and `pascal`), `TraceValue`, `CodeActionTag`, `ApplyKind`.
+  * **New structures** — `SnippetTextEdit`, `WorkspaceEditMetadata`,
+    `CodeActionKindDocumentation`, `CompletionItemApplyKinds`, the
+    `TextDocumentContent*` family, structured `TextDocumentFilter*` /
+    `NotebookDocumentFilter*` (relative-pattern support), and named
+    `Client*`/`Server*` capability options promoted from inline literals
+    (`ClientInfo`, `ServerInfo`, …).
+  * **New properties** — `Command.tooltip`, `CompletionList.applyKind`,
+    `CodeAction.tags`, `CodeLensClientCapabilities.resolveSupport`,
+    `WorkspaceEditClientCapabilities.{metadataSupport,snippetEditSupport}`,
+    `ApplyWorkspaceEditParams.metadata`,
+    `DiagnosticClientCapabilities.markupMessageSupport`,
+    `WorkspaceClientCapabilities.textDocumentContent`, and more.
+* **Breaking (3.18 API shape changes consumers must adopt):**
+  * `InitializeResult.serverInfo` / `InitializeParams.clientInfo` (and
+    `LspClient.start(clientInfo:)`) now take the named `ServerInfo` / `ClientInfo`
+    structures instead of anonymous records.
+  * `TextDocumentItem.languageId` is now `LanguageKind` instead of `String`.
+  * `Diagnostic.message` is now the `DiagnosticMessage` union (string or markup)
+    to support `markupMessageSupport`.
+  * `SignatureHelp.activeParameter` / `SignatureInformation.activeParameter` are
+    now nullable.
+  * Union accessors renamed where the underlying members became named structures
+    (e.g. `TextDocumentContentChangeEvent` and `WorkspaceSymbolLocation`).
+* **Breaking (middleware API): unified the request context.** `LspMiddleware`
+  now receives the same `LspRequest` that handlers do, gaining `resolve<T>()` /
+  `tryResolve<T>()`, `cancellationToken`, `connection`, and `isNotification`. The
+  separate `LspIncomingRequest` type (passed to middleware since 0.1.0) is
+  removed, and its `requestId` field is now `id`. Rewrite params by mutating
+  `request.params` before calling `next()`; the request is sealed read-only once
+  the handler runs. **Migration:** change
+  `call(LspIncomingRequest request, LspNext next)` to
+  `call(LspRequest request, LspNext next)`, `request.requestId` to `request.id`,
+  and any params rewrite from constructing a new request object to mutating
+  `request.params`.
+* **Fuller `@since` history** — structures with a multi-version `sinceTags`
+  history (e.g. `ServerInfo`, `ClientInfo`) now document every version
+  (`@since 3.15.0` *and* `@since 3.18.0 …`) instead of only the latest.
+* **Generator hygiene** — doc-comment formatting regexes are compiled once; an
+  unrecognized LSP base type now warns instead of silently passing through;
+  union nullability is derived from a single `containsNull` source of truth on
+  the type IR; the client/server API generators share one configurable
+  implementation; and union-shape analysis and property flattening are split
+  into focused, unit-tested helpers.
+
 ## 0.2.1
 
 * **Fixed: nullable-union request results crashed on a `null` response.** Typed

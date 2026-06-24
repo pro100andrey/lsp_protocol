@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file MD004 -->
 # pro_lsp
 
-Unified **LSP 3.17** Dart bindings and a typed server/client framework. `pro_lsp`
+Unified **LSP 3.18** Dart bindings and a typed server/client framework. `pro_lsp`
 is lightweight, transport-agnostic, and strictly type-safe — build Language
 Servers and Language Clients in Dart without hand-writing JSON-RPC plumbing.
 
@@ -14,7 +14,7 @@ void main() async {
   server.general.onInitialize((params, context) async {
     return const InitializeResult(
       capabilities: ServerCapabilities(hoverProvider: .bool(true)),
-      serverInfo: (name: 'my-dart-lsp', version: '1.0.0'),
+      serverInfo: ServerInfo(name: 'my-dart-lsp', version: '1.0.0'),
     );
   });
 
@@ -40,7 +40,7 @@ void main() async {
 
 ## Why pro_lsp
 
-* **Complete LSP 3.17 surface**, generated from the official Microsoft
+* **Complete LSP 3.18 surface**, generated from the official Microsoft
   meta-model: Freezed structures (`copyWith`, value equality, JSON),
   `extension type` unions, and open/closed enums.
 * **Typed, symmetric API** — incoming messages are *handlers*

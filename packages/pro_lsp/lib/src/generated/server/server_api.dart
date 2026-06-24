@@ -608,6 +608,19 @@ extension type ServerWorkspaceHandlers(LspConnection _c) {
     return result.toJson();
   });
 
+  /// Registers handler for `workspace/textDocumentContent`.
+  void onTextDocumentContent(
+    Future<TextDocumentContentResult> Function(
+      TextDocumentContentParams params,
+      LspRequest context,
+    )
+    handler,
+  ) => _c.registerRequestHandler(.textDocumentContent, (j, c) async {
+    final params = parseParams(j, TextDocumentContentParams.fromJson);
+    final result = await handler(params, c);
+    return result.toJson();
+  });
+
   /// Registers handler for `workspace/symbol`.
   void onSymbol(
     Future<SymbolResult> Function(
@@ -1047,6 +1060,24 @@ extension type ServerWorkspaceSender(LspConnection _c) {
     await _c.sendRequest(
       .workspaceDiagnosticRefresh,
       null,
+      token: token,
+      timeout: timeout,
+    );
+  }
+
+  /// Sends the `workspace/textDocumentContent/refresh` request to the client.
+  ///
+  /// Pass [token] to cancel the request (sends `$/cancelRequest`) or
+  /// [timeout] to abort it automatically. Peer error responses are
+  /// thrown as [LspException].
+  Future<void> textDocumentContentRefresh(
+    TextDocumentContentRefreshParams params, {
+    CancellationToken? token,
+    Duration? timeout,
+  }) async {
+    await _c.sendRequest(
+      .workspaceTextDocumentContentRefresh,
+      params.toJson(),
       token: token,
       timeout: timeout,
     );

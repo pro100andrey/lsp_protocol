@@ -243,6 +243,60 @@ extension type const DocumentDiagnosticReport._(Object value) {
         )
       : null;
 }
+
+/// The document diagnostic report used when reporting partial result.
+///
+/// When using partial results, the first literal sent needs to be a
+/// DocumentDiagnosticReport providing the diagnostics on the document followed
+/// by n DocumentDiagnosticReportPartialResult literals providing the
+/// diagnostics for related documents.
+///
+/// ``` DocumentDiagnosticReport DocumentDiagnosticReportPartialResult
+/// DocumentDiagnosticReportPartialResult ... ```
+///
+/// @since 3.18.1
+extension type const DocumentDiagnosticReportProgress._(Object value) {
+  const factory DocumentDiagnosticReportProgress.fromJson(Object json) =
+      DocumentDiagnosticReportProgress._;
+
+  factory DocumentDiagnosticReportProgress.documentDiagnosticReport(
+    DocumentDiagnosticReport value,
+  ) => DocumentDiagnosticReportProgress._(value.toJson());
+
+  factory DocumentDiagnosticReportProgress.documentDiagnosticReportPartialResult(
+    DocumentDiagnosticReportPartialResult value,
+  ) => DocumentDiagnosticReportProgress._(value.toJson());
+
+  Object toJson() => value;
+
+  bool get isDocumentDiagnosticReport =>
+      value is RelatedFullDocumentDiagnosticReport ||
+      value is Map<String, dynamic> ||
+      value is RelatedUnchangedDocumentDiagnosticReport ||
+      value is Map<String, dynamic>;
+
+  DocumentDiagnosticReport? get asDocumentDiagnosticReport =>
+      value is DocumentDiagnosticReport
+      ? value as DocumentDiagnosticReport
+      : isDocumentDiagnosticReport
+      ? DocumentDiagnosticReport.fromJson(value)
+      : null;
+
+  bool get isDocumentDiagnosticReportPartialResult =>
+      value is DocumentDiagnosticReportPartialResult ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('relatedDocuments');
+
+  DocumentDiagnosticReportPartialResult?
+  get asDocumentDiagnosticReportPartialResult =>
+      value is DocumentDiagnosticReportPartialResult
+      ? value as DocumentDiagnosticReportPartialResult
+      : isDocumentDiagnosticReportPartialResult
+      ? DocumentDiagnosticReportPartialResult.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
+}
 extension type const PrepareRenameResult._(Object value) {
   const factory PrepareRenameResult.fromJson(Object json) =
       PrepareRenameResult._;
@@ -250,17 +304,13 @@ extension type const PrepareRenameResult._(Object value) {
   factory PrepareRenameResult.range(Range value) =>
       PrepareRenameResult._(value.toJson());
 
-  factory PrepareRenameResult.rangePlaceholder({
-    required Range range,
-    required String placeholder,
-  }) => PrepareRenameResult._({
-    'range': range.toJson(),
-    'placeholder': placeholder,
-  });
+  factory PrepareRenameResult.prepareRenamePlaceholder(
+    PrepareRenamePlaceholder value,
+  ) => PrepareRenameResult._(value.toJson());
 
-  factory PrepareRenameResult.defaultBehavior({
-    required bool defaultBehavior,
-  }) => PrepareRenameResult._({'defaultBehavior': defaultBehavior});
+  factory PrepareRenameResult.prepareRenameDefaultBehavior(
+    PrepareRenameDefaultBehavior value,
+  ) => PrepareRenameResult._(value.toJson());
 
   Object toJson() => value;
 
@@ -275,34 +325,29 @@ extension type const PrepareRenameResult._(Object value) {
       ? Range.fromJson(value as Map<String, dynamic>)
       : null;
 
-  bool get isRangePlaceholder =>
+  bool get isPrepareRenamePlaceholder =>
+      value is PrepareRenamePlaceholder ||
       value is Map<String, dynamic> &&
-      (value as Map<String, dynamic>).containsKey('range');
+          (value as Map<String, dynamic>).containsKey('range');
 
-  ({Range range, String placeholder})? get asRangePlaceholder {
-    if (isRangePlaceholder) {
-      final map = value as Map<String, dynamic>;
-      return (
-        range: map['range'] is Range
-            ? map['range'] as Range
-            : Range.fromJson(map['range'] as Map<String, dynamic>),
-        placeholder: map['placeholder'] as String,
-      );
-    }
-    return null;
-  }
+  PrepareRenamePlaceholder? get asPrepareRenamePlaceholder =>
+      value is PrepareRenamePlaceholder
+      ? value as PrepareRenamePlaceholder
+      : isPrepareRenamePlaceholder
+      ? PrepareRenamePlaceholder.fromJson(value as Map<String, dynamic>)
+      : null;
 
-  bool get isDefaultBehavior =>
+  bool get isPrepareRenameDefaultBehavior =>
+      value is PrepareRenameDefaultBehavior ||
       value is Map<String, dynamic> &&
-      (value as Map<String, dynamic>).containsKey('defaultBehavior');
+          (value as Map<String, dynamic>).containsKey('defaultBehavior');
 
-  ({bool defaultBehavior})? get asDefaultBehavior {
-    if (isDefaultBehavior) {
-      final map = value as Map<String, dynamic>;
-      return (defaultBehavior: map['defaultBehavior'] as bool);
-    }
-    return null;
-  }
+  PrepareRenameDefaultBehavior? get asPrepareRenameDefaultBehavior =>
+      value is PrepareRenameDefaultBehavior
+      ? value as PrepareRenameDefaultBehavior
+      : isPrepareRenameDefaultBehavior
+      ? PrepareRenameDefaultBehavior.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// A workspace diagnostic document report.
@@ -359,50 +404,42 @@ extension type const TextDocumentContentChangeEvent._(Object value) {
   const factory TextDocumentContentChangeEvent.fromJson(Object json) =
       TextDocumentContentChangeEvent._;
 
-  factory TextDocumentContentChangeEvent.rangeRangeLengthText({
-    required Range range,
-    required String text,
-    int? rangeLength,
-  }) => TextDocumentContentChangeEvent._({
-    'range': range.toJson(),
-    'rangeLength': ?rangeLength,
-    'text': text,
-  });
+  factory TextDocumentContentChangeEvent.textDocumentContentChangePartial(
+    TextDocumentContentChangePartial value,
+  ) => TextDocumentContentChangeEvent._(value.toJson());
 
-  factory TextDocumentContentChangeEvent.text({required String text}) =>
-      TextDocumentContentChangeEvent._({'text': text});
+  factory TextDocumentContentChangeEvent.textDocumentContentChangeWholeDocument(
+    TextDocumentContentChangeWholeDocument value,
+  ) => TextDocumentContentChangeEvent._(value.toJson());
 
   Object toJson() => value;
 
-  bool get isRangeRangeLengthText =>
+  bool get isTextDocumentContentChangePartial =>
+      value is TextDocumentContentChangePartial ||
       value is Map<String, dynamic> &&
-      (value as Map<String, dynamic>).containsKey('range');
+          (value as Map<String, dynamic>).containsKey('range');
 
-  ({Range range, int? rangeLength, String text})? get asRangeRangeLengthText {
-    if (isRangeRangeLengthText) {
-      final map = value as Map<String, dynamic>;
-      return (
-        range: map['range'] is Range
-            ? map['range'] as Range
-            : Range.fromJson(map['range'] as Map<String, dynamic>),
-        rangeLength: map['rangeLength'] as int?,
-        text: map['text'] as String,
-      );
-    }
-    return null;
-  }
+  TextDocumentContentChangePartial? get asTextDocumentContentChangePartial =>
+      value is TextDocumentContentChangePartial
+      ? value as TextDocumentContentChangePartial
+      : isTextDocumentContentChangePartial
+      ? TextDocumentContentChangePartial.fromJson(value as Map<String, dynamic>)
+      : null;
 
-  bool get isText =>
+  bool get isTextDocumentContentChangeWholeDocument =>
+      value is TextDocumentContentChangeWholeDocument ||
       value is Map<String, dynamic> &&
-      !(value as Map<String, dynamic>).containsKey('range');
+          !(value as Map<String, dynamic>).containsKey('range');
 
-  ({String text})? get asText {
-    if (isText) {
-      final map = value as Map<String, dynamic>;
-      return (text: map['text'] as String);
-    }
-    return null;
-  }
+  TextDocumentContentChangeWholeDocument?
+  get asTextDocumentContentChangeWholeDocument =>
+      value is TextDocumentContentChangeWholeDocument
+      ? value as TextDocumentContentChangeWholeDocument
+      : isTextDocumentContentChangeWholeDocument
+      ? TextDocumentContentChangeWholeDocument.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// MarkedString can be used to render human readable text. It is either a
@@ -427,10 +464,8 @@ extension type const MarkedString._(
   const factory MarkedString.string(String value) = MarkedString._;
 
   @Deprecated('use MarkupContent instead.')
-  factory MarkedString.languageValue({
-    required String language,
-    required String value,
-  }) => MarkedString._({'language': language, 'value': value});
+  factory MarkedString.withLanguage(MarkedStringWithLanguage value) =>
+      MarkedString._(value.toJson());
 
   Object toJson() => value;
 
@@ -438,27 +473,24 @@ extension type const MarkedString._(
 
   String? get asString => isString ? value as String : null;
 
-  bool get isLanguageValue =>
+  bool get isWithLanguage =>
+      value is MarkedStringWithLanguage ||
       value is Map<String, dynamic> &&
-      (value as Map<String, dynamic>).containsKey('language') &&
-      (value as Map<String, dynamic>).containsKey('value');
+          (value as Map<String, dynamic>).containsKey('language') &&
+          (value as Map<String, dynamic>).containsKey('value');
 
-  ({String language, String value})? get asLanguageValue {
-    if (isLanguageValue) {
-      final map = value as Map<String, dynamic>;
-      return (
-        language: map['language'] as String,
-        value: map['value'] as String,
-      );
-    }
-    return null;
-  }
+  MarkedStringWithLanguage? get asWithLanguage =>
+      value is MarkedStringWithLanguage
+      ? value as MarkedStringWithLanguage
+      : isWithLanguage
+      ? MarkedStringWithLanguage.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// A document filter describes a top level text document or a notebook cell
 /// document.
 ///
-/// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
+/// @since 3.17.0 - support for NotebookCellTextDocumentFilter.
 extension type const DocumentFilter._(Object value) {
   const factory DocumentFilter.fromJson(Object json) = DocumentFilter._;
 
@@ -472,10 +504,13 @@ extension type const DocumentFilter._(Object value) {
   Object toJson() => value;
 
   bool get isTextDocumentFilter =>
+      value is TextDocumentFilterLanguage ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('language') ||
+      value is TextDocumentFilterScheme ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('scheme') ||
+      value is TextDocumentFilterPattern ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('pattern');
 
@@ -551,34 +586,50 @@ extension type const GlobPattern._(Object value) {
 extension type const TextDocumentFilter._(Object value) {
   const factory TextDocumentFilter.fromJson(Object json) = TextDocumentFilter._;
 
-  factory TextDocumentFilter.languageSchemePattern({
-    required String language,
-    String? scheme,
-    String? pattern,
-  }) => TextDocumentFilter._({
-    'language': language,
-    'scheme': ?scheme,
-    'pattern': ?pattern,
-  });
+  factory TextDocumentFilter.language(TextDocumentFilterLanguage value) =>
+      TextDocumentFilter._(value.toJson());
+
+  factory TextDocumentFilter.scheme(TextDocumentFilterScheme value) =>
+      TextDocumentFilter._(value.toJson());
+
+  factory TextDocumentFilter.pattern(TextDocumentFilterPattern value) =>
+      TextDocumentFilter._(value.toJson());
 
   Object toJson() => value;
 
-  bool get isLanguageSchemePattern =>
+  bool get isLanguage =>
+      value is TextDocumentFilterLanguage ||
       value is Map<String, dynamic> &&
-      (value as Map<String, dynamic>).containsKey('language');
+          (value as Map<String, dynamic>).containsKey('language');
 
-  ({String language, String? scheme, String? pattern})?
-  get asLanguageSchemePattern {
-    if (isLanguageSchemePattern) {
-      final map = value as Map<String, dynamic>;
-      return (
-        language: map['language'] as String,
-        scheme: map['scheme'] as String?,
-        pattern: map['pattern'] as String?,
-      );
-    }
-    return null;
-  }
+  TextDocumentFilterLanguage? get asLanguage =>
+      value is TextDocumentFilterLanguage
+      ? value as TextDocumentFilterLanguage
+      : isLanguage
+      ? TextDocumentFilterLanguage.fromJson(value as Map<String, dynamic>)
+      : null;
+
+  bool get isScheme =>
+      value is TextDocumentFilterScheme ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('scheme');
+
+  TextDocumentFilterScheme? get asScheme => value is TextDocumentFilterScheme
+      ? value as TextDocumentFilterScheme
+      : isScheme
+      ? TextDocumentFilterScheme.fromJson(value as Map<String, dynamic>)
+      : null;
+
+  bool get isPattern =>
+      value is TextDocumentFilterPattern ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('pattern');
+
+  TextDocumentFilterPattern? get asPattern => value is TextDocumentFilterPattern
+      ? value as TextDocumentFilterPattern
+      : isPattern
+      ? TextDocumentFilterPattern.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// A notebook document filter denotes a notebook document by different
@@ -590,34 +641,55 @@ extension type const NotebookDocumentFilter._(Object value) {
   const factory NotebookDocumentFilter.fromJson(Object json) =
       NotebookDocumentFilter._;
 
-  factory NotebookDocumentFilter.notebookTypeSchemePattern({
-    required String notebookType,
-    String? scheme,
-    String? pattern,
-  }) => NotebookDocumentFilter._({
-    'notebookType': notebookType,
-    'scheme': ?scheme,
-    'pattern': ?pattern,
-  });
+  factory NotebookDocumentFilter.notebookType(
+    NotebookDocumentFilterNotebookType value,
+  ) => NotebookDocumentFilter._(value.toJson());
+
+  factory NotebookDocumentFilter.scheme(NotebookDocumentFilterScheme value) =>
+      NotebookDocumentFilter._(value.toJson());
+
+  factory NotebookDocumentFilter.pattern(NotebookDocumentFilterPattern value) =>
+      NotebookDocumentFilter._(value.toJson());
 
   Object toJson() => value;
 
-  bool get isNotebookTypeSchemePattern =>
+  bool get isNotebookType =>
+      value is NotebookDocumentFilterNotebookType ||
       value is Map<String, dynamic> &&
-      (value as Map<String, dynamic>).containsKey('notebookType');
+          (value as Map<String, dynamic>).containsKey('notebookType');
 
-  ({String notebookType, String? scheme, String? pattern})?
-  get asNotebookTypeSchemePattern {
-    if (isNotebookTypeSchemePattern) {
-      final map = value as Map<String, dynamic>;
-      return (
-        notebookType: map['notebookType'] as String,
-        scheme: map['scheme'] as String?,
-        pattern: map['pattern'] as String?,
-      );
-    }
-    return null;
-  }
+  NotebookDocumentFilterNotebookType? get asNotebookType =>
+      value is NotebookDocumentFilterNotebookType
+      ? value as NotebookDocumentFilterNotebookType
+      : isNotebookType
+      ? NotebookDocumentFilterNotebookType.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
+
+  bool get isScheme =>
+      value is NotebookDocumentFilterScheme ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('scheme');
+
+  NotebookDocumentFilterScheme? get asScheme =>
+      value is NotebookDocumentFilterScheme
+      ? value as NotebookDocumentFilterScheme
+      : isScheme
+      ? NotebookDocumentFilterScheme.fromJson(value as Map<String, dynamic>)
+      : null;
+
+  bool get isPattern =>
+      value is NotebookDocumentFilterPattern ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('pattern');
+
+  NotebookDocumentFilterPattern? get asPattern =>
+      value is NotebookDocumentFilterPattern
+      ? value as NotebookDocumentFilterPattern
+      : isPattern
+      ? NotebookDocumentFilterPattern.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: SemanticTokensRegistrationOptionsRange.
@@ -655,8 +727,9 @@ extension type const SemanticTokensRegistrationOptionsFull._(Object value) {
   const factory SemanticTokensRegistrationOptionsFull.bool(bool value) =
       SemanticTokensRegistrationOptionsFull._;
 
-  factory SemanticTokensRegistrationOptionsFull.delta({bool? delta}) =>
-      SemanticTokensRegistrationOptionsFull._({'delta': ?delta});
+  factory SemanticTokensRegistrationOptionsFull.semanticTokensFullDelta(
+    SemanticTokensFullDelta value,
+  ) => SemanticTokensRegistrationOptionsFull._(value.toJson());
 
   Object toJson() => value;
 
@@ -664,15 +737,15 @@ extension type const SemanticTokensRegistrationOptionsFull._(Object value) {
 
   bool? get asBool => isBool ? value as bool : null;
 
-  bool get isDelta => value is Map<String, dynamic>;
+  bool get isSemanticTokensFullDelta =>
+      value is SemanticTokensFullDelta || value is Map<String, dynamic>;
 
-  ({bool? delta})? get asDelta {
-    if (isDelta) {
-      final map = value as Map<String, dynamic>;
-      return (delta: map['delta'] as bool?);
-    }
-    return null;
-  }
+  SemanticTokensFullDelta? get asSemanticTokensFullDelta =>
+      value is SemanticTokensFullDelta
+      ? value as SemanticTokensFullDelta
+      : isSemanticTokensFullDelta
+      ? SemanticTokensFullDelta.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: WorkspaceEditDocumentChangesItem.
@@ -796,6 +869,56 @@ extension type const InlayHintTooltip._(Object value) {
       ? value as MarkupContent
       : isMarkupContent
       ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
+}
+
+/// Inline union: NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.
+extension type const NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._(
+  Object value
+) {
+  const factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.fromJson(
+    Object json,
+  ) = NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._;
+
+  factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.notebookDocumentFilterWithNotebook(
+    NotebookDocumentFilterWithNotebook value,
+  ) => NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._(
+    value.toJson(),
+  );
+
+  factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.notebookDocumentFilterWithCells(
+    NotebookDocumentFilterWithCells value,
+  ) => NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._(
+    value.toJson(),
+  );
+
+  Object toJson() => value;
+
+  bool get isNotebookDocumentFilterWithNotebook =>
+      value is NotebookDocumentFilterWithNotebook ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('notebook');
+
+  NotebookDocumentFilterWithNotebook?
+  get asNotebookDocumentFilterWithNotebook =>
+      value is NotebookDocumentFilterWithNotebook
+      ? value as NotebookDocumentFilterWithNotebook
+      : isNotebookDocumentFilterWithNotebook
+      ? NotebookDocumentFilterWithNotebook.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
+
+  bool get isNotebookDocumentFilterWithCells =>
+      value is NotebookDocumentFilterWithCells ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('cells');
+
+  NotebookDocumentFilterWithCells? get asNotebookDocumentFilterWithCells =>
+      value is NotebookDocumentFilterWithCells
+      ? value as NotebookDocumentFilterWithCells
+      : isNotebookDocumentFilterWithCells
+      ? NotebookDocumentFilterWithCells.fromJson(value as Map<String, dynamic>)
       : null;
 }
 
@@ -951,6 +1074,7 @@ extension type const HoverContents._(Object value) {
 
   bool get isMarkedString =>
       value is String ||
+      value is MarkedStringWithLanguage ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('language') &&
           (value as Map<String, dynamic>).containsKey('value');
@@ -978,8 +1102,8 @@ extension type const WorkspaceSymbolLocation._(Object value) {
   factory WorkspaceSymbolLocation.location(Location value) =>
       WorkspaceSymbolLocation._(value.toJson());
 
-  factory WorkspaceSymbolLocation.uri({required String uri}) =>
-      WorkspaceSymbolLocation._({'uri': uri});
+  factory WorkspaceSymbolLocation.locationUriOnly(LocationUriOnly value) =>
+      WorkspaceSymbolLocation._(value.toJson());
 
   Object toJson() => value;
 
@@ -994,17 +1118,16 @@ extension type const WorkspaceSymbolLocation._(Object value) {
       ? Location.fromJson(value as Map<String, dynamic>)
       : null;
 
-  bool get isUri =>
+  bool get isLocationUriOnly =>
+      value is LocationUriOnly ||
       value is Map<String, dynamic> &&
-      !(value as Map<String, dynamic>).containsKey('range');
+          !(value as Map<String, dynamic>).containsKey('range');
 
-  ({String uri})? get asUri {
-    if (isUri) {
-      final map = value as Map<String, dynamic>;
-      return (uri: map['uri'] as String);
-    }
-    return null;
-  }
+  LocationUriOnly? get asLocationUriOnly => value is LocationUriOnly
+      ? value as LocationUriOnly
+      : isLocationUriOnly
+      ? LocationUriOnly.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: SemanticTokensOptionsRange.
@@ -1042,8 +1165,9 @@ extension type const SemanticTokensOptionsFull._(Object value) {
   const factory SemanticTokensOptionsFull.bool(bool value) =
       SemanticTokensOptionsFull._;
 
-  factory SemanticTokensOptionsFull.delta({bool? delta}) =>
-      SemanticTokensOptionsFull._({'delta': ?delta});
+  factory SemanticTokensOptionsFull.semanticTokensFullDelta(
+    SemanticTokensFullDelta value,
+  ) => SemanticTokensOptionsFull._(value.toJson());
 
   Object toJson() => value;
 
@@ -1051,15 +1175,15 @@ extension type const SemanticTokensOptionsFull._(Object value) {
 
   bool? get asBool => isBool ? value as bool : null;
 
-  bool get isDelta => value is Map<String, dynamic>;
+  bool get isSemanticTokensFullDelta =>
+      value is SemanticTokensFullDelta || value is Map<String, dynamic>;
 
-  ({bool? delta})? get asDelta {
-    if (isDelta) {
-      final map = value as Map<String, dynamic>;
-      return (delta: map['delta'] as bool?);
-    }
-    return null;
-  }
+  SemanticTokensFullDelta? get asSemanticTokensFullDelta =>
+      value is SemanticTokensFullDelta
+      ? value as SemanticTokensFullDelta
+      : isSemanticTokensFullDelta
+      ? SemanticTokensFullDelta.fromJson(value as Map<String, dynamic>)
+      : null;
 }
 
 /// Inline union: TextDocumentEditEditsItem.
@@ -1074,12 +1198,16 @@ extension type const TextDocumentEditEditsItem._(Object value) {
     AnnotatedTextEdit value,
   ) => TextDocumentEditEditsItem._(value.toJson());
 
+  factory TextDocumentEditEditsItem.snippetTextEdit(SnippetTextEdit value) =>
+      TextDocumentEditEditsItem._(value.toJson());
+
   Object toJson() => value;
 
   bool get isTextEdit =>
       value is TextEdit ||
       value is Map<String, dynamic> &&
-          !(value as Map<String, dynamic>).containsKey('annotationId');
+          !(value as Map<String, dynamic>).containsKey('annotationId') &&
+          !(value as Map<String, dynamic>).containsKey('snippet');
 
   TextEdit? get asTextEdit => value is TextEdit
       ? value as TextEdit
@@ -1096,6 +1224,17 @@ extension type const TextDocumentEditEditsItem._(Object value) {
       ? value as AnnotatedTextEdit
       : isAnnotatedTextEdit
       ? AnnotatedTextEdit.fromJson(value as Map<String, dynamic>)
+      : null;
+
+  bool get isSnippetTextEdit =>
+      value is SnippetTextEdit ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('snippet');
+
+  SnippetTextEdit? get asSnippetTextEdit => value is SnippetTextEdit
+      ? value as SnippetTextEdit
+      : isSnippetTextEdit
+      ? SnippetTextEdit.fromJson(value as Map<String, dynamic>)
       : null;
 }
 
@@ -1126,6 +1265,52 @@ extension type const InlayHintLabelPartTooltip._(Object value) {
       ? value as MarkupContent
       : isMarkupContent
       ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
+}
+
+/// Inline union: NotebookDocumentSyncOptionsNotebookSelectorItem.
+extension type const NotebookDocumentSyncOptionsNotebookSelectorItem._(
+  Object value
+) {
+  const factory NotebookDocumentSyncOptionsNotebookSelectorItem.fromJson(
+    Object json,
+  ) = NotebookDocumentSyncOptionsNotebookSelectorItem._;
+
+  factory NotebookDocumentSyncOptionsNotebookSelectorItem.notebookDocumentFilterWithNotebook(
+    NotebookDocumentFilterWithNotebook value,
+  ) => NotebookDocumentSyncOptionsNotebookSelectorItem._(value.toJson());
+
+  factory NotebookDocumentSyncOptionsNotebookSelectorItem.notebookDocumentFilterWithCells(
+    NotebookDocumentFilterWithCells value,
+  ) => NotebookDocumentSyncOptionsNotebookSelectorItem._(value.toJson());
+
+  Object toJson() => value;
+
+  bool get isNotebookDocumentFilterWithNotebook =>
+      value is NotebookDocumentFilterWithNotebook ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('notebook');
+
+  NotebookDocumentFilterWithNotebook?
+  get asNotebookDocumentFilterWithNotebook =>
+      value is NotebookDocumentFilterWithNotebook
+      ? value as NotebookDocumentFilterWithNotebook
+      : isNotebookDocumentFilterWithNotebook
+      ? NotebookDocumentFilterWithNotebook.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
+
+  bool get isNotebookDocumentFilterWithCells =>
+      value is NotebookDocumentFilterWithCells ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('cells');
+
+  NotebookDocumentFilterWithCells? get asNotebookDocumentFilterWithCells =>
+      value is NotebookDocumentFilterWithCells
+      ? value as NotebookDocumentFilterWithCells
+      : isNotebookDocumentFilterWithCells
+      ? NotebookDocumentFilterWithCells.fromJson(value as Map<String, dynamic>)
       : null;
 }
 
@@ -2185,6 +2370,72 @@ extension type const ServerCapabilitiesInlineCompletionProvider._(
       : null;
 }
 
+/// Inline union: DiagnosticMessage.
+extension type const DiagnosticMessage._(Object value) {
+  const factory DiagnosticMessage.fromJson(Object json) = DiagnosticMessage._;
+
+  const factory DiagnosticMessage.string(String value) = DiagnosticMessage._;
+
+  factory DiagnosticMessage.markupContent(MarkupContent value) =>
+      DiagnosticMessage._(value.toJson());
+
+  Object toJson() => value;
+
+  bool get isString => value is String;
+
+  String? get asString => isString ? value as String : null;
+
+  bool get isMarkupContent =>
+      value is MarkupContent ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('kind') &&
+          (value as Map<String, dynamic>).containsKey('value');
+
+  MarkupContent? get asMarkupContent => value is MarkupContent
+      ? value as MarkupContent
+      : isMarkupContent
+      ? MarkupContent.fromJson(value as Map<String, dynamic>)
+      : null;
+}
+
+/// Inline union: CompletionItemDefaultsEditRange.
+extension type const CompletionItemDefaultsEditRange._(Object value) {
+  const factory CompletionItemDefaultsEditRange.fromJson(Object json) =
+      CompletionItemDefaultsEditRange._;
+
+  factory CompletionItemDefaultsEditRange.range(Range value) =>
+      CompletionItemDefaultsEditRange._(value.toJson());
+
+  factory CompletionItemDefaultsEditRange.editRangeWithInsertReplace(
+    EditRangeWithInsertReplace value,
+  ) => CompletionItemDefaultsEditRange._(value.toJson());
+
+  Object toJson() => value;
+
+  bool get isRange =>
+      value is Range ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('start');
+
+  Range? get asRange => value is Range
+      ? value as Range
+      : isRange
+      ? Range.fromJson(value as Map<String, dynamic>)
+      : null;
+
+  bool get isEditRangeWithInsertReplace =>
+      value is EditRangeWithInsertReplace ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('insert');
+
+  EditRangeWithInsertReplace? get asEditRangeWithInsertReplace =>
+      value is EditRangeWithInsertReplace
+      ? value as EditRangeWithInsertReplace
+      : isEditRangeWithInsertReplace
+      ? EditRangeWithInsertReplace.fromJson(value as Map<String, dynamic>)
+      : null;
+}
+
 /// Inline union: SignatureInformationDocumentation.
 extension type const SignatureInformationDocumentation._(Object value) {
   const factory SignatureInformationDocumentation.fromJson(Object json) =
@@ -2216,6 +2467,84 @@ extension type const SignatureInformationDocumentation._(Object value) {
       : null;
 }
 
+/// Inline union: NotebookDocumentFilterWithNotebookNotebook.
+extension type const NotebookDocumentFilterWithNotebookNotebook._(
+  Object value
+) {
+  const factory NotebookDocumentFilterWithNotebookNotebook.fromJson(
+    Object json,
+  ) = NotebookDocumentFilterWithNotebookNotebook._;
+
+  const factory NotebookDocumentFilterWithNotebookNotebook.string(
+    String value,
+  ) = NotebookDocumentFilterWithNotebookNotebook._;
+
+  factory NotebookDocumentFilterWithNotebookNotebook.notebookDocumentFilter(
+    NotebookDocumentFilter value,
+  ) => NotebookDocumentFilterWithNotebookNotebook._(value.toJson());
+
+  Object toJson() => value;
+
+  bool get isString => value is String;
+
+  String? get asString => isString ? value as String : null;
+
+  bool get isNotebookDocumentFilter =>
+      value is NotebookDocumentFilterNotebookType ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('notebookType') ||
+      value is NotebookDocumentFilterScheme ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('scheme') ||
+      value is NotebookDocumentFilterPattern ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('pattern');
+
+  NotebookDocumentFilter? get asNotebookDocumentFilter =>
+      value is NotebookDocumentFilter
+      ? value as NotebookDocumentFilter
+      : isNotebookDocumentFilter
+      ? NotebookDocumentFilter.fromJson(value)
+      : null;
+}
+
+/// Inline union: NotebookDocumentFilterWithCellsNotebook.
+extension type const NotebookDocumentFilterWithCellsNotebook._(Object value) {
+  const factory NotebookDocumentFilterWithCellsNotebook.fromJson(Object json) =
+      NotebookDocumentFilterWithCellsNotebook._;
+
+  const factory NotebookDocumentFilterWithCellsNotebook.string(String value) =
+      NotebookDocumentFilterWithCellsNotebook._;
+
+  factory NotebookDocumentFilterWithCellsNotebook.notebookDocumentFilter(
+    NotebookDocumentFilter value,
+  ) => NotebookDocumentFilterWithCellsNotebook._(value.toJson());
+
+  Object toJson() => value;
+
+  bool get isString => value is String;
+
+  String? get asString => isString ? value as String : null;
+
+  bool get isNotebookDocumentFilter =>
+      value is NotebookDocumentFilterNotebookType ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('notebookType') ||
+      value is NotebookDocumentFilterScheme ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('scheme') ||
+      value is NotebookDocumentFilterPattern ||
+      value is Map<String, dynamic> &&
+          (value as Map<String, dynamic>).containsKey('pattern');
+
+  NotebookDocumentFilter? get asNotebookDocumentFilter =>
+      value is NotebookDocumentFilter
+      ? value as NotebookDocumentFilter
+      : isNotebookDocumentFilter
+      ? NotebookDocumentFilter.fromJson(value)
+      : null;
+}
+
 /// Inline union: TextDocumentSyncOptionsSave.
 extension type const TextDocumentSyncOptionsSave._(Object value) {
   const factory TextDocumentSyncOptionsSave.fromJson(Object json) =
@@ -2243,72 +2572,46 @@ extension type const TextDocumentSyncOptionsSave._(Object value) {
       : null;
 }
 
-/// Inline union: NotebookDocumentSyncOptionsNotebookSelectorItem.
-extension type const NotebookDocumentSyncOptionsNotebookSelectorItem._(
-  Object value
-) {
-  const factory NotebookDocumentSyncOptionsNotebookSelectorItem.fromJson(
-    Object json,
-  ) = NotebookDocumentSyncOptionsNotebookSelectorItem._;
+/// Inline union: WorkspaceOptionsTextDocumentContent.
+extension type const WorkspaceOptionsTextDocumentContent._(Object value) {
+  const factory WorkspaceOptionsTextDocumentContent.fromJson(Object json) =
+      WorkspaceOptionsTextDocumentContent._;
 
-  factory NotebookDocumentSyncOptionsNotebookSelectorItem.notebookCells({
-    required Object notebook,
-    List<Object>? cells,
-  }) => NotebookDocumentSyncOptionsNotebookSelectorItem._({
-    'notebook': notebook,
-    'cells': ?cells,
-  });
+  factory WorkspaceOptionsTextDocumentContent.textDocumentContentOptions(
+    TextDocumentContentOptions value,
+  ) => WorkspaceOptionsTextDocumentContent._(value.toJson());
+
+  factory WorkspaceOptionsTextDocumentContent.textDocumentContentRegistrationOptions(
+    TextDocumentContentRegistrationOptions value,
+  ) => WorkspaceOptionsTextDocumentContent._(value.toJson());
 
   Object toJson() => value;
 
-  bool get isNotebookCells =>
+  bool get isTextDocumentContentOptions =>
+      value is TextDocumentContentOptions ||
       value is Map<String, dynamic> &&
-      (value as Map<String, dynamic>).containsKey('notebook');
+          (value as Map<String, dynamic>).containsKey('schemes');
 
-  ({Object notebook, List<Object>? cells})? get asNotebookCells {
-    if (isNotebookCells) {
-      final map = value as Map<String, dynamic>;
-      return (
-        notebook: map['notebook'] as Object,
-        cells: map['cells'] as List<Object>?,
-      );
-    }
-    return null;
-  }
-}
+  TextDocumentContentOptions? get asTextDocumentContentOptions =>
+      value is TextDocumentContentOptions
+      ? value as TextDocumentContentOptions
+      : isTextDocumentContentOptions
+      ? TextDocumentContentOptions.fromJson(value as Map<String, dynamic>)
+      : null;
 
-/// Inline union: NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.
-extension type const NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._(
-  Object value
-) {
-  const factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.fromJson(
-    Object json,
-  ) = NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._;
+  bool get isTextDocumentContentRegistrationOptions =>
+      value is TextDocumentContentRegistrationOptions ||
+      value is Map<String, dynamic>;
 
-  factory NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem.notebookCells({
-    required Object notebook,
-    List<Object>? cells,
-  }) => NotebookDocumentSyncRegistrationOptionsNotebookSelectorItem._({
-    'notebook': notebook,
-    'cells': ?cells,
-  });
-
-  Object toJson() => value;
-
-  bool get isNotebookCells =>
-      value is Map<String, dynamic> &&
-      (value as Map<String, dynamic>).containsKey('notebook');
-
-  ({Object notebook, List<Object>? cells})? get asNotebookCells {
-    if (isNotebookCells) {
-      final map = value as Map<String, dynamic>;
-      return (
-        notebook: map['notebook'] as Object,
-        cells: map['cells'] as List<Object>?,
-      );
-    }
-    return null;
-  }
+  TextDocumentContentRegistrationOptions?
+  get asTextDocumentContentRegistrationOptions =>
+      value is TextDocumentContentRegistrationOptions
+      ? value as TextDocumentContentRegistrationOptions
+      : isTextDocumentContentRegistrationOptions
+      ? TextDocumentContentRegistrationOptions.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// Inline union: ParameterInformationDocumentation.
@@ -2361,10 +2664,13 @@ extension type const NotebookCellTextDocumentFilterNotebook._(Object value) {
   String? get asString => isString ? value as String : null;
 
   bool get isNotebookDocumentFilter =>
+      value is NotebookDocumentFilterNotebookType ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('notebookType') ||
+      value is NotebookDocumentFilterScheme ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('scheme') ||
+      value is NotebookDocumentFilterPattern ||
       value is Map<String, dynamic> &&
           (value as Map<String, dynamic>).containsKey('pattern');
 
@@ -2404,6 +2710,66 @@ extension type const RelativePatternBaseUri._(Object value) {
   bool get isString => value is String;
 
   String? get asString => isString ? value as String : null;
+}
+
+/// Inline union: ClientSemanticTokensRequestOptionsRange.
+extension type const ClientSemanticTokensRequestOptionsRange._(Object value) {
+  const factory ClientSemanticTokensRequestOptionsRange.fromJson(Object json) =
+      ClientSemanticTokensRequestOptionsRange._;
+
+  const factory ClientSemanticTokensRequestOptionsRange.bool(bool value) =
+      ClientSemanticTokensRequestOptionsRange._;
+
+  factory ClientSemanticTokensRequestOptionsRange.empty() =>
+      const ClientSemanticTokensRequestOptionsRange._({});
+
+  Object toJson() => value;
+
+  bool get isBool => value is bool;
+
+  bool? get asBool => isBool ? value as bool : null;
+
+  bool get isEmpty => value is Map<String, dynamic>;
+
+  Object? get asEmpty {
+    if (isEmpty) {
+      return ();
+    }
+    return null;
+  }
+}
+
+/// Inline union: ClientSemanticTokensRequestOptionsFull.
+extension type const ClientSemanticTokensRequestOptionsFull._(Object value) {
+  const factory ClientSemanticTokensRequestOptionsFull.fromJson(Object json) =
+      ClientSemanticTokensRequestOptionsFull._;
+
+  const factory ClientSemanticTokensRequestOptionsFull.bool(bool value) =
+      ClientSemanticTokensRequestOptionsFull._;
+
+  factory ClientSemanticTokensRequestOptionsFull.clientSemanticTokensRequestFullDelta(
+    ClientSemanticTokensRequestFullDelta value,
+  ) => ClientSemanticTokensRequestOptionsFull._(value.toJson());
+
+  Object toJson() => value;
+
+  bool get isBool => value is bool;
+
+  bool? get asBool => isBool ? value as bool : null;
+
+  bool get isClientSemanticTokensRequestFullDelta =>
+      value is ClientSemanticTokensRequestFullDelta ||
+      value is Map<String, dynamic>;
+
+  ClientSemanticTokensRequestFullDelta?
+  get asClientSemanticTokensRequestFullDelta =>
+      value is ClientSemanticTokensRequestFullDelta
+      ? value as ClientSemanticTokensRequestFullDelta
+      : isClientSemanticTokensRequestFullDelta
+      ? ClientSemanticTokensRequestFullDelta.fromJson(
+          value as Map<String, dynamic>,
+        )
+      : null;
 }
 
 /// Inline union: ImplementationResult.

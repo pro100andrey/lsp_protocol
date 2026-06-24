@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ResolvedClass {
 
- String get name; set name(String value); List<ResolvedProperty> get properties; set properties(List<ResolvedProperty> value); List<ClassType> get extends$; set extends$(List<ClassType> value); List<ClassType> get mixins$; set mixins$(List<ClassType> value); String? get documentation; set documentation(String? value); String? get since; set since(String? value); bool get proposed; set proposed(bool value);
+ String get name; set name(String value); List<ResolvedProperty> get properties; set properties(List<ResolvedProperty> value); List<ClassType> get extends$; set extends$(List<ClassType> value); List<ClassType> get mixins$; set mixins$(List<ClassType> value); String? get documentation; set documentation(String? value); String? get since; set since(String? value); List<String> get sinceTags; set sinceTags(List<String> value); bool get proposed; set proposed(bool value);
 /// Create a copy of ResolvedClass
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27,7 +27,7 @@ $ResolvedClassCopyWith<ResolvedClass> get copyWith => _$ResolvedClassCopyWithImp
 
 @override
 String toString() {
-  return 'ResolvedClass(name: $name, properties: $properties, extends\$: ${extends$}, mixins\$: ${mixins$}, documentation: $documentation, since: $since, proposed: $proposed)';
+  return 'ResolvedClass(name: $name, properties: $properties, extends\$: ${extends$}, mixins\$: ${mixins$}, documentation: $documentation, since: $since, sinceTags: $sinceTags, proposed: $proposed)';
 }
 
 
@@ -38,7 +38,7 @@ abstract mixin class $ResolvedClassCopyWith<$Res>  {
   factory $ResolvedClassCopyWith(ResolvedClass value, $Res Function(ResolvedClass) _then) = _$ResolvedClassCopyWithImpl;
 @useResult
 $Res call({
- String name, List<ResolvedProperty> properties, List<ClassType> extends$, List<ClassType> mixins$, String? documentation, String? since, bool proposed
+ String name, List<ResolvedProperty> properties, List<ClassType> extends$, List<ClassType> mixins$, String? documentation, String? since, List<String> sinceTags, bool proposed
 });
 
 
@@ -55,7 +55,7 @@ class _$ResolvedClassCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedClass
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? properties = null,Object? extends$ = null,Object? mixins$ = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? properties = null,Object? extends$ = null,Object? mixins$ = null,Object? documentation = freezed,Object? since = freezed,Object? sinceTags = null,Object? proposed = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
@@ -63,7 +63,8 @@ as List<ResolvedProperty>,extends$: null == extends$ ? _self.extends$ : extends$
 as List<ClassType>,mixins$: null == mixins$ ? _self.mixins$ : mixins$ // ignore: cast_nullable_to_non_nullable
 as List<ClassType>,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
-as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
+as String?,sinceTags: null == sinceTags ? _self.sinceTags : sinceTags // ignore: cast_nullable_to_non_nullable
+as List<String>,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -149,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  bool proposed)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  List<String> sinceTags,  bool proposed)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ResolvedClass() when $default != null:
-return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.sinceTags,_that.proposed);case _:
   return orElse();
 
 }
@@ -170,10 +171,10 @@ return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.d
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  bool proposed)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  List<String> sinceTags,  bool proposed)  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedClass():
-return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.sinceTags,_that.proposed);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -190,10 +191,10 @@ return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.d
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  bool proposed)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  List<ResolvedProperty> properties,  List<ClassType> extends$,  List<ClassType> mixins$,  String? documentation,  String? since,  List<String> sinceTags,  bool proposed)?  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedClass() when $default != null:
-return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.documentation,_that.since,_that.sinceTags,_that.proposed);case _:
   return null;
 
 }
@@ -205,7 +206,7 @@ return $default(_that.name,_that.properties,_that.extends$,_that.mixins$,_that.d
 
 
 class _ResolvedClass extends ResolvedClass {
-   _ResolvedClass({required this.name, required this.properties, this.extends$ = const [], this.mixins$ = const [], this.documentation, this.since, this.proposed = false}): super._();
+   _ResolvedClass({required this.name, required this.properties, this.extends$ = const [], this.mixins$ = const [], this.documentation, this.since, this.sinceTags = const [], this.proposed = false}): super._();
   
 
 @override  String name;
@@ -214,6 +215,7 @@ class _ResolvedClass extends ResolvedClass {
 @override@JsonKey()  List<ClassType> mixins$;
 @override  String? documentation;
 @override  String? since;
+@override@JsonKey()  List<String> sinceTags;
 @override@JsonKey()  bool proposed;
 
 /// Create a copy of ResolvedClass
@@ -228,7 +230,7 @@ _$ResolvedClassCopyWith<_ResolvedClass> get copyWith => __$ResolvedClassCopyWith
 
 @override
 String toString() {
-  return 'ResolvedClass(name: $name, properties: $properties, extends\$: ${extends$}, mixins\$: ${mixins$}, documentation: $documentation, since: $since, proposed: $proposed)';
+  return 'ResolvedClass(name: $name, properties: $properties, extends\$: ${extends$}, mixins\$: ${mixins$}, documentation: $documentation, since: $since, sinceTags: $sinceTags, proposed: $proposed)';
 }
 
 
@@ -239,7 +241,7 @@ abstract mixin class _$ResolvedClassCopyWith<$Res> implements $ResolvedClassCopy
   factory _$ResolvedClassCopyWith(_ResolvedClass value, $Res Function(_ResolvedClass) _then) = __$ResolvedClassCopyWithImpl;
 @override @useResult
 $Res call({
- String name, List<ResolvedProperty> properties, List<ClassType> extends$, List<ClassType> mixins$, String? documentation, String? since, bool proposed
+ String name, List<ResolvedProperty> properties, List<ClassType> extends$, List<ClassType> mixins$, String? documentation, String? since, List<String> sinceTags, bool proposed
 });
 
 
@@ -256,7 +258,7 @@ class __$ResolvedClassCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedClass
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? properties = null,Object? extends$ = null,Object? mixins$ = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? properties = null,Object? extends$ = null,Object? mixins$ = null,Object? documentation = freezed,Object? since = freezed,Object? sinceTags = null,Object? proposed = null,}) {
   return _then(_ResolvedClass(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
@@ -264,7 +266,8 @@ as List<ResolvedProperty>,extends$: null == extends$ ? _self.extends$ : extends$
 as List<ClassType>,mixins$: null == mixins$ ? _self.mixins$ : mixins$ // ignore: cast_nullable_to_non_nullable
 as List<ClassType>,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
-as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
+as String?,sinceTags: null == sinceTags ? _self.sinceTags : sinceTags // ignore: cast_nullable_to_non_nullable
+as List<String>,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

@@ -82,7 +82,9 @@ final class DiagnosticsFeature extends LspFeature {
         if (isCommented(line, index)) {
           diagnostics.add(
             .new(
-              message: 'TODO: This needs to be implemented (Sveta)',
+              message: const .string(
+                'TODO: This needs to be implemented',
+              ),
               range: .new(
                 start: .new(line: i, character: index),
                 end: .new(line: i, character: index + 4),
@@ -101,7 +103,9 @@ final class DiagnosticsFeature extends LspFeature {
         if (isCommented(line, index)) {
           diagnostics.add(
             .new(
-              message: 'FIXME: This is a bug that needs to be fixed',
+              message: const .string(
+                'FIXME: This is a bug that needs to be fixed',
+              ),
               range: .new(
                 start: .new(line: i, character: index),
                 end: .new(line: i, character: index + 5),
@@ -118,9 +122,10 @@ final class DiagnosticsFeature extends LspFeature {
       if (line.length > maxLineLength) {
         diagnostics.add(
           .new(
-            message:
-                'Line is too long (${line.length} characters, '
-                'limit is $maxLineLength)',
+            message: .string(
+              'Line is too long (${line.length} characters, '
+              'limit is $maxLineLength)',
+            ),
             range: .new(
               start: .new(line: i, character: maxLineLength),
               end: .new(line: i, character: line.length),

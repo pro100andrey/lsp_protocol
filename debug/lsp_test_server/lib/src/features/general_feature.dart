@@ -46,7 +46,7 @@ final class GeneralFeature extends LspFeature {
 
       return .new(
         capabilities: capabilities,
-        serverInfo: (name: 'lsp-test-server', version: '0.2.0'),
+        serverInfo: const ServerInfo(name: 'lsp-test-server', version: '0.2.0'),
       );
     });
 

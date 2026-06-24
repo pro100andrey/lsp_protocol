@@ -10,7 +10,7 @@ void main() async {
       capabilities: ServerCapabilities(
         hoverProvider: .bool(true),
       ),
-      serverInfo: (name: 'example-server', version: '1.0.0'),
+      serverInfo: ServerInfo(name: 'example-server', version: '1.0.0'),
     ),
   );
 

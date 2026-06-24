@@ -78,7 +78,7 @@ to pass control down the chain to the target handler.
 ```dart
 class LoggingMiddleware extends LspMiddleware {
   @override
-  Future<Object?> call(LspIncomingRequest request, LspNext next) async {
+  Future<Object?> call(LspRequest request, LspNext next) async {
     final sw = Stopwatch()..start();
     stderr.writeln('[lsp] -> ${request.method}');
     try {
@@ -92,8 +92,31 @@ class LoggingMiddleware extends LspMiddleware {
 server.addMiddleware(LoggingMiddleware());
 ```
 
-`LspIncomingRequest` gives you the `method` name, the raw `params`, and the
-`requestId` (`null` for notifications).
+Middleware receive the same `LspRequest` that handlers do: the `method` name, the
+raw `params` (which you may rewrite before calling `next` — see below), the `id`
+(`null` for notifications), the `cancellationToken`, the `connection`, and
+`resolve<T>()` / `tryResolve<T>()` for services you registered.
+
+```dart
+server.addMiddleware(LspMiddleware.fromFunction((request, next) async {
+  final auth = request.resolve<AuthService>();
+  if (!auth.isAllowed(request.method)) {
+    throw LspException.invalidRequest('forbidden: ${request.method}');
+  }
+  return next(request);
+}));
+```
+
+To rewrite the parameters a handler sees, mutate `request.params` **before**
+calling `next`. Once the handler begins running the request is sealed and writing
+`params` throws:
+
+```dart
+server.addMiddleware(LspMiddleware.fromFunction((request, next) {
+  request.params = sanitize(request.params);
+  return next(request);
+}));
+```
 
 ### Function-based
 

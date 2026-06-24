@@ -14,7 +14,7 @@ void main() {
           ..general.onInitialize(
             (params, context) async => const InitializeResult(
               capabilities: ServerCapabilities(hoverProvider: .bool(true)),
-              serverInfo: (name: 'test-server', version: '1.0.0'),
+              serverInfo: ServerInfo(name: 'test-server', version: '1.0.0'),
             ),
           );
         unawaited(server.listen());
@@ -23,7 +23,7 @@ void main() {
         final client = LspClient.fromChannel(controller.foreign);
         final result = await client.start(
           capabilities: const ClientCapabilities(),
-          clientInfo: (name: 'test-client', version: '0.1.0'),
+          clientInfo: const ClientInfo(name: 'test-client', version: '0.1.0'),
           processId: 4321,
           initializationOptions: <String, dynamic>{'trace': 'verbose'},
         );

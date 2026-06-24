@@ -353,7 +353,9 @@ void main() {
             (params, context) async => WorkspaceSymbol(
               name: 'C',
               kind: SymbolKind.class$,
-              location: WorkspaceSymbolLocation.uri(uri: 'file:///a.dart'),
+              location: WorkspaceSymbolLocation.locationUriOnly(
+                const LocationUriOnly(uri: 'file:///a.dart'),
+              ),
               containerName: 'x',
             ),
           );
@@ -364,7 +366,9 @@ void main() {
         WorkspaceSymbol(
           name: 'C',
           kind: SymbolKind.class$,
-          location: WorkspaceSymbolLocation.uri(uri: 'file:///a.dart'),
+          location: WorkspaceSymbolLocation.locationUriOnly(
+            const LocationUriOnly(uri: 'file:///a.dart'),
+          ),
         ),
       );
 

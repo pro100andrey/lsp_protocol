@@ -1,36 +1,22 @@
-import 'package:pro_lsp/src/server/middleware.dart';
+import 'package:pro_lsp/pro_lsp.dart';
 import 'package:test/test.dart';
 
+import 'support/connection_harness.dart';
+
 void main() {
-  group('LspIncomingRequest', () {
-    test('stores method, params, and requestId', () {
-      final request = LspIncomingRequest(
-        method: 'textDocument/hover',
-        params: {
-          'position': {'line': 0, 'character': 0},
-        },
-        requestId: 42,
-      );
+  late ConnectionHarness h;
+  setUp(() => h = ConnectionHarness());
+  tearDown(() => h.dispose());
 
-      expect(request.method, 'textDocument/hover');
-      expect(
-        request.params,
-        equals({
-          'position': {'line': 0, 'character': 0},
-        }),
-      );
-      expect(request.requestId, 42);
-    });
-
-    test('requestId is null for notifications', () {
-      final request = LspIncomingRequest(
-        method: 'window/logMessage',
-        params: {'message': 'hello'},
-      );
-
-      expect(request.requestId, isNull);
-    });
-  });
+  // Builds an LspRequest the way the dispatcher would, using the harness
+  // connection so middleware can resolve services / reach the connection.
+  LspRequest req(String method, {Object? params, Object? id}) => LspRequest(
+    method: method,
+    cancellationToken: CancellationToken.noop,
+    connection: h.connection,
+    id: id,
+    params: params,
+  );
 
   group('composeMiddlewares', () {
     test('calls target when no middlewares', () async {
@@ -40,9 +26,7 @@ void main() {
         return 'result';
       });
 
-      final result = await handler(
-        LspIncomingRequest(method: 'test', params: null),
-      );
+      final result = await handler(req('test'));
 
       expect(targetCalled, isTrue);
       expect(result, 'result');
@@ -72,7 +56,7 @@ void main() {
         },
       );
 
-      await handler(LspIncomingRequest(method: 'test', params: null));
+      await handler(req('test'));
 
       expect(order, [
         'm1-before',
@@ -83,18 +67,14 @@ void main() {
       ]);
     });
 
-    test('middleware can modify request params', () async {
+    test('middleware can rewrite request params by mutation', () async {
       Object? capturedParams;
 
       final handler = composeMiddlewares(
         [
           LspMiddleware.fromFunction((request, next) {
-            final modified = LspIncomingRequest(
-              method: request.method,
-              params: const {'modified': true, 'extra': 'value'},
-              requestId: request.requestId,
-            );
-            return next(modified);
+            request.params = const {'modified': true, 'extra': 'value'};
+            return next(request);
           }),
         ],
         (request) async {
@@ -103,9 +83,7 @@ void main() {
         },
       );
 
-      await handler(
-        LspIncomingRequest(method: 'test', params: {'original': 1}),
-      );
+      await handler(req('test', params: {'original': 1}));
 
       expect(capturedParams, {'modified': true, 'extra': 'value'});
     });
@@ -125,9 +103,7 @@ void main() {
         },
       );
 
-      final result = await handler(
-        LspIncomingRequest(method: 'test', params: null),
-      );
+      final result = await handler(req('test'));
 
       expect(targetCalled, isFalse);
       expect(result, {'intercepted': true});
@@ -146,9 +122,7 @@ void main() {
         (request) async => 'done',
       );
 
-      await handler(
-        LspIncomingRequest(method: 'workspace/foobar', params: null),
-      );
+      await handler(req('workspace/foobar'));
 
       expect(methods, ['workspace/foobar']);
     });
@@ -170,34 +144,26 @@ void main() {
         (request) async => {'target': true},
       );
 
-      final result = await handler(
-        LspIncomingRequest(method: 'test', params: null),
-      );
+      final result = await handler(req('test'));
 
       expect(result, {'mw': 1});
       // m1 is outermost, so it's called first and its short-circuit wins
     });
 
-    test('requestId is preserved through middleware chain', () async {
-      Object? capturedRequestId;
+    test('id is preserved through middleware chain', () async {
+      Object? capturedId;
 
       final handler = composeMiddlewares(
         [LspMiddleware.fromFunction((request, next) => next(request))],
         (request) async {
-          capturedRequestId = request.requestId;
+          capturedId = request.id;
           return null;
         },
       );
 
-      await handler(
-        LspIncomingRequest(
-          method: 'test',
-          params: null,
-          requestId: 'req-123',
-        ),
-      );
+      await handler(req('test', id: 'req-123'));
 
-      expect(capturedRequestId, 'req-123');
+      expect(capturedId, 'req-123');
     });
   });
 }

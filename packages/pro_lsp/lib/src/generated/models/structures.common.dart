@@ -89,7 +89,7 @@ abstract class FoldingRange with _$FoldingRange {
     /// defined, defaults to the length of the end line.
     int? endCharacter,
 
-    /// Describes the kind of the folding range such as `comment' or 'region'.
+    /// Describes the kind of the folding range such as 'comment' or 'region'.
     /// The kind is used to categorize folding ranges and used by commands like
     /// 'Fold all comments'. See `FoldingRangeKind` for an enumeration of
     /// standardized kinds.
@@ -459,21 +459,6 @@ abstract class InlayHint with _$InlayHint {
       _$InlayHintFromJson(json);
 }
 
-/// A partial result for a document diagnostic report.
-///
-/// @since 3.17.0
-@freezed
-abstract class DocumentDiagnosticReportPartialResult
-    with _$DocumentDiagnosticReportPartialResult {
-  const factory DocumentDiagnosticReportPartialResult({
-    required Map<String, Object> relatedDocuments,
-  }) = _DocumentDiagnosticReportPartialResult;
-
-  factory DocumentDiagnosticReportPartialResult.fromJson(
-    Map<String, dynamic> json,
-  ) => _$DocumentDiagnosticReportPartialResultFromJson(json);
-}
-
 /// Cancellation data returned from a diagnostic request.
 ///
 /// @since 3.17.0
@@ -521,7 +506,6 @@ abstract class WorkspaceDiagnosticReportPartialResult
 /// editor.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class InlineCompletionList with _$InlineCompletionList {
   const factory InlineCompletionList({
@@ -537,7 +521,6 @@ abstract class InlineCompletionList with _$InlineCompletionList {
 /// to complete text that is being typed.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class InlineCompletionItem with _$InlineCompletionItem {
   const factory InlineCompletionItem({
@@ -562,6 +545,23 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
       _$InlineCompletionItemFromJson(json);
 }
 
+/// Result of the `workspace/textDocumentContent` request.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentContentResult with _$TextDocumentContentResult {
+  const factory TextDocumentContentResult({
+    /// The text content of the text document. Please note, that the content of
+    /// any subsequent open notifications for the text document might differ
+    /// from the returned content due to whitespace and line ending
+    /// normalizations done on the client
+    required String text,
+  }) = _TextDocumentContentResult;
+
+  factory TextDocumentContentResult.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentContentResultFromJson(json);
+}
+
 /// The result returned from an initialize request.
 @freezed
 abstract class InitializeResult with _$InitializeResult {
@@ -570,7 +570,7 @@ abstract class InitializeResult with _$InitializeResult {
     required ServerCapabilities capabilities,
 
     /// Information about the server.
-    ({String name, String? version})? serverInfo,
+    ServerInfo? serverInfo,
   }) = _InitializeResult;
 
   factory InitializeResult.fromJson(Map<String, dynamic> json) =>
@@ -774,18 +774,29 @@ abstract class CompletionList with _$CompletionList {
     /// used if a completion item itself doesn't specify the value.
     ///
     /// If a completion list specifies a default value and a completion item
-    /// also specifies a corresponding value the one from the item is used.
+    /// also specifies a corresponding value, the rules for combining these are
+    /// defined by `applyKinds` (if the client supports it), defaulting to
+    /// ApplyKind.Replace.
     ///
     /// Servers are only allowed to return default values if the client signals
     /// support for this via the `completionList.itemDefaults` capability.
-    ({
-      List<String>? commitCharacters,
-      Object? editRange,
-      InsertTextFormat? insertTextFormat,
-      InsertTextMode? insertTextMode,
-      LSPAny? data,
-    })?
-    itemDefaults,
+    CompletionItemDefaults? itemDefaults,
+
+    /// Specifies how fields from a completion item should be combined with
+    /// those from `completionList.itemDefaults`.
+    ///
+    /// If unspecified, all fields will be treated as ApplyKind.Replace.
+    ///
+    /// If a field's value is ApplyKind.Replace, the value from a completion
+    /// item (if provided and not `null`) will always be used instead of the
+    /// value from `completionItem.itemDefaults`.
+    ///
+    /// If a field's value is ApplyKind.Merge, the values will be merged using
+    /// the rules defined against each field below.
+    ///
+    /// Servers are only allowed to return `applyKind` if the client signals
+    /// support for this via the `completionList.applyKindSupport` capability.
+    CompletionItemApplyKinds? applyKind,
   }) = _CompletionList;
 
   factory CompletionList.fromJson(Map<String, dynamic> json) =>
@@ -828,12 +839,25 @@ abstract class SignatureHelp with _$SignatureHelp {
     /// to better express this.
     int? activeSignature,
 
-    /// The active parameter of the active signature. If omitted or the value
-    /// lies outside the range of `signatures[activeSignature].parameters`
-    /// defaults to 0 if the active signature has parameters. If the active
-    /// signature has no parameters it is ignored. In future version of the
-    /// protocol this property might become mandatory to better express the
-    /// active parameter if the active signature does have any.
+    /// The active parameter of the active signature.
+    ///
+    /// If `null`, no parameter of the signature is active (for example a named
+    /// argument that does not match any declared parameters). This is only
+    /// valid if the client specifies the client capability
+    /// `textDocument.signatureHelp.noActiveParameterSupport === true`
+    ///
+    /// If omitted or the value lies outside the range of
+    /// `signatures[activeSignature].parameters` defaults to 0 if the active
+    /// signature has parameters.
+    ///
+    /// If the active signature has no parameters it is ignored.
+    ///
+    /// In future version of the protocol this property might become mandatory
+    /// (but still nullable) to better express the active parameter if the
+    /// active signature does have any.
+    ///
+    /// Since version 3.16.0 the `SignatureInformation` itself provides a
+    /// `activeParameter` property and it should be used instead of this one.
     int? activeParameter,
   }) = _SignatureHelp;
 
@@ -955,6 +979,9 @@ abstract class Command with _$Command {
     /// The identifier of the actual command handler.
     required String command,
 
+    /// An optional tooltip.
+    String? tooltip,
+
     /// Arguments that the command handler should be invoked with.
     List<LSPAny>? arguments,
   }) = _Command;
@@ -1008,7 +1035,7 @@ abstract class CodeAction with _$CodeAction {
     /// that auto applies a code action and only disabled code actions are
     /// returned, the client should show the user an error message with `reason`
     /// in the editor.
-    ({String reason})? disabled,
+    CodeActionDisabled? disabled,
 
     /// The workspace edit this code action performs.
     WorkspaceEdit? edit,
@@ -1020,6 +1047,9 @@ abstract class CodeAction with _$CodeAction {
     /// A data entry field that is preserved on a code action between a
     /// `textDocument/codeAction` and a `codeAction/resolve` request.
     LSPAny? data,
+
+    /// Tags for this code action.
+    List<CodeActionTag>? tags,
   }) = _CodeAction;
 
   factory CodeAction.fromJson(Map<String, dynamic> json) =>
@@ -1046,7 +1076,7 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     ///
     /// See SymbolInformation#location for more details.
     ///
-    /// Type: `Location` | `Object`
+    /// Type: `Location` | `LocationUriOnly`
     required WorkspaceSymbolLocation location,
 
     /// Tags for this symbol.
@@ -1169,7 +1199,7 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
 
     /// Optional progress percentage to display (value 100 is considered 100%).
     /// If not provided infinite progress is assumed and clients are allowed to
-    /// ignore the `percentage` value in subsequent report notifications.
+    /// ignore the `percentage` value in subsequent in report notifications.
     ///
     /// The value should be steadily rising. Clients are free to ignore values
     /// that are not following this rule. The value range is [0, 100].
@@ -1200,10 +1230,10 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
 
     /// Optional progress percentage to display (value 100 is considered 100%).
     /// If not provided infinite progress is assumed and clients are allowed to
-    /// ignore the `percentage` value in subsequent report notifications.
+    /// ignore the `percentage` value in subsequent in report notifications.
     ///
     /// The value should be steadily rising. Clients are free to ignore values
-    /// that are not following this rule. The value range is [0, 100].
+    /// that are not following this rule. The value range is [0, 100]
     int? percentage,
   }) = _WorkDoneProgressReport;
 
@@ -1368,19 +1398,12 @@ abstract class Color with _$Color {
 abstract class Position with _$Position {
   const factory Position({
     /// Line position in a document (zero-based).
-    ///
-    /// If a line number is greater than the number of lines in a document, it
-    /// defaults back to the number of lines in the document. If a line number
-    /// is negative, it defaults to 0.
     required int line,
 
     /// Character offset on a line in a document (zero-based).
     ///
     /// The meaning of this offset is determined by the negotiated
     /// `PositionEncodingKind`.
-    ///
-    /// If the character value is greater than the line length it defaults back
-    /// to the line length.
     required int character,
   }) = _Position;
 
@@ -1431,7 +1454,7 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
     /// The text document to change.
     required OptionalVersionedTextDocumentIdentifier textDocument,
 
-    /// The edits to be applied. client capability.
+    /// The edits to be applied. client capability. client capability.
     required List<TextDocumentEditEditsItem> edits,
   }) = _TextDocumentEdit;
 
@@ -1595,7 +1618,7 @@ abstract class InlineValueContext with _$InlineValueContext {
       _$InlineValueContextFromJson(json);
 }
 
-/// Provide inline value as text.
+/// Returns inline value information as the complete text to be shown.
 ///
 /// @since 3.17.0
 @freezed
@@ -1612,16 +1635,22 @@ abstract class InlineValueText with _$InlineValueText {
       _$InlineValueTextFromJson(json);
 }
 
-/// Provide inline value through a variable lookup. If only a range is
-/// specified, the variable name will be extracted from the underlying document.
-/// An optional variable name can be used to override the extracted name.
+/// To compute inline value through a variable lookup.
+///
+/// If only a range is specified, the variable name should be extracted from the
+/// underlying document.
+///
+/// An optional variable name could be used to lookup instead of the extracted
+/// name.
 ///
 /// @since 3.17.0
 @freezed
 abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
   const factory InlineValueVariableLookup({
-    /// The document range for which the inline value applies. The range is used
-    /// to extract the variable name from the underlying document.
+    /// The document range for which the inline value applies.
+    ///
+    /// The range could be used to extract the variable name from the underlying
+    /// document.
     required Range range,
 
     /// How to perform the lookup.
@@ -1635,20 +1664,26 @@ abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
       _$InlineValueVariableLookupFromJson(json);
 }
 
-/// Provide an inline value through an expression evaluation. If only a range is
-/// specified, the expression will be extracted from the underlying document. An
-/// optional expression can be used to override the extracted expression.
+/// To compute an inline value through an expression evaluation.
+///
+/// If only a range is specified, the expression should be extracted from the
+/// underlying document.
+///
+/// An optional expression could be evaluated instead of the extracted
+/// expression.
 ///
 /// @since 3.17.0
 @freezed
 abstract class InlineValueEvaluatableExpression
     with _$InlineValueEvaluatableExpression {
   const factory InlineValueEvaluatableExpression({
-    /// The document range for which the inline value applies. The range is used
-    /// to extract the evaluatable expression from the underlying document.
+    /// The document range for which the inline value applies.
+    ///
+    /// The range could be used to extract the evaluatable expression from the
+    /// underlying document.
     required Range range,
 
-    /// If specified the expression overrides the extracted expression.
+    /// If specified the expression could be evaluated instead.
     String? expression,
   }) = _InlineValueEvaluatableExpression;
 
@@ -1784,48 +1819,19 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
   ) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 }
 
-/// A diagnostic report with a full set of problems.
+/// A partial result for a document diagnostic report.
 ///
 /// @since 3.17.0
 @freezed
-abstract class FullDocumentDiagnosticReport
-    with _$FullDocumentDiagnosticReport {
-  const factory FullDocumentDiagnosticReport({
-    /// The actual items.
-    required List<Diagnostic> items,
+abstract class DocumentDiagnosticReportPartialResult
+    with _$DocumentDiagnosticReportPartialResult {
+  const factory DocumentDiagnosticReportPartialResult({
+    required Map<String, Object> relatedDocuments,
+  }) = _DocumentDiagnosticReportPartialResult;
 
-    /// A full document diagnostic report.
-    @Default('full') String kind,
-
-    /// An optional result id. If provided it will be sent on the next
-    /// diagnostic request for the same document.
-    String? resultId,
-  }) = _FullDocumentDiagnosticReport;
-
-  factory FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) =>
-      _$FullDocumentDiagnosticReportFromJson(json);
-}
-
-/// A diagnostic report indicating that the last returned report is still
-/// accurate.
-///
-/// @since 3.17.0
-@freezed
-abstract class UnchangedDocumentDiagnosticReport
-    with _$UnchangedDocumentDiagnosticReport {
-  const factory UnchangedDocumentDiagnosticReport({
-    /// A result id which will be sent on the next diagnostic request for the
-    /// same document.
-    required String resultId,
-
-    /// A document diagnostic report indicating no changes to the last result. A
-    /// server can only return `unchanged` if result ids are provided.
-    @Default('unchanged') String kind,
-  }) = _UnchangedDocumentDiagnosticReport;
-
-  factory UnchangedDocumentDiagnosticReport.fromJson(
+  factory DocumentDiagnosticReportPartialResult.fromJson(
     Map<String, dynamic> json,
-  ) => _$UnchangedDocumentDiagnosticReportFromJson(json);
+  ) => _$DocumentDiagnosticReportPartialResultFromJson(json);
 }
 
 /// A previous result id in a workspace pull request.
@@ -1882,7 +1888,7 @@ abstract class TextDocumentItem with _$TextDocumentItem {
     required String uri,
 
     /// The text document's language identifier.
-    required String languageId,
+    required LanguageKind languageId,
 
     /// The version number of this document (it will increase after each change,
     /// including undo/redo).
@@ -1927,17 +1933,7 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
     LSPObject? metadata,
 
     /// Changes to cells
-    ({
-      ({
-        NotebookCellArrayChange array,
-        List<TextDocumentItem>? didOpen,
-        List<TextDocumentIdentifier>? didClose,
-      })?
-      structure,
-      List<NotebookCell>? data,
-      List<Object>? textContent,
-    })?
-    cells,
+    NotebookDocumentCellChanges? cells,
   }) = _NotebookDocumentChangeEvent;
 
   factory NotebookDocumentChangeEvent.fromJson(Map<String, dynamic> json) =>
@@ -1962,7 +1958,6 @@ abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
 /// requested.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class InlineCompletionContext with _$InlineCompletionContext {
   const factory InlineCompletionContext({
@@ -1986,7 +1981,6 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
 /// snippet. Variables are defined with `$name` and `${name:default value}`.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class StringValue with _$StringValue {
   const factory StringValue({
@@ -2034,6 +2028,24 @@ abstract class Unregistration with _$Unregistration {
 
   factory Unregistration.fromJson(Map<String, dynamic> json) =>
       _$UnregistrationFromJson(json);
+}
+
+/// Information about the server
+///
+/// @since 3.15.0
+/// @since 3.18.0 ServerInfo type name added.
+@freezed
+abstract class ServerInfo with _$ServerInfo {
+  const factory ServerInfo({
+    /// The name of the server as defined by the server.
+    required String name,
+
+    /// The server's version as defined by the server.
+    String? version,
+  }) = _ServerInfo;
+
+  factory ServerInfo.fromJson(Map<String, dynamic> json) =>
+      _$ServerInfoFromJson(json);
 }
 
 /// A text document identifier to denote a specific version of a text document.
@@ -2090,11 +2102,15 @@ abstract class Diagnostic with _$Diagnostic {
     /// The range at which the message applies
     required Range range,
 
-    /// The diagnostic's message. It usually appears in the user interface
-    required String message,
+    /// The diagnostic's message. It usually appears in the user interface.
+    /// capability `textDocument.diagnostic.markupMessageSupport`.
+    ///
+    /// Type: `String` | `MarkupContent`
+    required DiagnosticMessage message,
 
-    /// The diagnostic's severity. Can be omitted. If omitted it is up to the
-    /// client to interpret diagnostics as error, warning, info or hint.
+    /// The diagnostic's severity. To avoid interpretation mismatches when a
+    /// server is used with different clients it is highly recommended that
+    /// servers always provide a severity value.
     DiagnosticSeverity? severity,
 
     /// The diagnostic's code, which usually appear in the user interface.
@@ -2186,6 +2202,105 @@ abstract class InsertReplaceEdit with _$InsertReplaceEdit {
       _$InsertReplaceEditFromJson(json);
 }
 
+/// In many cases the items of an actual completion result share the same value
+/// for properties like `commitCharacters` or the range of a text edit. A
+/// completion list can therefore define item defaults which will be used if a
+/// completion item itself doesn't specify the value.
+///
+/// If a completion list specifies a default value and a completion item also
+/// specifies a corresponding value, the rules for combining these are defined
+/// by `applyKinds` (if the client supports it), defaulting to
+/// ApplyKind.Replace.
+///
+/// Servers are only allowed to return default values if the client signals
+/// support for this via the `completionList.itemDefaults` capability.
+///
+/// @since 3.17.0
+@freezed
+abstract class CompletionItemDefaults with _$CompletionItemDefaults {
+  const factory CompletionItemDefaults({
+    /// A default commit character set.
+    List<String>? commitCharacters,
+
+    /// A default edit range.
+    ///
+    /// Type: `Range` | `EditRangeWithInsertReplace`
+    CompletionItemDefaultsEditRange? editRange,
+
+    /// A default insert text format.
+    InsertTextFormat? insertTextFormat,
+
+    /// A default insert text mode.
+    InsertTextMode? insertTextMode,
+
+    /// A default data value.
+    LSPAny? data,
+  }) = _CompletionItemDefaults;
+
+  factory CompletionItemDefaults.fromJson(Map<String, dynamic> json) =>
+      _$CompletionItemDefaultsFromJson(json);
+}
+
+/// Specifies how fields from a completion item should be combined with those
+/// from `completionList.itemDefaults`.
+///
+/// If unspecified, all fields will be treated as ApplyKind.Replace.
+///
+/// If a field's value is ApplyKind.Replace, the value from a completion item
+/// (if provided and not `null`) will always be used instead of the value from
+/// `completionItem.itemDefaults`.
+///
+/// If a field's value is ApplyKind.Merge, the values will be merged using the
+/// rules defined against each field below.
+///
+/// Servers are only allowed to return `applyKind` if the client signals support
+/// for this via the `completionList.applyKindSupport` capability.
+///
+/// @since 3.18.0
+@freezed
+abstract class CompletionItemApplyKinds with _$CompletionItemApplyKinds {
+  const factory CompletionItemApplyKinds({
+    /// Specifies whether commitCharacters on a completion will replace or be
+    /// merged with those in `completionList.itemDefaults.commitCharacters`.
+    ///
+    /// If ApplyKind.Replace, the commit characters from the completion item
+    /// will always be used unless not provided, in which case those from
+    /// `completionList.itemDefaults.commitCharacters` will be used. An empty
+    /// list can be used if a completion item does not have any commit
+    /// characters and also should not use those from
+    /// `completionList.itemDefaults.commitCharacters`.
+    ///
+    /// If ApplyKind.Merge the commitCharacters for the completion will be the
+    /// union of all values in both
+    /// `completionList.itemDefaults.commitCharacters` and the completion's own
+    /// `commitCharacters`.
+    ApplyKind? commitCharacters,
+
+    /// Specifies whether the `data` field on a completion will replace or be
+    /// merged with data from `completionList.itemDefaults.data`.
+    ///
+    /// If ApplyKind.Replace, the data from the completion item will be used if
+    /// provided (and not `null`), otherwise `completionList.itemDefaults.data`
+    /// will be used. An empty object can be used if a completion item does not
+    /// have any data but also should not use the value from
+    /// `completionList.itemDefaults.data`.
+    ///
+    /// If ApplyKind.Merge, a shallow merge will be performed between
+    /// `completionList.itemDefaults.data` and the completion's own data using
+    /// the following rules:
+    ///
+    /// - If a completion's `data` field is not provided (or `null`), the entire
+    /// `data` field from `completionList.itemDefaults.data` will be used as-is.
+    /// - If a completion's `data` field is provided, each field will overwrite
+    /// the field of the same name in `completionList.itemDefaults.data` but no
+    /// merging of nested fields within that value will occur.
+    ApplyKind? data,
+  }) = _CompletionItemApplyKinds;
+
+  factory CompletionItemApplyKinds.fromJson(Map<String, dynamic> json) =>
+      _$CompletionItemApplyKindsFromJson(json);
+}
+
 /// Additional information about the context in which a signature help request
 /// was triggered.
 ///
@@ -2239,7 +2354,13 @@ abstract class SignatureInformation with _$SignatureInformation {
 
     /// The index of the active parameter.
     ///
-    /// If provided, this is used in place of `SignatureHelp.activeParameter`.
+    /// If `null`, no parameter of the signature is active (for example a named
+    /// argument that does not match any declared parameters). This is only
+    /// valid if the client specifies the client capability
+    /// `textDocument.signatureHelp.noActiveParameterSupport === true`
+    ///
+    /// If provided (or `null`), this is used in place of
+    /// `SignatureHelp.activeParameter`.
     int? activeParameter,
   }) = _SignatureInformation;
 
@@ -2311,6 +2432,70 @@ abstract class CodeActionContext with _$CodeActionContext {
       _$CodeActionContextFromJson(json);
 }
 
+/// Captures why the code action is currently disabled.
+///
+/// @since 3.18.0
+@freezed
+abstract class CodeActionDisabled with _$CodeActionDisabled {
+  const factory CodeActionDisabled({
+    /// Human readable description of why the code action is currently disabled.
+    ///
+    /// This is displayed in the code actions UI.
+    required String reason,
+  }) = _CodeActionDisabled;
+
+  factory CodeActionDisabled.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionDisabledFromJson(json);
+}
+
+/// Location with only uri and does not include range.
+///
+/// @since 3.18.0
+@freezed
+abstract class LocationUriOnly with _$LocationUriOnly {
+  const factory LocationUriOnly({required String uri}) = _LocationUriOnly;
+
+  factory LocationUriOnly.fromJson(Map<String, dynamic> json) =>
+      _$LocationUriOnlyFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class PrepareRenamePlaceholder with _$PrepareRenamePlaceholder {
+  const factory PrepareRenamePlaceholder({
+    required Range range,
+    required String placeholder,
+  }) = _PrepareRenamePlaceholder;
+
+  factory PrepareRenamePlaceholder.fromJson(Map<String, dynamic> json) =>
+      _$PrepareRenamePlaceholderFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class PrepareRenameDefaultBehavior
+    with _$PrepareRenameDefaultBehavior {
+  const factory PrepareRenameDefaultBehavior({required bool defaultBehavior}) =
+      _PrepareRenameDefaultBehavior;
+
+  factory PrepareRenameDefaultBehavior.fromJson(Map<String, dynamic> json) =>
+      _$PrepareRenameDefaultBehaviorFromJson(json);
+}
+
+/// Additional data about a workspace edit.
+///
+/// @since 3.18.0
+@freezed
+abstract class WorkspaceEditMetadata with _$WorkspaceEditMetadata {
+  const factory WorkspaceEditMetadata({
+    /// Signal to the editor that this edit is a refactoring.
+    bool? isRefactoring,
+  }) = _WorkspaceEditMetadata;
+
+  factory WorkspaceEditMetadata.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceEditMetadataFromJson(json);
+}
+
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensLegend with _$SemanticTokensLegend {
@@ -2324,6 +2509,20 @@ abstract class SemanticTokensLegend with _$SemanticTokensLegend {
 
   factory SemanticTokensLegend.fromJson(Map<String, dynamic> json) =>
       _$SemanticTokensLegendFromJson(json);
+}
+
+/// Semantic tokens options to support deltas for full documents
+///
+/// @since 3.18.0
+@freezed
+abstract class SemanticTokensFullDelta with _$SemanticTokensFullDelta {
+  const factory SemanticTokensFullDelta({
+    /// The server supports deltas for full documents.
+    bool? delta,
+  }) = _SemanticTokensFullDelta;
+
+  factory SemanticTokensFullDelta.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensFullDeltaFromJson(json);
 }
 
 /// A text document identifier to optionally denote a specific version of a text
@@ -2368,6 +2567,26 @@ abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
 
   factory AnnotatedTextEdit.fromJson(Map<String, dynamic> json) =>
       _$AnnotatedTextEditFromJson(json);
+}
+
+/// An interactive text edit.
+///
+/// @since 3.18.0
+@freezed
+abstract class SnippetTextEdit with _$SnippetTextEdit {
+  const factory SnippetTextEdit({
+    /// The range of the text document to be manipulated.
+    required Range range,
+
+    /// The snippet to be inserted.
+    required StringValue snippet,
+
+    /// The actual identifier of the snippet edit.
+    ChangeAnnotationIdentifier? annotationId,
+  }) = _SnippetTextEdit;
+
+  factory SnippetTextEdit.fromJson(Map<String, dynamic> json) =>
+      _$SnippetTextEditFromJson(json);
 }
 
 /// A generic resource operation.
@@ -2415,6 +2634,50 @@ abstract class FileOperationPattern with _$FileOperationPattern {
 
   factory FileOperationPattern.fromJson(Map<String, dynamic> json) =>
       _$FileOperationPatternFromJson(json);
+}
+
+/// A diagnostic report with a full set of problems.
+///
+/// @since 3.17.0
+@freezed
+abstract class FullDocumentDiagnosticReport
+    with _$FullDocumentDiagnosticReport {
+  const factory FullDocumentDiagnosticReport({
+    /// The actual items.
+    required List<Diagnostic> items,
+
+    /// A full document diagnostic report.
+    @Default('full') String kind,
+
+    /// An optional result id. If provided it will be sent on the next
+    /// diagnostic request for the same document.
+    String? resultId,
+  }) = _FullDocumentDiagnosticReport;
+
+  factory FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) =>
+      _$FullDocumentDiagnosticReportFromJson(json);
+}
+
+/// A diagnostic report indicating that the last returned report is still
+/// accurate.
+///
+/// @since 3.17.0
+@freezed
+abstract class UnchangedDocumentDiagnosticReport
+    with _$UnchangedDocumentDiagnosticReport {
+  const factory UnchangedDocumentDiagnosticReport({
+    /// A result id which will be sent on the next diagnostic request for the
+    /// same document.
+    required String resultId,
+
+    /// A document diagnostic report indicating no changes to the last result. A
+    /// server can only return `unchanged` if result ids are provided.
+    @Default('unchanged') String kind,
+  }) = _UnchangedDocumentDiagnosticReport;
+
+  factory UnchangedDocumentDiagnosticReport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 }
 
 /// A full document diagnostic report for a workspace diagnostic result.
@@ -2504,30 +2767,69 @@ abstract class NotebookCell with _$NotebookCell {
       _$NotebookCellFromJson(json);
 }
 
-/// A change describing how to move a `NotebookCell` array from state S to S'.
-///
-/// @since 3.17.0
+/// @since 3.18.0
 @freezed
-abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
-  const factory NotebookCellArrayChange({
-    /// The start oftest of the cell that changed.
-    required int start,
+abstract class NotebookDocumentFilterWithNotebook
+    with _$NotebookDocumentFilterWithNotebook {
+  const factory NotebookDocumentFilterWithNotebook({
+    /// The notebook to be synced If a string value is provided it matches
+    /// against the notebook type. '*' matches every notebook.
+    ///
+    /// Type: `String` | `NotebookDocumentFilter`
+    required NotebookDocumentFilterWithNotebookNotebook notebook,
 
-    /// The deleted cells
-    required int deleteCount,
+    /// The cells of the matching notebook to be synced.
+    List<NotebookCellLanguage>? cells,
+  }) = _NotebookDocumentFilterWithNotebook;
 
-    /// The new cells, if any
-    List<NotebookCell>? cells,
-  }) = _NotebookCellArrayChange;
+  factory NotebookDocumentFilterWithNotebook.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentFilterWithNotebookFromJson(json);
+}
 
-  factory NotebookCellArrayChange.fromJson(Map<String, dynamic> json) =>
-      _$NotebookCellArrayChangeFromJson(json);
+/// @since 3.18.0
+@freezed
+abstract class NotebookDocumentFilterWithCells
+    with _$NotebookDocumentFilterWithCells {
+  const factory NotebookDocumentFilterWithCells({
+    /// The cells of the matching notebook to be synced.
+    required List<NotebookCellLanguage> cells,
+
+    /// The notebook to be synced If a string value is provided it matches
+    /// against the notebook type. '*' matches every notebook.
+    ///
+    /// Type: `String` | `NotebookDocumentFilter`
+    NotebookDocumentFilterWithCellsNotebook? notebook,
+  }) = _NotebookDocumentFilterWithCells;
+
+  factory NotebookDocumentFilterWithCells.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentFilterWithCellsFromJson(json);
+}
+
+/// Cell changes to a notebook document.
+///
+/// @since 3.18.0
+@freezed
+abstract class NotebookDocumentCellChanges with _$NotebookDocumentCellChanges {
+  const factory NotebookDocumentCellChanges({
+    /// Changes to the cell structure to add or remove cells.
+    NotebookDocumentCellChangeStructure? structure,
+
+    /// Changes to notebook cells properties like its kind, execution summary or
+    /// metadata.
+    List<NotebookCell>? data,
+
+    /// Changes to the text content of notebook cells.
+    List<NotebookDocumentCellContentChanges>? textContent,
+  }) = _NotebookDocumentCellChanges;
+
+  factory NotebookDocumentCellChanges.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentCellChangesFromJson(json);
 }
 
 /// Describes the currently selected completion item.
 ///
 /// @since 3.18.0
-/// @proposed
 @freezed
 abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
   const factory SelectedCompletionInfo({
@@ -2540,6 +2842,60 @@ abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
 
   factory SelectedCompletionInfo.fromJson(Map<String, dynamic> json) =>
       _$SelectedCompletionInfoFromJson(json);
+}
+
+/// Information about the client
+///
+/// @since 3.15.0
+/// @since 3.18.0 ClientInfo type name added.
+@freezed
+abstract class ClientInfo with _$ClientInfo {
+  const factory ClientInfo({
+    /// The name of the client as defined by the client.
+    required String name,
+
+    /// The client's version as defined by the client.
+    String? version,
+  }) = _ClientInfo;
+
+  factory ClientInfo.fromJson(Map<String, dynamic> json) =>
+      _$ClientInfoFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentContentChangePartial
+    with _$TextDocumentContentChangePartial {
+  const factory TextDocumentContentChangePartial({
+    /// The range of the document that changed.
+    required Range range,
+
+    /// The new text for the provided range.
+    required String text,
+
+    /// The optional length of the range that got replaced.
+    ///
+    /// @deprecated use range instead.
+    @Deprecated('use range instead.') int? rangeLength,
+  }) = _TextDocumentContentChangePartial;
+
+  factory TextDocumentContentChangePartial.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentContentChangePartialFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentContentChangeWholeDocument
+    with _$TextDocumentContentChangeWholeDocument {
+  const factory TextDocumentContentChangeWholeDocument({
+    /// The new text of the whole document.
+    required String text,
+  }) = _TextDocumentContentChangeWholeDocument;
+
+  factory TextDocumentContentChangeWholeDocument.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentContentChangeWholeDocumentFromJson(json);
 }
 
 /// Structure to capture a description for an error code.
@@ -2574,6 +2930,34 @@ abstract class DiagnosticRelatedInformation
       _$DiagnosticRelatedInformationFromJson(json);
 }
 
+/// Edit range variant that includes ranges for insert and replace operations.
+///
+/// @since 3.18.0
+@freezed
+abstract class EditRangeWithInsertReplace with _$EditRangeWithInsertReplace {
+  const factory EditRangeWithInsertReplace({
+    required Range insert,
+    required Range replace,
+  }) = _EditRangeWithInsertReplace;
+
+  factory EditRangeWithInsertReplace.fromJson(Map<String, dynamic> json) =>
+      _$EditRangeWithInsertReplaceFromJson(json);
+}
+
+/// @deprecated use MarkupContent instead.
+///
+/// @since 3.18.0
+@freezed
+abstract class MarkedStringWithLanguage with _$MarkedStringWithLanguage {
+  const factory MarkedStringWithLanguage({
+    required String language,
+    required String value,
+  }) = _MarkedStringWithLanguage;
+
+  factory MarkedStringWithLanguage.fromJson(Map<String, dynamic> json) =>
+      _$MarkedStringWithLanguageFromJson(json);
+}
+
 /// Represents a parameter of a callable-signature. A parameter can have a label
 /// and a doc-comment.
 @freezed
@@ -2585,6 +2969,10 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// its containing signature label. (see SignatureInformation.label). The
     /// offsets are based on a UTF-16 string representation as `Position` and
     /// `Range` does.
+    ///
+    /// To avoid ambiguities a server should use the [start, end] offset value
+    /// instead of using a substring. Whether a client support this is
+    /// controlled via `labelOffsetSupport` client capability.
     ///
     /// *Note*: a label of type string should be a substring of its containing
     /// signature label. Its intended use case is to highlight the parameter
@@ -2602,6 +2990,32 @@ abstract class ParameterInformation with _$ParameterInformation {
 
   factory ParameterInformation.fromJson(Map<String, dynamic> json) =>
       _$ParameterInformationFromJson(json);
+}
+
+/// Documentation for a class of code actions.
+///
+/// @since 3.18.0
+@freezed
+abstract class CodeActionKindDocumentation with _$CodeActionKindDocumentation {
+  const factory CodeActionKindDocumentation({
+    /// The kind of the code action being documented.
+    ///
+    /// If the kind is generic, such as `CodeActionKind.Refactor`, the
+    /// documentation will be shown whenever any refactorings are returned. If
+    /// the kind if more specific, such as `CodeActionKind.RefactorExtract`, the
+    /// documentation will only be shown when extract refactoring code actions
+    /// are returned.
+    required CodeActionKind kind,
+
+    /// Command that is ued to display the documentation to the user.
+    ///
+    /// The title of this documentation code action is taken from {@linkcode
+    /// Command.title}
+    required Command command,
+  }) = _CodeActionKindDocumentation;
+
+  factory CodeActionKindDocumentation.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionKindDocumentationFromJson(json);
 }
 
 /// A notebook cell text document filter denotes a cell text document by
@@ -2645,6 +3059,54 @@ abstract class ExecutionSummary with _$ExecutionSummary {
       _$ExecutionSummaryFromJson(json);
 }
 
+/// @since 3.18.0
+@freezed
+abstract class NotebookCellLanguage with _$NotebookCellLanguage {
+  const factory NotebookCellLanguage({required String language}) =
+      _NotebookCellLanguage;
+
+  factory NotebookCellLanguage.fromJson(Map<String, dynamic> json) =>
+      _$NotebookCellLanguageFromJson(json);
+}
+
+/// Structural changes to cells in a notebook document.
+///
+/// @since 3.18.0
+@freezed
+abstract class NotebookDocumentCellChangeStructure
+    with _$NotebookDocumentCellChangeStructure {
+  const factory NotebookDocumentCellChangeStructure({
+    /// The change to the cell array.
+    required NotebookCellArrayChange array,
+
+    /// Additional opened cell text documents.
+    List<TextDocumentItem>? didOpen,
+
+    /// Additional closed cell text documents.
+    List<TextDocumentIdentifier>? didClose,
+  }) = _NotebookDocumentCellChangeStructure;
+
+  factory NotebookDocumentCellChangeStructure.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentCellChangeStructureFromJson(json);
+}
+
+/// Content changes to a cell in a notebook document.
+///
+/// @since 3.18.0
+@freezed
+abstract class NotebookDocumentCellContentChanges
+    with _$NotebookDocumentCellContentChanges {
+  const factory NotebookDocumentCellContentChanges({
+    required VersionedTextDocumentIdentifier document,
+    required List<TextDocumentContentChangeEvent> changes,
+  }) = _NotebookDocumentCellContentChanges;
+
+  factory NotebookDocumentCellContentChanges.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentCellContentChangesFromJson(json);
+}
+
 /// A relative pattern is a helper to construct glob patterns that are matched
 /// relatively to a base URI. The common value for a `baseUri` is a workspace
 /// folder root, but it can be another absolute URI as well.
@@ -2665,4 +3127,188 @@ abstract class RelativePattern with _$RelativePattern {
 
   factory RelativePattern.fromJson(Map<String, dynamic> json) =>
       _$RelativePatternFromJson(json);
+}
+
+/// A document filter where `language` is required field.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentFilterLanguage with _$TextDocumentFilterLanguage {
+  const factory TextDocumentFilterLanguage({
+    /// A language id, like `typescript`.
+    required String language,
+
+    /// A Uri `scheme`, like `file` or `untitled`.
+    String? scheme,
+
+    /// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+    /// relative patterns depends on the client capability
+    /// `textDocuments.filters.relativePatternSupport`.
+    GlobPattern? pattern,
+  }) = _TextDocumentFilterLanguage;
+
+  factory TextDocumentFilterLanguage.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentFilterLanguageFromJson(json);
+}
+
+/// A document filter where `scheme` is required field.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentFilterScheme with _$TextDocumentFilterScheme {
+  const factory TextDocumentFilterScheme({
+    /// A Uri `scheme`, like `file` or `untitled`.
+    required String scheme,
+
+    /// A language id, like `typescript`.
+    String? language,
+
+    /// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+    /// relative patterns depends on the client capability
+    /// `textDocuments.filters.relativePatternSupport`.
+    GlobPattern? pattern,
+  }) = _TextDocumentFilterScheme;
+
+  factory TextDocumentFilterScheme.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentFilterSchemeFromJson(json);
+}
+
+/// A document filter where `pattern` is required field.
+///
+/// @since 3.18.0
+@freezed
+abstract class TextDocumentFilterPattern with _$TextDocumentFilterPattern {
+  const factory TextDocumentFilterPattern({
+    /// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+    /// relative patterns depends on the client capability
+    /// `textDocuments.filters.relativePatternSupport`.
+    required GlobPattern pattern,
+
+    /// A language id, like `typescript`.
+    String? language,
+
+    /// A Uri `scheme`, like `file` or `untitled`.
+    String? scheme,
+  }) = _TextDocumentFilterPattern;
+
+  factory TextDocumentFilterPattern.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentFilterPatternFromJson(json);
+}
+
+/// A notebook document filter where `notebookType` is required field.
+///
+/// @since 3.18.0
+@freezed
+abstract class NotebookDocumentFilterNotebookType
+    with _$NotebookDocumentFilterNotebookType {
+  const factory NotebookDocumentFilterNotebookType({
+    /// The type of the enclosing notebook.
+    required String notebookType,
+
+    /// A Uri `scheme`, like `file` or `untitled`.
+    String? scheme,
+
+    /// A glob pattern.
+    GlobPattern? pattern,
+  }) = _NotebookDocumentFilterNotebookType;
+
+  factory NotebookDocumentFilterNotebookType.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentFilterNotebookTypeFromJson(json);
+}
+
+/// A notebook document filter where `scheme` is required field.
+///
+/// @since 3.18.0
+@freezed
+abstract class NotebookDocumentFilterScheme
+    with _$NotebookDocumentFilterScheme {
+  const factory NotebookDocumentFilterScheme({
+    /// A Uri `scheme`, like `file` or `untitled`.
+    required String scheme,
+
+    /// The type of the enclosing notebook.
+    String? notebookType,
+
+    /// A glob pattern.
+    GlobPattern? pattern,
+  }) = _NotebookDocumentFilterScheme;
+
+  factory NotebookDocumentFilterScheme.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentFilterSchemeFromJson(json);
+}
+
+/// A notebook document filter where `pattern` is required field.
+///
+/// @since 3.18.0
+@freezed
+abstract class NotebookDocumentFilterPattern
+    with _$NotebookDocumentFilterPattern {
+  const factory NotebookDocumentFilterPattern({
+    /// A glob pattern.
+    required GlobPattern pattern,
+
+    /// The type of the enclosing notebook.
+    String? notebookType,
+
+    /// A Uri `scheme`, like `file` or `untitled`.
+    String? scheme,
+  }) = _NotebookDocumentFilterPattern;
+
+  factory NotebookDocumentFilterPattern.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentFilterPatternFromJson(json);
+}
+
+/// A change describing how to move a `NotebookCell` array from state S to S'.
+///
+/// @since 3.17.0
+@freezed
+abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
+  const factory NotebookCellArrayChange({
+    /// The start oftest of the cell that changed.
+    required int start,
+
+    /// The deleted cells
+    required int deleteCount,
+
+    /// The new cells, if any
+    List<NotebookCell>? cells,
+  }) = _NotebookCellArrayChange;
+
+  factory NotebookCellArrayChange.fromJson(Map<String, dynamic> json) =>
+      _$NotebookCellArrayChangeFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientCompletionItemOptionsKind
+    with _$ClientCompletionItemOptionsKind {
+  const factory ClientCompletionItemOptionsKind({
+    /// The completion item kind values the client supports. When this property
+    /// exists the client also guarantees that it will handle values outside its
+    /// set gracefully and falls back to a default value when unknown.
+    ///
+    /// If this property is not present the client only supports the completion
+    /// items kinds from `Text` to `Reference` as defined in the initial version
+    /// of the protocol.
+    List<CompletionItemKind>? valueSet,
+  }) = _ClientCompletionItemOptionsKind;
+
+  factory ClientCompletionItemOptionsKind.fromJson(Map<String, dynamic> json) =>
+      _$ClientCompletionItemOptionsKindFromJson(json);
+}
+
+/// @since 3.18.0
+@freezed
+abstract class ClientSemanticTokensRequestFullDelta
+    with _$ClientSemanticTokensRequestFullDelta {
+  const factory ClientSemanticTokensRequestFullDelta({
+    /// The client will send the `textDocument/semanticTokens/full/delta`
+    /// request if the server provides a corresponding handler.
+    bool? delta,
+  }) = _ClientSemanticTokensRequestFullDelta;
+
+  factory ClientSemanticTokensRequestFullDelta.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ClientSemanticTokensRequestFullDeltaFromJson(json);
 }

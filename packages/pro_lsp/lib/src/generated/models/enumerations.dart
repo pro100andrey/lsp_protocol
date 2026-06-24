@@ -61,6 +61,9 @@ extension type const SemanticTokenTypes(String value) {
   /// @since 3.17.0
   static const decorator = SemanticTokenTypes('decorator');
 
+  /// @since 3.18.0
+  static const label = SemanticTokenTypes('label');
+
   String toJson() => value;
 }
 
@@ -535,6 +538,16 @@ extension type const CodeActionKind(String value) {
   /// - Inline function - Inline variable - Inline constant - ...
   static const refactorInline = CodeActionKind('refactor.inline');
 
+  /// Base kind for refactoring move actions: `refactor.move`
+  ///
+  /// Example move actions:
+  ///
+  /// - Move a function to a new file - Move a property between classes - Move
+  /// method to base class - ...
+  ///
+  /// @since 3.18.0
+  static const refactorMove = CodeActionKind('refactor.move');
+
   /// Base kind for refactoring rewrite actions: 'refactor.rewrite'
   ///
   /// Example rewrite actions:
@@ -560,11 +573,34 @@ extension type const CodeActionKind(String value) {
   /// @since 3.15.0
   static const sourceFixAll = CodeActionKind('source.fixAll');
 
+  /// Base kind for all code actions applying to the entire notebook's scope.
+  /// CodeActionKinds using this should always begin with `notebook.`
+  ///
+  /// @since 3.18.0
+  static const notebook = CodeActionKind('notebook');
+
   String toJson() => value;
 }
 
+/// Code action tags are extra annotations that tweak the behavior of a code
+/// action.
+///
+/// @since 3.18.0 - proposed
 @JsonEnum(valueField: 'value', alwaysCreate: true)
-enum TraceValues {
+enum CodeActionTag {
+  /// Marks the code action as LLM-generated.
+  lLMGenerated(1);
+
+  const CodeActionTag(this.value);
+
+  final int value;
+
+  static CodeActionTag? decode(int json) =>
+      $enumDecodeNullable(_$CodeActionTagEnumMap, json);
+}
+
+@JsonEnum(valueField: 'value', alwaysCreate: true)
+enum TraceValue {
   /// Turn tracing off.
   off('off'),
 
@@ -574,12 +610,12 @@ enum TraceValues {
   /// Verbose message tracing.
   verbose('verbose');
 
-  const TraceValues(this.value);
+  const TraceValue(this.value);
 
   final String value;
 
-  static TraceValues? decode(String json) =>
-      $enumDecodeNullable(_$TraceValuesEnumMap, json);
+  static TraceValue? decode(String json) =>
+      $enumDecodeNullable(_$TraceValueEnumMap, json);
 }
 
 /// Describes the content type that a client supports in various result literals
@@ -603,17 +639,152 @@ enum MarkupKind {
       $enumDecodeNullable(_$MarkupKindEnumMap, json);
 }
 
+/// Predefined Language kinds
+///
+/// @since 3.18.0
+extension type const LanguageKind(String value) {
+  factory LanguageKind.fromJson(dynamic json) => LanguageKind(json as String);
+
+  static const aBAP = LanguageKind('abap');
+
+  static const windowsBat = LanguageKind('bat');
+
+  static const bibTeX = LanguageKind('bibtex');
+
+  static const clojure = LanguageKind('clojure');
+
+  static const coffeescript = LanguageKind('coffeescript');
+
+  static const c = LanguageKind('c');
+
+  static const cPP = LanguageKind('cpp');
+
+  static const cSharp = LanguageKind('csharp');
+
+  static const cSS = LanguageKind('css');
+
+  /// @since 3.18.0
+  static const d = LanguageKind('d');
+
+  /// @since 3.18.0
+  static const delphi = LanguageKind('pascal');
+
+  static const diff = LanguageKind('diff');
+
+  static const dart = LanguageKind('dart');
+
+  static const dockerfile = LanguageKind('dockerfile');
+
+  static const elixir = LanguageKind('elixir');
+
+  static const erlang = LanguageKind('erlang');
+
+  static const fSharp = LanguageKind('fsharp');
+
+  static const gitCommit = LanguageKind('git-commit');
+
+  static const gitRebase = LanguageKind('git-rebase');
+
+  static const go = LanguageKind('go');
+
+  static const groovy = LanguageKind('groovy');
+
+  static const handlebars = LanguageKind('handlebars');
+
+  static const haskell = LanguageKind('haskell');
+
+  static const hTML = LanguageKind('html');
+
+  static const ini = LanguageKind('ini');
+
+  static const java = LanguageKind('java');
+
+  static const javaScript = LanguageKind('javascript');
+
+  static const javaScriptReact = LanguageKind('javascriptreact');
+
+  static const jSON = LanguageKind('json');
+
+  static const laTeX = LanguageKind('latex');
+
+  static const less = LanguageKind('less');
+
+  static const lua = LanguageKind('lua');
+
+  static const makefile = LanguageKind('makefile');
+
+  static const markdown = LanguageKind('markdown');
+
+  static const objectiveC = LanguageKind('objective-c');
+
+  static const objectiveCPP = LanguageKind('objective-cpp');
+
+  /// @since 3.18.0
+  static const pascal = LanguageKind('pascal');
+
+  static const perl = LanguageKind('perl');
+
+  static const perl6 = LanguageKind('perl6');
+
+  static const pHP = LanguageKind('php');
+
+  static const plaintext = LanguageKind('plaintext');
+
+  static const powershell = LanguageKind('powershell');
+
+  static const pug = LanguageKind('jade');
+
+  static const python = LanguageKind('python');
+
+  static const r = LanguageKind('r');
+
+  static const razor = LanguageKind('razor');
+
+  static const ruby = LanguageKind('ruby');
+
+  static const rust = LanguageKind('rust');
+
+  static const sCSS = LanguageKind('scss');
+
+  static const sASS = LanguageKind('sass');
+
+  static const scala = LanguageKind('scala');
+
+  static const shaderLab = LanguageKind('shaderlab');
+
+  static const shellScript = LanguageKind('shellscript');
+
+  static const sQL = LanguageKind('sql');
+
+  static const swift = LanguageKind('swift');
+
+  static const typeScript = LanguageKind('typescript');
+
+  static const typeScriptReact = LanguageKind('typescriptreact');
+
+  static const teX = LanguageKind('tex');
+
+  static const visualBasic = LanguageKind('vb');
+
+  static const xML = LanguageKind('xml');
+
+  static const xSL = LanguageKind('xsl');
+
+  static const yAML = LanguageKind('yaml');
+
+  String toJson() => value;
+}
+
 /// Describes how an `InlineCompletionItemProvider` was triggered.
 ///
 /// @since 3.18.0
-/// @proposed
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum InlineCompletionTriggerKind {
   /// Completion was triggered explicitly by a user gesture.
-  invoked(0),
+  invoked(1),
 
   /// Completion was triggered automatically while editing.
-  automatic(1);
+  automatic(2);
 
   const InlineCompletionTriggerKind(this.value);
 
@@ -750,6 +921,30 @@ enum CompletionTriggerKind {
 
   static CompletionTriggerKind? decode(int json) =>
       $enumDecodeNullable(_$CompletionTriggerKindEnumMap, json);
+}
+
+/// Defines how values from a set of defaults and an individual item will be
+/// merged.
+///
+/// @since 3.18.0
+@JsonEnum(valueField: 'value', alwaysCreate: true)
+enum ApplyKind {
+  /// The value from the individual item (if provided and not `null`) will be
+  /// used instead of the default.
+  replace(1),
+
+  /// The value from the item will be merged with the default.
+  ///
+  /// The specific rules for mergeing values are defined against each field that
+  /// supports merging.
+  merge(2);
+
+  const ApplyKind(this.value);
+
+  final int value;
+
+  static ApplyKind? decode(int json) =>
+      $enumDecodeNullable(_$ApplyKindEnumMap, json);
 }
 
 /// How a signature help was triggered.

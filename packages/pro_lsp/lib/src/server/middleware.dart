@@ -1,47 +1,6 @@
 import 'dart:async';
 
-/// Represents an incoming LSP request or notification as seen by middleware.
-///
-/// [LspIncomingRequest] is a simplified view of the raw JSON-RPC message,
-/// containing only the method name, parameters, and request ID. It is used
-/// by middleware to inspect and modify requests before they reach their
-/// target handlers.
-///
-/// ## Usage in Middleware
-///
-/// Middleware receive this object and can inspect or modify its fields:
-///
-/// ```dart
-/// class LoggingMiddleware implements LspMiddleware {
-///   @override
-///   Future<Object?> call(LspIncomingRequest request, LspNext next) {
-///     print('Handling: ${request.method}');
-///     return next(request);
-///   }
-/// }
-/// ```
-final class LspIncomingRequest {
-  LspIncomingRequest({
-    required this.method,
-    required this.params,
-    this.requestId,
-  });
-
-  /// The JSON-RPC method name (e.g. `'textDocument/completion'`).
-  final String method;
-
-  /// The raw JSON parameters of the request/notification.
-  ///
-  /// This is the unprocessed value from the JSON-RPC `params` field.
-  /// It may be a [Map], [List], or `null` depending on the method.
-  final Object? params;
-
-  /// The JSON-RPC request ID, or `null` for notifications.
-  ///
-  /// Request IDs are used to correlate requests with responses and
-  /// cancellation notifications.
-  final Object? requestId;
-}
+import 'lsp_request.dart';
 
 /// Function signature for invoking the next step in the middleware chain.
 ///
@@ -52,7 +11,7 @@ final class LspIncomingRequest {
 /// ```dart
 /// class TimingMiddleware implements LspMiddleware {
 ///   @override
-///   Future<Object?> call(LspIncomingRequest request, LspNext next) async {
+///   Future<Object?> call(LspRequest request, LspNext next) async {
 ///     final stopwatch = Stopwatch()..start();
 ///     final result = await next(request);
 ///     stopwatch.stop();
@@ -61,7 +20,7 @@ final class LspIncomingRequest {
 ///   }
 /// }
 /// ```
-typedef LspNext = Future<Object?> Function(LspIncomingRequest request);
+typedef LspNext = Future<Object?> Function(LspRequest request);
 
 /// Interface for class-based LSP middleware / request interceptors.
 ///
@@ -94,7 +53,7 @@ typedef LspNext = Future<Object?> Function(LspIncomingRequest request);
 /// ```dart
 /// class MyMiddleware implements LspMiddleware {
 ///   @override
-///   Future<Object?> call(LspIncomingRequest request, LspNext next) async {
+///   Future<Object?> call(LspRequest request, LspNext next) async {
 ///     // Pre-processing
 ///     final result = await next(request);
 ///     // Post-processing
@@ -121,7 +80,7 @@ typedef LspNext = Future<Object?> Function(LspIncomingRequest request);
 ///   final Map<String, Object?> _cache = {};
 ///
 ///   @override
-///   Future<Object?> call(LspIncomingRequest request, LspNext next) async {
+///   Future<Object?> call(LspRequest request, LspNext next) async {
 ///     final cached = _cache[request.method];
 ///     if (cached != null) return cached;
 ///
@@ -140,7 +99,7 @@ abstract class LspMiddleware {
   /// without calling [next].
   ///
   /// The return value is the response that will be sent back to the client.
-  Future<Object?> call(LspIncomingRequest request, LspNext next);
+  Future<Object?> call(LspRequest request, LspNext next);
 
   /// Wraps a function signature into an [LspMiddleware] instance for backward
   /// compatibility.
@@ -155,18 +114,17 @@ abstract class LspMiddleware {
   /// ));
   /// ```
   static LspMiddleware fromFunction(
-    Future<Object?> Function(LspIncomingRequest request, LspNext next) fn,
+    Future<Object?> Function(LspRequest request, LspNext next) fn,
   ) => _FunctionalMiddleware(fn);
 }
 
 final class _FunctionalMiddleware implements LspMiddleware {
   _FunctionalMiddleware(this._fn);
 
-  final Future<Object?> Function(LspIncomingRequest request, LspNext next) _fn;
+  final Future<Object?> Function(LspRequest request, LspNext next) _fn;
 
   @override
-  Future<Object?> call(LspIncomingRequest request, LspNext next) =>
-      _fn(request, next);
+  Future<Object?> call(LspRequest request, LspNext next) => _fn(request, next);
 }
 
 /// Composes a list of [LspMiddleware] into a single handler function.
@@ -175,7 +133,7 @@ final class _FunctionalMiddleware implements LspMiddleware {
 /// is the first to receive the request. The [target] function is called
 /// last (after all middleware have had a chance to process the request).
 ///
-/// The returned function takes an [LspIncomingRequest] and returns a
+/// The returned function takes an [LspRequest] and returns a
 /// [Future] containing the response.
 ///
 /// Example composition:
@@ -184,9 +142,9 @@ final class _FunctionalMiddleware implements LspMiddleware {
 ///     ↑ next        ↑ next       ↑ next
 /// Middleware1 ← Middleware2 ← Middleware3 ← Target
 /// ```
-Future<Object?> Function(LspIncomingRequest) composeMiddlewares(
+Future<Object?> Function(LspRequest) composeMiddlewares(
   List<LspMiddleware> middlewares,
-  Future<Object?> Function(LspIncomingRequest) target,
+  Future<Object?> Function(LspRequest) target,
 ) {
   var handler = target;
   for (var i = middlewares.length - 1; i >= 0; i--) {

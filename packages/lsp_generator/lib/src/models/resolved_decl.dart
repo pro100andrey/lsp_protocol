@@ -29,6 +29,7 @@ abstract class ResolvedClass with _$ResolvedClass implements ResolvedDecl {
     @Default([]) List<ClassType> mixins$,
     String? documentation,
     String? since,
+    @Default([]) List<String> sinceTags,
     @Default(false) bool proposed,
   }) = _ResolvedClass;
   ResolvedClass._();

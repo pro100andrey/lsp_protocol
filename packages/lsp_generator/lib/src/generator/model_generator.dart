@@ -40,6 +40,14 @@ final class ModelGenerator {
 
   static const _header = 'GENERATED — do not edit.';
 
+  // Doc-comment formatting patterns, compiled once (see [_docLines]).
+  static final _sinceTag = RegExp(r'\s*@since\s+.*?(?=\n|$)');
+  static final _proposedTag = RegExp(r'\s*@proposed\s*.*?(?=\n|$)');
+  static final _jsdocLink = RegExp(r'\{@link\s+(\S+?)(?:\s+([^}]*?))?\}');
+  static final _identifier = RegExp(r'^\w+$');
+  static final _blankLine = RegExp(r'\n\s*\n');
+  static final _whitespace = RegExp(r'\s+');
+
   /// All class names (including anonymous) — used to filter conflicting
   /// aliases.
   late final Set<String> _classNames = _ctx.classNames;
@@ -375,28 +383,35 @@ final class ModelGenerator {
   /// * `{@link Foo.bar name}` → `[name]` when *name* is a valid identifier,
   ///   otherwise `[Foo]` (type part only).
   ///
-  /// When [since] is non-null, appends `/// @since X` after the main body (or
-  /// emits it alone when [input] is blank). [proposed] appends `/// @proposed`
-  /// similarly.
+  /// Appends `/// @since X` lines after the main body. When [sinceTags] is
+  /// non-empty its entries are emitted in order (the full version history, e.g.
+  /// `@since 3.15.0` then `@since 3.18.0 ...`); otherwise the single [since]
+  /// value is used. [proposed] appends `/// @proposed`.
   ///
   /// Lines are word-wrapped at [maxWidth] characters. Returns an empty list
-  /// when [input] is null or blank and neither [since] nor [proposed] are set.
+  /// when [input] is null or blank and no `@since`/`@proposed` tag applies.
   List<String> _docLines(
     String? input, {
     int maxWidth = 80,
     int indent = 0,
     String? since,
+    List<String> sinceTags = const [],
     bool proposed = false,
     List<String> extra = const [],
   }) {
+    final sinceLines = sinceTags.isNotEmpty
+        ? sinceTags.map(
+            (s) => '/// @since ${s.replaceAll(_whitespace, ' ').trim()}',
+          )
+        : [if (since != null) '/// @since $since'];
     final tags = [
-      if (since != null) '/// @since $since',
+      ...sinceLines,
       if (proposed) '/// @proposed',
     ];
 
     final body = (input ?? '')
-        .replaceAll(RegExp(r'\s*@since\s+.*?(?=\n|$)'), '')
-        .replaceAll(RegExp(r'\s*@proposed\s*.*?(?=\n|$)'), '')
+        .replaceAll(_sinceTag, '')
+        .replaceAll(_proposedTag, '')
         .replaceAll('<', '&lt;')
         .replaceAll('>', '&gt;')
         .trim();
@@ -409,14 +424,14 @@ final class ModelGenerator {
     final maxContent = maxWidth - prefix.length - indent;
 
     final resolved = body.replaceAllMapped(
-      RegExp(r'\{@link\s+(\S+?)(?:\s+([^}]*?))?\}'),
+      _jsdocLink,
       (m) {
         final target = m.group(1)!.replaceAll('[]', '');
         final rawDisplay = m.group(2)?.replaceAll('`', '').trim() ?? '';
         if (rawDisplay.isEmpty) {
           return '`$target`';
         }
-        if (RegExp(r'^\w+$').hasMatch(rawDisplay)) {
+        if (_identifier.hasMatch(rawDisplay)) {
           return '`$rawDisplay`';
         }
         return '`${target.split('.').first}`';
@@ -426,7 +441,7 @@ final class ModelGenerator {
     final paragraphs = resolved
         .replaceAll('\r\n', '\n')
         .replaceAll('\r', '\n')
-        .split(RegExp(r'\n\s*\n'))
+        .split(_blankLine)
         .map((p) => p.trim())
         .where((p) => p.isNotEmpty)
         .toList(growable: false);
@@ -461,7 +476,7 @@ final class ModelGenerator {
     if (lines.isNotEmpty) {
       lines.add('///');
     }
-    final words = paragraph.replaceAll('\n', ' ').split(RegExp(r'\s+'));
+    final words = paragraph.replaceAll('\n', ' ').split(_whitespace);
     final buf = StringBuffer();
     for (final word in words) {
       if (buf.isEmpty) {

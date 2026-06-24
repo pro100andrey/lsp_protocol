@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import '../connection/lsp_connection.dart';
 import 'cancellation_token.dart';
 
@@ -54,7 +56,8 @@ final class LspRequest {
     required this.cancellationToken,
     required this.connection,
     this.id,
-  });
+    Object? params,
+  }) : _params = params;
 
   /// The LSP method name (e.g. `'textDocument/completion'`).
   ///
@@ -74,6 +77,31 @@ final class LspRequest {
   /// Request IDs are used to correlate requests with responses and
   /// cancellation notifications.
   final Object? id;
+
+  /// The raw JSON parameters of the request or notification.
+  ///
+  /// This is the unprocessed value from the JSON-RPC `params` field — a [Map],
+  /// [List], or `null` depending on the method. Handlers usually rely on the
+  /// decoded params passed as their first argument; this raw view exists mainly
+  /// so middleware can inspect and rewrite params before the handler runs.
+  ///
+  /// Middleware may rewrite params by assigning this field before calling
+  /// `next`. Once the target handler begins running the request is sealed and
+  /// further writes throw a [StateError].
+  Object? get params => _params;
+  set params(Object? value) {
+    if (_sealed) {
+      throw StateError(
+        'LspRequest.params is read-only once the handler runs — rewrite '
+        'params from middleware before calling next().',
+      );
+    }
+    assert(
+      value == null || value is Map || value is List,
+      'LSP params must be a Map, List, or null.',
+    );
+    _params = value;
+  }
 
   /// Returns `true` if this is a notification (no request ID).
   ///
@@ -96,4 +124,15 @@ final class LspRequest {
   ///
   /// Returns `null` if no service of type [T] is registered.
   T? tryResolve<T extends Object>() => connection.tryResolve<T>();
+
+  Object? _params;
+  var _sealed = false;
+
+  /// Seals the request so [params] can no longer be rewritten.
+  ///
+  /// Called by the dispatcher at the point the target handler begins running,
+  /// in every dispatch path, so the params-rewrite hook stays confined to the
+  /// middleware phase. Not intended for use outside this package.
+  @internal
+  void seal() => _sealed = true;
 }

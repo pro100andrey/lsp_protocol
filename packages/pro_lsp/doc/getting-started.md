@@ -53,7 +53,7 @@ void main() async {
   server.general.onInitialize((params, context) async {
     return const InitializeResult(
       capabilities: ServerCapabilities(hoverProvider: .bool(true)),
-      serverInfo: (name: 'my-dart-lsp', version: '1.0.0'),
+      serverInfo: ServerInfo(name: 'my-dart-lsp', version: '1.0.0'),
     );
   });
 
