@@ -372,7 +372,7 @@ final class ApiGenerator {
     final toJson = isNullable
         ? refer('result').nullSafeProperty('toJson').call([])
         : refer('result').property('toJson').call([]);
-        
+
     return [
       declareFinal('result').assign(handlerExpr.awaited).statement,
       toJson.returned.statement,

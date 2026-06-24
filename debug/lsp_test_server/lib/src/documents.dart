@@ -94,8 +94,7 @@ final class TextDocumentManager extends LspFeature {
                 text = fullText.text;
                 currentLineStarts = null;
               } else {
-                final rangeChange =
-                    change.asTextDocumentContentChangePartial;
+                final rangeChange = change.asTextDocumentContentChangePartial;
                 if (rangeChange != null) {
                   final starts = currentLineStarts ??= _computeLineStarts(text);
                   final startOffset = _positionToOffset(

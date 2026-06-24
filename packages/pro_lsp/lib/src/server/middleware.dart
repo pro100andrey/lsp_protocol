@@ -124,8 +124,7 @@ final class _FunctionalMiddleware implements LspMiddleware {
   final Future<Object?> Function(LspRequest request, LspNext next) _fn;
 
   @override
-  Future<Object?> call(LspRequest request, LspNext next) =>
-      _fn(request, next);
+  Future<Object?> call(LspRequest request, LspNext next) => _fn(request, next);
 }
 
 /// Composes a list of [LspMiddleware] into a single handler function.

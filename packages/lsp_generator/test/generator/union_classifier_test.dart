@@ -76,7 +76,12 @@ void main() {
       const en = ResolvedEnum(name: 'E', members: [], valueType: 'String');
       expect(
         classifier.classifyUnion(
-          const UnionType(items: [_string, EnumType(ref: en)]),
+          const UnionType(
+            items: [
+              _string,
+              EnumType(ref: en),
+            ],
+          ),
         ),
         CodegenUnionKind.mixed,
       );

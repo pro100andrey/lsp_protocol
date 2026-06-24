@@ -88,9 +88,7 @@ final class UnionClassifier {
   /// whether all structs share the same discriminator key.
   CodegenUnionKind _classifyScalarStruct(List<ResolvedType> structs) {
     final uniqueStructs = structs.map(singleStructKey).toSet();
-    return uniqueStructs.length == 1
-        ? .scalarStruct
-        : .mixed;
+    return uniqueStructs.length == 1 ? .scalarStruct : .mixed;
   }
 
   /// Classifies a union containing multiple structs as either
@@ -98,9 +96,7 @@ final class UnionClassifier {
   /// whether structs have distinct discriminator keys.
   CodegenUnionKind _classifyStructStruct(List<ResolvedType> structs) {
     final uniqueStructs = structs.map(singleStructKey).toSet();
-    return uniqueStructs.length >= 2
-        ? .structStruct
-        : .mixed;
+    return uniqueStructs.length >= 2 ? .structStruct : .mixed;
   }
 
   /// A stable identity key for a struct-like union member, used to dedupe
