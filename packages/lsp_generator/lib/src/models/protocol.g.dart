@@ -28,12 +28,12 @@ _MetaProtocol _$MetaProtocolFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$MetaProtocolToJson(_MetaProtocol instance) =>
     <String, dynamic>{
-      'metaData': instance.metaData,
-      'requests': instance.requests,
-      'notifications': instance.notifications,
-      'structures': instance.structures,
-      'enumerations': instance.enumerations,
-      'typeAliases': instance.typeAliases,
+      'metaData': instance.metaData.toJson(),
+      'requests': instance.requests.map((e) => e.toJson()).toList(),
+      'notifications': instance.notifications.map((e) => e.toJson()).toList(),
+      'structures': instance.structures.map((e) => e.toJson()).toList(),
+      'enumerations': instance.enumerations.map((e) => e.toJson()).toList(),
+      'typeAliases': instance.typeAliases.map((e) => e.toJson()).toList(),
     };
 
 _MetaData _$MetaDataFromJson(Map<String, dynamic> json) =>
@@ -76,15 +76,15 @@ Map<String, dynamic> _$MetaRequestToJson(_MetaRequest instance) =>
     <String, dynamic>{
       'method': instance.method,
       'messageDirection': _$MessageDirectionEnumMap[instance.messageDirection]!,
-      'params': instance.params,
-      'result': instance.result,
-      'documentation': instance.documentation,
-      'partialResult': instance.partialResult,
-      'registrationOptions': instance.registrationOptions,
-      'since': instance.since,
-      'proposed': instance.proposed,
-      'registrationMethod': instance.registrationMethod,
-      'errorData': instance.errorData,
+      'params': ?instance.params?.toJson(),
+      'result': ?instance.result?.toJson(),
+      'documentation': ?instance.documentation,
+      'partialResult': ?instance.partialResult?.toJson(),
+      'registrationOptions': ?instance.registrationOptions?.toJson(),
+      'since': ?instance.since,
+      'proposed': ?instance.proposed,
+      'registrationMethod': ?instance.registrationMethod,
+      'errorData': ?instance.errorData?.toJson(),
     };
 
 const _$MessageDirectionEnumMap = {
@@ -122,7 +122,7 @@ ArrayRef _$ArrayRefFromJson(Map<String, dynamic> json) => ArrayRef(
 
 Map<String, dynamic> _$ArrayRefToJson(ArrayRef instance) => <String, dynamic>{
   'kind': _$TypeKindEnumMap[instance.kind]!,
-  'element': instance.element,
+  'element': instance.element.toJson(),
 };
 
 BaseRef _$BaseRefFromJson(Map<String, dynamic> json) => BaseRef(
@@ -144,7 +144,7 @@ OrRef _$OrRefFromJson(Map<String, dynamic> json) => OrRef(
 
 Map<String, dynamic> _$OrRefToJson(OrRef instance) => <String, dynamic>{
   'kind': _$TypeKindEnumMap[instance.kind]!,
-  'items': instance.items,
+  'items': instance.items.map((e) => e.toJson()).toList(),
 };
 
 AndRef _$AndRefFromJson(Map<String, dynamic> json) => AndRef(
@@ -156,7 +156,7 @@ AndRef _$AndRefFromJson(Map<String, dynamic> json) => AndRef(
 
 Map<String, dynamic> _$AndRefToJson(AndRef instance) => <String, dynamic>{
   'kind': _$TypeKindEnumMap[instance.kind]!,
-  'items': instance.items,
+  'items': instance.items.map((e) => e.toJson()).toList(),
 };
 
 MapRef _$MapRefFromJson(Map<String, dynamic> json) => MapRef(
@@ -167,8 +167,8 @@ MapRef _$MapRefFromJson(Map<String, dynamic> json) => MapRef(
 
 Map<String, dynamic> _$MapRefToJson(MapRef instance) => <String, dynamic>{
   'kind': _$TypeKindEnumMap[instance.kind]!,
-  'key': instance.key,
-  'value': instance.value,
+  'key': instance.key.toJson(),
+  'value': instance.value.toJson(),
 };
 
 LiteralRef _$LiteralRefFromJson(Map<String, dynamic> json) => LiteralRef(
@@ -179,7 +179,7 @@ LiteralRef _$LiteralRefFromJson(Map<String, dynamic> json) => LiteralRef(
 Map<String, dynamic> _$LiteralRefToJson(LiteralRef instance) =>
     <String, dynamic>{
       'kind': _$TypeKindEnumMap[instance.kind]!,
-      'value': instance.value,
+      'value': instance.value.toJson(),
     };
 
 StringLiteralRef _$StringLiteralRefFromJson(Map<String, dynamic> json) =>
@@ -203,7 +203,7 @@ TupleRef _$TupleRefFromJson(Map<String, dynamic> json) => TupleRef(
 
 Map<String, dynamic> _$TupleRefToJson(TupleRef instance) => <String, dynamic>{
   'kind': _$TypeKindEnumMap[instance.kind]!,
-  'items': instance.items,
+  'items': instance.items.map((e) => e.toJson()).toList(),
 };
 
 _MetaLiteral _$MetaLiteralFromJson(Map<String, dynamic> json) => _MetaLiteral(
@@ -213,7 +213,9 @@ _MetaLiteral _$MetaLiteralFromJson(Map<String, dynamic> json) => _MetaLiteral(
 );
 
 Map<String, dynamic> _$MetaLiteralToJson(_MetaLiteral instance) =>
-    <String, dynamic>{'properties': instance.properties};
+    <String, dynamic>{
+      'properties': instance.properties.map((e) => e.toJson()).toList(),
+    };
 
 _MetaNotification _$MetaNotificationFromJson(Map<String, dynamic> json) =>
     _MetaNotification(
@@ -239,11 +241,11 @@ Map<String, dynamic> _$MetaNotificationToJson(_MetaNotification instance) =>
     <String, dynamic>{
       'method': instance.method,
       'messageDirection': _$MessageDirectionEnumMap[instance.messageDirection]!,
-      'params': instance.params,
-      'documentation': instance.documentation,
-      'registrationOptions': instance.registrationOptions,
-      'since': instance.since,
-      'registrationMethod': instance.registrationMethod,
+      'params': ?instance.params?.toJson(),
+      'documentation': ?instance.documentation,
+      'registrationOptions': ?instance.registrationOptions?.toJson(),
+      'since': ?instance.since,
+      'registrationMethod': ?instance.registrationMethod,
     };
 
 _MetaProperty _$MetaPropertyFromJson(Map<String, dynamic> json) =>
@@ -260,10 +262,10 @@ _MetaProperty _$MetaPropertyFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MetaPropertyToJson(_MetaProperty instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'type': instance.type,
-      'documentation': instance.documentation,
-      'since': instance.since,
-      'deprecated': instance.deprecated,
+      'type': instance.type.toJson(),
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
+      'deprecated': ?instance.deprecated,
       'optional': instance.optional,
       'proposed': instance.proposed,
     };
@@ -297,13 +299,13 @@ _MetaStructure _$MetaStructureFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MetaStructureToJson(_MetaStructure instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'properties': instance.properties,
-      'documentation': instance.documentation,
-      'since': instance.since,
+      'properties': instance.properties.map((e) => e.toJson()).toList(),
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
       'sinceTags': instance.sinceTags,
       'proposed': instance.proposed,
-      'mixins': instance.mixins$,
-      'extends': instance.extends$,
+      'mixins': instance.mixins$.map((e) => e.toJson()).toList(),
+      'extends': instance.extends$.map((e) => e.toJson()).toList(),
     };
 
 _MetaEnumMember _$MetaEnumMemberFromJson(Map<String, dynamic> json) =>
@@ -321,9 +323,9 @@ Map<String, dynamic> _$MetaEnumMemberToJson(_MetaEnumMember instance) =>
     <String, dynamic>{
       'name': instance.name,
       'value': const IntOrStringSealedConverter().toJson(instance.value),
-      'documentation': instance.documentation,
-      'since': instance.since,
-      'deprecated': instance.deprecated,
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
+      'deprecated': ?instance.deprecated,
     };
 
 EnumRawValueInteger _$EnumRawValueIntegerFromJson(Map<String, dynamic> json) =>
@@ -361,11 +363,11 @@ _MetaEnumeration _$MetaEnumerationFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MetaEnumerationToJson(_MetaEnumeration instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'type': instance.type,
-      'values': instance.values,
-      'supportsCustomValues': instance.supportsCustomValues,
-      'documentation': instance.documentation,
-      'since': instance.since,
+      'type': instance.type.toJson(),
+      'values': instance.values.map((e) => e.toJson()).toList(),
+      'supportsCustomValues': ?instance.supportsCustomValues,
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
       'proposed': instance.proposed,
     };
 
@@ -383,10 +385,10 @@ _MetaTypeAlias _$MetaTypeAliasFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MetaTypeAliasToJson(_MetaTypeAlias instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'type': instance.type,
-      'documentation': instance.documentation,
-      'since': instance.since,
-      'deprecated': instance.deprecated,
+      'type': instance.type.toJson(),
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
+      'deprecated': ?instance.deprecated,
       'proposed': instance.proposed,
       'optional': instance.optional,
     };
